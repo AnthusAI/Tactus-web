@@ -42,3 +42,10 @@ Amplify runs `npm ci`. If `package.json` changes but `package-lock.json` is not 
 - Regenerate lockfile using Node 20 (matching Amplify):
   - `npx -y -p node@20.19.6 -c "npm install --package-lock-only"`
   - Commit the updated `package-lock.json`.
+
+## Hosting cache gotcha (hashed assets vs. stale HTML)
+
+If you see broken images/CSS/JS in production but everything works locally, suspect stale cached HTML pointing at old hashed asset URLs.
+
+- Fix: set Amplify Hosting custom headers so HTML is not cached at the CDN edge (`s-maxage=0`).
+- Current setting (Amplify app config, not in-repo): `Cache-Control: public, max-age=0, s-maxage=0, must-revalidate` for `/`, `/index.html`, and `**/*.html`.

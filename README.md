@@ -4,11 +4,20 @@ Gatsby site scaffolded for AWS Amplify Hosting and ready for Amplify Gen2 backen
 
 ### Local development
 
+Node **20.x** is required (Gatsby may fail on newer non-LTS versions).
+
 ```bash
 nvm install 20
 nvm use 20
 npm ci
 npm run develop
+```
+
+If you don’t use `nvm`, you can run Node 20 via `npx`:
+
+```bash
+npx -y -p node@20.19.6 -c "npm ci"
+npx -y -p node@20.19.6 -c "npm run develop"
 ```
 
 ### Deploy (Amplify Hosting)

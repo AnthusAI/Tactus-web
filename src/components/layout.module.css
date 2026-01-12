@@ -1,0 +1,16 @@
+.page {
+  min-height: 100vh;
+  background: var(--color-bg);
+}
+
+.content {
+  margin: 0 auto;
+  max-width: var(--size-content);
+  padding: var(--space-6) var(--size-gutter);
+}
+
+@media (max-width: 720px) {
+  .content {
+    padding: var(--space-5) var(--space-4);
+  }
+}

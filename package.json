@@ -27,6 +27,13 @@
   ],
   "license": "UNLICENSED",
   "scripts": {
+    "check:node": "node scripts/ensure-node-20.js",
+    "preinstall": "npm run check:node",
+    "prebuild": "npm run check:node",
+    "predevelop": "npm run check:node",
+    "prestart": "npm run check:node",
+    "preserve": "npm run check:node",
+    "preclean": "npm run check:node",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css}\"",

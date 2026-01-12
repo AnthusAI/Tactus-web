@@ -1,0 +1,36 @@
+{
+  "name": "tactus-web",
+  "private": true,
+  "description": "Tactus-web Gatsby site",
+  "version": "0.1.0",
+  "dependencies": {
+    "gatsby": "^5.14.6",
+    "gatsby-plugin-image": "^3.14.0",
+    "gatsby-plugin-manifest": "^5.14.0",
+    "gatsby-plugin-sharp": "^5.14.0",
+    "gatsby-source-filesystem": "^5.14.0",
+    "gatsby-transformer-sharp": "^5.14.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@aws-amplify/backend": "^1.19.0",
+    "@aws-amplify/backend-cli": "^1.8.1",
+    "prettier": "^2.8.8",
+    "typescript": "^5.9.3"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "UNLICENSED",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md,css}\"",
+    "start": "gatsby develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+  },
+  "repository": {}
+}

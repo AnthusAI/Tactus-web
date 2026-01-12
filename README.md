@@ -5,7 +5,8 @@ Gatsby site scaffolded for AWS Amplify Hosting and ready for Amplify Gen2 backen
 ### Local development
 
 ```bash
-nvm use
+nvm install 20
+nvm use 20
 npm ci
 npm run develop
 ```

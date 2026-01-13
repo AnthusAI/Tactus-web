@@ -7,6 +7,7 @@
 
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
+import { StaticImage } from "gatsby-plugin-image"
 
 import Header from "./header"
 import * as styles from "./layout.module.css"
@@ -29,6 +30,25 @@ const Layout = ({ children }) => {
       <div className={styles.content}>
         <main>{children}</main>
       </div>
+      <footer className={styles.footer}>
+        <div className={styles.footerInner}>
+          <div className={styles.footerCenter}>
+            <StaticImage
+              src="../images/favicon.png"
+              alt="Tactus icon"
+              className={styles.footerIcon}
+              layout="fixed"
+              width={96}
+              height={96}
+              placeholder="none"
+            />
+            <div className={styles.footerTagline}>
+              Code Responsibly
+            </div>
+          </div>
+          <div className={styles.footerByline}>by Ryan Porter</div>
+        </div>
+      </footer>
     </div>
   )
 }

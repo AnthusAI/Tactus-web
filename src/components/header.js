@@ -10,6 +10,7 @@ const Header = ({ siteTitle }) => (
         <span className={styles.brandMark}>{siteTitle}</span>
       </Link>
       <nav className={styles.nav} aria-label="Primary">
+        <Link to="/getting-started/">Getting Started</Link>
         <a href="https://anthusai.github.io/Learning-Tactus/">Learning</a>
         <a href="https://anthusai.github.io/Programming-Tactus/">Reference</a>
         <a href="https://anthusai.github.io/Tactus-in-a-Nutshell/">Nutshell</a>

@@ -11,7 +11,7 @@ const HELLO_WORLD_EXAMPLE = `World = Agent {
     system_prompt = "Your name is World."
 }
 
-return World({message = "Hello, World!"}).response`
+return World("Hello, World!").response`
 
 const DURABILITY_EXAMPLE = `local approved = Human.approve({
     message = "Deploy to production?",

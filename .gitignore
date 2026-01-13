@@ -58,6 +58,9 @@ typings/
 .cache/
 public
 
+# Generated exports
+/_output/
+
 # Amplify Gen2 local state
 .amplify/
 

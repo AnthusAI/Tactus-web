@@ -10,9 +10,11 @@
 module.exports = {
   siteMetadata: {
     title: `Tactus`,
-    description: `A programming language for reliable, tool-using AI agents. Give AI agents powerful tools—safely and securely.`,
+    description: `Beyond prompts + hope: Tactus is a language + runtime for safe, reproducible tool-using agents—give them tools and a procedure, with approvals, durability, and the principle of least privilege.`,
     author: `@AnthusAI`,
     siteUrl: `https://main.dfkbdffs2viq8.amplifyapp.com/`,
+    socialImage: `/og/monkey.png`,
+    socialImageAlt: `A small monkey holding a straight razor.`,
   },
   plugins: [
     `gatsby-plugin-image`,
@@ -36,7 +38,7 @@ module.exports = {
         // https://css-tricks.com/meta-theme-color-and-trickery/
         theme_color: `#c7007e`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/favicon.png`, // This path is relative to the root of the site.
       },
     },
   ],

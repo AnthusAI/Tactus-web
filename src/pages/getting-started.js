@@ -1,123 +1,90 @@
 import * as React from "react"
 import { Link } from "gatsby"
-
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import * as styles from "./getting-started.module.css"
 
 const GettingStartedPage = () => (
   <Layout>
-    <h1>Getting Started</h1>
+    <div className={styles.page}>
+      <section className={styles.section}>
+        <div className={styles.container}>
+          <div className={styles.hero}>
+            <h1 className={styles.title}>Start Building</h1>
+            <p className={styles.subtitle}>
+              Choose the workflow that matches what you want to do today.
+            </p>
+          </div>
 
-    <p>
-      Tactus programs are designed to run <b>inside a host (runtime)</b>. The
-      host is responsible for rendering <b>human-in-the-loop</b> interactions
-      like approvals, reviews, and structured inputs.
-    </p>
+          <div className={styles.pathGrid}>
+            {/* Path 1: IDE */}
+            <div className={styles.pathCard}>
+              <h2 className={styles.pathTitle}>Tactus IDE</h2>
+              <p className={styles.pathText}>
+                The best way to write, run, and debug agents. Includes a visual interface 
+                for human-in-the-loop interactions and a live view of agent execution.
+              </p>
+              <Link to="/download/" className={styles.primaryButton}>
+                Download IDE
+              </Link>
+            </div>
 
-    <p>
-      You can start with the CLI host (terminal prompts), then move to a richer
-      host (the Tactus IDE), and ultimately embed Tactus into your own
-      application so your app renders the UI components directly.
-    </p>
+            {/* Path 2: CLI */}
+            <div className={styles.pathCard}>
+              <h2 className={styles.pathTitle}>Command Line</h2>
+              <p className={styles.pathText}>
+                For running agents on servers, in CI/CD, or as distributed Python packages.
+                Tactus runs as a standard Python module.
+              </p>
+              <div className={styles.codeBlock}>
+                python -m pip install tactus
+              </div>
+            </div>
+          </div>
 
-    <h2 id="installation">Installation</h2>
+          {/* Concepts */}
+          <div className={styles.conceptSection}>
+            <h2 className={styles.conceptTitle}>Two Ways to Run</h2>
+            <div className={styles.pathGrid}>
+              <div className={styles.pathCard}>
+                <h3 className={styles.pathTitle}>Standalone Utility</h3>
+                <p className={styles.pathText}>
+                  Tactus is great for writing script-based agents. You can run 
+                  <code>.tac</code> files directly from your terminal to perform tasks, 
+                  process files, or automate workflows locally.
+                </p>
+              </div>
+              <div className={styles.pathCard}>
+                <h3 className={styles.pathTitle}>Embedded Runtime</h3>
+                <p className={styles.pathText}>
+                  A common use case is embedding the Tactus runtime inside another 
+                  application or cloud backend. This lets your app "run" agent procedures 
+                  to provide intelligent features to your users.
+                </p>
+              </div>
+            </div>
+          </div>
 
-    <p>
-      Install the Python package to get the <code>tactus</code> CLI:
-    </p>
+          {/* Learn */}
+          <div className={styles.conceptSection} style={{borderTop: 'none', paddingTop: 'var(--space-4)'}}>
+            <h2 className={styles.conceptTitle}>Learn the Language</h2>
+            <p className={styles.pathText} style={{maxWidth: '48rem'}}>
+              Tactus is a programming language. To get the most out of it, you'll want to 
+              understand the core patterns: tools, durability, and context.
+            </p>
+            <div style={{marginTop: 'var(--space-4)'}}>
+              <a href="https://anthusai.github.io/Learning-Tactus/" className={styles.primaryButton} style={{background: 'var(--color-surface-2)', color: 'var(--color-text)'}}>
+                Read Learning Tactus
+              </a>
+            </div>
+          </div>
 
-    <pre>
-      <code>{`python -m pip install -U pip
-python -m pip install tactus
-
-tactus --help
-tactus version`}</code>
-    </pre>
-
-    <h2 id="first-run">Your First Run</h2>
-
-    <p>
-      The quickest way to run known-good examples is to use the book repo{" "}
-      <a href="https://github.com/AnthusAI/Learning-Tactus">Learning Tactus</a>:
-    </p>
-
-    <pre>
-      <code>{`git clone https://github.com/AnthusAI/Learning-Tactus.git
-cd Learning-Tactus
-
-# Fast, deterministic, no API key required:
-tactus test code/chapter-01/04-basics-simple-agent.tac --mock`}</code>
-    </pre>
-
-    <p>
-      For the full walkthrough, start at{" "}
-      <a href="https://anthusai.github.io/Learning-Tactus/">
-        Learning Tactus (online)
-      </a>
-      .
-    </p>
-
-    <h2 id="hosts">Choosing a Host (Runtime)</h2>
-
-    <h3>1) CLI host (terminal)</h3>
-    <p>
-      When your procedure calls <code>Human.approve</code>,{" "}
-      <code>Human.input</code>, or <code>Human.review</code>, the CLI host will
-      prompt in the terminal. This is the simplest way to run and test Tactus
-      programs.
-    </p>
-
-    <h3>2) Tactus IDE (web UI reference implementation)</h3>
-    <p>
-      The IDE runs Tactus procedures and renders human-in-the-loop interactions
-      as UI components (buttons, forms, review panels). It’s a reference
-      implementation of what embedding can look like in a real product.
-    </p>
-
-    <p>
-      Today, the IDE requires the Tactus repo checkout (because it includes a
-      React frontend):
-    </p>
-
-    <pre>
-      <code>{`git clone https://github.com/AnthusAI/Tactus.git
-cd Tactus
-
-# Python (recommended: venv)
-python -m pip install -U pip
-python -m pip install -e .
-
-# Node 20+ for the IDE frontend
-cd tactus-ide/frontend
-npm install
-npm run build
-
-# Back in repo root
-cd ../..
-tactus ide`}</code>
-    </pre>
-
-    <p>
-      If you’re developing the IDE itself (hot reload), use{" "}
-      <code>make dev-ide</code> from the Tactus repo.
-    </p>
-
-    <h3>3) Embed Tactus in your app</h3>
-    <p>
-      Tactus is intended to be embedded. Your application becomes the host: your
-      UI renders the structured interaction requests declared by the procedure,
-      and execution resumes when the user responds.
-    </p>
-
-    <hr />
-    <p>
-      Next: skim <Link to="/">the overview</Link>, or jump into{" "}
-      <a href="https://anthusai.github.io/Learning-Tactus/">Learning Tactus</a>.
-    </p>
+        </div>
+      </section>
+    </div>
   </Layout>
 )
 
 export const Head = () => <Seo title="Getting Started" pathname="/getting-started/" />
 
 export default GettingStartedPage
-

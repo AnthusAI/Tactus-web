@@ -13,6 +13,13 @@
   flex: 1;
 }
 
+.contentFull {
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  flex: 1;
+}
+
 .footer {
   margin-top: var(--space-6);
   padding: var(--space-5) var(--size-gutter) var(--space-2);

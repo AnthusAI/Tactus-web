@@ -1,0 +1,113 @@
+.page {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: var(--size-content);
+  padding: 0 var(--size-gutter);
+  width: 100%;
+}
+
+.section {
+  padding: var(--space-6) 0;
+}
+
+.hero {
+  padding: var(--space-6) 0 var(--space-4);
+  max-width: 48rem;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: var(--space-3);
+}
+
+.subtitle {
+  font-size: 1.35rem;
+  color: var(--color-text-muted);
+  line-height: var(--line-height-loose);
+  margin: 0;
+}
+
+.pathGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+}
+
+.pathCard {
+  background: var(--color-surface-2);
+  border-radius: var(--border-radius);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.pathTitle {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.pathText {
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  margin: 0;
+  flex: 1;
+}
+
+.primaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: var(--color-primary-ink);
+  font-weight: 700;
+  text-decoration: none;
+  align-self: start;
+}
+
+.primaryButton:hover {
+  filter: brightness(0.95);
+  text-decoration: none;
+}
+
+.codeBlock {
+  background: var(--color-code-bg);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--border-radius);
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  overflow-x: auto;
+  margin-top: var(--space-2);
+}
+
+.conceptSection {
+  margin-top: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.conceptTitle {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  margin-top: 0;
+  margin-bottom: var(--space-4);
+}
+
+@media (max-width: 720px) {
+  .pathGrid {
+    grid-template-columns: 1fr;
+  }
+}

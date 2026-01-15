@@ -13,7 +13,7 @@ import Header from "./header"
 import * as styles from "./layout.module.css"
 import "./layout.css"
 
-const Layout = ({ children }) => {
+const Layout = ({ children, fullWidth = false }) => {
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -27,7 +27,7 @@ const Layout = ({ children }) => {
   return (
     <div className={styles.page}>
       <Header siteTitle={data.site.siteMetadata?.title || `Tactus`} />
-      <div className={styles.content}>
+      <div className={fullWidth ? styles.contentFull : styles.content}>
         <main>{children}</main>
       </div>
       <footer className={styles.footer}>

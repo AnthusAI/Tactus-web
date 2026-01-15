@@ -1,0 +1,118 @@
+.page {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: var(--size-content);
+  padding: 0 var(--size-gutter);
+  width: 100%;
+}
+
+.section {
+  padding: var(--space-6) 0;
+}
+
+.hero {
+  padding: var(--space-6) 0 var(--space-4);
+  text-align: center;
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: var(--space-3);
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: var(--color-text-muted);
+  line-height: var(--line-height-loose);
+  margin: 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+
+.card {
+  background: var(--color-surface-2);
+  border-radius: var(--border-radius);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-3);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+  color: var(--color-text);
+  margin-bottom: var(--space-2);
+}
+
+.cardTitle {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.cardMeta {
+  color: var(--color-text-muted);
+  font-size: var(--font-sm);
+  margin: 0;
+}
+
+.downloadButton {
+  margin-top: var(--space-2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: var(--color-primary-ink);
+  font-weight: 700;
+  text-decoration: none;
+  width: 100%;
+}
+
+.downloadButton:hover {
+  filter: brightness(0.95);
+  text-decoration: none;
+}
+
+.secondarySection {
+  background: var(--color-surface-2);
+  margin-top: var(--space-6);
+  padding: var(--space-6) 0;
+}
+
+.codeBlock {
+  background: var(--color-code-bg);
+  padding: var(--space-4);
+  border-radius: var(--border-radius);
+  font-family: var(--font-mono);
+  overflow-x: auto;
+  margin: var(--space-4) auto;
+  max-width: 32rem;
+  text-align: left;
+}

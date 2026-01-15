@@ -1,7 +1,26 @@
 .page {
   display: flex;
   flex-direction: column;
-  gap: var(--space-6);
+}
+
+.container {
+  margin: 0 auto;
+  max-width: var(--size-content);
+  padding: 0 var(--size-gutter);
+  width: 100%;
+}
+
+.section {
+  padding: var(--space-6) 0;
+}
+
+.bgMuted {
+  background: var(--color-surface-2);
+}
+
+.bgPrimary {
+  background: var(--color-primary);
+  color: var(--color-primary-ink);
 }
 
 .hero {
@@ -182,8 +201,8 @@
   margin-top: var(--space-4);
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
-  max-width: 58rem;
+  gap: var(--space-4);
+  max-width: none;
 }
 
 .exampleLead {
@@ -198,18 +217,31 @@
   display: grid;
   gap: var(--space-4);
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: var(--space-2);
 }
 
 .compareCard {
   border-radius: var(--border-radius);
-  background: var(--color-surface-2);
+  background: var(--color-surface);
   padding: var(--space-4);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: transform 140ms ease, box-shadow 140ms ease;
+}
+
+.compareCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .compareTitle {
-  margin: 0 0 var(--space-2);
+  margin: 0 0 var(--space-3);
   font-family: var(--font-serif);
-  font-size: 1.1rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
 }
 
 .compareList {
@@ -217,25 +249,42 @@
   padding-left: var(--space-4);
   color: var(--color-text-muted);
   line-height: var(--line-height-loose);
+  font-size: var(--font-md);
+}
+
+.compareList li {
+  margin-bottom: var(--space-2);
+}
+
+.compareList li:last-child {
+  margin-bottom: 0;
 }
 
 .tactusAdds {
-  border-radius: var(--border-radius);
-  background: color-mix(in srgb, var(--color-primary) 12%, var(--color-bg));
-  padding: var(--space-4);
+  /* Reset card styles as this is now a full section */
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+  margin-top: 0;
+  max-width: 58rem; /* Keep it readable width */
 }
 
 .tactusAddsTitle {
-  margin: 0 0 var(--space-2);
+  margin: 0 0 var(--space-3);
   font-family: var(--font-serif);
-  font-size: 1.1rem;
+  font-size: 2rem; /* Larger for section header */
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-primary-ink);
 }
 
 .tactusAddsBody {
   margin: 0;
   max-width: none;
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.9);
   line-height: var(--line-height-loose);
+  font-size: 1.35rem; /* Lead paragraph size */
 }
 
 .sectionHeader {
@@ -262,26 +311,60 @@
 .featureGrid {
   display: grid;
   gap: var(--space-4);
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
 }
 
 .featureCard {
   border-radius: var(--border-radius);
   background: var(--color-surface-2);
   padding: var(--space-4);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: transform 140ms ease, box-shadow 140ms ease;
+}
+
+.featureCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .featureCard h3 {
   margin-top: 0;
   margin-bottom: var(--space-2);
   font-family: var(--font-serif);
-  font-size: 1.1rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  stroke-width: 2px;
+  flex-shrink: 0;
 }
 
 .featureCard p {
   margin: 0;
   color: var(--color-text-muted);
   max-width: none;
+  line-height: var(--line-height-loose);
+}
+
+.videoPlaceholder {
+  margin-top: var(--space-4);
+  aspect-ratio: 4 / 3;
+  background: var(--color-surface-2);
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: var(--font-sm);
+  border: 2px dashed color-mix(in srgb, var(--color-text-muted) 30%, transparent);
 }
 
 .bookGrid {
@@ -304,13 +387,15 @@
 }
 
 .bookCover {
-  border-radius: 10px;
-  transition: transform 140ms ease, filter 140ms ease;
+  border-radius: 0;
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 140ms ease, filter 140ms ease, box-shadow 140ms ease;
 }
 
 .bookLink:hover .bookCover {
   transform: translateY(-2px);
-  filter: brightness(0.985);
+  filter: brightness(1.02);
+  box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .bookTitle {
@@ -349,13 +434,41 @@
 
   .heroAside {
     align-items: center;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    background: var(--color-surface-2);
+    padding: var(--space-6) var(--size-gutter);
+    margin-top: var(--space-4);
   }
 
   .animalCard {
     width: min(420px, 100%);
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+  }
+
+  .animalCaption {
+    color: var(--color-text-muted);
+    opacity: 1;
+    text-align: center;
   }
 
   .compareGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .featureGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .section {
+    padding: var(--space-4) 0;
+  }
+
+  .featureGrid {
     grid-template-columns: 1fr;
   }
 }

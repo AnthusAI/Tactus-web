@@ -60,6 +60,7 @@ html {
   font-size: var(--font-md);
   line-height: var(--line-height-normal);
   overflow-y: scroll;
+  overflow-x: hidden; /* Prevent horizontal scroll from full-bleed sections */
 }
 body {
   -moz-osx-font-smoothing: grayscale;

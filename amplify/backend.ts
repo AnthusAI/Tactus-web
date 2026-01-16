@@ -9,7 +9,7 @@ import {
   ViewerProtocolPolicy,
 } from "aws-cdk-lib/aws-cloudfront"
 import { S3Origin } from "aws-cdk-lib/aws-cloudfront-origins"
-import { CanonicalUserPrincipal, Effect, PolicyStatement } from "aws-cdk-lib/aws-iam"
+import { ArnPrincipal, CanonicalUserPrincipal, Effect, PolicyStatement } from "aws-cdk-lib/aws-iam"
 import { BlockPublicAccess, Bucket, BucketEncryption } from "aws-cdk-lib/aws-s3"
 
 const backend = defineBackend({})
@@ -34,6 +34,25 @@ videosBucket.addToResourcePolicy(
       new CanonicalUserPrincipal(originAccessIdentity.cloudFrontOriginAccessIdentityS3CanonicalUserId),
     ],
     actions: ["s3:GetObject"],
+    resources: [videosBucket.arnForObjects("*")],
+  })
+)
+
+// Allow local uploads from our primary AWS user (used by `npm run videos:upload`).
+// This keeps the bucket private while still enabling a simple `aws s3 sync` workflow.
+videosBucket.addToResourcePolicy(
+  new PolicyStatement({
+    effect: Effect.ALLOW,
+    principals: [new ArnPrincipal("arn:aws:iam::335163751677:user/Ryan")],
+    actions: ["s3:ListBucket"],
+    resources: [videosBucket.bucketArn],
+  })
+)
+videosBucket.addToResourcePolicy(
+  new PolicyStatement({
+    effect: Effect.ALLOW,
+    principals: [new ArnPrincipal("arn:aws:iam::335163751677:user/Ryan")],
+    actions: ["s3:GetObject", "s3:PutObject", "s3:DeleteObject"],
     resources: [videosBucket.arnForObjects("*")],
   })
 )

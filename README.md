@@ -30,14 +30,27 @@ npx -y -p node@20.19.6 -c "npm run develop"
 
 This repo includes a minimal Gen2 backend entrypoint at `amplify/backend.ts` that defines an empty backend.
 
-To use your `default` AWS profile for local Gen2 workflows:
+To use local Gen2 workflows (no Gen 1 `amplify` CLI):
 
 ```bash
-aws configure set region us-east-1 --profile default
-npx ampx sandbox --profile default
+npx ampx sandbox --profile anthus --region us-east-1
 ```
 
-    Open the `my-default-starter` directory in your code editor of choice and edit `src/pages/index.js`. Save your changes and the browser will update in real time!
+### Videos (S3 + CloudFront)
+
+The backend defines a private S3 bucket + CloudFront distribution for public MP4 hosting. The site’s `src/pages/videos.js` uses `GATSBY_VIDEOS_BASE_URL` to point at the CDN.
+
+Local workflow:
+
+```bash
+# Render the Remotion intro video into `videos/out/intro.mp4` (and also copies into `static/videos/` for local preview).
+npm run videos:render
+
+# Upload rendered MP4s to S3 (set `VIDEOS_BUCKET` to the deployed bucket name).
+VIDEOS_BUCKET=your-bucket-name npm run videos:upload
+```
+
+In Amplify Hosting, set `GATSBY_VIDEOS_BASE_URL` to your deployed CloudFront URL (output as `custom.videosCdnUrl`).
 
 ## 🚀 Quick start (Netlify)
 

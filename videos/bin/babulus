@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Project-local convenience wrapper around `python -m babulus` so you never need npm's `--` separator.
+#
+# Usage:
+#   bin/babulus generate
+#   bin/babulus sfx next --clip whoosh --variants 8 --apply
+#
+# Optional:
+#   BABULUS_PYTHON=python3.11 bin/babulus generate
+
+if command -v babulus >/dev/null 2>&1; then
+  exec babulus "$@"
+fi
+
+# Prefer the active Python environment if one is set (Conda/venv), since npm scripts
+# may not preserve the same PATH as your interactive shell.
+if [[ -n "${CONDA_PREFIX:-}" && -x "${CONDA_PREFIX}/bin/python" ]]; then
+  exec "${CONDA_PREFIX}/bin/python" -m babulus "$@"
+fi
+
+if [[ -n "${VIRTUAL_ENV:-}" && -x "${VIRTUAL_ENV}/bin/python" ]]; then
+  exec "${VIRTUAL_ENV}/bin/python" -m babulus "$@"
+fi
+
+if [[ -n "${BABULUS_PYTHON:-}" ]]; then
+  exec "${BABULUS_PYTHON}" -m babulus "$@"
+fi
+
+if command -v python3 >/dev/null 2>&1; then
+  exec python3 -m babulus "$@"
+fi
+
+if command -v python >/dev/null 2>&1; then
+  exec python -m babulus "$@"
+fi
+
+echo "babulus: Python not found. Activate your Python env or set BABULUS_PYTHON=/path/to/python" >&2
+exit 127

@@ -24,7 +24,9 @@ const Header = ({ siteTitle }) => {
         </button>
 
         <nav className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ""}`} aria-label="Primary">
-          <Link to="/paradigm/">The Paradigm</Link>
+          <Link to="/paradigm/">A New Way</Link>
+          <Link to="/features/">Features</Link>
+          <Link to="/videos/">Videos</Link>
           <Link to="/getting-started/">Getting Started</Link>
           <Link to="/download/">Download</Link>
         </nav>

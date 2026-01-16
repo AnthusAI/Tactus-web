@@ -34,6 +34,16 @@ build/Release
 
 # Dependency directories
 node_modules/
+.DS_Store
+
+# Videos (Remotion subproject + local renders)
+videos/node_modules/
+videos/out/
+videos/public/babulus/
+videos/.babulus/out/
+
+# Gatsby local video assets (not committed; source from S3 in prod)
+static/videos/*.mp4
 jspm_packages/
 
 # Typescript v1 declaration files

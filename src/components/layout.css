@@ -3,30 +3,31 @@
   --color-primary: #c7007e;
   --color-primary-ink: #ffffff;
 
-  /* Surfaces */
-  --color-bg: #ffffff;
-  --color-surface: #ffffff;
-  --color-surface-2: #f6f6f6;
-  --color-text: #111111;
-  --color-text-muted: rgba(17, 17, 17, 0.72);
+  /* Surfaces - Softened "Paper" Tones */
+  --color-bg: #fdfdfd;       /* Was #ffffff - now slight paper off-white */
+  --color-surface: #ffffff;  /* Cards stay white for depth */
+  --color-surface-2: #f4f4f5; /* Slightly darker gray for contrast sections */
+  --color-text: #27272a;     /* Was #111 - now softer charcoal */
+  --color-text-muted: #52525b;
 
   /* Code */
-  --color-code-bg: #f4f4f4;
-  --color-code: #111111;
+  --color-code-bg: #f4f4f5;
+  --color-code: #27272a;
 
-  /* Typography */
-  --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-  --font-serif: ui-serif, Georgia, "Iowan Old Style", "Palatino Linotype",
-    Palatino, "Times New Roman", Times, serif;
-  --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New", monospace;
+  /* Typography - "Technical Book" Stack */
+  /* Source Sans 3 for UI/Headers */
+  --font-sans: "Source Sans 3", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* Source Serif 4 for Body/Reading */
+  --font-serif: "Source Serif 4", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  /* Source Code Pro for Code */
+  --font-mono: "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
   --font-lg: 18px;
   --font-md: 16px;
   --font-sm: 14px;
   --font-sx: 12px;
   --line-height-loose: 1.75;
-  --line-height-normal: 1.5;
+  --line-height-normal: 1.6;
   --line-height-dense: 1.1;
   --space-1: 4px;
   --space-2: 8px;
@@ -34,8 +35,8 @@
   --space-4: 24px;
   --space-5: 32px;
   --space-6: 64px;
-  --border-radius: 12px;
-  --size-content: 72rem;
+  --border-radius: 8px;
+  --size-content: 54rem;
   --size-gutter: var(--space-5);
   --size-gap: var(--space-6);
   color-scheme: light;
@@ -43,213 +44,156 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-bg: #0c0c10;
-    --color-surface: #111117;
-    --color-surface-2: #16161e;
-    --color-text: #f5f5f5;
-    --color-text-muted: rgba(245, 245, 245, 0.75);
-    --color-code-bg: #10141b;
-    --color-code: #f5f5f5;
+    /* Dark Mode - Softened "E-Ink" Tones */
+    --color-bg: #18181b;      /* Was #0c0c10 - now lighter zinc */
+    --color-surface: #27272a;
+    --color-surface-2: #27272a;
+    --color-text: #e4e4e7;    /* Softened white */
+    --color-text-muted: #a1a1aa;
+    --color-code-bg: #27272a;
+    --color-code: #e4e4e7;
     color-scheme: dark;
   }
 }
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
+
 html {
   -webkit-text-size-adjust: 100%;
   box-sizing: border-box;
-  font: sans-serif;
   font-size: var(--font-md);
   line-height: var(--line-height-normal);
   overflow-y: scroll;
-  overflow-x: hidden; /* Prevent horizontal scroll from full-bleed sections */
+  overflow-x: hidden;
 }
+
 body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   color: var(--color-text);
-  font-family: sans-serif;
-  font-family: var(--font-sans);
-  font-weight: normal;
+  /* Switch default to Serif for that "Book" feel */
+  font-family: var(--font-serif);
+  font-weight: 400;
+  /* Old Style Figures (123...) for body text */
+  font-variant-numeric: oldstyle-nums;
   margin: 0;
   word-wrap: break-word;
   background: var(--color-bg);
 }
+
+/* UI Elements stay Sans-Serif and use Lining Figures (123...) */
+a, button, input, select, textarea, .nav, .footer {
+  font-family: var(--font-sans);
+  font-variant-numeric: lining-nums;
+}
+
 a {
   background-color: transparent;
   color: var(--color-primary);
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: underline;
-  text-decoration-thickness: 1.5px;
-  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
 }
+
 a:active,
 a:hover {
   outline-width: 0;
   text-decoration: none;
+  color: var(--color-text);
+  background: rgba(199, 0, 126, 0.1);
 }
-abbr[title] {
-  border-bottom: 1px dotted hsla(0, 0%, 0%, 0.5);
-  cursor: help;
-  text-decoration: none;
-}
-b,
-strong {
-  font-weight: inherit;
-  font-weight: bolder;
-}
-dfn {
-  font-style: italic;
-}
-h1 {
+
+h1, h2, h3, h4, h5, h6 {
   margin: 0;
-  margin-bottom: var(--space-5);
+  margin-bottom: var(--space-3);
   padding: 0;
   line-height: var(--line-height-dense);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-variant-numeric: lining-nums; /* Headers use lining figures */
+  color: var(--color-text);
+}
+
+h1 {
+  margin-bottom: var(--space-5);
   font-family: var(--font-serif);
 }
-h1 > b {
+
+/* Drop Cap Utility */
+.drop-cap::first-letter {
+  float: left;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 3.8em;
+  line-height: 0.8;
+  margin-right: 0.15em;
+  margin-top: 0.05em;
   color: var(--color-primary);
 }
+
 img {
   border-style: none;
   max-width: 100%;
 }
-code,
-kbd,
-pre,
-samp {
+
+code, kbd, pre, samp {
   font-family: var(--font-mono);
-  font-size: 1em;
-  line-height: inherit;
+  font-size: 0.9em;
+  font-variant-numeric: lining-nums; /* Code always uses lining figures */
 }
+
 hr {
   box-sizing: content-box;
-  overflow: visible;
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
-  padding: 0;
-  margin-bottom: calc(var(--space-4) - 1px);
-  background: hsla(0, 0%, 0%, 0.2);
+  margin: var(--space-5) 0;
+  background: var(--color-border, rgba(0,0,0,0.1));
   border: none;
   height: 1px;
 }
-* {
-  box-sizing: inherit;
-}
-*:before {
-  box-sizing: inherit;
-}
-*:after {
-  box-sizing: inherit;
-}
-hgroup,
-img,
-figure,
-fieldset,
-ul,
-ol,
-dl,
-dd,
+
+* { box-sizing: inherit; }
+*:before { box-sizing: inherit; }
+*:after { box-sizing: inherit; }
+
 p {
-  margin: 0;
-  padding: 0;
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-3);
+  max-width: 65ch;
 }
-ul,
-ol {
-  margin-left: var(--space-4);
-  list-style-position: outside;
-  list-style-image: none;
+
+ul, ol {
+  margin-bottom: var(--space-3);
+  padding-left: var(--space-4);
 }
+
+li {
+  margin-bottom: var(--space-2);
+}
+
 pre {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
   margin-bottom: var(--space-4);
   font-size: 0.875rem;
   line-height: var(--line-height-normal);
   background: var(--color-code-bg);
   border-radius: var(--border-radius);
-  overflow: auto;
-  word-wrap: normal;
   padding: var(--space-4);
+  overflow: auto;
+  border: 1px solid rgba(0,0,0,0.05);
 }
-b,
-strong,
-dt,
-th {
-  font-weight: bold;
-}
-li {
-  margin-bottom: calc(var(--space-4) / 2);
-}
-ol li,
-ul li {
-  padding-left: 0;
-}
-li > ol,
-li > ul {
-  margin-bottom: calc(var(--space-4) / 2);
-  margin-left: var(--space-4);
-  margin-top: calc(var(--space-4) / 2);
-}
-blockquote *:last-child {
-  margin-bottom: 0;
-}
-li *:last-child {
-  margin-bottom: 0;
-}
-p *:last-child {
-  margin-bottom: 0;
-}
-li > p {
-  margin-bottom: calc(var(--space-4) / 2);
-}
-p {
-  max-width: 680px;
-}
-code {
-  font-size: 0.875rem;
-}
-kbd {
-  font-size: 0.875rem;
-}
-samp {
-  font-size: 0.875rem;
-}
-abbr {
-  border-bottom: 1px dotted hsla(0, 0%, 0%, 0.5);
-  cursor: help;
-}
-acronym {
-  border-bottom: 1px dotted hsla(0, 0%, 0%, 0.5);
-  cursor: help;
-}
-tt,
+
 code {
   background-color: var(--color-code-bg);
-  border-radius: var(--border-radius);
-  color: var(--color-code);
-  font-family: var(--font-mono);
-  padding-bottom: 0.25em;
-  padding-top: 0.25em;
-  word-break: normal;
+  border-radius: 4px;
+  padding: 0.2em 0.4em;
+  font-size: 0.85em;
+  color: var(--color-primary);
 }
+
 pre code {
   background: none;
-}
-code:before,
-code:after,
-tt:before,
-tt:after {
-  content: "\00a0";
-  letter-spacing: -0.2em;
-}
-pre code:before,
-pre code:after,
-pre tt:before,
-pre tt:after {
-  content: none;
+  padding: 0;
+  color: var(--color-code);
+  font-size: 1em;
 }

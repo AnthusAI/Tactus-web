@@ -1,0 +1,63 @@
+# Babulus config (example)
+#
+# Babulus searches for config in this order:
+#  1) ./.babulus/config.yml   (project-local)
+#  2) ~/.babulus/config.yml   (user-global)
+#
+# If `BABULUS_PATH` is set, Babulus will use:
+#  - $BABULUS_PATH (if it's a file), or
+#  - $BABULUS_PATH/config.yml (if it's a directory)
+#
+# Copy this file to:
+#  - ./.babulus/config.yml  (recommended for this repo)
+# or
+#  - ~/.babulus/config.yml
+
+tts:
+  # Default provider used by `voiceover.provider` when omitted in a DSL.
+  # Supported today: dry-run, elevenlabs, openai, aws-polly, azure-speech
+  default_provider: dry-run
+
+audio:
+  # SFX generation provider for audio.clips[].kind: sfx
+  # Supported today: dry-run, elevenlabs
+  default_sfx_provider: dry-run
+
+providers:
+  dry-run:
+    # Used to estimate speech duration when no TTS provider is configured.
+    # (Higher = faster speech = shorter clips.)
+    wpm: 165
+
+  elevenlabs:
+    api_key: "PUT_YOUR_KEY_HERE"
+    voice_id: "PUT_VOICE_ID_HERE"
+    model_id: "eleven_multilingual_v2"
+    # Optional: attach pronunciation dictionaries to every TTS request
+    # pronunciation_dictionary_locators:
+    #   - pronunciation_dictionary_id: "pd_xxxxx"
+    #     version_id: null  # omit or null = latest
+    # Optional voice tuning (see ElevenLabs API docs)
+    # voice_settings:
+    #   stability: 0.5
+    #   similarity_boost: 0.75
+    # SFX generation options
+    sfx_model_id: "eleven_text_to_sound_v2"
+    # sfx_prompt_influence: 0.3
+    # sfx_loop: false
+
+  openai:
+    api_key: "PUT_YOUR_KEY_HERE"
+    model: "gpt-4o-mini-tts"
+    voice: "alloy"
+
+  aws_polly:
+    # Uses standard AWS credential resolution (env vars, ~/.aws/credentials, etc.).
+    region: "us-east-1"
+    voice_id: "Joanna"
+    # engine: "standard"  # or "neural"
+
+  azure_speech:
+    api_key: "PUT_YOUR_KEY_HERE"
+    region: "eastus"
+    voice: "en-US-JennyNeural"

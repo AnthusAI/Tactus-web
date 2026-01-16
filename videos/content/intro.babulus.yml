@@ -1,0 +1,257 @@
+audio:
+  # Environment-based providers (BABULUS_ENV=development, aws, azure, or production)
+  # Development: dry-run (free, instant)
+  # AWS/Azure: dry-run (SFX/music not needed for TTS testing)
+  # Production: elevenlabs (costs credits, high quality)
+  sfx_provider:
+    development: dry-run
+    aws: dry-run
+    azure: dry-run
+    production: elevenlabs
+  music_provider:
+    development: dry-run
+    aws: dry-run
+    azure: dry-run
+    production: elevenlabs
+
+voiceover:
+  # Environment-based TTS provider
+  # Development: openai (cheap, fast, $0.015/1K chars)
+  # AWS: aws-polly (uses AWS credentials, ~$4/1M chars)
+  # Azure: azure-speech (uses API key, ~$16/1M chars)
+  # Production: elevenlabs (expensive, best quality, ~$0.30/1K chars)
+  provider:
+    development: openai
+    aws: aws
+    azure: azure
+    production: elevenlabs
+
+  # Automatically create/update an ElevenLabs pronunciation dictionary from lexemes below,
+  # and attach it to every TTS request.
+  pronunciation_dictionary:
+    name: tactus
+  pronunciations:
+    - lexeme:
+        grapheme: "Tactus"
+        # Option 1: alias (simple phonetic guide, good for basic cases)
+        # alias: "tack-tus"
+        # Option 2: phoneme with CMU Arpabet (RECOMMENDED for precise control)
+        phoneme: "T AE1 K T AH0 S"
+        alphabet: "cmu-arpabet"
+        # Option 3: phoneme with IPA (alternative, less reliable with AI models)
+        # phoneme: "ˈtæktəs"
+        # alphabet: "ipa"
+
+  # Provider-specific sample rates:
+  # - OpenAI: 24000 Hz
+  # - AWS Polly (PCM): 8000 or 16000 Hz only
+  # - Azure Speech: 8000, 16000, 24000, or 44100 Hz
+  # - ElevenLabs: 44100 Hz (also supports 22050, 24000, others)
+  sample_rate_hz:
+    development: 24000  # OpenAI native sample rate
+    aws: 16000          # AWS Polly PCM maximum quality
+    azure: 24000        # Azure Speech (good balance)
+    production: 44100   # ElevenLabs native sample rate
+
+  # Optional: add natural variation between cues (repeatable via seed).
+  seed: 1337
+  # Helps avoid the very first word being clipped by initial decode/playback startup.
+  lead_in_seconds: 0.25
+  # Disable global trimming to avoid accidentally cutting words; use per-segment trim only when needed.
+  trim_end_seconds: 0
+  pause_between_items_gaussian:
+    mean_seconds: 0.18
+    std_seconds: 0.07
+    min_seconds: 0.06
+    max_seconds: 0.5
+
+scenes:
+  - id: paradigm
+    title: "A New Kind of Computer Program"
+    audio:
+      - kind: music
+        id: bed
+        prompt: "Warm ambient background music, energetic percussion, deep bass, no vocals, clean, unobtrusive"
+        play_through: true
+        volume: 70%
+        fade_to:
+          volume: 12%
+          after_seconds: 6
+          fade_duration_seconds: 3
+        fade_out:
+          volume: 70%
+          before_end_seconds: 5
+          fade_duration_seconds: 3
+    cues:
+      - id: paradigm
+        label: "Paradigm"
+        voice:
+          pause_seconds: 0.6
+          segments:
+            - voice: >
+                Since the dawn of computing in the 1950s, programming has meant one thing: anticipate every scenario and write code for it.
+                Parse this format. Catch that error. Map these fields to those fields.
+                If you miss a case, the program breaks.
+            - pause_seconds: 0.35
+            - voice: >
+                But tool‑using agents flip the script.
+                Instead of explicitly handling every possible scenario, you describe what you want and give the agent the tools to do it.
+            - pause_seconds: 0.35
+            - voice: >
+                It’s simple:
+                you give an agent a tool,
+                you give it a procedure to follow,
+                and you put guardrails around it.
+            - pause_seconds: 0.35
+            - voice: >
+                What we need now is a new kind of programming language for this new kind of program.
+
+  - id: hello_world
+    title: "Hello, World"
+    cues:
+      - id: hello_world
+        label: "Hello World"
+        voice:
+          segments:
+            - voice: >
+                Tactus is that new language.  It's a programming language for tool‑using agents.
+                Tactus procedures are computer programs that don't just include imperative instructions, they also include agents that can make decisions, and tools that can do work.
+            - pause_seconds: 0.35
+            - voice: >
+                You run Tactus procedures just like you wold run a program in any other language like Python or Node.
+            - voice: >
+                Here's an exmaple of running a hello-world program from the command line.  The procedure runs and returns the response from the agent.
+            - pause_seconds: 0.2
+
+  - id: tools
+    title: "Tools Everywhere"
+    cues:
+      - id: tools
+        label: "Tools"
+        voice:
+          segments:
+            - voice: >
+                In a Tactus procedure, tools can come from many places.
+                You can write tools as pure Tactus procedures, or you can use tools from the standard library.
+            - pause_seconds: 0.3
+            - voice: >
+                Shell commands—like git, ffmpeg, or your own CLIs.
+            - pause_seconds: 0.3
+            - voice: >
+                And MCP tools: local or remote MCP servers.      
+
+  - id: security
+    title: "Tools Are Sharp"
+    cues:
+      - id: security
+        label: "Security"
+        audio:
+          - define: whoosh
+            kind: sfx
+            volume: 55%
+            prompt: "Fast cinematic whoosh transition, deep bass, airy, clean, no harsh distortion, no voice, no vocals"
+            duration_seconds: 3
+            pause_seconds: 0.0
+            variants: 8
+            pick: 2
+        voice:
+          pause_seconds: 0.15
+          segments:
+            - voice: >
+                Okay, so we give powerful tools to AI agents and let them run around unsupervised.  What could possibly go wrong?
+            - pause_seconds: 0.25
+            - voice: >
+                Running tool‑using agents unattended is like giving a monkey a razor blade and hoping for the best.  And "hope" is not a strategy for scaling AI in production.
+            - pause_seconds: 0.25
+            - voice: >
+                Without guardrails, you can turn your laptop or your cloud account into a crime scene.
+                That’s why Tactus runs on a secure runtime, to sandbox the agent and the tools it uses.
+
+  - id: guardrails
+    title: "Sandboxed and Contained"
+    cues:
+      - id: guardrails
+        label: "Guardrails"
+        audio:
+          - use: whoosh
+            kind: sfx
+            volume: 35%
+            pause_seconds: 0.0
+            pick: 2
+        voice:
+          segments:
+            - voice: >
+                Tactus uses defense in depth.
+                First, procedure code runs in a restricted Lua sandbox with limited capabilities.
+            - pause_seconds: 0.7
+            - voice: >
+                Second, that sandbox runs in a fresh container each time you run it.  Sort of like an AWS Lambda function.  The container can only see the folder you run the procedure from, and any other folder you explicitly share with it.  You can mount folders as read-only to prevent accidents.
+            - pause_seconds: 0.6
+            - voice: >
+                When the agent needs privileged work—like calling an AI model provider or a credentialed API tool—it does that throgh a broker that runs outside the sandbox.
+            - pause_seconds: 0.7
+            - voice: >
+                This way, the AI agents can't access your API keys or other sensitive data because it's all outside the sandbox and the container, both.  Your procedure code can use third-party APIs that require tokens or API keys without worrying about them being shared with AI companies or stolen through prompt injection hacks.
+
+  - id: hitl
+    title: "Human-in-the-Loop"
+    cues:
+      - id: hitl
+        label: "HITL"
+        voice:
+          segments:
+            - voice: >
+                Even with guardrails, you’re still responsible for supervising your monkeys.
+                If you give agents powerful tools, sometimes you need a human to approve a step—or answer a question.
+            - pause_seconds: 0.4
+            - voice: >
+                For example: a procedure drafts a blog post, then asks you to approve it before it publishes.
+                You can step back from the chat interface, but still stay in charge at the key moments.
+            - pause_seconds: 0.4
+            - voice: >
+                And the best part is: the procedure can pause completely while it waits—no compute, no cost.
+                When you approve or reply, it resumes right where it left off.
+                That’s how you do human‑in‑the‑loop at scale.
+
+  - id: graphs
+    title: "No Graphs Required"
+    cues:
+      - id: graphs
+        label: "Compare"
+        voice:
+          segments:
+            - voice: >
+                In a lot of systems, this forces you into a graph workflow: nodes, edges, conditional edges, and explicit checkpointing.
+            - pause_seconds: 0.35
+            - voice: >
+                With Tactus, it’s transparent.
+                You write normal code, and the runtime handles pausing and resuming behind the scenes.
+
+  - id: nutshell
+    title: "Tactus in a Nutshell"
+    cues:
+      - id: nutshell
+        label: "Nutshell"
+        voice:
+          pause_seconds: 0.15
+          segments:
+            - voice: >
+                Tactus in a nutshell: it’s a programming language for getting things done with agents.
+                You arm an agent with the tools it needs to follow a procedure—
+                and you keep it sandboxed and contained while it works.
+            - pause_seconds: 0.35
+            - voice: >
+                The goal is simple: keep the monkey in a cage,
+                instead of handing it a razor blade and hoping for the best.
+
+  - id: cta
+    title: "Get Started"
+    cues:
+      - id: cta
+        label: "CTA"
+        voice:
+          segments:
+            - voice: >
+                Ready to try it?
+                Visit the web site to download the IDE and run your first procedure.
+            - pause_seconds: 0.35

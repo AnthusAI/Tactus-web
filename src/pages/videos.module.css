@@ -1,0 +1,91 @@
+.page {
+  min-height: 100vh;
+}
+
+.section {
+  padding: 64px 0;
+}
+
+.container {
+  width: min(1200px, calc(100% - 64px));
+  margin: 0 auto;
+}
+
+.title {
+  margin: 0 0 12px;
+  font-size: 56px;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  margin: 0 0 40px;
+  font-size: 20px;
+  line-height: 1.5;
+  opacity: 0.85;
+  max-width: 70ch;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 28px;
+}
+
+.card {
+  grid-column: span 12;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+}
+
+.cardBody {
+  padding: 22px 22px 8px;
+}
+
+.cardTitle {
+  margin: 0 0 10px;
+  font-size: 28px;
+}
+
+.cardDescription {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.55;
+  opacity: 0.85;
+  max-width: 80ch;
+}
+
+.player {
+  padding: 14px 22px 22px;
+}
+
+.video {
+  width: 100%;
+  max-height: 620px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.note {
+  margin-top: 32px;
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+.note code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: calc(100% - 28px);
+  }
+  .title {
+    font-size: 40px;
+  }
+  .subtitle {
+    font-size: 18px;
+  }
+}
+

@@ -78,7 +78,7 @@ const ParadigmPage = () => (
           <div className={styles.grid}>
             <div className={styles.col}>
               <h2 className={styles.sectionTitle}>The Old Way: Think of Everything</h2>
-              <p className={styles.bodyText}>
+              <p className={`${styles.bodyText} drop-cap`}>
                 Since the 1950s, programming has meant one thing: anticipate every scenario 
                 and write code to handle it. Parse this format. Catch that error. Map these 
                 fields to those fields.

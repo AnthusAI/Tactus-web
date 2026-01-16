@@ -150,58 +150,56 @@ const IndexPage = () => {
         <section className={`${styles.section}`}>
           <div className={styles.container}>
             <div className={styles.hero}>
-              <div className={styles.heroLeft}>
-            <p className={styles.eyebrow}>
-              A language + runtime for tool-using agents
-            </p>
-            <h1 className={styles.title}>
-              <span className={styles.titleBlock}>Tactus</span>
-            </h1>
-            <p className={styles.subtitle}>
-              <b>Give AI agents powerful tools.</b> Safely and securely.
-            </p>
-
-            <p className={styles.lede}>
-              Tool-using agents are useful—and dangerous: run them unattended
-              and you’re giving a monkey a razor blade and hoping for the best.
-            </p>
-            <p className={styles.lede}>
-              Tactus gives you a high-level language for building tool-using
-              agents, with capability and context control, durable workflows,
-              and default-on sandboxing and container isolation so they can run
-              unattended without touching your host—or your API keys.
-            </p>
-
-            {/* CTAs commented out until we have video content - duplicate of nav links
-            <div className={styles.ctaRow}>
-              <Link className={styles.primaryButton} to="/getting-started/">
-                Get Started
-              </Link>
-              <Link
-                className={styles.secondaryButton}
-                to="/paradigm/"
-              >
-                The Paradigm
-              </Link>
-            </div>
-            */}
-          </div>
-
-          <aside className={styles.heroAside}>
-            <div className={styles.animalCard}>
-              <StaticImage
-                src="../images/animals/learning-cover-animal.png"
-                alt="An animal illustration in the style of a classic programming book cover"
-                loading="eager"
-                width={420}
-                quality={90}
-                formats={["auto", "webp", "avif"]}
-              />
-              <p className={styles.animalCaption}>
-                Tools are sharp. Guardrails are not optional.
+              <p className={styles.eyebrow}>
+                A language + runtime for tool-using agents
               </p>
-            </div>
-          </aside>
+              <h1 className={styles.title}>
+                <span className={styles.titleBlock}>Tactus</span>
+              </h1>
+              <p className={styles.subtitle}>
+                <b>Give AI agents powerful tools.</b> Safely and securely.
+              </p>
+
+              <aside className={styles.heroAside}>
+                <div className={styles.animalCard}>
+                  <StaticImage
+                    src="../images/animals/learning-cover-animal.png"
+                    alt="An animal illustration in the style of a classic programming book cover"
+                    loading="eager"
+                    width={420}
+                    quality={90}
+                    formats={["auto", "webp", "avif"]}
+                  />
+                  <p className={styles.animalCaption}>
+                    Tools are sharp. Guardrails are not optional.
+                  </p>
+                </div>
+              </aside>
+
+              <p className={`${styles.lede} drop-cap`}>
+                Tool-using agents are useful—and dangerous: run them unattended
+                and you’re giving a monkey a razor blade and hoping for the best.
+              </p>
+              <p className={styles.lede}>
+                Tactus gives you a high-level language for building tool-using
+                agents, with capability and context control, durable workflows,
+                and default-on sandboxing and container isolation so they can run
+                unattended without touching your host—or your API keys.
+              </p>
+
+              {/* CTAs commented out until we have video content - duplicate of nav links
+              <div className={styles.ctaRow}>
+                <Link className={styles.primaryButton} to="/getting-started/">
+                  Get Started
+                </Link>
+                <Link
+                  className={styles.secondaryButton}
+                  to="/paradigm/"
+                >
+                  The Paradigm
+                </Link>
+              </div>
+              */}
             </div>
           </div>
         </section>

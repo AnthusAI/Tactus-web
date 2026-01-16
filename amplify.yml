@@ -1,4 +1,13 @@
 version: 1
+backend:
+  phases:
+    build:
+      commands:
+        # Amplify Gen 2 backend deploy (CDK extension resources live in `amplify/backend.ts`)
+        - nvm install 20
+        - nvm use 20
+        - node --version
+        - npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
 frontend:
   phases:
     preBuild:

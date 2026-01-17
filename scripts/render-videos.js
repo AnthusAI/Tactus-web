@@ -1,5 +1,5 @@
 const { execSync } = require("node:child_process")
-const { existsSync, mkdirSync, copyFileSync } = require("node:fs")
+const { existsSync, mkdirSync, copyFileSync, readdirSync } = require("node:fs")
 const path = require("node:path")
 
 const repoRoot = path.resolve(__dirname, "..")
@@ -12,6 +12,10 @@ const run = (cmd, opts = {}) => {
 }
 
 const main = () => {
+  const args = process.argv.slice(2)
+  const passThroughArgs = args.filter(Boolean).map((a) => a.trim())
+  const targetComposition = passThroughArgs.find((a) => a && !a.startsWith("--"))
+
   if (!existsSync(videosDir)) {
     throw new Error(`Missing videos/ subproject at ${videosDir}`)
   }
@@ -29,14 +33,44 @@ const main = () => {
   if (!env.BABULUS_PYTHON && existsSync(defaultPython)) {
     env.BABULUS_PYTHON = defaultPython
   }
-  run("npm run babulus:generate", { cwd: videosDir, env })
 
-  run("npm run render:intro", { cwd: videosDir })
+  const compositionToSlug = {
+    Intro: "intro",
+    WhyNewLanguage: "why-new-language",
+    ProcedureSandboxing: "procedure-sandboxing",
+  }
 
-  const src = path.join(outDir, "intro.mp4")
-  const dst = path.join(siteStaticVideosDir, "intro.mp4")
-  copyFileSync(src, dst)
-  console.log(`Copied ${src} -> ${dst}`)
+  const slugsToGenerate = targetComposition
+    ? [compositionToSlug[targetComposition] || targetComposition]
+    : ["intro", "why-new-language"] // published videos only (avoid generating drafts)
+
+  for (const slug of slugsToGenerate) {
+    const babulusFile = `content/${slug}.babulus.yml`
+    const babulusPath = path.join(videosDir, babulusFile)
+    if (existsSync(babulusPath)) {
+      run(`npm run babulus:generate -- ${babulusFile}`, { cwd: videosDir, env })
+    } else if (slug === targetComposition) {
+      // Fall back to generating all content if the user passed an unknown target.
+      run("npm run babulus:generate -- content/", { cwd: videosDir, env })
+      break
+    }
+  }
+
+  run(`npm run render -- ${passThroughArgs.join(" ")}`.trim(), { cwd: videosDir })
+
+  // Copy rendered artifacts into Gatsby's `static/videos/` for local preview.
+  // (These are not bundled; production should use the CDN URLs.)
+  const outFiles = existsSync(outDir) ? readdirSync(outDir) : []
+  const toCopy = outFiles.filter(
+    (f) => f.toLowerCase().endsWith(".mp4") || f.toLowerCase().endsWith(".jpg")
+  )
+
+  for (const filename of toCopy) {
+    const src = path.join(outDir, filename)
+    const dst = path.join(siteStaticVideosDir, filename)
+    copyFileSync(src, dst)
+    console.log(`Copied ${src} -> ${dst}`)
+  }
 }
 
 main()

@@ -35,4 +35,10 @@ module.exports = [
       "@typescript-eslint/explicit-function-return-type": "off",
     },
   },
+  {
+    files: ["src/components/diagrams/ContainerSandboxDiagram.tsx"],
+    rules: {
+      "@typescript-eslint/no-require-imports": "off",
+    },
+  },
 ];

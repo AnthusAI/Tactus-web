@@ -3,6 +3,7 @@ import * as React from "react"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import BottomCta from "../components/bottom-cta"
+import getVideoSrc from "../lib/getVideoSrc"
 import * as styles from "./videos.module.css"
 
 const VIDEOS = [
@@ -21,31 +22,6 @@ const VIDEOS = [
     poster: "why-new-language-poster.jpg",
   },
 ]
-
-const getVideoSrc = (filename) => {
-  // Try environment variable first (for override)
-  let base = process.env.GATSBY_VIDEOS_BASE_URL
-
-  // Otherwise read from amplify_outputs.json
-  if (!base) {
-    try {
-      const outputs = require("../../amplify_outputs.json")
-      base = outputs.custom?.videosCdnUrl
-      if (base) {
-        base = `${base}/videos`
-      }
-    } catch (e) {
-      // amplify_outputs.json doesn't exist, fall back to local
-    }
-  }
-
-  if (base && typeof base === "string") {
-    return `${base.replace(/\/$/, "")}/${filename}`
-  }
-
-  // Local dev fallback: put files in `static/videos/` (not committed).
-  return `/videos/${filename}`
-}
 
 const VideosPage = () => {
   return (

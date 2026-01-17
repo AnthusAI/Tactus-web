@@ -17,6 +17,64 @@ const { execSync } = require("child_process");
 const path = require("path");
 const fs = require("fs");
 
+const remotionBin = process.platform === "win32"
+  ? "node_modules/.bin/remotion.cmd"
+  : "node_modules/.bin/remotion";
+
+const ensurePublicAssetsFromTimeline = (slug) => {
+  const envName = process.env.BABULUS_ENV || "development";
+  const timelinePath = path.join(__dirname, "..", "src", "videos", slug, `${slug}.timeline.json`);
+  if (!fs.existsSync(timelinePath)) return;
+
+  const timeline = JSON.parse(fs.readFileSync(timelinePath, "utf8"));
+  const stack = [timeline];
+  const srcs = new Set();
+
+  while (stack.length > 0) {
+    const node = stack.pop();
+    if (!node) continue;
+
+    if (Array.isArray(node)) {
+      for (const item of node) stack.push(item);
+      continue;
+    }
+
+    if (typeof node !== "object") continue;
+
+    const src = node.src;
+    if (typeof src === "string" && src.startsWith("babulus/")) {
+      srcs.add(src);
+    }
+
+    for (const value of Object.values(node)) stack.push(value);
+  }
+
+  for (const src of srcs) {
+    let fromRelative = null;
+
+    const segmentsPrefix = `babulus/${slug}/segments/`;
+    if (src.startsWith(segmentsPrefix)) {
+      const filename = src.slice(segmentsPrefix.length);
+      fromRelative = path.join(".babulus", "out", slug, "env", envName, "segments", filename);
+    } else if (src.startsWith("babulus/music/bed/")) {
+      const filename = src.split("/").pop();
+      fromRelative = path.join(".babulus", "out", slug, "env", envName, "music", filename);
+    } else if (src.startsWith("babulus/sfx/")) {
+      const filename = src.split("/").pop();
+      fromRelative = path.join(".babulus", "out", slug, "env", envName, "sfx", filename);
+    }
+
+    if (!fromRelative) continue;
+
+    const absFrom = path.join(__dirname, "..", fromRelative);
+    const absTo = path.join(__dirname, "..", "public", src);
+    if (fs.existsSync(absFrom) && !fs.existsSync(absTo)) {
+      fs.mkdirSync(path.dirname(absTo), { recursive: true });
+      fs.copyFileSync(absFrom, absTo);
+    }
+  }
+};
+
 // Parse command line arguments
 const args = process.argv.slice(2);
 const freshFlag = args.includes("--fresh");
@@ -66,6 +124,7 @@ let skippedCount = 0;
 
 for (const composition of compositions) {
   const outputPath = path.join(outDir, composition.outputFile);
+  const slug = composition.outputFile.replace(".mp4", "");
 
   // Check if video already exists (skip unless --fresh)
   if (!freshFlag && fs.existsSync(outputPath)) {
@@ -77,8 +136,13 @@ for (const composition of compositions) {
   console.log(`📹 Rendering: ${composition.id} → ${composition.outputFile}`);
 
   try {
+    // Remotion serves `public/` assets under the `/public/` path. Some Babulus
+    // generators only materialize assets for the last-generated video, so we
+    // ensure any referenced `.babulus/out/...` assets exist in `public/`.
+    ensurePublicAssetsFromTimeline(slug);
+
     execSync(
-      `npx remotion render src/index.ts ${composition.id} ${outputPath}`,
+      `${remotionBin} render src/index.ts ${composition.id} ${outputPath}`,
       {
         stdio: "inherit",
         cwd: path.join(__dirname, ".."),

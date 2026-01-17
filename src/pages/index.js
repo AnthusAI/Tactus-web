@@ -7,6 +7,12 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 import AnimatedCodeBlock from "../components/animated/AnimatedCodeBlock"
 import BottomCta from "../components/bottom-cta"
+import LandingLearnSection from "../components/landing-learn-section"
+import GuardrailsStackDiagram from "../components/diagrams/GuardrailsStackDiagram"
+import ToolboxDiagram from "../components/diagrams/ToolboxDiagram"
+import FeatureHighlightsSection from "../components/feature-highlights-section"
+import BookSeriesSection from "../components/book-series-section"
+import getVideoSrc from "../lib/getVideoSrc"
 import * as styles from "./index.module.css"
 
 const Icons = {
@@ -140,26 +146,6 @@ function import_contact(row_data)
     })
 end`
 
-const getVideoSrc = (filename) => {
-  let base = process.env.GATSBY_VIDEOS_BASE_URL
-
-  if (!base) {
-    try {
-      const outputs = require("../../amplify_outputs.json")
-      base = outputs.custom?.videosCdnUrl
-      if (base) base = `${base}/videos`
-    } catch (e) {
-      // Fall back to local
-    }
-  }
-
-  if (base && typeof base === "string") {
-    return `${base.replace(/\/$/, "")}/${filename}`
-  }
-
-  return `/videos/${filename}`
-}
-
 const INSTALL_COPY_VALUE = "pip install tactus"
 
 const InstallCommand = () => {
@@ -208,55 +194,51 @@ const InstallCommand = () => {
   )
 }
 
-const BOOKS = [
+const FEATURE_HIGHLIGHTS = [
   {
-    title: "Learning Tactus",
-    description:
-      "A coherent introduction: the why, the mental model, and the core patterns.",
-    href: "https://anthusai.github.io/Learning-Tactus/",
-    pdf: "https://anthusai.github.io/Learning-Tactus/pdf/Learning-Tactus.pdf",
-    repo: "https://github.com/AnthusAI/Learning-Tactus",
-    image: (
-      <StaticImage
-        src="../images/books/learning-tactus.png"
-        alt="Learning Tactus book cover"
-        formats={["auto", "webp", "avif"]}
-        placeholder="blurred"
-        className={styles.bookCover}
-      />
+    title: "Docker sandbox by default",
+    body: (
+      <>
+        Procedures run in a Lua sandbox inside a Docker container: keep the monkey in the box, and keep sensitive information out of
+        the box.
+      </>
     ),
+    icon: <Icons.Box />,
   },
   {
-    title: "Programming Tactus",
-    description: "The reference: a deeper and broader tour of the language.",
-    href: "https://anthusai.github.io/Programming-Tactus/",
-    pdf: "https://anthusai.github.io/Programming-Tactus/pdf/Programming-Tactus.pdf",
-    repo: "https://github.com/AnthusAI/Programming-Tactus",
-    image: (
-      <StaticImage
-        src="../images/books/programming-tactus.png"
-        alt="Programming Tactus book cover"
-        formats={["auto", "webp", "avif"]}
-        placeholder="blurred"
-        className={styles.bookCover}
-      />
+    title: "Networkless by default",
+    body: (
+      <>
+        Keep the runtime container on <code>network: none</code>, while still calling models and tools through a host transport (e.g.{" "}
+        <code>stdio</code>).
+      </>
     ),
+    icon: <Icons.WifiOff />,
   },
   {
-    title: "Tactus in a Nutshell",
-    description: "A quick reference for when you’re writing and debugging.",
-    href: "https://anthusai.github.io/Tactus-in-a-Nutshell/",
-    pdf: "https://anthusai.github.io/Tactus-in-a-Nutshell/pdf/Tactus-in-a-Nutshell.pdf",
-    repo: "https://github.com/AnthusAI/Tactus-in-a-Nutshell",
-    image: (
-      <StaticImage
-        src="../images/books/tactus-in-a-nutshell.png"
-        alt="Tactus in a Nutshell book cover"
-        formats={["auto", "webp", "avif"]}
-        placeholder="blurred"
-        className={styles.bookCover}
-      />
+    title: "API keys stay outside the sandbox",
+    body: <>API keys never live in the runtime container—and never get passed into model prompts.</>,
+    icon: <Icons.Key />,
+  },
+  {
+    title: "Brokered tools",
+    body: (
+      <>
+        Tools that need secrets or privileged access can run outside the sandbox via a broker, streaming back results so the agent
+        gets answers, not credentials.
+      </>
     ),
+    icon: <Icons.Cable />,
+  },
+  {
+    title: "Least privilege controls",
+    body: <>Give the right tools and context at the right time: default-deny capabilities, per-step tool access, and approval gates.</>,
+    icon: <Icons.Lock />,
+  },
+  {
+    title: "Durable + testable",
+    body: <>Checkpoint long workflows, add HITL where needed, and measure reliability with specs + evaluations.</>,
+    icon: <Icons.Save />,
   },
 ]
 
@@ -499,67 +481,33 @@ const IndexPage = () => {
           </div>
         </section>
 
-        <section className={`${styles.section}`}>
-          <div className={styles.container}>
-            <div className={styles.features}>
-          <header className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>Built for real systems</h2>
-            <p className={styles.sectionSubtitle}>
-              When you’re not there to supervise, the runtime has to be the
-              guardrail: container isolation, networkless execution, and tools
-              that can use secrets without putting them in the agent runtime.
-            </p>
-          </header>
+        <FeatureHighlightsSection
+          title="Built for real systems"
+          subtitle="When you’re not there to supervise, the runtime has to be the guardrail: container isolation, networkless execution, and tools that can use secrets without putting them in the agent runtime."
+          items={FEATURE_HIGHLIGHTS}
+          ctaTo="/features/"
+          ctaText="Learn more"
+        />
 
-          <div className={styles.featureGrid}>
-            <div className={styles.featureCard}>
-              <h3><Icons.Box /> Docker sandbox by default</h3>
-              <p>
-                Procedures run in a Lua sandbox inside a Docker container: keep the
-                monkey in the box, and keep sensitive information out of the box.
-              </p>
-            </div>
-            <div className={styles.featureCard}>
-              <h3><Icons.WifiOff /> Networkless by default</h3>
-              <p>
-                Keep the runtime container on <code>network: none</code>, while
-                still calling models and tools through a host transport (e.g.{" "}
-                <code>stdio</code>).
-              </p>
-            </div>
-            <div className={styles.featureCard}>
-              <h3><Icons.Key /> API keys stay outside the sandbox</h3>
-              <p>
-                API keys never live in the runtime container—and never get
-                passed into model prompts.
-              </p>
-            </div>
-            <div className={styles.featureCard}>
-              <h3><Icons.Cable /> Brokered tools</h3>
-              <p>
-                Tools that need secrets or privileged access can run outside the
-                sandbox via a broker, streaming back results so the agent gets
-                answers, not credentials.
-              </p>
-            </div>
-            <div className={styles.featureCard}>
-              <h3><Icons.Lock /> Least privilege controls</h3>
-              <p>
-                Give the right tools and context at the right time: default-deny
-                capabilities, per-step tool access, and approval gates.
-              </p>
-            </div>
-            <div className={styles.featureCard}>
-              <h3><Icons.Save /> Durable + testable</h3>
-              <p>
-                Checkpoint long workflows, add HITL where needed, and measure
-                reliability with specs + evaluations.
-              </p>
-            </div>
-          </div>
-            </div>
-          </div>
-        </section>
+        <LandingLearnSection
+          id="guardrails"
+          eyebrow="Learn"
+          title="Guardrails for Agent Autonomy"
+          lede="You can’t drive fast without brakes. Tactus gives you enforceable controls: staged tool access, durable approvals, sandboxing, and a secretless broker boundary."
+          to="/procedure-sandboxing/"
+          ctaText="Read: Guardrails"
+          Diagram={GuardrailsStackDiagram}
+        />
+
+        <LandingLearnSection
+          id="toolbox"
+          eyebrow="Learn"
+          title="The AI Engineer’s Toolbox"
+          lede="Tools are how agents touch reality. Tactus treats tools as explicit capabilities: schema-first, inspectable, and controllable — so you can build workflows you can deploy."
+          to="/ai-engineers-toolbox/"
+          ctaText="Read: Toolbox"
+          Diagram={ToolboxDiagram}
+        />
 
         <section className={`${styles.section}`}>
           <div className={styles.container}>
@@ -764,47 +712,7 @@ const IndexPage = () => {
           </div>
         </section>
 
-        <section id="books" className={`${styles.section} ${styles.bgMuted}`}>
-          <div className={styles.container}>
-            <div className={styles.books}>
-          <header className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>The Tactus Book Series</h2>
-            <p className={styles.sectionSubtitle}>
-              Three complementary books: learn the patterns, dive into the
-              reference, or keep the cheat sheet on your desk.
-            </p>
-          </header>
-
-          <div className={styles.bookGrid}>
-            {BOOKS.map(book => (
-              <article key={book.title} className={styles.bookCard}>
-                <a
-                  className={styles.bookLink}
-                  href={book.href}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {book.image}
-                </a>
-                <h3 className={styles.bookTitle}>{book.title}</h3>
-                <p className={styles.bookDescription}>{book.description}</p>
-                <div className={styles.bookLinks}>
-                  <a href={book.href} target="_blank" rel="noreferrer">
-                    Read online
-                  </a>
-                  <a href={book.pdf} target="_blank" rel="noreferrer">
-                    PDF
-                  </a>
-                  <a href={book.repo} target="_blank" rel="noreferrer">
-                    GitHub
-                  </a>
-                </div>
-              </article>
-            ))}
-          </div>
-            </div>
-          </div>
-        </section>
+        <BookSeriesSection id="books" mutedBackground={true} />
 
         <BottomCta
           title="Ready to start building?"

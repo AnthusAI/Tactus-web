@@ -1,0 +1,166 @@
+poster_time: "7s"
+
+audio:
+  sfx_provider:
+    development: dry-run
+    aws: dry-run
+    azure: dry-run
+    production: elevenlabs
+  music_provider:
+    development: dry-run
+    aws: dry-run
+    azure: dry-run
+    production: elevenlabs
+
+voiceover:
+  provider:
+    development: openai
+    aws: aws
+    azure: azure
+    production: elevenlabs
+
+  pronunciation_dictionary:
+    name: tactus
+  pronunciations:
+    - lexeme:
+        grapheme: "Tactus"
+        phoneme: "T AE1 K T AH0 S"
+        alphabet: "cmu-arpabet"
+
+  sample_rate_hz:
+    development: 24000
+    aws: 16000
+    azure: 24000
+    production: 44100
+
+  seed: 1337
+  lead_in_seconds: 0.25
+  trim_end_seconds: 0
+  pause_between_items_gaussian:
+    mean_seconds: 0.18
+    std_seconds: 0.07
+    min_seconds: 0.06
+    max_seconds: 0.5
+
+scenes:
+  - id: title_card
+    title: "Sandboxed Procedures"
+    cues:
+      - id: title
+        label: "Title"
+        voice:
+          pause_seconds: 0.7
+          segments:
+            - voice: >
+                Sandboxed procedures.
+            - pause_seconds: 0.4
+            - voice: >
+                How Tactus keeps the monkey in the box.
+
+  - id: why_this_matters
+    title: "Why This Matters"
+    cues:
+      - id: threat
+        label: "Threat"
+        voice:
+          segments:
+            - voice: >
+                Tool-using agents can write files, run code, and trigger real side effects.
+                That’s what makes them useful.
+            - pause_seconds: 0.4
+            - voice: >
+                But it also creates a scary failure mode:
+                if the agent runtime has secrets, a prompt injection can try to make it steal those secrets.
+            - pause_seconds: 0.4
+            - voice: >
+                So the security question isn’t “do we trust the model?”
+                The question is: where are the secrets, and what boundaries are enforced in code?
+
+  - id: layers
+    title: "Defense in Depth"
+    cues:
+      - id: layers
+        label: "Layers"
+        voice:
+          segments:
+            - voice: >
+                Tactus uses defense in depth: multiple layers that each solve a different problem.
+            - pause_seconds: 0.4
+            - voice: >
+                First: language sandboxing with Lua.
+                Untrusted procedure code runs in a restricted Lua VM.
+                There’s no ambient filesystem, OS, or network access.
+                All I O goes through tools you explicitly provide.
+            - pause_seconds: 0.5
+            - voice: >
+                Second: OS-level isolation with containers.
+                Each run can execute in its own container with an ephemeral filesystem and explicit mounts.
+                This reduces blast radius and cross-run leakage.
+            - pause_seconds: 0.5
+            - voice: >
+                Third: secretless execution with a broker boundary.
+                Containers are great, but they don’t magically hide secrets if you pass credentials into them.
+                So Tactus keeps the runtime secretless and networkless by default,
+                and brokers privileged calls behind a trusted interface.
+
+  - id: diagram
+    title: "Lua Sandbox Inside a Container"
+    cues:
+      - id: diagram_walkthrough
+        label: "Diagram"
+        voice:
+          segments:
+            - voice: >
+                Here’s the picture to keep in your head.
+            - pause_seconds: 0.4
+            - voice: >
+                The procedure code runs inside a Lua sandbox, inside a runtime container.
+                That’s the untrusted zone.
+            - pause_seconds: 0.4
+            - voice: >
+                The agent can request tool calls, but it does not hold provider keys.
+                The keys live outside the container, in a trusted broker.
+            - pause_seconds: 0.4
+            - voice: >
+                The broker performs privileged operations:
+                model calls, and credentialed tools.
+                And it streams results back into the trace.
+
+  - id: least_privilege
+    title: "Least Privilege, Made Concrete"
+    cues:
+      - id: least_privilege
+        label: "Least Privilege"
+        voice:
+          segments:
+            - voice: >
+                This is the principle of least privilege made concrete.
+                Remove ambient authority from the runtime.
+                Force privileged work through narrow, auditable interfaces.
+            - pause_seconds: 0.4
+            - voice: >
+                If the runtime is networkless by default, it can’t just phone home.
+                And if the runtime is secretless, there’s nothing to steal.
+            - pause_seconds: 0.4
+            - voice: >
+                Further down the stack, those same boundaries also improve reliability:
+                each tool call is validated, logged, and replayable.
+
+  - id: takeaways
+    title: "Takeaways"
+    cues:
+      - id: takeaways
+        label: "Takeaways"
+        voice:
+          segments:
+            - voice: >
+                The big idea is simple.
+            - pause_seconds: 0.3
+            - voice: >
+                Use Lua sandboxing to make untrusted orchestration safe by default.
+                Use containers to isolate filesystem and code execution.
+                And use a broker boundary so secrets never enter the runtime.
+            - pause_seconds: 0.4
+            - voice: >
+                When there’s nothing to steal, a whole class of attacks collapses.
+

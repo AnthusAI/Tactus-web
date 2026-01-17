@@ -6,8 +6,8 @@ import * as styles from "./header.module.css"
 
 // Primary navigation items shown inline on desktop
 const PRIMARY_NAV = [
-  { label: 'Features', to: '/features/' },
-  { label: 'Getting Started', to: '/getting-started/' },
+  { label: 'Learn More', to: '/learn-more/' },
+  { label: 'Get Started', to: '/getting-started/' },
   { label: 'Download', to: '/download/' },
 ]
 

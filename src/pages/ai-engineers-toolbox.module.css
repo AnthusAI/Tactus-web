@@ -1,0 +1,153 @@
+.page {
+  padding: var(--space-6) 0;
+}
+
+.section {
+  padding: var(--space-6) 0;
+}
+
+.container {
+  max-width: var(--size-content);
+  margin: 0 auto;
+  padding: 0 var(--size-gutter);
+}
+
+.hero {
+  max-width: 56rem;
+}
+
+.eyebrow {
+  color: var(--color-text-muted);
+  font-family: var(--font-sans);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: var(--font-sm);
+  margin: 0 0 var(--space-2);
+}
+
+.title {
+  font-family: var(--font-sans);
+  font-size: clamp(2.2rem, 4vw, 3.25rem);
+  line-height: 1.05;
+  margin: 0 0 var(--space-3);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.lede {
+  font-size: clamp(1.1rem, 1.6vw, 1.25rem);
+  line-height: 1.55;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.toc {
+  margin-top: var(--space-5);
+  background: var(--color-surface-2);
+  border-radius: 24px;
+  padding: 18px 18px;
+}
+
+.tocTitle {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-sans);
+  font-weight: 900;
+  font-size: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.tocList {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--color-text-muted);
+}
+
+.tocList li {
+  margin: 0.35rem 0;
+  line-height: 1.55;
+}
+
+.sectionTitle {
+  font-family: var(--font-sans);
+  font-size: clamp(1.5rem, 2.2vw, 1.9rem);
+  line-height: 1.2;
+  margin: 0 0 var(--space-3);
+  font-weight: 900;
+}
+
+.bodyText {
+  font-size: var(--font-lg);
+  line-height: var(--line-height-loose);
+  margin: var(--space-3) 0;
+  color: var(--color-text);
+}
+
+.bodyTextMuted {
+  font-size: var(--font-lg);
+  line-height: var(--line-height-loose);
+  margin: var(--space-3) 0;
+  color: var(--color-text-muted);
+}
+
+.magentaSection {
+  background: var(--color-primary);
+  color: var(--color-primary-ink);
+  border-radius: 28px;
+  padding: 30px 30px;
+}
+
+.magentaTitle {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-serif);
+  font-size: clamp(1.55rem, 2.2vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-primary-ink);
+}
+
+.magentaBody {
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 1.1rem;
+  line-height: var(--line-height-loose);
+}
+
+.magentaLead {
+  margin: 0 0 var(--space-3);
+}
+
+.magentaTagline {
+  margin: 0 0 var(--space-3);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.magentaList {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.magentaList li {
+  margin: 0.35rem 0;
+}
+
+.diagramWrap {
+  margin-top: var(--space-5);
+  background: var(--color-surface-2);
+  border-radius: 24px;
+  padding: 18px;
+}
+
+.diagram {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.subtleCard {
+  background: var(--color-surface-2);
+  border-radius: 24px;
+  padding: 18px;
+  margin-top: var(--space-4);
+}
+

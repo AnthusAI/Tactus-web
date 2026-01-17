@@ -1,0 +1,98 @@
+.section {
+  padding: var(--space-6) 0;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: var(--size-content);
+  padding: 0 var(--size-gutter);
+  width: 100%;
+}
+
+.card {
+  background: var(--color-surface-2);
+  border-radius: 28px;
+  padding: 24px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+  align-items: start;
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: var(--space-6);
+  }
+}
+
+.gridNoDiagram {
+  grid-template-columns: 1fr;
+}
+
+.eyebrow {
+  margin: 0 0 var(--space-2);
+  font-size: var(--font-sx);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  font-family: var(--font-sans);
+}
+
+.title {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-serif);
+  font-size: clamp(1.55rem, 2.4vw, 2.1rem);
+  letter-spacing: -0.02em;
+}
+
+.lede {
+  margin: 0 0 var(--space-4);
+  color: var(--color-text-muted);
+  font-size: var(--font-lg);
+  line-height: var(--line-height-loose);
+  max-width: none;
+}
+
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.65rem 1rem;
+  border-radius: 999px;
+  border: none;
+  font-weight: 800;
+  font-size: var(--font-sm);
+  line-height: 1;
+  text-decoration: none;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+}
+
+.secondaryButton:hover {
+  text-decoration: none;
+  background: color-mix(in srgb, var(--color-surface) 92%, var(--color-text-muted));
+}
+
+.diagramWrap {
+  background: var(--color-surface);
+  border-radius: 24px;
+  padding: 16px;
+}
+
+.diagram {
+  width: 100%;
+  height: auto;
+  display: block;
+}

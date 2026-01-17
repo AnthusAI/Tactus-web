@@ -7,26 +7,24 @@ import * as styles from "./nav-menu.module.css"
 export const NAV_CONFIG = {
   categories: [
     {
-      label: 'Learn',
+      label: 'Learn More',
       items: [
+        { label: 'Learn More', to: '/learn-more/' },
         { label: 'Features', to: '/features/' },
         { label: 'Why a New Language?', to: '/why-new-language/' },
+        { label: 'Guardrails for Agent Autonomy', to: '/procedure-sandboxing/' },
+        { label: 'The AI Engineer’s Toolbox', to: '/ai-engineers-toolbox/' },
       ]
     },
     {
       label: 'Get Started',
       items: [
-        { label: 'Getting Started', to: '/getting-started/' },
+        { label: 'Get Started', to: '/getting-started/' },
         { label: 'Download', to: '/download/' },
-      ]
-    },
-    {
-      label: 'Resources',
-      items: [
         { label: 'Videos', to: '/videos/' },
         { label: 'Books', to: '/#books' },
       ]
-    }
+    },
   ]
 }
 
@@ -40,8 +38,6 @@ const NavMenu = ({ onNavigate }) => {
   return (
     <div className={styles.navMenu}>
       <div className={styles.navMenuInner}>
-        <h1 className={styles.navMenuTitle}>Site Navigation</h1>
-
         <div className={styles.navCategories}>
           {NAV_CONFIG.categories.map((category) => (
             category.items.length > 0 && (

@@ -2,6 +2,7 @@ import * as React from "react"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import BottomCta from "../components/bottom-cta"
+import FeatureHighlightsSection from "../components/feature-highlights-section"
 import * as styles from "./features.module.css"
 import { Cable } from "lucide-react"
 
@@ -30,6 +31,59 @@ const Icons = {
 }
 
 const FeaturesPage = () => {
+  const highlights = [
+    {
+      title: "Docker sandbox by default",
+      body: (
+        <>
+          Procedures run in a Lua sandbox inside a Docker container: keep the monkey in the box, and keep sensitive information out
+          of the box.
+        </>
+      ),
+      icon: <Icons.Box />,
+    },
+    {
+      title: "Networkless by default",
+      body: (
+        <>
+          Keep the sandbox on <strong>network: none</strong>. This reduces the blast radius: the agent can’t download arbitrary code
+          or steal data directly from inside the runtime environment.
+        </>
+      ),
+      icon: <Icons.WifiOff />,
+    },
+    {
+      title: "API keys stay outside the sandbox",
+      body: (
+        <>
+          API keys never live in the runtime container, and never get passed into model prompts. The agent gets answers, not
+          credentials.
+        </>
+      ),
+      icon: <Icons.Key />,
+    },
+    {
+      title: "Brokered tools",
+      body: (
+        <>
+          Tools that need secrets or privileged access can run outside the sandbox via a broker, streaming back results so the agent
+          gets answers, not credentials.
+        </>
+      ),
+      icon: <Icons.Cable />,
+    },
+    {
+      title: "Least privilege controls",
+      body: <>Give the right tools and context at the right time: default-deny capabilities, per-step tool access, and approval gates.</>,
+      icon: <Icons.Lock />,
+    },
+    {
+      title: "Durable + testable",
+      body: <>Checkpoint long workflows, add HITL where needed, and measure reliability with specs + evaluations.</>,
+      icon: <Icons.Save />,
+    },
+  ]
+
   return (
     <Layout>
       <Seo title="Features" />
@@ -44,6 +98,12 @@ const FeaturesPage = () => {
             </div>
           </div>
         </section>
+
+        <FeatureHighlightsSection
+          title="Built for real systems"
+          subtitle="The headline feature is not a keyword — it’s the control surface: sandboxing, capability control, durable HITL, and a secretless broker boundary."
+          items={highlights}
+        />
 
         <section className={`${styles.section} ${styles.featuresSection}`}>
           <div className={styles.container}>

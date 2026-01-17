@@ -90,6 +90,10 @@ const allCompositions = [
     id: "WhyNewLanguage",
     outputFile: "why-new-language.mp4",
   },
+  {
+    id: "Guardrails",
+    outputFile: "guardrails.mp4",
+  },
 ];
 
 // Filter compositions based on target

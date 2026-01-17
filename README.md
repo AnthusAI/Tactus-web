@@ -55,7 +55,11 @@ This creates `amplify_outputs.json` with:
 #### Local Video Workflow
 
 ```bash
+# Generate audio assets only (fast, for iteration on scripts/timing)
+npm run babulus
+
 # Render videos to videos/out/ (and copies to static/videos/ for local preview)
+# This automatically runs babulus generation first.
 npm run videos:render
 
 # Upload rendered MP4s and poster images to S3

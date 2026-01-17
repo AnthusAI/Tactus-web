@@ -5,6 +5,88 @@
 - Gatsby site deployed via **AWS Amplify Hosting** (CI/CD + static hosting).
 - Includes an **Amplify Gen 2** backend in `amplify/` used for video hosting infrastructure.
 
+## UI & Design Guidelines (Strict)
+
+### 1. Limited Color Palette
+
+**Policy:** We strictly adhere to a minimal, defined color palette. Do not use arbitrary colors (e.g., `red`, `blue`, `#123456`). Always use the CSS variables defined in `src/components/layout.css`.
+
+**Color Reference (`src/components/layout.css`):**
+
+*   **Brand**:
+    *   `--color-primary`: `#c7007e` (Magenta - primary brand color)
+    *   `--color-primary-ink`: `#ffffff` (Text on primary backgrounds)
+
+*   **Surfaces** (Softened "Paper" Tones):
+    *   `--color-bg`: `#fdfdfd` (Main page background - off-white)
+    *   `--color-surface`: `#ffffff` (Elevated surfaces - pure white)
+    *   `--color-card-title`: `#f5f5f5` (Card title bars)
+    *   `--color-surface-2`: `#ededed` (Muted sections, subtle backgrounds)
+
+*   **Text** (Softened Charcoal):
+    *   `--color-text`: `#27272a` (Main text)
+    *   `--color-text-secondary`: `#3f3f46` (Card titles)
+    *   `--color-text-muted`: `#52525b` (Secondary text, captions)
+
+*   **Code**:
+    *   `--color-code-bg`: `#ededed` (Same as surface-2)
+    *   `--color-code`: `#27272a` (Same as main text)
+
+**Dark Mode Note:** All variables automatically adapt in dark mode (defined in the same file). Do not write manual dark mode overrides unless absolutely necessary for specific components not covered by these semantic variables.
+
+### 2. No Borders/Outlines Policy
+
+**Policy:** **NEVER use borders or outlines** to define UI elements or separate content.
+
+*   **Incorrect:** `border: 1px solid #ccc`, `outline: 1px solid black`
+*   **Correct:** Use flat background colors and spacing to convey grouping.
+    *   To separate a card from the background: Use `background: var(--color-surface)` on the card against `var(--color-bg)` or `var(--color-surface-2)`.
+    *   To separate a header within a card: Use `background: var(--color-card-title)` against `var(--color-surface)`.
+    *   To highlight a section: Use `background: var(--color-surface-2)`.
+
+### 3. No Fuzzy Drop Shadows
+
+**Policy:** Never use fuzzy/blurred shadows. This includes `box-shadow` values with blur/spread, SVG/filters like `feDropShadow`, and CSS `filter: drop-shadow(...)`.
+
+*   **Incorrect:** `box-shadow: 0 4px 12px rgba(...);`, `box-shadow: 0 1px 3px rgba(...);`, `filter: drop-shadow(...)`, SVG `feDropShadow`
+*   **Correct:** If a shadow is needed, use a **flat shadow** with **no blur**, in the “CTA button” style:
+    *   Example: `box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.1);`
+    *   Hover example: `box-shadow: 0 6px 0 0 rgba(0, 0, 0, 0.1);`
+
+### 4. No Horizontal Rules (`<hr>`)
+
+**Policy:** Never use horizontal rules (`<hr>`) or “divider lines” as separators in this branding.
+
+*   **Incorrect:** `<hr />`, or adding divider lines at section boundaries (e.g., footer/header rules)
+*   **Correct:** Use spacing and flat surface/background changes (`--color-bg`, `--color-surface`, `--color-surface-2`, `--color-card-title`) to communicate separation.
+
+### 5. Typography
+
+*   **UI / Headers**: `var(--font-sans)` ("Source Sans 3")
+    *   Use for: Navigation, Buttons, Headings (h1-h6), UI labels.
+*   **Body / Reading**: `var(--font-serif)` ("Source Serif 4")
+    *   Use for: Long-form text, blog posts, documentation body.
+*   **Code**: `var(--font-mono)` ("Source Code Pro")
+    *   Use for: Code blocks, snippets, technical terms.
+
+### 6. Shape & Spacing
+
+*   **Corner Radius**: Always use `var(--border-radius)` (8px). Do not hardcode `8px` or other values.
+*   **Spacing**: Use the spacing scale variables (`--space-1` through `--space-6`) for margins and padding.
+
+### 7. Visuals & Diagrams
+
+*   **Reusable Components**: All visuals must be implemented as reusable React components.
+*   **Cross-Platform Compatibility**: Components must be designed to work in both:
+    *   **Remotion**: For video generation (rendering to MP4).
+    *   **Gatsby**: For interactive web display.
+*   **Storybook**: Every visual component must have a Storybook story to verify its behavior in isolation.
+*   **Responsiveness & Safe Areas**:
+    *   **Title-Safe**: Visuals must fit within the standard title-safe region when rendered in 16:9 video format.
+    *   **Responsive**: On the web, visuals must fill the full width of their container and adapt gracefully to different screen sizes.
+
+---
+
 ## Important IDs / config
 
 - Amplify app name: `Tactus-web`
@@ -29,27 +111,22 @@
 
 Babulus generates TTS audio and timing JSON from `.babulus.yml` DSL files in `videos/content/`.
 
-**Setup** (requires Python 3.11+):
+**Generate audio (from root)**:
 ```bash
-conda create -n babulus python=3.12 -y
-conda activate babulus
-cd videos
-pip install -r requirements.txt  # installs babulus from ../Babulus
-```
-
-**Generate audio**:
-```bash
-# Development mode (cheap/fast - OpenAI)
-BABULUS_ENV=development babulus generate content/intro.babulus.yml
-
-# Production mode (high quality - Eleven Labs, when quota available)
-BABULUS_ENV=production babulus generate content/intro.babulus.yml
+# Generate audio for all videos (cheap/fast - OpenAI)
+npm run babulus
 
 # Watch mode (auto-regenerate on DSL changes)
-BABULUS_ENV=development babulus generate --watch content/intro.babulus.yml
+npm run babulus:watch
 
-# Watch all videos
-BABULUS_ENV=development babulus generate --watch content/
+# Clean generated artifacts
+npm run babulus:clean
+```
+
+**Remotion Studio**:
+```bash
+# Start the Remotion studio to preview videos
+npm run remotion
 ```
 
 **Outputs**:

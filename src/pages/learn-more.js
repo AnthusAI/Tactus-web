@@ -25,15 +25,6 @@ const LearnMorePage = () => {
         </section>
 
         <LandingLearnSection
-          id="learn-features"
-          eyebrow="Learn More"
-          title="Features Overview"
-          lede="A concise overview of the control surface that makes Tactus production-friendly: durability, approvals, sandboxing, and reliability patterns."
-          to="/features/"
-          ctaText="Learn: Features"
-        />
-
-        <LandingLearnSection
           id="learn-guardrails"
           eyebrow="Learn More"
           title="Guardrails for Agent Autonomy"

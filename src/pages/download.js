@@ -42,6 +42,7 @@ const DownloadPage = () => {
   const winUrl = getAssetUrl(".exe")
   const linuxUrl = getAssetUrl(".appimage")
   const fallbackUrl = "https://github.com/AnthusAI/Tactus/releases/latest"
+  const versionLabel = release?.tag_name || release?.name
 
   return (
     <Layout>
@@ -54,14 +55,12 @@ const DownloadPage = () => {
                 The desktop environment for building, running, and debugging
                 Tactus agents.
               </p>
-              {release && (
-                <p
-                  className={styles.cardMeta}
-                  style={{ marginTop: "var(--space-3)" }}
-                >
-                  Latest version: {release.name}
-                </p>
-              )}
+              {versionLabel ? (
+                <div className={styles.latestVersion} aria-label="Latest version">
+                  <span className={styles.latestVersionLabel}>Latest version</span>
+                  <span className={styles.latestVersionNumber}>{versionLabel}</span>
+                </div>
+              ) : null}
             </div>
 
             <div className={styles.grid}>

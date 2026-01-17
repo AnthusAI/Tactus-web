@@ -90,6 +90,12 @@
 .ctaGridInstall {
   grid-column: 1 / -1;
   width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.ctaGridInstall .installCommand {
+  flex: 0 0 auto;
 }
 
 .codeBlockPlayer {
@@ -115,7 +121,7 @@
   padding: 0.55rem 0.75rem;
   border-radius: 999px;
   background: var(--color-surface-2);
-  border: 1px solid color-mix(in srgb, var(--color-text) 12%, transparent);
+  border: none;
   flex: 1 1 18rem;
   min-width: min(28rem, 100%);
 }
@@ -132,8 +138,8 @@
   gap: 0.4rem;
   padding: 0.4rem 0.7rem;
   border-radius: 999px;
-  border: 1px solid color-mix(in srgb, var(--color-text) 14%, transparent);
-  background: var(--color-surface);
+  border: none;
+  background: var(--color-card-title);
   color: var(--color-text);
   font-weight: 700;
   font-size: var(--font-sx);
@@ -142,12 +148,14 @@
 }
 
 .copyButton:hover {
-  filter: brightness(0.99);
+  background: var(--color-surface);
+  text-decoration: none;
 }
 
 .copyButton:focus-visible {
-  outline: 2px solid var(--color-primary);
-  outline-offset: 2px;
+  outline: none;
+  box-shadow: none;
+  background: var(--color-surface);
 }
 
 .primaryButton,
@@ -243,7 +251,7 @@
 .paradigmGrid {
   margin-top: var(--space-4);
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: var(--space-4);
   align-items: start;
 }
@@ -270,27 +278,6 @@
 .paradigmCode {
   margin-top: var(--space-2);
   width: 100%;
-}
-
-.paradigmWhy {
-  margin-top: var(--space-5);
-  padding: var(--space-4);
-  border-radius: var(--border-radius);
-  background: var(--color-surface-2);
-}
-
-.paradigmWhyTitle {
-  margin: 0 0 var(--space-2);
-  font-size: 1.25rem;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-}
-
-.paradigmWhyBody {
-  margin: 0;
-  color: var(--color-text-muted);
-  font-size: var(--font-md);
-  line-height: var(--line-height-loose);
 }
 
 .compareGrid {
@@ -388,6 +375,12 @@
 
 .whyLanguageLead {
   margin: 0 0 var(--space-3);
+}
+
+.whyLanguageTagline {
+  margin: 0 0 var(--space-3);
+  font-weight: 800;
+  letter-spacing: -0.01em;
 }
 
 .whyLanguageList {
@@ -645,6 +638,11 @@
 
   .ctaGridInstall {
     grid-column: auto;
+    justify-content: stretch;
+  }
+
+  .ctaGridInstall .installCommand {
+    flex: 1 1 auto;
   }
 
   .heroAside {

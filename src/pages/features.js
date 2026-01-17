@@ -3,6 +3,7 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 import BottomCta from "../components/bottom-cta"
 import * as styles from "./features.module.css"
+import { Cable } from "lucide-react"
 
 const Icons = {
   Box: () => (
@@ -14,8 +15,8 @@ const Icons = {
   Key: () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.icon}><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg>
   ),
-  Terminal: () => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.icon}><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+  Cable: () => (
+    <Cable className={styles.icon} />
   ),
   Lock: () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.icon}><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
@@ -96,8 +97,8 @@ local approved = Human.approve({
               </div>
               <h2 className={styles.featureTitle}>Docker sandbox by default</h2>
               <p className={styles.featureText}>
-                Procedures run in an isolated Docker container (when available), with an ephemeral
-                workspace. It’s designed to keep tool-using agents from touching your host by default.
+                Procedures run in a Lua sandbox inside a Docker container: keep the
+                monkey in the box, and keep sensitive information out of the box.
               </p>
               <div className={styles.codeBlock}>
                 <code>{`agent = Agent {
@@ -126,7 +127,7 @@ local approved = Human.approve({
 
             <div className={styles.featureDetail}>
               <div className={styles.featureIcon}>
-                <Icons.Terminal />
+                <Icons.Cable />
               </div>
               <h2 className={styles.featureTitle}>Brokered tools (secrets stay out of prompts)</h2>
               <p className={styles.featureText}>

@@ -1,7 +1,7 @@
 import * as React from "react"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
-import { Github, Copy, Check } from "lucide-react"
+import { Github, Copy, Check, Cable } from "lucide-react"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -21,6 +21,9 @@ const Icons = {
   ),
   Terminal: () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.icon}><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+  ),
+  Cable: () => (
+    <Cable className={styles.icon} />
   ),
   Lock: () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.icon}><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
@@ -455,18 +458,6 @@ const IndexPage = () => {
                   </div>
                 </div>
               </div>
-
-              <div className={styles.paradigmWhy}>
-                <h3 className={styles.paradigmWhyTitle}>
-                  Why do you need a language for this?
-                </h3>
-                <p className={styles.paradigmWhyBody}>
-                  Because “hope for the best” isn’t a strategy for production
-                  systems. Tactus gives you the reliability of code with the
-                  flexibility of agents: durable workflows, sandboxing, and
-                  structure you can test and measure.
-                </p>
-              </div>
             </div>
           </div>
         </section>
@@ -524,8 +515,8 @@ const IndexPage = () => {
             <div className={styles.featureCard}>
               <h3><Icons.Box /> Docker sandbox by default</h3>
               <p>
-                Procedures run in a Docker container (when available), with
-                configurable CPU/memory/timeouts and an ephemeral workspace.
+                Procedures run in a Lua sandbox inside a Docker container: keep the
+                monkey in the box, and keep sensitive information out of the box.
               </p>
             </div>
             <div className={styles.featureCard}>
@@ -544,7 +535,7 @@ const IndexPage = () => {
               </p>
             </div>
             <div className={styles.featureCard}>
-              <h3><Icons.Terminal /> Brokered tools</h3>
+              <h3><Icons.Cable /> Brokered tools</h3>
               <p>
                 Tools that need secrets or privileged access can run outside the
                 sandbox via a broker, streaming back results so the agent gets
@@ -710,6 +701,9 @@ const IndexPage = () => {
                   We already have Python. We already have frameworks for agent workflows (and even
                   no-code tools). So what’s missing?
                 </p>
+                <p className={styles.whyLanguageTagline}>
+                  Because “hope for the best” isn’t a strategy for production systems.
+                </p>
                 <ul className={styles.whyLanguageList}>
                   <li>
                     If Python is “good enough”, what do we gain by introducing a new language?
@@ -723,22 +717,6 @@ const IndexPage = () => {
                     reliability, and testability?
                   </li>
                 </ul>
-              </div>
-
-              <div className={styles.videoCard}>
-                <div className={styles.videoHeader}>
-                  <span className={styles.videoTitle}>
-                    Why a New Language? (7 min)
-                  </span>
-                </div>
-                <video
-                  className={styles.video}
-                  controls
-                  preload="metadata"
-                  playsInline
-                  src={getVideoSrc("why-new-language.mp4")}
-                  poster={getVideoSrc("why-new-language-poster.jpg")}
-                />
               </div>
             </div>
           </div>
@@ -765,6 +743,22 @@ const IndexPage = () => {
                 <Link className={styles.secondaryButton} to="/why-new-language/">
                   Read the full article
                 </Link>
+              </div>
+
+              <div className={styles.videoCard}>
+                <div className={styles.videoHeader}>
+                  <span className={styles.videoTitle}>
+                    Why a New Language? (7 min)
+                  </span>
+                </div>
+                <video
+                  className={styles.video}
+                  controls
+                  preload="metadata"
+                  playsInline
+                  src={getVideoSrc("why-new-language.mp4")}
+                  poster={getVideoSrc("why-new-language-poster.jpg")}
+                />
               </div>
             </div>
           </div>

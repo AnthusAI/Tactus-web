@@ -38,19 +38,32 @@ npx ampx sandbox --profile anthus --region us-east-1
 
 ### Videos (S3 + CloudFront)
 
-The backend defines a private S3 bucket + CloudFront distribution for public MP4 hosting. The site’s `src/pages/videos.js` uses `GATSBY_VIDEOS_BASE_URL` to point at the CDN.
+The backend defines a private S3 bucket + CloudFront distribution for public MP4 hosting. The site's `src/pages/videos.js` uses `GATSBY_VIDEOS_BASE_URL` to point at the CDN.
 
-Local workflow:
+#### Getting Backend Configuration
+
+To retrieve the deployed backend configuration (bucket name, CloudFront URL, etc.):
 
 ```bash
-# Render the Remotion intro video into `videos/out/intro.mp4` (and also copies into `static/videos/` for local preview).
-npm run videos:render
-
-# Upload rendered MP4s to S3 (set `VIDEOS_BUCKET` to the deployed bucket name).
-VIDEOS_BUCKET=your-bucket-name npm run videos:upload
+npx ampx generate outputs --app-id dfkbdffs2viq8 --branch main --profile anthus
 ```
 
-In Amplify Hosting, set `GATSBY_VIDEOS_BASE_URL` to your deployed CloudFront URL (output as `custom.videosCdnUrl`).
+This creates `amplify_outputs.json` with:
+- `custom.videosBucketName` - S3 bucket for videos
+- `custom.videosCdnUrl` - CloudFront distribution URL
+
+#### Local Video Workflow
+
+```bash
+# Render videos to videos/out/ (and copies to static/videos/ for local preview)
+npm run videos:render
+
+# Upload rendered MP4s and poster images to S3
+# Requires AWS_PROFILE with access to the S3 bucket (reads bucket name from amplify_outputs.json)
+AWS_PROFILE=anthus npm run videos:upload
+```
+
+The videos page automatically reads the CloudFront URL from `amplify_outputs.json` at build time. Commit `amplify_outputs.json` to your repository so it's available during the Amplify build.
 
 ## 🚀 Quick start (Netlify)
 

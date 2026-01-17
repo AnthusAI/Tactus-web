@@ -1,3 +1,5 @@
+poster_time: "5s"
+
 audio:
   # Environment-based providers (BABULUS_ENV=development, aws, azure, or production)
   # Development: dry-run (free, instant)
@@ -16,15 +18,25 @@ audio:
 
 voiceover:
   # Environment-based TTS provider
-  # Development: openai (cheap, fast, $0.015/1K chars)
-  # AWS: aws-polly (uses AWS credentials, ~$4/1M chars)
-  # Azure: azure-speech (uses API key, ~$16/1M chars)
-  # Production: elevenlabs (expensive, best quality, ~$0.30/1K chars)
+  # Development: openai (fast iteration)
+  # AWS: aws-polly (uses AWS credentials)
+  # Azure: azure-speech (uses API key)
+  # Production: elevenlabs (best quality)
   provider:
     development: openai
     aws: aws
     azure: azure
     production: elevenlabs
+
+  # Optional: Override model per environment
+  # model:
+  #   development: "tts-1"           # OpenAI standard model
+  #   production: "eleven_v3"        # ElevenLabs v3 (best quality)
+
+  # Optional: Override voice per environment
+  # voice:
+  #   development: "alloy"           # OpenAI voice
+  #   production: "lxYfHSkYm1EzQzGhdbfc"  # ElevenLabs voice ID
 
   # Automatically create/update an ElevenLabs pronunciation dictionary from lexemes below,
   # and attach it to every TTS request.
@@ -96,15 +108,10 @@ scenes:
             - voice: >
                 But tool‑using agents flip the script.
                 Instead of explicitly handling every possible scenario, you describe what you want and give the agent the tools to do it.
-            - pause_seconds: 0.35
+                And then you put guardrails around it to guide it toward your goals.
+            - pause_seconds: 0.7
             - voice: >
-                It’s simple:
-                you give an agent a tool,
-                you give it a procedure to follow,
-                and you put guardrails around it.
-            - pause_seconds: 0.35
-            - voice: >
-                What we need now is a new kind of programming language for this new kind of program.
+                But how do you do that?  What we need now is a new kind of programming language for this new kind of program.
 
   - id: hello_world
     title: "Hello, World"

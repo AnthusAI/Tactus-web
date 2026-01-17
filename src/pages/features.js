@@ -1,7 +1,7 @@
 import * as React from "react"
-import { Link } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import BottomCta from "../components/bottom-cta"
 import * as styles from "./features.module.css"
 
 const Icons = {
@@ -13,6 +13,9 @@ const Icons = {
   ),
   Key: () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.icon}><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg>
+  ),
+  Terminal: () => (
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.icon}><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
   ),
   Lock: () => (
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={styles.icon}><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
@@ -35,128 +38,29 @@ const FeaturesPage = () => {
             <div className={styles.hero}>
               <h1 className={styles.title}>Built for Real Systems</h1>
               <p className={styles.lede}>
-                Tactus gives you the tools to build agents that are safe, reliable, and production-ready.
+                Tactus is a language + runtime for building tool-using agents that can run safely in production.
               </p>
             </div>
           </div>
         </section>
 
-        <section className={styles.section}>
+        <section className={`${styles.section} ${styles.featuresSection}`}>
           <div className={styles.container}>
             <div className={styles.featureDetail}>
               <div className={styles.featureIcon}>
-                <Icons.Box />
+                <Icons.CheckCircle />
               </div>
-              <h2 className={styles.featureTitle}>Docker Sandbox by Default</h2>
+              <h2 className={styles.featureTitle}>Human-in-the-loop approvals</h2>
               <p className={styles.featureText}>
-                Every agent runs in an isolated Docker container with resource limits. 
-                No more worrying about runaway processes consuming your entire server. 
-                Memory, CPU, and disk usage are all constrained.
+                Approvals are a first-class primitive. When a workflow reaches an approval, it can
+                suspend and wait—without hacks like “keep a process alive.”
               </p>
               <div className={styles.codeBlock}>
-                <code>{`-- Automatic sandboxing
-agent = Agent {
-    provider = "openai",
-    model = "gpt-4o",
-    -- Runs in isolated container
-    -- Resource limits enforced
-}`}</code>
-              </div>
-            </div>
-
-            <div className={styles.featureDetail}>
-              <div className={styles.featureIcon}>
-                <Icons.WifiOff />
-              </div>
-              <h2 className={styles.featureTitle}>Network Control</h2>
-              <p className={styles.featureText}>
-                Network access is <strong>disabled by default</strong>. Agents can't phone home, 
-                exfiltrate data, or download malicious payloads unless you explicitly grant permission. 
-                When you do need network access, you control exactly which domains are allowed.
-              </p>
-              <div className={styles.codeBlock}>
-                <code>{`-- Opt-in networking
-agent = Agent {
-    provider = "openai",
-    model = "gpt-4o",
-    network = {
-        allowed_domains = {
-            "api.example.com",
-            "docs.example.com"
-        }
-    }
-}`}</code>
-              </div>
-            </div>
-
-            <div className={styles.featureDetail}>
-              <div className={styles.featureIcon}>
-                <Icons.Key />
-              </div>
-              <h2 className={styles.featureTitle}>Secretless Execution</h2>
-              <p className={styles.featureText}>
-                API keys and credentials never enter the sandbox. The Tactus runtime handles 
-                authentication on the host, so even if an agent is compromised, your secrets stay safe. 
-                Agents can use tools without ever seeing the keys.
-              </p>
-              <div className={styles.codeBlock}>
-                <code>{`-- Keys stay on host
-agent = Agent {
-    provider = "openai",  -- Key never enters sandbox
-    model = "gpt-4o"
-}
-
--- Agent can call APIs
--- But never sees credentials`}</code>
-              </div>
-            </div>
-
-            <div className={styles.featureDetail}>
-              <div className={styles.featureIcon}>
-                <Icons.Lock />
-              </div>
-              <h2 className={styles.featureTitle}>Least Privilege Access</h2>
-              <p className={styles.featureText}>
-                Agents only get the tools you explicitly provide. Want an agent that can read files 
-                but not write them? Grant read-only access. Need an agent that can query a database 
-                but not modify it? Give it a read-only connection. Fine-grained control at the tool level.
-              </p>
-              <div className={styles.codeBlock}>
-                <code>{`-- Explicit tool grants
-agent = Agent {
-    provider = "openai",
-    model = "gpt-4o",
-    tools = {
-        FileSystem.read,      -- Read only
-        Database.query,       -- No writes
-        -- No shell access
-        -- No file writes
-    }
-}`}</code>
-              </div>
-            </div>
-
-            <div className={styles.featureDetail}>
-              <div className={styles.featureIcon}>
-                <Icons.Save />
-              </div>
-              <h2 className={styles.featureTitle}>Durability</h2>
-              <p className={styles.featureText}>
-                Workflows can be suspended and resumed. If your server crashes, your agent workflow 
-                picks up where it left off. Long-running processes that need human approval? 
-                No problem. The state is persisted, and the workflow resumes when the human responds.
-              </p>
-              <div className={styles.codeBlock}>
-                <code>{`-- Suspend for human input
-local approved = Human.approve({
+                <code>{`local approved = Human.approve({
     message = "Deploy to production?",
-    timeout = 3600,  -- 1 hour
+    timeout = 3600,
     default = false
 })
-
--- Workflow suspends here
--- Resumes when human responds
--- Survives server restarts
 
 if approved then
     deploy()
@@ -166,13 +70,106 @@ end`}</code>
 
             <div className={styles.featureDetail}>
               <div className={styles.featureIcon}>
+                <Icons.Save />
+              </div>
+              <h2 className={styles.featureTitle}>Transparent durability</h2>
+              <p className={styles.featureText}>
+                Long-running workflows are durable: they can pause, resume, and survive restarts.
+                The key is transparency—the workflow’s durable “waiting” points are explicit in code
+                and visible in behavior.
+              </p>
+              <div className={styles.codeBlock}>
+                <code>{`-- A durable workflow can pause...
+local approved = Human.approve({
+    message = "Publish these findings?",
+    timeout = 3600,
+    default = false
+})
+
+-- ...and resume later, without losing state.`}</code>
+              </div>
+            </div>
+
+            <div className={styles.featureDetail}>
+              <div className={styles.featureIcon}>
+                <Icons.Box />
+              </div>
+              <h2 className={styles.featureTitle}>Docker sandbox by default</h2>
+              <p className={styles.featureText}>
+                Procedures run in an isolated Docker container (when available), with an ephemeral
+                workspace. It’s designed to keep tool-using agents from touching your host by default.
+              </p>
+              <div className={styles.codeBlock}>
+                <code>{`agent = Agent {
+    provider = "openai",
+    model = "gpt-4o",
+    -- Runs in an isolated container by default
+}`}</code>
+              </div>
+            </div>
+
+            <div className={styles.featureDetail}>
+              <div className={styles.featureIcon}>
+                <Icons.WifiOff />
+              </div>
+              <h2 className={styles.featureTitle}>Networkless by default</h2>
+              <p className={styles.featureText}>
+                Keep the sandbox on <strong>network: none</strong>. This reduces the blast radius:
+                the agent can’t download arbitrary code or exfiltrate data directly from inside the
+                runtime environment.
+              </p>
+              <div className={styles.codeBlock}>
+                <code>{`-- In production, keep the runtime container networkless.
+-- Model calls and tool calls happen through controlled host transports.`}</code>
+              </div>
+            </div>
+
+            <div className={styles.featureDetail}>
+              <div className={styles.featureIcon}>
+                <Icons.Terminal />
+              </div>
+              <h2 className={styles.featureTitle}>Brokered tools (secrets stay out of prompts)</h2>
+              <p className={styles.featureText}>
+                Some tools need secrets or privileged access. Tactus supports a brokered model:
+                sensitive tools run outside the sandbox, and the agent receives results—not credentials.
+              </p>
+              <div className={styles.codeBlock}>
+                <code>{`-- The broker can call privileged tools...
+-- ...while keeping secrets outside the agent runtime.
+-- The agent gets outputs, not API keys.`}</code>
+              </div>
+            </div>
+
+            <div className={styles.featureDetail}>
+              <div className={styles.featureIcon}>
+                <Icons.Lock />
+              </div>
+              <h2 className={styles.featureTitle}>Capability control (least privilege)</h2>
+              <p className={styles.featureText}>
+                Agents only get the tools you explicitly provide. The default posture is deny-by-default:
+                no ambient access to files, shell, or network—only what you grant.
+              </p>
+              <div className={styles.codeBlock}>
+                <code>{`-- Tools are explicit; nothing is implicit.
+agent = Agent {
+    provider = "openai",
+    model = "gpt-4o",
+    tools = {
+        create_contact,
+        -- no other tools granted
+    }
+}`}</code>
+              </div>
+            </div>
+
+            <div className={styles.featureDetail}>
+              <div className={styles.featureIcon}>
                 <Icons.CheckCircle />
               </div>
-              <h2 className={styles.featureTitle}>Testing & Specifications</h2>
+              <h2 className={styles.featureTitle}>Specifications (executable behavior)</h2>
               <p className={styles.featureText}>
-                Write executable specifications for your agent workflows using Gherkin syntax. 
-                Test that your agents behave correctly before deploying to production. 
-                Measure reliability. Catch regressions. Build confidence.
+                Specifications define what must be true. They help you test workflows, catch regressions,
+                and build confidence before you run unattended in production.
               </p>
               <div className={styles.codeBlock}>
                 <code>{`Specifications([[
@@ -183,34 +180,38 @@ Feature: Safe deployments
     When the workflow runs
     Then it should wait for approval
     And not deploy without confirmation
-    
-  Scenario: Handles timeouts
-    Given a deployment request
-    When approval times out
-    Then it should not deploy
-    And should log the timeout
 ]])`}</code>
+              </div>
+            </div>
+
+            <div className={styles.featureDetail}>
+              <div className={styles.featureIcon}>
+                <Icons.CheckCircle />
+              </div>
+              <h2 className={styles.featureTitle}>Validation built in</h2>
+              <p className={styles.featureText}>
+                Procedures declare typed inputs and outputs. The runtime validates inputs at the boundary,
+                structures outputs, and makes failures explicit instead of silently drifting.
+              </p>
+              <div className={styles.codeBlock}>
+                <code>{`Procedure {
+    input = {topic = field.string{required = true}},
+    output = {approved = field.boolean{required = true}},
+    function(input)
+        -- ...
+    end,
+}`}</code>
               </div>
             </div>
           </div>
         </section>
 
-        <section className={styles.section}>
-          <div className={styles.container}>
-            <div className={styles.callout}>
-              <h2 className={styles.calloutTitle}>Ready to build safe agents?</h2>
-              <p className={styles.bodyText}>
-                These features work together to give you the reliability of traditional code 
-                with the flexibility of AI agents.
-              </p>
-              <div style={{marginTop: 'var(--space-4)'}}>
-                <Link to="/getting-started/" className={styles.primaryButton}>
-                  Get Started
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
+        <BottomCta
+          title="Ready to start building?"
+          text="Follow a short walkthrough and write your first durable procedure."
+          buttonLabel="Get Started"
+          to="/getting-started/"
+        />
       </div>
     </Layout>
   )

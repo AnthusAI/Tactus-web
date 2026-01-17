@@ -4,32 +4,62 @@ import { Menu, X } from "lucide-react"
 
 import * as styles from "./header.module.css"
 
-const Header = ({ siteTitle }) => {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false)
+// Primary navigation items shown inline on desktop
+const PRIMARY_NAV = [
+  { label: 'Features', to: '/features/' },
+  { label: 'Getting Started', to: '/getting-started/' },
+  { label: 'Download', to: '/download/' },
+]
+
+const Header = ({ siteTitle, isMenuOpen, setIsMenuOpen }) => {
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
+
+  // Handle ESC key to close menu
+  React.useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && isMenuOpen) {
+        setIsMenuOpen(false)
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    return () => document.removeEventListener('keydown', handleKeyDown)
+  }, [isMenuOpen, setIsMenuOpen])
 
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
-        <Link to="/" className={styles.brand} aria-label="Tactus home">
+        {/* Brand */}
+        <Link to="/" className={styles.brand} aria-label="Tactus home" onClick={() => setIsMenuOpen(false)}>
           <span className={styles.brandMark}>{siteTitle}</span>
         </Link>
 
+        {/* Primary Navigation (Desktop Inline) */}
+        <nav className={styles.primaryNav} aria-label="Primary navigation">
+          {PRIMARY_NAV.map((item) => (
+            <Link
+              key={item.to}
+              to={item.to}
+              activeClassName="active"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+
+        {/* Hamburger Button */}
         <button
           className={styles.menuToggle}
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle menu"
+          onClick={toggleMenu}
+          aria-label="Toggle navigation menu"
           aria-expanded={isMenuOpen}
         >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {isMenuOpen ? (
+            <X size={18} strokeWidth={1.5} />
+          ) : (
+            <Menu size={18} strokeWidth={1.5} />
+          )}
         </button>
-
-        <nav className={`${styles.nav} ${isMenuOpen ? styles.navOpen : ""}`} aria-label="Primary">
-          <Link to="/paradigm/">A New Way</Link>
-          <Link to="/features/">Features</Link>
-          <Link to="/videos/">Videos</Link>
-          <Link to="/getting-started/">Getting Started</Link>
-          <Link to="/download/">Download</Link>
-        </nav>
       </div>
     </header>
   )

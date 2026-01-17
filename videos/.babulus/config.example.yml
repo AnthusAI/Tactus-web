@@ -31,8 +31,15 @@ providers:
 
   elevenlabs:
     api_key: "PUT_YOUR_KEY_HERE"
-    voice_id: "PUT_VOICE_ID_HERE"
-    model_id: "eleven_multilingual_v2"
+    voice_id: "PUT_VOICE_ID_HERE"           # Voice personality (get from ElevenLabs account)
+
+    # TTS Model selection - choose based on quality/speed needs:
+    model_id: "eleven_v3"                   # Latest v3 model (best quality, recommended for production)
+    # model_id: "eleven_multilingual_v2"    # Multilingual support, high quality
+    # model_id: "eleven_turbo_v2_5"         # Turbo tier: faster generation, good balance
+    # model_id: "eleven_flash_v2_5"         # Flash tier: fastest generation
+    # model_id: "eleven_monolingual_v1"     # English-only, premium quality
+
     # Optional: attach pronunciation dictionaries to every TTS request
     # pronunciation_dictionary_locators:
     #   - pronunciation_dictionary_id: "pd_xxxxx"
@@ -48,16 +55,17 @@ providers:
 
   openai:
     api_key: "PUT_YOUR_KEY_HERE"
-    model: "gpt-4o-mini-tts"
-    voice: "alloy"
+    model: "tts-1"                          # Options: "tts-1" (standard), "tts-1-hd" (higher quality), "gpt-4o-mini-tts"
+    voice: "alloy"                          # Options: "alloy", "echo", "fable", "onyx", "nova", "shimmer", "marin"
 
   aws_polly:
     # Uses standard AWS credential resolution (env vars, ~/.aws/credentials, etc.).
     region: "us-east-1"
-    voice_id: "Joanna"
-    # engine: "standard"  # or "neural"
+    voice_id: "Joanna"                      # See: https://docs.aws.amazon.com/polly/latest/dg/voicelist.html
+    # engine: "standard"  # or "neural" (better quality)
 
   azure_speech:
     api_key: "PUT_YOUR_KEY_HERE"
     region: "eastus"
-    voice: "en-US-JennyNeural"
+    voice: "en-US-JennyNeural"              # Voice name includes tier: *-Neural (premium) or *-Standard
+                                             # See: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/language-support?tabs=tts

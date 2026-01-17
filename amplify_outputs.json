@@ -1,0 +1,8 @@
+{
+  "version": "1.4",
+  "custom": {
+    "videosBucketName": "amplify-dfkbdffs2viq8-main-br-videosbucket75f673ed-2ylai9zpobio",
+    "videosCdnDomain": "dt8dmvzuiunkp.cloudfront.net",
+    "videosCdnUrl": "https://dt8dmvzuiunkp.cloudfront.net"
+  }
+}

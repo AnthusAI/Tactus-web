@@ -4,6 +4,7 @@
   "description": "Tactus-web Gatsby site",
   "version": "0.1.0",
   "dependencies": {
+    "@remotion/player": "4.0.406",
     "gatsby": "^5.14.6",
     "gatsby-plugin-image": "^3.14.0",
     "gatsby-plugin-manifest": "^5.14.0",
@@ -17,7 +18,15 @@
   "devDependencies": {
     "@aws-amplify/backend": "^1.19.0",
     "@aws-amplify/backend-cli": "^1.8.1",
+    "@storybook/addon-a11y": "^10.1.11",
+    "@storybook/addon-docs": "^10.1.11",
+    "@storybook/addon-onboarding": "^10.1.11",
+    "@storybook/addon-webpack5-compiler-swc": "^4.0.2",
+    "@storybook/react-webpack5": "^10.1.11",
+    "@vitest/mocker": "^4.0.17",
     "prettier": "^2.8.8",
+    "prop-types": "^15.8.1",
+    "storybook": "^10.1.11",
     "typescript": "^5.9.3"
   },
   "engines": {
@@ -35,7 +44,7 @@
     "prestart": "npm run check:node",
     "preserve": "npm run check:node",
     "preclean": "npm run check:node",
-    "build": "gatsby build",
+    "build": "node scripts/gatsby-build.js",
     "develop": "gatsby develop",
     "videos:render": "node scripts/render-videos.js",
     "videos:upload": "node scripts/upload-videos.js",
@@ -46,7 +55,9 @@
     "start": "gatsby develop",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "repository": {}
 }

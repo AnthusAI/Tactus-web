@@ -87,6 +87,7 @@ const main = () => {
       `"${s3Dest}"`,
       "--exclude \"*\"",
       "--include \"*.mp4\"",
+      "--include \"*.jpg\"",
       `--cache-control "${opts.cacheControl}"`,
       dry,
     ]

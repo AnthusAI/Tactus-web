@@ -3,7 +3,7 @@
 ## What this repo is
 
 - Gatsby site deployed via **AWS Amplify Hosting** (CI/CD + static hosting).
-- Includes an **Amplify Gen 2** backend skeleton in `amplify/` (currently empty backend: `defineBackend({})`).
+- Includes an **Amplify Gen 2** backend in `amplify/` used for video hosting infrastructure.
 
 ## Important IDs / config
 
@@ -17,14 +17,134 @@
 
 - **Do not use** `amplify` (Gen 1 CLI).
 - Gen 2 uses `npx ampx ...` and `@aws-amplify/backend` / `@aws-amplify/backend-cli`.
-- Local Gen 2 sandbox (only needed if/when adding backend resources):
+- Local Gen 2 sandbox (optional; CI deploy is the default):
   - `npx ampx sandbox --profile anthus --region us-east-1`
 
-## AWS profiles (common gotcha)
+## Videos (Remotion subproject)
+
+- The Remotion project lives in `videos/` and renders MP4s to `videos/out/`.
+- The marketing site should not bundle large videos into the Gatsby build; it should reference a public URL.
+
+### Babulus (Voiceover Generation)
+
+Babulus generates TTS audio and timing JSON from `.babulus.yml` DSL files in `videos/content/`.
+
+**Setup** (requires Python 3.11+):
+```bash
+conda create -n babulus python=3.12 -y
+conda activate babulus
+cd videos
+pip install -r requirements.txt  # installs babulus from ../Babulus
+```
+
+**Generate audio**:
+```bash
+# Development mode (cheap/fast - OpenAI)
+BABULUS_ENV=development babulus generate content/intro.babulus.yml
+
+# Production mode (high quality - Eleven Labs, when quota available)
+BABULUS_ENV=production babulus generate content/intro.babulus.yml
+
+# Watch mode (auto-regenerate on DSL changes)
+BABULUS_ENV=development babulus generate --watch content/intro.babulus.yml
+
+# Watch all videos
+BABULUS_ENV=development babulus generate --watch content/
+```
+
+**Outputs**:
+- `src/videos/<video>/<video>.script.json` - Timing data for Remotion
+- `src/videos/<video>/<video>.timeline.json` - Audio tracks
+- `public/babulus/<video>.wav` - Voiceover audio
+- `.babulus/out/<video>/env/<environment>/` - Cached audio segments
+
+**Key benefit**: Environment-aware caching prevents burning through API quotas. Only regenerates changed segments (79x faster on cache hits).
+
+### Infra (S3 + CloudFront)
+
+- `amplify/backend.ts` defines:
+  - a private S3 bucket for MP4 objects
+  - a CloudFront distribution (Origin Access Identity) for public HTTPS playback
+- `amplify.yml` runs `npx ampx pipeline-deploy ...` so the backend deploy happens automatically on commit/push.
+
+### Publishing workflow
+
+1) Generate backend configuration (one-time or when backend changes):
+```bash
+npx ampx generate outputs --app-id dfkbdffs2viq8 --branch main --profile anthus
+```
+This creates `amplify_outputs.json` with bucket name and CloudFront URL.
+
+2) Render videos:
+```bash
+npm run videos:render
+```
+Renders videos to `videos/out/` and copies to `static/videos/` for local preview.
+
+3) Upload to S3:
+```bash
+AWS_PROFILE=anthus npm run videos:upload
+```
+Reads bucket name from `amplify_outputs.json` and uploads videos and poster images.
+
+4) Commit and deploy:
+- The `/videos` page automatically reads the CloudFront URL from `amplify_outputs.json` at build time.
+- Commit `amplify_outputs.json` to the repository so it's available during the Amplify build.
+- Push to trigger a new deployment.
+- Videos will be served from CloudFront with proper poster images.
+
+### Finding the bucket + CDN after deploy
+
+Generate the `amplify_outputs.json` file from the deployed backend:
+
+```bash
+npx ampx generate outputs --app-id dfkbdffs2viq8 --branch main --profile anthus
+```
+
+This creates `amplify_outputs.json` in the current directory with the backend configuration including:
+- `custom.videosBucketName` - The S3 bucket name for video storage
+- `custom.videosCdnUrl` - The CloudFront distribution URL for public access
+
+Alternatively, query CloudFormation directly for the videos stack outputs:
+```bash
+aws cloudformation describe-stacks --stack-name <videos-stack> --query "Stacks[0].Outputs" --profile anthus
+```
+
+## AWS credentials (required for video upload)
+
+The video upload workflow requires AWS credentials with access to the S3 bucket.
+
+### Using AWS Profile (recommended)
+
+Set up an AWS CLI profile named `anthus` that authenticates to AWS account `335163751677`:
+
+```bash
+aws configure --profile anthus
+# Enter your AWS Access Key ID, Secret Access Key, and region (us-east-1)
+```
+
+Then use the profile for all AWS operations:
+```bash
+AWS_PROFILE=anthus npm run videos:upload
+AWS_PROFILE=anthus npx ampx generate outputs --app-id dfkbdffs2viq8 --branch main --profile anthus
+```
+
+### Using Default Credentials
+
+Alternatively, configure default AWS credentials (no profile needed):
+```bash
+aws configure
+# Or set environment variables:
+export AWS_ACCESS_KEY_ID=...
+export AWS_SECRET_ACCESS_KEY=...
+export AWS_REGION=us-east-1
+```
+
+### Common Gotchas
 
 - Amplify app lives in AWS account `335163751677`.
-- Use the AWS CLI profile that authenticates to that account (currently: `anthus`).
-- If `aws amplify get-app --app-id dfkbdffs2viq8 ...` says “App not found”, you’re almost certainly in the wrong AWS account/profile.
+- If `aws amplify get-app --app-id dfkbdffs2viq8 ...` says "App not found", you're almost certainly in the wrong AWS account/profile.
+- Upload script reads bucket name from `amplify_outputs.json` (generated by `npx ampx generate outputs`).
 
 ## Debugging Amplify Hosting build failures (CLI)
 

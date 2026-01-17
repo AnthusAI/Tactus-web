@@ -7,13 +7,25 @@
 
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
 
 import Header from "./header"
+import NavMenu from "./nav-menu"
+import Footer from "./footer"
 import * as styles from "./layout.module.css"
 import "./layout.css"
 
 const Layout = ({ children, fullWidth = false }) => {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false)
+
+  React.useEffect(() => {
+    if (!isMenuOpen) return
+    if (typeof window === "undefined") return
+
+    const scrollToTop = () => window.scrollTo({ top: 0, left: 0, behavior: "auto" })
+    scrollToTop()
+    window.requestAnimationFrame(scrollToTop)
+  }, [isMenuOpen])
+
   const data = useStaticQuery(graphql`
     query SiteTitleQuery {
       site {
@@ -26,29 +38,19 @@ const Layout = ({ children, fullWidth = false }) => {
 
   return (
     <div className={styles.page}>
-      <Header siteTitle={data.site.siteMetadata?.title || `Tactus`} />
-      <div className={fullWidth ? styles.contentFull : styles.content}>
-        <main>{children}</main>
-      </div>
-      <footer className={styles.footer}>
-        <div className={styles.footerInner}>
-          <div className={styles.footerCenter}>
-            <StaticImage
-              src="../images/favicon.png"
-              alt="Tactus icon"
-              className={styles.footerIcon}
-              layout="fixed"
-              width={96}
-              height={96}
-              placeholder="none"
-            />
-            <div className={styles.footerTagline}>
-              Code Responsibly
-            </div>
-          </div>
-          <div className={styles.footerByline}>by Ryan Porter</div>
+      <Header
+        siteTitle={data.site.siteMetadata?.title || `Tactus`}
+        isMenuOpen={isMenuOpen}
+        setIsMenuOpen={setIsMenuOpen}
+      />
+      {isMenuOpen ? (
+        <NavMenu onNavigate={() => setIsMenuOpen(false)} />
+      ) : (
+        <div className={fullWidth ? styles.contentFull : styles.content}>
+          <main>{children}</main>
         </div>
-      </footer>
+      )}
+      <Footer />
     </div>
   )
 }

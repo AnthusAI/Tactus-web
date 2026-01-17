@@ -1,9 +1,12 @@
 import * as React from "react"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
+import { Github, Copy, Check } from "lucide-react"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import AnimatedCodeBlock from "../components/animated/AnimatedCodeBlock"
+import BottomCta from "../components/bottom-cta"
 import * as styles from "./index.module.css"
 
 const Icons = {
@@ -90,6 +93,117 @@ Procedure {
         return {approved = approved, findings = findings}
     end,
 }`
+
+const PARADIGM_OLD_WAY_CODE = `def import_contact(row):
+    # Expect a 1-row CSV string
+    # ... parsing logic ...
+
+    # Email column mapping?
+    email = (
+        row.get("email")
+        or row.get("e-mail")
+        or row.get("correo")
+    )
+    if not email:
+        raise ValueError("Missing email")
+
+    # Name mapping?
+    name = row.get("name") or ""
+    if "," in name:
+        last, first = name.split(",", 1)
+    else:
+        first, last = name.split(" ", 1)
+
+    # Each new variation = new code.
+    return create_contact(first, last, email)`
+
+const PARADIGM_NEW_WAY_CODE = `-- Define the capability (schema)
+contact_tool = Tool.define {
+    name = "create_contact",
+    description = "Import a contact into CRM",
+    input = {
+        first_name = "string",
+        last_name = "string",
+        email = "string (email format)",
+        notes = "string (optional)"
+    }
+}
+
+-- The agent figures out the mapping
+function import_contact(row_data)
+    agent.use(contact_tool, {
+        instruction = "Import this contact data",
+        data = row_data
+    })
+end`
+
+const getVideoSrc = (filename) => {
+  let base = process.env.GATSBY_VIDEOS_BASE_URL
+
+  if (!base) {
+    try {
+      const outputs = require("../../amplify_outputs.json")
+      base = outputs.custom?.videosCdnUrl
+      if (base) base = `${base}/videos`
+    } catch (e) {
+      // Fall back to local
+    }
+  }
+
+  if (base && typeof base === "string") {
+    return `${base.replace(/\/$/, "")}/${filename}`
+  }
+
+  return `/videos/${filename}`
+}
+
+const INSTALL_COPY_VALUE = "pip install tactus"
+
+const InstallCommand = () => {
+  const [copied, setCopied] = React.useState(false)
+
+  const doCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(INSTALL_COPY_VALUE)
+      setCopied(true)
+      window.setTimeout(() => setCopied(false), 1500)
+    } catch (e) {
+      try {
+        const el = document.createElement("textarea")
+        el.value = INSTALL_COPY_VALUE
+        el.setAttribute("readonly", "")
+        el.style.position = "absolute"
+        el.style.left = "-9999px"
+        document.body.appendChild(el)
+        el.select()
+        document.execCommand("copy")
+        document.body.removeChild(el)
+        setCopied(true)
+        window.setTimeout(() => setCopied(false), 1500)
+      } catch (e2) {
+        // No-op: clipboard unavailable
+      }
+    }
+  }
+
+  return (
+    <div className={styles.installCommand} role="group" aria-label="Install Tactus">
+      <span className={styles.installPrompt} aria-hidden="true">
+        $
+      </span>
+      <code className={styles.installCode}>pip install tactus</code>
+      <button
+        type="button"
+        className={styles.copyButton}
+        onClick={doCopy}
+        aria-label={copied ? "Copied" : "Copy install command"}
+      >
+        {copied ? <Check size={16} /> : <Copy size={16} />}
+        {copied ? "Copied" : "Copy"}
+      </button>
+    </div>
+  )
+}
 
 const BOOKS = [
   {
@@ -187,19 +301,23 @@ const IndexPage = () => {
                 unattended without touching your host—or your API keys.
               </p>
 
-              {/* CTAs commented out until we have video content - duplicate of nav links
-              <div className={styles.ctaRow}>
+              <div className={styles.ctaGrid}>
                 <Link className={styles.primaryButton} to="/getting-started/">
-                  Get Started
+                  Get started
                 </Link>
-                <Link
+                <a
                   className={styles.secondaryButton}
-                  to="/paradigm/"
+                  href="https://github.com/AnthusAI/Tactus"
+                  target="_blank"
+                  rel="noreferrer"
                 >
-                  The Paradigm
-                </Link>
+                  <Github size={18} />
+                  View code
+                </a>
+                <div className={styles.ctaGridInstall}>
+                  <InstallCommand />
+                </div>
               </div>
-              */}
             </div>
           </div>
         </section>
@@ -213,18 +331,41 @@ const IndexPage = () => {
               Define an agent, then call it like a function.
             </p>
           </header>
-          <div className={styles.codeCard}>
-            <div className={styles.codeHeader}>
-              <span className={styles.codeFile}>hello_world.tac</span>
-              <span className={styles.codeHint}>Agent</span>
-            </div>
-            <pre className={styles.codePre}>
-              <code>{HELLO_WORLD_EXAMPLE}</code>
-            </pre>
+          <div className={styles.codeBlockPlayer}>
+            <AnimatedCodeBlock
+              label="Hello, world"
+              filename="examples-hello-world.tac"
+              hint="Agent"
+              code={HELLO_WORLD_EXAMPLE}
+              language="tactus"
+              showTypewriter={true}
+              typewriterLoop={false}
+              typewriterDelay={0.2}
+              typewriterSpeed={1.1}
+              autoHeight={true}
+              blockWidth={1400}
+              width="100%"
+              autoPlay={true}
+              controls={false}
+              loop={false}
+            />
           </div>
 
-          <div className={styles.videoPlaceholder}>
-            [4:3 Hello World Demo Video Placeholder]
+          <div className={styles.videoCard}>
+            <div className={styles.videoHeader}>
+              <span className={styles.videoTitle}>Intro to Tactus (4 min)</span>
+              <Link className={styles.videoLink} to="/videos/">
+                All videos
+              </Link>
+            </div>
+            <video
+              className={styles.video}
+              controls
+              preload="metadata"
+              playsInline
+              src={getVideoSrc("intro.mp4")}
+              poster={getVideoSrc("intro-poster.jpg")}
+            />
           </div>
 
           <div className={styles.exampleCopy}>
@@ -241,6 +382,91 @@ const IndexPage = () => {
             </p>
 
           </div>
+            </div>
+          </div>
+        </section>
+
+        <section className={`${styles.section}`} id="paradigm">
+          <div className={styles.container}>
+            <div className={styles.paradigm}>
+              <header className={styles.sectionHeader}>
+                <p className={styles.eyebrow}>The paradigm shift</p>
+                <h2 className={styles.sectionTitle}>
+                  A new kind of computer program
+                </h2>
+                <p className={styles.sectionSubtitle}>
+                  Instead of anticipating every edge case, you define
+                  capabilities and let an agent do the mapping.
+                </p>
+              </header>
+
+              <div className={styles.paradigmGrid}>
+                <div className={styles.paradigmCard}>
+                  <h3 className={styles.paradigmCardTitle}>
+                    The old way: think of everything
+                  </h3>
+                  <p className={styles.paradigmBody}>
+                    Traditional code is brittle because every new input format
+                    means more conditional logic. Miss one case and the program
+                    breaks.
+                  </p>
+                  <div className={styles.paradigmCode}>
+                    <AnimatedCodeBlock
+                      label="The old way"
+                      code={PARADIGM_OLD_WAY_CODE}
+                      language="python"
+                      showTypewriter={false}
+                      typewriterLoop={false}
+                      hideTitleBar={true}
+                      autoHeight={true}
+                      blockWidth={1400}
+                      width="100%"
+                      autoPlay={false}
+                      controls={false}
+                      loop={false}
+                    />
+                  </div>
+                </div>
+
+                <div className={styles.paradigmCard}>
+                  <h3 className={styles.paradigmCardTitle}>
+                    The new way: give an agent a tool
+                  </h3>
+                  <p className={styles.paradigmBody}>
+                    You define the capability and give the agent the messy
+                    input. The agent applies judgment to map fields and handle
+                    variation—without rewriting your logic.
+                  </p>
+                  <div className={styles.paradigmCode}>
+                    <AnimatedCodeBlock
+                      label="The new way"
+                      code={PARADIGM_NEW_WAY_CODE}
+                      language="tactus"
+                      showTypewriter={false}
+                      typewriterLoop={false}
+                      hideTitleBar={true}
+                      autoHeight={true}
+                      blockWidth={1400}
+                      width="100%"
+                      autoPlay={false}
+                      controls={false}
+                      loop={false}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className={styles.paradigmWhy}>
+                <h3 className={styles.paradigmWhyTitle}>
+                  Why do you need a language for this?
+                </h3>
+                <p className={styles.paradigmWhyBody}>
+                  Because “hope for the best” isn’t a strategy for production
+                  systems. Tactus gives you the reliability of code with the
+                  flexibility of agents: durable workflows, sandboxing, and
+                  structure you can test and measure.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -271,7 +497,7 @@ const IndexPage = () => {
         <section className={`${styles.section} ${styles.bgPrimary}`}>
           <div className={styles.container}>
             <div className={styles.tactusAdds}>
-              <h3 className={styles.tactusAddsTitle}>What Tactus adds</h3>
+              <h3 className={styles.tactusAddsTitle}>Tactus in a nutshell</h3>
               <p className={styles.tactusAddsBody}>
                 A high-level agent programming model, with default-on sandboxing
                 and container isolation, capability and context control,
@@ -318,11 +544,11 @@ const IndexPage = () => {
               </p>
             </div>
             <div className={styles.featureCard}>
-              <h3><Icons.Terminal /> Host-run tools</h3>
+              <h3><Icons.Terminal /> Brokered tools</h3>
               <p>
                 Tools that need secrets or privileged access can run outside the
-                sandbox, streaming back results so the agent gets answers, not
-                credentials.
+                sandbox via a broker, streaming back results so the agent gets
+                answers, not credentials.
               </p>
             </div>
             <div className={styles.featureCard}>
@@ -354,14 +580,22 @@ const IndexPage = () => {
               losing its place.
             </p>
           </header>
-          <div className={styles.codeCard}>
-            <div className={styles.codeHeader}>
-              <span className={styles.codeFile}>deploy.tac</span>
-              <span className={styles.codeHint}>HITL + timeout</span>
-            </div>
-            <pre className={styles.codePre}>
-              <code>{DURABILITY_EXAMPLE}</code>
-            </pre>
+          <div className={styles.codeBlockPlayer}>
+            <AnimatedCodeBlock
+              label="Human in the loop"
+              filename="examples-deploy.tac"
+              hint="HITL + timeout"
+              code={DURABILITY_EXAMPLE}
+              language="tactus"
+              showTypewriter={false}
+              typewriterLoop={false}
+              autoHeight={true}
+              blockWidth={1400}
+              width="100%"
+              autoPlay={false}
+              controls={false}
+              loop={false}
+            />
           </div>
 
           <div className={styles.exampleCopy}>
@@ -393,26 +627,33 @@ const IndexPage = () => {
               datasets.
             </p>
           </header>
-          <div className={styles.codeCard}>
-            <div className={styles.codeHeader}>
-              <span className={styles.codeFile}>safe_deploy.feature</span>
-              <span className={styles.codeHint}>BDD</span>
-            </div>
-            <pre className={styles.codePre}>
-              <code>{SPECIFICATIONS_EXAMPLE}</code>
-            </pre>
+          <div className={styles.codeBlockPlayer}>
+            <AnimatedCodeBlock
+              label="Specifications"
+              filename="examples-safe-deploy.feature"
+              hint="BDD"
+              code={SPECIFICATIONS_EXAMPLE}
+              language="gherkin"
+              showTypewriter={false}
+              typewriterLoop={false}
+              autoHeight={true}
+              blockWidth={1400}
+              width="100%"
+              autoPlay={false}
+              controls={false}
+              loop={false}
+            />
           </div>
 
           <div className={styles.exampleCopy}>
             <p className={styles.exampleLead}>
-              Specs encode what must be true. Evaluations answer the harder
-              question: how often is it true when inputs vary and model behavior
-              isn’t deterministic?
+              Specs encode what must be true. They let you test workflows
+              directly and catch regressions as prompts, tools, and models
+              evolve.
             </p>
             <p className={styles.exampleLead}>
-              Run specs as tests, and run evaluations to track success rates and
-              regressions over time (e.g. <code>tactus test</code> and{" "}
-              <code>tactus evaluate --runs 50</code>).
+              Run specs as tests (e.g. <code>tactus test</code>) before you
+              deploy changes or run unattended.
             </p>
           </div>
             </div>
@@ -429,14 +670,22 @@ const IndexPage = () => {
               Pydantic.
             </p>
           </header>
-          <div className={styles.codeCard}>
-            <div className={styles.codeHeader}>
-              <span className={styles.codeFile}>research.tac</span>
-              <span className={styles.codeHint}>Input + output schemas</span>
-            </div>
-            <pre className={styles.codePre}>
-              <code>{VALIDATION_EXAMPLE}</code>
-            </pre>
+          <div className={styles.codeBlockPlayerTall}>
+            <AnimatedCodeBlock
+              label="Validation"
+              filename="examples-research.tac"
+              hint="Input + output schemas"
+              code={VALIDATION_EXAMPLE}
+              language="tactus"
+              showTypewriter={false}
+              typewriterLoop={false}
+              autoHeight={true}
+              blockWidth={1400}
+              width="100%"
+              autoPlay={false}
+              controls={false}
+              loop={false}
+            />
           </div>
 
           <div className={styles.exampleCopy}>
@@ -450,11 +699,82 @@ const IndexPage = () => {
           </div>
         </section>
 
-        <section className={`${styles.section} ${styles.bgMuted}`}>
+        <section className={`${styles.section} ${styles.bgPrimary}`}>
+          <div className={styles.container}>
+            <div className={styles.whyLanguage}>
+              <h3 className={styles.whyLanguageTitle}>
+                Why do we need a new language?
+              </h3>
+              <div className={styles.whyLanguageBody}>
+                <p className={styles.whyLanguageLead}>
+                  We already have Python. We already have frameworks for agent workflows (and even
+                  no-code tools). So what’s missing?
+                </p>
+                <ul className={styles.whyLanguageList}>
+                  <li>
+                    If Python is “good enough”, what do we gain by introducing a new language?
+                  </li>
+                  <li>
+                    What’s missing from libraries like LangChain and LangGraph when you move from
+                    demos to production systems?
+                  </li>
+                  <li>
+                    Why do no-code agent tools tend to break down once you need safety,
+                    reliability, and testability?
+                  </li>
+                </ul>
+              </div>
+
+              <div className={styles.videoCard}>
+                <div className={styles.videoHeader}>
+                  <span className={styles.videoTitle}>
+                    Why a New Language? (7 min)
+                  </span>
+                </div>
+                <video
+                  className={styles.video}
+                  controls
+                  preload="metadata"
+                  playsInline
+                  src={getVideoSrc("why-new-language.mp4")}
+                  poster={getVideoSrc("why-new-language-poster.jpg")}
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className={`${styles.section}`}>
+          <div className={styles.container}>
+            <div className={styles.whyLanguageAnswer}>
+              <p className={styles.whyLanguageAnswerText}>
+                Tool-using agent systems don’t behave like traditional programs. Control flow
+                isn’t fully specified up front; it emerges from learned behavior, probabilistic
+                inference, and interaction with tools and the world. That shift changes what it
+                means to “write code”: you’re no longer encoding every branch, you’re describing
+                intent and shaping decision-making.
+              </p>
+              <p className={styles.whyLanguageAnswerText}>
+                A prompt alone can’t give you production-grade reliability. You need structure:
+                explicit tool boundaries, human approvals when stakes are high, durable workflows
+                that can pause and resume, and specifications you can test. A language makes that
+                structure first-class—so you can build behavior-driven systems with the same
+                seriousness we apply to conventional software.
+              </p>
+              <div className={styles.whyLanguageCta}>
+                <Link className={styles.secondaryButton} to="/why-new-language/">
+                  Read the full article
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="books" className={`${styles.section} ${styles.bgMuted}`}>
           <div className={styles.container}>
             <div className={styles.books}>
           <header className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>Start here</h2>
+            <h2 className={styles.sectionTitle}>The Tactus Book Series</h2>
             <p className={styles.sectionSubtitle}>
               Three complementary books: learn the patterns, dive into the
               reference, or keep the cheat sheet on your desk.
@@ -491,6 +811,13 @@ const IndexPage = () => {
             </div>
           </div>
         </section>
+
+        <BottomCta
+          title="Ready to start building?"
+          text="Follow a short walkthrough and write your first durable procedure."
+          buttonLabel="Get Started"
+          to="/getting-started/"
+        />
       </div>
     </Layout>
   )

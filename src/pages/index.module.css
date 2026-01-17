@@ -28,6 +28,12 @@
   /* gap removed */
 }
 
+.hero::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
 /* .heroLeft removed */
 
 .eyebrow {
@@ -68,12 +74,80 @@
   line-height: var(--line-height-loose);
 }
 
-.ctaRow {
-  margin-top: var(--space-2);
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-3);
+.ctaGrid {
+  margin-top: var(--space-3);
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
   align-items: center;
+}
+
+.ctaGrid > a {
+  width: 100%;
+}
+
+.ctaGridInstall {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+.codeBlockPlayer {
+  margin-top: var(--space-3);
+  width: 100%;
+}
+
+.codeBlockPlayerTall {
+  margin-top: var(--space-3);
+  width: 100%;
+}
+
+.installCode {
+  font-family: var(--font-mono);
+  font-size: var(--font-sm);
+  color: inherit;
+}
+
+.installCommand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: 999px;
+  background: var(--color-surface-2);
+  border: 1px solid color-mix(in srgb, var(--color-text) 12%, transparent);
+  flex: 1 1 18rem;
+  min-width: min(28rem, 100%);
+}
+
+.installPrompt {
+  font-family: var(--font-mono);
+  color: var(--color-text-muted);
+}
+
+.copyButton {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--color-text) 14%, transparent);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-weight: 700;
+  font-size: var(--font-sx);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.copyButton:hover {
+  filter: brightness(0.99);
+}
+
+.copyButton:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 .primaryButton,
@@ -81,6 +155,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 0.5rem;
   padding: 0.65rem 1rem;
   border-radius: 999px;
   border: none;
@@ -109,52 +184,6 @@
   text-decoration: none;
 }
 
-.codeCard {
-  margin-top: var(--space-3);
-  border-radius: var(--border-radius);
-  overflow: hidden;
-  background: var(--color-surface-2);
-}
-
-.codeHeader {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: var(--space-3);
-  padding: 0.75rem 1rem;
-  background: var(--color-surface);
-  font-family: var(--font-mono);
-  font-size: var(--font-sx);
-  color: var(--color-text-muted);
-}
-
-.codeFile {
-  font-weight: 700;
-  color: var(--color-text);
-}
-
-.codeHint {
-  text-align: right;
-}
-
-.codePre {
-  margin: 0;
-  border: none;
-  border-radius: 0;
-  padding: 1.25rem 1rem;
-  background: var(--color-code-bg);
-}
-
-.codePre code {
-  background: transparent;
-  padding: 0;
-  color: var(--color-code);
-}
-
-.codePre code::before,
-.codePre code::after {
-  content: none;
-}
 
 .heroAside {
   float: right;
@@ -190,9 +219,6 @@
   padding-top: var(--space-4);
 }
 
-.example .codeCard {
-  margin-top: 0;
-}
 
 .exampleCopy {
   margin-top: var(--space-4);
@@ -207,6 +233,63 @@
   max-width: none;
   color: var(--color-text-muted);
   font-size: var(--font-lg);
+  line-height: var(--line-height-loose);
+}
+
+.paradigm {
+  padding-top: var(--space-4);
+}
+
+.paradigmGrid {
+  margin-top: var(--space-4);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.paradigmCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.paradigmCardTitle {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.paradigmBody {
+  margin: 0;
+  color: var(--color-text-muted);
+  line-height: var(--line-height-loose);
+}
+
+.paradigmCode {
+  margin-top: var(--space-2);
+  width: 100%;
+}
+
+.paradigmWhy {
+  margin-top: var(--space-5);
+  padding: var(--space-4);
+  border-radius: var(--border-radius);
+  background: var(--color-surface-2);
+}
+
+.paradigmWhyTitle {
+  margin: 0 0 var(--space-2);
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.paradigmWhyBody {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--font-md);
   line-height: var(--line-height-loose);
 }
 
@@ -284,6 +367,66 @@
   font-size: 1.35rem; /* Lead paragraph size */
 }
 
+.whyLanguage {
+  max-width: 58rem;
+}
+
+.whyLanguageTitle {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-primary-ink);
+}
+
+.whyLanguageBody {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  line-height: var(--line-height-loose);
+}
+
+.whyLanguageLead {
+  margin: 0 0 var(--space-3);
+}
+
+.whyLanguageList {
+  margin: 0;
+  padding-left: var(--space-4);
+  line-height: var(--line-height-loose);
+}
+
+.whyLanguageList li {
+  margin-bottom: var(--space-2);
+}
+
+.whyLanguageList li:last-child {
+  margin-bottom: 0;
+}
+
+.whyLanguageAnswer {
+  max-width: 58rem;
+}
+
+.whyLanguageAnswerText {
+  margin: 0 0 var(--space-3);
+  color: var(--color-text-muted);
+  font-size: var(--font-lg);
+  line-height: var(--line-height-loose);
+  max-width: none;
+}
+
+.whyLanguageAnswerText:last-child {
+  margin-bottom: 0;
+}
+
+.whyLanguageCta {
+  margin-top: var(--space-4);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
 .sectionHeader {
   display: grid;
   grid-template-columns: 1fr;
@@ -348,6 +491,52 @@
   color: var(--color-text-muted);
   max-width: none;
   line-height: var(--line-height-loose);
+}
+
+.videoCard {
+  margin-top: var(--space-4);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  background: var(--color-surface-2);
+}
+
+.videoHeader {
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  background: var(--color-surface);
+}
+
+.videoTitle {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.videoLink {
+  color: var(--color-text-muted);
+  font-size: var(--font-sm);
+  text-decoration: none;
+}
+
+.videoLink:hover {
+  text-decoration: underline;
+}
+
+.video {
+  width: 100%;
+  height: auto;
+  display: block;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  border: none;
+  outline: none;
+}
+
+.video:focus,
+.video:focus-visible {
+  outline: none;
 }
 
 .videoPlaceholder {
@@ -435,6 +624,10 @@
 @media (max-width: 980px) {
   /* .hero grid reset removed */
 
+  .paradigmGrid {
+    grid-template-columns: 1fr;
+  }
+
   .compareGrid {
     grid-template-columns: 1fr;
   }
@@ -445,15 +638,24 @@
 }
 
 @media (max-width: 720px) {
+  .ctaGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-3);
+  }
+
+  .ctaGridInstall {
+    grid-column: auto;
+  }
+
   .heroAside {
     float: none;
     align-items: center;
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    background: var(--color-surface-2);
-    padding: var(--space-6) var(--size-gutter);
-    margin-top: var(--space-4);
-    margin-bottom: var(--space-5);
+    width: 100%;
+    margin-left: 0;
+    background: transparent;
+    padding: 0;
+    margin-top: var(--space-3);
+    margin-bottom: var(--space-4);
   }
 
   .animalCard {
@@ -461,6 +663,7 @@
     background: transparent;
     padding: 0;
     box-shadow: none;
+    text-align: center;
   }
 
   .animalCaption {

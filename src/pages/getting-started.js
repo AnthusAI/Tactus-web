@@ -37,7 +37,7 @@ const GettingStartedPage = () => (
                 Tactus runs as a standard Python module.
               </p>
               <div className={styles.codeBlock}>
-                python -m pip install tactus
+                $ pip install tactus
               </div>
             </div>
           </div>

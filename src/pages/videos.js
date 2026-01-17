@@ -2,6 +2,7 @@ import * as React from "react"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import BottomCta from "../components/bottom-cta"
 import * as styles from "./videos.module.css"
 
 const VIDEOS = [
@@ -10,14 +11,38 @@ const VIDEOS = [
     title: "Intro to Tactus",
     description: "What Tactus is, why tool-using agents need guardrails, and how the runtime helps.",
     filename: "intro.mp4",
+    poster: "intro-poster.jpg",
+  },
+  {
+    id: "why-new-language",
+    title: "Why a New Language?",
+    description: "The evolution of programming paradigms and why Tactus was created for the age of AI agents.",
+    filename: "why-new-language.mp4",
+    poster: "why-new-language-poster.jpg",
   },
 ]
 
 const getVideoSrc = (filename) => {
-  const base = process.env.GATSBY_VIDEOS_BASE_URL
+  // Try environment variable first (for override)
+  let base = process.env.GATSBY_VIDEOS_BASE_URL
+
+  // Otherwise read from amplify_outputs.json
+  if (!base) {
+    try {
+      const outputs = require("../../amplify_outputs.json")
+      base = outputs.custom?.videosCdnUrl
+      if (base) {
+        base = `${base}/videos`
+      }
+    } catch (e) {
+      // amplify_outputs.json doesn't exist, fall back to local
+    }
+  }
+
   if (base && typeof base === "string") {
     return `${base.replace(/\/$/, "")}/${filename}`
   }
+
   // Local dev fallback: put files in `static/videos/` (not committed).
   return `/videos/${filename}`
 }
@@ -48,18 +73,21 @@ const VideosPage = () => {
                       preload="metadata"
                       playsInline
                       src={getVideoSrc(v.filename)}
+                      poster={v.poster ? getVideoSrc(v.poster) : undefined}
                     />
                   </div>
                 </article>
               ))}
             </div>
-
-            <div className={styles.note}>
-              <b>Tip:</b> Set <code>GATSBY_VIDEOS_BASE_URL</code> to point at your public video bucket/CDN for
-              production. If unset, the page expects local files under <code>static/videos/</code>.
-            </div>
           </div>
         </section>
+
+        <BottomCta
+          title="Ready to start building?"
+          text="Follow a short walkthrough and write your first durable procedure."
+          buttonLabel="Get Started"
+          to="/getting-started/"
+        />
       </div>
     </Layout>
   )

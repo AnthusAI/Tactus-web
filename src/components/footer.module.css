@@ -1,0 +1,158 @@
+.footer {
+  margin-top: var(--space-6);
+  padding: var(--space-6) var(--size-gutter) var(--space-4);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.container {
+  margin: 0 auto;
+  max-width: var(--size-content);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end; /* Align baselines to bottom of center icon */
+  gap: var(--space-4);
+}
+
+/* Three columns for desktop */
+.left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end; /* Push content to bottom */
+  gap: var(--space-1);
+  text-align: left;
+}
+
+.center {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  gap: var(--space-1);
+  text-align: right;
+  height: 100%;
+}
+
+/* Elements */
+.text {
+  font-family: var(--font-sans);
+  font-size: var(--font-xs); /* Standardized size */
+  color: var(--color-text-muted);
+  line-height: 1.5;
+  max-width: 280px;
+  margin: 0;
+  letter-spacing: 0.02em; /* Standardized spacing */
+  opacity: 0.8; /* Match visual weight if needed */
+}
+
+.icon {
+  width: 48px;
+  height: 48px;
+  opacity: 0.8;
+  transition: opacity 0.2s ease;
+}
+
+.center:hover .icon {
+  opacity: 1;
+}
+
+.tagline {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--font-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-text-secondary);
+}
+
+.madeWith {
+  font-family: var(--font-sans);
+  font-size: var(--font-xs);
+  color: var(--color-text-muted);
+  letter-spacing: 0.02em;
+}
+
+.byline {
+  font-family: var(--font-sans); /* Changed from serif */
+  font-style: normal; /* Changed from italic */
+  font-size: var(--font-xs); /* Changed from md */
+  color: var(--color-text-muted);
+  letter-spacing: 0.02em; /* Added spacing */
+}
+
+.link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  font-weight: 400; /* Ensure normal weight */
+  font-size: var(--font-xs); /* Standardized size */
+}
+
+.link:hover {
+  color: var(--color-primary);
+  background: none;
+  text-decoration: none;
+}
+
+.socialLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 400; /* Changed from 600 to match others */
+  margin-top: 0; /* Remove top margin now that gap handles it */
+  font-size: var(--font-xs); /* Ensure size match */
+  letter-spacing: 0.02em;
+  color: var(--color-text-muted); /* Explicitly force muted color */
+}
+
+/* Ensure the icon inherits the color properly */
+.socialLink svg {
+  stroke: currentColor;
+  opacity: 0.8; /* Slight opacity to match text visually if needed, or remove for full strength */
+}
+
+.socialLink:hover {
+  color: var(--color-primary);
+}
+
+.socialLink:hover svg {
+  opacity: 1;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-5);
+  }
+
+  .left, .right {
+    align-items: center;
+    text-align: center;
+    flex: auto;
+  }
+
+  /* Reorder for mobile: Icon/Tagline first, then Content, then Byline */
+  .left {
+    order: 2;
+  }
+  .center {
+    order: 1;
+    margin-bottom: var(--space-2);
+  }
+  .right {
+    order: 3;
+  }
+}

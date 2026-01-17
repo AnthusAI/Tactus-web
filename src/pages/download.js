@@ -121,7 +121,7 @@ const DownloadPage = () => {
               </p>
 
               <div className={styles.codeBlock}>
-                python -m pip install tactus
+                $ pip install tactus
               </div>
             </div>
           </div>

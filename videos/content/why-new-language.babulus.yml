@@ -1,0 +1,369 @@
+poster_time: "6s"
+
+audio:
+  sfx_provider:
+    development: dry-run
+    aws: dry-run
+    azure: dry-run
+    production: elevenlabs
+  music_provider:
+    development: dry-run
+    aws: dry-run
+    azure: dry-run
+    production: elevenlabs
+
+voiceover:
+  provider:
+    development: openai                     # Fast iteration
+    aws: aws
+    azure: azure
+    production: elevenlabs                  # Best quality
+
+  # Optional: Override model per environment
+  # model:
+  #   development: "tts-1"                  # OpenAI standard
+  #   production: "eleven_v3"               # ElevenLabs v3 (best quality)
+
+  # Optional: Override voice per environment
+  # voice:
+  #   development: "alloy"                  # OpenAI voice
+  #   production: "lxYfHSkYm1EzQzGhdbfc"   # ElevenLabs voice ID
+
+  pronunciation_dictionary:
+    name: tactus
+  pronunciations:
+    - lexeme:
+        grapheme: "Tactus"
+        phoneme: "T AE1 K T AH0 S"
+        alphabet: "cmu-arpabet"
+
+  sample_rate_hz:
+    development: 24000
+    aws: 16000
+    azure: 24000
+    production: 44100
+
+  seed: 1337
+  lead_in_seconds: 0.25
+  trim_end_seconds: 0
+  pause_between_items_gaussian:
+    mean_seconds: 0.18
+    std_seconds: 0.07
+    min_seconds: 0.06
+    max_seconds: 0.5
+
+scenes:
+  - id: title_card
+    title: "Why a New Language?"
+    audio:
+      - kind: music
+        id: bed
+        prompt: "Contemplative ambient music, subtle piano, warm strings, thoughtful and educational tone, no vocals"
+        play_through: true
+        volume: 60%
+        fade_to:
+          volume: 10%
+          after_seconds: 4
+          fade_duration_seconds: 2
+        fade_out:
+          volume: 60%
+          before_end_seconds: 5
+          fade_duration_seconds: 3
+    cues:
+      - id: title
+        label: "Title"
+        voice:
+          pause_seconds: 0.8
+          segments:
+            - voice: >
+                Why do we need a new language?
+            - pause_seconds: 0.4
+            - voice: >
+                Understanding why Tactus was created.
+
+  - id: paradigm
+    title: "A New Way to Write Code"
+    cues:
+      - id: paradigm_shift
+        label: "Paradigm Shift"
+        voice:
+          segments:
+            - voice: >
+                For eighty years, since the dawn of computing, programming has meant one thing:
+                write explicit instructions that handle every possible scenario.
+            - pause_seconds: 0.5
+            - voice: >
+                But something fundamental has changed.
+            - pause_seconds: 0.5
+            - voice: >
+                There is a new way to write computer code.
+            - pause_seconds: 0.4
+            - voice: >
+                Instead of writing explicit instructions that handle every possible scenario,
+                you define procedures that let AI agents make decisions.
+            - pause_seconds: 0.4
+            - voice: >
+                Give an agent a tool. Give it a procedure to follow. Put guardrails around it.
+
+  - id: machine_code_era
+    title: "In the Beginning"
+    cues:
+      - id: history
+        label: "History"
+        voice:
+          segments:
+            - voice: >
+                In the beginning, programmers wrote raw machine code. Zeros and ones.
+                It was cumbersome, confusing, slow, and error-prone.
+            - pause_seconds: 0.4
+            - voice: >
+                So one of the first useful things people ever did with computers was use them
+                to make using computers easier.
+            - pause_seconds: 0.4
+            - voice: >
+                Assemblers emerged almost immediately. Instead of binary opcodes, you could write
+                symbolic instructions. The computer translated them into machine code.
+            - pause_seconds: 0.3
+            - voice: >
+                The next-higher level was compilers, which translated machine code into higher-level languages. Structured control flow. Functions, loops, conditionals.
+                The compiler handled the translation. Humans could focus on solving problems
+                instead of managing memory addresses.
+            - pause_seconds: 0.3
+            - voice: >
+                C plus plus brought object-oriented programming. Encapsulation. Inheritance.
+                Abstraction. Better ways to organize complex systems.
+            - pause_seconds: 0.3
+            - voice: >
+                Ruby took it further. The language was designed to make programmers happy.
+                Code that reads like pseudocode. The computer does enormous work on behalf of the human.
+            - pause_seconds: 0.4
+            - voice: >
+                But through all of this, the paradigm never changed.
+                The programmer still specified control flow. The computer still followed instructions.
+            - pause_seconds: 0.4
+            - voice: >
+                Today, we're seeing the same pattern repeat with AI. One of the first valuable uses
+                of AI is to turn it on itself: using AI to make programming easier, and to write better code.
+            - pause_seconds: 0.3
+            - voice: >
+                But this time, something deeper is changing. It's not just a higher level of abstraction.
+                It's a fundamentally different way of making decisions.
+
+  - id: control_flow
+    title: "Control Flow Evolution"
+    cues:
+      - id: shift
+        label: "The Shift"
+        voice:
+          segments:
+            - voice: >
+                Today, decisions are no longer made entirely by imperative logic written by programmers.
+            - pause_seconds: 0.35
+            - voice: >
+                Instead, decisions emerge from learned behavior. From models making predictions.
+                From agents evaluating context and choosing actions probabilistically.
+            - pause_seconds: 0.4
+            - voice: >
+                The same input can produce different outputs. And that's not a bug. It's the point.
+            - pause_seconds: 0.35
+            - voice: >
+                Control flow is no longer something you fully specify in advance.
+                It's something that emerges from interaction between models, data, and constraints.
+
+  - id: tools_strain
+    title: "Existing Tools Strain"
+    cues:
+      - id: python_problem
+        label: "Python Problem"
+        voice:
+          segments:
+            - voice: >
+                So why not just use Python? Or TypeScript? They're powerful, flexible languages.
+            - pause_seconds: 0.35
+            - voice: >
+                The problem isn't capability. It's fit.
+            - pause_seconds: 0.4
+            - voice: >
+                Look at this code. How do you checkpoint an agent call? How do you test it?
+                How do you prevent it from reading slash-etsy-slash-password?
+            - pause_seconds: 0.5
+            - voice: >
+                These concerns exist, but they're bolted on. Fragmented across code, prompts,
+                configuration, and external frameworks.
+            - pause_seconds: 0.35
+            - voice: >
+                The language wasn't designed for this.
+
+  - id: practices_collapse
+    title: "Deterministic Practices Collapse"
+    cues:
+      - id: testing_breaks
+        label: "Testing Breaks"
+        voice:
+          segments:
+            - voice: >
+                For decades, software engineering best practices have been built around one assumption:
+                determinism.
+            - pause_seconds: 0.35
+            - voice: >
+                Unit tests assert exact values. Code coverage measures every line.
+                Regression tests catch unexpected changes.
+            - pause_seconds: 0.4
+            - voice: >
+                But when your system makes decisions probabilistically, all of these practices break.
+            - pause_seconds: 0.35
+            - voice: >
+                Output varies between runs. Behavior comes from models, not code.
+                Natural variation looks like regression.
+            - pause_seconds: 0.4
+            - voice: >
+                Instead of proving correctness, you measure alignment.
+
+  - id: beyond_mlops
+    title: "Beyond MLOps"
+    cues:
+      - id: mlops_comparison
+        label: "MLOps Comparison"
+        voice:
+          segments:
+            - voice: >
+                Machine learning practitioners have dealt with stochastic systems for years.
+                They track experiments. Compare models. Optimize metrics.
+            - pause_seconds: 0.35
+            - voice: >
+                But MLOps is optimized for models, not behavior.
+            - pause_seconds: 0.4
+            - voice: >
+                Agentic systems don't just produce predictions.
+                They take actions. Use tools. Generate multi-step behaviors.
+            - pause_seconds: 0.35
+            - voice: >
+                Success isn't a single number. It's whether the system behaves acceptably
+                given the situation.
+
+  - id: specifications
+    title: "Behavioral Specifications"
+    cues:
+      - id: specs_and_evals
+        label: "Specs and Evals"
+        voice:
+          segments:
+            - voice: >
+                When correctness becomes alignment, you need new ways to say what "good" looks like.
+            - pause_seconds: 0.35
+            - voice: >
+                Behavioral specifications express what a system should do without prescribing
+                exactly how.
+            - pause_seconds: 0.4
+            - voice: >
+                A specification might say: the agent should call the search tool before
+                answering a factual question.
+            - pause_seconds: 0.35
+            - voice: >
+                Then evaluation measures reliability. Does it do that ninety-five percent
+                of the time? Eighty percent? Sixty?
+            - pause_seconds: 0.4
+            - voice: >
+                Specifications plus evaluations give you a foundation for alignment.
+
+  - id: props
+    title: "PrOps"
+    cues:
+      - id: procedures
+        label: "Procedures"
+        voice:
+          segments:
+            - voice: >
+                This brings us to a new operational discipline: PrOps. Procedure Operations.
+            - pause_seconds: 0.4
+            - voice: >
+                DevOps operates deterministic programs. MLOps trains and serves models.
+            - pause_seconds: 0.35
+            - voice: >
+                But agentic systems are neither. They're procedures.
+            - pause_seconds: 0.4
+            - voice: >
+                Systems that combine imperative logic, learned components, tools, constraints,
+                and evaluation into a single decision-making process.
+            - pause_seconds: 0.35
+            - voice: >
+                A procedure's quality can't be proven in advance or reduced to a single metric.
+            - pause_seconds: 0.35
+            - voice: >
+                It must be observed, measured, and aligned over time.
+
+  - id: new_language
+    title: "Why a New Language"
+    cues:
+      - id: first_class_primitives
+        label: "First Class Primitives"
+        voice:
+          segments:
+            - voice: >
+                Once procedures become the primary unit of computation, the limitations
+                of existing languages become impossible to ignore.
+            - pause_seconds: 0.4
+            - voice: >
+                Programming languages shape how humans think about problems.
+                They determine what's easy to express and what's invisible.
+            - pause_seconds: 0.35
+            - voice: >
+                Procedural, behavior-driven systems need different primitives.
+            - pause_seconds: 0.5
+            - voice: >
+                Durability by default. Automatic checkpointing and resumption.
+            - pause_seconds: 0.25
+            - voice: >
+                Sandboxing by default. Isolated execution with controlled access.
+            - pause_seconds: 0.25
+            - voice: >
+                Tool capability control. Human approval gates. Behavioral testing.
+                Observable execution.
+            - pause_seconds: 0.4
+            - voice: >
+                These concerns can't be bolted onto languages that weren't designed for them.
+            - pause_seconds: 0.35
+            - voice: >
+                They need to be first-class.
+
+  - id: evolution
+    title: "Evolution, Not Alien DNA"
+    cues:
+      - id: conclusion
+        label: "Conclusion"
+        voice:
+          segments:
+            - voice: >
+                From a theoretical standpoint, nothing fundamental has broken.
+            - pause_seconds: 0.35
+            - voice: >
+                These systems still run on conventional hardware. They're still Turing-complete.
+                There's no alien machinery hiding beneath the surface.
+            - pause_seconds: 0.4
+            - voice: >
+                What has changed is how decisions are made and how humans must reason
+                about those decisions.
+            - pause_seconds: 0.4
+            - voice: >
+                For eighty years, programming meant specifying control flow in advance.
+            - pause_seconds: 0.35
+            - voice: >
+                Today, many of the most important systems we build no longer operate that way.
+            - pause_seconds: 0.4
+            - voice: >
+                Languages follow mental models. When the mental model changes, new languages
+                emerge—not to replace what came before, but to make the new reality tractable
+                for humans.
+            - pause_seconds: 0.5
+            - voice: >
+                This isn't a revolution in computation. It's evolution.
+
+  - id: cta
+    title: "Call to Action"
+    cues:
+      - id: cta
+        label: "CTA"
+        voice:
+          segments:
+            - voice: >
+                Learn more at tactus dot anth dot u s.

@@ -1,18 +1,43 @@
 :root {
-  /* Brand */
-  --color-primary: #c7007e;
-  --color-primary-ink: #ffffff;
+  /*
+   * Minimal Color Palette
+   * ====================
+   * This is a deliberately minimal palette with only the essential colors.
+   * The philosophy: sophisticated, softened tones (no pure black/white).
+   *
+   * Color Categories:
+   * - Brand: Primary magenta accent
+   * - Surfaces: Page, cards, and muted backgrounds (3 levels)
+   * - Text: Main and secondary text (2 levels)
+   * - Code: Syntax highlighting containers
+   *
+   * Usage Guidelines:
+   * - Use --color-bg for main page background
+   * - Use --color-surface for elevated cards/containers
+   * - Use --color-surface-2 for muted sections, subtle backgrounds
+   * - Use --color-text for primary content
+   * - Use --color-text-muted for secondary content, captions
+   * - All colors automatically adapt in dark mode
+   */
 
-  /* Surfaces - Softened "Paper" Tones */
-  --color-bg: #fdfdfd;       /* Was #ffffff - now slight paper off-white */
-  --color-surface: #ffffff;  /* Cards stay white for depth */
-  --color-surface-2: #f4f4f5; /* Slightly darker gray for contrast sections */
-  --color-text: #27272a;     /* Was #111 - now softer charcoal */
-  --color-text-muted: #52525b;
+  /* Brand */
+  --color-primary: #c7007e;       /* Magenta - primary brand color */
+  --color-primary-ink: #ffffff;   /* Text on primary backgrounds */
+
+  /* Surfaces - Softened "Paper" Tones (8+8 proportional spacing) */
+  --color-bg: #fdfdfd;            /* Page background (253) - off-white, not pure white */
+  --color-surface: #ffffff;       /* Elevated surfaces (255) - pure white for depth */
+  --color-card-title: #f5f5f5;    /* Card title bars (245) - 8 units darker than bg */
+  --color-surface-2: #ededed;     /* Muted background (237) - 8 units darker than card-title */
+
+  /* Text - Softened Charcoal */
+  --color-text: #27272a;          /* Main text - soft charcoal, not pure black */
+  --color-text-secondary: #3f3f46; /* Card titles - between text and muted */
+  --color-text-muted: #52525b;    /* Secondary text - medium gray */
 
   /* Code */
-  --color-code-bg: #f4f4f5;
-  --color-code: #27272a;
+  --color-code-bg: #ededed;       /* Code block background - same as surface-2 */
+  --color-code: #27272a;          /* Code text - same as main text */
 
   /* Typography - "Technical Book" Stack */
   /* Source Sans 3 for UI/Headers */
@@ -47,8 +72,10 @@
     /* Dark Mode - Softened "E-Ink" Tones */
     --color-bg: #18181b;      /* Was #0c0c10 - now lighter zinc */
     --color-surface: #27272a;
+    --color-card-title: #1f1f23; /* Card title bars - midway between bg and surface */
     --color-surface-2: #27272a;
     --color-text: #e4e4e7;    /* Softened white */
+    --color-text-secondary: #d4d4d8; /* Card titles - between text and muted */
     --color-text-muted: #a1a1aa;
     --color-code-bg: #27272a;
     --color-code: #e4e4e7;
@@ -66,6 +93,8 @@ html {
   line-height: var(--line-height-normal);
   overflow-y: scroll;
   overflow-x: hidden;
+  overscroll-behavior: none;
+  background: var(--color-bg);
 }
 
 body {
@@ -80,6 +109,8 @@ body {
   margin: 0;
   word-wrap: break-word;
   background: var(--color-bg);
+  position: relative;
+  overscroll-behavior: none;
 }
 
 /* UI Elements stay Sans-Serif and use Lining Figures (123...) */

@@ -1,0 +1,196 @@
+{
+  "scenes": [
+    {
+      "id": "title_card",
+      "title": "Why a New Language?",
+      "startSec": 0.25,
+      "endSec": 7.0,
+      "cues": [
+        {
+          "id": "title",
+          "label": "Title",
+          "startSec": 0.25,
+          "endSec": 7.0,
+          "text": "Why do we need a new language?\n Understanding why Tactus was created.",
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "paradigm",
+      "title": "A New Way to Write Code",
+      "startSec": 7.0,
+      "endSec": 38.699999999999996,
+      "cues": [
+        {
+          "id": "paradigm_shift",
+          "label": "Paradigm Shift",
+          "startSec": 7.0,
+          "endSec": 38.699999999999996,
+          "text": "For eighty years, since the dawn of computing, programming has meant one thing: write explicit instructions that handle every possible scenario.\n But something fundamental has changed.\n There is a new way to write computer code.\n Instead of writing explicit instructions that handle every possible scenario, you define procedures that let AI agents make decisions.\n Give an agent a tool. Give it a procedure to follow. Put guardrails around it.",
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "machine_code_era",
+      "title": "In the Beginning",
+      "startSec": 38.699999999999996,
+      "endSec": 131.75,
+      "cues": [
+        {
+          "id": "history",
+          "label": "History",
+          "startSec": 38.699999999999996,
+          "endSec": 131.75,
+          "text": "In the beginning, programmers wrote raw machine code. Zeros and ones. It was cumbersome, confusing, slow, and error-prone.\n So one of the first useful things people ever did with computers was use them to make using computers easier.\n Assemblers emerged almost immediately. Instead of binary opcodes, you could write symbolic instructions. The computer translated them into machine code.\n The next-higher level was compilers, which translated machine code into higher-level languages. Structured control flow. Functions, loops, conditionals. The compiler handled the translation. Humans could focus on solving problems instead of managing memory addresses.\n C plus plus brought object-oriented programming. Encapsulation. Inheritance. Abstraction. Better ways to organize complex systems.\n Ruby took it further. The language was designed to make programmers happy. Code that reads like pseudocode. The computer does enormous work on behalf of the human.\n But through all of this, the paradigm never changed. The programmer still specified control flow. The computer still followed instructions.\n Today, we're seeing the same pattern repeat with AI. One of the first valuable uses of AI is to turn it on itself: using AI to make programming easier, and to write better code.\n But this time, something deeper is changing. It's not just a higher level of abstraction. It's a fundamentally different way of making decisions.",
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "control_flow",
+      "title": "Control Flow Evolution",
+      "startSec": 131.75,
+      "endSec": 163.29999999999998,
+      "cues": [
+        {
+          "id": "shift",
+          "label": "The Shift",
+          "startSec": 131.75,
+          "endSec": 163.29999999999998,
+          "text": "Today, decisions are no longer made entirely by imperative logic written by programmers.\n Instead, decisions emerge from learned behavior. From models making predictions. From agents evaluating context and choosing actions probabilistically.\n The same input can produce different outputs. And that's not a bug. It's the point.\n Control flow is no longer something you fully specify in advance. It's something that emerges from interaction between models, data, and constraints.",
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "tools_strain",
+      "title": "Existing Tools Strain",
+      "startSec": 163.29999999999998,
+      "endSec": 193.44999999999996,
+      "cues": [
+        {
+          "id": "python_problem",
+          "label": "Python Problem",
+          "startSec": 163.29999999999998,
+          "endSec": 193.44999999999996,
+          "text": "So why not just use Python? Or TypeScript? They're powerful, flexible languages.\n The problem isn't capability. It's fit.\n Look at this code. How do you checkpoint an agent call? How do you test it? How do you prevent it from reading slash-etsy-slash-password?\n These concerns exist, but they're bolted on. Fragmented across code, prompts, configuration, and external frameworks.\n The language wasn't designed for this.",
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "practices_collapse",
+      "title": "Deterministic Practices Collapse",
+      "startSec": 193.44999999999996,
+      "endSec": 224.7,
+      "cues": [
+        {
+          "id": "testing_breaks",
+          "label": "Testing Breaks",
+          "startSec": 193.44999999999996,
+          "endSec": 224.7,
+          "text": "For decades, software engineering best practices have been built around one assumption: determinism.\n Unit tests assert exact values. Code coverage measures every line. Regression tests catch unexpected changes.\n But when your system makes decisions probabilistically, all of these practices break.\n Output varies between runs. Behavior comes from models, not code. Natural variation looks like regression.\n Instead of proving correctness, you measure alignment.",
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "beyond_mlops",
+      "title": "Beyond MLOps",
+      "startSec": 224.7,
+      "endSec": 252.95,
+      "cues": [
+        {
+          "id": "mlops_comparison",
+          "label": "MLOps Comparison",
+          "startSec": 224.7,
+          "endSec": 252.95,
+          "text": "Machine learning practitioners have dealt with stochastic systems for years. They track experiments. Compare models. Optimize metrics.\n But MLOps is optimized for models, not behavior.\n Agentic systems don't just produce predictions. They take actions. Use tools. Generate multi-step behaviors.\n Success isn't a single number. It's whether the system behaves acceptably given the situation.",
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "specifications",
+      "title": "Behavioral Specifications",
+      "startSec": 252.95,
+      "endSec": 282.69999999999993,
+      "cues": [
+        {
+          "id": "specs_and_evals",
+          "label": "Specs and Evals",
+          "startSec": 252.95,
+          "endSec": 282.69999999999993,
+          "text": "When correctness becomes alignment, you need new ways to say what \"good\" looks like.\n Behavioral specifications express what a system should do without prescribing exactly how.\n A specification might say: the agent should call the search tool before answering a factual question.\n Then evaluation measures reliability. Does it do that ninety-five percent of the time? Eighty percent? Sixty?\n Specifications plus evaluations give you a foundation for alignment.",
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "props",
+      "title": "PrOps",
+      "startSec": 282.69999999999993,
+      "endSec": 318.34999999999997,
+      "cues": [
+        {
+          "id": "procedures",
+          "label": "Procedures",
+          "startSec": 282.69999999999993,
+          "endSec": 318.34999999999997,
+          "text": "This brings us to a new operational discipline: PrOps. Procedure Operations.\n DevOps operates deterministic programs. MLOps trains and serves models.\n But agentic systems are neither. They're procedures.\n Systems that combine imperative logic, learned components, tools, constraints, and evaluation into a single decision-making process.\n A procedure's quality can't be proven in advance or reduced to a single metric.\n It must be observed, measured, and aligned over time.",
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "new_language",
+      "title": "Why a New Language",
+      "startSec": 318.34999999999997,
+      "endSec": 361.74999999999994,
+      "cues": [
+        {
+          "id": "first_class_primitives",
+          "label": "First Class Primitives",
+          "startSec": 318.34999999999997,
+          "endSec": 361.74999999999994,
+          "text": "Once procedures become the primary unit of computation, the limitations of existing languages become impossible to ignore.\n Programming languages shape how humans think about problems. They determine what's easy to express and what's invisible.\n Procedural, behavior-driven systems need different primitives.\n Durability by default. Automatic checkpointing and resumption.\n Sandboxing by default. Isolated execution with controlled access.\n Tool capability control. Human approval gates. Behavioral testing. Observable execution.\n These concerns can't be bolted onto languages that weren't designed for them.\n They need to be first-class.",
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "evolution",
+      "title": "Evolution, Not Alien DNA",
+      "startSec": 361.74999999999994,
+      "endSec": 405.5999999999999,
+      "cues": [
+        {
+          "id": "conclusion",
+          "label": "Conclusion",
+          "startSec": 361.74999999999994,
+          "endSec": 405.5999999999999,
+          "text": "From a theoretical standpoint, nothing fundamental has broken.\n These systems still run on conventional hardware. They're still Turing-complete. There's no alien machinery hiding beneath the surface.\n What has changed is how decisions are made and how humans must reason about those decisions.\n For eighty years, programming meant specifying control flow in advance.\n Today, many of the most important systems we build no longer operate that way.\n Languages follow mental models. When the mental model changes, new languages emerge\u2014not to replace what came before, but to make the new reality tractable for humans.\n This isn't a revolution in computation. It's evolution.",
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "cta",
+      "title": "Call to Action",
+      "startSec": 405.5999999999999,
+      "endSec": 408.8999999999999,
+      "cues": [
+        {
+          "id": "cta",
+          "label": "CTA",
+          "startSec": 405.5999999999999,
+          "endSec": 408.8999999999999,
+          "text": "Learn more at tactus dot anth dot u s.",
+          "bullets": []
+        }
+      ]
+    }
+  ]
+}

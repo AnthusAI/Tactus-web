@@ -13,6 +13,7 @@ import { GlobalStyles } from "../../components/GlobalStyles";
 import { Layout } from "../../components/Layout";
 import { Body, Code, H2, TitleBlock } from "../../components/Typography";
 import { Card } from "../../components/Card";
+import { ParadigmComparison } from "../../components/ParadigmComparison";
 import monkeyImg from "../../assets/images/monkey.png";
 import coverAnimalImg from "../../assets/images/cover-animal.png";
 import nutshellCoverAnimalImg from "../../assets/images/nutshell-cover-animal.png";
@@ -49,6 +50,8 @@ const NEW_WAY_BULLETS = [
   "Give it a procedure to follow",
   "Put guardrails around it",
 ];
+
+const NEW_WAY_CODE = NEW_WAY_BULLETS.map((b) => `• ${b}`).join("\n");
 
 const HELLO_WORLD_CODE = `World = Agent {
     provider = "openai",
@@ -171,149 +174,14 @@ export const IntroVideo: React.FC<IntroVideoProps> = ({
 };
 
 const ParadigmScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ scene, ttsStartsSec }) => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const localSec = frame / fps;
-  const cueStartsLocal = ttsStartsSec.map((s) => s - scene.startSec);
-  const beat1 = cueStartsLocal[0] ?? 0;
-  const beat2 = cueStartsLocal[1] ?? beat1 + 3;
-  const beat3 = cueStartsLocal[2] ?? beat2 + 3;
-
-  const titleAnimation = spring({
-    frame,
-    fps,
-    config: { damping: 100, stiffness: 200, mass: 0.5 },
-  });
-
-  const slideIn = spring({
-    frame: frame - secondsToFrames(Math.max(0, beat2), fps),
-    fps,
-    config: { damping: 90, stiffness: 160, mass: 0.8 },
-  });
-
-  const containerWidth = 1700;
-  const oldFullWidth = 1180;
-  const sideMargin = 40;
-  const oldEndVisibleWidth = 820;
-  const oldLeft = interpolate(slideIn, [0, 1], [(containerWidth - oldFullWidth) / 2, sideMargin], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-  const oldVisibleWidth = interpolate(slideIn, [0, 1], [oldFullWidth, oldEndVisibleWidth], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-  const oldX = interpolate(slideIn, [0, 1], [0, -20], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-  const newPanelWidth = 760;
-  const newX = interpolate(slideIn, [0, 1], [820, 0], {
-    extrapolateLeft: "clamp",
-    extrapolateRight: "clamp",
-  });
-
   return (
-    <Layout>
-      <H2
-        style={{
-          opacity: titleAnimation,
-          transform: `translateY(${(1 - titleAnimation) * 40}px)`,
-          marginBottom: 32,
-          textAlign: "center",
-        }}
-      >
-        <TitleBlock>A New Kind of Computer Program</TitleBlock>
-      </H2>
-
-      <div style={{ width: "100%", maxWidth: containerWidth, position: "relative", height: 720 }}>
-        <div
-          style={{
-            position: "absolute",
-            left: oldLeft,
-            top: 0,
-            transform: `translateX(${oldX}px)`,
-            width: oldVisibleWidth,
-            overflow: "hidden",
-            borderRadius: 24,
-            opacity: animIn(localSec - beat1),
-          }}
-        >
-          <div style={{ position: "relative" }}>
-            <div
-              style={{
-                position: "absolute",
-                top: 16,
-                right: 16,
-                padding: "10px 14px",
-                borderRadius: 999,
-                background: "rgba(39, 39, 42, 0.08)",
-                border: "1px solid rgba(39, 39, 42, 0.12)",
-                pointerEvents: "none",
-                zIndex: 2,
-              }}
-            >
-              <Body style={{ marginBottom: 0, fontSize: 22, fontWeight: 800 }}>The Old Way</Body>
-            </div>
-
-            <Card variant="muted" padding={5} style={{ height: 720, width: oldFullWidth }}>
-              <Code style={{ fontSize: 30, lineHeight: 1.22, whiteSpace: "pre-wrap", paddingRight: 260 }}>
-                {OLD_WAY_CODE}
-              </Code>
-            </Card>
-          </div>
-        </div>
-
-        <div
-          style={{
-            position: "absolute",
-            right: sideMargin,
-            top: 0,
-            width: newPanelWidth,
-            opacity: slideIn,
-            transform: `translateX(${newX}px)`,
-          }}
-        >
-          <Card variant="muted" padding={5} style={{ height: 720 }}>
-            <div style={{ position: "relative" }}>
-              <div
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  right: 0,
-                  padding: "10px 14px",
-                  borderRadius: 999,
-                  background: "rgba(39, 39, 42, 0.08)",
-                  border: "1px solid rgba(39, 39, 42, 0.12)",
-                  pointerEvents: "none",
-                }}
-              >
-                <Body style={{ marginBottom: 0, fontSize: 22, fontWeight: 800 }}>The New Way</Body>
-              </div>
-
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 14,
-                  paddingRight: 220,
-                  paddingTop: 96,
-                }}
-              >
-                {NEW_WAY_BULLETS.map((b) => (
-                  <Body key={b} size="lg" style={{ marginBottom: 0, fontSize: 34, lineHeight: 1.25 }}>
-                    {"• "}
-                    {b}
-                  </Body>
-                ))}
-              </div>
-            </div>
-          </Card>
-        </div>
-      </div>
-
-      {/* Intentionally no bottom tagline; the visuals carry the point. */}
-    </Layout>
+    <ParadigmComparison
+      title="A New Kind of Computer Program"
+      oldWayCode={OLD_WAY_CODE}
+      newWayCode={NEW_WAY_CODE}
+      sceneStartSec={scene.startSec}
+      ttsStartsSec={ttsStartsSec}
+    />
   );
 };
 

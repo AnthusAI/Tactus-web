@@ -1,0 +1,757 @@
+import * as React from "react"
+import { Link } from "gatsby"
+import Layout from "../components/layout"
+import Seo from "../components/seo"
+import BottomCta from "../components/bottom-cta"
+import * as styles from "./why-new-language.module.css"
+
+const PYTHON_AGENT_CODE = `# Trying to make Python do agent workflows
+async def process_with_agent(input_data):
+    try:
+        result = await openai.chat.completions.create(...)
+        # Now what? How do we checkpoint?
+        # How do we test this?
+        # How do we prevent it from reading /etc/passwd?
+        return result
+    except Exception as e:
+        # Hope for the best?
+        pass`
+
+const TACTUS_AGENT_CODE = `Procedure {
+  function(input)
+    local result = agent {
+      instruction = "Process this input",
+      data = input
+    }
+    -- Checkpointed automatically
+    -- Runs in sandbox by default
+    -- Testable with specs
+    return result
+  end
+}`
+
+const BDD_SPEC_CODE = `Feature: Contact import works reliably
+
+  Scenario: Handles varied formats
+    Given 100 contact records in different formats
+    When the agent imports them
+    Then at least 95% should import successfully
+    And all required fields should be populated`
+
+const WhyNewLanguagePage = () => (
+  <Layout fullWidth={true}>
+    <div className={styles.page}>
+
+      {/* Hero Section */}
+      <section className={styles.section}>
+        <div className={styles.container}>
+          <div className={styles.hero}>
+            <p className={styles.eyebrow}>Understanding Tactus</p>
+            <h1 className={styles.title}>
+              Why a New Language?
+            </h1>
+            <p className={styles.lede}>
+              Since the dawn of electronic computing more than eighty years ago, there has
+              effectively been only one way to write a computer program. Today, for the first
+              time, that assumption no longer holds.
+            </p>
+          </div>
+
+          {/* Table of Contents */}
+          <nav className={styles.toc}>
+            <h2 className={styles.tocTitle}>Contents</h2>
+            <ol className={styles.tocList}>
+              <li><a href="#beginning">In the Beginning, There Was Machine Code</a></li>
+              <li><a href="#control-flow">When Control Flow Stops Being Imperative</a></li>
+              <li><a href="#existing-tools">Why Existing Languages and Frameworks Start to Strain</a></li>
+              <li><a href="#determinism">The Collapse of Deterministic Best Practices</a></li>
+              <li><a href="#mlops">Why MLOps Alone Is Not Enough</a></li>
+              <li><a href="#specifications">Behavioral Specifications and Evaluation</a></li>
+              <li><a href="#props">PrOps: Operating Procedures, Not Just Code or Models</a></li>
+              <li><a href="#new-language">Why This Leads to a New Language</a></li>
+              <li><a href="#conclusion">Conclusion: Evolution, Not Alien DNA</a></li>
+            </ol>
+          </nav>
+        </div>
+      </section>
+
+      {/* Section 1: In the Beginning */}
+      <section id="beginning" className={`${styles.section} ${styles.bgMuted}`}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>1. In the Beginning, There Was Machine Code</h2>
+
+          <p className={`${styles.bodyText} drop-cap`}>
+            In the beginning, there was machine code. At the lowest level, every computer program
+            consists of zeros and ones. These binary patterns encode instructions that the processor
+            executes directly: moving data, performing arithmetic, comparing values, and jumping to
+            different locations based on conditions.
+          </p>
+
+          <p className={styles.bodyText}>
+            In the earliest era of computing, this was the only way to program a machine. The
+            programmers who worked on ENIAC in 1945, and on EDSAC just a few years later, lived
+            in this world. They didn't write code—they wired circuits and flipped switches. When
+            stored-program computers arrived, they punched cards with numeric opcodes.
+          </p>
+
+          <p className={styles.bodyText}>
+            This was completely hostile to human cognition.
+          </p>
+
+          <h3 className={styles.subsectionTitle}>Assembly Language: Naming the Zeros and Ones</h3>
+
+          <p className={styles.bodyText}>
+            Assembly language emerged almost immediately as a response to this problem—as early as
+            the late 1940s on machines like EDSAC at Cambridge. Instead of writing binary encodings,
+            programmers could write symbolic instructions and labels that an assembler would translate
+            into the underlying zeros and ones.
+          </p>
+
+          <p className={styles.bodyText}>
+            Assembly did not change the paradigm. Control flow was still explicit and imperative. But
+            it made the machine's behavior legible to humans. This was the beginning of a long trend:
+            <strong> making the computer do more work so the human could think more clearly.</strong>
+          </p>
+
+          <h3 className={styles.subsectionTitle}>C: Structured Control Flow</h3>
+
+          <p className={styles.bodyText}>
+            The next major shift came with high-level languages like C. Programmers could write
+            structured control flow—functions, loops, conditionals—without manually managing jumps
+            and memory addresses. The compiler handled translation to machine code. The CPU still
+            executed imperative instructions. But humans could now reason about behavior at a
+            higher level.
+          </p>
+
+          <p className={styles.bodyText}>
+            Crucially, the mental model remained unchanged: the programmer still fully specified how
+            decisions were made. The abstraction moved up a level, but the paradigm stayed the same.
+          </p>
+
+          <h3 className={styles.subsectionTitle}>Ruby: Code as Pseudocode</h3>
+
+          <p className={styles.bodyText}>
+            Languages like Ruby represent a culmination of this trajectory. Ruby deliberately
+            prioritizes expressiveness and readability, allowing code to resemble structured
+            pseudocode. Matz, Ruby's creator, famously said the language was designed to make
+            programmers happy. The computer does an enormous amount of work on behalf of the human.
+          </p>
+
+          <p className={styles.bodyText}>
+            But the role of the programmer had not fundamentally changed. The programmer still
+            described the control flow. The computer still followed instructions.
+          </p>
+
+          <h3 className={styles.subsectionTitle}>The Pattern Repeats with AI</h3>
+
+          <p className={styles.bodyText}>
+            Today, we're seeing the same pattern repeat. One of the first valuable uses of AI has
+            been to turn it on itself: using AI to write better code, to make programming easier.
+            GitHub Copilot, ChatGPT writing functions, Claude refactoring modules—these tools follow
+            the same trajectory that began with assemblers in the 1940s.
+          </p>
+
+          <p className={styles.bodyText}>
+            But this time, something deeper is changing. It's not just another layer of abstraction
+            over imperative code. The way decisions are made is fundamentally different. Control flow
+            is no longer something you fully specify in advance—it emerges from interaction between
+            models, data, and constraints.
+          </p>
+
+          <p className={`${styles.bodyText} ${styles.emphasis}`}>
+            For more than eighty years, progress in programming meant raising the level at which
+            humans describe imperative control flow for a CPU. What comes next is not another step
+            along that same line. It is a change in direction.
+          </p>
+        </div>
+      </section>
+
+      {/* Section 2: Control Flow */}
+      <section id="control-flow" className={styles.section}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>2. When Control Flow Stops Being Imperative</h2>
+
+          <p className={`${styles.bodyText} drop-cap`}>
+            For most of computing history, control flow has been something the programmer fully
+            specifies in advance. Every branch, every loop, every decision point is encoded
+            explicitly in the program. Given the same inputs, the program follows the same path
+            and produces the same outputs.
+          </p>
+
+          <p className={styles.bodyText}>
+            That assumption no longer holds.
+          </p>
+
+          <p className={styles.bodyText}>
+            In modern systems, an increasing share of decisions are made not by imperative logic
+            written by a human, but by machine learning and AI models making predictions. These
+            systems do not follow a single, pre-defined execution path. Instead, they evaluate
+            inputs against learned representations and produce outcomes probabilistically.
+          </p>
+
+          <div className={styles.comparisonGrid}>
+            <div className={styles.comparisonCard}>
+              <h3 className={styles.comparisonTitle}>Traditional Programming</h3>
+              <ul className={styles.comparisonList}>
+                <li>Control flow is explicit and predetermined</li>
+                <li>Same input → same output (deterministic)</li>
+                <li>All branches encoded by programmer</li>
+                <li>Correctness can be proven in advance</li>
+              </ul>
+            </div>
+            <div className={styles.comparisonCard}>
+              <h3 className={styles.comparisonTitle}>AI-Driven Systems</h3>
+              <ul className={styles.comparisonList}>
+                <li>Control flow emerges from learned behavior</li>
+                <li>Same input → varying outputs (probabilistic)</li>
+                <li>Decisions made by models, not code</li>
+                <li>Correctness measured empirically</li>
+              </ul>
+            </div>
+          </div>
+
+          <p className={styles.bodyText}>
+            Importantly, this does not mean that programs have ceased to be programs. These systems
+            still run on traditional hardware. They are still composed of instructions. From the
+            perspective of the theory of computation, they remain Turing-complete.
+          </p>
+
+          <p className={styles.bodyText}>
+            What has changed is where decisions live. Instead of being encoded entirely in imperative
+            logic, decisions are now distributed across models, prompts, policies, and data. The
+            programmer no longer dictates every step the system will take. Instead, they define
+            procedures: high-level structures that describe goals, constraints, tools, and acceptable
+            outcomes.
+          </p>
+        </div>
+      </section>
+
+      {/* Section 3: Existing Tools Strain */}
+      <section id="existing-tools" className={`${styles.section} ${styles.bgMuted}`}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>3. Why Existing Languages and Frameworks Start to Strain</h2>
+
+          <p className={`${styles.bodyText} drop-cap`}>
+            At first glance, it's reasonable to ask why any of this requires a new language at all.
+            Python, TypeScript, and other general-purpose languages are flexible, expressive, and
+            powerful. Entire ecosystems of agent frameworks already exist, layered on top of them.
+          </p>
+
+          <p className={styles.bodyText}>
+            The problem is not capability. The problem is fit.
+          </p>
+
+          <p className={styles.bodyText}>
+            General-purpose programming languages were designed around an imperative mental model.
+            Even when they support functional or declarative styles, they still assume that control
+            flow is something the programmer explicitly encodes. When stochastic, behavior-driven
+            systems are built in these languages, the core concepts are typically bolted on rather
+            than represented directly.
+          </p>
+
+          <div className={styles.codeGrid}>
+            <div className={styles.codePanel}>
+              <div className={styles.codeHeader}>
+                <span className={styles.codeLabel}>Traditional Approach</span>
+                <span className={styles.codeFile}>agent.py</span>
+              </div>
+              <pre className={styles.codeBlock}><code>{PYTHON_AGENT_CODE}</code></pre>
+            </div>
+            <div className={styles.codePanel}>
+              <div className={styles.codeHeader}>
+                <span className={styles.codeLabel}>Tactus</span>
+                <span className={styles.codeFile}>agent.tactus</span>
+              </div>
+              <pre className={styles.codeBlock}><code>{TACTUS_AGENT_CODE}</code></pre>
+            </div>
+          </div>
+
+          <p className={styles.bodyText}>
+            As a result, the essential structure of these systems becomes fragmented. Decision-making
+            logic lives partly in code, partly in prompts, partly in configuration, and partly in
+            external models. Tool usage, retries, fallbacks, approvals, and evaluations are implemented
+            as ad hoc patterns rather than first-class constructs.
+          </p>
+
+          <p className={styles.bodyText}>
+            This creates a mismatch between how the system actually behaves and how the language
+            encourages the programmer to think. The code describes steps and branches, but the system
+            operates as a procedure whose behavior emerges from interaction between models, data, and
+            constraints.
+          </p>
+        </div>
+      </section>
+
+      {/* Section 4: Determinism Collapses */}
+      <section id="determinism" className={styles.section}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>4. The Collapse of Deterministic Best Practices</h2>
+
+          <p className={`${styles.bodyText} drop-cap`}>
+            For decades, the dominant best practices in software engineering have been built around
+            a single assumption: determinism. Traditional testing strategies assume that given the
+            same inputs, a program will produce the same outputs. Unit tests assert exact values.
+            Regression tests verify that behavior does not change unexpectedly.
+          </p>
+
+          <p className={styles.bodyText}>
+            Stochastic, behavior-driven systems break this assumption at its core.
+          </p>
+
+          <div className={styles.practicesTable}>
+            <table>
+              <thead>
+                <tr>
+                  <th>Traditional Best Practice</th>
+                  <th>Works with AI Agents?</th>
+                  <th>Why It Breaks</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Unit tests with exact assertions</td>
+                  <td className={styles.fail}>✗</td>
+                  <td>Output varies between runs</td>
+                </tr>
+                <tr>
+                  <td>100% code coverage</td>
+                  <td className={styles.fail}>✗</td>
+                  <td>Behavior comes from models, not code</td>
+                </tr>
+                <tr>
+                  <td>Regression tests</td>
+                  <td className={styles.fail}>✗</td>
+                  <td>Natural variation looks like regression</td>
+                </tr>
+                <tr>
+                  <td>Debuggers with replay</td>
+                  <td className={styles.fail}>✗</td>
+                  <td>Can't replay non-deterministic execution</td>
+                </tr>
+                <tr>
+                  <td>Binary pass/fail gates</td>
+                  <td className={styles.fail}>✗</td>
+                  <td>Need probabilistic quality metrics</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p className={styles.bodyText}>
+            When decisions are made probabilistically, variability is not a defect—it is an inherent
+            property of the system. Two executions may both be acceptable while differing in structure,
+            phrasing, or internal reasoning.
+          </p>
+
+          <p className={styles.bodyText}>
+            Instead of correctness, the relevant concept becomes <strong>alignment</strong>. The
+            question is no longer "does the system do exactly what it did before?" but "does the
+            system behave acceptably according to our criteria?"
+          </p>
+        </div>
+      </section>
+
+      {/* Section 5: MLOps */}
+      <section id="mlops" className={`${styles.section} ${styles.bgMuted}`}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>5. Why MLOps Alone Is Not Enough</h2>
+
+          <p className={`${styles.bodyText} drop-cap`}>
+            Machine learning practitioners have been dealing with stochastic systems for years.
+            They don't talk about correctness; they talk about metrics, experiments, and
+            optimization. They have tooling—MLflow being a canonical example—for tracking runs,
+            comparing models, and selecting better-performing variants.
+          </p>
+
+          <p className={styles.bodyText}>
+            It helps, but it doesn't fully solve the problem.
+          </p>
+
+          <p className={styles.bodyText}>
+            MLOps is optimized around models, not behavior. The primary unit of evaluation is a
+            model trained to perform a narrowly defined task, measured using relatively simple,
+            quantifiable metrics such as accuracy, precision, recall, or loss.
+          </p>
+
+          <div className={styles.pipelineComparison}>
+            <div className={styles.pipelineCard}>
+              <h3 className={styles.pipelineTitle}>MLOps Pipeline</h3>
+              <ol className={styles.pipelineSteps}>
+                <li>Prepare training data</li>
+                <li>Train model</li>
+                <li>Evaluate on test set</li>
+                <li>Compare metrics</li>
+                <li>Deploy best model</li>
+                <li>Monitor drift</li>
+              </ol>
+              <p className={styles.pipelineFocus}>Focus: <strong>Model Quality</strong></p>
+            </div>
+            <div className={styles.pipelineCard}>
+              <h3 className={styles.pipelineTitle}>PrOps Pipeline</h3>
+              <ol className={styles.pipelineSteps}>
+                <li>Define procedure with tools</li>
+                <li>Write behavioral specifications</li>
+                <li>Run evaluation suite</li>
+                <li>Measure reliability rate</li>
+                <li>Deploy with guardrails</li>
+                <li>Monitor behavior in production</li>
+              </ol>
+              <p className={styles.pipelineFocus}>Focus: <strong>System Behavior</strong></p>
+            </div>
+          </div>
+
+          <p className={styles.bodyText}>
+            Agentic systems are different. They do not just produce predictions; they take actions,
+            use tools, interact with external systems, and generate multi-step behaviors. Success is
+            rarely captured by a single scalar metric. Two runs may both succeed while differing
+            significantly in how they arrive at that success.
+          </p>
+
+          <p className={styles.bodyText}>
+            Specifications are the missing piece. To evaluate behavior, specifications themselves
+            must become more flexible. They must be able to express constraints, expectations, and
+            boundaries without requiring identical outputs.
+          </p>
+        </div>
+      </section>
+
+      {/* Section 6: Specifications */}
+      <section id="specifications" className={styles.section}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>6. Behavioral Specifications and Evaluation</h2>
+
+          <p className={`${styles.bodyText} drop-cap`}>
+            When correctness becomes alignment and determinism gives way to probability, you need
+            new ways to say what "good" looks like.
+          </p>
+
+          <p className={styles.bodyText}>
+            Behavioral specifications express what a system should do without prescribing exactly
+            how. Instead of asserting that output equals a specific string, a behavioral
+            specification might assert that the output contains certain information, follows a
+            particular structure, or satisfies semantic constraints.
+          </p>
+
+          <div className={styles.codeCard}>
+            <div className={styles.codeHeader}>
+              <span className={styles.codeLabel}>Behavioral Specification</span>
+              <span className={styles.codeFile}>import.feature</span>
+            </div>
+            <pre className={styles.codeBlock}><code>{BDD_SPEC_CODE}</code></pre>
+          </div>
+
+          <p className={styles.bodyText}>
+            But specifications alone aren't enough. Because these systems are stochastic, you also
+            need evaluation—repeated measurement to understand how reliably the system meets its
+            specifications.
+          </p>
+
+          <p className={styles.bodyText}>
+            A specification says: "The agent should call the search tool before answering a factual
+            question." An evaluation asks: "How often does it actually do that? 95% of the time?
+            80%? 60%?"
+          </p>
+
+          <p className={styles.bodyText}>
+            The combination of behavioral specifications and evaluation provides the foundation for
+            a new operational discipline:
+          </p>
+
+          <ul className={styles.principlesList}>
+            <li><strong>Specifications</strong> define acceptable behavior in human-readable terms</li>
+            <li><strong>Evaluations</strong> measure how consistently the system meets those specifications</li>
+            <li><strong>Experiments</strong> compare different configurations, prompts, or approaches</li>
+            <li><strong>Monitoring</strong> tracks reliability in production over time</li>
+          </ul>
+
+          <p className={styles.bodyText}>
+            This is what it means to "align" a system rather than "prove it correct." You define
+            what you want, measure what you get, and iterate toward better alignment.
+          </p>
+        </div>
+      </section>
+
+      {/* Section 7: PrOps */}
+      <section id="props" className={`${styles.section} ${styles.bgMuted}`}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>7. PrOps: Operating Procedures, Not Just Code or Models</h2>
+
+          <p className={`${styles.bodyText} drop-cap`}>
+            Once behavior becomes the primary unit of concern, it becomes clear that neither DevOps
+            nor MLOps fully describes the operational problem we are trying to solve.
+          </p>
+
+          <p className={styles.bodyText}>
+            DevOps is built around operating deterministic programs. MLOps is built around training
+            and serving statistical models. Agentic systems do not fit cleanly into either category.
+            They are not just programs, and they are not just models. They are <strong>procedures</strong>:
+            systems that combine imperative logic, learned components, tools, constraints, and
+            evaluation into a single decision-making process.
+          </p>
+
+          <p className={styles.bodyText}>
+            This is the gap that PrOps is meant to fill.
+          </p>
+
+          <div className={styles.propsExplainer}>
+            <h3 className={styles.propsTitle}>PrOps = Procedure Operations</h3>
+            <p className={styles.propsDescription}>
+              Operating procedures rather than code artifacts or trained models. A procedure may
+              include prompts, models, policies, tool interfaces, guardrails, and evaluation
+              criteria. Its correctness cannot be proven in advance, and its quality cannot be
+              reduced to a single metric. Instead, it must be observed, measured, and aligned
+              over time.
+            </p>
+          </div>
+
+          <div className={styles.comparisonTable}>
+            <table>
+              <thead>
+                <tr>
+                  <th>Aspect</th>
+                  <th>DevOps</th>
+                  <th>MLOps</th>
+                  <th>PrOps</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Unit of Operation</strong></td>
+                  <td>Programs</td>
+                  <td>Models</td>
+                  <td>Procedures</td>
+                </tr>
+                <tr>
+                  <td><strong>Quality Metric</strong></td>
+                  <td>Correct or incorrect</td>
+                  <td>Better or worse</td>
+                  <td>Aligned or misaligned</td>
+                </tr>
+                <tr>
+                  <td><strong>Deployment Gate</strong></td>
+                  <td>Tests pass</td>
+                  <td>Metrics improve</td>
+                  <td>Behavior acceptable</td>
+                </tr>
+                <tr>
+                  <td><strong>Problem Indicator</strong></td>
+                  <td>Bug (regression)</td>
+                  <td>Model drift</td>
+                  <td>Misalignment</td>
+                </tr>
+                <tr>
+                  <td><strong>Gate Type</strong></td>
+                  <td>Binary (pass/fail)</td>
+                  <td>Threshold-based</td>
+                  <td>Behavioral evaluation</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p className={styles.bodyText}>
+            In a PrOps mindset, deployment is not a binary event. A procedure is introduced,
+            evaluated against behavioral specifications, compared to alternatives, and iteratively
+            refined. Changes are assessed based on how they affect observed behavior, not whether
+            they preserve identical outputs.
+          </p>
+
+          <p className={styles.bodyText}>
+            Human judgment becomes a first-class component of the system. Humans define what
+            acceptable behavior looks like, design evaluations to capture it, and make decisions
+            about whether a procedure is ready to be relied upon.
+          </p>
+        </div>
+      </section>
+
+      {/* Section 8: New Language */}
+      <section id="new-language" className={styles.section}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>8. Why This Leads to a New Language</h2>
+
+          <p className={`${styles.bodyText} drop-cap`}>
+            Once procedures become the primary unit of computation, the limitations of existing
+            languages become impossible to ignore.
+          </p>
+
+          <p className={styles.bodyText}>
+            Programming languages do more than instruct machines. They shape how humans think about
+            problems. They determine what is easy to express, what is awkward, and what is invisible.
+            For decades, languages have been optimized around imperative control flow because that is
+            where decisions lived.
+          </p>
+
+          <p className={styles.bodyText}>
+            Procedural, behavior-driven systems require a different set of primitives.
+          </p>
+
+          <div className={styles.requirementsList}>
+            <h3 className={styles.requirementsTitle}>What Tactus Provides:</h3>
+            <div className={styles.requirementGrid}>
+              <div className={styles.requirementCard}>
+                <h4 className={styles.requirementName}>Durability by Default</h4>
+                <p className={styles.requirementDesc}>
+                  Automatic checkpointing and resumption for long-running procedures
+                </p>
+              </div>
+              <div className={styles.requirementCard}>
+                <h4 className={styles.requirementName}>Sandboxing by Default</h4>
+                <p className={styles.requirementDesc}>
+                  Agent code runs in isolated environment with controlled access
+                </p>
+              </div>
+              <div className={styles.requirementCard}>
+                <h4 className={styles.requirementName}>Tool Capability Control</h4>
+                <p className={styles.requirementDesc}>
+                  First-class primitives for defining and constraining tool usage
+                </p>
+              </div>
+              <div className={styles.requirementCard}>
+                <h4 className={styles.requirementName}>Human Approval Gates</h4>
+                <p className={styles.requirementDesc}>
+                  Built-in constructs for human-in-the-loop oversight
+                </p>
+              </div>
+              <div className={styles.requirementCard}>
+                <h4 className={styles.requirementName}>Behavioral Testing</h4>
+                <p className={styles.requirementDesc}>
+                  Native support for specifications and evaluation primitives
+                </p>
+              </div>
+              <div className={styles.requirementCard}>
+                <h4 className={styles.requirementName}>Observable Execution</h4>
+                <p className={styles.requirementDesc}>
+                  Audit trails and monitoring built into the runtime
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <p className={styles.bodyText}>
+            This fragmentation is not accidental. It is a symptom of languages being asked to
+            represent concepts they were never designed to model directly. A language designed for
+            procedures must make behavior explicit. It must treat evaluation, checkpoints,
+            guardrails, and human oversight as first-class concepts rather than afterthoughts.
+          </p>
+
+          <p className={styles.bodyText}>
+            This is the same reason new languages have emerged throughout the history of computing.
+            Assembly gave way to higher-level languages not because assembly was insufficient, but
+            because it forced humans to think at the wrong level. Object-oriented languages emerged
+            because procedural code made large systems hard to reason about.
+          </p>
+
+          <p className={`${styles.bodyText} ${styles.emphasis}`}>
+            The current shift follows the same pattern. When the dominant form of decision-making
+            changes, the language must change with it.
+          </p>
+        </div>
+      </section>
+
+      {/* Section 9: Conclusion */}
+      <section id="conclusion" className={`${styles.section} ${styles.bgMuted}`}>
+        <div className={styles.container}>
+          <h2 className={styles.sectionTitle}>9. Conclusion: Evolution, Not Alien DNA</h2>
+
+          <p className={`${styles.bodyText} drop-cap`}>
+            It's important to be precise about what has changed—and what has not.
+          </p>
+
+          <p className={styles.bodyText}>
+            From the perspective of computer science theory, nothing fundamental has broken. These
+            systems still run on conventional hardware. They are still composed of instructions.
+            They are still Turing-complete. There is no new computational substrate, no alien
+            machinery hiding beneath the surface.
+          </p>
+
+          <p className={styles.bodyText}>
+            What has changed is the way decisions are made and, more importantly, the way humans
+            must reason about those decisions.
+          </p>
+
+          <p className={styles.bodyText}>
+            For more than eighty years, programming meant specifying control flow in advance.
+            Languages, tools, and best practices evolved to make that process safer, clearer, and
+            more efficient for humans. That entire ecosystem was built around deterministic
+            execution and binary notions of correctness.
+          </p>
+
+          <p className={styles.bodyText}>
+            Today, many of the most important systems we build no longer operate that way.
+            Decisions emerge from learned behavior, probabilistic inference, and interaction with
+            the world. Control flow becomes dynamic. Outcomes are evaluated empirically. Variation
+            is expected, not eliminated.
+          </p>
+
+          <div className={styles.evolutionCallout}>
+            <h3 className={styles.evolutionTitle}>This is Evolution</h3>
+            <p className={styles.evolutionText}>
+              PrOps names this new operational reality. It captures the need to supervise,
+              evaluate, and refine behavior-driven systems with the same seriousness that DevOps
+              brought to deterministic software and MLOps brought to machine learning models.
+            </p>
+            <p className={styles.evolutionText}>
+              Languages follow mental models. When the mental model changes, new languages
+              emerge—not to replace what came before, but to make the new reality intelligible
+              and tractable for humans.
+            </p>
+          </div>
+
+          <p className={`${styles.bodyText} ${styles.emphasis}`}>
+            This is not a revolution in computation. It is the next stage in a long, continuous
+            effort: helping humans work effectively with increasingly powerful machines, as the
+            nature of decision-making itself evolves.
+          </p>
+
+          {/* Sidebar: Still Turing-Complete */}
+          <aside className={styles.sidebar}>
+            <h3 className={styles.sidebarTitle}>Sidebar: Still Turing-Complete</h3>
+            <p className={styles.sidebarText}>
+              A reasonable question arises: if these systems are still Turing-complete, are they
+              really different?
+            </p>
+            <p className={styles.sidebarText}>
+              The answer is yes and no.
+            </p>
+            <p className={styles.sidebarText}>
+              From a theoretical standpoint, any computation that a behavior-driven procedure can
+              perform could also be expressed as a traditional imperative program. Turing-completeness
+              means the expressive power is equivalent. You could, in principle, write a Python
+              script that simulates everything a Tactus procedure does.
+            </p>
+            <p className={styles.sidebarText}>
+              But this misses the point. The value of a programming language is not just what it
+              can compute—it's how it shapes the programmer's thinking.
+            </p>
+            <p className={styles.sidebarText}>
+              Assembly is Turing-complete. So is C. So is Ruby. They're all equivalent in what
+              they can compute. But they're radically different in how they help humans organize
+              and express their intent.
+            </p>
+            <p className={`${styles.sidebarText} ${styles.sidebarEmphasis}`}>
+              That's the same reason we don't write web applications in assembly, even though
+              we could.
+            </p>
+          </aside>
+        </div>
+      </section>
+
+      <BottomCta
+        title="Ready to start building?"
+        text="Learn how to write your first Tactus procedure and explore the language features that make behavior-driven programming natural."
+        buttonLabel="Get Started"
+        to="/getting-started/"
+      />
+
+    </div>
+  </Layout>
+)
+
+export const Head = () => (
+  <Seo
+    title="Why a New Language?"
+    description="Understanding why Tactus was created and how it addresses the unique challenges of operating AI-driven systems in production."
+  />
+)
+
+export default WhyNewLanguagePage

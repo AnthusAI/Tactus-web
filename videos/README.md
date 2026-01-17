@@ -85,6 +85,49 @@ When you run `babulus:generate`, Babulus:
 - Computes `startSec/endSec` from the real audio durations.
 - Stages the artifacts into the Remotion-friendly locations under `public/babulus/` and `src/videos/*/*.script.json`.
 
+### Poster Images (Thumbnails)
+
+You can specify a timestamp for extracting a poster image (thumbnail) that displays before the video plays:
+
+```yaml
+# At the root level of your .babulus.yml file:
+poster_time: "3.5s"  # Extract frame at 3.5 seconds
+
+audio:
+  # ... audio config
+
+scenes:
+  # ... scene definitions
+```
+
+When you run `npm run render`, the render script will:
+1. Extract a frame at the specified timestamp using FFmpeg
+2. Save it as `{video-name}-poster.jpg` in the `out/` directory
+3. Embed the poster directly into the MP4 file (no re-encoding, zero quality loss)
+4. Upload all files to S3
+
+The poster JPG will be displayed in the HTML5 video player before playback starts. The MP4 file also contains an embedded thumbnail (using FFmpeg's `-c copy` with no re-encoding) that will be visible in file browsers (Finder, Windows Explorer, etc.).
+
+#### Caching and Selective Rendering
+
+The render script supports caching to avoid re-rendering existing videos:
+
+```bash
+# Render all videos (skip existing)
+npm run render
+
+# Re-render all videos from scratch
+npm run render -- --fresh
+
+# Render only one video (skip if exists)
+npm run render -- intro
+
+# Force re-render one video
+npm run render -- intro --fresh
+```
+
+Videos are cached based on the presence of the output `.mp4` file. Use `--fresh` to force re-rendering.
+
 ### Install Babulus (local dev)
 
 In your Python env (example uses your existing conda env):
@@ -99,6 +142,61 @@ Put credentials in one of:
 
 - `videos/.babulus/config.yml` (recommended for this repo)
 - `~/.babulus/config.yml`
+
+See `.babulus/config.example.yml` for a complete configuration template.
+
+### TTS Provider Configuration
+
+Babulus supports multiple TTS providers with configurable models and voices. Configuration happens at two levels:
+
+#### 1. Global Config (`.babulus/config.yml`)
+
+Set default providers, models, and voices for your project:
+
+```yaml
+providers:
+  elevenlabs:
+    api_key: "sk_xxxxx"
+    voice_id: "your_voice_id"
+    model_id: "eleven_v3"           # Best quality for production
+
+  openai:
+    api_key: "sk_xxxxx"
+    model: "tts-1"                  # Fast for development
+    voice: "alloy"
+```
+
+#### 2. Per-Video Overrides (DSL files)
+
+Override model/voice for specific videos or environments in your `.babulus.yml`:
+
+```yaml
+voiceover:
+  provider:
+    development: openai             # Fast iteration
+    production: elevenlabs          # Best quality
+
+  # Optional: Override model per environment
+  model:
+    development: "tts-1"
+    production: "eleven_v3"
+
+  # Optional: Override voice per environment
+  voice:
+    development: "alloy"
+    production: "your_voice_id"
+```
+
+**Available models:**
+- **ElevenLabs:** `eleven_v3` (best), `eleven_multilingual_v2`, `eleven_turbo_v2_5`, `eleven_flash_v2_5`
+- **OpenAI:** `tts-1` (standard), `tts-1-hd` (higher quality), `gpt-4o-mini-tts`
+- **AWS Polly:** No model parameter (use `engine: "neural"` or `"standard"`)
+- **Azure Speech:** No model parameter (tier is in voice name: `*-Neural` or `*-Standard`)
+
+For complete documentation, see:
+- [Babulus README](../../Babulus/README.md) - Full model/voice configuration guide
+- [ElevenLabs Guide](../../Babulus/docs/elevenlabs-guide.md) - ElevenLabs-specific features
+- [Config Example](.babulus/config.example.yml) - All available options
 
 ## Commands
 

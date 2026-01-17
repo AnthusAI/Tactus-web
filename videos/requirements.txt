@@ -1,0 +1,11 @@
+# Babulus - AI-powered voiceover generation for Remotion videos
+# Install with: pip install -r requirements.txt
+
+# Core dependency - install from local editable if developing
+# or from git/PyPI when released
+# For development: pip install -e /path/to/Babulus
+babulus>=0.1.0
+
+# Optional: Additional audio processing libraries if needed
+# pydub>=0.25.1  # For advanced audio manipulation
+# soundfile>=0.12.1  # For reading/writing audio files

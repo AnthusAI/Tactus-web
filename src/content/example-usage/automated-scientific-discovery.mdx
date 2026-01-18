@@ -70,8 +70,12 @@ LiteratureTriage = Procedure {
   output = { shortlist = array, notes = array }
 
   function(input)
-    local hits = SearchPapers({query = input.query, k = 50})
-    local papers = FetchPapers({ids = hits[1:input.max_papers]})
+    local hits = Step.checkpoint(function()
+      return SearchPapers({query = input.query, k = 50})
+    end)
+    local papers = Step.checkpoint(function()
+      return FetchPapers({ids = hits[1:input.max_papers]})
+    end)
     local notes = SummarizeMany(papers)
     local shortlist = Human.select({items = notes, k = 8})
     return { shortlist = shortlist, notes = notes }
@@ -80,6 +84,8 @@ LiteratureTriage = Procedure {
 ```
 
 The key idea is procedural: you’re not “writing the science,” you’re building a dependable process for information work.
+
+Note the use of `Step.checkpoint(...)`: even if the procedure is replayed (after an approval gate, a restart, or a crash), expensive retrieval steps can return cached results instead of re-running blindly.
 
 ### 2) Hypotheses as Data (and Preregistered Success Criteria)
 
@@ -117,6 +123,20 @@ node = {
 
 You don’t need the entire algorithm in one procedure. The important part is the data model: experiments are nodes with provenance.
 
+If you want to run branches in parallel, the shape is usually: spawn a handful of experiment nodes, wait for completion, then decide what to expand next. In Tactus terms, this is `Procedure.spawn(...)` + `Procedure.wait_any(...)` / `Procedure.wait_all(...)`.
+
+```tactus
+handles = {}
+for _, config in ipairs(frontier) do
+  table.insert(handles, Procedure.spawn("run_experiment_node", {config = config}))
+end
+
+local done = Procedure.wait_any(handles)
+local result = Procedure.wait(done)
+```
+
+That same structure supports “replication nodes” (run the same config with different seeds), “ablation nodes” (remove one component), and “aggregation nodes” (combine metrics into one decision).
+
 ### 4) Safe Execution (Sandboxing and Narrow Tool Interfaces)
 
 **What it is:** If the workflow generates code, runs simulations, or touches files, then safety is not an afterthought. “Run arbitrary code” is a privilege boundary.
@@ -146,6 +166,29 @@ for attempt in 1..MAX_REPAIRS:
 ```
 
 The goal is not “the model will fix it.” The goal is “we built a bounded loop whose failures are visible.”
+
+Two practical refinements show up repeatedly in robust agentic loops:
+
+- **Hard caps** on attempts (so the loop always ends).
+- **Per-turn tool control** (so the agent only has dangerous tools when the procedure is ready for them).
+
+In Tactus, callable agent syntax supports per-call tool overrides (including an empty tool list), which makes it easy to prevent “tool drift” during critique, summarization, and write-up turns.
+
+```tactus
+reviewer({ message = "Summarize the result", tools = {} })
+reviewer({ tools = {search, done} }) -- enable only what’s needed this turn
+```
+
+### 6.5) Specs vs Evals (Invariants vs Reliability)
+
+As soon as you scale experimentation, two different kinds of questions matter:
+
+- **Specs**: “Does this ever do something forbidden?” (invariants)
+- **Evals**: “How often does it work across real inputs?” (reliability)
+
+Both are “guardrails,” but they fail differently. Specs fail loudly and quickly. Evals reveal brittleness and drift.
+
+In Tactus terms, specs tend to encode policies (“never call the side‑effect tool without approval”), while evals measure outcomes over datasets (often with multiple runs to estimate reliability).
 
 ### 6) Reliability, Not One‑Off Scores
 
@@ -211,6 +254,8 @@ If you want to apply these ideas to your own work, start with a small inner loop
 4. Add a search strategy (sweep, tree, bandit).
 5. Add guardrails (budget/time/step limits + staged tools).
 6. Add human gates only where you need them (expensive, irreversible, or publishable).
+
+If you only adopt one idea from the research literature, make it this: treat *the procedure* as the unit of experimentation, and treat guardrails/specs/evals as first‑class parts of that procedure—not bolted-on conventions.
 
 ## Conclusion
 

@@ -6,13 +6,12 @@ import { Github, Copy, Check, Cable } from "lucide-react"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import AnimatedCodeBlock from "../components/animated/AnimatedCodeBlock"
-import AnimatedDiagram from "../components/animated/AnimatedDiagram"
 import BottomCta from "../components/bottom-cta"
 import SpotlightSection from "../components/spotlight-section"
 import GuardrailsSpotlight from "../components/guardrails-spotlight"
 import ToolboxDiagram from "../components/diagrams/ToolboxDiagram"
-import OldWayFlowchartDiagram from "../components/diagrams/OldWayFlowchartDiagram"
-import AgentGuardrailsDiagram from "../components/diagrams/AgentGuardrailsDiagram"
+import AnimatedOldWayFlowchartDiagram from "../components/diagrams/AnimatedOldWayFlowchartDiagram"
+import AnimatedAgentGuardrailsDiagram from "../components/diagrams/AnimatedAgentGuardrailsDiagram"
 import FeatureHighlightsSection from "../components/feature-highlights-section"
 import BookSeriesSection from "../components/book-series-section"
 import Button from "../components/ui/button"
@@ -417,13 +416,7 @@ const IndexPage = () => {
                 </div>
                 <div className={styles.narrativeDiagramColumn}>
                   <div className={styles.narrativeDiagram}>
-                    <AnimatedDiagram
-                      Diagram={OldWayFlowchartDiagram}
-                      durationMs={8000}
-                      autoPlay={true}
-                      loop={false}
-                      holdProgress={1.0}
-                    />
+                    <AnimatedOldWayFlowchartDiagram durationMs={8000} />
                   </div>
                   <p className={styles.narrativeCaption}>
                     Every new edge case means more conditional logic
@@ -450,13 +443,7 @@ const IndexPage = () => {
                 </div>
                 <div className={styles.narrativeDiagramColumn}>
                   <div className={styles.narrativeDiagram}>
-                    <AnimatedDiagram
-                      Diagram={AgentGuardrailsDiagram}
-                      durationMs={3200}
-                      autoPlay={true}
-                      loop={true}
-                      holdProgress={1.0}
-                    />
+                    <AnimatedAgentGuardrailsDiagram durationMs={3200} />
                   </div>
                   <p className={styles.narrativeCaption}>
                     Agent + Tools + Procedure, bounded by Guardrails

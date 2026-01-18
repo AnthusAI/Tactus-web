@@ -1,6 +1,6 @@
 import * as React from "react"
-import { Link } from "gatsby"
 import * as styles from "./feature-highlights-section.module.css"
+import Button from "./ui/button"
 
 const FeatureHighlightsSection = ({ title, subtitle, items, ctaTo, ctaText = "Learn more" }) => {
   return (
@@ -14,9 +14,10 @@ const FeatureHighlightsSection = ({ title, subtitle, items, ctaTo, ctaText = "Le
         <div className={styles.grid}>
           {items.map((item) => (
             <div key={item.title} className={styles.card}>
-              <h3 className={styles.cardTitle}>
-                {item.icon ? item.icon : null} {item.title}
-              </h3>
+              <div className={styles.iconWrapper}>
+                {item.icon ? item.icon : null}
+              </div>
+              <h3 className={styles.cardTitle}>{item.title}</h3>
               <p className={styles.cardBody}>{item.body}</p>
             </div>
           ))}
@@ -24,9 +25,9 @@ const FeatureHighlightsSection = ({ title, subtitle, items, ctaTo, ctaText = "Le
 
         {ctaTo ? (
           <div className={styles.ctaRow}>
-            <Link className={styles.secondaryButton} to={ctaTo}>
+            <Button to={ctaTo} variant="primary" shadow>
               {ctaText}
-            </Link>
+            </Button>
           </div>
         ) : null}
       </div>

@@ -49,7 +49,6 @@ export const VideoCanvas: React.FC<VideoCanvasProps> = ({
           maxWidth: "90vh * 16 / 9",
           aspectRatio: "16 / 9",
           background: "#fdfdfd", // Light mode background (--color-bg)
-          boxShadow: "0 0 40px rgba(0, 0, 0, 0.5)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -95,7 +94,6 @@ export const VideoCanvas: React.FC<VideoCanvasProps> = ({
                   fontSize: "14px",
                   fontFamily: "monospace",
                   color: "rgba(255, 255, 0, 0.8)",
-                  textShadow: "0 0 4px rgba(0, 0, 0, 0.8)",
                 }}
               >
                 Action Safe (90%)
@@ -122,7 +120,6 @@ export const VideoCanvas: React.FC<VideoCanvasProps> = ({
                   fontSize: "14px",
                   fontFamily: "monospace",
                   color: "rgba(0, 255, 0, 0.8)",
-                  textShadow: "0 0 4px rgba(0, 0, 0, 0.8)",
                 }}
               >
                 Title Safe (80%)
@@ -174,7 +171,6 @@ export const VideoCanvas: React.FC<VideoCanvasProps> = ({
                 fontSize: "14px",
                 fontFamily: "monospace",
                 color: "rgba(255, 255, 255, 0.6)",
-                textShadow: "0 0 4px rgba(0, 0, 0, 0.8)",
                 textAlign: "right",
               }}
             >

@@ -1,11 +1,12 @@
 import * as React from "react"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-import LandingLearnSection from "../components/landing-learn-section"
-import GuardrailsStackDiagram from "../components/diagrams/GuardrailsStackDiagram"
+import SpotlightSection from "../components/spotlight-section"
+import GuardrailsSpotlight from "../components/guardrails-spotlight"
+import WhyNewLanguageSpotlight from "../components/why-new-language-spotlight"
 import ToolboxDiagram from "../components/diagrams/ToolboxDiagram"
+import VideosSpotlightSection from "../components/videos-spotlight-section"
 import BookSeriesSection from "../components/book-series-section"
-import VideosCatalogSection from "../components/videos-catalog-section"
 import * as styles from "./learn-more.module.css"
 
 const LearnMorePage = () => {
@@ -18,23 +19,17 @@ const LearnMorePage = () => {
               <p className={styles.eyebrow}>Learn More</p>
               <h1 className={styles.title}>Learn More</h1>
               <p className={styles.lede}>
-                A catalog of the learning resources: the core feature overview, deep-dive articles, videos, and the book series.
+                Deep-dive articles that explain the paradigm shift, the guardrails story, and the AI engineer’s toolbox.
               </p>
             </div>
           </div>
         </section>
 
-        <LandingLearnSection
-          id="learn-guardrails"
-          eyebrow="Learn More"
-          title="Guardrails for Agent Autonomy"
-          lede="A deep dive into the duality: autonomy requires brakes. Threat modeling, least privilege, durable HITL, sandboxing layers, and secretless execution."
-          to="/procedure-sandboxing/"
-          ctaText="Read: Guardrails"
-          Diagram={GuardrailsStackDiagram}
-        />
+        <WhyNewLanguageSpotlight id="learn-why-new-language" eyebrow="Learn More" />
 
-        <LandingLearnSection
+        <GuardrailsSpotlight id="learn-guardrails" eyebrow="Learn More" />
+
+        <SpotlightSection
           id="learn-toolbox"
           eyebrow="Learn More"
           title="The AI Engineer’s Toolbox"
@@ -42,10 +37,21 @@ const LearnMorePage = () => {
           to="/ai-engineers-toolbox/"
           ctaText="Read: Toolbox"
           Diagram={ToolboxDiagram}
+          flip={true}
         />
 
-        <VideosCatalogSection />
-        <BookSeriesSection id="learn-books" mutedBackground={false} />
+        <VideosSpotlightSection
+          id="learn-videos"
+          title="Videos"
+          lede="Watch the story: visuals + narration that mirror the articles."
+          featuredIds={["why-new-language", "guardrails"]}
+          to="/videos/"
+          ctaText="Watch videos"
+          mutedBackground={true}
+        />
+
+        <BookSeriesSection id="learn-books" mutedBackground={true} />
+
       </div>
     </Layout>
   )

@@ -21,7 +21,7 @@
 
 .navCategories {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   gap: var(--space-6);
   margin-top: var(--space-5);
 }
@@ -42,6 +42,16 @@
   margin: 0 0 var(--space-2) 0;
   padding-bottom: var(--space-2);
   border-bottom: 2px solid var(--color-primary);
+}
+
+.navCategoryLabel a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.navCategoryLabel a:hover {
+  color: var(--color-primary);
+  text-decoration: none;
 }
 
 .navCategoryItems {
@@ -103,6 +113,28 @@
 
   .navCategoryItem a {
     font-size: 1rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .navCategories {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "learn get"
+      "learn resources";
+    align-items: start;
+  }
+
+  .navCategory[data-category="learn-more"] {
+    grid-area: learn;
+  }
+
+  .navCategory[data-category="get-started"] {
+    grid-area: get;
+  }
+
+  .navCategory[data-category="resources"] {
+    grid-area: resources;
   }
 }
 

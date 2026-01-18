@@ -6,6 +6,7 @@
   "dependencies": {
     "@mdx-js/react": "^2.3.0",
     "@remotion/player": "4.0.406",
+    "d3": "^7.9.0",
     "gatsby": "^5.14.6",
     "gatsby-citation-manager": "github:AnthusAI/gatsby-citation-manager",
     "gatsby-plugin-image": "^3.14.0",
@@ -41,7 +42,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "check:node": "node scripts/ensure-node-20.js",
-    "postinstall": "cd node_modules/gatsby-citation-manager && npm install && npm run build",
+    "postinstall": "cd node_modules/gatsby-citation-manager && npm install && npm run --if-present build",
     "preinstall": "npm run check:node",
     "prebuild": "npm run check:node",
     "predevelop": "npm run check:node",

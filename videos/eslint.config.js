@@ -36,7 +36,15 @@ module.exports = [
     },
   },
   {
-    files: ["src/components/diagrams/ContainerSandboxDiagram.tsx"],
+    files: [
+      "src/components/diagrams/ContainerSandboxDiagram.tsx",
+      "src/components/diagrams/GuardrailsStackDiagram.tsx",
+      "src/components/diagrams/StagedToolAccessDiagram.tsx",
+      "src/components/diagrams/PromptEngineeringCeilingDiagram.tsx",
+      "src/components/diagrams/OldWayFlowchartDiagram.tsx",
+      "src/components/diagrams/NewWayProgramDiagram.tsx",
+      "src/components/diagrams/AgentGuardrailsDiagram.tsx",
+    ],
     rules: {
       "@typescript-eslint/no-require-imports": "off",
     },

@@ -23,6 +23,19 @@ exports.createPages = async ({ actions }) => {
     redirectInBrowser: true,
   })
 
+  createRedirect({
+    fromPath: "/procedure-sandboxing",
+    toPath: "/guardrails/",
+    isPermanent: true,
+    redirectInBrowser: true,
+  })
+  createRedirect({
+    fromPath: "/procedure-sandboxing/",
+    toPath: "/guardrails/",
+    isPermanent: true,
+    redirectInBrowser: true,
+  })
+
   createPage({
     path: "/using-dsg",
     component: require.resolve("./src/templates/using-dsg.js"),

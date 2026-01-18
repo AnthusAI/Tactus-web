@@ -1,11 +1,11 @@
 import { Composition } from "remotion";
 import { IntroVideo } from "./videos/intro/IntroVideo";
 import { WhyNewLanguageVideo } from "./videos/why-new-language/WhyNewLanguageVideo";
-import { ProcedureSandboxingVideo } from "./videos/procedure-sandboxing/ProcedureSandboxingVideo";
+import { GuardrailsVideo } from "./videos/guardrails/GuardrailsVideo";
 import { getScriptDurationInFrames } from "@/babulus/utils";
 import introScript from "@/videos/intro/intro.script.json";
 import whyNewLanguageScript from "@/videos/why-new-language/why-new-language.script.json";
-import procedureSandboxingScript from "@/videos/procedure-sandboxing/procedure-sandboxing.script.json";
+import guardrailsScript from "@/videos/guardrails/guardrails.script.json";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -29,13 +29,13 @@ export const RemotionRoot: React.FC = () => {
         defaultProps={{ audioSrc: null }}
       />
       <Composition
-        id="ProcedureSandboxing"
-        component={ProcedureSandboxingVideo}
-        durationInFrames={getScriptDurationInFrames(procedureSandboxingScript, 30)}
+        id="Guardrails"
+        component={GuardrailsVideo}
+        durationInFrames={getScriptDurationInFrames(guardrailsScript, 30)}
         fps={30}
         width={1920}
         height={1080}
-        defaultProps={{}}
+        defaultProps={{ audioSrc: null }}
       />
     </>
   );

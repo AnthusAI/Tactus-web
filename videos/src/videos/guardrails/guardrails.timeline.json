@@ -1,0 +1,776 @@
+{
+  "items": [
+    {
+      "type": "lead_in",
+      "startSec": 0.0,
+      "endSec": 0.25,
+      "seconds": 0.25
+    },
+    {
+      "type": "tts",
+      "sceneId": "title_card",
+      "cueId": "title",
+      "startSec": 0.25,
+      "endSec": 8.35,
+      "segments": [
+        {
+          "type": "pause",
+          "startSec": 0.25,
+          "endSec": 0.95,
+          "seconds": 0.7
+        },
+        {
+          "type": "tts",
+          "startSec": 0.95,
+          "endSec": 4.3,
+          "text": "Guardrails for agent autonomy.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/title_card--title--tts--dd2b678f3132--1.wav",
+          "durationSec": 3.35,
+          "rawDurationSec": 3.35,
+          "trimEndSec": 0.0
+        },
+        {
+          "type": "pause",
+          "startSec": 4.3,
+          "endSec": 4.75,
+          "seconds": 0.45
+        },
+        {
+          "type": "tts",
+          "startSec": 4.75,
+          "endSec": 8.35,
+          "text": "Why you can\u2019t drive fast without brakes.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/title_card--title--tts--1c4bcf8c79e6--1.wav",
+          "durationSec": 3.6,
+          "rawDurationSec": 3.6,
+          "trimEndSec": 0.0
+        }
+      ]
+    },
+    {
+      "type": "tts",
+      "sceneId": "paradox",
+      "cueId": "brakes",
+      "startSec": 8.35,
+      "endSec": 35.0,
+      "segments": [
+        {
+          "type": "tts",
+          "startSec": 8.35,
+          "endSec": 15.399999999999999,
+          "text": "Picture a Formula One car with its brake system removed. Lighter. Simpler. Fewer things to go wrong.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/paradox--brakes--tts--73b02ff42f72--1.wav",
+          "durationSec": 7.05,
+          "rawDurationSec": 7.05,
+          "trimEndSec": 0.0
+        },
+        {
+          "type": "pause",
+          "startSec": 15.399999999999999,
+          "endSec": 15.899999999999999,
+          "seconds": 0.5
+        },
+        {
+          "type": "tts",
+          "startSec": 15.899999999999999,
+          "endSec": 18.4,
+          "text": "You\u2019d crash on the first turn.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/paradox--brakes--tts--831298322e6d--1.wav",
+          "durationSec": 2.5,
+          "rawDurationSec": 2.5,
+          "trimEndSec": 0.0
+        },
+        {
+          "type": "pause",
+          "startSec": 18.4,
+          "endSec": 18.849999999999998,
+          "seconds": 0.45
+        },
+        {
+          "type": "tts",
+          "startSec": 18.849999999999998,
+          "endSec": 27.0,
+          "text": "The best racing teams don\u2019t debate whether brakes slow them down. They know something deeper: brakes are what let you go fast in the first place.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/paradox--brakes--tts--e4484e9b9615--1.wav",
+          "durationSec": 8.15,
+          "rawDurationSec": 8.15,
+          "trimEndSec": 0.0
+        },
+        {
+          "type": "pause",
+          "startSec": 27.0,
+          "endSec": 27.55,
+          "seconds": 0.55
+        },
+        {
+          "type": "tts",
+          "startSec": 27.55,
+          "endSec": 35.0,
+          "text": "That\u2019s the paradox of agent autonomy. Guardrails are not a limitation on autonomy \u2014 they\u2019re the prerequisite for it.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/paradox--brakes--tts--f501b3b5f127--1.wav",
+          "durationSec": 7.45,
+          "rawDurationSec": 7.45,
+          "trimEndSec": 0.0
+        }
+      ]
+    },
+    {
+      "type": "tts",
+      "sceneId": "patterns",
+      "cueId": "patterns",
+      "startSec": 35.0,
+      "endSec": 67.05,
+      "segments": [
+        {
+          "type": "tts",
+          "startSec": 35.0,
+          "endSec": 40.85,
+          "text": "This pattern repeats everywhere humans have built powerful, autonomous systems.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/patterns--patterns--tts--4c102ba2d9da--1.wav",
+          "durationSec": 5.85,
+          "rawDurationSec": 5.85,
+          "trimEndSec": 0.0
+        },
+        {
+          "type": "pause",
+          "startSec": 40.85,
+          "endSec": 41.25,
+          "seconds": 0.4
+        },
+        {
+          "type": "tts",
+          "startSec": 41.25,
+          "endSec": 59.9,
+          "text": "Aviation scaled autonomy by adding checklists, hard limits, and layered safety. Medicine made protocols standard because expertise alone isn\u2019t enough under pressure. Organizations delegate power safely by creating budgets, approvals, audits, and reviews.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/patterns--patterns--tts--18f16608ea67--1.wav",
+          "durationSec": 18.65,
+          "rawDurationSec": 18.65,
+          "trimEndSec": 0.0
+        },
+        {
+          "type": "pause",
+          "startSec": 59.9,
+          "endSec": 60.4,
+          "seconds": 0.5
+        },
+        {
+          "type": "tts",
+          "startSec": 60.4,
+          "endSec": 67.05,
+          "text": "The more powerful the actor, the more critical the guardrails. AI isn\u2019t special \u2014 it\u2019s just newer.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/patterns--patterns--tts--482c1c697d9f--1.wav",
+          "durationSec": 6.65,
+          "rawDurationSec": 6.65,
+          "trimEndSec": 0.0
+        }
+      ]
+    },
+    {
+      "type": "tts",
+      "sceneId": "prompt_ceiling",
+      "cueId": "prompt_ceiling",
+      "startSec": 67.05,
+      "endSec": 92.65,
+      "segments": [
+        {
+          "type": "tts",
+          "startSec": 67.05,
+          "endSec": 72.0,
+          "text": "Prompts matter. They shape behavior and reduce error rates.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/prompt_ceiling--prompt_ceiling--tts--93e798981f16--1.wav",
+          "durationSec": 4.95,
+          "rawDurationSec": 4.95,
+          "trimEndSec": 0.0
+        },
+        {
+          "type": "pause",
+          "startSec": 72.0,
+          "endSec": 72.4,
+          "seconds": 0.4
+        },
+        {
+          "type": "tts",
+          "startSec": 72.4,
+          "endSec": 86.55000000000001,
+          "text": "But prompts are suggestions, not controls. When an agent has access to powerful tools, you eventually hit a ceiling. You can make failure less likely, but you can\u2019t make it vanish.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/prompt_ceiling--prompt_ceiling--tts--bd122c59b636--1.wav",
+          "durationSec": 14.15,
+          "rawDurationSec": 14.15,
+          "trimEndSec": 0.0
+        },
+        {
+          "type": "pause",
+          "startSec": 86.55000000000001,
+          "endSec": 87.05000000000001,
+          "seconds": 0.5
+        },
+        {
+          "type": "tts",
+          "startSec": 87.05000000000001,
+          "endSec": 92.65,
+          "text": "Production safety can\u2019t be built out of suggestions alone. You need enforceable boundaries.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/prompt_ceiling--prompt_ceiling--tts--edd755ff4a80--1.wav",
+          "durationSec": 5.6,
+          "rawDurationSec": 5.6,
+          "trimEndSec": 0.0
+        }
+      ]
+    },
+    {
+      "type": "tts",
+      "sceneId": "manual_assembly",
+      "cueId": "manual_assembly",
+      "startSec": 92.65,
+      "endSec": 119.70000000000002,
+      "segments": [
+        {
+          "type": "tts",
+          "startSec": 92.65,
+          "endSec": 102.60000000000001,
+          "text": "The best teams already add guardrails in Python: schemas, validation, retries, approval gates, sandboxing, and secrets hygiene.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/manual_assembly--manual_assembly--tts--923574cf1ae7--1.wav",
+          "durationSec": 9.95,
+          "rawDurationSec": 9.95,
+          "trimEndSec": 0.0
+        },
+        {
+          "type": "pause",
+          "startSec": 102.60000000000001,
+          "endSec": 103.00000000000001,
+          "seconds": 0.4
+        },
+        {
+          "type": "tts",
+          "startSec": 103.00000000000001,
+          "endSec": 114.30000000000001,
+          "text": "The problem isn\u2019t that people don\u2019t know guardrails matter. The problem is that when you assemble everything by convention across mismatched systems, it\u2019s easy to miss a layer.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/manual_assembly--manual_assembly--tts--a8a6045698ab--1.wav",
+          "durationSec": 11.3,
+          "rawDurationSec": 11.3,
+          "trimEndSec": 0.0
+        },
+        {
+          "type": "pause",
+          "startSec": 114.30000000000001,
+          "endSec": 114.75000000000001,
+          "seconds": 0.45
+        },
+        {
+          "type": "tts",
+          "startSec": 114.75000000000001,
+          "endSec": 119.70000000000002,
+          "text": "Missing a layer won\u2019t feel like a mistake until it becomes an incident.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/manual_assembly--manual_assembly--tts--1c6a5bcc3272--1.wav",
+          "durationSec": 4.95,
+          "rawDurationSec": 4.95,
+          "trimEndSec": 0.0
+        }
+      ]
+    },
+    {
+      "type": "tts",
+      "sceneId": "defense_in_depth",
+      "cueId": "defense_in_depth",
+      "startSec": 119.70000000000002,
+      "endSec": 138.10000000000002,
+      "segments": [
+        {
+          "type": "tts",
+          "startSec": 119.70000000000002,
+          "endSec": 129.00000000000003,
+          "text": "This is the philosophy behind Tactus. Guardrails are not add-ons you bolt on later. They\u2019re architectural decisions baked into the execution model.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/defense_in_depth--defense_in_depth--tts--61a112ef2bfd--1.wav",
+          "durationSec": 9.3,
+          "rawDurationSec": 9.3,
+          "trimEndSec": 0.0
+        },
+        {
+          "type": "pause",
+          "startSec": 129.00000000000003,
+          "endSec": 129.50000000000003,
+          "seconds": 0.5
+        },
+        {
+          "type": "tts",
+          "startSec": 129.50000000000003,
+          "endSec": 138.10000000000002,
+          "text": "No single technique solves everything. Guardrails work as defense in depth: layers that each reduce a different class of risk.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/defense_in_depth--defense_in_depth--tts--00a2b640c45e--1.wav",
+          "durationSec": 8.6,
+          "rawDurationSec": 8.6,
+          "trimEndSec": 0.0
+        }
+      ]
+    },
+    {
+      "type": "tts",
+      "sceneId": "staged_tools",
+      "cueId": "staged_tools",
+      "startSec": 138.10000000000002,
+      "endSec": 161.30000000000004,
+      "segments": [
+        {
+          "type": "tts",
+          "startSec": 138.10000000000002,
+          "endSec": 148.65000000000003,
+          "text": "Tools aren\u2019t just convenience \u2014 they\u2019re the capability surface. If you want safe autonomy, you can\u2019t give the agent a broad, always-on toolbelt and hope it behaves.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/staged_tools--staged_tools--tts--4b601253df72--1.wav",
+          "durationSec": 10.55,
+          "rawDurationSec": 10.55,
+          "trimEndSec": 0.0
+        },
+        {
+          "type": "pause",
+          "startSec": 148.65000000000003,
+          "endSec": 149.10000000000002,
+          "seconds": 0.45
+        },
+        {
+          "type": "tts",
+          "startSec": 149.10000000000002,
+          "endSec": 157.50000000000003,
+          "text": "Instead, design your workflow in stages. Give the right tools at the right time \u2014 and remove them when you don\u2019t need them.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/staged_tools--staged_tools--tts--4798bacf320e--1.wav",
+          "durationSec": 8.4,
+          "rawDurationSec": 8.4,
+          "trimEndSec": 0.0
+        },
+        {
+          "type": "pause",
+          "startSec": 157.50000000000003,
+          "endSec": 158.00000000000003,
+          "seconds": 0.5
+        },
+        {
+          "type": "tts",
+          "startSec": 158.00000000000003,
+          "endSec": 161.30000000000004,
+          "text": "This is least privilege, made concrete.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/staged_tools--staged_tools--tts--a18cfbad5e8e--1.wav",
+          "durationSec": 3.3,
+          "rawDurationSec": 3.3,
+          "trimEndSec": 0.0
+        }
+      ]
+    },
+    {
+      "type": "tts",
+      "sceneId": "sandbox_broker",
+      "cueId": "sandbox_broker",
+      "startSec": 161.30000000000004,
+      "endSec": 204.20000000000002,
+      "segments": [
+        {
+          "type": "tts",
+          "startSec": 161.30000000000004,
+          "endSec": 175.40000000000003,
+          "text": "Once you let an agent write files or run code, you want a cage. Tactus runs orchestration inside a sandboxed Lua environment, and when sandboxing is enabled, inside an ephemeral container.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/sandbox_broker--sandbox_broker--tts--603f37e601ce--1.wav",
+          "durationSec": 14.1,
+          "rawDurationSec": 14.1,
+          "trimEndSec": 0.0
+        },
+        {
+          "type": "pause",
+          "startSec": 175.40000000000003,
+          "endSec": 175.90000000000003,
+          "seconds": 0.5
+        },
+        {
+          "type": "tts",
+          "startSec": 175.90000000000003,
+          "endSec": 183.35000000000002,
+          "text": "But containers answer only one security question: what can it touch? The other question is: what can it steal?\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/sandbox_broker--sandbox_broker--tts--44929f37aee2--1.wav",
+          "durationSec": 7.45,
+          "rawDurationSec": 7.45,
+          "trimEndSec": 0.0
+        },
+        {
+          "type": "pause",
+          "startSec": 183.35000000000002,
+          "endSec": 183.85000000000002,
+          "seconds": 0.5
+        },
+        {
+          "type": "tts",
+          "startSec": 183.85000000000002,
+          "endSec": 198.85000000000002,
+          "text": "The broker boundary is the game changer. Keep the runtime secretless and networkless by default. The sandbox can request tool calls, but it never holds provider keys. The keys live outside the sandbox, in a trusted broker.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/sandbox_broker--sandbox_broker--tts--a828efbb64da--1.wav",
+          "durationSec": 15.0,
+          "rawDurationSec": 15.0,
+          "trimEndSec": 0.0
+        },
+        {
+          "type": "pause",
+          "startSec": 198.85000000000002,
+          "endSec": 199.3,
+          "seconds": 0.45
+        },
+        {
+          "type": "tts",
+          "startSec": 199.3,
+          "endSec": 204.20000000000002,
+          "text": "When there\u2019s nothing to steal, a whole class of attacks collapses.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/sandbox_broker--sandbox_broker--tts--af1896c994d1--1.wav",
+          "durationSec": 4.9,
+          "rawDurationSec": 4.9,
+          "trimEndSec": 0.0
+        }
+      ]
+    },
+    {
+      "type": "tts",
+      "sceneId": "example",
+      "cueId": "recap_emails",
+      "startSec": 204.20000000000002,
+      "endSec": 230.55,
+      "segments": [
+        {
+          "type": "tts",
+          "startSec": 204.20000000000002,
+          "endSec": 209.20000000000002,
+          "text": "Consider a workflow that drafts and sends recap emails from meeting notes.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/example--recap_emails--tts--e9c71368b3dc--1.wav",
+          "durationSec": 5.0,
+          "rawDurationSec": 5.0,
+          "trimEndSec": 0.0
+        },
+        {
+          "type": "pause",
+          "startSec": 209.20000000000002,
+          "endSec": 209.60000000000002,
+          "seconds": 0.4
+        },
+        {
+          "type": "tts",
+          "startSec": 209.60000000000002,
+          "endSec": 217.50000000000003,
+          "text": "Without guardrails, you either supervise every run, or you give the agent side-effect tools and accept unacceptable risk.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/example--recap_emails--tts--2c5123b844bd--1.wav",
+          "durationSec": 7.9,
+          "rawDurationSec": 7.9,
+          "trimEndSec": 0.0
+        },
+        {
+          "type": "pause",
+          "startSec": 217.50000000000003,
+          "endSec": 217.95000000000002,
+          "seconds": 0.45
+        },
+        {
+          "type": "tts",
+          "startSec": 217.95000000000002,
+          "endSec": 230.55,
+          "text": "With staged tools and durable approvals, the agent drafts with read-only tools, a human reviews at a checkpoint, and only after approval does the send tool become available.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/example--recap_emails--tts--a34bdcc17fa4--1.wav",
+          "durationSec": 12.6,
+          "rawDurationSec": 12.6,
+          "trimEndSec": 0.0
+        }
+      ]
+    },
+    {
+      "type": "tts",
+      "sceneId": "closing",
+      "cueId": "closing",
+      "startSec": 230.55,
+      "endSec": 250.0,
+      "segments": [
+        {
+          "type": "tts",
+          "startSec": 230.55,
+          "endSec": 234.65,
+          "text": "Guardrails aren\u2019t a tax. They\u2019re the engine of delegation.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/closing--closing--tts--355820868de0--1.wav",
+          "durationSec": 4.1,
+          "rawDurationSec": 4.1,
+          "trimEndSec": 0.0
+        },
+        {
+          "type": "pause",
+          "startSec": 234.65,
+          "endSec": 235.05,
+          "seconds": 0.4
+        },
+        {
+          "type": "tts",
+          "startSec": 235.05,
+          "endSec": 244.9,
+          "text": "The race car needs brakes. The surgeon needs protocols. The organization needs governance. The agent needs guardrails.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/closing--closing--tts--9bd0a53f1f1c--1.wav",
+          "durationSec": 9.85,
+          "rawDurationSec": 9.85,
+          "trimEndSec": 0.0
+        },
+        {
+          "type": "pause",
+          "startSec": 244.9,
+          "endSec": 245.4,
+          "seconds": 0.5
+        },
+        {
+          "type": "tts",
+          "startSec": 245.4,
+          "endSec": 250.0,
+          "text": "Read the full story at tactus dot run slash guardrails.\n",
+          "segmentPath": "videos/.babulus/out/guardrails/env/development/segments/closing--closing--tts--7c643ad3003a--1.wav",
+          "durationSec": 4.6,
+          "rawDurationSec": 4.6,
+          "trimEndSec": 0.0
+        }
+      ]
+    }
+  ],
+  "audio": {
+    "tracks": [
+      {
+        "id": "narration",
+        "kind": "narration",
+        "clips": [
+          {
+            "id": "title_card--title--tts--dd2b678f3132--1",
+            "kind": "file",
+            "startSec": 0.95,
+            "durationSec": 3.35,
+            "src": "babulus/guardrails/segments/title_card--title--tts--dd2b678f3132--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "title_card--title--tts--1c4bcf8c79e6--1",
+            "kind": "file",
+            "startSec": 4.75,
+            "durationSec": 3.6,
+            "src": "babulus/guardrails/segments/title_card--title--tts--1c4bcf8c79e6--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "paradox--brakes--tts--73b02ff42f72--1",
+            "kind": "file",
+            "startSec": 8.35,
+            "durationSec": 7.05,
+            "src": "babulus/guardrails/segments/paradox--brakes--tts--73b02ff42f72--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "paradox--brakes--tts--831298322e6d--1",
+            "kind": "file",
+            "startSec": 15.899999999999999,
+            "durationSec": 2.5,
+            "src": "babulus/guardrails/segments/paradox--brakes--tts--831298322e6d--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "paradox--brakes--tts--e4484e9b9615--1",
+            "kind": "file",
+            "startSec": 18.849999999999998,
+            "durationSec": 8.15,
+            "src": "babulus/guardrails/segments/paradox--brakes--tts--e4484e9b9615--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "paradox--brakes--tts--f501b3b5f127--1",
+            "kind": "file",
+            "startSec": 27.55,
+            "durationSec": 7.45,
+            "src": "babulus/guardrails/segments/paradox--brakes--tts--f501b3b5f127--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "patterns--patterns--tts--4c102ba2d9da--1",
+            "kind": "file",
+            "startSec": 35.0,
+            "durationSec": 5.85,
+            "src": "babulus/guardrails/segments/patterns--patterns--tts--4c102ba2d9da--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "patterns--patterns--tts--18f16608ea67--1",
+            "kind": "file",
+            "startSec": 41.25,
+            "durationSec": 18.65,
+            "src": "babulus/guardrails/segments/patterns--patterns--tts--18f16608ea67--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "patterns--patterns--tts--482c1c697d9f--1",
+            "kind": "file",
+            "startSec": 60.4,
+            "durationSec": 6.65,
+            "src": "babulus/guardrails/segments/patterns--patterns--tts--482c1c697d9f--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "prompt_ceiling--prompt_ceiling--tts--93e798981f16--1",
+            "kind": "file",
+            "startSec": 67.05,
+            "durationSec": 4.95,
+            "src": "babulus/guardrails/segments/prompt_ceiling--prompt_ceiling--tts--93e798981f16--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "prompt_ceiling--prompt_ceiling--tts--bd122c59b636--1",
+            "kind": "file",
+            "startSec": 72.4,
+            "durationSec": 14.15,
+            "src": "babulus/guardrails/segments/prompt_ceiling--prompt_ceiling--tts--bd122c59b636--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "prompt_ceiling--prompt_ceiling--tts--edd755ff4a80--1",
+            "kind": "file",
+            "startSec": 87.05000000000001,
+            "durationSec": 5.6,
+            "src": "babulus/guardrails/segments/prompt_ceiling--prompt_ceiling--tts--edd755ff4a80--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "manual_assembly--manual_assembly--tts--923574cf1ae7--1",
+            "kind": "file",
+            "startSec": 92.65,
+            "durationSec": 9.95,
+            "src": "babulus/guardrails/segments/manual_assembly--manual_assembly--tts--923574cf1ae7--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "manual_assembly--manual_assembly--tts--a8a6045698ab--1",
+            "kind": "file",
+            "startSec": 103.00000000000001,
+            "durationSec": 11.3,
+            "src": "babulus/guardrails/segments/manual_assembly--manual_assembly--tts--a8a6045698ab--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "manual_assembly--manual_assembly--tts--1c6a5bcc3272--1",
+            "kind": "file",
+            "startSec": 114.75000000000001,
+            "durationSec": 4.95,
+            "src": "babulus/guardrails/segments/manual_assembly--manual_assembly--tts--1c6a5bcc3272--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "defense_in_depth--defense_in_depth--tts--61a112ef2bfd--1",
+            "kind": "file",
+            "startSec": 119.70000000000002,
+            "durationSec": 9.3,
+            "src": "babulus/guardrails/segments/defense_in_depth--defense_in_depth--tts--61a112ef2bfd--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "defense_in_depth--defense_in_depth--tts--00a2b640c45e--1",
+            "kind": "file",
+            "startSec": 129.50000000000003,
+            "durationSec": 8.6,
+            "src": "babulus/guardrails/segments/defense_in_depth--defense_in_depth--tts--00a2b640c45e--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "staged_tools--staged_tools--tts--4b601253df72--1",
+            "kind": "file",
+            "startSec": 138.10000000000002,
+            "durationSec": 10.55,
+            "src": "babulus/guardrails/segments/staged_tools--staged_tools--tts--4b601253df72--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "staged_tools--staged_tools--tts--4798bacf320e--1",
+            "kind": "file",
+            "startSec": 149.10000000000002,
+            "durationSec": 8.4,
+            "src": "babulus/guardrails/segments/staged_tools--staged_tools--tts--4798bacf320e--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "staged_tools--staged_tools--tts--a18cfbad5e8e--1",
+            "kind": "file",
+            "startSec": 158.00000000000003,
+            "durationSec": 3.3,
+            "src": "babulus/guardrails/segments/staged_tools--staged_tools--tts--a18cfbad5e8e--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "sandbox_broker--sandbox_broker--tts--603f37e601ce--1",
+            "kind": "file",
+            "startSec": 161.30000000000004,
+            "durationSec": 14.1,
+            "src": "babulus/guardrails/segments/sandbox_broker--sandbox_broker--tts--603f37e601ce--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "sandbox_broker--sandbox_broker--tts--44929f37aee2--1",
+            "kind": "file",
+            "startSec": 175.90000000000003,
+            "durationSec": 7.45,
+            "src": "babulus/guardrails/segments/sandbox_broker--sandbox_broker--tts--44929f37aee2--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "sandbox_broker--sandbox_broker--tts--a828efbb64da--1",
+            "kind": "file",
+            "startSec": 183.85000000000002,
+            "durationSec": 15.0,
+            "src": "babulus/guardrails/segments/sandbox_broker--sandbox_broker--tts--a828efbb64da--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "sandbox_broker--sandbox_broker--tts--af1896c994d1--1",
+            "kind": "file",
+            "startSec": 199.3,
+            "durationSec": 4.9,
+            "src": "babulus/guardrails/segments/sandbox_broker--sandbox_broker--tts--af1896c994d1--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "example--recap_emails--tts--e9c71368b3dc--1",
+            "kind": "file",
+            "startSec": 204.20000000000002,
+            "durationSec": 5.0,
+            "src": "babulus/guardrails/segments/example--recap_emails--tts--e9c71368b3dc--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "example--recap_emails--tts--2c5123b844bd--1",
+            "kind": "file",
+            "startSec": 209.60000000000002,
+            "durationSec": 7.9,
+            "src": "babulus/guardrails/segments/example--recap_emails--tts--2c5123b844bd--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "example--recap_emails--tts--a34bdcc17fa4--1",
+            "kind": "file",
+            "startSec": 217.95000000000002,
+            "durationSec": 12.6,
+            "src": "babulus/guardrails/segments/example--recap_emails--tts--a34bdcc17fa4--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "closing--closing--tts--355820868de0--1",
+            "kind": "file",
+            "startSec": 230.55,
+            "durationSec": 4.1,
+            "src": "babulus/guardrails/segments/closing--closing--tts--355820868de0--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "closing--closing--tts--9bd0a53f1f1c--1",
+            "kind": "file",
+            "startSec": 235.05,
+            "durationSec": 9.85,
+            "src": "babulus/guardrails/segments/closing--closing--tts--9bd0a53f1f1c--1.wav",
+            "volume": 1.0
+          },
+          {
+            "id": "closing--closing--tts--7c643ad3003a--1",
+            "kind": "file",
+            "startSec": 245.4,
+            "durationSec": 4.6,
+            "src": "babulus/guardrails/segments/closing--closing--tts--7c643ad3003a--1.wav",
+            "volume": 1.0
+          }
+        ]
+      }
+    ]
+  }
+}

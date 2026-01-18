@@ -37,7 +37,7 @@ const main = () => {
   const compositionToSlug = {
     Intro: "intro",
     WhyNewLanguage: "why-new-language",
-    ProcedureSandboxing: "procedure-sandboxing",
+    Guardrails: "guardrails",
   }
 
   const slugsToGenerate = targetComposition

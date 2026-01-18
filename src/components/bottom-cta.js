@@ -1,7 +1,7 @@
 import * as React from "react"
-import { Link } from "gatsby"
 
 import * as styles from "./bottom-cta.module.css"
+import Button from "./ui/button"
 
 const BottomCta = ({
   kicker,
@@ -18,9 +18,9 @@ const BottomCta = ({
           <h2 className={styles.title}>{title}</h2>
           {text ? <p className={styles.text}>{text}</p> : null}
           <div className={styles.buttons}>
-            <Link to={to} className={styles.primaryButton}>
+            <Button to={to} variant="primary" size="large" shadow>
               {buttonLabel}
-            </Link>
+            </Button>
           </div>
         </div>
       </div>
@@ -29,4 +29,3 @@ const BottomCta = ({
 }
 
 export default BottomCta
-

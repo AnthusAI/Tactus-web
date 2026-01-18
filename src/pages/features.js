@@ -269,7 +269,7 @@ Feature: Safe deployments
 
         <BottomCta
           title="Ready to start building?"
-          text="Follow a short walkthrough and write your first durable procedure."
+          text="Follow a short walkthrough and build your first tool-using agent workflow."
           buttonLabel="Get Started"
           to="/getting-started/"
         />

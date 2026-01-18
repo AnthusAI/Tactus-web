@@ -1,0 +1,164 @@
+{
+  "scenes": [
+    {
+      "id": "title_card",
+      "title": "Guardrails for Agent Autonomy",
+      "startSec": 0.25,
+      "endSec": 5.381875000000001,
+      "cues": [
+        {
+          "id": "title",
+          "label": "Title",
+          "startSec": 0.25,
+          "endSec": 5.381875000000001,
+          "text": "Guardrails for agent autonomy.\n Why you can\u2019t drive fast without brakes.",
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "paradox",
+      "title": "The Paradox of Power",
+      "startSec": 5.381875000000001,
+      "endSec": 29.720437500000003,
+      "cues": [
+        {
+          "id": "brakes",
+          "label": "Brakes",
+          "startSec": 5.381875000000001,
+          "endSec": 29.720437500000003,
+          "text": "Picture a Formula One car with its brake system removed. Lighter. Simpler. Fewer things to go wrong.\n You\u2019d crash on the first turn.\n The best racing teams don\u2019t debate whether brakes slow them down. They know something deeper: brakes are what let you go fast in the first place.\n That\u2019s the paradox of agent autonomy. Guardrails are not a limitation on autonomy \u2014 they\u2019re the prerequisite for it.",
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "patterns",
+      "title": "The Pattern Repeats Across Domains",
+      "startSec": 29.720437500000003,
+      "endSec": 56.9899375,
+      "cues": [
+        {
+          "id": "patterns",
+          "label": "Patterns",
+          "startSec": 29.720437500000003,
+          "endSec": 56.9899375,
+          "text": "This pattern repeats everywhere humans have built powerful, autonomous systems.\n Aviation scaled autonomy by adding checklists, hard limits, and layered safety. Medicine made protocols standard because expertise alone isn\u2019t enough under pressure. Organizations delegate power safely by creating budgets, approvals, audits, and reviews.\n The more powerful the actor, the more critical the guardrails. AI isn\u2019t special \u2014 it\u2019s just newer.",
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "prompt_ceiling",
+      "title": "The Prompt-Engineering Ceiling",
+      "startSec": 56.9899375,
+      "endSec": 77.28356250000002,
+      "cues": [
+        {
+          "id": "prompt_ceiling",
+          "label": "Prompt Ceiling",
+          "startSec": 56.9899375,
+          "endSec": 77.28356250000002,
+          "text": "Prompts matter. They shape behavior and reduce error rates.\n But prompts are suggestions, not controls. When an agent has access to powerful tools, you eventually hit a ceiling. You can make failure less likely, but you can\u2019t make it vanish.\n Production safety can\u2019t be built out of suggestions alone. You need enforceable boundaries.",
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "manual_assembly",
+      "title": "The Manual Assembly Problem",
+      "startSec": 77.28356250000002,
+      "endSec": 99.81793750000001,
+      "cues": [
+        {
+          "id": "manual_assembly",
+          "label": "Manual Assembly",
+          "startSec": 77.28356250000002,
+          "endSec": 99.81793750000001,
+          "text": "The best teams already add guardrails in Python: schemas, validation, retries, approval gates, sandboxing, and secrets hygiene.\n The problem isn\u2019t that people don\u2019t know guardrails matter. The problem is that when you assemble everything by convention across mismatched systems, it\u2019s easy to miss a layer.\n Missing a layer won\u2019t feel like a mistake until it becomes an incident.",
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "defense_in_depth",
+      "title": "Guardrails as First-Class Architecture",
+      "startSec": 99.81793750000001,
+      "endSec": 115.88581250000001,
+      "cues": [
+        {
+          "id": "defense_in_depth",
+          "label": "Defense in Depth",
+          "startSec": 99.81793750000001,
+          "endSec": 115.88581250000001,
+          "text": "This is the philosophy behind Tactus. Guardrails are not add-ons you bolt on later. They\u2019re architectural decisions baked into the execution model.\n No single technique solves everything. Guardrails work as defense in depth: layers that each reduce a different class of risk.",
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "staged_tools",
+      "title": "Least Privilege, Applied Per Stage",
+      "startSec": 115.88581250000001,
+      "endSec": 135.41568750000002,
+      "cues": [
+        {
+          "id": "staged_tools",
+          "label": "Staged Tools",
+          "startSec": 115.88581250000001,
+          "endSec": 135.41568750000002,
+          "text": "Tools aren\u2019t just convenience \u2014 they\u2019re the capability surface. If you want safe autonomy, you can\u2019t give the agent a broad, always-on toolbelt and hope it behaves.\n Instead, design your workflow in stages. Give the right tools at the right time \u2014 and remove them when you don\u2019t need them.\n This is least privilege, made concrete.",
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "sandbox_broker",
+      "title": "Sandboxing + a Secretless Broker Boundary",
+      "startSec": 135.41568750000002,
+      "endSec": 171.80743750000002,
+      "cues": [
+        {
+          "id": "sandbox_broker",
+          "label": "Sandbox + Broker",
+          "startSec": 135.41568750000002,
+          "endSec": 171.80743750000002,
+          "text": "Once you let an agent write files or run code, you want a cage. Tactus runs orchestration inside a sandboxed Lua environment, and when sandboxing is enabled, inside an ephemeral container.\n But containers answer only one security question: what can it touch? The other question is: what can it steal?\n The broker boundary is the game changer. Keep the runtime secretless and networkless by default. The sandbox can request tool calls, but it never holds provider keys. The keys live outside the sandbox, in a trusted broker.\n When there\u2019s nothing to steal, a whole class of attacks collapses.",
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "example",
+      "title": "A Concrete Example",
+      "startSec": 171.80743750000002,
+      "endSec": 193.0344375,
+      "cues": [
+        {
+          "id": "recap_emails",
+          "label": "Recap Emails",
+          "startSec": 171.80743750000002,
+          "endSec": 193.0344375,
+          "text": "Consider a workflow that drafts and sends recap emails from meeting notes.\n Without guardrails, you either supervise every run, or you give the agent side-effect tools and accept unacceptable risk.\n With staged tools and durable approvals, the agent drafts with read-only tools, a human reviews at a checkpoint, and only after approval does the send tool become available.",
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "closing",
+      "title": "Closing",
+      "startSec": 193.0344375,
+      "endSec": 208.47025,
+      "cues": [
+        {
+          "id": "closing",
+          "label": "Closing",
+          "startSec": 193.0344375,
+          "endSec": 208.47025,
+          "text": "Guardrails aren\u2019t a tax. They\u2019re the engine of delegation.\n The race car needs brakes. The surgeon needs protocols. The organization needs governance. The agent needs guardrails.\n Read the full story at tactus dot run slash guardrails.",
+          "bullets": []
+        }
+      ]
+    }
+  ]
+}

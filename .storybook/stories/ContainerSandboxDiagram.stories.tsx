@@ -1,12 +1,14 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import ContainerSandboxDiagram from "../../src/components/diagrams/ContainerSandboxDiagram";
+import { getDiagramThemeVars } from "../../src/components/diagrams/diagramTheme";
 
-const withForcedBackground = (backgroundColor: string) => (Story: any) => (
+const withForcedBackground = (theme: "light" | "dark") => (Story: any) => (
   <div
     style={{
+      ...getDiagramThemeVars(theme),
       width: "100vw",
       height: "100vh",
-      backgroundColor,
+      backgroundColor: "var(--color-bg)",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -36,14 +38,14 @@ export const WebsiteLight: Story = {
   args: {
     theme: "light",
   },
-  decorators: [withForcedBackground("#fdfdfd")],
+  decorators: [withForcedBackground("light")],
 };
 
 export const WebsiteDark: Story = {
   args: {
     theme: "dark",
   },
-  decorators: [withForcedBackground("#18181b")],
+  decorators: [withForcedBackground("dark")],
 };
 
 export const Video: Story = {
@@ -61,4 +63,3 @@ export const Video: Story = {
     },
   },
 };
-

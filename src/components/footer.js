@@ -10,11 +10,20 @@ const Footer = () => {
         {/* Left: Free and Open Source */}
         <div className={styles.left}>
           <p className={styles.text}>
-            Tactus is free and open source.
+            Tactus is{" "}
+            <a
+              href="https://en.wikipedia.org/wiki/Free_and_open-source_software"
+              target="_blank"
+              rel="noreferrer"
+              className={styles.link}
+            >
+              free and open source
+            </a>
+            .
           </p>
-          <a 
-            href="https://github.com/AnthusAI/Tactus" 
-            target="_blank" 
+          <a
+            href="https://github.com/AnthusAI/Tactus"
+            target="_blank"
             rel="noreferrer"
             className={`${styles.link} ${styles.socialLink}`}
           >
@@ -34,18 +43,19 @@ const Footer = () => {
             height={48}
             placeholder="none"
           />
-          <div className={styles.tagline}>
-            Code Responsibly
-          </div>
+          <div className={styles.tagline}>Code Responsibly</div>
         </div>
 
         {/* Right: Byline */}
         <div className={styles.right}>
-          <div className={styles.madeWith}>
-            Designed cybernetically
-          </div>
+          <div className={styles.madeWith}>Designed cybernetically</div>
           <div className={styles.byline}>
-            <a href="https://anth.us/ryan/" target="_blank" rel="noreferrer" className={styles.link}>
+            <a
+              href="https://anth.us/ryan/"
+              target="_blank"
+              rel="noreferrer"
+              className={styles.link}
+            >
               by Ryan Porter
             </a>
           </div>

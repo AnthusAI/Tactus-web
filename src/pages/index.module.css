@@ -75,12 +75,14 @@
 }
 
 .ctaGrid {
-  margin-top: var(--space-3);
+  /* Increased spacing above CTA */
+  margin-top: 5rem;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--space-4);
   align-items: center;
+  clear: both; /* Ensure it drops below floated elements */
 }
 
 .ctaGrid > a {
@@ -108,38 +110,64 @@
   width: 100%;
 }
 
-.installCode {
-  font-family: var(--font-mono);
-  font-size: var(--font-sm);
-  color: inherit;
-}
-
 .installCommand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.55rem 0.75rem;
-  border-radius: 999px;
-  background: var(--color-surface-2);
-  border: none;
+  /* Inherits display: inline-flex from Button */
+  /* Inherits align-items: center from Button */
+  /* Inherits border-radius from Button */
+  /* Inherits background from Button (secondary) */
+  /* Inherits border from Button */
+  
+  /* Layout specific to grid placement */
   flex: 1 1 18rem;
   min-width: min(28rem, 100%);
+  
+  /* Restore gap/padding specifics if needed, or let Button handle it */
+  gap: 0.5rem;
+  
+  /* Button.large padding is 0.6rem 1.5rem. 
+     We might want slightly less horizontal padding for the code snippet? 
+     Or stick with Button padding for consistency. 
+     Let's override to match previous slightly if Button is too wide, 
+     but user wants consistency. Let's start with Button defaults.
+  */
+  justify-content: space-between; /* Prompt left, button right? Or let margin-left: auto on button handle it */
+  padding-left: 1.5rem; /* Match Button.large */
+  padding-right: 0.6rem; /* Less padding on right to accommodate the copy button close to edge? */
 }
 
 .installPrompt {
   font-family: var(--font-mono);
   color: var(--color-text-muted);
+  /* Button.large sets font-size: 1.75rem. We need to reset this for the code/prompt */
+  font-size: 1rem;
+}
+
+.installCode {
+  font-family: var(--font-mono);
+  font-size: 1rem; /* Resetting size */
+  color: inherit;
+  background-color: transparent;
+  padding: 0;
+  flex: 1; /* Take up space */
+  text-align: left;
 }
 
 .copyButton {
-  margin-left: auto;
+  margin-left: 0.5rem;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
   padding: 0.4rem 0.7rem;
   border-radius: 999px;
   border: none;
-  background: var(--color-card-title);
+  
+  /* Secondary Button is surface-2. 
+     To stand out, this inner button needs contrast.
+     Maybe white (surface) or card-title?
+  */
+  background: var(--color-surface); 
+  box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.1);
+  
   color: var(--color-text);
   font-weight: 700;
   font-size: var(--font-sx);
@@ -148,8 +176,9 @@
 }
 
 .copyButton:hover {
-  background: var(--color-surface);
+  background: var(--color-bg); /* Slightly different? or same */
   text-decoration: none;
+  box-shadow: 0 6px 0 0 rgba(0, 0, 0, 0.1);
 }
 
 .copyButton:focus-visible {
@@ -196,9 +225,11 @@
 .heroAside {
   float: right;
   width: 50%;
-  max-width: 420px;
+  max-width: clamp(340px, 30vw, 560px);
   margin-left: var(--space-5);
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-6); /* Significant spacing below image/caption */
+  /* Ensure it doesn't push down relative to the text block start */
+  margin-top: 0; 
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
@@ -206,16 +237,27 @@
 
 .animalCard {
   width: 100%;
-  padding: var(--space-4);
-  border-radius: var(--border-radius);
-  background: var(--color-surface-2);
+  padding: 0; /* Remove padding to align image top with text top */
+  /* Removed border-radius and background for cleaner look */
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.animalImage {
+  width: 100%;
+  height: auto;
+  max-width: none;
 }
 
 .animalCaption {
   margin: var(--space-3) 0 0;
   color: var(--color-text-muted);
-  font-size: var(--font-sm);
+  font-size: 1.15rem; /* Increased from var(--font-sm) to be larger */
   max-width: none;
+  text-align: center; /* Center caption */
+  font-style: italic; /* Italic caption */
 }
 
 .features,
@@ -242,6 +284,48 @@
   color: var(--color-text-muted);
   font-size: var(--font-lg);
   line-height: var(--line-height-loose);
+}
+
+.narrativeSection {
+  padding-top: var(--space-4);
+}
+
+.narrativeGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+  align-items: center;
+}
+
+@media (min-width: 980px) {
+  .narrativeGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+}
+
+.narrativeContent {
+  /* Text content on the left */
+}
+
+.narrativeDiagramColumn {
+  /* Diagram on the right */
+  width: 100%;
+}
+
+.narrativeDiagram {
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.narrativeCaption {
+  margin-top: var(--space-3);
+  color: var(--color-text-muted);
+  font-size: var(--font-sm);
+  text-align: center;
+  font-style: italic;
 }
 
 .paradigm {
@@ -291,13 +375,13 @@
   border-radius: var(--border-radius);
   background: var(--color-surface);
   padding: var(--space-4);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.1);
   transition: transform 140ms ease, box-shadow 140ms ease;
 }
 
 .compareCard:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 0 0 rgba(0, 0, 0, 0.1);
 }
 
 .compareTitle {
@@ -451,13 +535,13 @@
   border-radius: var(--border-radius);
   background: var(--color-surface-2);
   padding: var(--space-4);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.1);
   transition: transform 140ms ease, box-shadow 140ms ease;
 }
 
 .featureCard:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 0 0 rgba(0, 0, 0, 0.1);
 }
 
 .featureCard h3 {
@@ -566,23 +650,14 @@
 }
 
 .bookCover {
-  border-radius: 0 4px 4px 0; /* Slight rounding on open edge */
-  box-shadow:
-    inset 4px 0 4px rgba(0, 0, 0, 0.1), /* Spine crease */
-    inset 0 1px 0 rgba(255, 255, 255, 0.2), /* Top highlight */
-    2px 4px 8px rgba(0, 0, 0, 0.1), /* Ambient shadow */
-    0 8px 24px rgba(0, 0, 0, 0.15); /* Deep shadow */
-  transition: transform 140ms ease, filter 140ms ease, box-shadow 140ms ease;
-  transform-origin: left center;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.1);
+  transition: transform 140ms ease, box-shadow 140ms ease;
 }
 
 .bookLink:hover .bookCover {
-  transform: translateY(-2px) rotateY(-5deg); /* Slight 3D lift */
-  filter: brightness(1.02);
-  box-shadow:
-    inset 4px 0 4px rgba(0, 0, 0, 0.08),
-    4px 8px 16px rgba(0, 0, 0, 0.15),
-    0 12px 32px rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 0 0 rgba(0, 0, 0, 0.1);
 }
 
 .bookTitle {
@@ -657,7 +732,7 @@
   }
 
   .animalCard {
-    width: min(420px, 100%);
+    width: min(340px, 100%); /* Reduced from 420px */
     background: transparent;
     padding: 0;
     box-shadow: none;

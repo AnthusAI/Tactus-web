@@ -1,4 +1,4 @@
-poster_time: "5s"
+poster_time: "198s"
 
 audio:
   # Environment-based providers (BABULUS_ENV=development, aws, azure, or production)
@@ -101,17 +101,35 @@ scenes:
           pause_seconds: 0.6
           segments:
             - voice: >
-                Since the dawn of computing in the 1950s, programming has meant one thing: anticipate every scenario and write code for it.
+                Since the dawn of computing over 80 years ago, programming has meant one thing: anticipate every scenario and write code for it.
                 Parse this format. Catch that error. Map these fields to those fields.
                 If you miss a case, the program breaks.
             - pause_seconds: 0.35
             - voice: >
                 But tool‑using agents flip the script.
-                Instead of explicitly handling every possible scenario, you describe what you want and give the agent the tools to do it.
-                And then you put guardrails around it to guide it toward your goals.
-            - pause_seconds: 0.7
+                Instead of explicitly handling every possible scenario, you define the procedure and let the agent work inside guardrails.
+            - pause_seconds: 0.18
             - voice: >
-                But how do you do that?  What we need now is a new kind of programming language for this new kind of program.
+                In this new kind of programming, first you start with an AI agent, a language model.
+            - pause_seconds: 0.18
+            - voice: >
+                then you give it a tool.
+            - pause_seconds: 0.18
+            - voice: >
+                You assign it a procedure to follow,
+            - pause_seconds: 0.18
+            - voice: >
+                and you put guardrails around that, to guide it toward the goal.
+      - id: paradigm_wrap
+        label: "Paradigm Wrap"
+        voice:
+          segments:
+            - pause_seconds: 0.4
+            - voice: >
+                Well... okay, but how do you do that, exactly?  Can you write computer programs that are about giving agents tools and procedures and guardrails?
+            - pause_seconds: 0.6
+            - voice: >
+                Yes!  There is a new kind of programming language for this new kind of program.  Tactus is a programming language for tool‑using agents.
 
   - id: hello_world
     title: "Hello, World"
@@ -121,8 +139,7 @@ scenes:
         voice:
           segments:
             - voice: >
-                Tactus is that new language.  It's a programming language for tool‑using agents.
-                Tactus procedures are computer programs that don't just include imperative instructions, they also include agents that can make decisions, and tools that can do work.
+                Tactus procedures are computer programs that include imperative instructions, like any other programmin language, but it has first-class, high-level constructs for the things that we care about now as AI engineers: procedures that revolve around agents that can make decisions, armed with powerful tools that can do real work, in a sandboxed environment to keep us all safe.
             - pause_seconds: 0.35
             - voice: >
                 You run Tactus procedures just like you wold run a program in any other language like Python or Node.

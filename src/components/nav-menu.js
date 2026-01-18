@@ -7,23 +7,42 @@ import * as styles from "./nav-menu.module.css"
 export const NAV_CONFIG = {
   categories: [
     {
+      id: "learn-more",
       label: 'Learn More',
+      to: "/learn-more/",
       items: [
-        { label: 'Learn More', to: '/learn-more/' },
         { label: 'Features', to: '/features/' },
         { label: 'Why a New Language?', to: '/why-new-language/' },
-        { label: 'Guardrails for Agent Autonomy', to: '/procedure-sandboxing/' },
         { label: 'The AI Engineer’s Toolbox', to: '/ai-engineers-toolbox/' },
+        { label: 'Guardrails for Agent Autonomy', to: '/guardrails/' },
       ]
     },
     {
+      id: "get-started",
       label: 'Get Started',
+      to: "/getting-started/",
       items: [
-        { label: 'Get Started', to: '/getting-started/' },
         { label: 'Download', to: '/download/' },
-        { label: 'Videos', to: '/videos/' },
-        { label: 'Books', to: '/#books' },
       ]
+    },
+    {
+      id: "example-usage",
+      label: "Example Usage",
+      // to: "/examples/", // Optional top-level link
+      items: [
+        { label: "Automated Scientific Discovery", to: "/examples/automated-scientific-discovery/" },
+        { label: "Text Classification", to: "/examples/text-classification/" },
+        { label: "Self-Evolving Agents", to: "/examples/self-evolving-agents/" },
+      ],
+    },
+    {
+      id: "resources",
+      label: "Resources",
+      to: "/resources/",
+      items: [
+        { label: "Videos", to: "/resources/#videos" },
+        { label: "Books", to: "/resources/#books" },
+      ],
     },
   ]
 }
@@ -40,13 +59,24 @@ const NavMenu = ({ onNavigate }) => {
       <div className={styles.navMenuInner}>
         <div className={styles.navCategories}>
           {NAV_CONFIG.categories.map((category) => (
-            category.items.length > 0 && (
+            (category.to || category.items.length > 0) && (
               <section
                 key={category.label}
                 className={styles.navCategory}
+                data-category={category.id || category.label}
               >
                 <h2 className={styles.navCategoryLabel}>
-                  {category.label}
+                  {category.to ? (
+                    <Link
+                      to={category.to}
+                      onClick={handleClick(category.to)}
+                      aria-label={category.label}
+                    >
+                      {category.label}
+                    </Link>
+                  ) : (
+                    category.label
+                  )}
                 </h2>
                 <ul className={styles.navCategoryItems}>
                   {category.items.map((item) => (

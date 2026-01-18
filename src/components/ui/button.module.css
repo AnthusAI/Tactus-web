@@ -1,0 +1,78 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  font-family: var(--font-sans);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  white-space: nowrap;
+  border: none;
+}
+
+.button:hover {
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+/* Override global anchor hover styles (layout.css) for button-like links */
+a.button:hover {
+  background: none;
+}
+
+/* Sizes */
+.medium {
+  padding: 0.5rem 1.25rem;
+  font-size: 1.35rem; 
+}
+
+.large {
+  padding: 0.6rem 1.5rem;
+  font-size: 1.75rem; 
+}
+
+/* Variants */
+
+/* Primary: Magenta bg, white text */
+.primary {
+  background: var(--color-primary);
+  color: var(--color-primary-ink);
+}
+
+.button.primary:hover {
+  background: color-mix(in srgb, var(--color-primary) 90%, black);
+  color: var(--color-primary-ink);
+}
+
+/* Secondary: Flat half-muted background */
+.secondary {
+  background: var(--color-surface-2);
+  color: var(--color-text);
+}
+
+.button.secondary:hover {
+  background: color-mix(in srgb, var(--color-surface-2) 90%, black);
+  color: var(--color-text);
+}
+
+/* Shadow Utility - applied via prop */
+/* Flat-colored shadow (solid, no blur) matching the request */
+.shadow.primary {
+  box-shadow: 0 4px 0 0 rgba(199, 0, 126, 0.4);
+}
+
+.shadow.primary:hover {
+  box-shadow: 0 6px 0 0 rgba(199, 0, 126, 0.4);
+}
+
+.shadow.secondary {
+  box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.1);
+}
+
+.shadow.secondary:hover {
+  box-shadow: 0 6px 0 0 rgba(0, 0, 0, 0.1);
+}

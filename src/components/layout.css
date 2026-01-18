@@ -61,7 +61,8 @@
   --space-5: 32px;
   --space-6: 64px;
   --border-radius: 8px;
-  --size-content: 54rem;
+  /* Standard-ish readable max width (a bit wider, still restrained) */
+  --size-content: 62rem; /* ~992px */
   --size-gutter: var(--space-5);
   --size-gap: var(--space-6);
   color-scheme: light;

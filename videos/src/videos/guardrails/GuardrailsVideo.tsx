@@ -1,0 +1,335 @@
+import React from "react";
+import { Audio, Sequence, interpolate, spring, staticFile, useCurrentFrame, useVideoConfig } from "remotion";
+import { GlobalStyles } from "../../components/GlobalStyles";
+import { Layout } from "../../components/Layout";
+import { Body, H2, TitleBlock } from "../../components/Typography";
+import type { Scene, Script } from "@/babulus/types";
+import { secondsToFrames } from "@/babulus/utils";
+import guardrailsScript from "@/videos/guardrails/guardrails.script.json";
+import { AudioTimelineLayer } from "@/babulus/AudioTimeline";
+import guardrailsTimeline from "./guardrails.timeline.json";
+import type { GeneratedTimeline } from "@/babulus/audioTypes";
+import GuardrailsStackDiagram from "../../components/diagrams/GuardrailsStackDiagram";
+import StagedToolAccessDiagram from "../../components/diagrams/StagedToolAccessDiagram";
+import PromptEngineeringCeilingDiagram from "../../components/diagrams/PromptEngineeringCeilingDiagram";
+import ContainerSandboxDiagram from "../../components/diagrams/ContainerSandboxDiagram";
+
+export type GuardrailsVideoProps = {
+  audioSrc?: string | null;
+  script?: Script;
+  timeline?: GeneratedTimeline | null;
+};
+
+export const GuardrailsVideo: React.FC<GuardrailsVideoProps> = ({
+  audioSrc = null,
+  script = guardrailsScript as Script,
+  timeline = guardrailsTimeline as GeneratedTimeline,
+}) => {
+  const { fps } = useVideoConfig();
+
+  const renderScene = (scene: Scene) => {
+    switch (scene.id) {
+      case "title_card":
+        return <TitleCardScene />;
+      case "paradox":
+        return <ParadoxScene />;
+      case "patterns":
+        return <PatternsScene />;
+      case "prompt_ceiling":
+        return <PromptCeilingScene />;
+      case "manual_assembly":
+        return <ManualAssemblyScene />;
+      case "defense_in_depth":
+        return <DefenseInDepthScene />;
+      case "staged_tools":
+        return <StagedToolsScene />;
+      case "sandbox_broker":
+        return <SandboxBrokerScene />;
+      case "example":
+        return <ExampleScene />;
+      case "closing":
+        return <ClosingScene />;
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <GlobalStyles>
+      {audioSrc ? <Audio src={staticFile(audioSrc)} /> : null}
+      {timeline ? <AudioTimelineLayer timeline={timeline} /> : null}
+      {script.scenes.map((scene) => {
+        const from = secondsToFrames(scene.startSec, fps);
+        const to = secondsToFrames(scene.endSec, fps);
+        return (
+          <Sequence key={scene.id} from={from} durationInFrames={to - from}>
+            {renderScene(scene)}
+          </Sequence>
+        );
+      })}
+    </GlobalStyles>
+  );
+};
+
+const useIntroAnim = (delayFrames = 0) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  return spring({
+    frame: Math.max(0, frame - delayFrames),
+    fps,
+    config: { damping: 120, stiffness: 240, mass: 0.6 },
+  });
+};
+
+const TitleCardScene: React.FC = () => {
+  const anim = useIntroAnim(0);
+  const anim2 = useIntroAnim(10);
+
+  return (
+    <Layout>
+      <H2 style={{ opacity: anim, transform: `scale(${0.94 + anim * 0.06})`, textAlign: "center" }}>
+        <TitleBlock>Guardrails for Agent Autonomy</TitleBlock>
+      </H2>
+      <Body size="lg" style={{ opacity: anim2, marginTop: 26, textAlign: "center" }}>
+        You can’t drive fast without brakes.
+      </Body>
+      <Body style={{ opacity: anim2, textAlign: "center", maxWidth: 1400 }}>
+        Constraints enable capability. Protocols enable autonomy. Boundaries enable delegation.
+      </Body>
+    </Layout>
+  );
+};
+
+const ParadoxScene: React.FC = () => {
+  const anim = useIntroAnim(0);
+  const anim2 = useIntroAnim(12);
+
+  return (
+    <Layout>
+      <H2 style={{ opacity: anim, textAlign: "center" }}>
+        <TitleBlock>You can’t drive fast without brakes</TitleBlock>
+      </H2>
+      <div style={{ marginTop: 34, width: 1500, opacity: anim2 }}>
+        <Body size="lg">
+          Guardrails aren’t a limitation on autonomy — they’re the prerequisite for it.
+        </Body>
+        <Body>
+          • If agents can take real actions, “most of the time” isn’t a strategy.
+          <br />
+          • Suggestions (prompts) aren’t enforceable controls.
+          <br />
+          • The safety story has to be architectural.
+        </Body>
+      </div>
+    </Layout>
+  );
+};
+
+const PatternsScene: React.FC = () => {
+  const anim = useIntroAnim(0);
+  const anim2 = useIntroAnim(12);
+
+  return (
+    <Layout>
+      <H2 style={{ opacity: anim, textAlign: "center" }}>
+        <TitleBlock>The pattern repeats across domains</TitleBlock>
+      </H2>
+
+      <div style={{ display: "flex", gap: 28, marginTop: 32, opacity: anim2 }}>
+        <div style={{ width: 470 }}>
+          <Body size="lg" weight={700} style={{ marginBottom: 10 }}>
+            Aviation
+          </Body>
+          <Body>
+            Hard limits, checklists, and layered safety didn’t reduce autonomy — they made delegation safe at scale.
+          </Body>
+        </div>
+        <div style={{ width: 470 }}>
+          <Body size="lg" weight={700} style={{ marginBottom: 10 }}>
+            Medicine
+          </Body>
+          <Body>
+            Protocols and checklists aren’t an insult to expertise. They’re how experts avoid catastrophic misses under pressure.
+          </Body>
+        </div>
+        <div style={{ width: 470 }}>
+          <Body size="lg" weight={700} style={{ marginBottom: 10 }}>
+            Organizations
+          </Body>
+          <Body>
+            Delegation requires boundaries: budgets, approval gates, audits, and reviews. Constraints enable autonomy.
+          </Body>
+        </div>
+      </div>
+    </Layout>
+  );
+};
+
+const PromptCeilingScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const localSec = frame / fps;
+  const anim = useIntroAnim(0);
+  const anim2 = useIntroAnim(14);
+  const diagramProgress = interpolate(localSec, [1.1, 12.5], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+
+  return (
+    <Layout justify="flex-start" style={{ paddingTop: 45 }}>
+      <H2 style={{ opacity: anim, textAlign: "center" }}>
+        <TitleBlock>The prompt-engineering ceiling</TitleBlock>
+      </H2>
+      <Body size="sm" style={{ opacity: anim2, textAlign: "center", maxWidth: 1500 }}>
+        Prompts can reduce misbehavior — but not with enough reliability to safely scale in production.
+      </Body>
+      <div
+        style={{
+          marginTop: 0,
+          width: "100%",
+          maxWidth: 1400,
+          opacity: anim2,
+        }}
+      >
+        <PromptEngineeringCeilingDiagram theme="light" progress={diagramProgress} style={{ width: "100%", height: "auto" }} />
+      </div>
+    </Layout>
+  );
+};
+
+const ManualAssemblyScene: React.FC = () => {
+  const anim = useIntroAnim(0);
+  const anim2 = useIntroAnim(12);
+
+  return (
+    <Layout>
+      <H2 style={{ opacity: anim, textAlign: "center" }}>
+        <TitleBlock>The manual assembly problem</TitleBlock>
+      </H2>
+      <div style={{ marginTop: 34, width: 1500, opacity: anim2 }}>
+        <Body size="lg">
+          The best teams already add guardrails in Python — schemas, validation, retries, approvals, sandboxing, secrets hygiene.
+        </Body>
+        <Body>
+          But it’s easy to miss a layer when you’re assembling everything by convention across mismatched systems.
+        </Body>
+        <Body>
+          • Tool schemas + deterministic validation
+          <br />
+          • Policy enforcement (allowlists, limits, invariants)
+          <br />
+          • Approval gates for irreversible actions
+          <br />
+          • Sandboxing + isolation for code and files
+          <br />
+          • Secrets isolation to prevent credential theft
+        </Body>
+      </div>
+    </Layout>
+  );
+};
+
+const DefenseInDepthScene: React.FC = () => {
+  const anim = useIntroAnim(0);
+  const anim2 = useIntroAnim(14);
+
+  return (
+    <Layout justify="flex-start" style={{ paddingTop: 62 }}>
+      <H2 style={{ opacity: anim, textAlign: "center" }}>
+        <TitleBlock>Guardrails as first-class architecture</TitleBlock>
+      </H2>
+      <Body style={{ opacity: anim2, textAlign: "center", maxWidth: 1500 }}>
+        No single technique solves everything. Guardrails work as defense in depth — layers that each reduce a different class of risk.
+      </Body>
+      <div style={{ marginTop: -70, width: 1600, opacity: anim2 }}>
+        <GuardrailsStackDiagram theme="light" title="" subtitle="" />
+      </div>
+    </Layout>
+  );
+};
+
+const StagedToolsScene: React.FC = () => {
+  const anim = useIntroAnim(0);
+  const anim2 = useIntroAnim(14);
+
+  return (
+    <Layout justify="flex-start" style={{ paddingTop: 62 }}>
+      <H2 style={{ opacity: anim, textAlign: "center" }}>
+        <TitleBlock>Least privilege, applied per stage</TitleBlock>
+      </H2>
+      <Body style={{ opacity: anim2, textAlign: "center", maxWidth: 1500 }}>
+        Don’t give a broad, always-on toolbelt. Give the right tools at the right time — and remove them when you don’t need them.
+      </Body>
+      <div style={{ marginTop: 12, width: 1600, opacity: anim2 }}>
+        <StagedToolAccessDiagram theme="light" title="" subtitle="" />
+      </div>
+    </Layout>
+  );
+};
+
+const SandboxBrokerScene: React.FC = () => {
+  const anim = useIntroAnim(0);
+  const anim2 = useIntroAnim(14);
+
+  return (
+    <Layout justify="flex-start" style={{ paddingTop: 62 }}>
+      <H2 style={{ opacity: anim, textAlign: "center" }}>
+        <TitleBlock>Keep the monkey in the box</TitleBlock>
+      </H2>
+      <Body style={{ opacity: anim2, textAlign: "center", maxWidth: 1500 }}>
+        Sandbox untrusted orchestration. Keep secrets out of the runtime. Broker privileged calls behind a narrow, auditable boundary.
+      </Body>
+      <div style={{ marginTop: -34, width: 1600, opacity: anim2 }}>
+        <ContainerSandboxDiagram theme="light" title="" subtitle="" />
+      </div>
+    </Layout>
+  );
+};
+
+const ExampleScene: React.FC = () => {
+  const anim = useIntroAnim(0);
+  const anim2 = useIntroAnim(12);
+
+  return (
+    <Layout>
+      <H2 style={{ opacity: anim, textAlign: "center" }}>
+        <TitleBlock>A concrete example: recap emails</TitleBlock>
+      </H2>
+      <div style={{ marginTop: 34, width: 1500, opacity: anim2 }}>
+        <Body size="lg">A safe delegation pattern</Body>
+        <Body>
+          1) Draft with read-only tools (no side effects).
+          <br />
+          2) Durable human review: approve / edit / reject.
+          <br />
+          3) Only after approval does the send tool become available.
+        </Body>
+      </div>
+    </Layout>
+  );
+};
+
+const ClosingScene: React.FC = () => {
+  const anim = useIntroAnim(0);
+  const anim2 = useIntroAnim(10);
+  const anim3 = useIntroAnim(18);
+
+  return (
+    <Layout>
+      <H2 style={{ opacity: anim, textAlign: "center" }}>
+        <TitleBlock>Guardrails enable autonomy</TitleBlock>
+      </H2>
+      <div style={{ marginTop: 34, width: 1500, opacity: anim2 }}>
+        <Body size="lg">
+          The race car needs brakes. The surgeon needs protocols. The organization needs governance. The agent needs guardrails.
+        </Body>
+        <Body style={{ marginBottom: 0 }}>
+          Build systems where the right thing is structurally easier than the wrong thing — and where failures are constrained before
+          they become disasters.
+        </Body>
+      </div>
+      <Body style={{ opacity: anim3, marginTop: 34, textAlign: "center" }}>Read more: tactus.run/guardrails</Body>
+    </Layout>
+  );
+};

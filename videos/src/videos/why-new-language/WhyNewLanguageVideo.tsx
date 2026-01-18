@@ -15,6 +15,8 @@ import { Body, Code, H2, TitleBlock } from "../../components/Typography";
 import { Card } from "../../components/Card";
 import { ParadigmComparison } from "../../components/ParadigmComparison";
 import { CodeSequence } from "../../components/CodeBlock";
+import OldWayFlowchartDiagram from "../../components/diagrams/OldWayFlowchartDiagram";
+import AgentGuardrailsDiagram from "../../components/diagrams/AgentGuardrailsDiagram";
 import iconImg from "../../assets/images/icon.png";
 import type { Scene, Script } from "@/babulus/types";
 import { secondsToFrames } from "@/babulus/utils";
@@ -225,7 +227,7 @@ const TitleCardScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = () =>
           textAlign: "center",
         }}
       >
-        Understanding the evolution of programming
+        What’s wrong with Python?
       </Body>
     </Layout>
   );
@@ -234,9 +236,9 @@ const TitleCardScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = () =>
 const ParadigmScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ scene, ttsStartsSec }) => {
   return (
     <ParadigmComparison
-      title="A New Way to Write Code"
-      oldWayCode={OLD_WAY_CODE}
-      newWayCode={NEW_WAY_CODE}
+      title="A New Kind of Computer Program"
+      oldWay={<OldWayFlowchartDiagram theme="light" progress={1} />}
+      newWay={<AgentGuardrailsDiagram theme="light" progress={1} />}
       sceneStartSec={scene.startSec}
       ttsStartsSec={ttsStartsSec}
     />
@@ -249,16 +251,22 @@ const MachineCodeScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ 
   const localSec = frame / fps;
   const cueStartsLocal = ttsStartsSec.map((s) => s - scene.startSec);
 
-  // Map beats to the 10 TTS segments
-  const beat0 = cueStartsLocal[0] ?? 0;      // "In the beginning..." - Machine Code (38.7s)
-  const beat1 = cueStartsLocal[1] ?? beat0 + 8;  // "So one of the first useful things..." - Meta insight (47.65s)
-  const beat2 = cueStartsLocal[2] ?? beat1 + 7;  // "Assemblers emerged..." - Assembly (54.85s)
-  const beat3 = cueStartsLocal[3] ?? beat2 + 10; // "Then came C..." - C (64.85s)
-  const beat4 = cueStartsLocal[4] ?? beat3 + 13; // "C plus plus..." - C++ (78.65s)
-  const beat5 = cueStartsLocal[5] ?? beat4 + 10; // "Ruby took it further..." - Ruby (88.55s)
-  const beat6 = cueStartsLocal[6] ?? beat5 + 10; // "But through all of this..." - Paradigm constant (98.55s)
-  const beat7 = cueStartsLocal[7] ?? beat6 + 13; // "Today, we're seeing..." - AI parallel (111.75s)
-  const beat8 = cueStartsLocal[8] ?? beat7 + 12; // "But this time..." - The difference (123.6s)
+  // Map beats to the TTS segments
+  // history segments (see `videos/content/why-new-language.babulus.yml`, cue `machine_code_era.history`)
+  const beat0 = cueStartsLocal[0] ?? 0; // machine code
+  const beat1 = cueStartsLocal[1] ?? beat0 + 8; // hex
+  const beat2 = cueStartsLocal[2] ?? beat1 + 7; // assembly / assemblers
+  const beat3 = cueStartsLocal[3] ?? beat2 + 7; // two-step workflow (assembler + your program)
+  const beat4 = cueStartsLocal[4] ?? beat3 + 6; // translation explanation
+  const beat5 = cueStartsLocal[5] ?? beat4 + 6; // "key step" meta insight
+  const beat6 = cueStartsLocal[6] ?? beat5 + 7; // early high-level languages (Lisp, etc.)
+  const beat7 = cueStartsLocal[7] ?? beat6 + 7; // C
+  const beat8 = cueStartsLocal[8] ?? beat7 + 8; // C++
+  const beat9 = cueStartsLocal[9] ?? beat8 + 8; // Ruby
+  const beat10 = cueStartsLocal[10] ?? beat9 + 9; // paradigm constant
+  const beat11 = cueStartsLocal[11] ?? beat10 + 10; // AI parallel
+  const beat12 = cueStartsLocal[12] ?? beat11 + 9; // Tactus
+  const beat13 = cueStartsLocal[13] ?? beat12 + 9; // the difference
 
   const titleAnimation = spring({
     frame,
@@ -266,11 +274,29 @@ const MachineCodeScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ 
     config: { damping: 100, stiffness: 200, mass: 0.5 },
   });
 
+  // Update the title as the narrative moves from machine code → assemblers → higher-level languages.
+  const titleSwap12 = interpolate(localSec, [Math.max(0, beat2 - 0.6), beat2 + 0.6], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+  const titleSwap23 = interpolate(localSec, [Math.max(0, beat6 - 0.6), beat6 + 0.6], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+
+  const title1Opacity = (1 - titleSwap12) * (1 - titleSwap23);
+  const title2Opacity = titleSwap12 * (1 - titleSwap23);
+  const title3Opacity = titleSwap23;
+
   // Code examples for each era
   const MACHINE_CODE = `01001000 10001001 11100101
 01001000 10000011 11101100 00001000
 10001011 00000101 00000000 00000000
 00000000 00000000`;
+
+  const HEX_CODE = `48 89 E5
+48 83 EC 08
+8B 05 00 00 00 00`;
 
   const ASSEMBLY_CODE = `section .data
     msg db 'Hello, World!', 0
@@ -284,6 +310,11 @@ _start:
     mov rsi, msg
     mov rdx, 13
     syscall`;
+
+  const LISP_CODE = `(defun hello-world ()
+  (format t "Hello, World!~%"))
+
+(hello-world)`;
 
   const C_CODE = `#include <stdio.h>
 
@@ -316,12 +347,23 @@ end
 
 Greeter.new("World").greet`;
 
+  const TACTUS_HELLO_WORLD_CODE = `World = Agent {
+    provider = "openai",
+    model = "gpt-4o-mini",
+    system_prompt = "Your name is World."
+}
+
+return World("Hello, World!").response`;
+
   const codeExamples = [
     { label: "1940s: Machine Code", code: MACHINE_CODE, startTime: beat0 },
+    { label: "1940s: Hexadecimal", code: HEX_CODE, startTime: beat1 },
     { label: "1950s: Assembly", code: ASSEMBLY_CODE, startTime: beat2 },
-    { label: "1970s: C", code: C_CODE, startTime: beat3 },
-    { label: "1980s: C++", code: CPP_CODE, startTime: beat4 },
-    { label: "1990s: Ruby", code: RUBY_CODE, startTime: beat5 },
+    { label: "1958: Lisp", code: LISP_CODE, startTime: beat6 },
+    { label: "1970s: C", code: C_CODE, startTime: beat7 },
+    { label: "1980s: C++", code: CPP_CODE, startTime: beat8 },
+    { label: "1990s: Ruby", code: RUBY_CODE, startTime: beat9 },
+    { label: "Today: Tactus", code: TACTUS_HELLO_WORLD_CODE, startTime: beat12 },
   ];
 
   return (
@@ -333,12 +375,27 @@ Greeter.new("World").greet`;
           marginBottom: 48,
         }}
       >
-        <TitleBlock>80+ Years of Imperative Programming</TitleBlock>
+        <span
+          style={{
+            display: "grid",
+            placeItems: "center",
+          }}
+        >
+          <span style={{ gridArea: "1 / 1", opacity: title1Opacity, display: "flex", justifyContent: "center", width: "100%" }}>
+            <TitleBlock>In the beginning...</TitleBlock>
+          </span>
+          <span style={{ gridArea: "1 / 1", opacity: title2Opacity, display: "flex", justifyContent: "center", width: "100%" }}>
+            <TitleBlock>Metacomputing</TitleBlock>
+          </span>
+          <span style={{ gridArea: "1 / 1", opacity: title3Opacity, display: "flex", justifyContent: "center", width: "100%" }}>
+            <TitleBlock>Higher-level languages</TitleBlock>
+          </span>
+        </span>
       </H2>
 
       <CodeSequence
         items={codeExamples}
-        endTime={beat6}
+        endTime={beat13}
         containerWidth={1400}
         containerHeight={600}
         enableTypewriter={true}
@@ -507,7 +564,15 @@ const PracticesCollapseScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }>
         <TitleBlock>Traditional Best Practices Break</TitleBlock>
       </H2>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: 24, maxWidth: 1200 }}>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: 24,
+          width: "100%",
+          maxWidth: 1600,
+        }}
+      >
         {practices.map((practice, i) => {
           const delay = i * 10;
           const anim = spring({
@@ -528,8 +593,8 @@ const PracticesCollapseScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }>
                 gap: 24,
               }}
             >
-              <Body style={{ fontSize: 48, color: "#dc2626" }}>✗</Body>
-              <Body size="lg" style={{ fontSize: 32, flex: 1 }}>
+              <Body style={{ fontSize: 44, color: "#c7007e" }}>✗</Body>
+              <Body size="lg" style={{ fontSize: 28, flex: 1, lineHeight: 1.35 }}>
                 {practice}
               </Body>
             </Card>

@@ -1,29 +1,6 @@
 import * as React from "react";
 
-const COLORS = {
-  light: {
-    bg: "transparent",
-    surface: "#ffffff",
-    surface2: "#f4f4f5", // zinc-100
-    surface3: "#e4e4e7", // zinc-200
-    ink: "#111827", // gray-900
-    muted: "#52525b", // zinc-600
-    magenta: "#c30073",
-    magentaSoft: "#f9e6f3",
-    ok: "#16a34a",
-  },
-  dark: {
-    bg: "transparent",
-    surface: "#18181b", // zinc-900
-    surface2: "#27272a", // zinc-800
-    surface3: "#3f3f46", // zinc-700
-    ink: "#f4f4f5", // zinc-100
-    muted: "#a1a1aa", // zinc-400
-    magenta: "#ff4fb5",
-    magentaSoft: "#3f0a2a",
-    ok: "#22c55e",
-  },
-};
+import { diagramTokens, getDiagramThemeVars } from "./diagramTheme";
 
 const ContainerSandboxDiagram = ({
   theme = "light",
@@ -32,16 +9,19 @@ const ContainerSandboxDiagram = ({
   style,
   className,
 }) => {
-  const c = COLORS[theme];
+  const t = diagramTokens;
+  const showHeader = Boolean(title || subtitle);
+  const headerLift = showHeader ? 0 : -90;
 
   return (
     <svg
       className={className}
       style={{
+        ...getDiagramThemeVars(theme),
         display: "block",
         width: "100%",
         height: "auto",
-        background: c.bg,
+        background: t.bg,
         ...style,
       }}
       viewBox="0 0 1200 650"
@@ -49,9 +29,6 @@ const ContainerSandboxDiagram = ({
       aria-label="Diagram showing a host, a container, a Lua sandbox, and a broker boundary that holds API keys."
     >
       <defs>
-        <filter id="csdShadow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow dx="0" dy="12" stdDeviation="18" floodColor="#000" floodOpacity="0.15" />
-        </filter>
         <marker
           id="csdArrow"
           viewBox="0 0 10 10"
@@ -61,52 +38,56 @@ const ContainerSandboxDiagram = ({
           markerHeight="8"
           orient="auto-start-reverse"
         >
-          <path d="M 0 0 L 10 5 L 0 10 z" fill={c.magenta} />
+          <path d="M 0 0 L 10 5 L 0 10 z" fill={t.primary} />
         </marker>
       </defs>
 
-      {/* Title */}
-      <g transform="translate(80, 70)">
-        <text x="0" y="0" fill={c.ink} fontSize="40" fontWeight="800" fontFamily="system-ui, -apple-system, Segoe UI, sans-serif">
-          {title}
-        </text>
-        <text
-          x="0"
-          y="38"
-          fill={c.muted}
-          fontSize="18"
-          fontWeight="500"
-          fontFamily="system-ui, -apple-system, Segoe UI, sans-serif"
-        >
-          {subtitle}
-        </text>
-      </g>
+      {/* Title (optional) */}
+      {showHeader ? (
+        <g transform="translate(80, 70)">
+          {title ? (
+            <text x="0" y="0" fill={t.ink} fontSize="40" fontWeight="800" fontFamily={t.fontSans}>
+              {title}
+            </text>
+          ) : null}
+          {subtitle ? (
+            <text
+              x="0"
+              y={title ? 38 : 0}
+              fill={t.muted}
+              fontSize="18"
+              fontWeight="500"
+              fontFamily={t.fontSans}
+            >
+              {subtitle}
+            </text>
+          ) : null}
+        </g>
+      ) : null}
 
       {/* Host */}
-      <g filter="url(#csdShadow)">
-        <rect x="60" y="140" width="1080" height="460" rx="28" fill={c.surface2} />
-      </g>
+      <rect x="60" y={140 + headerLift} width="1080" height="460" rx="var(--border-radius)" fill={t.cardTitle} />
       <text
         x="92"
-        y="185"
-        fill={c.muted}
+        y={185 + headerLift}
+        fill={t.muted}
         fontSize="16"
         fontWeight="700"
-        fontFamily="system-ui, -apple-system, Segoe UI, sans-serif"
+        fontFamily={t.fontSans}
       >
         Host (your machine / cluster node)
       </text>
 
       {/* Container */}
       <g>
-        <rect x="100" y="210" width="640" height="350" rx="24" fill={c.surface} />
+        <rect x="100" y={210 + headerLift} width="640" height="350" rx="var(--border-radius)" fill={t.surface} />
         <text
           x="130"
-          y="250"
-          fill={c.muted}
+          y={250 + headerLift}
+          fill={t.muted}
           fontSize="15"
           fontWeight="700"
-          fontFamily="system-ui, -apple-system, Segoe UI, sans-serif"
+          fontFamily={t.fontSans}
         >
           Runtime container (ephemeral, networkless by default)
         </text>
@@ -114,142 +95,142 @@ const ContainerSandboxDiagram = ({
 
       {/* Lua sandbox */}
       <g>
-        <rect x="140" y="285" width="560" height="240" rx="22" fill={c.surface3} opacity={theme === "light" ? 0.65 : 0.8} />
+        <rect x="140" y={285 + headerLift} width="560" height="240" rx="var(--border-radius)" fill={t.cardTitle} />
         <text
           x="170"
-          y="325"
-          fill={c.ink}
+          y={325 + headerLift}
+          fill={t.ink}
           fontSize="18"
           fontWeight="800"
-          fontFamily="system-ui, -apple-system, Segoe UI, sans-serif"
+          fontFamily={t.fontSans}
         >
           Lua sandbox (untrusted)
         </text>
         <text
           x="170"
-          y="356"
-          fill={c.muted}
+          y={356 + headerLift}
+          fill={t.muted}
           fontSize="15"
           fontWeight="600"
-          fontFamily="system-ui, -apple-system, Segoe UI, sans-serif"
+          fontFamily={t.fontSans}
         >
           • `.tac` orchestration code
         </text>
         <text
           x="170"
-          y="380"
-          fill={c.muted}
+          y={380 + headerLift}
+          fill={t.muted}
           fontSize="15"
           fontWeight="600"
-          fontFamily="system-ui, -apple-system, Segoe UI, sans-serif"
+          fontFamily={t.fontSans}
         >
           • No ambient filesystem / OS / network
         </text>
         <text
           x="170"
-          y="404"
-          fill={c.muted}
+          y={404 + headerLift}
+          fill={t.muted}
           fontSize="15"
           fontWeight="600"
-          fontFamily="system-ui, -apple-system, Segoe UI, sans-serif"
+          fontFamily={t.fontSans}
         >
           • I/O only via explicit tools
         </text>
 
         {/* Procedure code box */}
-        <rect x="170" y="430" width="500" height="70" rx="18" fill={c.surface} opacity={theme === "light" ? 0.9 : 0.7} />
+        <rect x="170" y={430 + headerLift} width="500" height="70" rx="var(--border-radius)" fill={t.surface} />
         <text
           x="200"
-          y="472"
-          fill={c.ink}
+          y={472 + headerLift}
+          fill={t.ink}
           fontSize="16"
           fontWeight="700"
-          fontFamily="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace"
+          fontFamily={t.fontMono}
         >
           procedure code calls tools →
         </text>
       </g>
 
       {/* Broker box */}
-      <g filter="url(#csdShadow)">
-        <rect x="780" y="210" width="320" height="220" rx="22" fill={c.magentaSoft} />
-      </g>
+      <rect x="780" y={210 + headerLift} width="320" height="220" rx="var(--border-radius)" fill={t.surface} />
+      <rect x="780" y={210 + headerLift} width="320" height="54" rx="var(--border-radius)" fill={t.cardTitle} />
+      <rect x="780" y={210 + headerLift} width="10" height="54" rx="var(--border-radius)" fill={t.primary} />
       <text
         x="812"
-        y="250"
-        fill={c.ink}
+        y={250 + headerLift}
+        fill={t.ink}
         fontSize="18"
         fontWeight="900"
-        fontFamily="system-ui, -apple-system, Segoe UI, sans-serif"
+        fontFamily={t.fontSans}
       >
         Broker (trusted)
       </text>
       <text
         x="812"
-        y="278"
-        fill={c.muted}
+        y={278 + headerLift}
+        fill={t.muted}
         fontSize="14"
         fontWeight="700"
-        fontFamily="system-ui, -apple-system, Segoe UI, sans-serif"
+        fontFamily={t.fontSans}
       >
         Holds credentials + policy
       </text>
 
-      <rect x="812" y="300" width="256" height="46" rx="14" fill={c.surface} opacity={theme === "light" ? 0.9 : 0.7} />
+      <rect x="812" y={300 + headerLift} width="256" height="46" rx="var(--border-radius)" fill={t.cardTitle} />
       <text
         x="830"
-        y="330"
-        fill={c.ink}
+        y={330 + headerLift}
+        fill={t.ink}
         fontSize="14"
         fontWeight="800"
-        fontFamily="system-ui, -apple-system, Segoe UI, sans-serif"
+        fontFamily={t.fontSans}
       >
         API keys live here (not in sandbox)
       </text>
 
-      <rect x="812" y="358" width="256" height="54" rx="14" fill={c.surface} opacity={theme === "light" ? 0.9 : 0.7} />
+      <rect x="812" y={358 + headerLift} width="256" height="54" rx="var(--border-radius)" fill={t.cardTitle} />
       <text
         x="830"
-        y="388"
-        fill={c.muted}
+        y={388 + headerLift}
+        fill={t.muted}
         fontSize="14"
         fontWeight="700"
-        fontFamily="system-ui, -apple-system, Segoe UI, sans-serif"
+        fontFamily={t.fontSans}
       >
         • Validate tool requests
       </text>
       <text
         x="830"
-        y="408"
-        fill={c.muted}
+        y={408 + headerLift}
+        fill={t.muted}
         fontSize="14"
         fontWeight="700"
-        fontFamily="system-ui, -apple-system, Segoe UI, sans-serif"
+        fontFamily={t.fontSans}
       >
         • Enforce least privilege
       </text>
 
       {/* External agents */}
-      <g filter="url(#csdShadow)">
-        <rect x="780" y="450" width="320" height="110" rx="22" fill={c.surface} />
-      </g>
+      <rect x="780" y={450 + headerLift} width="320" height="110" rx="var(--border-radius)" fill={t.surface} />
+      <rect x="780" y={450 + headerLift} width="320" height="54" rx="var(--border-radius)" fill={t.cardTitle} />
+      <rect x="780" y={450 + headerLift} width="10" height="54" rx="var(--border-radius)" fill={t.primary} />
       <text
         x="812"
-        y="490"
-        fill={c.ink}
+        y={490 + headerLift}
+        fill={t.ink}
         fontSize="18"
         fontWeight="900"
-        fontFamily="system-ui, -apple-system, Segoe UI, sans-serif"
+        fontFamily={t.fontSans}
       >
         AI agents + APIs
       </text>
       <text
         x="812"
         y="518"
-        fill={c.muted}
+        fill={t.muted}
         fontSize="14"
         fontWeight="700"
-        fontFamily="system-ui, -apple-system, Segoe UI, sans-serif"
+        fontFamily={t.fontSans}
       >
         Called by the broker, not the sandbox
       </text>
@@ -258,30 +239,28 @@ const ContainerSandboxDiagram = ({
       <path
         d="M 620 465 C 720 470 720 330 780 330"
         fill="none"
-        stroke={c.magenta}
+        stroke={t.primary}
         strokeWidth="6"
         markerEnd="url(#csdArrow)"
-        opacity={0.9}
       />
       <path
         d="M 940 430 C 940 440 940 440 940 450"
         fill="none"
-        stroke={c.magenta}
+        stroke={t.primary}
         strokeWidth="6"
         markerEnd="url(#csdArrow)"
-        opacity={0.9}
       />
 
       {/* Footer note */}
       <g transform="translate(100, 590)">
-        <rect x="0" y="0" width="640" height="44" rx="16" fill={c.surface} opacity={theme === "light" ? 0.8 : 0.65} />
+        <rect x="0" y="0" width="640" height="44" rx="var(--border-radius)" fill={t.cardTitle} />
         <text
           x="18"
           y="28"
-          fill={c.muted}
+          fill={t.muted}
           fontSize="14"
           fontWeight="700"
-          fontFamily="system-ui, -apple-system, Segoe UI, sans-serif"
+          fontFamily={t.fontSans}
         >
           Secretless runtime: when there’s nothing to steal, a whole class of attacks collapses.
         </text>

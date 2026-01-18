@@ -4,24 +4,9 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 import BottomCta from "../components/bottom-cta"
 import getVideoSrc from "../lib/getVideoSrc"
+import VideosSpotlightSection from "../components/videos-spotlight-section"
+import { VIDEOS } from "../content/videos"
 import * as styles from "./videos.module.css"
-
-const VIDEOS = [
-  {
-    id: "intro",
-    title: "Intro to Tactus",
-    description: "What Tactus is, why tool-using agents need guardrails, and how the runtime helps.",
-    filename: "intro.mp4",
-    poster: "intro-poster.jpg",
-  },
-  {
-    id: "why-new-language",
-    title: "Why a New Language?",
-    description: "The evolution of programming paradigms and why Tactus was created for the age of AI agents.",
-    filename: "why-new-language.mp4",
-    poster: "why-new-language-poster.jpg",
-  },
-]
 
 const VideosPage = () => {
   return (
@@ -33,10 +18,24 @@ const VideosPage = () => {
             <p className={styles.subtitle}>
               Short, practical walkthroughs of Tactus: the mental model, safety design, and real workflows.
             </p>
+          </div>
+        </section>
 
-            <div className={styles.grid}>
+        <VideosSpotlightSection
+          id="featured"
+          title="Featured"
+          lede="Start here — then browse the full catalog below."
+          featuredIds={["why-new-language", "guardrails"]}
+          to="/videos/#all"
+          ctaText="Browse all videos"
+          mutedBackground={true}
+        />
+
+        <section className={styles.section}>
+          <div className={styles.container}>
+            <div id="all" className={styles.grid}>
               {VIDEOS.map((v) => (
-                <article key={v.id} className={styles.card}>
+                <article key={v.id} id={v.id} className={styles.card}>
                   <div className={styles.cardBody}>
                     <h2 className={styles.cardTitle}>{v.title}</h2>
                     <p className={styles.cardDescription}>{v.description}</p>
@@ -60,7 +59,7 @@ const VideosPage = () => {
 
         <BottomCta
           title="Ready to start building?"
-          text="Follow a short walkthrough and write your first durable procedure."
+          text="Follow a short walkthrough and build your first tool-using agent workflow."
           buttonLabel="Get Started"
           to="/getting-started/"
         />

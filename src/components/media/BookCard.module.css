@@ -1,0 +1,83 @@
+.card {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.coverLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.coverFrame {
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  transition: transform 140ms ease;
+  /* Make room for the flat shadow under the cover image */
+  margin-bottom: var(--space-4);
+}
+
+.cover {
+  width: 100%;
+  height: auto;
+  border-radius: 0;
+  background: var(--color-surface);
+  display: block;
+  box-shadow: 0 6px 0 0 rgba(0, 0, 0, 0.12);
+  transition: transform 140ms ease, box-shadow 140ms ease;
+}
+
+.coverLink:hover .coverFrame {
+  transform: translateY(-1px);
+}
+
+.coverLink:hover .cover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 0 0 rgba(0, 0, 0, 0.12);
+}
+
+.body {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+}
+
+.titleLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.titleLink:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.description {
+  margin: 0;
+  color: var(--color-text-muted);
+  line-height: var(--line-height-loose);
+  max-width: none;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  font-size: var(--font-sm);
+}
+
+.links a {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.links a:hover {
+  text-decoration: none;
+}

@@ -1,0 +1,66 @@
+.section {
+  padding: var(--space-6) 0;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: var(--size-content);
+  padding: 0 var(--size-gutter);
+  width: 100%;
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  width: 100%;
+}
+
+.content {
+  max-width: 48rem; /* Limit width for readability, but keep centered or left aligned */
+}
+
+.eyebrow {
+  margin: 0 0 var(--space-2);
+  font-size: var(--font-sx);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-primary); /* Pop of color */
+  font-family: var(--font-sans);
+}
+
+.title {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3vw, 2.5rem); /* Larger, more impactful */
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.lede {
+  margin: 0 0 var(--space-4);
+  color: var(--color-text-muted);
+  font-size: var(--font-lg);
+  line-height: var(--line-height-loose);
+  max-width: none;
+}
+
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.diagramWrap {
+  background: var(--color-surface); /* Keep it white/surface */
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  width: 100%; /* Force full width */
+}
+
+.diagram {
+  width: 100%;
+  height: auto;
+  display: block;
+}

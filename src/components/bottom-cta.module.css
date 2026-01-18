@@ -21,6 +21,7 @@
   color: var(--color-text-muted);
   font-size: var(--font-md);
   line-height: var(--line-height-loose);
+  max-width: none;
 }
 
 .title {
@@ -36,6 +37,7 @@
   color: var(--color-text-muted);
   font-size: var(--font-lg);
   line-height: var(--line-height-loose);
+  max-width: none;
 }
 
 .buttons {
@@ -43,35 +45,13 @@
   justify-content: center;
 }
 
-.primaryButton {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.9rem 1.6rem;
-  border-radius: 999px;
-  border: none;
-  font-weight: 800;
-  font-size: var(--font-md);
-  line-height: 1;
-  text-decoration: none;
-  background: var(--color-primary);
-  color: var(--color-primary-ink);
-  transition: filter 0.15s ease, transform 0.15s ease;
-  min-width: min(18rem, 100%);
-}
-
-.primaryButton:hover {
-  text-decoration: none;
-  filter: brightness(0.98);
-  transform: translateY(-1px);
-}
-
 @media (max-width: 800px) {
   .section {
     padding: var(--space-5) 0;
   }
 
-  .primaryButton {
+  .buttons :global(a),
+  .buttons :global(button) {
     width: 100%;
   }
 }

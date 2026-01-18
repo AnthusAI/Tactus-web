@@ -41,6 +41,8 @@ videos/node_modules/
 videos/out/
 videos/public/babulus/
 videos/.babulus/out/
+.babulus/out/
+.fabulus/
 
 # Gatsby local video assets (not committed; source from S3 in prod)
 static/videos/*.mp4

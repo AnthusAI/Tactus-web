@@ -6,12 +6,17 @@ import { Github, Copy, Check, Cable } from "lucide-react"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import AnimatedCodeBlock from "../components/animated/AnimatedCodeBlock"
+import AnimatedDiagram from "../components/animated/AnimatedDiagram"
 import BottomCta from "../components/bottom-cta"
-import LandingLearnSection from "../components/landing-learn-section"
-import GuardrailsStackDiagram from "../components/diagrams/GuardrailsStackDiagram"
+import SpotlightSection from "../components/spotlight-section"
+import GuardrailsSpotlight from "../components/guardrails-spotlight"
 import ToolboxDiagram from "../components/diagrams/ToolboxDiagram"
+import OldWayFlowchartDiagram from "../components/diagrams/OldWayFlowchartDiagram"
+import AgentGuardrailsDiagram from "../components/diagrams/AgentGuardrailsDiagram"
 import FeatureHighlightsSection from "../components/feature-highlights-section"
 import BookSeriesSection from "../components/book-series-section"
+import Button from "../components/ui/button"
+import Breakout from "../components/publishing/Breakout"
 import getVideoSrc from "../lib/getVideoSrc"
 import * as styles from "./index.module.css"
 
@@ -176,7 +181,15 @@ const InstallCommand = () => {
   }
 
   return (
-    <div className={styles.installCommand} role="group" aria-label="Install Tactus">
+    <Button
+      as="div"
+      variant="secondary"
+      size="large"
+      shadow
+      className={styles.installCommand}
+      role="group"
+      aria-label="Install Tactus"
+    >
       <span className={styles.installPrompt} aria-hidden="true">
         $
       </span>
@@ -190,7 +203,7 @@ const InstallCommand = () => {
         {copied ? <Check size={16} /> : <Copy size={16} />}
         {copied ? "Copied" : "Copy"}
       </button>
-    </div>
+    </Button>
   )
 }
 
@@ -249,6 +262,23 @@ const IndexPage = () => {
         <section className={`${styles.section}`}>
           <div className={styles.container}>
             <div className={styles.hero}>
+              <aside className={styles.heroAside}>
+                <div className={styles.animalCard}>
+                  <StaticImage
+                    src="../images/animals/learning-cover-animal.png"
+                    alt="An animal illustration in the style of a classic programming book cover"
+                    loading="eager"
+                    width={640}
+                    quality={90}
+                    formats={["auto", "webp", "avif"]}
+                    className={styles.animalImage}
+                  />
+                  <p className={styles.animalCaption}>
+                    Tools are sharp. Guardrails are not optional.
+                  </p>
+                </div>
+              </aside>
+
               <p className={styles.eyebrow}>
                 A language + runtime for tool-using agents
               </p>
@@ -258,22 +288,6 @@ const IndexPage = () => {
               <p className={styles.subtitle}>
                 <b>Give AI agents powerful tools.</b> Safely and securely.
               </p>
-
-              <aside className={styles.heroAside}>
-                <div className={styles.animalCard}>
-                  <StaticImage
-                    src="../images/animals/learning-cover-animal.png"
-                    alt="An animal illustration in the style of a classic programming book cover"
-                    loading="eager"
-                    width={420}
-                    quality={90}
-                    formats={["auto", "webp", "avif"]}
-                  />
-                  <p className={styles.animalCaption}>
-                    Tools are sharp. Guardrails are not optional.
-                  </p>
-                </div>
-              </aside>
 
               <p className={`${styles.lede} drop-cap`}>
                 Tool-using agents are useful—and dangerous: run them unattended
@@ -287,18 +301,20 @@ const IndexPage = () => {
               </p>
 
               <div className={styles.ctaGrid}>
-                <Link className={styles.primaryButton} to="/getting-started/">
+                <Button to="/getting-started/" variant="primary" size="large" shadow>
                   Get started
-                </Link>
-                <a
-                  className={styles.secondaryButton}
+                </Button>
+                <Button
                   href="https://github.com/AnthusAI/Tactus"
+                  variant="secondary"
+                  size="large"
+                  shadow
                   target="_blank"
                   rel="noreferrer"
                 >
                   <Github size={18} />
                   View code
-                </a>
+                </Button>
                 <div className={styles.ctaGridInstall}>
                   <InstallCommand />
                 </div>
@@ -307,66 +323,146 @@ const IndexPage = () => {
           </div>
         </section>
 
+        {/* Hello World - moved up from below */}
         <section className={`${styles.section}`}>
           <div className={styles.container}>
             <div className={styles.example}>
-          <header className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>Hello, world</h2>
-            <p className={styles.sectionSubtitle}>
-              Define an agent, then call it like a function.
-            </p>
-          </header>
-          <div className={styles.codeBlockPlayer}>
-            <AnimatedCodeBlock
-              label="Hello, world"
-              filename="examples-hello-world.tac"
-              hint="Agent"
-              code={HELLO_WORLD_EXAMPLE}
-              language="tactus"
-              showTypewriter={true}
-              typewriterLoop={false}
-              typewriterDelay={0.2}
-              typewriterSpeed={1.1}
-              autoHeight={true}
-              blockWidth={1400}
-              width="100%"
-              autoPlay={true}
-              controls={false}
-              loop={false}
-            />
-          </div>
+              <header className={styles.sectionHeader}>
+                <h2 className={styles.sectionTitle}>Hello, world</h2>
+                <p className={styles.sectionSubtitle}>
+                  Define an agent, then call it like a function.
+                </p>
+              </header>
+              <div className={styles.codeBlockPlayer}>
+                <AnimatedCodeBlock
+                  label="Hello, world"
+                  filename="examples-hello-world.tac"
+                  hint="Agent"
+                  code={HELLO_WORLD_EXAMPLE}
+                  language="tactus"
+                  showTypewriter={true}
+                  typewriterLoop={false}
+                  typewriterDelay={0.2}
+                  typewriterSpeed={1.1}
+                  autoHeight={true}
+                  blockWidth={1400}
+                  width="100%"
+                  autoPlay={true}
+                  controls={false}
+                  loop={false}
+                />
+              </div>
 
-          <div className={styles.videoCard}>
-            <div className={styles.videoHeader}>
-              <span className={styles.videoTitle}>Intro to Tactus (4 min)</span>
-              <Link className={styles.videoLink} to="/videos/">
-                All videos
-              </Link>
+              <div className={styles.videoCard}>
+                <div className={styles.videoHeader}>
+                  <span className={styles.videoTitle}>Intro to Tactus (4 min)</span>
+                  <Link className={styles.videoLink} to="/videos/">
+                    All videos
+                  </Link>
+                </div>
+                <video
+                  className={styles.video}
+                  controls
+                  preload="metadata"
+                  playsInline
+                  src={getVideoSrc("intro.mp4")}
+                  poster={getVideoSrc("intro-poster.jpg")}
+                />
+              </div>
+
+              <div className={styles.exampleCopy}>
+                <p className={styles.exampleLead}>
+                  In Cursor or Claude, tool-using agents feel safe because you're
+                  there to supervise: you see every tool call, you steer, and you
+                  can stop the run the moment it goes sideways.
+                </p>
+                <p className={styles.exampleLead}>
+                  But how do we step back and give agents more agency to do things on their own—with
+                  powerful tools that have full control and can act on the systems and data we care about?
+                </p>
+              </div>
             </div>
-            <video
-              className={styles.video}
-              controls
-              preload="metadata"
-              playsInline
-              src={getVideoSrc("intro.mp4")}
-              poster={getVideoSrc("intro-poster.jpg")}
-            />
           </div>
+        </section>
 
-          <div className={styles.exampleCopy}>
-            <p className={styles.exampleLead}>
-              In Cursor or Claude, tool-using agents feel safe because you’re
-              there to supervise: you see every tool call, you steer, and you
-              can stop the run the moment it goes sideways.
-            </p>
-            <p className={styles.exampleLead}>
-              The danger starts when you move that same pattern into the
-              background—running unattended, at volume, with real side effects.
-              That’s where you need guardrails that don’t depend on a human
-              watching the screen.
-            </p>
-
+        {/* Paradigm Shift - Main Header */}
+        <section className={`${styles.section}`}>
+          <div className={styles.container}>
+            <header className={styles.sectionHeader}>
+              <p className={styles.eyebrow}>The paradigm shift</p>
+              <h2 className={styles.sectionTitle}>
+                A new kind of computer program
+              </h2>
+              <p className={styles.sectionSubtitle}>
+                Since the dawn of computing, programming has meant anticipating every scenario and writing code for it.
+                But tool-using agents flip the script.
+              </p>
+            </header>
           </div>
+        </section>
+
+        {/* Old Way - Show the Problem First */}
+        <section className={`${styles.section}`}>
+          <div className={styles.container}>
+            <div className={styles.narrativeSection}>
+              <div className={styles.narrativeGrid}>
+                <div className={styles.narrativeContent}>
+                  <h3 className={styles.sectionTitle}>
+                    The old way: anticipate everything
+                  </h3>
+                  <p className={styles.sectionSubtitle}>
+                    Traditional programs are brittle. Parse this format. Catch that error.
+                    Map these fields to those fields. Miss one case and the program breaks.
+                  </p>
+                </div>
+                <div className={styles.narrativeDiagramColumn}>
+                  <div className={styles.narrativeDiagram}>
+                    <AnimatedDiagram
+                      Diagram={OldWayFlowchartDiagram}
+                      durationMs={8000}
+                      autoPlay={true}
+                      loop={false}
+                      holdProgress={1.0}
+                    />
+                  </div>
+                  <p className={styles.narrativeCaption}>
+                    Every new edge case means more conditional logic
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* New Way - Then Show the Solution */}
+        <section className={`${styles.section}`}>
+          <div className={styles.container}>
+            <div className={styles.narrativeSection}>
+              <div className={styles.narrativeGrid}>
+                <div className={styles.narrativeContent}>
+                  <h3 className={styles.sectionTitle}>
+                    The new way: agents with guardrails
+                  </h3>
+                  <p className={styles.sectionSubtitle}>
+                    Instead of handling every edge case yourself, you give an agent tools and a procedure,
+                    and let it work inside guardrails.
+                  </p>
+                </div>
+                <div className={styles.narrativeDiagramColumn}>
+                  <div className={styles.narrativeDiagram}>
+                    <AnimatedDiagram
+                      Diagram={AgentGuardrailsDiagram}
+                      durationMs={3200}
+                      autoPlay={true}
+                      loop={true}
+                      holdProgress={1.0}
+                    />
+                  </div>
+                  <p className={styles.narrativeCaption}>
+                    Agent + Tools + Procedure, bounded by Guardrails
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -375,9 +471,8 @@ const IndexPage = () => {
           <div className={styles.container}>
             <div className={styles.paradigm}>
               <header className={styles.sectionHeader}>
-                <p className={styles.eyebrow}>The paradigm shift</p>
                 <h2 className={styles.sectionTitle}>
-                  A new kind of computer program
+                  Here's what that looks like in code
                 </h2>
                 <p className={styles.sectionSubtitle}>
                   Instead of anticipating every edge case, you define
@@ -467,19 +562,14 @@ const IndexPage = () => {
           </div>
         </section>
 
-        <section className={`${styles.section} ${styles.bgPrimary}`}>
-          <div className={styles.container}>
-            <div className={styles.tactusAdds}>
-              <h3 className={styles.tactusAddsTitle}>Tactus in a nutshell</h3>
-              <p className={styles.tactusAddsBody}>
-                A high-level agent programming model, with default-on sandboxing
-                and container isolation, capability and context control,
-                human-in-the-loop gates, and durable checkpoints so long-running
-                workflows can pause, resume, and be audited safely.
-              </p>
-            </div>
-          </div>
-        </section>
+        <Breakout title="Tactus in a nutshell" size="section">
+          <p>
+            A high-level agent programming model, with default-on sandboxing and
+            container isolation, capability and context control, human-in-the-loop
+            gates, and durable checkpoints so long-running workflows can pause,
+            resume, and be audited safely.
+          </p>
+        </Breakout>
 
         <FeatureHighlightsSection
           title="Built for real systems"
@@ -489,17 +579,9 @@ const IndexPage = () => {
           ctaText="Learn more"
         />
 
-        <LandingLearnSection
-          id="guardrails"
-          eyebrow="Learn"
-          title="Guardrails for Agent Autonomy"
-          lede="You can’t drive fast without brakes. Tactus gives you enforceable controls: staged tool access, durable approvals, sandboxing, and a secretless broker boundary."
-          to="/procedure-sandboxing/"
-          ctaText="Read: Guardrails"
-          Diagram={GuardrailsStackDiagram}
-        />
+	        <GuardrailsSpotlight id="guardrails" eyebrow="Learn" />
 
-        <LandingLearnSection
+        <SpotlightSection
           id="toolbox"
           eyebrow="Learn"
           title="The AI Engineer’s Toolbox"
@@ -509,166 +591,140 @@ const IndexPage = () => {
           Diagram={ToolboxDiagram}
         />
 
+        {/* Code Examples Group */}
         <section className={`${styles.section}`}>
           <div className={styles.container}>
-            <div className={styles.example}>
-          <header className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>Human-in-the-loop, durably</h2>
-            <p className={styles.sectionSubtitle}>
-              When a workflow needs a human, it can pause and resume without
-              losing its place.
-            </p>
-          </header>
-          <div className={styles.codeBlockPlayer}>
-            <AnimatedCodeBlock
-              label="Human in the loop"
-              filename="examples-deploy.tac"
-              hint="HITL + timeout"
-              code={DURABILITY_EXAMPLE}
-              language="tactus"
-              showTypewriter={false}
-              typewriterLoop={false}
-              autoHeight={true}
-              blockWidth={1400}
-              width="100%"
-              autoPlay={false}
-              controls={false}
-              loop={false}
-            />
-          </div>
 
-          <div className={styles.exampleCopy}>
-            <p className={styles.exampleLead}>
-              In Tactus, <code>Human.approve()</code> is a first-class
-              primitive. Reaching it suspends the run and creates a durable
-              “waiting for human” checkpoint.
-            </p>
-            <p className={styles.exampleLead}>
-              You can wait indefinitely, or set a timeout + default. When the
-              human responds (or the timeout triggers), the procedure resumes
-              exactly where it left off—no state machines and no “keep a process
-              alive" hacks.
-            </p>
-          </div>
-            </div>
-          </div>
-        </section>
-
-        <section className={`${styles.section}`}>
-          <div className={styles.container}>
-            <div className={styles.example}>
-          <header className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>
-              Specifications + evaluations
-            </h2>
-            <p className={styles.sectionSubtitle}>
-              Write behavior as specs, then measure reliability across runs and
-              datasets.
-            </p>
-          </header>
-          <div className={styles.codeBlockPlayer}>
-            <AnimatedCodeBlock
-              label="Specifications"
-              filename="examples-safe-deploy.feature"
-              hint="BDD"
-              code={SPECIFICATIONS_EXAMPLE}
-              language="gherkin"
-              showTypewriter={false}
-              typewriterLoop={false}
-              autoHeight={true}
-              blockWidth={1400}
-              width="100%"
-              autoPlay={false}
-              controls={false}
-              loop={false}
-            />
-          </div>
-
-          <div className={styles.exampleCopy}>
-            <p className={styles.exampleLead}>
-              Specs encode what must be true. They let you test workflows
-              directly and catch regressions as prompts, tools, and models
-              evolve.
-            </p>
-            <p className={styles.exampleLead}>
-              Run specs as tests (e.g. <code>tactus test</code>) before you
-              deploy changes or run unattended.
-            </p>
-          </div>
-            </div>
-          </div>
-        </section>
-
-        <section className={`${styles.section}`}>
-          <div className={styles.container}>
-            <div className={styles.example}>
-          <header className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>Validation is built in</h2>
-            <p className={styles.sectionSubtitle}>
-              Procedures declare typed inputs and outputs, validated with
-              Pydantic.
-            </p>
-          </header>
-          <div className={styles.codeBlockPlayerTall}>
-            <AnimatedCodeBlock
-              label="Validation"
-              filename="examples-research.tac"
-              hint="Input + output schemas"
-              code={VALIDATION_EXAMPLE}
-              language="tactus"
-              showTypewriter={false}
-              typewriterLoop={false}
-              autoHeight={true}
-              blockWidth={1400}
-              width="100%"
-              autoPlay={false}
-              controls={false}
-              loop={false}
-            />
-          </div>
-
-          <div className={styles.exampleCopy}>
-            <p className={styles.exampleLead}>
-              That schema isn’t decoration: it’s the contract the runtime uses
-              to validate inputs, structure outputs, and power tooling (like
-              auto-generated forms and safer integrations).
-            </p>
-          </div>
-            </div>
-          </div>
-        </section>
-
-        <section className={`${styles.section} ${styles.bgPrimary}`}>
-          <div className={styles.container}>
-            <div className={styles.whyLanguage}>
-              <h3 className={styles.whyLanguageTitle}>
-                Why do we need a new language?
-              </h3>
-              <div className={styles.whyLanguageBody}>
-                <p className={styles.whyLanguageLead}>
-                  We already have Python. We already have frameworks for agent workflows (and even
-                  no-code tools). So what’s missing?
+            {/* HITL */}
+            <div className={styles.example} style={{ marginBottom: 'var(--space-6)' }}>
+              <header className={styles.sectionHeader}>
+                <h2 className={styles.sectionTitle}>Human-in-the-loop, durably</h2>
+                <p className={styles.sectionSubtitle}>
+                  When a workflow needs a human, it can pause and resume without
+                  losing its place.
                 </p>
-                <p className={styles.whyLanguageTagline}>
-                  Because “hope for the best” isn’t a strategy for production systems.
+              </header>
+              <div className={styles.codeBlockPlayer}>
+                <AnimatedCodeBlock
+                  label="Human in the loop"
+                  filename="examples-deploy.tac"
+                  hint="HITL + timeout"
+                  code={DURABILITY_EXAMPLE}
+                  language="tactus"
+                  showTypewriter={false}
+                  typewriterLoop={false}
+                  autoHeight={true}
+                  blockWidth={1400}
+                  width="100%"
+                  autoPlay={false}
+                  controls={false}
+                  loop={false}
+                />
+              </div>
+              <div className={styles.exampleCopy}>
+                <p className={styles.exampleLead}>
+                  In Tactus, <code>Human.approve()</code> is a first-class
+                  primitive. Reaching it suspends the run and creates a durable
+                  “waiting for human” checkpoint.
                 </p>
-                <ul className={styles.whyLanguageList}>
-                  <li>
-                    If Python is “good enough”, what do we gain by introducing a new language?
-                  </li>
-                  <li>
-                    What’s missing from libraries like LangChain and LangGraph when you move from
-                    demos to production systems?
-                  </li>
-                  <li>
-                    Why do no-code agent tools tend to break down once you need safety,
-                    reliability, and testability?
-                  </li>
-                </ul>
               </div>
             </div>
+
+            {/* Specs */}
+            <div className={styles.example} style={{ marginBottom: 'var(--space-6)' }}>
+              <header className={styles.sectionHeader}>
+                <h2 className={styles.sectionTitle}>
+                  Specifications + evaluations
+                </h2>
+                <p className={styles.sectionSubtitle}>
+                  Write behavior as specs, then measure reliability across runs and
+                  datasets.
+                </p>
+              </header>
+              <div className={styles.codeBlockPlayer}>
+                <AnimatedCodeBlock
+                  label="Specifications"
+                  filename="examples-safe-deploy.feature"
+                  hint="BDD"
+                  code={SPECIFICATIONS_EXAMPLE}
+                  language="gherkin"
+                  showTypewriter={false}
+                  typewriterLoop={false}
+                  autoHeight={true}
+                  blockWidth={1400}
+                  width="100%"
+                  autoPlay={false}
+                  controls={false}
+                  loop={false}
+                />
+              </div>
+              <div className={styles.exampleCopy}>
+                <p className={styles.exampleLead}>
+                  Specs encode what must be true. They let you test workflows
+                  directly and catch regressions as prompts, tools, and models
+                  evolve.
+                </p>
+              </div>
+            </div>
+
+            {/* Validation */}
+            <div className={styles.example}>
+              <header className={styles.sectionHeader}>
+                <h2 className={styles.sectionTitle}>Validation is built in</h2>
+                <p className={styles.sectionSubtitle}>
+                  Procedures declare typed inputs and outputs, validated with
+                  Pydantic.
+                </p>
+              </header>
+              <div className={styles.codeBlockPlayerTall}>
+                <AnimatedCodeBlock
+                  label="Validation"
+                  filename="examples-research.tac"
+                  hint="Input + output schemas"
+                  code={VALIDATION_EXAMPLE}
+                  language="tactus"
+                  showTypewriter={false}
+                  typewriterLoop={false}
+                  autoHeight={true}
+                  blockWidth={1400}
+                  width="100%"
+                  autoPlay={false}
+                  controls={false}
+                  loop={false}
+                />
+              </div>
+              <div className={styles.exampleCopy}>
+                <p className={styles.exampleLead}>
+                  That schema isn’t decoration: it’s the contract the runtime uses
+                  to validate inputs, structure outputs, and power tooling (like
+                  auto-generated forms and safer integrations).
+                </p>
+              </div>
+            </div>
+
           </div>
         </section>
+
+        <Breakout title="Why do we need a new language?" size="section">
+          <p>
+            We already have Python. We already have frameworks for agent workflows (and even
+            no-code tools). So what’s missing?
+          </p>
+          <p>
+            <strong>Because “hope for the best” isn’t a strategy for production systems.</strong>
+          </p>
+          <ul>
+            <li>If Python is “good enough”, what do we gain by introducing a new language?</li>
+            <li>
+              What’s missing from libraries like LangChain and LangGraph when you move from demos
+              to production systems?
+            </li>
+            <li>
+              Why do no-code agent tools tend to break down once you need safety, reliability, and
+              testability?
+            </li>
+          </ul>
+        </Breakout>
 
         <section className={`${styles.section}`}>
           <div className={styles.container}>
@@ -716,7 +772,7 @@ const IndexPage = () => {
 
         <BottomCta
           title="Ready to start building?"
-          text="Follow a short walkthrough and write your first durable procedure."
+          text="Follow a short walkthrough and build your first tool-using agent workflow."
           buttonLabel="Get Started"
           to="/getting-started/"
         />
@@ -729,6 +785,7 @@ const IndexPage = () => {
  * Head export to define metadata for the page
  *
  * See: https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-head/
+ *
  */
 export const Head = () => <Seo title="Tactus" />
 

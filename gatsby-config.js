@@ -25,6 +25,15 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `example-usage`,
+        path: `${__dirname}/src/content/example-usage`,
+      },
+    },
+    `gatsby-plugin-mdx`,
+    `gatsby-citation-manager`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {

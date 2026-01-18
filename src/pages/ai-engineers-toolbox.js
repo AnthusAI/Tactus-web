@@ -3,6 +3,7 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 import BottomCta from "../components/bottom-cta"
 import ToolboxDiagram from "../components/diagrams/ToolboxDiagram"
+import Breakout from "../components/publishing/Breakout"
 import * as styles from "./ai-engineers-toolbox.module.css"
 
 const usePreferredTheme = () => {
@@ -62,29 +63,28 @@ const AIToolboxPage = () => {
             </nav>
 
             <section id="tools-are-capabilities" style={{ marginTop: "var(--space-6)" }}>
-              <div className={styles.magentaSection}>
-                <h2 className={styles.magentaTitle}>Tools are how agents touch reality</h2>
-                <div className={styles.magentaBody}>
-                  <p className={styles.magentaLead}>
-                    In many frameworks, tools are “just functions you register.” That’s fine in a prototype, but in production it
-                    becomes a trap: arbitrary callbacks and side effects are hard to reason about, hard to test, and hard to secure.
-                  </p>
-                  <p className={styles.magentaTagline}>
+              <Breakout title="Tools are how agents touch reality">
+                <p>
+                  In many frameworks, tools are “just functions you register.” That’s fine in a prototype, but in production it
+                  becomes a trap: arbitrary callbacks and side effects are hard to reason about, hard to test, and hard to secure.
+                </p>
+                <p>
+                  <strong>
                     In Tactus, tools are explicit capabilities: schema-first, inspectable, and controllable.
-                  </p>
-                  <ul className={styles.magentaList}>
-                    <li>
-                      <strong>Schema-first</strong> inputs so the model can’t hand-wave arguments
-                    </li>
-                    <li>
-                      <strong>Deterministic implementations</strong> so “doing work” is reliable and testable
-                    </li>
-                    <li>
-                      <strong>Control surfaces</strong> so you decide which tools exist and when they’re available
-                    </li>
-                  </ul>
-                </div>
-              </div>
+                  </strong>
+                </p>
+                <ul>
+                  <li>
+                    <strong>Schema-first</strong> inputs so the model can’t hand-wave arguments
+                  </li>
+                  <li>
+                    <strong>Deterministic implementations</strong> so “doing work” is reliable and testable
+                  </li>
+                  <li>
+                    <strong>Control surfaces</strong> so you decide which tools exist and when they’re available
+                  </li>
+                </ul>
+              </Breakout>
 
               <div className={styles.diagramWrap}>
                 <ToolboxDiagram theme={theme} className={styles.diagram} />
@@ -192,4 +192,3 @@ const AIToolboxPage = () => {
 export const Head = () => <Seo title="The AI Engineer’s Toolbox" />
 
 export default AIToolboxPage
-

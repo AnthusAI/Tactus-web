@@ -23,10 +23,8 @@ export const Card: React.FC<CardProps> = ({
         backgroundColor: variant === "muted" ? colors.surface2 : colors.surface,
         padding: spacing[padding],
         borderRadius,
-        border: "1px solid rgba(0,0,0,0.05)",
-        boxShadow: variant === "muted" 
-          ? "0 1px 3px rgba(0, 0, 0, 0.05)" 
-          : "0 2px 8px rgba(0,0,0,0.05)",
+        border: "none",
+        boxShadow: "0 4px 0 0 rgba(0, 0, 0, 0.1)",
         color: variant === "muted" ? colors.textMuted : colors.text,
         ...style,
       }}
@@ -56,7 +54,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
         backgroundColor: colors.codeBg,
         padding: spacing[padding],
         borderRadius,
-        border: "1px solid rgba(0,0,0,0.05)",
+        border: "none",
         ...style,
       }}
     >

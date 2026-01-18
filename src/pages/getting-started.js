@@ -2,17 +2,19 @@ import * as React from "react"
 import { Link } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import BookSeriesSection from "../components/book-series-section"
+import VideosSpotlightSection from "../components/videos-spotlight-section"
 import * as styles from "./getting-started.module.css"
 
 const GettingStartedPage = () => (
-  <Layout>
+  <Layout fullWidth={true}>
     <div className={styles.page}>
       <section className={styles.section}>
         <div className={styles.container}>
           <div className={styles.hero}>
-            <h1 className={styles.title}>Start Building</h1>
+            <h1 className={styles.title}>Get Started</h1>
             <p className={styles.subtitle}>
-              Choose the workflow that matches what you want to do today.
+              Run your first procedure in minutes — from the CLI or the IDE.
             </p>
           </div>
 
@@ -30,57 +32,83 @@ const GettingStartedPage = () => (
             </div>
 
             {/* Path 2: CLI */}
-            <div className={styles.pathCard}>
-              <h2 className={styles.pathTitle}>Command Line</h2>
-              <p className={styles.pathText}>
-                For running agents on servers, in CI/CD, or as distributed Python packages.
-                Tactus runs as a standard Python module.
-              </p>
-              <div className={styles.codeBlock}>
-                $ pip install tactus
+              <div className={styles.pathCard}>
+                <h2 className={styles.pathTitle}>Command Line</h2>
+                <p className={styles.pathText}>
+                For running procedures locally, on servers, or in CI/CD. Install once, then run
+                any <code>.tac</code> file.
+                </p>
+                <div className={styles.codeBlock}>
+                  $ pip install tactus
+                </div>
               </div>
-            </div>
           </div>
 
-          {/* Concepts */}
+          {/* Walkthrough */}
           <div className={styles.conceptSection}>
-            <h2 className={styles.conceptTitle}>Two Ways to Run</h2>
-            <div className={styles.pathGrid}>
-              <div className={styles.pathCard}>
-                <h3 className={styles.pathTitle}>Standalone Utility</h3>
-                <p className={styles.pathText}>
-                  Tactus is great for writing script-based agents. You can run 
-                  <code>.tac</code> files directly from your terminal to perform tasks, 
-                  process files, or automate workflows locally.
-                </p>
-              </div>
-              <div className={styles.pathCard}>
-                <h3 className={styles.pathTitle}>Embedded Runtime</h3>
-                <p className={styles.pathText}>
-                  A common use case is embedding the Tactus runtime inside another 
-                  application or cloud backend. This lets your app "run" agent procedures 
-                  to provide intelligent features to your users.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Learn */}
-          <div className={styles.conceptSection} style={{borderTop: 'none', paddingTop: 'var(--space-4)'}}>
-            <h2 className={styles.conceptTitle}>Learn the Language</h2>
-            <p className={styles.pathText} style={{maxWidth: '48rem'}}>
-              Tactus is a programming language. To get the most out of it, you'll want to 
-              understand the core patterns: tools, durability, and context.
+            <h2 className={styles.conceptTitle}>Hello, world (walkthrough)</h2>
+            <p className={styles.conceptIntro}>
+              Use the IDE to run the built-in Hello World example, or paste this into <code>hello.tac</code> and run it from the CLI.
             </p>
-            <div style={{marginTop: 'var(--space-4)'}}>
-              <a href="https://anthusai.github.io/Learning-Tactus/" className={styles.primaryButton} style={{background: 'var(--color-surface-2)', color: 'var(--color-text)'}}>
-                Read Learning Tactus
-              </a>
+
+            <div className={styles.longCodeBlock} aria-label="Hello world example">
+              {`World = Agent {
+    provider = "openai",
+    model = "gpt-4o-mini",
+    system_prompt = "Your name is World."
+}
+
+return World("Hello, World!").response`}
+            </div>
+
+            <div className={styles.stepsGrid}>
+              <div className={styles.stepsCard}>
+                <h3 className={styles.stepsTitle}>Run it with the IDE</h3>
+                <ol className={styles.stepsList}>
+                  <li>
+                    Download the Tactus IDE for your OS from <Link to="/download/">Download</Link>.
+                  </li>
+                  <li>
+                    Open the app — it includes example procedures ready to run.
+                  </li>
+                  <li>
+                    Open the Hello World example, then press <b>Run</b>.
+                  </li>
+                </ol>
+              </div>
+
+              <div className={styles.stepsCard}>
+                <h3 className={styles.stepsTitle}>Run it with the CLI</h3>
+                <ol className={styles.stepsList}>
+                  <li>
+                    Install Tactus: <code>pip install tactus</code>
+                  </li>
+                  <li>
+                    Set your OpenAI key: <code>export OPENAI_API_KEY=your-key</code>
+                  </li>
+                  <li>
+                    Run: <code>tactus run hello.tac</code>
+                  </li>
+                </ol>
+              </div>
             </div>
           </div>
 
         </div>
       </section>
+
+      <section className={styles.resourcesIntroSection}>
+        <div className={styles.container}>
+          <h2 className={styles.conceptTitle}>More learning resources</h2>
+          <p className={styles.conceptIntro}>
+            If you want to go deeper, the books and videos cover the ideas, patterns, and design philosophy behind Tactus.
+          </p>
+        </div>
+      </section>
+
+      <BookSeriesSection id="books" mutedBackground={true} />
+
+      <VideosSpotlightSection id="videos" title="Videos" mutedBackground={true} />
     </div>
   </Layout>
 )

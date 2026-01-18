@@ -3,7 +3,80 @@ import { Link } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import BottomCta from "../components/bottom-cta"
+import Breakout from "../components/publishing/Breakout"
+import AnimatedCodeBlock from "../components/animated/AnimatedCodeBlock"
 import * as styles from "./why-new-language.module.css"
+
+const MACHINE_CODE = `01001000 10001001 11100101
+01001000 10000011 11101100 00001000
+10001011 00000101 00000000 00000000 00000000 00000000`
+
+const HEX_CODE = `48 89 E5
+48 83 EC 08
+8B 05 00 00 00 00`
+
+const ASSEMBLY_CODE = `section .data
+    msg db 'Hello, World!', 0
+
+section .text
+    global _start
+
+_start:
+    mov rax, 1
+    mov rdi, 1
+    mov rsi, msg
+    mov rdx, 13
+    syscall`
+
+const LISP_CODE = `(defun hello-world ()
+  (format t "Hello, World!~%"))
+
+(hello-world)`
+
+const C_CODE = `#include <stdio.h>
+
+int main() {
+    printf("Hello, World!\\n");
+    return 0;
+}`
+
+const CPP_CODE = `#include <iostream>
+#include <string>
+
+class Greeter {
+public:
+    std::string name;
+    Greeter(std::string n) : name(n) {}
+    void greet() {
+        std::cout << "Hello, " << name << "!" << std::endl;
+    }
+};
+
+int main() {
+    Greeter g("World");
+    g.greet();
+    return 0;
+}`
+
+const RUBY_CODE = `class Greeter
+  def initialize(name)
+    @name = name
+  end
+
+  def greet
+    puts "Hello, #{@name}!"
+  end
+end
+
+Greeter.new("World").greet`
+
+const TACTUS_HELLO_WORLD_CODE = `World = Agent {
+    provider = "openai",
+    model = "gpt-4o-mini",
+    system_prompt = "Your name is World."
+}
+
+return World("Hello, World!").response`
 
 const PYTHON_AGENT_CODE = `# Trying to make Python do agent workflows
 async def process_with_agent(input_data):
@@ -23,9 +96,9 @@ const TACTUS_AGENT_CODE = `Procedure {
       instruction = "Process this input",
       data = input
     }
-    -- Checkpointed automatically
-    -- Runs in sandbox by default
-    -- Testable with specs
+    -- Designed for durable checkpoints
+    -- Designed for sandboxed execution
+    -- Designed to be evaluated with specs
     return result
   end
 }`
@@ -37,6 +110,23 @@ const BDD_SPEC_CODE = `Feature: Contact import works reliably
     When the agent imports them
     Then at least 95% should import successfully
     And all required fields should be populated`
+
+const REACT_LOOP_CODE = `# A typical ReAct-style agent loop (simplified)
+MAX_TOOL_CALLS = 12
+
+for step in range(MAX_TOOL_CALLS):
+    decision = model(context, tools=available_tools)
+
+    if decision.tool_call:
+        observation = call_tool(decision.tool_call)
+        context.append(observation)
+        continue
+
+    if decision.done:
+        break
+
+# Guardrails are what make this safe to run at scale:
+# tool allowlists, approvals, timeouts, sandboxes, audits, etc.`
 
 const WhyNewLanguagePage = () => (
   <Layout fullWidth={true}>
@@ -51,9 +141,9 @@ const WhyNewLanguagePage = () => (
               Why a New Language?
             </h1>
             <p className={styles.lede}>
-              Since the dawn of electronic computing more than eighty years ago, there has
-              effectively been only one way to write a computer program. Today, for the first
-              time, that assumption no longer holds.
+              Since the dawn of electronic computing, there has effectively been only one way
+              to write a computer program. Today, for the first time in more than eighty years,
+              that assumption no longer holds.
             </p>
           </div>
 
@@ -87,6 +177,23 @@ const WhyNewLanguagePage = () => (
             different locations based on conditions.
           </p>
 
+          <div className={styles.codeEmbed}>
+            <AnimatedCodeBlock
+              label="Machine code"
+              code={MACHINE_CODE}
+              language="text"
+              filename="machine-code.bin"
+              showTypewriter={true}
+              typewriterLoop={false}
+              autoHeight={true}
+              blockWidth={1400}
+              width="100%"
+              autoPlay={true}
+              controls={false}
+              loop={false}
+            />
+          </div>
+
           <p className={styles.bodyText}>
             In the earliest era of computing, this was the only way to program a machine. The
             programmers who worked on ENIAC in 1945, and on EDSAC just a few years later, lived
@@ -95,10 +202,45 @@ const WhyNewLanguagePage = () => (
           </p>
 
           <p className={styles.bodyText}>
-            This was completely hostile to human cognition.
+            It’s hard to overstate how unforgiving—and how literal—that was. At that level, zeros and
+            ones weren’t “data types”; they corresponded to physical states: voltage on a wire, a relay
+            position, or a vacuum tube being on or off. Early programmers didn’t just “write code” —
+            they were often working close enough to the hardware that the constructs they cared about
+            were the machine’s own guts: registers, addresses, and bit patterns.
+          </p>
+
+          <p className={styles.bodyText}>
+            That’s a recurring theme in the history of programming: as the *problem space* changes, the
+            language evolves so its constructs match what people actually care about. When you’re
+            building a computer, bit patterns are a reasonable abstraction. When you’re trying to make
+            software repeatable, reusable, and fast to change, you need different primitives.
           </p>
 
           <h3 className={styles.subsectionTitle}>Assembly Language: Naming the Zeros and Ones</h3>
+
+          <p className={styles.bodyText}>
+            Before assemblers, there was a small mercy: <strong>hexadecimal</strong>. Hex wasn’t
+            invented for computers — it’s ancient — but it became newly useful here. It didn’t change
+            what the machine executed, but it gave humans something to recognize: patterns, boundaries,
+            and chunks you could scan without counting bits.
+          </p>
+
+          <div className={styles.codeEmbed}>
+            <AnimatedCodeBlock
+              label="Hexadecimal"
+              code={HEX_CODE}
+              language="text"
+              filename="machine-code.hex"
+              showTypewriter={true}
+              typewriterLoop={false}
+              autoHeight={true}
+              blockWidth={1400}
+              width="100%"
+              autoPlay={true}
+              controls={false}
+              loop={false}
+            />
+          </div>
 
           <p className={styles.bodyText}>
             Assembly language emerged almost immediately as a response to this problem—as early as
@@ -107,39 +249,184 @@ const WhyNewLanguagePage = () => (
             into the underlying zeros and ones.
           </p>
 
+          <div className={styles.codeEmbed}>
+            <AnimatedCodeBlock
+              label="Assembly language"
+              code={ASSEMBLY_CODE}
+              language="text"
+              filename="hello.asm"
+              showTypewriter={true}
+              typewriterLoop={false}
+              autoHeight={true}
+              blockWidth={1400}
+              width="100%"
+              autoPlay={true}
+              controls={false}
+              loop={false}
+            />
+          </div>
+
           <p className={styles.bodyText}>
             Assembly did not change the paradigm. Control flow was still explicit and imperative. But
             it made the machine's behavior legible to humans. This was the beginning of a long trend:
             <strong> making the computer do more work so the human could think more clearly.</strong>
           </p>
 
+          <p className={styles.bodyText}>
+            And once you have an assembler, you have something bigger than a nicer notation: you have
+            a new kind of workflow. You write one program, and then you run a program to translate it
+            into something the machine can execute.
+          </p>
+
+          <p className={styles.bodyText}>
+            Put differently: an assembler is itself a computer program. You run it first, and it
+            outputs a new artifact—the machine code your computer will actually run. That means the
+            “act of programming” becomes a two‑step process: write code for humans, then run a program
+            that turns it into code for machines.
+          </p>
+
+          <p className={styles.bodyText}>
+            This matters because early computer time was incredibly valuable, and yet people still
+            spent some of that precious time on tools that made programming faster, safer, and more
+            repeatable. Almost immediately, we took the new machine and put *other programs* between
+            humans and hardware—so the machine could help us use the machine.
+          </p>
+
+          <p className={styles.bodyText}>
+            You also get early building blocks for reuse and repeatability. Labels and named routines
+            let you turn “the sequence of steps I do all the time” into something you can call again and
+            again—one of the roots of the subroutine and the function.
+          </p>
+
+          <p className={styles.bodyText}>
+            From there, the ladder of abstraction rose quickly. In the late 1950s and 1960s, early
+            high-level languages like Fortran, Lisp, COBOL, and ALGOL showed that you could describe
+            computation in terms closer to the problem—math, symbols, business rules, structured
+            control flow—while compilers handled the low-level details. APL pushed this idea even
+            further, compressing entire computations into a dense notation that made the *computer*
+            do more work so the *human* could say more with less.
+          </p>
+
+          <h3 className={styles.subsectionTitle}>Lisp: Code as Data</h3>
+
+          <p className={styles.bodyText}>
+            Lisp emerged in the late 1950s with a different kind of ambition: make symbolic
+            computation practical. One of its defining ideas was that code and data share the same
+            shape — which made programs easier to generate, transform, and reason about. Lists,
+            recursion, and symbolic manipulation weren’t accidental language features—they were the
+            constructs the researchers cared about.
+          </p>
+
+          <div className={styles.codeEmbed}>
+            <AnimatedCodeBlock
+              label="Lisp"
+              code={LISP_CODE}
+              language="lisp"
+              filename="hello.lisp"
+              showTypewriter={true}
+              typewriterLoop={false}
+              autoHeight={true}
+              blockWidth={1400}
+              width="100%"
+              autoPlay={true}
+              controls={false}
+              loop={false}
+            />
+          </div>
+
           <h3 className={styles.subsectionTitle}>C: Structured Control Flow</h3>
 
           <p className={styles.bodyText}>
-            The next major shift came with high-level languages like C. Programmers could write
+            One especially influential descendant of this era was C. Programmers could write
             structured control flow—functions, loops, conditionals—without manually managing jumps
             and memory addresses. The compiler handled translation to machine code. The CPU still
             executed imperative instructions. But humans could now reason about behavior at a
             higher level.
           </p>
 
+          <div className={styles.codeEmbed}>
+            <AnimatedCodeBlock
+              label="C"
+              code={C_CODE}
+              language="c"
+              filename="hello.c"
+              showTypewriter={true}
+              typewriterLoop={false}
+              autoHeight={true}
+              blockWidth={1400}
+              width="100%"
+              autoPlay={true}
+              controls={false}
+              loop={false}
+            />
+          </div>
+
           <p className={styles.bodyText}>
             Crucially, the mental model remained unchanged: the programmer still fully specified how
             decisions were made. The abstraction moved up a level, but the paradigm stayed the same.
           </p>
 
-          <h3 className={styles.subsectionTitle}>Ruby: Code as Pseudocode</h3>
+          <h3 className={styles.subsectionTitle}>C++ and Object-Oriented Programming</h3>
 
           <p className={styles.bodyText}>
-            Languages like Ruby represent a culmination of this trajectory. Ruby deliberately
-            prioritizes expressiveness and readability, allowing code to resemble structured
-            pseudocode. Matz, Ruby's creator, famously said the language was designed to make
-            programmers happy. The computer does an enormous amount of work on behalf of the human.
+            C++ and object-oriented programming pushed abstraction further by trying to match a new
+            problem space: large systems made of interacting “things” with state and responsibilities.
+            Instead of reasoning only about control flow, you could reason about entities, boundaries,
+            and relationships—then let the language and runtime enforce some structure.
           </p>
+
+          <div className={styles.codeEmbed}>
+            <AnimatedCodeBlock
+              label="C++"
+              code={CPP_CODE}
+              language="cpp"
+              filename="greeter.cpp"
+              showTypewriter={true}
+              typewriterLoop={false}
+              autoHeight={true}
+              blockWidth={1400}
+              width="100%"
+              autoPlay={true}
+              controls={false}
+              loop={false}
+            />
+          </div>
+
+          <h3 className={styles.subsectionTitle}>Ruby: Pseudocode as Code</h3>
+
+          <p className={styles.bodyText}>
+            Languages like Ruby represent another step along the same trajectory: express intent more
+            directly. Ruby deliberately prioritizes expressiveness and readability, allowing code to
+            resemble structured pseudocode. The computer does more work on behalf of the human so the
+            human can focus on the problem, not the bookkeeping.
+          </p>
+
+          <div className={styles.codeEmbed}>
+            <AnimatedCodeBlock
+              label="Ruby"
+              code={RUBY_CODE}
+              language="ruby"
+              filename="greeter.rb"
+              showTypewriter={true}
+              typewriterLoop={false}
+              autoHeight={true}
+              blockWidth={1400}
+              width="100%"
+              autoPlay={true}
+              controls={false}
+              loop={false}
+            />
+          </div>
 
           <p className={styles.bodyText}>
             But the role of the programmer had not fundamentally changed. The programmer still
             described the control flow. The computer still followed instructions.
+          </p>
+
+          <p className={styles.bodyText}>
+            These examples aren’t meant as a tour of “important languages.” They’re snapshots of a
+            repeating pattern: as software changes, programmers want their language to expose the
+            constructs they actually reason about — and hide the ones they don’t.
           </p>
 
           <h3 className={styles.subsectionTitle}>The Pattern Repeats with AI</h3>
@@ -152,6 +439,29 @@ const WhyNewLanguagePage = () => (
           </p>
 
           <p className={styles.bodyText}>
+            Tactus continues that tradition: it raises the level of abstraction to match what
+            engineers actually care about in agentic systems — procedures, tool use, guardrails,
+            checkpoints, and evaluation — so you can express those concerns directly.
+          </p>
+
+          <div className={styles.codeEmbed}>
+            <AnimatedCodeBlock
+              label="Tactus: Hello World"
+              code={TACTUS_HELLO_WORLD_CODE}
+              language="tactus"
+              filename="hello_world.tactus"
+              showTypewriter={true}
+              typewriterLoop={false}
+              autoHeight={true}
+              blockWidth={1400}
+              width="100%"
+              autoPlay={true}
+              controls={false}
+              loop={false}
+            />
+          </div>
+
+          <p className={styles.bodyText}>
             But this time, something deeper is changing. It's not just another layer of abstraction
             over imperative code. The way decisions are made is fundamentally different. Control flow
             is no longer something you fully specify in advance—it emerges from interaction between
@@ -159,7 +469,7 @@ const WhyNewLanguagePage = () => (
           </p>
 
           <p className={`${styles.bodyText} ${styles.emphasis}`}>
-            For more than eighty years, progress in programming meant raising the level at which
+            For most of computing history, progress in programming meant raising the level at which
             humans describe imperative control flow for a CPU. What comes next is not another step
             along that same line. It is a change in direction.
           </p>
@@ -223,6 +533,66 @@ const WhyNewLanguagePage = () => (
             procedures: high-level structures that describe goals, constraints, tools, and acceptable
             outcomes.
           </p>
+
+          <h3 className={styles.subsectionTitle}>Agentic Control Flow: The ReAct Loop</h3>
+
+          <p className={styles.bodyText}>
+            One clear way to see this shift is the ReAct pattern: you give a model a set of tools,
+            then you run a loop where the model decides whether to call a tool, incorporate the
+            results, and repeat — or declare that it’s done.
+          </p>
+
+          <p className={styles.bodyText}>
+            In other words, the model isn’t just producing text. It’s making decisions about the
+            program’s next step — the control flow. That’s a common practical definition of
+            agentic programming: <strong>the agent chooses the control flow.</strong>
+          </p>
+
+          <div className={styles.codeEmbed}>
+            <AnimatedCodeBlock
+              label="Agentic control flow"
+              code={REACT_LOOP_CODE}
+              language="python"
+              filename="react_loop.py"
+              showTypewriter={true}
+              typewriterLoop={false}
+              autoHeight={true}
+              blockWidth={1400}
+              width="100%"
+              autoPlay={true}
+              controls={false}
+              loop={false}
+            />
+          </div>
+
+          <p className={styles.bodyText}>
+            That creates a new kind of responsibility problem. If the agent is making control-flow
+            decisions, your traditional <strong>if/then</strong> branches aren’t what governs the
+            procedure anymore — they’re a layer removed from what actually happens. But you still
+            need a procedure with a beginning and an end, and you still need it to complete
+            reliably.
+          </p>
+
+          <p className={styles.bodyText}>
+            So instead of only asking “what code path runs?”, you have to ask “what behavior is
+            acceptable?” — and then design the procedure so it <em>stays</em> within those bounds.
+            That means iterating on decision-making configurations (prompts, models, tool access,
+            policies), searching through alternatives, and measuring outcomes — not just editing
+            imperative branching logic.
+          </p>
+
+          <p className={styles.bodyText}>
+            But a loop like that is only usable in real systems if it has guardrails from the very
+            beginning. The simplest guardrail is a hard cap on tool calls — for example, “stop after
+            12 tool calls.” Without at least that, you can’t even safely run the loop unattended.
+          </p>
+
+          <p className={styles.bodyText}>
+            And once you accept that, you quickly realize guardrails aren’t an add‑on — they’re part
+            of the program. Tool allowlists, approvals, sandboxes, timeouts, durable checkpoints, and
+            audits aren’t implementation details. They’re the structure that makes agentic control
+            flow trustworthy.
+          </p>
         </div>
       </section>
 
@@ -278,6 +648,19 @@ const WhyNewLanguagePage = () => (
             encourages the programmer to think. The code describes steps and branches, but the system
             operates as a procedure whose behavior emerges from interaction between models, data, and
             constraints.
+          </p>
+
+          <p className={styles.bodyText}>
+            When control decisions move into the model, “the code” can become a thin wrapper around
+            the real moving parts. You end up managing the most important concerns — guardrails, tool
+            capability boundaries, evaluation criteria, and human checkpoints — through scattered
+            conventions instead of first-class constructs.
+          </p>
+
+          <p className={styles.bodyText}>
+            Tactus is designed to close that gap: to let you express procedures and guardrails in a
+            form that matches the problem you’re actually solving, so your code is aligned with how
+            the system runs.
           </p>
         </div>
       </section>
@@ -670,7 +1053,7 @@ const WhyNewLanguagePage = () => (
           </p>
 
           <p className={styles.bodyText}>
-            For more than eighty years, programming meant specifying control flow in advance.
+            For most of computing history, programming meant specifying control flow in advance.
             Languages, tools, and best practices evolved to make that process safer, clearer, and
             more efficient for humans. That entire ecosystem was built around deterministic
             execution and binary notions of correctness.
@@ -683,19 +1066,18 @@ const WhyNewLanguagePage = () => (
             is expected, not eliminated.
           </p>
 
-          <div className={styles.evolutionCallout}>
-            <h3 className={styles.evolutionTitle}>This is Evolution</h3>
-            <p className={styles.evolutionText}>
+          <Breakout title="This is evolution" withContainer={false}>
+            <p>
               PrOps names this new operational reality. It captures the need to supervise,
               evaluate, and refine behavior-driven systems with the same seriousness that DevOps
               brought to deterministic software and MLOps brought to machine learning models.
             </p>
-            <p className={styles.evolutionText}>
+            <p>
               Languages follow mental models. When the mental model changes, new languages
-              emerge—not to replace what came before, but to make the new reality intelligible
-              and tractable for humans.
+              emerge—not to replace what came before, but to make the new reality intelligible and
+              tractable for humans.
             </p>
-          </div>
+          </Breakout>
 
           <p className={`${styles.bodyText} ${styles.emphasis}`}>
             This is not a revolution in computation. It is the next stage in a long, continuous

@@ -10,6 +10,7 @@ import BottomCta from "../components/bottom-cta"
 import SpotlightSection from "../components/spotlight-section"
 import GuardrailsSpotlight from "../components/guardrails-spotlight"
 import ToolboxDiagram from "../components/diagrams/ToolboxDiagram"
+import HitlReturnsAllDiagram from "../components/diagrams/HitlReturnsAllDiagram"
 import AnimatedOldWayFlowchartDiagram from "../components/diagrams/AnimatedOldWayFlowchartDiagram"
 import AnimatedAgentGuardrailsDiagram from "../components/diagrams/AnimatedAgentGuardrailsDiagram"
 import FeatureHighlightsSection from "../components/feature-highlights-section"
@@ -379,6 +380,25 @@ const IndexPage = () => {
                   But how do we step back and give agents more agency to do things on their own—with
                   powerful tools that have full control and can act on the systems and data we care about?
                 </p>
+
+                <div className={styles.compareGrid}>
+                  <div className={styles.compareCard}>
+                    <h3 className={styles.compareTitle}><Icons.Eye /> Supervised (chat)</h3>
+                    <ul className={styles.compareList}>
+                      <li>You watch every step and tool call.</li>
+                      <li>You can correct course mid-run.</li>
+                      <li>You can halt before damage is done.</li>
+                    </ul>
+                  </div>
+                  <div className={styles.compareCard}>
+                    <h3 className={styles.compareTitle}><Icons.Alert /> Unattended (production)</h3>
+                    <ul className={styles.compareList}>
+                      <li>Runs without you—and runs many times.</li>
+                      <li>Small failure rates become incidents.</li>
+                      <li>Needs enforcement, not hope.</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -416,10 +436,10 @@ const IndexPage = () => {
                 </div>
                 <div className={styles.narrativeDiagramColumn}>
                   <div className={styles.narrativeDiagram}>
-                    <AnimatedOldWayFlowchartDiagram durationMs={8000} />
+                    <AnimatedOldWayFlowchartDiagram durationMs={4000} />
                   </div>
                   <p className={styles.narrativeCaption}>
-                    Every new edge case means more conditional logic
+                    Every new edge case requires more conditional logic
                   </p>
                 </div>
               </div>
@@ -526,29 +546,6 @@ const IndexPage = () => {
           </div>
         </section>
 
-        <section className={`${styles.section} ${styles.bgMuted}`}>
-          <div className={styles.container}>
-            <div className={styles.compareGrid}>
-              <div className={styles.compareCard}>
-                <h3 className={styles.compareTitle}><Icons.Eye /> Supervised (chat)</h3>
-                <ul className={styles.compareList}>
-                  <li>You watch every step and tool call.</li>
-                  <li>You can correct course mid-run.</li>
-                  <li>You can halt before damage is done.</li>
-                </ul>
-              </div>
-              <div className={styles.compareCard}>
-                <h3 className={styles.compareTitle}><Icons.Alert /> Unattended (production)</h3>
-                <ul className={styles.compareList}>
-                  <li>Runs without you—and runs many times.</li>
-                  <li>Small failure rates become incidents.</li>
-                  <li>Needs enforcement, not hope.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
-
         <Breakout title="Tactus in a nutshell" size="section">
           <p>
             A high-level agent programming model, with default-on sandboxing and
@@ -566,7 +563,17 @@ const IndexPage = () => {
           ctaText="Learn more"
         />
 
-	        <GuardrailsSpotlight id="guardrails" eyebrow="Learn" />
+        <SpotlightSection
+          id="human-in-the-loop"
+          eyebrow="Learn"
+          title="Human in the loop, durably"
+          lede="Agents shouldn’t be trusted with irreversible actions. Tactus makes human review a first-class, durable checkpoint—so a procedure can pause, you can send it back for edits, and it can resume hours later without keeping a process alive."
+          to="/human-in-the-loop/"
+          ctaText="Read: Human in the Loop"
+          Diagram={HitlReturnsAllDiagram}
+        />
+
+		        <GuardrailsSpotlight id="guardrails" eyebrow="Learn" />
 
         <SpotlightSection
           id="toolbox"

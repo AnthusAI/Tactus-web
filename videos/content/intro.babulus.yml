@@ -225,17 +225,17 @@ scenes:
         voice:
           segments:
             - voice: >
-                Even with guardrails, you’re still responsible for supervising your monkeys.
-                If you give agents powerful tools, sometimes you need a human to approve a step—or answer a question.
+                Even with guardrails, you still need humans at the moments that matter.
+                If an agent is about to take an irreversible action, you want a human to approve it.
             - pause_seconds: 0.4
             - voice: >
-                For example: a procedure drafts a blog post, then asks you to approve it before it publishes.
-                You can step back from the chat interface, but still stay in charge at the key moments.
+                And sometimes the right outcome isn’t yes or no — it’s: send it back for edits.
+                A procedure can draft an artifact, ask for review, and then continue with the revised version.
             - pause_seconds: 0.4
             - voice: >
-                And the best part is: the procedure can pause completely while it waits—no compute, no cost.
-                When you approve or reply, it resumes right where it left off.
-                That’s how you do human‑in‑the‑loop at scale.
+                And it’s durable. The procedure can pause completely while it waits — no compute, no cost —
+                and resume hours later exactly where it left off.
+                That’s human‑in‑the‑loop at scale.
 
   - id: graphs
     title: "No Graphs Required"

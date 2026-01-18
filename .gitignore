@@ -43,6 +43,7 @@ videos/public/babulus/
 videos/.babulus/out/
 .babulus/out/
 .fabulus/
+.claude/
 
 # Gatsby local video assets (not committed; source from S3 in prod)
 static/videos/*.mp4

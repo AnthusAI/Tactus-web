@@ -3,6 +3,7 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 import BottomCta from "../components/bottom-cta"
 import FeatureHighlightsSection from "../components/feature-highlights-section"
+import HitlReturnsAllDiagram from "../components/diagrams/HitlReturnsAllDiagram"
 import * as styles from "./features.module.css"
 import { Cable } from "lucide-react"
 
@@ -116,6 +117,9 @@ const FeaturesPage = () => {
                 Approvals are a first-class primitive. When a workflow reaches an approval, it can
                 suspend and wait—without hacks like “keep a process alive.”
               </p>
+              <div className={styles.hitlDiagram}>
+                <HitlReturnsAllDiagram />
+              </div>
               <div className={styles.codeBlock}>
                 <code>{`local approved = Human.approve({
     message = "Deploy to production?",

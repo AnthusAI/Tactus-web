@@ -27,6 +27,13 @@
   margin: var(--space-4) 0 var(--space-5);
 }
 
+.diagramEmbed {
+  margin: var(--space-5) 0;
+  background: var(--color-surface);
+  border-radius: var(--border-radius);
+  padding: var(--space-3);
+}
+
 /* Hero Section */
 .hero {
   padding: var(--space-6) 0 var(--space-5);

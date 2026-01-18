@@ -12,6 +12,7 @@ export const NAV_CONFIG = {
       to: "/learn-more/",
       items: [
         { label: 'Features', to: '/features/' },
+        { label: 'Human in the Loop', to: '/human-in-the-loop/' },
         { label: 'Why a New Language?', to: '/why-new-language/' },
         { label: 'The AI Engineer’s Toolbox', to: '/ai-engineers-toolbox/' },
         { label: 'Guardrails for Agent Autonomy', to: '/guardrails/' },

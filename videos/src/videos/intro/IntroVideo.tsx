@@ -16,8 +16,8 @@ import { Card } from "../../components/Card";
 import { ParadigmComparison } from "../../components/ParadigmComparison";
 import OldWayFlowchartDiagram from "../../components/diagrams/OldWayFlowchartDiagram";
 import AgentGuardrailsDiagram from "../../components/diagrams/AgentGuardrailsDiagram";
+import HumanInTheLoopDiagram from "../../components/diagrams/HumanInTheLoopDiagram";
 import monkeyImg from "../../assets/images/monkey.png";
-import coverAnimalImg from "../../assets/images/cover-animal.png";
 import nutshellCoverAnimalImg from "../../assets/images/nutshell-cover-animal.png";
 import iconImg from "../../assets/images/icon.png";
 import type { Scene, Script } from "@/babulus/types";
@@ -65,6 +65,13 @@ return World("Hello, World!").response`;
 
 const HELLO_WORLD_COMMAND = `tactus run examples/hello-world.tac`;
 const HELLO_WORLD_OUTPUT = `Hello, I'm World. Nice to meet you!`;
+
+const HITL_RETURNS_ALL_CONFIG = {
+  autoProcessRate: 0.1,
+  returnToAgentRate: 1.0,
+  itemCount: 6,
+  queueTime: 1000,
+};
 
 export type IntroVideoProps = {
   audioSrc?: string | null;
@@ -695,28 +702,14 @@ const HitlScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ scene, 
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const localSec = frame / fps;
+  const timeMs = localSec * 1000;
   const cueStartsLocal = ttsStartsSec.map((s) => s - scene.startSec);
   const beat1 = cueStartsLocal[0] ?? 0;
-  const beat2 = cueStartsLocal[1] ?? beat1 + 4;
-  const beat3 = cueStartsLocal[2] ?? beat2 + 4;
 
   const titleAnimation = spring({
     frame,
     fps,
     config: { damping: 100, stiffness: 200, mass: 0.5 },
-  });
-
-  const box: React.CSSProperties = {
-    borderRadius: 28,
-    border: "2px solid rgba(39, 39, 42, 0.16)",
-    background: "rgba(253, 253, 253, 0.85)",
-    padding: 28,
-  };
-
-  const monkeyAnim = spring({
-    frame: frame - secondsToFrames(Math.max(0, beat1 + 0.1), fps),
-    fps,
-    config: { damping: 14, stiffness: 220, mass: 0.7 },
   });
 
   return (
@@ -731,55 +724,9 @@ const HitlScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ scene, 
         <TitleBlock>Human in the Loop</TitleBlock>
       </H2>
 
-      <div style={{ width: "100%", maxWidth: 1700, display: "flex", flexDirection: "column", gap: 22 }}>
-        <div style={{ display: "flex", gap: 28, alignItems: "stretch" }}>
-          <div style={{ ...box, flex: 1, opacity: animIn(localSec - beat1) }}>
-            <Body style={{ fontSize: 30, fontWeight: 900, marginBottom: 14 }}>Draft</Body>
-            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-              <Card variant="muted" padding={4}>
-                <Body style={{ marginBottom: 0, fontSize: 28 }}>Write a post</Body>
-              </Card>
-              <Card variant="muted" padding={4}>
-                <Body style={{ marginBottom: 0, fontSize: 28 }}>Prepare publish step</Body>
-              </Card>
-            </div>
-          </div>
-
-          <div style={{ ...box, flex: 1, opacity: animIn(localSec - beat2) }}>
-            <Body style={{ fontSize: 30, fontWeight: 900, marginBottom: 14 }}>Ask a human</Body>
-            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-              <Card variant="muted" padding={4}>
-                <Body style={{ marginBottom: 0, fontSize: 28 }}>Approve publishing</Body>
-              </Card>
-              <Card variant="muted" padding={4}>
-                <Body style={{ marginBottom: 0, fontSize: 28 }}>Or request edits</Body>
-              </Card>
-            </div>
-          </div>
-
-          <div style={{ ...box, flex: 1, opacity: animIn(localSec - beat3) }}>
-            <Body style={{ fontSize: 30, fontWeight: 900, marginBottom: 14 }}>Publish</Body>
-            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-              <Card variant="muted" padding={4}>
-                <Body style={{ marginBottom: 0, fontSize: 28 }}>Pause while waiting</Body>
-              </Card>
-              <Card variant="muted" padding={4}>
-                <Body style={{ marginBottom: 0, fontSize: 28 }}>Resume and publish</Body>
-              </Card>
-            </div>
-          </div>
-        </div>
-
-        <div style={{ height: 320, display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <Img
-            src={coverAnimalImg}
-            style={{
-              height: 300,
-              opacity: monkeyAnim,
-              transformOrigin: "top center",
-              transform: `scale(${(0.9 + monkeyAnim * 0.1) * 1.2}) rotate(${(1 - monkeyAnim) * -6}deg)`,
-            }}
-          />
+      <div style={{ width: "100%", display: "flex", justifyContent: "center", opacity: animIn(localSec - beat1) }}>
+        <div style={{ width: "100%", maxWidth: 860 }}>
+          <HumanInTheLoopDiagram theme="light" time={timeMs} scenario="custom" config={HITL_RETURNS_ALL_CONFIG} />
         </div>
       </div>
     </Layout>

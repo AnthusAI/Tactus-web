@@ -5,6 +5,7 @@ import Seo from "../components/seo"
 import BottomCta from "../components/bottom-cta"
 import Breakout from "../components/publishing/Breakout"
 import AnimatedCodeBlock from "../components/animated/AnimatedCodeBlock"
+import HitlReturnsAllDiagram from "../components/diagrams/HitlReturnsAllDiagram"
 import * as styles from "./why-new-language.module.css"
 
 const MACHINE_CODE = `01001000 10001001 11100101
@@ -1009,6 +1010,26 @@ const WhyNewLanguagePage = () => (
               </div>
             </div>
           </div>
+
+          <h3 className={styles.subsectionTitle}>Durable Human-in-the-Loop</h3>
+
+          <p className={styles.bodyText}>
+            One of the most important “first-class primitives” in Tactus isn’t a syntax feature — it’s operational
+            infrastructure. Human-in-the-loop is where agent workflows stop being demos and start being trustworthy
+            systems: approvals before irreversible actions, and review loops that let a human send an artifact back
+            for edits.
+          </p>
+
+          <div className={styles.diagramEmbed}>
+            <HitlReturnsAllDiagram />
+          </div>
+
+          <p className={styles.bodyText}>
+            In a typical Python stack, making this reliable means building a state machine: persisting state, handling
+            timeouts, keeping an audit trail, resuming idempotently after crashes, and integrating queues and UI. In
+            Tactus, these calls are language primitives backed by a runtime that can pause and resume a procedure
+            safely — without keeping a process alive while it waits.
+          </p>
 
           <p className={styles.bodyText}>
             This fragmentation is not accidental. It is a symptom of languages being asked to

@@ -17,6 +17,7 @@ import { ParadigmComparison } from "../../components/ParadigmComparison";
 import { CodeSequence } from "../../components/CodeBlock";
 import OldWayFlowchartDiagram from "../../components/diagrams/OldWayFlowchartDiagram";
 import AgentGuardrailsDiagram from "../../components/diagrams/AgentGuardrailsDiagram";
+import HumanInTheLoopDiagram from "../../components/diagrams/HumanInTheLoopDiagram";
 import iconImg from "../../assets/images/icon.png";
 import type { Scene, Script } from "@/babulus/types";
 import { secondsToFrames } from "@/babulus/utils";
@@ -76,6 +77,13 @@ const TACTUS_CODE = `Procedure {
     return result
   end
 }`;
+
+const HITL_RETURNS_ALL_CONFIG = {
+  autoProcessRate: 0.1,
+  returnToAgentRate: 1.0,
+  itemCount: 6,
+  queueTime: 1000,
+};
 
 export type WhyNewLanguageVideoProps = {
   audioSrc?: string | null;
@@ -793,6 +801,8 @@ const PrOpsScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = () => {
 const NewLanguageScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
+  const localSec = frame / fps;
+  const timeMs = localSec * 1000;
 
   const titleAnimation = spring({
     frame,
@@ -825,33 +835,42 @@ const NewLanguageScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = () 
         style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
-          gap: 24,
-          maxWidth: 1400,
+          gap: 56,
+          maxWidth: 1600,
+          width: "100%",
         }}
       >
-        {features.map((feature, i) => {
-          const delay = i * 8;
-          const anim = spring({
-            frame: frame - delay,
-            fps,
-            config: { damping: 100, stiffness: 180, mass: 0.6 },
-          });
-          return (
-            <Card
-              key={i}
-              variant="muted"
-              padding={4}
-              style={{
-                opacity: anim,
-                transform: `scale(${0.95 + anim * 0.05})`,
-              }}
-            >
-              <Body size="lg" style={{ fontSize: 32, fontWeight: 700, color: "#c7007e" }}>
-                {feature}
-              </Body>
-            </Card>
-          );
-        })}
+        <div style={{ display: "flex", flexDirection: "column", gap: 18 }}>
+          {features.map((feature, i) => {
+            const delay = i * 8;
+            const anim = spring({
+              frame: frame - delay,
+              fps,
+              config: { damping: 100, stiffness: 180, mass: 0.6 },
+            });
+            return (
+              <Card
+                key={i}
+                variant="muted"
+                padding={4}
+                style={{
+                  opacity: anim,
+                  transform: `scale(${0.95 + anim * 0.05})`,
+                }}
+              >
+                <Body size="lg" style={{ fontSize: 32, fontWeight: 800, color: "#c7007e" }}>
+                  {feature}
+                </Body>
+              </Card>
+            );
+          })}
+        </div>
+
+        <div style={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "flex-start", paddingTop: 6 }}>
+          <div style={{ width: "100%", maxWidth: 760 }}>
+            <HumanInTheLoopDiagram theme="light" time={timeMs} scenario="custom" config={HITL_RETURNS_ALL_CONFIG} />
+          </div>
+        </div>
       </div>
     </Layout>
   );

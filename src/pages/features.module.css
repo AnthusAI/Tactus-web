@@ -41,11 +41,6 @@
 .featureDetail {
   margin-bottom: var(--space-8);
   padding-bottom: var(--space-8);
-  border-bottom: 1px solid var(--color-border);
-}
-
-.featureDetail:last-of-type {
-  border-bottom: none;
 }
 
 .featureIcon {
@@ -93,6 +88,12 @@
   color: var(--color-text);
   white-space: pre;
   display: block;
+}
+
+.hitlDiagram {
+  width: 100%;
+  max-width: 52rem;
+  margin-top: var(--space-5);
 }
 
 @media (max-width: 800px) {

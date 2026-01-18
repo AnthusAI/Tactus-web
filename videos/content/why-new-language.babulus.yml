@@ -372,8 +372,14 @@ scenes:
                 Sandboxing by default. Isolated execution with controlled access.
             - pause_seconds: 0.25
             - voice: >
-                Tool capability control. Human approval gates. Behavioral testing.
-                Observable execution.
+                Tool capability control.
+            - pause_seconds: 0.25
+            - voice: >
+                Durable human‑in‑the‑loop: approvals and review loops that can pause and resume
+                without keeping a process alive.
+            - pause_seconds: 0.25
+            - voice: >
+                Behavioral testing. Observable execution.
             - pause_seconds: 0.4
             - voice: >
                 These concerns can't be bolted onto languages that weren't designed for them.

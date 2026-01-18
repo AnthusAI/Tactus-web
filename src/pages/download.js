@@ -50,7 +50,7 @@ const DownloadPage = () => {
         <section className={styles.section}>
           <div className={styles.container}>
             <div className={styles.hero}>
-              <h1 className={styles.title}>Download Tactus IDE</h1>
+              <h1 className={styles.title}>Download the Tactus IDE</h1>
               <p className={styles.subtitle}>
                 The desktop environment for building, running, and debugging
                 Tactus agents.

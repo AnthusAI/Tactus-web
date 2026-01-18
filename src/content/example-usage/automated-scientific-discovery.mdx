@@ -1,524 +1,234 @@
 ---
 title: "Automated Scientific Discovery"
-subtitle: "Systematic experimentation for AI systems with quantifiable outcomes"
+subtitle: "Patterns for AI-assisted research and agent-driven experimentation"
 slug: "automated-scientific-discovery"
 ---
 
 import { Citation, CitationsList } from 'gatsby-citation-manager'
 
-## The Rise of Automated Scientific Discovery
+## A Survey, Not “A Full Scientist in a Box”
 
-AI engineers spend much of their time experimenting. Which prompt produces better classification accuracy? Does GPT-4o outperform Claude on this task? What temperature setting minimizes hallucinations while preserving creativity? These questions follow the same structure as scientific hypotheses: they propose a testable relationship between variables and measurable outcomes.
+This page is a catalog of patterns—not a single monolithic “automated science” demo.
 
-Recent advances have formalized this connection. *The AI Scientist* <Citation data={{ type: "article-journal", title: "The AI Scientist: Towards Fully Automated Open-Ended Scientific Discovery", author: [{ family: "Lu", given: "Chris" }, { family: "Lu", given: "Cong" }, { family: "Lange", given: "Robert Tjarko" }, { family: "Foerster", given: "Jakob" }, { family: "Clune", given: "Jeff" }, { family: "Ha", given: "David" }], issued: { 'date-parts': [[2024, 8]] }, URL: "https://arxiv.org/abs/2408.06292" }} /> demonstrated that an AI system could autonomously generate hypotheses, implement experiments, analyze results, and draft research papers. Its successor, *AI Scientist v2* <Citation data={{ type: "article-journal", title: "The AI Scientist-v2: Workshop-Level Automated Scientific Discovery via Agentic Tree Search", author: [{ family: "Yamada", given: "Yutaro" }, { family: "Lange", given: "Robert Tjarko" }, { family: "Lu", given: "Cong" }, { family: "Hu", given: "Shengran" }, { family: "Lu", given: "Chris" }, { family: "Foerster", given: "Jakob" }, { family: "Clune", given: "Jeff" }, { family: "Ha", given: "David" }], issued: { 'date-parts': [[2025, 4]] }, URL: "https://arxiv.org/abs/2504.08066" }} />, achieved a milestone: the first entirely AI-generated paper to pass formal peer review, using an "agentic tree search" methodology that systematically explores experimental configurations.
+Many writeups about automated scientific discovery try to tell one complete story: the system reads papers, generates hypotheses, writes code, runs experiments, makes plots, writes a paper, and submits it. That can be inspiring, but it often hides the real value: the reusable building blocks you can apply to your own research and AI engineering work.
 
-These systems apply to any domain with quantifiable outcomes. For AI engineers, this means optimizing text classifiers, refining prompts, tuning model parameters, and comparing workflow architectures&mdash;all through systematic experimentation rather than ad-hoc trial and error.
+So instead of constructing one giant end‑to‑end example, we’ll survey the patterns that show up repeatedly in the research and in practical systems—and outline how you would structure each pattern in Tactus using small snippets and pseudocode.
 
-## Why Tactus for Scientific Experimentation
+If you’re new to the mental model that motivates these patterns, start here:
 
-Traditional ML experiment tracking tools like MLflow and Weights & Biases focus on model training: logging hyperparameters, tracking loss curves, comparing checkpoints. But agent experimentation is different. You're not training weights&mdash;you're varying prompts, models, temperatures, tool configurations, and workflow structures. The unit of experimentation is the *procedure*, not the model.
+- [Why a New Language?](/why-new-language/)
+- [Guardrails](/guardrails/)
 
-Tactus provides primitives that map directly to experimental methodology:
+## The Landscape: A Spectrum of Autonomy
 
-| Scientific Method | Tactus Feature |
-|------------------|----------------|
-| Hypothesis formulation | Parameterized procedures |
-| Controlled variables | Typed input schemas |
-| Experimental trials | Bounded iteration loops |
-| Reproducibility | Durable checkpoints |
-| Measurement | Built-in evaluations |
-| Analysis | Structured outputs + cost tracking |
-| Ensemble methods | Multi-agent patterns |
-| Safety constraints | Sandboxed execution |
+Automated discovery frameworks tend to cluster into a few families. The important distinction is not “how smart is the model,” but “where does the control flow live?”—who decides what happens next?
 
-This isn't a retrofitted analogy&mdash;it's the natural structure of agent experimentation expressed in code.
+| Family | What it optimizes for | Typical patterns |
+|---|---|---|
+| Research assistants | Fast, grounded information work | Retrieval, summarization, citation, question decomposition |
+| Hybrid discovery workflows | Human‑led discovery with automation “muscle” | Human chooses direction; agents expand, test, and summarize |
+| Autonomous discovery pipelines | Push the full loop end‑to‑end | Hypothesis generation, experiment search, critique/repair, write‑up |
 
-## Parameterized Experiments
+Recent work explores all three.
 
-The core pattern is straightforward: define a procedure that accepts experimental parameters, runs a controlled trial, and returns structured measurements. Here's a text classification experiment that accepts model, temperature, and prompt as variables:
+Systems like *The AI Scientist* <Citation data={{ type: "article-journal", title: "The AI Scientist: Towards Fully Automated Open-Ended Scientific Discovery", author: [{ family: "Lu", given: "Chris" }, { family: "Lu", given: "Cong" }, { family: "Lange", given: "Robert Tjarko" }, { family: "Foerster", given: "Jakob" }, { family: "Clune", given: "Jeff" }, { family: "Ha", given: "David" }], issued: { 'date-parts': [[2024, 8]] }, URL: "https://arxiv.org/abs/2408.06292" }} /> and *AI Scientist v2* <Citation data={{ type: "article-journal", title: "The AI Scientist-v2: Workshop-Level Automated Scientific Discovery via Agentic Tree Search", author: [{ family: "Yamada", given: "Yutaro" }, { family: "Lange", given: "Robert Tjarko" }, { family: "Lu", given: "Cong" }, { family: "Hu", given: "Shengran" }, { family: "Lu", given: "Chris" }, { family: "Foerster", given: "Jakob" }, { family: "Clune", given: "Jeff" }, { family: "Ha", given: "David" }], issued: { 'date-parts': [[2025, 4]] }, URL: "https://arxiv.org/abs/2504.08066" }} /> explore end‑to‑end autonomy (hypothesis → experiments → analysis → write‑up). Meanwhile, research assistants like OpenResearcher <Citation data={{ type: "article-journal", title: "OpenResearcher: Unleashing AI for Accelerated Scientific Research", issued: { 'date-parts': [[2024, 8]] }, URL: "https://arxiv.org/abs/2408.06941" }} /> focus on grounding, retrieval, and synthesis to accelerate human‑led research.
 
-```lua
-ClassificationExperiment = Procedure {
-    input = {
-        model = field.string{required = true},
-        temperature = field.number{default = 0.7},
-        system_prompt = field.string{required = true},
-        test_cases = field.array{required = true},
-    },
+Tactus sits underneath all of these styles. It’s designed to help you write *procedures* with explicit tool access, guardrails, durable checkpoints, and evaluation—because once you move past demos, those are the problems you spend your time on.
 
-    output = {
-        accuracy = field.number{required = true},
-        latency_ms = field.number{required = true},
-        cost_usd = field.number{required = true},
-        predictions = field.array{required = true},
-    },
+## What Changes When You Yield Control Flow to the Agent
 
-    function(input)
-        local classifier = Agent {
-            model = {name = input.model, temperature = input.temperature},
-            system_prompt = input.system_prompt,
-            output_type = {
-                label = field.string{required = true},
-                confidence = field.number{}
-            }
-        }
+Most classical software engineering assumes that your `if/then` logic governs the program’s flow. But in agentic systems, the model often decides:
 
-        local results = {}
-        local correct = 0
-        local start_time = Time.now()
+- which tool to call,
+- how many times to call it,
+- when to stop,
+- and which branch to take next.
 
-        for _, case in ipairs(input.test_cases) do
-            local prediction = classifier({message = case.text})
-            local is_correct = prediction.value.label == case.expected
+That’s the point of patterns like ReAct: you explicitly give the agent control over control flow. It’s a new kind of program.
 
-            table.insert(results, {
-                text = case.text,
-                expected = case.expected,
-                predicted = prediction.value.label,
-                correct = is_correct
-            })
+The responsibility question follows immediately: how can you be responsible for a procedure that begins, ends, and completes reliably if the flow is not dictated by deterministic branching logic?
 
-            if is_correct then correct = correct + 1 end
-        end
+This is where “guardrails” stop being optional. A system that can call tools must also have enforceable boundaries: limits on steps, time, cost, tool access, data access, and side effects. Otherwise you can’t safely run the loop unattended—and you can’t scale it to many trials.
 
-        return {
-            accuracy = correct / #input.test_cases,
-            latency_ms = Time.elapsed(start_time),
-            cost_usd = classifier.total_cost(),
-            predictions = results
-        }
-    end
+This is also why “automated discovery” is not one feature. It’s a collection of patterns for designing, constraining, and evaluating agentic control flow.
+
+## A Catalog of Patterns (and How They Map to Tactus)
+
+Below is a set of patterns that recur across automated discovery papers and systems. Each one is useful on its own. You don’t need all of them to get value.
+
+### 1) Literature Triage (Search → Filter → Summarize → Organize)
+
+**What it is:** A pipeline that turns “too many papers” into a small curated working set.
+
+**Where it shows up:** Most research assistants (RAG‑style or tool‑based) and most autonomous systems (as a novelty check and background builder).
+
+**How to structure it in Tactus:** Treat retrieval and summarization as tools. Keep tool access staged and auditable. Persist intermediate state so the “research thread” survives interruptions.
+
+```tactus
+LiteratureTriage = Procedure {
+  input  = { query = string, max_papers = number }
+  output = { shortlist = array, notes = array }
+
+  function(input)
+    local hits = SearchPapers({query = input.query, k = 50})
+    local papers = FetchPapers({ids = hits[1:input.max_papers]})
+    local notes = SummarizeMany(papers)
+    local shortlist = Human.select({items = notes, k = 8})
+    return { shortlist = shortlist, notes = notes }
+  end
 }
 ```
 
-This single procedure can test any combination of parameters. Run it with `--param model=gpt-4o --param temperature=0.3` and then again with different values. The typed output schema ensures every experiment produces comparable metrics.
+The key idea is procedural: you’re not “writing the science,” you’re building a dependable process for information work.
 
-## Search Strategies and Iteration
+### 2) Hypotheses as Data (and Preregistered Success Criteria)
 
-Individual experiments are useful, but systematic exploration requires search strategies. AI Scientist v2's key innovation was "agentic tree search"&mdash;a branching exploration that tries multiple configurations in parallel and prunes unpromising branches.
+**What it is:** Hypothesis generation is easy. The hard part is making hypotheses testable—and deciding what counts as success *before* you run expensive experiments.
 
-Tactus supports bounded iteration with budget controls:
+**How to structure it in Tactus:** Make hypotheses structured outputs, not prose. Pair each hypothesis with an evaluation plan (metrics, thresholds, datasets).
 
-```lua
-GridSearchOptimizer = Procedure {
-    input = {
-        base_prompt = field.string{required = true},
-        test_dataset = field.array{required = true},
-        max_budget_usd = field.number{default = 10.0},
-        target_accuracy = field.number{default = 0.95},
-    },
-
-    output = {
-        best_config = field.table{required = true},
-        best_accuracy = field.number{required = true},
-        experiments_run = field.number{required = true},
-        total_cost = field.number{required = true},
-    },
-
-    function(input)
-        local parameter_grid = {
-            models = {"gpt-4o-mini", "gpt-4o", "claude-sonnet-4-20250514"},
-            temperatures = {0.0, 0.3, 0.7},
-        }
-
-        local best = {accuracy = 0, config = nil}
-        local total_cost = 0
-        local experiments = 0
-
-        for _, model in ipairs(parameter_grid.models) do
-            for _, temp in ipairs(parameter_grid.temperatures) do
-                -- Budget guard
-                if total_cost >= input.max_budget_usd then
-                    Log.warn("Budget exhausted", {spent = total_cost})
-                    goto done
-                end
-
-                local result = ClassificationExperiment({
-                    model = model,
-                    temperature = temp,
-                    system_prompt = input.base_prompt,
-                    test_cases = input.test_dataset
-                })
-
-                experiments = experiments + 1
-                total_cost = total_cost + result.cost_usd
-                state.last_experiment = {model = model, temp = temp, accuracy = result.accuracy}
-
-                if result.accuracy > best.accuracy then
-                    best.accuracy = result.accuracy
-                    best.config = {model = model, temperature = temp}
-                end
-
-                -- Early stopping
-                if best.accuracy >= input.target_accuracy then
-                    Log.info("Target reached", {accuracy = best.accuracy})
-                    goto done
-                end
-            end
-        end
-        ::done::
-
-        return {
-            best_config = best.config,
-            best_accuracy = best.accuracy,
-            experiments_run = experiments,
-            total_cost = total_cost
-        }
-    end
+```text
+hypothesis = {
+  claim: "Reducing tool access in the first stage lowers misbehavior rate",
+  variables: ["tools_per_stage", "approval_gate"],
+  metric: "misbehavior_rate",
+  target: "<= 2%",
+  dataset: "eval_v2"
 }
 ```
 
-The budget guard prevents runaway costs. Early stopping optimizes efficiency once targets are met. State tracking (`state.last_experiment`) creates automatic checkpoints, so a crash after 50 experiments doesn't lose that progress.
+This forces clarity: “what would change my mind?” becomes part of the artifact.
 
-## Durable Checkpoints for Long-Running Experiments
+### 3) Experiment Search (Sweeps, Tree Search, Bandits)
 
-Real experiments take time. A comprehensive sweep across models, temperatures, and prompt variants might run for hours. Network failures happen. Rate limits trigger. Without durability, you restart from zero.
+**What it is:** Once you have a hypothesis, you need a search strategy over configurations. AI Scientist v2 popularized “agentic tree search” as one approach to branching exploration <Citation data={{ type: "article-journal", title: "The AI Scientist-v2: Workshop-Level Automated Scientific Discovery via Agentic Tree Search", author: [{ family: "Yamada", given: "Yutaro" }, { family: "Lange", given: "Robert Tjarko" }, { family: "Lu", given: "Cong" }, { family: "Hu", given: "Shengran" }, { family: "Lu", given: "Chris" }, { family: "Foerster", given: "Jakob" }, { family: "Clune", given: "Jeff" }, { family: "Ha", given: "David" }], issued: { 'date-parts': [[2025, 4]] }, URL: "https://arxiv.org/abs/2504.08066" }} />.
 
-Tactus checkpoints state automatically after agent calls and at explicit save points. When a procedure resumes, it continues from the last checkpoint:
+**How to structure it in Tactus:** Make the search explicit. Enforce budgets and stopping conditions. Persist a “tree of attempts” as durable state.
 
-```lua
-LongRunningExperiment = Procedure {
-    input = {
-        parameter_sets = field.array{required = true},
-        samples_per_config = field.number{default = 50},
-    },
-
-    function(input)
-        state.completed = state.completed or {}
-        state.results = state.results or {}
-
-        for i, params in ipairs(input.parameter_sets) do
-            -- Skip completed configurations on resume
-            if state.completed[i] then
-                Log.info("Skipping config " .. i .. " (already done)")
-                goto continue
-            end
-
-            local samples = {}
-            for s = 1, input.samples_per_config do
-                local result = run_single_trial(params)
-                table.insert(samples, result)
-            end
-
-            state.results[i] = aggregate(samples)
-            state.completed[i] = true
-
-            -- Human gate every 10 configurations
-            if i % 10 == 0 then
-                local continue_ok = Human.approve({
-                    message = "Continue experiment?",
-                    context = {completed = i, best_so_far = find_best(state.results)}
-                })
-                if not continue_ok then break end
-            end
-
-            ::continue::
-        end
-
-        return {results = state.results}
-    end
+```text
+node = {
+  id: "n42",
+  parent_id: "n19",
+  config: { model: "gpt-4o-mini", temperature: 0.2, tools: ["search"] },
+  status: "completed",
+  metrics: { pass_rate: 0.91, cost_usd: 0.06 }
 }
 ```
 
-The pattern is simple: check if work is done before doing it. State persists across restarts, so `state.completed[i]` remains true even after a crash. Human approval gates (`Human.approve`) allow oversight during long-running experiments without requiring constant attention.
+You don’t need the entire algorithm in one procedure. The important part is the data model: experiments are nodes with provenance.
 
-## Evaluations for Reliability Measurement
+### 4) Safe Execution (Sandboxing and Narrow Tool Interfaces)
 
-Single-run accuracy doesn't tell the full story. LLMs are non-deterministic; the same input can produce different outputs. Scientific rigor requires measuring *reliability* across an input distribution. The *MASSW* dataset <Citation data={{ type: "article-journal", title: "MASSW: A New Dataset and Benchmark Tasks for AI-Assisted Scientific Workflows", author: [{ family: "Zhang", given: "Xingjian" }, { family: "Xie", given: "Yutong" }, { family: "Huang", given: "Jin" }, { family: "Ma", given: "Jinge" }, { family: "Pan", given: "Zhaoying" }, { family: "Liu", given: "Qijia" }, { family: "Mei", given: "Qiaozhu" }], issued: { 'date-parts': [[2024, 6]] }, URL: "https://arxiv.org/abs/2406.06357" }} /> exemplifies this approach, providing benchmark tasks for AI-assisted scientific workflows.
+**What it is:** If the workflow generates code, runs simulations, or touches files, then safety is not an afterthought. “Run arbitrary code” is a privilege boundary.
 
-Tactus evaluations run your procedure against a test dataset multiple times:
+**How to structure it in Tactus:** Provide a narrow tool such as `RunExperiment(code, limits)` that executes in an isolated environment (e.g., a container) and returns artifacts without exposing credentials or broad host access.
 
-```lua
-Evaluations {
-    cases = {
-        {input = {text = "This product exceeded expectations!", expected = "positive"}},
-        {input = {text = "Terrible quality, complete waste of money.", expected = "negative"}},
-        {input = {text = "It's okay. Nothing special.", expected = "neutral"}},
-        {input = {text = "The battery life is great but the screen is dim.", expected = "mixed"}},
-    },
+```tactus
+result = RunExperiment({
+  code = generated_python,
+  cpu = 2,
+  memory_gb = 4,
+  timeout_s = 600,
+})
+```
 
-    scorer = function(output, case)
-        return {
-            correct = output.predicted == case.input.expected,
-            has_confidence = output.confidence ~= nil,
-            high_confidence = (output.confidence or 0) > 0.8
-        }
-    end
+### 5) Critique Loops (Repair, Not Just Generate)
+
+**What it is:** Most robust systems aren’t one‑shot. They generate, then critique, then repair. Critique can be an LLM, a VLM on plots, or deterministic validators.
+
+**How to structure it in Tactus:** Make critique a step with clear inputs/outputs. Keep the repair loop bounded and reviewable.
+
+```text
+for attempt in 1..MAX_REPAIRS:
+  critique = Critique(artifact, rubric)
+  if critique.ok: break
+  artifact = Repair(artifact, critique)
+```
+
+The goal is not “the model will fix it.” The goal is “we built a bounded loop whose failures are visible.”
+
+### 6) Reliability, Not One‑Off Scores
+
+Single‑run success is not science. For LLMs, reliability is distributional: the same input can produce different outputs. Benchmark efforts like MASSW emphasize evaluating AI workflows and reliability across tasks <Citation data={{ type: "article-journal", title: "MASSW: A New Dataset and Benchmark Tasks for AI-Assisted Scientific Workflows", author: [{ family: "Zhang", given: "Xingjian" }, { family: "Xie", given: "Yutong" }, { family: "Huang", given: "Jin" }, { family: "Ma", given: "Jinge" }, { family: "Pan", given: "Zhaoying" }, { family: "Liu", given: "Qijia" }, { family: "Mei", given: "Qiaozhu" }], issued: { 'date-parts': [[2024, 6]] }, URL: "https://arxiv.org/abs/2406.06357" }} />.
+
+**How to structure it in Tactus:** Use repeated trials, aggregated metrics, and explicit acceptance criteria.
+
+```text
+pass_rate = Evaluate(procedure = candidate, dataset = heldout, runs = 50)
+if pass_rate >= 0.95: accept()
+```
+
+### 7) Tradeoffs and Pareto Frontiers (Quality vs Cost vs Latency)
+
+Discovery workflows always have tradeoffs. The “best” configuration depends on constraints: budget, latency, failure tolerance, and stakes.
+
+**How to structure it in Tactus:** Treat cost/latency as measurements alongside quality. Choose configurations on a Pareto frontier instead of optimizing a single scalar.
+
+```text
+metrics = { score: 0.91, cost_usd: 0.08, p95_ms: 1200 }
+```
+
+### 8) Human Oversight (Outer‑Loop Governance)
+
+The most practical automation pattern is: let the agent explore, but require humans for irreversible decisions.
+
+Examples:
+
+- approve high‑cost branches,
+- approve publication claims,
+- approve tool expansions,
+- approve data access changes.
+
+In Tactus terms, these are durable checkpoints where a human can intervene without keeping the whole workflow “live” for hours.
+
+### 9) Provenance (The Lab Notebook That Writes Itself)
+
+In discovery, the outputs aren’t just “the best result.” They’re the trail:
+
+- what was tried,
+- why it was tried,
+- what failed,
+- what improved,
+- and what evidence supports the claim.
+
+**How to structure it in Tactus:** Make the procedure produce a structured experiment log artifact. This is what turns a pile of runs into something auditable.
+
+```text
+return {
+  best_config,
+  experiment_log,
+  conclusions
 }
 ```
 
-Run with `tactus eval classifier.tac --runs 10` to measure consistency. If accuracy varies from 85% to 95% across runs, you have a reliability problem that a single run wouldn't reveal.
+## Practical Advice: How to Start
 
-## Multi-Agent Ensemble Patterns
+If you want to apply these ideas to your own work, start with a small inner loop and scale outward:
 
-When single models have reliability issues, ensembles can help. Multiple agents vote, and consensus determines the output. The recent *Survey on Self-Evolving Agents* <Citation data={{ type: "article-journal", title: "A Survey of Self-Evolving Agents: On Path to Artificial Super Intelligence", author: [{ family: "Gao", given: "Huan-ang" }, { family: "Wu", given: "Qingyun" }, { family: "Ji", given: "Heng" }], issued: { 'date-parts': [[2025, 7]] }, URL: "https://arxiv.org/abs/2507.21046" }} /> documents how multi-agent coordination improves robustness.
-
-```lua
-EnsembleClassifier = Procedure {
-    input = {
-        text = field.string{required = true},
-        models = field.array{default = {"gpt-4o-mini", "claude-sonnet-4-20250514", "gpt-4o"}},
-    },
-
-    output = {
-        label = field.string{required = true},
-        confidence = field.number{required = true},
-        votes = field.array{required = true},
-    },
-
-    function(input)
-        local votes = {}
-        local vote_counts = {}
-
-        for _, model in ipairs(input.models) do
-            local agent = Agent {
-                model = model,
-                system_prompt = "Classify sentiment as: positive, negative, neutral, or mixed.",
-                output_type = {label = field.string{required = true}}
-            }
-
-            local result = agent({message = input.text})
-            table.insert(votes, {model = model, label = result.value.label})
-            vote_counts[result.value.label] = (vote_counts[result.value.label] or 0) + 1
-        end
-
-        -- Majority vote
-        local winner, max_votes = nil, 0
-        for label, count in pairs(vote_counts) do
-            if count > max_votes then
-                winner, max_votes = label, count
-            end
-        end
-
-        return {
-            label = winner,
-            confidence = max_votes / #input.models,
-            votes = votes
-        }
-    end
-}
-```
-
-The `votes` array captures each model's decision for analysis. If GPT-4o consistently disagrees with the others, that's diagnostic information for your next experiment.
-
-## Cost-Aware Optimization
-
-Experiments have real costs. API calls add up. The goal isn't maximum accuracy&mdash;it's the best accuracy *per dollar* for your use case.
-
-```lua
-CostOptimizer = Procedure {
-    input = {
-        configs = field.array{required = true},
-        test_data = field.array{required = true},
-    },
-
-    output = {
-        pareto_frontier = field.array{required = true},
-        recommended = field.table{required = true},
-    },
-
-    function(input)
-        local results = {}
-
-        for _, config in ipairs(input.configs) do
-            local exp = ClassificationExperiment({
-                model = config.model,
-                temperature = config.temperature,
-                system_prompt = config.prompt,
-                test_cases = input.test_data
-            })
-
-            table.insert(results, {
-                config = config,
-                accuracy = exp.accuracy,
-                cost = exp.cost_usd,
-                value = exp.accuracy / exp.cost_usd  -- accuracy per dollar
-            })
-        end
-
-        -- Find Pareto frontier: configs where no other config is better on both metrics
-        local frontier = {}
-        for _, r in ipairs(results) do
-            local dominated = false
-            for _, other in ipairs(results) do
-                if other.accuracy > r.accuracy and other.cost < r.cost then
-                    dominated = true
-                    break
-                end
-            end
-            if not dominated then table.insert(frontier, r) end
-        end
-
-        -- Recommend best value
-        table.sort(results, function(a, b) return a.value > b.value end)
-
-        return {
-            pareto_frontier = frontier,
-            recommended = results[1]
-        }
-    end
-}
-```
-
-The Pareto frontier identifies non-dominated solutions: configurations where improving one metric requires sacrificing another. For a high-volume production system, you might choose the cheaper option on the frontier. For critical decisions, you'd pay more for higher accuracy.
-
-## Safety-Bounded Experimentation
-
-Autonomous experiments need guardrails. Runaway loops can exhaust budgets. Experiments that modify their own prompts could drift in unexpected directions.
-
-```lua
-SafeExperimentRunner = Procedure {
-    input = {
-        experiment = field.string{required = true},
-        parameter_space = field.table{required = true},
-        limits = field.table{default = {
-            max_cost_usd = 100,
-            max_experiments = 1000,
-            approval_threshold_usd = 25
-        }},
-    },
-
-    output = {
-        results = field.array{required = true},
-        stopped_reason = field.string{},
-    },
-
-    function(input)
-        local results = {}
-        local total_cost = 0
-        local approval_requested = false
-
-        for config in iterate_space(input.parameter_space) do
-            -- Hard budget limit
-            if total_cost >= input.limits.max_cost_usd then
-                return {results = results, stopped_reason = "budget_exhausted"}
-            end
-
-            -- Soft limit with human gate
-            if total_cost >= input.limits.approval_threshold_usd and not approval_requested then
-                local approved = Human.approve({
-                    message = "Experiment has spent $" .. total_cost .. ". Continue?",
-                    context = {experiments_run = #results, best_accuracy = find_best(results)}
-                })
-                if not approved then
-                    return {results = results, stopped_reason = "human_stopped"}
-                end
-                approval_requested = true
-            end
-
-            local result = run_experiment(input.experiment, config)
-            total_cost = total_cost + result.cost
-            table.insert(results, result)
-
-            if #results >= input.limits.max_experiments then
-                return {results = results, stopped_reason = "experiment_limit"}
-            end
-        end
-
-        return {results = results}
-    end
-}
-```
-
-Hard limits prevent disasters. Soft limits with human gates allow informed decisions to continue or stop. The `stopped_reason` in the output makes it clear why an experiment ended, enabling post-hoc analysis.
-
-## A Complete Discovery Pipeline
-
-Putting it together: a system that generates hypotheses, tests them, analyzes failures, and iterates&mdash;the core loop of scientific discovery.
-
-```lua
-DiscoveryPipeline = Procedure {
-    input = {
-        task = field.string{required = true},
-        seed_prompt = field.string{required = true},
-        eval_data = field.array{required = true},
-        max_iterations = field.number{default = 5},
-    },
-
-    output = {
-        final_prompt = field.string{required = true},
-        improvement_log = field.array{required = true},
-        final_accuracy = field.number{required = true},
-    },
-
-    function(input)
-        local scientist = Agent {
-            model = "claude-sonnet-4-20250514",
-            system_prompt = [[You are a prompt engineering researcher.
-                Given a prompt and its failure cases, hypothesize specific improvements.
-                Output a JSON object with "hypothesis" (string) and "improved_prompt" (string).]]
-        }
-
-        local current_prompt = input.seed_prompt
-        local log = {}
-
-        -- Baseline
-        local baseline = ClassificationExperiment({
-            model = "gpt-4o-mini",
-            system_prompt = current_prompt,
-            test_cases = input.eval_data
-        })
-        table.insert(log, {iteration = 0, accuracy = baseline.accuracy, action = "baseline"})
-
-        for iter = 1, input.max_iterations do
-            -- Analyze failures
-            local failures = {}
-            for _, p in ipairs(baseline.predictions) do
-                if not p.correct then table.insert(failures, p) end
-            end
-
-            if #failures == 0 then
-                table.insert(log, {iteration = iter, action = "perfect_accuracy"})
-                break
-            end
-
-            -- Generate improvement hypothesis
-            local hypothesis = scientist({
-                message = "Current prompt:\n" .. current_prompt ..
-                          "\n\nFailure cases:\n" .. json.encode(failures) ..
-                          "\n\nTask: " .. input.task
-            })
-
-            -- Test the hypothesis
-            local trial = ClassificationExperiment({
-                model = "gpt-4o-mini",
-                system_prompt = hypothesis.value.improved_prompt,
-                test_cases = input.eval_data
-            })
-
-            local improvement = trial.accuracy - baseline.accuracy
-            table.insert(log, {
-                iteration = iter,
-                hypothesis = hypothesis.value.hypothesis,
-                accuracy = trial.accuracy,
-                improvement = improvement
-            })
-
-            -- Accept if improved
-            if trial.accuracy > baseline.accuracy then
-                current_prompt = hypothesis.value.improved_prompt
-                baseline = trial
-            end
-        end
-
-        return {
-            final_prompt = current_prompt,
-            improvement_log = log,
-            final_accuracy = baseline.accuracy
-        }
-    end
-}
-```
-
-This pipeline mirrors how AI Scientist v2 operates: generate hypotheses from observed failures, test them systematically, and accept improvements. The `improvement_log` provides full traceability&mdash;you can see exactly which hypotheses worked and which didn't.
+1. Pick one measurable outcome (quality score, reliability, latency, cost).
+2. Define an evaluation dataset and acceptance criteria.
+3. Run repeated trials and aggregate results.
+4. Add a search strategy (sweep, tree, bandit).
+5. Add guardrails (budget/time/step limits + staged tools).
+6. Add human gates only where you need them (expensive, irreversible, or publishable).
 
 ## Conclusion
 
-Automated scientific discovery isn't just for research labs producing academic papers. It's the natural evolution of AI engineering practice: moving from ad-hoc experimentation to systematic, reproducible, measurable optimization.
+Automated scientific discovery is not one “system” you either have or don’t have. It’s a set of patterns you can compose:
 
-Any task with quantifiable outcomes&mdash;classification accuracy, response quality scores, latency, cost&mdash;can benefit from this approach. Text classification is just one example. The same patterns apply to prompt optimization, model selection, workflow architecture, and tool configuration.
+- grounded information workflows,
+- structured hypotheses,
+- systematic search,
+- safe execution boundaries,
+- critique and repair,
+- reliability evaluation,
+- cost/quality tradeoffs,
+- human governance,
+- and provenance.
 
-Tactus provides the infrastructure to make this practical: parameterized procedures for controlled experiments, durable checkpoints for long-running searches, built-in evaluations for reliability measurement, and safety bounds for autonomous exploration. The goal is systems that don't just run&mdash;they systematically improve.
+As agents take on more control flow, these concerns become the program itself. The core promise of Tactus is that it gives you a place to express those concerns directly—so your “code” matches what you actually have to reason about in an agentic discovery loop.
+
+The goal isn’t to remove humans from science. It’s to remove waste: repeated manual setup, lost progress, unmeasured changes, and untraceable decisions. That’s what turns experimentation into discovery.
 
 ## References
 

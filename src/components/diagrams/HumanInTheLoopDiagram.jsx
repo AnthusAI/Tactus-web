@@ -686,7 +686,20 @@ const HumanInTheLoopDiagram = ({
     }
   }
 
-  // --- Render with HARD CAPACITY GATE ---
+  // --- HARD CAPACITY GATE ---
+  // Count items currently IN the loop (not trying to enter, but actually IN)
+  let currentLoopCount = 0
+  for (const item of allActiveItems) {
+    if (timeMs > item.endTime || timeMs < item.steps[0].startTime) continue
+    const activeStep = item.steps.find(s => timeMs >= s.startTime && timeMs < s.endTime)
+    if (!activeStep) continue
+    
+    // Count items in CORE loop phases (not entry phases)
+    if (['orbit', 'supervision', 'exit_final'].includes(activeStep.type)) {
+      currentLoopCount++
+    }
+  }
+  
   const renderItems = allActiveItems.map(item => {
     if (timeMs > item.endTime) return null
     if (timeMs < item.steps[0].startTime) return null
@@ -694,36 +707,24 @@ const HumanInTheLoopDiagram = ({
     const activeStep = item.steps.find(s => timeMs >= s.startTime && timeMs < s.endTime)
     if (!activeStep) return null
     
-    // HARD GATE: Enforce capacity limit
     let effectiveStep = activeStep
     let effectiveP = (timeMs - activeStep.startTime) / activeStep.duration
-    let isBlocked = false
     
-    if (mergedConfig.maxInFlight === 1) {
-      const loopPhases = ['travel_to_agent', 'orbit', 'supervision', 'return', 'exit_final']
-      const otherInLoop = Array.from(itemsCurrentlyInLoop).filter(id => id !== item.id)
-      
-      // If this item is in ANY loop phase and loop is occupied by another item
-      if (otherInLoop.length >= 1 && loopPhases.includes(activeStep.type)) {
-        // Find the last queue step before this loop phase
+    // HARD GATE: If trying to ENTER loop and loop is FULL, WAIT IN QUEUE
+    if (mergedConfig.maxInFlight === 1 && currentLoopCount >= 1) {
+      if (activeStep.type === 'travel_to_agent' || activeStep.type === 'return') {
+        // Loop is full, keep this item in its queue
         const stepIndex = item.steps.indexOf(activeStep)
+        const prevStep = item.steps[stepIndex - 1]
         
-        // Search backwards for a queue step
-        for (let i = stepIndex - 1; i >= 0; i--) {
-          const prevStep = item.steps[i]
-          if (prevStep.type === 'input_queue' || prevStep.type === 'queue') {
-            effectiveStep = prevStep
-            effectiveP = 1.0 // Stay at bottom of queue
-            isBlocked = true
-            break
-          }
-        }
-        
-        // If no queue found, just don't render this item
-        if (!isBlocked) {
-          return null
+        if (prevStep && (prevStep.type === 'input_queue' || prevStep.type === 'queue')) {
+          effectiveStep = prevStep
+          effectiveP = 1.0 // At bottom of queue, ready to go
         }
       }
+    } else if (mergedConfig.maxInFlight === 1 && (activeStep.type === 'travel_to_agent' || activeStep.type === 'return')) {
+      // Loop is free, this item is entering - count it
+      currentLoopCount++
     }
     
     const p = effectiveP
@@ -839,7 +840,7 @@ const HumanInTheLoopDiagram = ({
         background: "transparent",
         ...style,
       }}
-      viewBox="0 0 460 400"
+      viewBox="0 70 460 220"
     >
       <defs>
         <marker id="hitlArrow" viewBox="0 -5 10 10" refX={8} refY={0} markerWidth={4} markerHeight={4} orient="auto">

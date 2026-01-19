@@ -1,5 +1,5 @@
 import * as React from "react"
-import AgentGuardrailsDiagram from "./AgentGuardrailsDiagram"
+import NewWayFlowchartDiagram from "./NewWayFlowchartDiagram"
 
 const usePreferredTheme = () => {
   const [theme, setTheme] = React.useState("light")
@@ -15,7 +15,7 @@ const usePreferredTheme = () => {
   return theme
 }
 
-const AnimatedAgentGuardrailsDiagram = ({ durationMs = 3200, className, style }) => {
+const AnimatedNewWayFlowchartDiagram = ({ durationMs = 3200, className, style }) => {
   const theme = usePreferredTheme()
   const [progress, setProgress] = React.useState(0)
   const [hasStarted, setHasStarted] = React.useState(false)
@@ -64,9 +64,9 @@ const AnimatedAgentGuardrailsDiagram = ({ durationMs = 3200, className, style })
 
   return (
     <div ref={ref}>
-      <AgentGuardrailsDiagram theme={theme} progress={progress} className={className} style={style} />
+      <NewWayFlowchartDiagram theme={theme} progress={progress} className={className} style={style} />
     </div>
   )
 }
 
-export default AnimatedAgentGuardrailsDiagram
+export default AnimatedNewWayFlowchartDiagram

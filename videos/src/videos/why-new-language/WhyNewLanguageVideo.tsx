@@ -16,7 +16,7 @@ import { Card } from "../../components/Card";
 import { ParadigmComparison } from "../../components/ParadigmComparison";
 import { CodeSequence } from "../../components/CodeBlock";
 import OldWayFlowchartDiagram from "../../components/diagrams/OldWayFlowchartDiagram";
-import AgentGuardrailsDiagram from "../../components/diagrams/AgentGuardrailsDiagram";
+import NewWayFlowchartDiagram from "../../components/diagrams/NewWayFlowchartDiagram";
 import HumanInTheLoopDiagram from "../../components/diagrams/HumanInTheLoopDiagram";
 import { HITL_PRESETS } from "../../components/diagrams/hitlPresets";
 import iconImg from "../../assets/images/icon.png";
@@ -240,7 +240,7 @@ const ParadigmScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ sce
     <ParadigmComparison
       title="A New Kind of Computer Program"
       oldWay={<OldWayFlowchartDiagram theme="light" progress={1} />}
-      newWay={<AgentGuardrailsDiagram theme="light" progress={1} />}
+      newWay={<NewWayFlowchartDiagram theme="light" progress={1} />}
       sceneStartSec={scene.startSec}
       ttsStartsSec={ttsStartsSec}
     />

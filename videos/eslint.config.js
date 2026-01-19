@@ -42,8 +42,7 @@ module.exports = [
       "src/components/diagrams/StagedToolAccessDiagram.tsx",
       "src/components/diagrams/PromptEngineeringCeilingDiagram.tsx",
       "src/components/diagrams/OldWayFlowchartDiagram.tsx",
-      "src/components/diagrams/NewWayProgramDiagram.tsx",
-      "src/components/diagrams/AgentGuardrailsDiagram.tsx",
+      "src/components/diagrams/NewWayFlowchartDiagram.tsx",
     ],
     rules: {
       "@typescript-eslint/no-require-imports": "off",

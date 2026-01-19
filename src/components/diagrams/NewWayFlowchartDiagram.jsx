@@ -7,7 +7,7 @@ const clamp01 = (v) => Math.max(0, Math.min(1, v))
 const smoothstep = (t) => t * t * (3 - 2 * t)
 const appear = (progress, start, duration = 0.18) => smoothstep(clamp01((progress - start) / duration))
 
-const AgentGuardrailsDiagram = ({ theme = "light", progress = 1, style, className }) => {
+const NewWayFlowchartDiagram = ({ theme = "light", progress = 1, style, className }) => {
   const t = diagramTokens
   const p = clamp01(progress)
 
@@ -100,4 +100,4 @@ const AgentGuardrailsDiagram = ({ theme = "light", progress = 1, style, classNam
   )
 }
 
-export default AgentGuardrailsDiagram
+export default NewWayFlowchartDiagram

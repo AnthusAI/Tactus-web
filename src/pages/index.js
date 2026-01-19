@@ -14,7 +14,7 @@ import HitlReturnsAllDiagram from "../components/diagrams/HitlReturnsAllDiagram"
 import AnimatedHumanInTheLoopDiagram from "../components/diagrams/AnimatedHumanInTheLoopDiagram"
 import { HITL_PRESETS } from "../components/diagrams/hitlPresets"
 import AnimatedOldWayFlowchartDiagram from "../components/diagrams/AnimatedOldWayFlowchartDiagram"
-import AnimatedAgentGuardrailsDiagram from "../components/diagrams/AnimatedAgentGuardrailsDiagram"
+import AnimatedNewWayFlowchartDiagram from "../components/diagrams/AnimatedNewWayFlowchartDiagram"
 import FeatureHighlightsSection from "../components/feature-highlights-section"
 import BookSeriesSection from "../components/book-series-section"
 import Button from "../components/ui/button"
@@ -465,7 +465,7 @@ const IndexPage = () => {
                 </div>
                 <div className={styles.narrativeDiagramColumn}>
                   <div className={styles.narrativeDiagram}>
-                    <AnimatedAgentGuardrailsDiagram durationMs={3200} />
+                    <AnimatedNewWayFlowchartDiagram durationMs={3200} />
                   </div>
                   <p className={styles.narrativeCaption}>
                     Agent + Tools + Procedure, bounded by Guardrails

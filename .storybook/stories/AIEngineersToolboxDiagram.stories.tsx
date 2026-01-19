@@ -24,7 +24,7 @@ const withForcedBackground = (theme: "light" | "dark") => (Story: any) => (
 );
 
 const meta = {
-  title: "Diagrams/AIEngineersToolboxDiagram",
+  title: "Diagrams/AI Engineers Toolbox",
   component: AIEngineersToolboxDiagram,
   parameters: {
     layout: "fullscreen",

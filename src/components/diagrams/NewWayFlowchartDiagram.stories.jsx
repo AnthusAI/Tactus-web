@@ -1,9 +1,9 @@
 import * as React from "react"
-import NewWayProgramDiagram from "./NewWayProgramDiagram"
+import NewWayFlowchartDiagram from "./NewWayFlowchartDiagram"
 
 export default {
-  title: "Diagrams/New Way Program",
-  component: NewWayProgramDiagram,
+  title: "Diagrams/New Way Flowchart",
+  component: NewWayFlowchartDiagram,
   parameters: {
     layout: "centered",
   },
@@ -24,7 +24,7 @@ export const Static = {
   },
   render: (args) => (
     <Frame>
-      <NewWayProgramDiagram {...args} />
+      <NewWayFlowchartDiagram {...args} />
     </Frame>
   ),
 }
@@ -35,7 +35,7 @@ function AnimatedDemo({ theme }) {
   React.useEffect(() => {
     let raf = 0
     const start = performance.now()
-    const durationMs = 3200
+    const durationMs = 2600
 
     const tick = (now) => {
       const t = ((now - start) % durationMs) / durationMs
@@ -49,7 +49,7 @@ function AnimatedDemo({ theme }) {
 
   return (
     <Frame>
-      <NewWayProgramDiagram theme={theme} progress={progress} />
+      <NewWayFlowchartDiagram theme={theme} progress={progress} />
     </Frame>
   )
 }
@@ -74,7 +74,7 @@ export const VideoFrame = {
   },
   render: (args) => (
     <div style={{ width: "70%", maxWidth: 1200 }}>
-      <NewWayProgramDiagram {...args} />
+      <NewWayFlowchartDiagram {...args} />
     </div>
   ),
 }

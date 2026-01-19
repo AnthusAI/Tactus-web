@@ -7,11 +7,9 @@ const impl = require("../../../../src/components/diagrams/GuardrailsStackDiagram
 
 const GuardrailsStackDiagram = (impl.default ?? impl) as React.ComponentType<{
   theme?: "light" | "dark";
-  title?: string;
-  subtitle?: string;
+  progress?: number;
   style?: React.CSSProperties;
   className?: string;
 }>;
 
 export default GuardrailsStackDiagram;
-

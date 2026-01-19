@@ -264,7 +264,7 @@ const GuardrailsPage = () => {
             </p>
 
             <div className={styles.diagramWrap}>
-              <GuardrailsStackDiagram theme={theme} className={styles.diagram} />
+              <AnimatedGuardrailsStackDiagram theme={theme} className={styles.diagram} />
             </div>
 
             <h3 className={styles.subsectionTitle}>Capability control (default deny)</h3>

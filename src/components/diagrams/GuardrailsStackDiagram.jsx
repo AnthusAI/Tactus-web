@@ -1,44 +1,123 @@
 import * as React from "react";
+import {
+  ShieldAlert,
+  Brain,
+  FileText,
+  Database,
+  Box,
+  Container,
+  Lock,
+  CircleDollarSign,
+} from "lucide-react";
 
 import { diagramTokens, getDiagramThemeVars } from "./diagramTheme";
 
+// Helper for clamping
+const clamp = (val, min, max) => Math.min(Math.max(val, min), max);
+
 const GuardrailsStackDiagram = ({
   theme = "light",
-  title = "Guardrails that enable autonomy",
-  subtitle = "You can’t drive fast without brakes: powerful tools require strong boundaries.",
+  progress = 0, // 0 to 1
   style,
   className,
 }) => {
   const t = diagramTokens;
-  const showHeader = Boolean(title || subtitle);
-  const headerLift = showHeader ? 0 : -90;
+  // Ensure progress is 0-1
+  const p = clamp(progress, 0, 1);
 
   const layers = [
     {
-      name: "Capability control",
-      desc: "Default-deny tools + least privilege per stage",
+      name: "Cost & Limits",
+      desc: "Hard quotas prevent runaway loops and billing surprises before they happen.",
+      Icon: CircleDollarSign,
     },
     {
-      name: "Tool boundaries",
-      desc: "Schemas + deterministic validation at the interface",
+      name: "Prompt Engineering",
+      desc: "Structured instructions and personas guide model behavior and reduce error rates.",
+      Icon: FileText,
     },
     {
-      name: "Human gates",
-      desc: "Durable HITL checkpoints for high-stakes actions",
+      name: "Context Engineering",
+      desc: "Curated context and RAG ensure the model has the right information, not just all information.",
+      Icon: Database,
     },
     {
-      name: "Execution isolation",
-      desc: "Lua sandbox + container isolation for filesystem/code safety",
+      name: "Model Selection",
+      desc: "Choosing the right model (and fine-tuning) for specific capabilities and safety profiles.",
+      Icon: Brain,
     },
     {
-      name: "Secretless runtime",
-      desc: "Brokered model calls + credentialed tools (keys stay outside)",
+      name: "Tool Boundaries",
+      desc: "Strict schemas, validation, and policies at the edge where the agent touches the world.",
+      Icon: ShieldAlert,
+    },
+    {
+      name: "Code Sandboxing",
+      desc: "Execution in isolated environments (Lua) prevents unauthorized system access.",
+      Icon: Box,
+    },
+    {
+      name: "Container Isolation",
+      desc: "Ephemeral containers ensure no state or contamination persists between runs.",
+      Icon: Container,
+    },
+    {
+      name: "Secretless Broker",
+      desc: "Credentials live outside the sandbox. The agent requests work, but never holds the keys.",
+      Icon: Lock,
     },
   ];
+
+  // Timing logic
+  const totalLayers = layers.length;
+  // Map progress 0..1 to 0..totalLayers
+  const floatIndex = p * totalLayers;
+  const activeIndex = Math.min(Math.floor(floatIndex), totalLayers - 1);
+  const activeLayer = layers[activeIndex];
+
+  // Local progress within the layer (0..1)
+  const localP = floatIndex - activeIndex; // fractional part
+  
+  const dwellTime = 0.75; 
+  // Move happens from 0.75 to 1.0
+  
+  // Easing for movement
+  const easeInOut = (t) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+  
+  let pointerIndex = activeIndex;
+  
+  if (localP > dwellTime && activeIndex < totalLayers - 1) {
+     const moveP = (localP - dwellTime) / (1 - dwellTime);
+     pointerIndex = activeIndex + easeInOut(moveP);
+  }
+
+  // Layout
+  const width = 960;
+  const height = 400;
+  
+  // Left stack
+  const stackWidth = 340;
+  const stackX = 40;
+  const layerHeight = 40;
+  const gap = 6;
+  const stackHeight = totalLayers * (layerHeight + gap) - gap;
+  const startY = (height - stackHeight) / 2;
+
+  // Detail panel
+  const detailX = 440;
+  const detailWidth = 480;
+  const detailY = startY;
+  const detailHeight = stackHeight;
+
+  // Pointer
+  const pointerX = stackX + stackWidth + 10;
+  const pointerSize = 12;
+  const pointerY = startY + pointerIndex * (layerHeight + gap) + layerHeight / 2;
 
   return (
     <svg
       className={className}
+      data-diagram-renderer="d3"
       style={{
         ...getDiagramThemeVars(theme),
         display: "block",
@@ -47,145 +126,155 @@ const GuardrailsStackDiagram = ({
         background: t.bg,
         ...style,
       }}
-      viewBox="0 0 1200 720"
+      viewBox={`0 0 ${width} ${height}`}
       role="img"
-      aria-label="Diagram showing a stack of guardrails: capability control, tool boundaries, human gates, execution isolation, and a secretless runtime."
+      aria-label={`Guardrails stack diagram showing: ${activeLayer.name}`}
     >
       <defs>
-        <marker id="gsdArrow" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
-          <path d="M 0 0 L 10 5 L 0 10 z" fill={t.primary} />
-        </marker>
+        {/* Gradients or filters if needed */}
       </defs>
 
-      {/* Title (optional) */}
-      {showHeader ? (
-        <g transform="translate(80, 72)">
-          {title ? (
-            <text x="0" y="0" fill={t.ink} fontSize="40" fontWeight="900" fontFamily={t.fontSans}>
-              {title}
-            </text>
-          ) : null}
-          {subtitle ? (
-            <text
-              x="0"
-              y={title ? 38 : 0}
-              fill={t.muted}
-              fontSize="18"
-              fontWeight="600"
-              fontFamily={t.fontSans}
-            >
-              {subtitle}
-            </text>
-          ) : null}
-        </g>
-      ) : null}
-
-      {/* Outer card */}
-      <rect x="60" y={150 + headerLift} width="1080" height="520" rx="var(--border-radius)" fill={t.cardTitle} />
-
-      {/* Stack */}
-      <g transform={`translate(120, ${210 + headerLift})`}>
-        <rect x="0" y="0" width="720" height="420" rx="var(--border-radius)" fill={t.surface} />
-        <text
-          x="24"
-          y="44"
-          fill={t.muted}
-          fontSize="14"
-          fontWeight="800"
-          fontFamily={t.fontSans}
-        >
-          Guardrails stack (defense in depth)
-        </text>
-
+      {/* Stack Layers */}
+      <g transform={`translate(${stackX}, ${startY})`}>
         {layers.map((layer, i) => {
-          const y = 72 + i * 68;
+          const isActive = i === activeIndex;
+          const y = i * (layerHeight + gap);
+
           return (
-            <g key={layer.name} transform={`translate(24, ${y})`}>
-              <rect x="0" y="0" width="672" height="56" rx="var(--border-radius)" fill={t.cardTitle} />
-              <rect x="0" y="0" width="10" height="56" rx="var(--border-radius)" fill={t.primary} />
+            <g key={i} transform={`translate(0, ${y})`} style={{ transition: "opacity 0.2s" }}>
+              <rect
+                width={stackWidth}
+                height={layerHeight}
+                rx={6}
+                fill={isActive ? t.cardTitle : t.surface2}
+                opacity={isActive ? 1 : 0.6}
+              />
+              {/* Highlight bar on left */}
+              <rect
+                width={6}
+                height={layerHeight}
+                rx={3}
+                fill={t.primary}
+                opacity={isActive ? 1 : 0}
+              />
               <text
-                x="24"
-                y="24"
-                fill={t.ink}
+                x={20}
+                y={layerHeight / 2 + 5}
+                fill={isActive ? t.ink : t.muted}
                 fontSize="16"
-                fontWeight="900"
+                fontWeight={isActive ? "700" : "500"}
                 fontFamily={t.fontSans}
+                style={{ transition: "fill 0.2s" }}
               >
                 {layer.name}
-              </text>
-              <text
-                x="24"
-                y="44"
-                fill={t.muted}
-                fontSize="14"
-                fontWeight="700"
-                fontFamily={t.fontSans}
-              >
-                {layer.desc}
               </text>
             </g>
           );
         })}
       </g>
 
-      {/* Context box */}
-      <g transform={`translate(870, ${210 + headerLift})`}>
-        <rect x="0" y="0" width="240" height="420" rx="var(--border-radius)" fill={t.surface} />
-        <text x="20" y="44" fill={t.ink} fontSize="16" fontWeight="900" fontFamily={t.fontSans}>
-          What’s untrusted?
-        </text>
-        <text x="20" y="74" fill={t.muted} fontSize="14" fontWeight="700" fontFamily={t.fontSans}>
-          • Agent behavior
-        </text>
-        <text x="20" y="98" fill={t.muted} fontSize="14" fontWeight="700" fontFamily={t.fontSans}>
-          • `.tac` code
-        </text>
-        <text x="20" y="122" fill={t.muted} fontSize="14" fontWeight="700" fontFamily={t.fontSans}>
-          • Inputs/tools output
-        </text>
+      {/* Moving Pointer (Triangle) */}
+      <path
+        d={`M ${pointerX} ${pointerY} L ${pointerX + pointerSize} ${pointerY - pointerSize/1.5} L ${pointerX + pointerSize} ${pointerY + pointerSize/1.5} Z`}
+        fill={t.primary}
+      />
 
-        <rect x="20" y="158" width="200" height="88" rx="var(--border-radius)" fill={t.cardTitle} />
-        <rect x="20" y="158" width="10" height="88" rx="var(--border-radius)" fill={t.primary} />
-        <text x="34" y="188" fill={t.ink} fontSize="14" fontWeight="900" fontFamily={t.fontSans}>
-          What must not leak
-        </text>
-        <text x="34" y="212" fill={t.muted} fontSize="13" fontWeight="700" fontFamily={t.fontSans}>
-          • API keys
-        </text>
-        <text x="34" y="234" fill={t.muted} fontSize="13" fontWeight="700" fontFamily={t.fontSans}>
-          • Customer data
-        </text>
+      {/* Detail Panel */}
+      <g transform={`translate(${detailX}, ${detailY})`}>
+         <rect
+            width={detailWidth}
+            height={detailHeight}
+            rx={8}
+            fill={t.surface}
+            stroke={t.surface2}
+            strokeWidth={1}
+         />
+         
+         {/* Timer/Progress Bar at bottom of detail panel */}
+         <g transform={`translate(0, ${detailHeight - 4})`}>
+            <rect
+              width={detailWidth}
+              height={4}
+              fill={t.surface2}
+              rx={2}
+            />
+            <rect
+              width={detailWidth * Math.min(localP / dwellTime, 1)}
+              height={4}
+              fill={t.primary}
+              rx={2}
+              opacity={0.6}
+            />
+         </g>
 
-        <rect x="20" y="270" width="200" height="140" rx="var(--border-radius)" fill={t.cardTitle} />
-        <text x="34" y="300" fill={t.ink} fontSize="14" fontWeight="900" fontFamily={t.fontSans}>
-          The point
-        </text>
-        <text x="34" y="326" fill={t.muted} fontSize="13" fontWeight="700" fontFamily={t.fontSans}>
-          Autonomy comes
-        </text>
-        <text x="34" y="346" fill={t.muted} fontSize="13" fontWeight="700" fontFamily={t.fontSans}>
-          from giving the
-        </text>
-        <text x="34" y="366" fill={t.muted} fontSize="13" fontWeight="700" fontFamily={t.fontSans}>
-          agent power.
-        </text>
-        <text x="34" y="392" fill={t.muted} fontSize="13" fontWeight="700" fontFamily={t.fontSans}>
-          Guardrails make
-        </text>
-        <text x="34" y="412" fill={t.muted} fontSize="13" fontWeight="700" fontFamily={t.fontSans}>
-          it safe.
-        </text>
+         {/* Content */}
+         <g key={activeIndex}>
+            {/* Icon */}
+            <g transform="translate(40, 40)">
+                 {React.createElement(activeLayer.Icon, {
+                    size: 64,
+                    color: t.primary,
+                    strokeWidth: 1.5
+                 })}
+            </g>
+            
+            {/* Title */}
+            <text
+              x={40}
+              y={150}
+              fill={t.ink}
+              fontSize="28"
+              fontWeight="800"
+              fontFamily={t.fontSans}
+            >
+              {activeLayer.name}
+            </text>
+
+            <WrappedText
+              x={40}
+              y={190}
+              width={400}
+              lineHeight={28}
+              text={activeLayer.desc}
+              style={{
+                fill: t.muted,
+                fontSize: "18px",
+                fontFamily: t.fontSerif,
+                fontWeight: "400"
+              }}
+            />
+         </g>
       </g>
 
-      {/* Arrow between stack and context */}
-      <path
-        d={`M 840 ${420 + headerLift} C 850 ${420 + headerLift} 858 ${420 + headerLift} 870 ${420 + headerLift}`}
-        fill="none"
-        stroke={t.primary}
-        strokeWidth="6"
-        markerEnd="url(#gsdArrow)"
-      />
     </svg>
+  );
+};
+
+// Simple text wrapper component for SVG
+const WrappedText = ({ x, y, width, lineHeight, text, style }) => {
+  const words = text.split(" ");
+  const lines = [];
+  let currentLine = words[0];
+
+  for (let i = 1; i < words.length; i++) {
+    const word = words[i];
+    if ((currentLine + " " + word).length * 9 < width) {
+      currentLine += " " + word;
+    } else {
+      lines.push(currentLine);
+      currentLine = word;
+    }
+  }
+  lines.push(currentLine);
+
+  return (
+    <text x={x} y={y} {...style}>
+      {lines.map((line, i) => (
+        <tspan key={i} x={x} dy={i === 0 ? 0 : lineHeight}>
+          {line}
+        </tspan>
+      ))}
+    </text>
   );
 };
 

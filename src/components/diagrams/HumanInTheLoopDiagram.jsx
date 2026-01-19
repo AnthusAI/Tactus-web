@@ -80,6 +80,7 @@ const generateScenario = (config) => {
         outageDuration = 0,
         stepBackAfterItems = undefined,
         maxInFlight = 100, // Max items in 'orbit' phase concurrently
+        maxInputQueueCapacity = 6, // When overloaded, stop admitting new items
         supervisionMean,
         supervisionStdDev = 500
     } = config
@@ -94,6 +95,20 @@ const generateScenario = (config) => {
     let agentNextFreeTime = 0 // For input queue
     let manualItemCount = 0
     let computedOutageStart = outageStart
+
+    // Input throttling: track when items leave the input queue (to agent travel).
+    // If too many are in the input queue at once, delay/suppress new arrivals.
+    const inputQueueExitTimes = []
+    const pruneInputQueueExits = (t) => {
+        for (let idx = inputQueueExitTimes.length - 1; idx >= 0; idx--) {
+            if (inputQueueExitTimes[idx] <= t) inputQueueExitTimes.splice(idx, 1)
+        }
+    }
+    const earliestInputQueueExit = () => {
+        let earliest = Infinity
+        for (const t of inputQueueExitTimes) earliest = Math.min(earliest, t)
+        return earliest
+    }
     
     // CRITICAL: For maxInFlight=1, track when the loop is actually free
     // This is the ABSOLUTE time when the last item exits the loop
@@ -189,10 +204,24 @@ const generateScenario = (config) => {
     
     // Main Pass
     for (let i = 0; i < itemCount; i++) {
-        const start = i * interval + (rng() * 500)
+        let start = i * interval + (rng() * 500)
         
         // 1. Input Queue Processing
-        const inputArrival = start + SPAWN_DURATION
+        // Throttle: if input queue is overloaded, don't admit new items until capacity frees.
+        let inputArrival = start + SPAWN_DURATION
+        pruneInputQueueExits(inputArrival)
+        while (inputQueueExitTimes.length >= maxInputQueueCapacity) {
+            const earliestExit = earliestInputQueueExit()
+            if (!Number.isFinite(earliestExit)) break
+            inputArrival = earliestExit
+            start = inputArrival - SPAWN_DURATION
+            if (start >= CYCLE_DURATION - SPAWN_DURATION) {
+                // Can't fit additional items into this cycle once throttled this far.
+                break
+            }
+            pruneInputQueueExits(inputArrival)
+        }
+        if (start >= CYCLE_DURATION - SPAWN_DURATION) break
         
         // Initial ingest times (before capacity check)
         const agentStartTime = Math.max(inputArrival, agentNextFreeTime)
@@ -263,6 +292,7 @@ const generateScenario = (config) => {
                      
                      // Register interval
                      orbitIntervals.push({ start: newActualQueueExit, end: newActualQueueExit + newTaskDur })
+                     inputQueueExitTimes.push(newActualQueueExit)
 
                      const steps = []
                      steps.push({ type: 'spawn' })
@@ -281,6 +311,7 @@ const generateScenario = (config) => {
 
             // Normal path (no outage overlap or already handled)
             orbitIntervals.push({ start: actualQueueExit, end: actualQueueExit + taskDur })
+            inputQueueExitTimes.push(actualQueueExit)
             
             const steps = []
             steps.push({ type: 'spawn' })
@@ -323,6 +354,7 @@ const generateScenario = (config) => {
             const actualOrbitStart = actualQueueExit + TRAVEL_DURATION
             
             orbitIntervals.push({ start: actualQueueExit, end: actualQueueExit + taskDur })
+            inputQueueExitTimes.push(actualQueueExit)
             
             const steps = []
             
@@ -638,7 +670,7 @@ const HumanInTheLoopDiagram = ({
   itemsInHumanQueue.forEach((item, index) => humanQueueMap.set(item.id, index))
   const isHumanOverloaded = itemsInHumanQueue.length > 5
 
-  // --- Queue Slot Logic (Input) ---
+    // --- Queue Slot Logic (Input) ---
   const itemsInInputQueue = allActiveItems.filter(item => 
     item.tInputQueueEntry !== undefined && 
     timeMs >= item.tInputQueueEntry && 
@@ -647,7 +679,7 @@ const HumanInTheLoopDiagram = ({
   itemsInInputQueue.sort((a, b) => a.tInputQueueEntry - b.tInputQueueEntry)
   const inputQueueMap = new Map()
   itemsInInputQueue.forEach((item, index) => inputQueueMap.set(item.id, index))
-  const isInputOverloaded = itemsInInputQueue.length > 5
+  const isInputOverloaded = itemsInInputQueue.length >= (mergedConfig.maxInputQueueCapacity ?? 6)
 
 
   // --- Human Availability Logic ---

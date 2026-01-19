@@ -17,6 +17,9 @@ import { ParadigmComparison } from "../../components/ParadigmComparison";
 import OldWayFlowchartDiagram from "../../components/diagrams/OldWayFlowchartDiagram";
 import NewWayFlowchartDiagram from "../../components/diagrams/NewWayFlowchartDiagram";
 import HumanInTheLoopDiagram from "../../components/diagrams/HumanInTheLoopDiagram";
+import ContainerSandboxDiagram from "../../components/diagrams/ContainerSandboxDiagram";
+import GuardrailsStackDiagram from "../../components/diagrams/GuardrailsStackDiagram";
+import LeastPrivilegeDiagram from "../../components/diagrams/LeastPrivilegeDiagram";
 import { HITL_PRESETS } from "../../components/diagrams/hitlPresets";
 import monkeyImg from "../../assets/images/monkey.png";
 import nutshellCoverAnimalImg from "../../assets/images/nutshell-cover-animal.png";
@@ -144,6 +147,10 @@ export const IntroVideo: React.FC<IntroVideoProps> = ({
         return <ToolsScene scene={scene} ttsStartsSec={getCueTtsStarts(scene.id, "tools")} />;
       case "security":
         return <SecurityScene scene={scene} ttsStartsSec={getCueTtsStarts(scene.id, "security")} />;
+      case "defense_layers":
+        return <DefenseLayersScene scene={scene} ttsStartsSec={getCueTtsStarts(scene.id, "defense_layers")} />;
+      case "least_privilege":
+        return <LeastPrivilegeScene scene={scene} ttsStartsSec={getCueTtsStarts(scene.id, "least_privilege")} />;
       case "guardrails":
         return <GuardrailsScene scene={scene} ttsStartsSec={getCueTtsStarts(scene.id, "guardrails")} />;
       case "hitl":
@@ -519,15 +526,13 @@ const SecurityScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ sce
   );
 };
 
-const GuardrailsScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ scene, ttsStartsSec }) => {
+const DefenseLayersScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ scene, ttsStartsSec }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const localSec = frame / fps;
   const cueStartsLocal = ttsStartsSec.map((s) => s - scene.startSec);
   const beat1 = cueStartsLocal[0] ?? 0;
   const beat2 = cueStartsLocal[1] ?? beat1 + 3;
-  const beat3 = cueStartsLocal[2] ?? beat2 + 3;
-  const beat4 = cueStartsLocal[3] ?? beat3 + 3;
 
   const titleAnimation = spring({
     frame,
@@ -541,49 +546,125 @@ const GuardrailsScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ s
     config: { damping: 90, stiffness: 160, mass: 0.7 },
   });
 
-  const panelStyle: React.CSSProperties = {
-    border: "2px solid rgba(39, 39, 42, 0.18)",
-    borderRadius: 28,
-    padding: 28,
-    background: "rgba(253, 253, 253, 0.8)",
-  };
+  // Brief sweep through the diagram showing all layers
+  const diagramProgress = interpolate(
+    localSec,
+    [beat1 + 0.5, beat2 + 2],
+    [0, 1],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+  );
 
-  const panelTitleStyle: React.CSSProperties = {
-    fontFamily: '"Source Sans 3", sans-serif',
-    fontWeight: 900,
-    letterSpacing: "-0.02em",
-    fontSize: 30,
-    marginBottom: 12,
-  };
-
-  const layerBox = (opts: {
-    title: string;
-    subtitle: string;
-    borderColor: string;
-    background: string;
-    padding: number;
-    opacity: number;
-    children?: React.ReactNode;
-  }) => {
-    const { title, subtitle, borderColor, background, padding, opacity, children } = opts;
-    return (
-      <div
+  return (
+    <Layout justify="flex-start" style={{ paddingTop: 96 }}>
+      <H2
         style={{
-          border: `6px solid ${borderColor}`,
-          borderRadius: 28,
-          padding,
-          background,
-          opacity,
+          opacity: titleAnimation,
+          transform: `translateY(${(1 - titleAnimation) * 40}px)`,
+          marginBottom: 40,
         }}
       >
-        <div style={{ display: "flex", justifyContent: "space-between", gap: 16, alignItems: "baseline" }}>
-          <Body style={{ marginBottom: 0, fontSize: 28, fontWeight: 900 }}>{title}</Body>
-          <Body style={{ marginBottom: 0, fontSize: 22, opacity: 0.75, fontWeight: 700 }}>{subtitle}</Body>
+        <TitleBlock>Defense in Depth</TitleBlock>
+      </H2>
+
+      <div
+        style={{
+          opacity: diagramAnimation,
+          transform: `translateY(${(1 - diagramAnimation) * 24}px)`,
+          width: "100%",
+          maxWidth: 1600,
+          display: "flex",
+          justifyContent: "center",
+        }}
+      >
+        <div style={{ width: "95%", maxWidth: 1400 }}>
+          <GuardrailsStackDiagram theme="light" progress={diagramProgress} />
         </div>
-        {children ? <div style={{ marginTop: 16 }}>{children}</div> : null}
       </div>
-    );
-  };
+    </Layout>
+  );
+};
+
+const LeastPrivilegeScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ scene, ttsStartsSec }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const localSec = frame / fps;
+  const cueStartsLocal = ttsStartsSec.map((s) => s - scene.startSec);
+
+  const titleAnimation = spring({
+    frame,
+    fps,
+    config: { damping: 100, stiffness: 200, mass: 0.5 },
+  });
+
+  const diagramAnimation = spring({
+    frame: frame - 12,
+    fps,
+    config: { damping: 90, stiffness: 160, mass: 0.7 },
+  });
+
+  // We have 7 segments total (intro + 5 dimensions)
+  // Segments 0-1: intro
+  // Segments 2-6: the 5 dimensions
+  const introEnd = cueStartsLocal[1] ?? 0;
+  const dimensionStarts = cueStartsLocal.slice(2, 7); // 5 dimension start times
+
+  // Map time to progress (0-1) - sweep through all 5 dimensions
+  const lastDimensionStart = dimensionStarts[4] ?? introEnd + 10;
+  const diagramProgress = interpolate(
+    localSec,
+    [introEnd + 0.5, lastDimensionStart + 1],
+    [0, 1],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+  );
+
+  return (
+    <Layout justify="flex-start" style={{ paddingTop: 80 }}>
+      <H2
+        style={{
+          opacity: titleAnimation,
+          transform: `translateY(${(1 - titleAnimation) * 40}px)`,
+          marginBottom: 32,
+        }}
+      >
+        <TitleBlock>Least Privilege by Design</TitleBlock>
+      </H2>
+
+      <div
+        style={{
+          opacity: diagramAnimation,
+          transform: `translateY(${(1 - diagramAnimation) * 24}px)`,
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <div style={{ width: "95%", maxWidth: 1600 }}>
+          <LeastPrivilegeDiagram theme="light" progress={diagramProgress} />
+        </div>
+      </div>
+    </Layout>
+  );
+};
+
+const GuardrailsScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ scene, ttsStartsSec }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const localSec = frame / fps;
+  const cueStartsLocal = ttsStartsSec.map((s) => s - scene.startSec);
+  const beat1 = cueStartsLocal[0] ?? 0;
+
+  const titleAnimation = spring({
+    frame,
+    fps,
+    config: { damping: 100, stiffness: 200, mass: 0.5 },
+  });
+
+  const diagramAnimation = spring({
+    frame: frame - 12,
+    fps,
+    config: { damping: 90, stiffness: 160, mass: 0.7 },
+  });
 
   return (
     <Layout justify="flex-start" style={{ paddingTop: 96 }}>
@@ -602,92 +683,15 @@ const GuardrailsScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ s
           opacity: diagramAnimation,
           transform: `translateY(${(1 - diagramAnimation) * 24}px)`,
           width: "100%",
-          maxWidth: 1700,
           display: "flex",
-          flexDirection: "row",
-          gap: 28,
-          alignItems: "stretch",
+          justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        <div style={{ ...panelStyle, flex: 1 }}>
-          <div style={panelTitleStyle}>Nested isolation</div>
-          <Body size="lg" style={{ marginBottom: 18, lineHeight: 1.35 }}>
-            The agent code runs inside a sandbox, inside a container, inside your host.
-          </Body>
-
-          <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            {layerBox({
-              title: "Host",
-              subtitle: "trusted machine",
-              borderColor: "rgba(39, 39, 42, 0.25)",
-              background: "rgba(253, 253, 253, 0.9)",
-              padding: 18,
-              opacity: animIn(localSec - beat1),
-              children: layerBox({
-                title: "Container",
-                subtitle: "isolated run",
-                borderColor: "rgba(199, 0, 126, 0.45)",
-                background: "rgba(199, 0, 126, 0.05)",
-                padding: 18,
-                opacity: animIn(localSec - beat2),
-                children: layerBox({
-                  title: "Lua sandbox",
-                  subtitle: "restricted code",
-                  borderColor: "rgba(199, 0, 126, 0.85)",
-                  background: "rgba(199, 0, 126, 0.09)",
-                  padding: 18,
-                  opacity: animIn(localSec - beat2),
-                  children: (
-                    <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-                      <Card variant="muted" padding={3} style={{ flex: "1 1 240px" }}>
-                        <Body style={{ marginBottom: 0, fontSize: 24 }}>contained filesystem</Body>
-                      </Card>
-                      <Card variant="muted" padding={3} style={{ flex: "1 1 240px" }}>
-                        <Body style={{ marginBottom: 0, fontSize: 24 }}>no network access</Body>
-                      </Card>
-                    </div>
-                  ),
-                }),
-              }),
-            })}
-          </div>
-        </div>
-
-        <div style={{ ...panelStyle, flex: 1.1 }}>
-          <div style={panelTitleStyle}>Broker</div>
-          <Body size="lg" style={{ marginBottom: 18, lineHeight: 1.35, opacity: animIn(localSec - beat3) }}>
-            Anything sensitive stays outside the sandbox. The runtime asks a trusted broker to do privileged work.
-          </Body>
-
-          <div style={{ display: "flex", flexDirection: "column", gap: 16, opacity: animIn(localSec - beat3) }}>
-            {layerBox({
-              title: "Broker / tool runner",
-              subtitle: "trusted side",
-              borderColor: "rgba(39, 39, 42, 0.25)",
-              background: "rgba(253, 253, 253, 0.9)",
-              padding: 18,
-              opacity: 1,
-              children: (
-                <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                  <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
-                    <Card variant="muted" padding={4} style={{ flex: "1 1 240px" }}>
-                      <Body style={{ marginBottom: 0, fontSize: 26 }}>model calls</Body>
-                    </Card>
-                    <Card variant="muted" padding={4} style={{ flex: "1 1 240px" }}>
-                      <Body style={{ marginBottom: 0, fontSize: 26 }}>API tools</Body>
-                    </Card>
-                  </div>
-                  <Card variant="muted" padding={4} style={{ width: "100%" }}>
-                    <Body style={{ marginBottom: 0, fontSize: 26 }}>API keys</Body>
-                  </Card>
-                </div>
-              ),
-            })}
-          </div>
+        <div style={{ width: "90%", maxWidth: 1600 }}>
+          <ContainerSandboxDiagram theme="light" />
         </div>
       </div>
-
-      {/* No bottom tagline; this will be its own scene. */}
     </Layout>
   );
 };

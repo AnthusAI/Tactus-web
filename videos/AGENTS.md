@@ -170,9 +170,11 @@ const animation = spring({
 1. **Start studio**: `npm start` (opens browser-based editor)
 2. **Edit code**: Modify components/videos with hot reload
 3. **Test**: `npm test` (runs linter and type checker)
-4. **Render videos**: 
+4. **Render videos**:
    - All videos: `npm run render`
    - Single video: `npm run render:intro` or `npx remotion render src/index.ts <CompositionId> out/<filename>.mp4`
+5. **Upload videos to S3**:
+   - Use the AWS profile `anthus`: `AWS_PROFILE=anthus npm run videos:upload`
 
 ## Rendering System
 
@@ -225,6 +227,118 @@ const compositions = [
 
 - Prefer `snake_case` for YAML keys.
 - Prefer names that include units (e.g. `pause_seconds`, `duration_seconds`, `sample_rate_hz`).
+
+## Syncing Diagrams with Voice Cues
+
+Many diagrams have a `progress` prop (0-1) that controls animation state or which section is highlighted. To sync diagram state with voiceover:
+
+### 1. Get voice cue timestamps from the timeline
+
+The generated timeline JSON contains segment start times. Use `getCueTtsStarts()`:
+
+```typescript
+// In the video component, extract TTS segment start times
+const getCueTtsStarts = (sceneId: string, cueId: string): number[] => {
+  const items = timeline?.items ?? [];
+  const cueItem = items.find(it => it.type === "tts" && it.sceneId === sceneId && it.cueId === cueId);
+  return (cueItem?.segments ?? []).filter(s => s.type === "tts").map(s => s.startSec);
+};
+
+// Pass to scene component
+<MyScene ttsStartsSec={getCueTtsStarts("my_scene", "my_cue")} />
+```
+
+### 2. Map voice cue beats to diagram progress
+
+In the scene component, use Remotion's `interpolate()` to map time to progress:
+
+```typescript
+const MyScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ scene, ttsStartsSec }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const localSec = frame / fps;
+
+  // Convert absolute timestamps to scene-local times
+  const cueStartsLocal = ttsStartsSec.map(s => s - scene.startSec);
+  const beat1 = cueStartsLocal[0] ?? 0;
+  const beat2 = cueStartsLocal[1] ?? beat1 + 3;
+  const beat3 = cueStartsLocal[2] ?? beat2 + 3;
+
+  // Map time to diagram progress (0-1)
+  const diagramProgress = interpolate(
+    localSec,
+    [beat1, beat2, beat3, beat3 + 5],  // keyframe times
+    [0, 0.33, 0.66, 1],                 // progress values
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+  );
+
+  return <GuardrailsStackDiagram theme="light" progress={diagramProgress} />;
+};
+```
+
+### 3. Available diagrams with progress/pointer control
+
+| Diagram | Progress Prop | Behavior |
+|---------|--------------|----------|
+| `GuardrailsStackDiagram` | `progress` (0-1) | Highlights layer index = floor(progress * 8), moves pointer |
+| `LeastPrivilegeDiagram` | `progress` (0-1) | Highlights dimension index = floor(progress * 5), shows 5 dimensions of least privilege |
+| `PromptEngineeringCeilingDiagram` | `progress` (0-1) | Animates ceiling visualization |
+| `HumanInTheLoopDiagram` | `time` (ms) + `scenario` + `config` | Runs simulation at given time |
+
+### 4. Babulus YAML voice segment structure
+
+Each voice segment in the YAML gets a timestamp. Structure segments to match diagram states:
+
+```yaml
+cues:
+  - id: defense_layers
+    voice:
+      segments:
+        - voice: "First layer: cost limits..."    # → progress 0.0
+        - pause_seconds: 0.5
+        - voice: "Second layer: prompts..."       # → progress 0.125
+        - pause_seconds: 0.5
+        - voice: "Third layer: context..."        # → progress 0.25
+```
+
+## LeastPrivilegeDiagram
+
+Shows how Tactus enforces least privilege across 5 dimensions in a radial hub design.
+
+### Five Dimensions:
+1. **Minimal Toolsets** - Only tools needed for the task
+2. **Curated Context** - Limited information, not everything
+3. **Network Isolation** - Default networkless execution
+4. **API Boundaries** - Secretless broker keeps credentials out
+5. **Temporal Gating** - Tools available only when workflow stage requires
+
+### Props:
+- `progress` (0-1): Animates through dimensions sequentially (each dimension gets 0.2 of progress range)
+- `theme`: "light" | "dark"
+- `style`: Optional CSS properties
+- `className`: Optional CSS class
+
+### Usage Example:
+```jsx
+// Static usage (web page)
+<LeastPrivilegeDiagram theme="light" />
+
+// Animated usage (video with voice sync)
+const diagramProgress = interpolate(
+  localSec,
+  [introEnd, dim1Start, dim2Start, dim3Start, dim4Start, dim5Start],
+  [0, 0.2, 0.4, 0.6, 0.8, 1.0],
+  { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+);
+<LeastPrivilegeDiagram theme="light" progress={diagramProgress} />
+```
+
+### Visual Layout:
+- Center hub displays "TACTUS Least Privilege Engine"
+- 5 dimensions radiate outward at different angles
+- Active dimension (based on progress) has higher opacity and colored border
+- Connection lines from center to each dimension
+- Each dimension card shows icon, title, and description
 
 ## Troubleshooting
 

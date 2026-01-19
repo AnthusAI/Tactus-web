@@ -73,17 +73,49 @@
       ]
     },
     {
+      "id": "defense_layers",
+      "title": "Defense in Depth",
+      "startSec": 146.23617726946915,
+      "endSec": 175.83617726946918,
+      "cues": [
+        {
+          "id": "defense_layers",
+          "label": "Defense Layers",
+          "startSec": 146.23617726946915,
+          "endSec": 175.83617726946918,
+          "text": "Tactus uses defense in depth: multiple layers of guardrails, where each layer reduces a different class of risk.\n This includes cost limits, prompt engineering, tool boundaries, code sandboxing, container isolation, and a secretless broker. Each layer enforces least privilege: agents get only what they need, when they need it.\n Let's zoom in on how sandboxing and containerization keep the agent contained.",
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "least_privilege",
+      "title": "Least Privilege by Design",
+      "startSec": 175.83617726946918,
+      "endSec": 213.98617726946924,
+      "cues": [
+        {
+          "id": "least_privilege",
+          "label": "Least Privilege",
+          "startSec": 175.83617726946918,
+          "endSec": 213.98617726946924,
+          "text": "Each of these guardrails enforces a principle: least privilege.\n Tactus limits what agents can do, along multiple dimensions.\n Minimal toolsets\u2014only what the procedure needs.\n Curated context\u2014relevant information, not everything.\n Network isolation\u2014the runtime is networkless by default.\n A secretless broker\u2014credentials stay outside the container.\n And temporal gating\u2014tools become available only when the workflow stage requires them.",
+          "bullets": []
+        }
+      ]
+    },
+    {
       "id": "guardrails",
       "title": "Sandboxed and Contained",
-      "startSec": 146.23617726946915,
-      "endSec": 204.2861772694691,
+      "startSec": 213.98617726946924,
+      "endSec": 270.2361772694692,
       "cues": [
         {
           "id": "guardrails",
           "label": "Guardrails",
-          "startSec": 146.23617726946915,
-          "endSec": 204.2861772694691,
-          "text": "Tactus uses defense in depth. First, procedure code runs in a restricted Lua sandbox with limited capabilities.\n Second, that sandbox runs in a fresh container each time you run it.  Sort of like an AWS Lambda function.  The container can only see the folder you run the procedure from, and any other folder you explicitly share with it.  You can mount folders as read-only to prevent accidents.\n When the agent needs privileged work\u2014like calling an AI model provider or a credentialed API tool\u2014it does that throgh a broker that runs outside the sandbox.\n This way, the AI agents can't access your API keys or other sensitive data because it's all outside the sandbox and the container, both.  Your procedure code can use third-party APIs that require tokens or API keys without worrying about them being shared with AI companies or stolen through prompt injection hacks.",
+          "startSec": 213.98617726946924,
+          "endSec": 270.2361772694692,
+          "text": "First, procedure code runs in a restricted Lua sandbox with limited capabilities.\n Second, that sandbox runs in a fresh container each time you run it.  Sort of like an AWS Lambda function.  The container can only see the folder you run the procedure from, and any other folder you explicitly share with it.  You can mount folders as read-only to prevent accidents.\n When the agent needs privileged work\u2014like calling an AI model provider or a credentialed API tool\u2014it does that throgh a broker that runs outside the sandbox.\n This way, the AI agents can't access your API keys or other sensitive data because it's all outside the sandbox and the container, both.  Your procedure code can use third-party APIs that require tokens or API keys without worrying about them being shared with AI companies or stolen through prompt injection hacks.",
           "bullets": []
         }
       ]
@@ -91,15 +123,15 @@
     {
       "id": "hitl",
       "title": "Human-in-the-Loop",
-      "startSec": 204.2861772694691,
-      "endSec": 243.13617726946913,
+      "startSec": 270.2361772694692,
+      "endSec": 301.7361772694692,
       "cues": [
         {
           "id": "hitl",
           "label": "HITL",
-          "startSec": 204.2861772694691,
-          "endSec": 243.13617726946913,
-          "text": "Even with guardrails, you\u2019re still responsible for supervising your monkeys. If you give agents powerful tools, sometimes you need a human to approve a step\u2014or answer a question.\n For example: a procedure drafts a blog post, then asks you to approve it before it publishes. You can step back from the chat interface, but still stay in charge at the key moments.\n And the best part is: the procedure can pause completely while it waits\u2014no compute, no cost. When you approve or reply, it resumes right where it left off. That\u2019s how you do human\u2011in\u2011the\u2011loop at scale.",
+          "startSec": 270.2361772694692,
+          "endSec": 301.7361772694692,
+          "text": "Even with guardrails, you still need humans at the moments that matter. If an agent is about to take an irreversible action, you want a human to approve it.\n And sometimes the right outcome isn\u2019t yes or no \u2014 it\u2019s: send it back for edits. A procedure can draft an artifact, ask for review, and then continue with the revised version.\n And it\u2019s durable. The procedure can pause completely while it waits \u2014 no compute, no cost \u2014 and resume hours later exactly where it left off. That\u2019s human\u2011in\u2011the\u2011loop at scale.",
           "bullets": []
         }
       ]
@@ -107,14 +139,14 @@
     {
       "id": "graphs",
       "title": "No Graphs Required",
-      "startSec": 243.13617726946913,
-      "endSec": 260.33617726946915,
+      "startSec": 301.7361772694692,
+      "endSec": 318.9361772694692,
       "cues": [
         {
           "id": "graphs",
           "label": "Compare",
-          "startSec": 243.13617726946913,
-          "endSec": 260.33617726946915,
+          "startSec": 301.7361772694692,
+          "endSec": 318.9361772694692,
           "text": "In a lot of systems, this forces you into a graph workflow: nodes, edges, conditional edges, and explicit checkpointing.\n With Tactus, it\u2019s transparent. You write normal code, and the runtime handles pausing and resuming behind the scenes.",
           "bullets": []
         }
@@ -123,14 +155,14 @@
     {
       "id": "nutshell",
       "title": "Tactus in a Nutshell",
-      "startSec": 260.33617726946915,
-      "endSec": 281.0361772694692,
+      "startSec": 318.9361772694692,
+      "endSec": 339.6361772694693,
       "cues": [
         {
           "id": "nutshell",
           "label": "Nutshell",
-          "startSec": 260.33617726946915,
-          "endSec": 281.0361772694692,
+          "startSec": 318.9361772694692,
+          "endSec": 339.6361772694693,
           "text": "Tactus in a nutshell: it\u2019s a programming language for getting things done with agents. You arm an agent with the tools it needs to follow a procedure\u2014 and you keep it sandboxed and contained while it works.\n The goal is simple: keep the monkey in a cage, instead of handing it a razor blade and hoping for the best.",
           "bullets": []
         }
@@ -139,14 +171,14 @@
     {
       "id": "cta",
       "title": "Get Started",
-      "startSec": 281.0361772694692,
-      "endSec": 288.1361772694692,
+      "startSec": 339.6361772694693,
+      "endSec": 346.7361772694693,
       "cues": [
         {
           "id": "cta",
           "label": "CTA",
-          "startSec": 281.0361772694692,
-          "endSec": 288.1361772694692,
+          "startSec": 339.6361772694693,
+          "endSec": 346.7361772694693,
           "text": "Ready to try it? Visit the web site to download the IDE and run your first procedure.",
           "bullets": []
         }

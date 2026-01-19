@@ -221,27 +221,74 @@ export const EduCloselySupervised = () => (
 )
 EduCloselySupervised.storyName = "Closely Supervised"
 
-// 11. Closely Supervised + Outage (Human steps away)
-export const EduCloselySupervisedOutage = () => (
-  <AnimatedDemo 
-    theme="light" 
+// 11. Closely Supervised + Absence (Human steps away)
+export const EduCloselySupervisedAbsence = () => (
+  <AnimatedDemo
+    theme="light"
     scenario={HITL_PRESETS.CLOSELY_SUPERVISED.scenario}
     config={{
-        stepBackAfterItems: 4,
+        stepBackAfterItems: 1,
         outageDuration: 8000
     }}
   />
 )
-EduCloselySupervisedOutage.storyName = "Closely Supervised (Outage)"
+EduCloselySupervisedAbsence.storyName = "Closely Supervised (Absence)"
 
 // 12. Unsupervised (No human, ramping speed)
 export const EduUnsupervised = () => (
-  <AnimatedDemo 
-    theme="light" 
-    scenario="unsupervised" 
+  <AnimatedDemo
+    theme="light"
+    scenario="unsupervised"
   />
 )
 EduUnsupervised.storyName = "Unsupervised"
+
+// 13. Unsupervised Monkey (Cycles between brain and monkey)
+function AnimatedMonkeyDemo({ theme = "light" }) {
+  const [time, setTime] = React.useState(0)
+  const [showMonkey, setShowMonkey] = React.useState(false)
+
+  React.useEffect(() => {
+    let raf = 0
+    const start = performance.now()
+
+    const tick = (now) => {
+      const elapsed = now - start
+      setTime(elapsed)
+      raf = requestAnimationFrame(tick)
+    }
+
+    raf = requestAnimationFrame(tick)
+    return () => cancelAnimationFrame(raf)
+  }, [])
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setShowMonkey(prev => !prev)
+    }, 5000)
+
+    return () => clearInterval(interval)
+  }, [])
+
+  return (
+    <Frame theme={theme}>
+      <div style={{ display: 'flex', flexDirection: 'column', width: '100%', alignItems: 'center' }}>
+        <HumanInTheLoopDiagram
+          theme={theme}
+          time={time}
+          scenario="unsupervised"
+          showMonkey={showMonkey}
+        />
+        <div style={{ marginTop: '1rem', fontFamily: 'monospace', fontSize: '0.8rem', opacity: 0.6 }}>
+          Scenario: unsupervised (monkey) | Time: {(time / 1000).toFixed(1)}s | Showing: {showMonkey ? 'Monkey' : 'Brain'}
+        </div>
+      </div>
+    </Frame>
+  )
+}
+
+export const EduUnsupervisedMonkey = () => <AnimatedMonkeyDemo theme="light" />
+EduUnsupervisedMonkey.storyName = "Unsupervised (Monkey)"
 
 // Interactive Playground
 export const InteractivePlayground = () => {

@@ -191,6 +191,50 @@ scenes:
                 Without guardrails, you can turn your laptop or your cloud account into a crime scene.
                 That’s why Tactus runs on a secure runtime, to sandbox the agent and the tools it uses.
 
+  - id: defense_layers
+    title: "Defense in Depth"
+    cues:
+      - id: defense_layers
+        label: "Defense Layers"
+        voice:
+          segments:
+            - voice: >
+                Tactus uses defense in depth: multiple layers of guardrails, where each layer reduces a different class of risk.
+            - pause_seconds: 0.5
+            - voice: >
+                This includes cost limits, prompt engineering, tool boundaries, code sandboxing, container isolation, and a secretless broker. Each layer enforces least privilege: agents get only what they need, when they need it.
+            - pause_seconds: 0.5
+            - voice: >
+                Let's zoom in on how sandboxing and containerization keep the agent contained.
+
+  - id: least_privilege
+    title: "Least Privilege by Design"
+    cues:
+      - id: least_privilege
+        label: "Least Privilege"
+        voice:
+          segments:
+            - voice: >
+                Each of these guardrails enforces a principle: least privilege.
+            - pause_seconds: 0.4
+            - voice: >
+                Tactus limits what agents can do, along multiple dimensions.
+            - pause_seconds: 0.35
+            - voice: >
+                Minimal toolsets—only what the procedure needs.
+            - pause_seconds: 0.3
+            - voice: >
+                Curated context—relevant information, not everything.
+            - pause_seconds: 0.3
+            - voice: >
+                Network isolation—the runtime is networkless by default.
+            - pause_seconds: 0.3
+            - voice: >
+                A secretless broker—credentials stay outside the container.
+            - pause_seconds: 0.3
+            - voice: >
+                And temporal gating—tools become available only when the workflow stage requires them.
+
   - id: guardrails
     title: "Sandboxed and Contained"
     cues:
@@ -205,7 +249,6 @@ scenes:
         voice:
           segments:
             - voice: >
-                Tactus uses defense in depth.
                 First, procedure code runs in a restricted Lua sandbox with limited capabilities.
             - pause_seconds: 0.7
             - voice: >

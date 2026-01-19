@@ -247,7 +247,7 @@ const FEATURE_HIGHLIGHTS = [
   },
   {
     title: "Least privilege controls",
-    body: <>Give the right tools and context at the right time: default-deny capabilities, per-step tool access, and approval gates.</>,
+    body: <>Minimal toolsets, curated context, network isolation, secretless broker, and temporal gating—agents get only what they need, when they need it.</>,
     icon: <Icons.Lock />,
   },
   {
@@ -575,9 +575,9 @@ const IndexPage = () => {
 
               <div className={styles.hitlVariantsStack}>
                 <div className={styles.hitlVariant}>
-                  <h3 className={styles.hitlVariantTitle}>Closely supervised</h3>
+                  <h3 className={styles.hitlVariantTitle}>Closely supervised (absence)</h3>
                   <p className={styles.hitlVariantBody}>
-                    Chat-style: the agent takes a step, then waits. You are the control flow.
+                    Chat-style supervision: every item requires human approval. But when the human steps away, the system stalls until they return.
                   </p>
                   <div className={styles.hitlVariantDiagram}>
                     <AnimatedHumanInTheLoopDiagram
@@ -606,13 +606,28 @@ const IndexPage = () => {
                 <div className={styles.hitlVariant}>
                   <h3 className={styles.hitlVariantTitle}>Human steps back</h3>
                   <p className={styles.hitlVariantBody}>
-                    When you’re away, work queues instead of breaking. When you return, the run resumes where it left off.
+                    When you're away, work queues instead of breaking. When you return, the run resumes where it left off.
                   </p>
                   <div className={styles.hitlVariantDiagram}>
                     <AnimatedHumanInTheLoopDiagram
                       scenario={HITL_PRESETS.HUMAN_STEPS_BACK.scenario}
                       config={HITL_PRESETS.HUMAN_STEPS_BACK.config}
                       startAtMs={HITL_PRESETS.HUMAN_STEPS_BACK.recommendedStartAtMs}
+                    />
+                  </div>
+                </div>
+
+                <div className={styles.hitlVariant}>
+                  <h3 className={styles.hitlVariantTitle}>Unsupervised</h3>
+                  <p className={styles.hitlVariantBody}>
+                    No humans required. The agent handles everything autonomously — but only if you trust it with a razor blade.
+                  </p>
+                  <div className={styles.hitlVariantDiagram}>
+                    <AnimatedHumanInTheLoopDiagram
+                      scenario={HITL_PRESETS.UNSUPERVISED_MONKEY.scenario}
+                      config={HITL_PRESETS.UNSUPERVISED_MONKEY.config}
+                      startAtMs={HITL_PRESETS.UNSUPERVISED_MONKEY.recommendedStartAtMs}
+                      cycleMonkey={HITL_PRESETS.UNSUPERVISED_MONKEY.cycleMonkey}
                     />
                   </div>
                 </div>

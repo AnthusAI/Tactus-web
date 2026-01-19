@@ -24,11 +24,13 @@ const AnimatedHumanInTheLoopDiagram = ({
   startAtMs = 0,
   className,
   style,
+  cycleMonkey = false,
 }) => {
   const preferredTheme = usePreferredTheme()
   const theme = themeProp ?? preferredTheme
   const [time, setTime] = React.useState(0)
   const [isVisible, setIsVisible] = React.useState(false)
+  const [showMonkey, setShowMonkey] = React.useState(false)
   const ref = React.useRef(null)
 
   // Intersection observer to start
@@ -49,12 +51,23 @@ const AnimatedHumanInTheLoopDiagram = ({
     return () => observer.disconnect()
   }, [])
 
+  // Monkey cycling animation (5s brain, 5s monkey, repeat)
+  React.useEffect(() => {
+    if (!isVisible || !cycleMonkey) return
+
+    const interval = setInterval(() => {
+      setShowMonkey(prev => !prev)
+    }, 5000)
+
+    return () => clearInterval(interval)
+  }, [isVisible, cycleMonkey])
+
   // Infinite time animation
   React.useEffect(() => {
     if (!isVisible) return
     let raf = 0
     let start = performance.now()
-    
+
     const tick = (now) => {
       const elapsed = now - start
       setTime(startAtMs + elapsed)
@@ -66,13 +79,14 @@ const AnimatedHumanInTheLoopDiagram = ({
 
   return (
     <div ref={ref}>
-      <HumanInTheLoopDiagram 
-        theme={theme} 
+      <HumanInTheLoopDiagram
+        theme={theme}
         time={time}
         scenario={scenario}
         config={config}
-        className={className} 
-        style={style} 
+        className={className}
+        style={style}
+        showMonkey={cycleMonkey && showMonkey}
       />
     </div>
   )

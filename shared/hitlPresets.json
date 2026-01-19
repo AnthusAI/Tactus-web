@@ -43,5 +43,13 @@
       "queueTime": 1000
     },
     "recommendedStartAtMs": 9000
+  },
+  "UNSUPERVISED_MONKEY": {
+    "id": "unsupervised-monkey",
+    "label": "Unsupervised (Monkey)",
+    "scenario": "unsupervised",
+    "config": {},
+    "cycleMonkey": true,
+    "recommendedStartAtMs": 0
   }
 }

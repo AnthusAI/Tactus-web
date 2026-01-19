@@ -238,7 +238,7 @@ const ContainerSandboxDiagram = ({
             <rect x="0" y="0" width="240" height="50" rx="4" fill={t.surface2} opacity="0.5" />
             <g transform="translate(10, 15)">
                 <ShieldCheck size={16} color={t.muted} />
-                <text x={22} y={12} fill={t.muted} fontSize="12" fontWeight="700" fontFamily={t.fontSans} textTransform="uppercase" letterSpacing="0.5">
+                <text x={22} y={12} fill={t.muted} fontSize="12" fontWeight="700" fontFamily={t.fontSans} letterSpacing="0.5" style={{ textTransform: "uppercase" }}>
                     AI Gateway
                 </text>
             </g>
@@ -249,7 +249,7 @@ const ContainerSandboxDiagram = ({
             <rect x="0" y="0" width="240" height="50" rx="4" fill={t.surface2} opacity="0.5" />
             <g transform="translate(10, 15)">
                 <Globe size={16} color={t.muted} />
-                <text x={22} y={12} fill={t.muted} fontSize="12" fontWeight="700" fontFamily={t.fontSans} textTransform="uppercase" letterSpacing="0.5">
+                <text x={22} y={12} fill={t.muted} fontSize="12" fontWeight="700" fontFamily={t.fontSans} letterSpacing="0.5" style={{ textTransform: "uppercase" }}>
                     Tool Gateway
                 </text>
             </g>
@@ -258,7 +258,7 @@ const ContainerSandboxDiagram = ({
         {/* Security Layer: Secrets & Policies */}
         <g transform="translate(0, 120)">
             <rect x="0" y="0" width="240" height="100" rx="4" fill={t.cardTitle} stroke={t.border} strokeWidth="1" strokeDasharray="4 4" />
-            <text x="10" y="20" fill={t.muted} fontSize="11" fontWeight="700" fontFamily={t.fontSans} textTransform="uppercase" letterSpacing="0.5">
+            <text x="10" y="20" fill={t.muted} fontSize="11" fontWeight="700" fontFamily={t.fontSans} letterSpacing="0.5" style={{ textTransform: "uppercase" }}>
                 Security Layer
             </text>
             

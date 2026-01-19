@@ -153,14 +153,16 @@ const AIToolboxPage = () => {
             </section>
 
             <section id="least-privilege" style={{ marginTop: "var(--space-6)" }}>
-              <h2 className={styles.sectionTitle}>Least privilege and staged tool access</h2>
+              <h2 className={styles.sectionTitle}>Least privilege by design</h2>
               <p className={styles.bodyText}>
-                The safest tool is the one the agent doesn’t have. Instead of granting everything up front, treat tool access as a
-                stage-gated capability: drafting stage, review stage, then commit stage.
+                Tactus enforces least privilege across multiple dimensions: minimal toolsets (only what's needed), curated context
+                (relevant information, not everything), network isolation (networkless by default), API boundaries (secretless broker),
+                and temporal gating (capabilities unlock at the right stage).
               </p>
               <p className={styles.bodyText}>
-                This is how you build bounded autonomy: the workflow can run on its own for long stretches, and it can still be safe
-                when it reaches a step that needs credentials or could cause real side effects.
+                The safest tool is the one the agent doesn't have—and the safest credential is the one it never touches. This is
+                how you build bounded autonomy: the workflow can run on its own for long stretches, and it can still be safe when it
+                reaches a step that needs real side effects.
               </p>
             </section>
 

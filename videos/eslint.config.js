@@ -39,7 +39,6 @@ module.exports = [
     files: [
       "src/components/diagrams/ContainerSandboxDiagram.tsx",
       "src/components/diagrams/GuardrailsStackDiagram.tsx",
-      "src/components/diagrams/StagedToolAccessDiagram.tsx",
       "src/components/diagrams/PromptEngineeringCeilingDiagram.tsx",
       "src/components/diagrams/OldWayFlowchartDiagram.tsx",
       "src/components/diagrams/NewWayFlowchartDiagram.tsx",

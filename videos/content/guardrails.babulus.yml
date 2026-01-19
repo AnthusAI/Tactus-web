@@ -146,29 +146,60 @@ scenes:
             - voice: >
                 This is the philosophy behind Tactus.
                 Guardrails are not add-ons you bolt on later.
-                They’re architectural decisions baked into the execution model.
+                They're architectural decisions baked into the execution model.
             - pause_seconds: 0.5
             - voice: >
                 No single technique solves everything.
                 Guardrails work as defense in depth: layers that each reduce a different class of risk.
+            - pause_seconds: 0.4
+            - voice: >
+                At the top: cost and limits. Hard quotas prevent runaway loops before they become billing nightmares.
+            - pause_seconds: 0.35
+            - voice: >
+                Prompt engineering. Structured instructions guide behavior and reduce error rates.
+            - pause_seconds: 0.35
+            - voice: >
+                Context engineering. Curated context ensures the model has the right information, not just all information.
+            - pause_seconds: 0.35
+            - voice: >
+                Model selection. Choose and fine-tune models for specific capabilities and safety profiles.
+            - pause_seconds: 0.35
+            - voice: >
+                Tool boundaries. Strict schemas and validation at the edge where the agent touches the world.
+            - pause_seconds: 0.35
+            - voice: >
+                Code sandboxing. Isolated execution environments prevent unauthorized system access.
+            - pause_seconds: 0.35
+            - voice: >
+                Container isolation. Ephemeral containers ensure no state persists between runs.
+            - pause_seconds: 0.35
+            - voice: >
+                And at the foundation: a secretless broker. Credentials live outside the sandbox. The agent requests work but never holds the keys.
 
-  - id: staged_tools
-    title: "Least Privilege, Applied Per Stage"
+  - id: least_privilege
+    title: "Least Privilege by Design"
     cues:
-      - id: staged_tools
-        label: "Staged Tools"
+      - id: least_privilege
+        label: "Least Privilege"
         voice:
           segments:
             - voice: >
-                Tools aren’t just convenience — they’re the capability surface.
-                If you want safe autonomy, you can’t give the agent a broad, always-on toolbelt and hope it behaves.
-            - pause_seconds: 0.45
+                Tactus enforces least privilege by design, across multiple dimensions.
+            - pause_seconds: 0.4
             - voice: >
-                Instead, design your workflow in stages.
-                Give the right tools at the right time — and remove them when you don’t need them.
-            - pause_seconds: 0.5
+                Minimal toolsets: agents get only the tools they need, not a kitchen sink.
+            - pause_seconds: 0.35
             - voice: >
-                This is least privilege, made concrete.
+                Curated context: relevant information only, not everything.
+            - pause_seconds: 0.35
+            - voice: >
+                Network isolation: the runtime is networkless by default.
+            - pause_seconds: 0.35
+            - voice: >
+                Secretless broker: credentials stay outside, the agent requests work but never holds keys.
+            - pause_seconds: 0.35
+            - voice: >
+                Temporal gating: tools become available only when the workflow stage requires them.
 
   - id: sandbox_broker
     title: "Sandboxing + a Secretless Broker Boundary"

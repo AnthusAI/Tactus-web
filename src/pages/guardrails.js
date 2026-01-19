@@ -4,7 +4,7 @@ import Seo from "../components/seo"
 import BottomCta from "../components/bottom-cta"
 import Breakout from "../components/publishing/Breakout"
 import AnimatedGuardrailsStackDiagram from "../components/diagrams/AnimatedGuardrailsStackDiagram"
-import StagedToolAccessDiagram from "../components/diagrams/StagedToolAccessDiagram"
+import LeastPrivilegeDiagram from "../components/diagrams/LeastPrivilegeDiagram"
 import ContainerSandboxDiagram from "../components/diagrams/ContainerSandboxDiagram"
 import PromptEngineeringCeilingDiagram from "../components/diagrams/PromptEngineeringCeilingDiagram"
 import * as styles from "./guardrails.module.css"
@@ -267,26 +267,27 @@ const GuardrailsPage = () => {
               <AnimatedGuardrailsStackDiagram theme={theme} className={styles.diagram} />
             </div>
 
-            <h3 className={styles.subsectionTitle}>Capability control (default deny)</h3>
+            <h3 className={styles.subsectionTitle}>Least privilege by design</h3>
             <p className={styles.bodyText}>
-              Tools aren’t just convenience — they’re the capability surface. If you want safe autonomy, you can’t give the agent a
-              broad, always-on toolbelt and hope it behaves.
+              Tactus enforces least privilege across multiple dimensions, not just tool access. The runtime architecture ensures
+              that agents operate with minimal capability at every level.
             </p>
             <p className={styles.bodyText}>
-              Instead, design your workflow in stages and expose only what’s needed for the current stage. The agent can’t misuse a
-              tool it doesn’t have.
+              Agents receive minimal toolsets (only what's needed for the task), curated context (relevant information, not everything),
+              default network isolation (networkless by default), secretless execution via broker (credentials stay outside), and temporal
+              gating of capabilities (tools available only when workflow stage requires them).
             </p>
             <p className={styles.bodyTextMuted}>
-              This is the difference between “the agent promised not to do it” and “the system made it impossible at this stage.”
+              This is the difference between "the agent promised not to" and "the system made it structurally impossible."
             </p>
 
             <div className={styles.diagramWrap}>
-              <StagedToolAccessDiagram theme={theme} className={styles.diagram} />
+              <LeastPrivilegeDiagram theme={theme} className={styles.diagram} />
             </div>
 
             <p className={styles.bodyTextMuted}>
-              This is least privilege in practice: the agent cannot call a side-effect tool until the procedure reaches the stage
-              where it’s appropriate — often after a human approval checkpoint.
+              Each dimension reduces a different class of risk. Together, they create a holistic approach to safe agent autonomy
+              where the right thing is structurally easier than the wrong thing.
             </p>
 
             <h3 className={styles.subsectionTitle}>Tool boundaries (validation and policy)</h3>

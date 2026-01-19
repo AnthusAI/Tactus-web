@@ -10,7 +10,7 @@ import { AudioTimelineLayer } from "@/babulus/AudioTimeline";
 import guardrailsTimeline from "./guardrails.timeline.json";
 import type { GeneratedTimeline } from "@/babulus/audioTypes";
 import GuardrailsStackDiagram from "../../components/diagrams/GuardrailsStackDiagram";
-import StagedToolAccessDiagram from "../../components/diagrams/StagedToolAccessDiagram";
+import LeastPrivilegeDiagram from "../../components/diagrams/LeastPrivilegeDiagram";
 import PromptEngineeringCeilingDiagram from "../../components/diagrams/PromptEngineeringCeilingDiagram";
 import ContainerSandboxDiagram from "../../components/diagrams/ContainerSandboxDiagram";
 
@@ -27,6 +27,41 @@ export const GuardrailsVideo: React.FC<GuardrailsVideoProps> = ({
 }) => {
   const { fps } = useVideoConfig();
 
+  type CueTimelineSegment = { type: string; startSec: number };
+  type CueTimelineItem = {
+    type: string;
+    sceneId?: string;
+    cueId?: string;
+    segments?: CueTimelineSegment[];
+  };
+
+  const isCueTimelineSegment = (v: unknown): v is CueTimelineSegment => {
+    if (!v || typeof v !== "object") return false;
+    const o = v as Record<string, unknown>;
+    return typeof o.type === "string" && typeof o.startSec === "number";
+  };
+
+  const isCueTimelineItem = (v: unknown): v is CueTimelineItem => {
+    if (!v || typeof v !== "object") return false;
+    const o = v as Record<string, unknown>;
+    if (typeof o.type !== "string") return false;
+    if (o.sceneId != null && typeof o.sceneId !== "string") return false;
+    if (o.cueId != null && typeof o.cueId !== "string") return false;
+    if (o.segments != null) {
+      if (!Array.isArray(o.segments)) return false;
+      if (!(o.segments as unknown[]).every(isCueTimelineSegment)) return false;
+    }
+    return true;
+  };
+
+  const getCueTtsStarts = (sceneId: string, cueId: string): number[] => {
+    const unknownItems: unknown = (timeline as unknown as { items?: unknown }).items;
+    const items = Array.isArray(unknownItems) ? unknownItems.filter(isCueTimelineItem) : [];
+    const cueItem = items.find((it) => it.type === "tts" && it.sceneId === sceneId && it.cueId === cueId);
+    const segs = cueItem?.segments ?? [];
+    return segs.filter((s) => s.type === "tts").map((s) => s.startSec);
+  };
+
   const renderScene = (scene: Scene) => {
     switch (scene.id) {
       case "title_card":
@@ -40,9 +75,9 @@ export const GuardrailsVideo: React.FC<GuardrailsVideoProps> = ({
       case "manual_assembly":
         return <ManualAssemblyScene />;
       case "defense_in_depth":
-        return <DefenseInDepthScene />;
-      case "staged_tools":
-        return <StagedToolsScene />;
+        return <DefenseInDepthScene scene={scene} ttsStartsSec={getCueTtsStarts(scene.id, "defense_in_depth")} />;
+      case "least_privilege":
+        return <LeastPrivilegeScene scene={scene} ttsStartsSec={getCueTtsStarts(scene.id, "least_privilege")} />;
       case "sandbox_broker":
         return <SandboxBrokerScene />;
       case "example":
@@ -230,9 +265,30 @@ const ManualAssemblyScene: React.FC = () => {
   );
 };
 
-const DefenseInDepthScene: React.FC = () => {
+const DefenseInDepthScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ scene, ttsStartsSec }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const localSec = frame / fps;
   const anim = useIntroAnim(0);
   const anim2 = useIntroAnim(14);
+
+  // Convert to scene-local times
+  const cueStartsLocal = ttsStartsSec.map(s => s - scene.startSec);
+
+  // We have 10 segments total (intro + 8 layers)
+  // Segments 0-1: intro
+  // Segments 2-9: the 8 layers (Cost, Prompt, Context, Model, Tool, Code, Container, Broker)
+  const introEnd = cueStartsLocal[1] ?? 3;
+  const layerStarts = cueStartsLocal.slice(2, 10); // 8 layer start times
+
+  // Map time to progress (0-1) - sweep through all 8 layers
+  const lastLayerStart = layerStarts[7] ?? introEnd + 20;
+  const diagramProgress = interpolate(
+    localSec,
+    [introEnd, lastLayerStart + 1.5],  // Start after intro, end after last layer
+    [0, 1],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+  );
 
   return (
     <Layout justify="flex-start" style={{ paddingTop: 62 }}>
@@ -243,26 +299,45 @@ const DefenseInDepthScene: React.FC = () => {
         No single technique solves everything. Guardrails work as defense in depth — layers that each reduce a different class of risk.
       </Body>
       <div style={{ marginTop: -70, width: 1600, opacity: anim2 }}>
-        <GuardrailsStackDiagram theme="light" title="" subtitle="" />
+        <GuardrailsStackDiagram theme="light" progress={diagramProgress} />
       </div>
     </Layout>
   );
 };
 
-const StagedToolsScene: React.FC = () => {
+const LeastPrivilegeScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ scene, ttsStartsSec }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const localSec = frame / fps;
   const anim = useIntroAnim(0);
   const anim2 = useIntroAnim(14);
+
+  // Convert to scene-local times
+  const cueStartsLocal = ttsStartsSec.map(s => s - scene.startSec);
+
+  // We have 6 segments: intro + 5 dimensions
+  const introEnd = cueStartsLocal[0] ?? 0;
+  const dimensionStarts = cueStartsLocal.slice(1, 6); // 5 dimension start times
+
+  // Map time to progress (0-1) - sweep through all 5 dimensions
+  const lastDimensionStart = dimensionStarts[4] ?? introEnd + 10;
+  const diagramProgress = interpolate(
+    localSec,
+    [introEnd + 0.5, lastDimensionStart + 1],
+    [0, 1],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+  );
 
   return (
     <Layout justify="flex-start" style={{ paddingTop: 62 }}>
       <H2 style={{ opacity: anim, textAlign: "center" }}>
-        <TitleBlock>Least privilege, applied per stage</TitleBlock>
+        <TitleBlock>Least privilege by design</TitleBlock>
       </H2>
       <Body style={{ opacity: anim2, textAlign: "center", maxWidth: 1500 }}>
-        Don’t give a broad, always-on toolbelt. Give the right tools at the right time — and remove them when you don’t need them.
+        Tactus enforces least privilege across multiple dimensions—not just tool access, but holistic minimal capability.
       </Body>
       <div style={{ marginTop: 12, width: 1600, opacity: anim2 }}>
-        <StagedToolAccessDiagram theme="light" title="" subtitle="" />
+        <LeastPrivilegeDiagram theme="light" progress={diagramProgress} />
       </div>
     </Layout>
   );

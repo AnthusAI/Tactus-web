@@ -156,14 +156,14 @@
       "id": "new_language",
       "title": "Why a New Language",
       "startSec": 524.8861772694693,
-      "endSec": 572.7861772694694,
+      "endSec": 580.7361772694693,
       "cues": [
         {
           "id": "first_class_primitives",
           "label": "First Class Primitives",
           "startSec": 524.8861772694693,
-          "endSec": 572.7861772694694,
-          "text": "Once procedures become the primary unit of computation, the limitations of existing languages become impossible to ignore.\n Programming languages shape how humans think about problems. They determine what's easy to express and what's invisible.\n Procedural, behavior-driven systems need different primitives.\n Durability by default. Automatic checkpointing and resumption.\n Sandboxing by default. Isolated execution with controlled access.\n Tool capability control. Human approval gates. Behavioral testing. Observable execution.\n These concerns can't be bolted onto languages that weren't designed for them.\n They need to be first-class.",
+          "endSec": 580.7361772694693,
+          "text": "Once procedures become the primary unit of computation, the limitations of existing languages become impossible to ignore.\n Programming languages shape how humans think about problems. They determine what's easy to express and what's invisible.\n Procedural, behavior-driven systems need different primitives.\n Durability by default. Automatic checkpointing and resumption.\n Sandboxing by default. Isolated execution with controlled access.\n Tool capability control.\n Durable human\u2011in\u2011the\u2011loop: approvals and review loops that can pause and resume without keeping a process alive.\n Behavioral testing. Observable execution.\n These concerns can't be bolted onto languages that weren't designed for them.\n They need to be first-class.",
           "bullets": []
         }
       ]
@@ -171,14 +171,14 @@
     {
       "id": "evolution",
       "title": "Evolution, Not Alien DNA",
-      "startSec": 572.7861772694694,
-      "endSec": 622.3861772694693,
+      "startSec": 580.7361772694693,
+      "endSec": 630.3361772694692,
       "cues": [
         {
           "id": "conclusion",
           "label": "Conclusion",
-          "startSec": 572.7861772694694,
-          "endSec": 622.3861772694693,
+          "startSec": 580.7361772694693,
+          "endSec": 630.3361772694692,
           "text": "From a theoretical standpoint, nothing fundamental has broken.\n These systems still run on conventional hardware. They're still Turing-complete. There's no alien machinery hiding beneath the surface.\n What has changed is how decisions are made and how humans must reason about those decisions.\n For most of computing history, programming meant specifying control flow in advance.\n Today, many of the most important systems we build no longer operate that way.\n Languages follow mental models. When the mental model changes, new languages emerge\u2014not to replace what came before, but to make the new reality tractable for humans.\n This isn't a revolution in computation. It's evolution.",
           "bullets": []
         }
@@ -187,14 +187,14 @@
     {
       "id": "cta",
       "title": "Call to Action",
-      "startSec": 622.3861772694693,
-      "endSec": 626.4361772694692,
+      "startSec": 630.3361772694692,
+      "endSec": 634.3861772694692,
       "cues": [
         {
           "id": "cta",
           "label": "CTA",
-          "startSec": 622.3861772694693,
-          "endSec": 626.4361772694692,
+          "startSec": 630.3361772694692,
+          "endSec": 634.3861772694692,
           "text": "Learn more at tactus dot anth dot u s.",
           "bullets": []
         }

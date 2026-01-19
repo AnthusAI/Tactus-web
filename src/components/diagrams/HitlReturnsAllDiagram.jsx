@@ -1,19 +1,13 @@
 import * as React from "react"
 import AnimatedHumanInTheLoopDiagram from "./AnimatedHumanInTheLoopDiagram"
-
-const RETURNS_ALL_CONFIG = {
-  autoProcessRate: 0.1,
-  returnToAgentRate: 1.0,
-  itemCount: 6,
-  queueTime: 1000,
-}
+import { HITL_PRESETS } from "./hitlPresets"
 
 const HitlReturnsAllDiagram = ({ theme, className, style }) => {
   return (
     <AnimatedHumanInTheLoopDiagram
       theme={theme}
-      scenario="custom"
-      config={RETURNS_ALL_CONFIG}
+      scenario={HITL_PRESETS.RETURNS_ALL.scenario}
+      config={HITL_PRESETS.RETURNS_ALL.config}
       className={className}
       style={style}
     />

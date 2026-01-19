@@ -18,6 +18,7 @@ import { CodeSequence } from "../../components/CodeBlock";
 import OldWayFlowchartDiagram from "../../components/diagrams/OldWayFlowchartDiagram";
 import AgentGuardrailsDiagram from "../../components/diagrams/AgentGuardrailsDiagram";
 import HumanInTheLoopDiagram from "../../components/diagrams/HumanInTheLoopDiagram";
+import { HITL_PRESETS } from "../../components/diagrams/hitlPresets";
 import iconImg from "../../assets/images/icon.png";
 import type { Scene, Script } from "@/babulus/types";
 import { secondsToFrames } from "@/babulus/utils";
@@ -77,13 +78,6 @@ const TACTUS_CODE = `Procedure {
     return result
   end
 }`;
-
-const HITL_RETURNS_ALL_CONFIG = {
-  autoProcessRate: 0.1,
-  returnToAgentRate: 1.0,
-  itemCount: 6,
-  queueTime: 1000,
-};
 
 export type WhyNewLanguageVideoProps = {
   audioSrc?: string | null;
@@ -868,7 +862,12 @@ const NewLanguageScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = () 
 
         <div style={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "flex-start", paddingTop: 6 }}>
           <div style={{ width: "100%", maxWidth: 760 }}>
-            <HumanInTheLoopDiagram theme="light" time={timeMs} scenario="custom" config={HITL_RETURNS_ALL_CONFIG} />
+            <HumanInTheLoopDiagram
+              theme="light"
+              time={timeMs}
+              scenario={HITL_PRESETS.RETURNS_ALL.scenario}
+              config={HITL_PRESETS.RETURNS_ALL.config}
+            />
           </div>
         </div>
       </div>

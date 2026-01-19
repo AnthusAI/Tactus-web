@@ -11,6 +11,8 @@ import SpotlightSection from "../components/spotlight-section"
 import GuardrailsSpotlight from "../components/guardrails-spotlight"
 import ToolboxDiagram from "../components/diagrams/ToolboxDiagram"
 import HitlReturnsAllDiagram from "../components/diagrams/HitlReturnsAllDiagram"
+import AnimatedHumanInTheLoopDiagram from "../components/diagrams/AnimatedHumanInTheLoopDiagram"
+import { HITL_PRESETS } from "../components/diagrams/hitlPresets"
 import AnimatedOldWayFlowchartDiagram from "../components/diagrams/AnimatedOldWayFlowchartDiagram"
 import AnimatedAgentGuardrailsDiagram from "../components/diagrams/AnimatedAgentGuardrailsDiagram"
 import FeatureHighlightsSection from "../components/feature-highlights-section"
@@ -538,6 +540,79 @@ const IndexPage = () => {
                       autoPlay={false}
                       controls={false}
                       loop={false}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* HITL Variants */}
+        <section className={styles.section}>
+          <div className={styles.container}>
+            <div className={styles.hitlVariants}>
+              <header className={styles.sectionHeader}>
+                <p className={styles.eyebrow}>Human in the loop</p>
+                <h2 className={styles.sectionTitle}>Scale autonomy safely</h2>
+                <p className={styles.sectionSubtitle}>
+                  Approve, reject, and provide input — without babysitting a chat window.
+                </p>
+              </header>
+
+              <div className={styles.hitlVariantsIntro}>
+                <p className={styles.exampleLead}>
+                  Tool-using agents are useful — and dangerous. The moment an agent can take irreversible actions, “hope for the
+                  best” stops being a viable safety strategy.
+                </p>
+                <p className={styles.exampleLead}>
+                  Chat feels safe because you’re supervising the agent in real time. But that model doesn’t scale. To run automations
+                  safely, you need human gates as first‑class primitives: durable checkpoints where you can approve, reject, or send
+                  work back for edits. In Tactus, those show up as <code>Human.approve()</code>, <code>Human.review()</code>, and{" "}
+                  <code>Human.input()</code> — and the procedure can pause and resume later without losing its place.
+                </p>
+              </div>
+
+              <div className={styles.hitlVariantsStack}>
+                <div className={styles.hitlVariant}>
+                  <h3 className={styles.hitlVariantTitle}>Closely supervised</h3>
+                  <p className={styles.hitlVariantBody}>
+                    Chat-style: the agent takes a step, then waits. You are the control flow.
+                  </p>
+                  <div className={styles.hitlVariantDiagram}>
+                    <AnimatedHumanInTheLoopDiagram
+                      scenario={HITL_PRESETS.CLOSELY_SUPERVISED.scenario}
+                      config={HITL_PRESETS.CLOSELY_SUPERVISED.config}
+                      startAtMs={HITL_PRESETS.CLOSELY_SUPERVISED.recommendedStartAtMs}
+                    />
+                  </div>
+                </div>
+
+                <div className={styles.hitlVariant}>
+                  <h3 className={styles.hitlVariantTitle}>Durable HITL (default)</h3>
+                  <p className={styles.hitlVariantBody}>
+                    The procedure keeps moving. Only the moments that matter stop for a human decision — approve, reject, or return
+                    for edits.
+                  </p>
+                  <div className={styles.hitlVariantDiagram}>
+                    <AnimatedHumanInTheLoopDiagram
+                      scenario={HITL_PRESETS.DURABLE_DEFAULT.scenario}
+                      config={HITL_PRESETS.DURABLE_DEFAULT.config}
+                      startAtMs={HITL_PRESETS.DURABLE_DEFAULT.recommendedStartAtMs}
+                    />
+                  </div>
+                </div>
+
+                <div className={styles.hitlVariant}>
+                  <h3 className={styles.hitlVariantTitle}>Human steps back</h3>
+                  <p className={styles.hitlVariantBody}>
+                    When you’re away, work queues instead of breaking. When you return, the run resumes where it left off.
+                  </p>
+                  <div className={styles.hitlVariantDiagram}>
+                    <AnimatedHumanInTheLoopDiagram
+                      scenario={HITL_PRESETS.HUMAN_STEPS_BACK.scenario}
+                      config={HITL_PRESETS.HUMAN_STEPS_BACK.config}
+                      startAtMs={HITL_PRESETS.HUMAN_STEPS_BACK.recommendedStartAtMs}
                     />
                   </div>
                 </div>

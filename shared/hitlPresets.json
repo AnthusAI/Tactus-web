@@ -1,0 +1,47 @@
+{
+  "CLOSELY_SUPERVISED": {
+    "id": "closely-supervised",
+    "label": "Closely supervised",
+    "scenario": "closely_supervised",
+    "config": {},
+    "recommendedStartAtMs": 9000
+  },
+  "DURABLE_DEFAULT": {
+    "id": "durable-default",
+    "label": "Durable HITL (default)",
+    "scenario": "efficient",
+    "config": {},
+    "recommendedStartAtMs": 9000
+  },
+  "HUMAN_STEPS_BACK": {
+    "id": "human-steps-back",
+    "label": "Human steps back",
+    "scenario": "steps_back",
+    "config": {},
+    "recommendedStartAtMs": 9000
+  },
+  "RETURNS_ALL": {
+    "id": "returns-all",
+    "label": "Returns all",
+    "scenario": "custom",
+    "config": {
+      "autoProcessRate": 0.1,
+      "returnToAgentRate": 1,
+      "itemCount": 6,
+      "queueTime": 1000
+    },
+    "recommendedStartAtMs": 9000
+  },
+  "APPROVES_ALL": {
+    "id": "approves-all",
+    "label": "Approves all",
+    "scenario": "custom",
+    "config": {
+      "autoProcessRate": 0.1,
+      "returnToAgentRate": 0,
+      "itemCount": 6,
+      "queueTime": 1000
+    },
+    "recommendedStartAtMs": 9000
+  }
+}

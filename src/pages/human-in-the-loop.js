@@ -5,6 +5,7 @@ import BottomCta from "../components/bottom-cta"
 import Breakout from "../components/publishing/Breakout"
 import AnimatedCodeBlock from "../components/animated/AnimatedCodeBlock"
 import AnimatedHumanInTheLoopDiagram from "../components/diagrams/AnimatedHumanInTheLoopDiagram"
+import { HITL_PRESETS } from "../components/diagrams/hitlPresets"
 import * as styles from "./human-in-the-loop.module.css"
 
 const APPROVE_CODE = `local approved, timed_out = Human.approve({
@@ -16,20 +17,6 @@ const APPROVE_CODE = `local approved, timed_out = Human.approve({
 if approved then
   deploy()
 end`
-
-const RETURNS_ALL_CONFIG = {
-  autoProcessRate: 0.1,
-  returnToAgentRate: 1.0,
-  itemCount: 6,
-  queueTime: 1000,
-}
-
-const APPROVES_ALL_CONFIG = {
-  autoProcessRate: 0.1,
-  returnToAgentRate: 0.0,
-  itemCount: 6,
-  queueTime: 1000,
-}
 
 const HumanInTheLoopPage = () => {
   return (
@@ -107,12 +94,20 @@ const HumanInTheLoopPage = () => {
 
             <h3 className={styles.subsectionTitle}>Approval gate (human approves)</h3>
             <div className={styles.diagramWrap}>
-              <AnimatedHumanInTheLoopDiagram scenario="custom" config={APPROVES_ALL_CONFIG} className={styles.diagram} />
+              <AnimatedHumanInTheLoopDiagram
+                scenario={HITL_PRESETS.APPROVES_ALL.scenario}
+                config={HITL_PRESETS.APPROVES_ALL.config}
+                className={styles.diagram}
+              />
             </div>
 
             <h3 className={styles.subsectionTitle}>Return loop (human returns for edits)</h3>
             <div className={styles.diagramWrap}>
-              <AnimatedHumanInTheLoopDiagram scenario="custom" config={RETURNS_ALL_CONFIG} className={styles.diagram} />
+              <AnimatedHumanInTheLoopDiagram
+                scenario={HITL_PRESETS.RETURNS_ALL.scenario}
+                config={HITL_PRESETS.RETURNS_ALL.config}
+                className={styles.diagram}
+              />
             </div>
 
             <p className={styles.bodyTextMuted}>
@@ -210,4 +205,3 @@ const HumanInTheLoopPage = () => {
 }
 
 export default HumanInTheLoopPage
-

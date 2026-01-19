@@ -594,6 +594,20 @@ const WhyNewLanguagePage = () => (
             audits aren’t implementation details. They’re the structure that makes agentic control
             flow trustworthy.
           </p>
+
+          <p className={styles.bodyText}>
+            In a chat interface, humans provide those guardrails manually: you watch every step, approve
+            risky actions in real time, and steer the run back on course when it drifts. That can be a
+            great way to prototype. But it doesn’t scale — and it breaks down the moment you want the
+            procedure to run while you’re away.
+          </p>
+
+          <p className={styles.bodyText}>
+            Durable human‑in‑the‑loop is how you keep humans in charge without turning them into
+            synchronous control flow: approvals before irreversible actions, reviews that can send work
+            back for edits, and input requests that collect missing information at the moment it’s needed.
+            These aren’t “UI details.” They’re part of the program’s structure.
+          </p>
         </div>
       </section>
 
@@ -991,9 +1005,9 @@ const WhyNewLanguagePage = () => (
                 </p>
               </div>
               <div className={styles.requirementCard}>
-                <h4 className={styles.requirementName}>Human Approval Gates</h4>
+                <h4 className={styles.requirementName}>Human Gates</h4>
                 <p className={styles.requirementDesc}>
-                  Built-in constructs for human-in-the-loop oversight
+                  Durable approve/review/input primitives
                 </p>
               </div>
               <div className={styles.requirementCard}>
@@ -1015,9 +1029,9 @@ const WhyNewLanguagePage = () => (
 
           <p className={styles.bodyText}>
             One of the most important “first-class primitives” in Tactus isn’t a syntax feature — it’s operational
-            infrastructure. Human-in-the-loop is where agent workflows stop being demos and start being trustworthy
-            systems: approvals before irreversible actions, and review loops that let a human send an artifact back
-            for edits.
+            infrastructure. Human‑in‑the‑loop is where tool‑using agents stop being cool demos and start being
+            trustworthy systems: approvals before irreversible actions, review loops that let you send work back for
+            edits, and input requests that capture the missing details the workflow shouldn’t guess.
           </p>
 
           <div className={styles.diagramEmbed}>
@@ -1025,29 +1039,32 @@ const WhyNewLanguagePage = () => (
           </div>
 
           <p className={styles.bodyText}>
-            In a typical Python stack, making this reliable means building a state machine: persisting state, handling
-            timeouts, keeping an audit trail, resuming idempotently after crashes, and integrating queues and UI. In
-            Tactus, these calls are language primitives backed by a runtime that can pause and resume a procedure
-            safely — without keeping a process alive while it waits.
+            Tactus treats these as durable suspend points. When a procedure reaches a HITL call, the runtime checkpoints
+            state, emits a pending request, and suspends execution. Hours later (or after a crash), the procedure can
+            resume from the same point — without keeping a process alive while it waits.
           </p>
 
           <p className={styles.bodyText}>
-            This fragmentation is not accidental. It is a symptom of languages being asked to
-            represent concepts they were never designed to model directly. A language designed for
-            procedures must make behavior explicit. It must treat evaluation, checkpoints,
-            guardrails, and human oversight as first-class concepts rather than afterthoughts.
+            This is also how you move beyond the “everyone uses chat” paradigm. Instead of steering agents turn‑by‑turn,
+            your application can surface minimal, structured interactions: approve one risky action, revise a draft, or
+            provide one missing field — and let the rest of the procedure run.
           </p>
 
           <p className={styles.bodyText}>
-            This is the same reason new languages have emerged throughout the history of computing.
-            Assembly gave way to higher-level languages not because assembly was insufficient, but
-            because it forced humans to think at the wrong level. Object-oriented languages emerged
-            because procedural code made large systems hard to reason about.
+            In a typical Python stack, making this reliable means building a workflow engine: persisting state, handling
+            timeouts, keeping an audit trail, resuming idempotently after crashes, and integrating queues and UI. You
+            can do it — but it’s an enormous amount of bespoke infrastructure that sits next to your “agent code,” and
+            it’s easy for the mental model to fragment.
           </p>
 
           <p className={`${styles.bodyText} ${styles.emphasis}`}>
-            The current shift follows the same pattern. When the dominant form of decision-making
-            changes, the language must change with it.
+            This fragmentation is not accidental. It is a symptom of languages being asked to represent concepts they
+            were never designed to model directly. A language designed for procedures must treat checkpoints, guardrails,
+            and human oversight as first‑class concepts — because they’re part of how these systems actually run.
+          </p>
+
+          <p className={styles.bodyText}>
+            <Link to="/human-in-the-loop/">Read more about Human‑in‑the‑Loop in Tactus</Link>.
           </p>
         </div>
       </section>

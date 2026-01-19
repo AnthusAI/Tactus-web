@@ -1,12 +1,13 @@
 import * as React from "react"
 import HumanInTheLoopDiagram from "./HumanInTheLoopDiagram"
+import { HITL_PRESETS } from "./hitlPresets"
 
 export default {
   title: "Diagrams/HumanInTheLoopDiagram",
   component: HumanInTheLoopDiagram,
   argTypes: {
     scenario: {
-      control: { type: 'select', options: ['efficient', 'backlog', 'burst', 'steps_back', 'agent_overload', 'low_capacity', 'autonomous', 'closely_supervised'] }
+      control: { type: 'select', options: ['defaults', 'efficient', 'backlog', 'burst', 'steps_back', 'agent_overload', 'low_capacity', 'autonomous', 'closely_supervised', 'unsupervised'] }
     }
   }
 }
@@ -85,7 +86,9 @@ export const VideoMode = () => (
 )
 
 // Standard Scenarios
-export const ScenarioEfficient = () => <AnimatedDemo theme="light" scenario="efficient" />
+export const ScenarioEfficient = () => (
+  <AnimatedDemo theme="light" scenario={HITL_PRESETS.DURABLE_DEFAULT.scenario} config={HITL_PRESETS.DURABLE_DEFAULT.config} />
+)
 export const ScenarioBacklog = () => <AnimatedDemo theme="light" scenario="backlog" />
 export const ScenarioBurst = () => <AnimatedDemo theme="light" scenario="burst" />
 
@@ -147,7 +150,16 @@ export const EduLowAutonomy = () => (
   />
 )
 
-// 5. High Rejection (Most items sent back)
+// 5. Defaults (Balanced 50/50 settings)
+export const EduDefaults = () => (
+  <AnimatedDemo 
+    theme="light" 
+    scenario="defaults" 
+  />
+)
+EduDefaults.storyName = "Defaults"
+
+// 6. High Rejection (Most items sent back)
 export const EduHighRejection = () => (
   <AnimatedDemo 
     theme="light" 
@@ -161,21 +173,26 @@ export const EduHighRejection = () => (
   />
 )
 
-// 6. Human Steps Back (Outage simulation)
+// 7. Human Steps Back (Outage simulation)
 export const EduHumanStepsBack = () => (
   <AnimatedDemo 
     theme="light" 
-    scenario="steps_back" 
+    scenario={HITL_PRESETS.HUMAN_STEPS_BACK.scenario}
+    config={HITL_PRESETS.HUMAN_STEPS_BACK.config}
   />
 )
 
-// 7. Slow Input Handling (Input queue backlog)
+// 8. Slow Input Handling (Input queue backlog with throttling)
 export const EduSlowInputHandling = () => (
   <AnimatedDemo 
     theme="light" 
-    scenario="agent_overload" 
+    scenario="agent_overload"
+    config={{
+      maxInputQueueCapacity: 5 // Explicit capacity limit
+    }}
   />
 )
+EduSlowInputHandling.storyName = "Input Queue Throttling"
 
 // 8. Low System Capacity (Limited concurrent orbits)
 export const EduLowSystemCapacity = () => (
@@ -198,7 +215,8 @@ EduAutonomous.storyName = "Fully Autonomous"
 export const EduCloselySupervised = () => (
   <AnimatedDemo 
     theme="light" 
-    scenario="closely_supervised" 
+    scenario={HITL_PRESETS.CLOSELY_SUPERVISED.scenario}
+    config={HITL_PRESETS.CLOSELY_SUPERVISED.config}
   />
 )
 EduCloselySupervised.storyName = "Closely Supervised"
@@ -207,7 +225,7 @@ EduCloselySupervised.storyName = "Closely Supervised"
 export const EduCloselySupervisedOutage = () => (
   <AnimatedDemo 
     theme="light" 
-    scenario="closely_supervised"
+    scenario={HITL_PRESETS.CLOSELY_SUPERVISED.scenario}
     config={{
         stepBackAfterItems: 4,
         outageDuration: 8000
@@ -215,6 +233,15 @@ export const EduCloselySupervisedOutage = () => (
   />
 )
 EduCloselySupervisedOutage.storyName = "Closely Supervised (Outage)"
+
+// 12. Unsupervised (No human, ramping speed)
+export const EduUnsupervised = () => (
+  <AnimatedDemo 
+    theme="light" 
+    scenario="unsupervised" 
+  />
+)
+EduUnsupervised.storyName = "Unsupervised"
 
 // Interactive Playground
 export const InteractivePlayground = () => {

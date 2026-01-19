@@ -17,6 +17,7 @@ import { ParadigmComparison } from "../../components/ParadigmComparison";
 import OldWayFlowchartDiagram from "../../components/diagrams/OldWayFlowchartDiagram";
 import AgentGuardrailsDiagram from "../../components/diagrams/AgentGuardrailsDiagram";
 import HumanInTheLoopDiagram from "../../components/diagrams/HumanInTheLoopDiagram";
+import { HITL_PRESETS } from "../../components/diagrams/hitlPresets";
 import monkeyImg from "../../assets/images/monkey.png";
 import nutshellCoverAnimalImg from "../../assets/images/nutshell-cover-animal.png";
 import iconImg from "../../assets/images/icon.png";
@@ -65,13 +66,6 @@ return World("Hello, World!").response`;
 
 const HELLO_WORLD_COMMAND = `tactus run examples/hello-world.tac`;
 const HELLO_WORLD_OUTPUT = `Hello, I'm World. Nice to meet you!`;
-
-const HITL_RETURNS_ALL_CONFIG = {
-  autoProcessRate: 0.1,
-  returnToAgentRate: 1.0,
-  itemCount: 6,
-  queueTime: 1000,
-};
 
 export type IntroVideoProps = {
   audioSrc?: string | null;
@@ -712,8 +706,8 @@ const HitlScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ scene, 
     config: { damping: 100, stiffness: 200, mass: 0.5 },
   });
 
-  return (
-    <Layout justify="flex-start" style={{ paddingTop: 120 }}>
+	  return (
+	    <Layout justify="flex-start" style={{ paddingTop: 120 }}>
       <H2
         style={{
           opacity: titleAnimation,
@@ -724,14 +718,19 @@ const HitlScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ scene, 
         <TitleBlock>Human in the Loop</TitleBlock>
       </H2>
 
-      <div style={{ width: "100%", display: "flex", justifyContent: "center", opacity: animIn(localSec - beat1) }}>
-        <div style={{ width: "100%", maxWidth: 860 }}>
-          <HumanInTheLoopDiagram theme="light" time={timeMs} scenario="custom" config={HITL_RETURNS_ALL_CONFIG} />
-        </div>
-      </div>
-    </Layout>
-  );
-};
+	      <div style={{ width: "100%", display: "flex", justifyContent: "center", opacity: animIn(localSec - beat1) }}>
+	        <div style={{ width: "100%", maxWidth: 860 }}>
+	          <HumanInTheLoopDiagram
+	            theme="light"
+	            time={timeMs}
+	            scenario={HITL_PRESETS.RETURNS_ALL.scenario}
+	            config={HITL_PRESETS.RETURNS_ALL.config}
+	          />
+	        </div>
+	      </div>
+	    </Layout>
+	  );
+	};
 
 const GraphsScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ scene, ttsStartsSec }) => {
   const frame = useCurrentFrame();

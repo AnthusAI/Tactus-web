@@ -30,14 +30,13 @@ const CYCLE_DURATION = 15000
 // --- Helper Components ---
 const QueueVisual = ({ x, yTop, yBottom, isOverloaded, t }) => (
     <g>
-        <path d={`M ${x - 25},${yTop - 10} L ${x - 25},${yBottom + 20}`} stroke={isOverloaded ? t.primary : t.surface2} strokeWidth={4} fill="none" strokeLinecap="round" style={{ transition: "stroke 0.3s" }} />
-        <path d={`M ${x + 25},${yTop - 10} L ${x + 25},${yBottom + 20}`} stroke={isOverloaded ? t.primary : t.surface2} strokeWidth={4} fill="none" strokeLinecap="round" style={{ transition: "stroke 0.3s" }} />
+        <path d={`M ${x - 25},${yTop - 10} L ${x - 25},${yBottom + 20}`} stroke={isOverloaded ? t.primary : t.surface2} strokeWidth={4} fill="none" strokeLinecap="round" />
+        <path d={`M ${x + 25},${yTop - 10} L ${x + 25},${yBottom + 20}`} stroke={isOverloaded ? t.primary : t.surface2} strokeWidth={4} fill="none" strokeLinecap="round" />
         
         {/* Overload Indicator */}
         <g 
             transform={`translate(${x}, ${yBottom + 35})`} 
             opacity={isOverloaded ? 1 : 0}
-            style={{ transition: "opacity 0.3s" }}
         >
             <circle r={12} fill="var(--color-primary)" opacity={0.2} >
                 <animate attributeName="r" values="12;16;12" dur="1s" repeatCount="indefinite" />
@@ -70,6 +69,7 @@ const generateScenario = (config) => {
     const {
         seed = 123,
         itemCount = 5,
+        spawnJitterMs = 500,
         autoProcessRate = 0.4,
         returnToAgentRate = 0.5,
         minOrbitTime = 1000,
@@ -80,7 +80,6 @@ const generateScenario = (config) => {
         outageDuration = 0,
         stepBackAfterItems = undefined,
         maxInFlight = 100, // Max items in 'orbit' phase concurrently
-        maxInputQueueCapacity = 6, // When overloaded, stop admitting new items
         supervisionMean,
         supervisionStdDev = 500
     } = config
@@ -95,20 +94,6 @@ const generateScenario = (config) => {
     let agentNextFreeTime = 0 // For input queue
     let manualItemCount = 0
     let computedOutageStart = outageStart
-
-    // Input throttling: track when items leave the input queue (to agent travel).
-    // If too many are in the input queue at once, delay/suppress new arrivals.
-    const inputQueueExitTimes = []
-    const pruneInputQueueExits = (t) => {
-        for (let idx = inputQueueExitTimes.length - 1; idx >= 0; idx--) {
-            if (inputQueueExitTimes[idx] <= t) inputQueueExitTimes.splice(idx, 1)
-        }
-    }
-    const earliestInputQueueExit = () => {
-        let earliest = Infinity
-        for (const t of inputQueueExitTimes) earliest = Math.min(earliest, t)
-        return earliest
-    }
     
     // CRITICAL: For maxInFlight=1, track when the loop is actually free
     // This is the ABSOLUTE time when the last item exits the loop
@@ -172,7 +157,7 @@ const generateScenario = (config) => {
     
     if (stepBackAfterItems !== undefined) {
         for (let i = 0; i < itemCount; i++) {
-            const start = i * interval + (tempRng() * 500)
+            const start = i * interval + (tempRng() * spawnJitterMs)
             const rollAuto = tempRng()
             const isAuto = rollAuto < autoProcessRate
             const orbitDur = minOrbitTime + tempRng() * (maxOrbitTime - minOrbitTime)
@@ -204,24 +189,15 @@ const generateScenario = (config) => {
     
     // Main Pass
     for (let i = 0; i < itemCount; i++) {
-        let start = i * interval + (rng() * 500)
+        let start = i * interval + (rng() * spawnJitterMs)
+        if (start >= CYCLE_DURATION - SPAWN_DURATION) break
         
         // 1. Input Queue Processing
-        // Throttle: if input queue is overloaded, don't admit new items until capacity frees.
-        let inputArrival = start + SPAWN_DURATION
-        pruneInputQueueExits(inputArrival)
-        while (inputQueueExitTimes.length >= maxInputQueueCapacity) {
-            const earliestExit = earliestInputQueueExit()
-            if (!Number.isFinite(earliestExit)) break
-            inputArrival = earliestExit
-            start = inputArrival - SPAWN_DURATION
-            if (start >= CYCLE_DURATION - SPAWN_DURATION) {
-                // Can't fit additional items into this cycle once throttled this far.
-                break
-            }
-            pruneInputQueueExits(inputArrival)
-        }
-        if (start >= CYCLE_DURATION - SPAWN_DURATION) break
+        // NOTE: Input throttling is applied later (see `applyInputThrottle`) so it can
+        // follow the universal “switch” rule:
+        // - if the input queue is overloaded, admit nothing
+        // - if it is not overloaded, keep admitting at the configured cadence
+        const inputArrival = start + SPAWN_DURATION
         
         // Initial ingest times (before capacity check)
         const agentStartTime = Math.max(inputArrival, agentNextFreeTime)
@@ -290,13 +266,12 @@ const generateScenario = (config) => {
                      const newFinalDurationInputQueue = newActualQueueExit - inputArrival
                      agentNextFreeTime = newActualQueueExit
                      
-                     // Register interval
-                     orbitIntervals.push({ start: newActualQueueExit, end: newActualQueueExit + newTaskDur })
-                     inputQueueExitTimes.push(newActualQueueExit)
+	                     // Register interval
+	                     orbitIntervals.push({ start: newActualQueueExit, end: newActualQueueExit + newTaskDur })
 
-                     const steps = []
-                     steps.push({ type: 'spawn' })
-                     steps.push({ type: 'travel_to_input' })
+	                     const steps = []
+	                     steps.push({ type: 'spawn' })
+	                     steps.push({ type: 'travel_to_input' })
                      steps.push({ type: 'input_queue', duration: newFinalDurationInputQueue })
                      steps.push({ type: 'travel_to_agent' })
                      steps.push({ type: 'orbit', min: orbitDurRaw, startAng: Math.PI, targetAng: 2 * Math.PI, duration: orbitDur1 }) 
@@ -311,7 +286,6 @@ const generateScenario = (config) => {
 
             // Normal path (no outage overlap or already handled)
             orbitIntervals.push({ start: actualQueueExit, end: actualQueueExit + taskDur })
-            inputQueueExitTimes.push(actualQueueExit)
             
             const steps = []
             steps.push({ type: 'spawn' })
@@ -354,7 +328,6 @@ const generateScenario = (config) => {
             const actualOrbitStart = actualQueueExit + TRAVEL_DURATION
             
             orbitIntervals.push({ start: actualQueueExit, end: actualQueueExit + taskDur })
-            inputQueueExitTimes.push(actualQueueExit)
             
             const steps = []
             
@@ -572,7 +545,13 @@ const HumanInTheLoopDiagram = ({
           minOrbitTime: 2000
       },
       closely_supervised: {
-          itemCount: 15,
+          // Keep a steady inflow so the input throttle behaves like a real "switch"
+          // (when not overloaded, items continue arriving).
+          // Use a smooth (non-bursty) cadence so the queue never drains to zero
+          // while the throttle is open.
+          itemCount: 50,
+          spawnJitterMs: 0,
+          inputIntervalMs: 350,
           autoProcessRate: 0.0, 
           returnToAgentRate: 0.0,
           queueTime: 0,
@@ -644,6 +623,7 @@ const HumanInTheLoopDiagram = ({
             id: `${idPrefix}-${item.id}`,
             steps: processedSteps,
             endTime: currentTime,
+            tInputAdmission: processedSteps.find(s => s.type === 'travel_to_input')?.startTime,
             tInputQueueEntry: processedSteps.find(s => s.type === 'input_queue')?.startTime,
             tInputQueueExit: processedSteps.find(s => s.type === 'input_queue')?.endTime,
             tQueueEntry: processedSteps.find(s => s.type === 'queue')?.startTime,
@@ -652,18 +632,223 @@ const HumanInTheLoopDiagram = ({
     })
   }
 
-  // Calculate items for current and previous cycles
-  const currentItems = processScenario(activeItems, cycleIndex * CYCLE_DURATION, `c${cycleIndex}`)
-  const prevItems = cycleIndex > 0 ? processScenario(activeItems, (cycleIndex - 1) * CYCLE_DURATION, `c${cycleIndex-1}`) : []
-  const prevItems2 = cycleIndex > 1 ? processScenario(activeItems, (cycleIndex - 2) * CYCLE_DURATION, `c${cycleIndex-2}`) : []
-  
-  const allActiveItems = [...prevItems2, ...prevItems, ...currentItems]
+  // Calculate items for current/near cycles.
+  //
+  // IMPORTANT: In throttled/capacity-limited scenarios, items can be delayed far into
+  // the future. If we generate only a small fixed lookahead window, those delayed items
+  // fall outside the rendered window and the input queue can incorrectly "drain to zero"
+  // even while the throttle is open. To keep the simulation faithful to the simple rule
+  // ("if not overloaded, input continues"), we adaptively extend lookahead until we have
+  // enough future timeline to include any delayed items.
+  const LOOKBACK_CYCLES = 6
+  const MIN_FUTURE_MS = CYCLE_DURATION * 2
+  const MAX_LOOKAHEAD_CYCLES = 30
+
+  const buildAllActiveItems = () => {
+    let lookahead = 2
+    let capacityConstrained = []
+
+    while (true) {
+      const cycleItems = []
+      for (
+        let idx = Math.max(0, cycleIndex - LOOKBACK_CYCLES);
+        idx <= cycleIndex + lookahead;
+        idx++
+      ) {
+        cycleItems.push(processScenario(activeItems, idx * CYCLE_DURATION, `c${idx}`))
+      }
+
+      const all = cycleItems.flat()
+      const baseInterval =
+        mergedConfig.inputIntervalMs ??
+        Math.max(50, CYCLE_DURATION / (mergedConfig.itemCount ?? 5))
+
+      const throttled = applyInputThrottle(
+        all,
+        mergedConfig.maxInputQueueCapacity ?? 6,
+        baseInterval
+      )
+      capacityConstrained = applyLoopCapacityThrottle(
+        throttled,
+        mergedConfig.maxInFlight ?? 100
+      )
+
+      const maxEnd = capacityConstrained.reduce(
+        (acc, item) => Math.max(acc, item.endTime ?? 0),
+        0
+      )
+
+      if (maxEnd >= timeMs + MIN_FUTURE_MS) break
+      if (lookahead >= MAX_LOOKAHEAD_CYCLES) break
+      lookahead += 2
+    }
+
+    return capacityConstrained
+  }
+
+  // Input admission throttle (universal):
+  // - If the input queue is full/overloaded, do not admit new items.
+  // - If it is not full, admit items at a configured cadence.
+  //
+  // This intentionally does *not* rely on any pre-scheduled arrival times; instead it
+  // models a real throttle switch where time only advances for admissions while the
+  // switch is "open".
+  function applyInputThrottle(items, capacity, inputIntervalMs) {
+    if (!Number.isFinite(capacity) || capacity <= 0) return items
+
+    const copied = items.map((item) => ({
+      ...item,
+      steps: item.steps.map((s) => ({ ...s })),
+    }))
+
+    copied.sort((a, b) => {
+      const ta = a.tInputAdmission ?? a.tInputQueueEntry ?? 0
+      const tb = b.tInputAdmission ?? b.tInputQueueEntry ?? 0
+      return ta - tb
+    })
+
+    const activeExits = []
+    const minActiveExit = () => {
+      let min = Infinity
+      for (const t of activeExits) min = Math.min(min, t)
+      return min
+    }
+
+    let nextAdmission = copied[0]?.tInputAdmission ?? copied[0]?.tInputQueueEntry ?? 0
+    nextAdmission = Math.max(0, nextAdmission)
+    const interval = Number.isFinite(inputIntervalMs) ? Math.max(0, inputIntervalMs) : 0
+
+    for (const item of copied) {
+      if (item.tInputQueueExit === undefined) continue
+
+      const entry = item.tInputAdmission ?? item.tInputQueueEntry
+      if (entry === undefined) continue
+
+      // Never admit earlier than the item's natural entry time.
+      // (If we do, we can "pull" future items into the past and create later dry spells.)
+      nextAdmission = Math.max(nextAdmission, entry)
+
+      // If the queue is full at the moment we'd like to admit, we block admissions
+      // entirely until a slot frees.
+      while (true) {
+        for (let idx = activeExits.length - 1; idx >= 0; idx--) {
+          if (activeExits[idx] <= nextAdmission) activeExits.splice(idx, 1)
+        }
+
+        if (activeExits.length < capacity) break
+
+        const earliestExit = minActiveExit()
+        if (!Number.isFinite(earliestExit)) break
+        nextAdmission = Math.max(nextAdmission, earliestExit + 1)
+      }
+
+      const shift = nextAdmission - entry
+      if (shift !== 0) {
+        item.steps = item.steps.map((s) => ({
+          ...s,
+          startTime: s.startTime + shift,
+          endTime: s.endTime + shift,
+        }))
+        item.endTime += shift
+
+        if (item.tInputAdmission !== undefined) item.tInputAdmission += shift
+        if (item.tInputQueueEntry !== undefined) item.tInputQueueEntry += shift
+        item.tInputQueueExit += shift
+        if (item.tQueueEntry !== undefined) item.tQueueEntry += shift
+        if (item.tQueueExit !== undefined) item.tQueueExit += shift
+      }
+
+      activeExits.push(item.tInputQueueExit)
+
+      nextAdmission = nextAdmission + interval
+    }
+
+    copied.sort((a, b) => (a.steps[0]?.startTime ?? 0) - (b.steps[0]?.startTime ?? 0))
+    return copied
+  }
+
+  function applyLoopCapacityThrottle(items, maxInFlight) {
+    if (maxInFlight !== 1) return items
+
+    const copied = items.map((item) => ({
+      ...item,
+      steps: item.steps.map((s) => ({ ...s })),
+    }))
+
+    const getLoopWindow = (item) => {
+      let loopStart = undefined
+      let loopEnd = undefined
+
+      // Entering the loop: first time we travel from input queue -> loop, or return -> loop.
+      for (const step of item.steps) {
+        if (loopStart === undefined && (step.type === "travel_to_agent" || step.type === "return")) {
+          loopStart = step.startTime
+        }
+        // Leaving the loop: auto/supervised exit_final, or manual path to_queue.
+        if (step.type === "exit_final" || step.type === "to_queue") {
+          loopEnd = step.endTime
+        }
+      }
+
+      if (loopStart === undefined || loopEnd === undefined) return null
+      return { start: loopStart, end: loopEnd }
+    }
+
+    // Serialize by *actual loop entry time*, not by overall item start time.
+    // Otherwise an item that starts earlier (but doesn't reach the loop until much later)
+    // can incorrectly reserve the loop and create visible dead time + "popping".
+    const getSortKey = (item) =>
+      getLoopWindow(item)?.start ?? (item.steps[0]?.startTime ?? 0)
+    copied.sort((a, b) => {
+      const ka = getSortKey(a)
+      const kb = getSortKey(b)
+      if (ka !== kb) return ka - kb
+      return (a.steps[0]?.startTime ?? 0) - (b.steps[0]?.startTime ?? 0)
+    })
+
+    let lastLoopEnd = -Infinity
+    for (const item of copied) {
+      const win = getLoopWindow(item)
+      if (!win) continue
+
+      // Decision at the moment of transition: if the loop is occupied, block this item
+      // by delaying its timeline so the travel_to_agent step starts when the loop is free.
+      if (win.start < lastLoopEnd) {
+        const delay = lastLoopEnd - win.start
+
+        item.steps = item.steps.map((s) => ({
+          ...s,
+          startTime: s.startTime + delay,
+          endTime: s.endTime + delay,
+        }))
+        item.endTime += delay
+
+        if (item.tInputAdmission !== undefined) item.tInputAdmission += delay
+        if (item.tInputQueueEntry !== undefined) item.tInputQueueEntry += delay
+        if (item.tInputQueueExit !== undefined) item.tInputQueueExit += delay
+        if (item.tQueueEntry !== undefined) item.tQueueEntry += delay
+        if (item.tQueueExit !== undefined) item.tQueueExit += delay
+
+        // Update window after shifting
+        const shifted = getLoopWindow(item)
+        if (shifted) lastLoopEnd = Math.max(lastLoopEnd, shifted.end)
+      } else {
+        lastLoopEnd = Math.max(lastLoopEnd, win.end)
+      }
+    }
+
+    return copied
+  }
+
+  // Build the final item list with an adaptive lookahead window so throttled/capacity
+  // constrained items never disappear "into the future".
+  const capacityConstrainedItems = buildAllActiveItems()
 
   // --- Queue Slot Logic (Human) ---
-  const itemsInHumanQueue = allActiveItems.filter(item => 
+  const itemsInHumanQueue = capacityConstrainedItems.filter(item => 
       item.tQueueEntry !== undefined && 
       timeMs >= item.tQueueEntry && 
-      timeMs <= item.tQueueExit
+      timeMs < item.tQueueExit
   )
   itemsInHumanQueue.sort((a, b) => a.tQueueEntry - b.tQueueEntry)
   const humanQueueMap = new Map()
@@ -671,12 +856,22 @@ const HumanInTheLoopDiagram = ({
   const isHumanOverloaded = itemsInHumanQueue.length > 5
 
     // --- Queue Slot Logic (Input) ---
-  const itemsInInputQueue = allActiveItems.filter(item => 
-    item.tInputQueueEntry !== undefined && 
-    timeMs >= item.tInputQueueEntry && 
-    timeMs <= item.tInputQueueExit
-  )
-  itemsInInputQueue.sort((a, b) => a.tInputQueueEntry - b.tInputQueueEntry)
+  // Input "queue" occupancy is counted from the moment an item is admitted into the
+  // input pipeline (starts traveling toward the queue) until it leaves the queue.
+  // This keeps the overload indicator perfectly aligned with the throttle switch:
+  // if the indicator is off, the system is accepting new items (at least into the
+  // input pipeline), and if it is on, admissions are blocked.
+  const itemsInInputQueue = capacityConstrainedItems.filter((item) => {
+    const entry = item.tInputAdmission ?? item.tInputQueueEntry
+    const exit = item.tInputQueueExit
+    if (entry === undefined || exit === undefined) return false
+    return timeMs >= entry && timeMs < exit
+  })
+  itemsInInputQueue.sort((a, b) => {
+    const ea = a.tInputAdmission ?? a.tInputQueueEntry ?? 0
+    const eb = b.tInputAdmission ?? b.tInputQueueEntry ?? 0
+    return ea - eb
+  })
   const inputQueueMap = new Map()
   itemsInInputQueue.forEach((item, index) => inputQueueMap.set(item.id, index))
   const isInputOverloaded = itemsInInputQueue.length >= (mergedConfig.maxInputQueueCapacity ?? 6)
@@ -698,66 +893,16 @@ const HumanInTheLoopDiagram = ({
          if (cycleTime >= start || cycleTime < wrappedEnd) isHumanAway = true
       }
   }
-
-  // --- HARD CAPACITY ENFORCEMENT ---
-  // First pass: count items currently in the loop
-  const itemsCurrentlyInLoop = new Set()
-  if (mergedConfig.maxInFlight === 1) {
-    for (const item of allActiveItems) {
-      if (timeMs > item.endTime || timeMs < item.steps[0].startTime) continue
-      const step = item.steps.find(s => timeMs >= s.startTime && timeMs < s.endTime)
-      if (!step) continue
-      // An item is IN the loop if it's in any of these phases
-      if (['travel_to_agent', 'orbit', 'supervision', 'return', 'exit_final'].includes(step.type)) {
-        itemsCurrentlyInLoop.add(item.id)
-      }
-    }
-    
-    if (itemsCurrentlyInLoop.size > 1) {
-      console.error(`VIOLATION at ${timeMs}: ${itemsCurrentlyInLoop.size} items in loop:`, Array.from(itemsCurrentlyInLoop))
-    }
-  }
-
-  // --- HARD CAPACITY GATE ---
-  // Count items currently IN the loop (not trying to enter, but actually IN)
-  let currentLoopCount = 0
-  for (const item of allActiveItems) {
-    if (timeMs > item.endTime || timeMs < item.steps[0].startTime) continue
-    const activeStep = item.steps.find(s => timeMs >= s.startTime && timeMs < s.endTime)
-    if (!activeStep) continue
-    
-    // Count items in CORE loop phases (not entry phases)
-    if (['orbit', 'supervision', 'exit_final'].includes(activeStep.type)) {
-      currentLoopCount++
-    }
-  }
   
-  const renderItems = allActiveItems.map(item => {
+  const renderItems = capacityConstrainedItems.map(item => {
     if (timeMs > item.endTime) return null
     if (timeMs < item.steps[0].startTime) return null
 
     const activeStep = item.steps.find(s => timeMs >= s.startTime && timeMs < s.endTime)
     if (!activeStep) return null
     
-    let effectiveStep = activeStep
-    let effectiveP = (timeMs - activeStep.startTime) / activeStep.duration
-    
-    // HARD GATE: If trying to ENTER loop and loop is FULL, WAIT IN QUEUE
-    if (mergedConfig.maxInFlight === 1 && currentLoopCount >= 1) {
-      if (activeStep.type === 'travel_to_agent' || activeStep.type === 'return') {
-        // Loop is full, keep this item in its queue
-        const stepIndex = item.steps.indexOf(activeStep)
-        const prevStep = item.steps[stepIndex - 1]
-        
-        if (prevStep && (prevStep.type === 'input_queue' || prevStep.type === 'queue')) {
-          effectiveStep = prevStep
-          effectiveP = 1.0 // At bottom of queue, ready to go
-        }
-      }
-    } else if (mergedConfig.maxInFlight === 1 && (activeStep.type === 'travel_to_agent' || activeStep.type === 'return')) {
-      // Loop is free, this item is entering - count it
-      currentLoopCount++
-    }
+    const effectiveStep = activeStep
+    const effectiveP = (timeMs - activeStep.startTime) / activeStep.duration
     
     const p = effectiveP
     let x = 0, y = 0, opacity = 1, phase = effectiveStep.type

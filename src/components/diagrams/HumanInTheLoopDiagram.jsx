@@ -587,7 +587,7 @@ const HumanInTheLoopDiagram = ({
                     duration = TRAVEL_DURATION
                     break
                 case 'orbit':
-                    duration = snapOrbit(step.min, step.startAng, step.targetAng)
+                    duration = step.duration ?? snapOrbit(step.min, step.startAng, step.targetAng)
                     break
                 case 'to_queue':
                 case 'return':

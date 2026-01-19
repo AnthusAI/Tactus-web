@@ -4,7 +4,7 @@ import Seo from "../components/seo"
 import SpotlightSection from "../components/spotlight-section"
 import GuardrailsSpotlight from "../components/guardrails-spotlight"
 import WhyNewLanguageSpotlight from "../components/why-new-language-spotlight"
-import ToolboxDiagram from "../components/diagrams/ToolboxDiagram"
+import AnimatedAIEngineersToolboxDiagram from "../components/diagrams/AnimatedAIEngineersToolboxDiagram"
 import VideosSpotlightSection from "../components/videos-spotlight-section"
 import BookSeriesSection from "../components/book-series-section"
 import * as styles from "./learn-more.module.css"
@@ -36,7 +36,7 @@ const LearnMorePage = () => {
           lede="A marketing-forward perspective on tool design: schema-first capabilities, inspectable tool calls, deterministic orchestration, and staged access."
           to="/ai-engineers-toolbox/"
           ctaText="Read: Toolbox"
-          Diagram={ToolboxDiagram}
+          Diagram={AnimatedAIEngineersToolboxDiagram}
           flip={true}
         />
 

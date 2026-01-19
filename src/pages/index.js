@@ -9,7 +9,7 @@ import AnimatedCodeBlock from "../components/animated/AnimatedCodeBlock"
 import BottomCta from "../components/bottom-cta"
 import SpotlightSection from "../components/spotlight-section"
 import GuardrailsSpotlight from "../components/guardrails-spotlight"
-import ToolboxDiagram from "../components/diagrams/ToolboxDiagram"
+import AnimatedAIEngineersToolboxDiagram from "../components/diagrams/AnimatedAIEngineersToolboxDiagram"
 import HitlReturnsAllDiagram from "../components/diagrams/HitlReturnsAllDiagram"
 import AnimatedHumanInTheLoopDiagram from "../components/diagrams/AnimatedHumanInTheLoopDiagram"
 import { HITL_PRESETS } from "../components/diagrams/hitlPresets"
@@ -657,7 +657,7 @@ const IndexPage = () => {
           lede="Tools are how agents touch reality. Tactus treats tools as explicit capabilities: schema-first, inspectable, and controllable — so you can build workflows you can deploy."
           to="/ai-engineers-toolbox/"
           ctaText="Read: Toolbox"
-          Diagram={ToolboxDiagram}
+          Diagram={AnimatedAIEngineersToolboxDiagram}
         />
 
         {/* Code Examples Group */}

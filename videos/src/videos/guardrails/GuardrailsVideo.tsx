@@ -281,7 +281,7 @@ const SandboxBrokerScene: React.FC = () => {
         Sandbox untrusted orchestration. Keep secrets out of the runtime. Broker privileged calls behind a narrow, auditable boundary.
       </Body>
       <div style={{ marginTop: -34, width: 1600, opacity: anim2 }}>
-        <ContainerSandboxDiagram theme="light" title="" subtitle="" />
+        <ContainerSandboxDiagram theme="light" />
       </div>
     </Layout>
   );

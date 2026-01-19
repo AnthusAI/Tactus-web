@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import ToolboxDiagram from "../../src/components/diagrams/ToolboxDiagram";
+import * as React from "react";
+import AIEngineersToolboxDiagram from "../../src/components/diagrams/AIEngineersToolboxDiagram";
 import { getDiagramThemeVars } from "../../src/components/diagrams/diagramTheme";
 
 const withForcedBackground = (theme: "light" | "dark") => (Story: any) => (
@@ -23,34 +24,53 @@ const withForcedBackground = (theme: "light" | "dark") => (Story: any) => (
 );
 
 const meta = {
-  title: "Diagrams/ToolboxDiagram",
-  component: ToolboxDiagram,
+  title: "Diagrams/AIEngineersToolboxDiagram",
+  component: AIEngineersToolboxDiagram,
   parameters: {
     layout: "fullscreen",
   },
   tags: ["autodocs"],
-} satisfies Meta<typeof ToolboxDiagram>;
+} satisfies Meta<typeof AIEngineersToolboxDiagram>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+// Helper for animation
+const AnimatedDemo = ({ theme }: { theme: "light" | "dark" }) => {
+  const [progress, setProgress] = React.useState(0);
+
+  React.useEffect(() => {
+    let raf = 0;
+    const start = performance.now();
+    const durationMs = 16000; // 4 tools * 4s each = 16s
+
+    const tick = (now: number) => {
+      const t = ((now - start) % durationMs) / durationMs;
+      setProgress(t);
+      raf = requestAnimationFrame(tick);
+    };
+
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, []);
+
+  return <AIEngineersToolboxDiagram theme={theme} progress={progress} />;
+};
+
 export const WebsiteLight: Story = {
-  args: {
-    theme: "light",
-  },
+  render: () => <AnimatedDemo theme="light" />,
   decorators: [withForcedBackground("light")],
 };
 
 export const WebsiteDark: Story = {
-  args: {
-    theme: "dark",
-  },
+  render: () => <AnimatedDemo theme="dark" />,
   decorators: [withForcedBackground("dark")],
 };
 
 export const Video: Story = {
   args: {
     theme: "light",
+    progress: 0,
   },
   parameters: {
     videoCanvas: {

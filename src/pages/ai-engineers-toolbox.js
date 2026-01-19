@@ -2,7 +2,7 @@ import * as React from "react"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import BottomCta from "../components/bottom-cta"
-import ToolboxDiagram from "../components/diagrams/ToolboxDiagram"
+import AnimatedAIEngineersToolboxDiagram from "../components/diagrams/AnimatedAIEngineersToolboxDiagram"
 import Breakout from "../components/publishing/Breakout"
 import * as styles from "./ai-engineers-toolbox.module.css"
 
@@ -87,7 +87,7 @@ const AIToolboxPage = () => {
               </Breakout>
 
               <div className={styles.diagramWrap}>
-                <ToolboxDiagram theme={theme} className={styles.diagram} />
+                <AnimatedAIEngineersToolboxDiagram theme={theme} className={styles.diagram} />
               </div>
 
               <p className={styles.bodyText}>

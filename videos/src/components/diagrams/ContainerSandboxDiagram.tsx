@@ -7,8 +7,6 @@ const impl = require("../../../../src/components/diagrams/ContainerSandboxDiagra
 
 const ContainerSandboxDiagram = (impl.default ?? impl) as React.ComponentType<{
   theme?: "light" | "dark";
-  title?: string;
-  subtitle?: string;
   style?: React.CSSProperties;
   className?: string;
 }>;

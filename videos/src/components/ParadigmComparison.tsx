@@ -42,6 +42,12 @@ export const ParadigmComparison: React.FC<ParadigmComparisonProps> = ({
   const phraseBeatCount = 4;
   const phraseStartSec =
     cueStartsLocal.length >= phraseBeatCount ? cueStartsLocal[cueStartsLocal.length - phraseBeatCount] : beat2Fallback;
+  
+  // Extend the build time to match the voiceover length (approx first 2 segments)
+  // If we have timing info, use the start of the 2nd segment as the end of the build.
+  // Otherwise default to 12s as requested.
+  const oldWayBuildEnd = cueStartsLocal.length >= 2 ? cueStartsLocal[1] - 0.5 : 12;
+
   const phraseLastSec = cueStartsLocal[cueStartsLocal.length - 1] ?? phraseStartSec + 1.2;
   const phrasePrevSec = cueStartsLocal[cueStartsLocal.length - 2] ?? phraseStartSec;
   const lastGapSec = Math.max(0.2, phraseLastSec - phrasePrevSec);
@@ -63,7 +69,7 @@ export const ParadigmComparison: React.FC<ParadigmComparisonProps> = ({
 
   // Diagrams should "build in" quickly at scene start, then stay stable.
   // We do this independently of TTS timing so it's always visible.
-  const oldWayBuildProgress = interpolate(sceneLocalSec, [0.15, 3.6], [0, 1], {
+  const oldWayBuildProgress = interpolate(sceneLocalSec, [0.15, oldWayBuildEnd], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });

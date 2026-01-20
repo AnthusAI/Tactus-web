@@ -10,7 +10,6 @@ import BottomCta from "../components/bottom-cta"
 import SpotlightSection from "../components/spotlight-section"
 import GuardrailsSpotlight from "../components/guardrails-spotlight"
 import AnimatedAIEngineersToolboxDiagram from "../components/diagrams/AnimatedAIEngineersToolboxDiagram"
-import HitlReturnsAllDiagram from "../components/diagrams/HitlReturnsAllDiagram"
 import AnimatedHumanInTheLoopDiagram from "../components/diagrams/AnimatedHumanInTheLoopDiagram"
 import { HITL_PRESETS } from "../components/diagrams/hitlPresets"
 import AnimatedOldWayFlowchartDiagram from "../components/diagrams/AnimatedOldWayFlowchartDiagram"
@@ -565,62 +564,31 @@ const IndexPage = () => {
                   Tool-using agents are useful — and dangerous. The moment an agent can take irreversible actions, “hope for the
                   best” stops being a viable safety strategy.
                 </p>
-                <p className={styles.exampleLead}>
-                  Chat feels safe because you’re supervising the agent in real time. But that model doesn’t scale. To run automations
-                  safely, you need human gates as first‑class primitives: durable checkpoints where you can approve, reject, or send
-                  work back for edits. In Tactus, those show up as <code>Human.approve()</code>, <code>Human.review()</code>, and{" "}
-                  <code>Human.input()</code> — and the procedure can pause and resume later without losing its place.
-                </p>
               </div>
 
               <div className={styles.hitlVariantsStack}>
                 <div className={styles.hitlVariant}>
-                  <h3 className={styles.hitlVariantTitle}>Closely supervised (absence)</h3>
+                  <h3 className={styles.hitlVariantTitle}>Closely supervised</h3>
                   <p className={styles.hitlVariantBody}>
-                    Chat-style supervision: every item requires human approval. But when the human steps away, the system stalls until they return.
+                    The common user interface paradigm for AI agents is through a chat interface. But human engagement becomes a bottleneck: when the human steps away to eat or sleep, the interface stops doing anything. If you need to process a volume of items, everything is bottlenecked on your presence.
                   </p>
                   <div className={styles.hitlVariantDiagram}>
                     <AnimatedHumanInTheLoopDiagram
                       scenario={HITL_PRESETS.CLOSELY_SUPERVISED.scenario}
-                      config={HITL_PRESETS.CLOSELY_SUPERVISED.config}
+                      config={{
+                        ...HITL_PRESETS.CLOSELY_SUPERVISED.config,
+                        stepBackAfterItems: 1,
+                        outageDuration: 8000
+                      }}
                       startAtMs={HITL_PRESETS.CLOSELY_SUPERVISED.recommendedStartAtMs}
                     />
                   </div>
                 </div>
 
                 <div className={styles.hitlVariant}>
-                  <h3 className={styles.hitlVariantTitle}>Durable HITL (default)</h3>
+                  <h3 className={styles.hitlVariantTitle}>Completely unsupervised</h3>
                   <p className={styles.hitlVariantBody}>
-                    The procedure keeps moving. Only the moments that matter stop for a human decision — approve, reject, or return
-                    for edits.
-                  </p>
-                  <div className={styles.hitlVariantDiagram}>
-                    <AnimatedHumanInTheLoopDiagram
-                      scenario={HITL_PRESETS.DURABLE_DEFAULT.scenario}
-                      config={HITL_PRESETS.DURABLE_DEFAULT.config}
-                      startAtMs={HITL_PRESETS.DURABLE_DEFAULT.recommendedStartAtMs}
-                    />
-                  </div>
-                </div>
-
-                <div className={styles.hitlVariant}>
-                  <h3 className={styles.hitlVariantTitle}>Human steps back</h3>
-                  <p className={styles.hitlVariantBody}>
-                    When you're away, work queues instead of breaking. When you return, the run resumes where it left off.
-                  </p>
-                  <div className={styles.hitlVariantDiagram}>
-                    <AnimatedHumanInTheLoopDiagram
-                      scenario={HITL_PRESETS.HUMAN_STEPS_BACK.scenario}
-                      config={HITL_PRESETS.HUMAN_STEPS_BACK.config}
-                      startAtMs={HITL_PRESETS.HUMAN_STEPS_BACK.recommendedStartAtMs}
-                    />
-                  </div>
-                </div>
-
-                <div className={styles.hitlVariant}>
-                  <h3 className={styles.hitlVariantTitle}>Unsupervised</h3>
-                  <p className={styles.hitlVariantBody}>
-                    No humans required. The agent handles everything autonomously — but only if you trust it with a razor blade.
+                    You can remove the human entirely and let the agent run free. This scales beautifully: you can process thousands of items at machine speed without waiting for anyone. But running an agent this way is like giving a monkey a razor blade — if you don't trust it perfectly, you're asking for trouble.
                   </p>
                   <div className={styles.hitlVariantDiagram}>
                     <AnimatedHumanInTheLoopDiagram
@@ -631,6 +599,64 @@ const IndexPage = () => {
                     />
                   </div>
                 </div>
+
+                <div className={styles.hitlVariant}>
+                  <h3 className={styles.hitlVariantTitle}>Human in the loop</h3>
+                  <p className={styles.hitlVariantBody}>
+                    Adding a durable queue changes the paradigm. Requests queue up for the human, so they can casually step away, and the system continues operating at a high rate. The human can be there or not, and the system keeps moving without being completely bottlenecked on them.
+                  </p>
+                  <div className={styles.hitlVariantDiagram}>
+                    <AnimatedHumanInTheLoopDiagram
+                      scenario={HITL_PRESETS.HUMAN_STEPS_BACK.scenario}
+                      config={HITL_PRESETS.HUMAN_STEPS_BACK.config}
+                      startAtMs={HITL_PRESETS.HUMAN_STEPS_BACK.recommendedStartAtMs}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Code Example: HITL Durability */}
+              <div style={{ margin: 'var(--space-6) 0' }}>
+                <div className={styles.sectionHeader}>
+                  <h2 className={styles.sectionTitle} style={{ fontSize: '1.5rem' }}>Durable pause and resume</h2>
+                  <p className={styles.sectionSubtitle}>
+                    When a workflow needs a human, it can pause and resume without
+                    losing its place.
+                  </p>
+                </div>
+                <div className={styles.codeBlockPlayer}>
+                  <AnimatedCodeBlock
+                    label="Human in the loop"
+                    filename="examples-deploy.tac"
+                    hint="HITL + timeout"
+                    code={DURABILITY_EXAMPLE}
+                    language="tactus"
+                    showTypewriter={false}
+                    typewriterLoop={false}
+                    autoHeight={true}
+                    blockWidth={1400}
+                    width="100%"
+                    autoPlay={false}
+                    controls={false}
+                    loop={false}
+                  />
+                </div>
+                <div style={{ marginTop: 'var(--space-3)' }}>
+                  <p className={styles.exampleLead}>
+                    In Tactus, <code>Human.approve()</code> is a first-class
+                    primitive. Reaching it suspends the run and creates a durable
+                    “waiting for human” checkpoint.
+                  </p>
+                </div>
+              </div>
+
+              <div className={styles.hitlCta}>
+                <p className={styles.hitlVariantBody} style={{ marginBottom: 'var(--space-4)', maxWidth: '65ch', marginLeft: 'auto', marginRight: 'auto' }}>
+                  The Tactus runtime is built with these features by default. It can queue responses, suspend programs without incurring CPU costs, and resume execution the moment human input arrives. And because it's an omni-channel system, that input can come from anywhere—email, Slack, or a custom UI.
+                </p>
+                <Button to="/human-in-the-loop/" variant="primary" shadow>
+                  Read: Human in the Loop
+                </Button>
               </div>
             </div>
           </div>
@@ -653,16 +679,6 @@ const IndexPage = () => {
           ctaText="Learn more"
         />
 
-        <SpotlightSection
-          id="human-in-the-loop"
-          eyebrow="Learn"
-          title="Human in the loop, durably"
-          lede="Agents shouldn’t be trusted with irreversible actions. Tactus makes human review a first-class, durable checkpoint—so a procedure can pause, you can send it back for edits, and it can resume hours later without keeping a process alive."
-          to="/human-in-the-loop/"
-          ctaText="Read: Human in the Loop"
-          Diagram={HitlReturnsAllDiagram}
-        />
-
 		        <GuardrailsSpotlight id="guardrails" eyebrow="Learn" />
 
         <SpotlightSection
@@ -679,40 +695,6 @@ const IndexPage = () => {
         <section className={`${styles.section}`}>
           <div className={styles.container}>
 
-            {/* HITL */}
-            <div className={styles.example} style={{ marginBottom: 'var(--space-6)' }}>
-              <header className={styles.sectionHeader}>
-                <h2 className={styles.sectionTitle}>Human-in-the-loop, durably</h2>
-                <p className={styles.sectionSubtitle}>
-                  When a workflow needs a human, it can pause and resume without
-                  losing its place.
-                </p>
-              </header>
-              <div className={styles.codeBlockPlayer}>
-                <AnimatedCodeBlock
-                  label="Human in the loop"
-                  filename="examples-deploy.tac"
-                  hint="HITL + timeout"
-                  code={DURABILITY_EXAMPLE}
-                  language="tactus"
-                  showTypewriter={false}
-                  typewriterLoop={false}
-                  autoHeight={true}
-                  blockWidth={1400}
-                  width="100%"
-                  autoPlay={false}
-                  controls={false}
-                  loop={false}
-                />
-              </div>
-              <div className={styles.exampleCopy}>
-                <p className={styles.exampleLead}>
-                  In Tactus, <code>Human.approve()</code> is a first-class
-                  primitive. Reaching it suspends the run and creates a durable
-                  “waiting for human” checkpoint.
-                </p>
-              </div>
-            </div>
 
             {/* Specs */}
             <div className={styles.example} style={{ marginBottom: 'var(--space-6)' }}>
@@ -791,21 +773,21 @@ const IndexPage = () => {
 
         <Breakout title="Why do we need a new language?" size="section">
           <p>
-            We already have Python. We already have frameworks for agent workflows (and even
-            no-code tools). So what’s missing?
+            We have Python. We have TypeScript. We have powerful agent frameworks.
+            But they were built to manipulate deterministic logic, not probabilistic behavior.
           </p>
           <p>
-            <strong>Because “hope for the best” isn’t a strategy for production systems.</strong>
+            <strong>The abstraction level is wrong.</strong>
           </p>
           <ul>
-            <li>If Python is “good enough”, what do we gain by introducing a new language?</li>
             <li>
-              What’s missing from libraries like LangChain and LangGraph when you move from demos
-              to production systems?
+              Using general-purpose languages for agents feels like writing web apps in assembly.
             </li>
             <li>
-              Why do no-code agent tools tend to break down once you need safety, reliability, and
-              testability?
+              We need new primitives for a world where code doesn't strictly control execution.
+            </li>
+            <li>
+              Tactus aligns the language with the actual problems of production AI.
             </li>
           </ul>
         </Breakout>
@@ -814,18 +796,17 @@ const IndexPage = () => {
           <div className={styles.container}>
             <div className={styles.whyLanguageAnswer}>
               <p className={styles.whyLanguageAnswerText}>
-                Tool-using agent systems don’t behave like traditional programs. Control flow
-                isn’t fully specified up front; it emerges from learned behavior, probabilistic
-                inference, and interaction with tools and the world. That shift changes what it
-                means to “write code”: you’re no longer encoding every branch, you’re describing
-                intent and shaping decision-making.
+                Programming languages evolve to match the problems we care about. When computers were
+                banks of vacuum tubes, zeros and ones were the right tool—they matched the physical reality.
+                When we moved to complex logic, we built languages like C to manage the new concerns:
+                loops, branches, and reusability.
               </p>
               <p className={styles.whyLanguageAnswerText}>
-                A prompt alone can’t give you production-grade reliability. You need structure:
-                explicit tool boundaries, human approvals when stakes are high, durable workflows
-                that can pause and resume, and specifications you can test. A language makes that
-                structure first-class—so you can build behavior-driven systems with the same
-                seriousness we apply to conventional software.
+                Today, the "atoms" of computing have changed again. We are building with stochastic,
+                decision-making models that we guide rather than control. Tactus raises the abstraction
+                level to match this new reality, giving you first-class primitives for the things that
+                matter now: reliability, sandboxing, and human oversight. It's not just a new syntax—it's
+                a language built for the new problem space.
               </p>
               <div className={styles.whyLanguageCta}>
                 <Link className={styles.secondaryButton} to="/why-new-language/">

@@ -19,11 +19,12 @@ import NewWayFlowchartDiagram from "../../components/diagrams/NewWayFlowchartDia
 import HumanInTheLoopDiagram from "../../components/diagrams/HumanInTheLoopDiagram";
 import ContainerSandboxDiagram from "../../components/diagrams/ContainerSandboxDiagram";
 import GuardrailsStackDiagram from "../../components/diagrams/GuardrailsStackDiagram";
+import AIEngineersToolboxDiagram from "../../components/diagrams/AIEngineersToolboxDiagram";
 import LeastPrivilegeDiagram from "../../components/diagrams/LeastPrivilegeDiagram";
 import { HITL_PRESETS } from "../../components/diagrams/hitlPresets";
 import monkeyImg from "../../assets/images/monkey.png";
 import nutshellCoverAnimalImg from "../../assets/images/nutshell-cover-animal.png";
-import iconImg from "../../assets/images/icon.png";
+import { CTAScene } from "../../components/CTAScene";
 import type { Scene, Script } from "@/babulus/types";
 import { secondsToFrames } from "@/babulus/utils";
 import introScript from "@/videos/intro/intro.script.json";
@@ -328,9 +329,10 @@ const ToolsScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ scene,
   const localSec = frame / fps;
   const cueStartsLocal = ttsStartsSec.map((s) => s - scene.startSec);
   const beat1 = cueStartsLocal[0] ?? 0;
-  const beat2 = cueStartsLocal[1] ?? beat1 + 2;
-  const beat3 = cueStartsLocal[2] ?? beat2 + 2;
-  const beat4 = cueStartsLocal[3] ?? beat3 + 2;
+  const beat2 = cueStartsLocal[1] ?? beat1 + 3;
+  const beat3 = cueStartsLocal[2] ?? beat2 + 3;
+  const beat4 = cueStartsLocal[3] ?? beat3 + 3;
+  const endBeat = beat4 + 4;
 
   const titleAnimation = spring({
     frame,
@@ -338,26 +340,12 @@ const ToolsScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ scene,
     config: { damping: 100, stiffness: 200, mass: 0.5 },
   });
 
-  const rows = [
-    {
-      label: "Pure Tactus (stdlib + dependencies)",
-      code: `local done = require("tactus.tools.done")
-worker = Agent {provider = "openai", tools = {done}}`,
-      beat: beat1,
-    },
-    {
-      label: "Shell commands (bash tools)",
-      code: `local shell = Tool.get("shell")
-shell({command = "git status"})`,
-      beat: beat2,
-    },
-    {
-      label: "MCP tools (local or remote)",
-      code: `local web_search = Tool.get("web_search")
-web_search({query = "tactus"})`,
-      beat: beat3,
-    },
-  ];
+  const diagramProgress = interpolate(
+    localSec,
+    [beat1, beat2, beat3, beat4, endBeat],
+    [0, 0.25, 0.5, 0.75, 1],
+    { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
+  );
 
   return (
     <Layout justify="flex-start" style={{ paddingTop: 96 }}>
@@ -368,37 +356,13 @@ web_search({query = "tactus"})`,
           marginBottom: 28,
         }}
       >
-        <TitleBlock>Tools Everywhere</TitleBlock>
+        <TitleBlock>The AI Engineer's Toolbox</TitleBlock>
       </H2>
 
-      <div style={{ width: "100%", maxWidth: 1600, display: "flex", flexDirection: "column", gap: 22 }}>
-        {rows.map((row) => (
-          <Card
-            key={row.label}
-            variant="muted"
-            padding={5}
-            style={{
-              opacity: animIn(localSec - row.beat),
-              transform: `translateY(${(1 - animIn(localSec - row.beat)) * 14}px)`,
-            }}
-          >
-            <Body style={{ marginBottom: 10, fontSize: 28, fontWeight: 800 }}>{row.label}</Body>
-            <Code style={{ fontSize: 30, lineHeight: 1.25, whiteSpace: "pre-wrap" }}>{row.code}</Code>
-          </Card>
-        ))}
-
-        <Body
-          size="lg"
-          style={{
-            marginTop: 6,
-            opacity: animIn(localSec - beat4),
-            transform: `translateY(${(1 - animIn(localSec - beat4)) * 12}px)`,
-            textAlign: "center",
-            fontWeight: 700,
-          }}
-        >
-          It stays simple and visible—and if a tool is untrusted, you can run it in a container.
-        </Body>
+      <div style={{ width: "100%", maxWidth: 1850, display: "flex", justifyContent: "center" }}>
+        <div style={{ width: "100%" }}>
+          <AIEngineersToolboxDiagram theme="light" progress={diagramProgress} />
+        </div>
       </div>
     </Layout>
   );
@@ -407,20 +371,12 @@ web_search({query = "tactus"})`,
 const SecurityScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ scene, ttsStartsSec }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
-  const localSec = frame / fps;
   const cueStartsLocal = ttsStartsSec.map((s) => s - scene.startSec);
   const beat1 = cueStartsLocal[0] ?? 0;
   const beat2 = cueStartsLocal[1] ?? beat1 + 2.5;
-  const beat3 = cueStartsLocal[2] ?? beat2 + 2.5;
 
   const titleAnimation = spring({
     frame,
-    fps,
-    config: { damping: 100, stiffness: 200, mass: 0.5 },
-  });
-
-  const bodyAnimation = spring({
-    frame: frame - secondsToFrames(Math.max(0, beat1), fps),
     fps,
     config: { damping: 100, stiffness: 200, mass: 0.5 },
   });
@@ -446,39 +402,12 @@ const SecurityScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ sce
       <div
         style={{
           width: "100%",
-          maxWidth: 1700,
           display: "flex",
-          gap: 70,
-          alignItems: "center",
           justifyContent: "center",
+          alignItems: "center",
         }}
       >
-        <div style={{ flex: 1.2, maxWidth: 900 }}>
-          <Body
-            size="xl"
-            style={{
-              opacity: bodyAnimation,
-              transform: `translateX(${(1 - bodyAnimation) * -30}px)`,
-              textAlign: "left",
-              lineHeight: 1.35,
-              marginBottom: 20,
-            }}
-          >
-            <span style={{ opacity: animIn(localSec - beat1) }}>
-              Tool-using agents are <span style={{ fontWeight: 800 }}>useful</span>—and{" "}
-              <span style={{ fontWeight: 800 }}>dangerous</span>. Run them{" "}
-              <span style={{ fontWeight: 800 }}>unattended</span> and you're giving a{" "}
-              <span style={{ fontWeight: 800 }}>monkey</span> a{" "}
-              <span style={{ fontWeight: 800 }}>razor blade</span> and hoping for the best.
-            </span>{" "}
-            <span style={{ opacity: animIn(localSec - beat3) }}>
-              Without strong guardrails, you can turn your laptop—or your cloud account—into a{" "}
-              <span style={{ fontWeight: 900, color: "#c7007e" }}>crime scene</span>.
-            </span>
-          </Body>
-        </div>
-
-        <div style={{ flex: 0.8, display: "flex", flexDirection: "column", alignItems: "center" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
           <Img
             src={monkeyImg}
             style={{
@@ -531,8 +460,25 @@ const DefenseLayersScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = (
   const { fps } = useVideoConfig();
   const localSec = frame / fps;
   const cueStartsLocal = ttsStartsSec.map((s) => s - scene.startSec);
-  const beat1 = cueStartsLocal[0] ?? 0;
-  const beat2 = cueStartsLocal[1] ?? beat1 + 3;
+  
+  // Segments:
+  // 0: Intro ("Tactus uses defense...")
+  // 1: Cost ("For example...")
+  // 2: Prompt ("Beyond that...")
+  // 3: Context ("Context engineering...")
+  // 4: Models ("The models...")
+  // 5: Secretless ("At deeper levels...")
+  // 6: Sandbox ("It runs your code...")
+  // 7: Container ("And it runs that sandbox...")
+  
+  const beatCost = cueStartsLocal[1] ?? 0;
+  const beatPrompt = cueStartsLocal[2] ?? beatCost + 3;
+  const beatContext = cueStartsLocal[3] ?? beatPrompt + 3;
+  const beatModel = cueStartsLocal[4] ?? beatContext + 3;
+  const beatSecretless = cueStartsLocal[5] ?? beatModel + 3;
+  const beatSandbox = cueStartsLocal[6] ?? beatSecretless + 3;
+  const beatContainer = cueStartsLocal[7] ?? beatSandbox + 3;
+  const beatEnd = beatContainer + 4; // Allow time for reading final one
 
   const titleAnimation = spring({
     frame,
@@ -546,11 +492,12 @@ const DefenseLayersScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = (
     config: { damping: 90, stiffness: 160, mass: 0.7 },
   });
 
-  // Brief sweep through the diagram showing all layers
+  // 7 layers total.
+  // 0: Cost, 1: Prompt, 2: Context, 3: Model, 4: Secretless, 5: Sandbox, 6: Container
   const diagramProgress = interpolate(
     localSec,
-    [beat1 + 0.5, beat2 + 2],
-    [0, 1],
+    [beatCost, beatPrompt, beatContext, beatModel, beatSecretless, beatSandbox, beatContainer, beatEnd],
+    [0, 1/7, 2/7, 3/7, 4/7, 5/7, 6/7, 1],
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
   );
 
@@ -571,12 +518,12 @@ const DefenseLayersScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = (
           opacity: diagramAnimation,
           transform: `translateY(${(1 - diagramAnimation) * 24}px)`,
           width: "100%",
-          maxWidth: 1600,
+          maxWidth: 1850,
           display: "flex",
           justifyContent: "center",
         }}
       >
-        <div style={{ width: "95%", maxWidth: 1400 }}>
+        <div style={{ width: "100%" }}>
           <GuardrailsStackDiagram theme="light" progress={diagramProgress} />
         </div>
       </div>
@@ -602,18 +549,26 @@ const LeastPrivilegeScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = 
     config: { damping: 90, stiffness: 160, mass: 0.7 },
   });
 
-  // We have 7 segments total (intro + 5 dimensions)
-  // Segments 0-1: intro
-  // Segments 2-6: the 5 dimensions
-  const introEnd = cueStartsLocal[1] ?? 0;
-  const dimensionStarts = cueStartsLocal.slice(2, 7); // 5 dimension start times
+  // We have 7 segments total (intro + 5 dimensions + wrap)
+  // Segments 0-1: intro ("Each of these...", "Tactus limits...")
+  // Segment 2: Minimal toolsets
+  // Segment 3: Curated context
+  // Segment 4: Network isolation
+  // Segment 5: Secretless broker
+  // Segment 6: Temporal gating
+  
+  const dim1Start = cueStartsLocal[2] ?? 0;
+  const dim2Start = cueStartsLocal[3] ?? dim1Start + 3;
+  const dim3Start = cueStartsLocal[4] ?? dim2Start + 3;
+  const dim4Start = cueStartsLocal[5] ?? dim3Start + 3;
+  const dim5Start = cueStartsLocal[6] ?? dim4Start + 3;
+  const dimEnd = dim5Start + 4;
 
   // Map time to progress (0-1) - sweep through all 5 dimensions
-  const lastDimensionStart = dimensionStarts[4] ?? introEnd + 10;
   const diagramProgress = interpolate(
     localSec,
-    [introEnd + 0.5, lastDimensionStart + 1],
-    [0, 1],
+    [dim1Start, dim2Start, dim3Start, dim4Start, dim5Start, dimEnd],
+    [0, 0.2, 0.4, 0.6, 0.8, 1],
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
   );
 
@@ -634,12 +589,13 @@ const LeastPrivilegeScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = 
           opacity: diagramAnimation,
           transform: `translateY(${(1 - diagramAnimation) * 24}px)`,
           width: "100%",
+          maxWidth: 1850,
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
         }}
       >
-        <div style={{ width: "95%", maxWidth: 1600 }}>
+        <div style={{ width: "100%" }}>
           <LeastPrivilegeDiagram theme="light" progress={diagramProgress} />
         </div>
       </div>
@@ -683,12 +639,13 @@ const GuardrailsScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ s
           opacity: diagramAnimation,
           transform: `translateY(${(1 - diagramAnimation) * 24}px)`,
           width: "100%",
+          maxWidth: 1850,
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
         }}
       >
-        <div style={{ width: "90%", maxWidth: 1600 }}>
+        <div style={{ width: "100%" }}>
           <ContainerSandboxDiagram theme="light" />
         </div>
       </div>
@@ -710,8 +667,8 @@ const HitlScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ scene, 
     config: { damping: 100, stiffness: 200, mass: 0.5 },
   });
 
-	  return (
-	    <Layout justify="flex-start" style={{ paddingTop: 120 }}>
+  return (
+    <Layout justify="flex-start" style={{ paddingTop: 96 }}>
       <H2
         style={{
           opacity: titleAnimation,
@@ -722,19 +679,29 @@ const HitlScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ scene, 
         <TitleBlock>Human in the Loop</TitleBlock>
       </H2>
 
-	      <div style={{ width: "100%", display: "flex", justifyContent: "center", opacity: animIn(localSec - beat1) }}>
-	        <div style={{ width: "100%", maxWidth: 860 }}>
-	          <HumanInTheLoopDiagram
-	            theme="light"
-	            time={timeMs}
-	            scenario={HITL_PRESETS.RETURNS_ALL.scenario}
-	            config={HITL_PRESETS.RETURNS_ALL.config}
-	          />
-	        </div>
-	      </div>
-	    </Layout>
-	  );
-	};
+      <div
+        style={{
+          width: "100%",
+          maxWidth: 1850,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          opacity: animIn(localSec - beat1),
+          transform: `translateY(-48px)`,
+        }}
+      >
+        <div style={{ width: "100%" }}>
+          <HumanInTheLoopDiagram
+            theme="light"
+            time={timeMs}
+            scenario={HITL_PRESETS.RETURNS_ALL.scenario}
+            config={HITL_PRESETS.RETURNS_ALL.config}
+          />
+        </div>
+      </div>
+    </Layout>
+  );
+};
 
 const GraphsScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ scene, ttsStartsSec }) => {
   const frame = useCurrentFrame();
@@ -750,15 +717,22 @@ const GraphsScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ scene
     config: { damping: 100, stiffness: 200, mass: 0.5 },
   });
 
-  const graphCode = `# Graph-style workflow (example)
-add_node("work", work)
-add_node("approve", approve)
-add_edge("work", "approve")
-add_conditional_edge("approve", {
-  yes = "work",
-  no = "end"
-})
-checkpoint(...)`;
+  const graphCode = `graph = StateGraph(State)
+graph.add_node("agent", agent)
+graph.add_node("tools", tool_executor)
+
+graph.add_edge(START, "agent")
+graph.add_conditional_edges(
+    "agent",
+    should_continue,
+    {
+        "continue": "tools",
+        "end": END
+    }
+)
+graph.add_edge("tools", "agent")
+
+app = graph.compile()`;
 
   const tactusCode = `local done = require("tactus.tools.done")
 
@@ -849,7 +823,7 @@ const NutshellScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ sce
         <TitleBlock>Tactus in a Nutshell</TitleBlock>
       </H2>
 
-      <div style={{ width: "100%", maxWidth: 1700, display: "flex", gap: 40, alignItems: "center" }}>
+      <div style={{ width: "100%", maxWidth: 1700, display: "flex", gap: 40, alignItems: "center", paddingTop: 48 }}>
         <div style={{ flex: 1, display: "flex", justifyContent: "center" }}>
           <Img
             src={nutshellCoverAnimalImg}
@@ -862,7 +836,7 @@ const NutshellScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ sce
           />
         </div>
 
-        <div style={{ flex: 1.1, maxWidth: 760 }}>
+        <div style={{ flex: 1.1, maxWidth: 760, transform: "translateX(-48px)" }}>
           <Card
             variant="muted"
             padding={5}
@@ -898,68 +872,3 @@ const NutshellScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ sce
   );
 };
 
-const CTAScene: React.FC = () => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-
-  const animation = spring({
-    frame,
-    fps,
-    config: { damping: 100, stiffness: 200, mass: 0.5 },
-  });
-
-  const iconAnimation = spring({
-    frame: frame - 60,
-    fps,
-    config: { damping: 100, stiffness: 150, mass: 0.6 },
-  });
-
-  return (
-    <Layout>
-      <H2
-        style={{
-          opacity: animation,
-          transform: `scale(${0.9 + animation * 0.1})`,
-        }}
-      >
-        <TitleBlock>Get Started</TitleBlock>
-      </H2>
-
-      <Body
-        size="lg"
-        style={{
-          opacity: animation,
-          marginTop: 24,
-          textAlign: "center",
-        }}
-      >
-        Visit <Code inline style={{ fontSize: "1em" }}>https://tactus.anth.us</Code> to learn more
-      </Body>
-
-      {iconAnimation > 0 && (
-        <div
-          style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: "50%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            pointerEvents: "none",
-          }}
-        >
-          <Img
-            src={iconImg}
-            style={{
-              width: 210,
-              opacity: iconAnimation,
-              transform: `scale(${iconAnimation})`,
-            }}
-          />
-        </div>
-      )}
-    </Layout>
-  );
-};

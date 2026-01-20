@@ -47,9 +47,9 @@ const GuardrailsStackDiagram = ({
       Icon: Brain,
     },
     {
-      name: "Tool Boundaries",
-      desc: "Strict schemas, validation, and policies at the edge where the agent touches the world.",
-      Icon: ShieldAlert,
+      name: "Secretless Broker",
+      desc: "Credentials live outside the sandbox. The agent requests work, but never holds the keys.",
+      Icon: Lock,
     },
     {
       name: "Code Sandboxing",
@@ -60,11 +60,6 @@ const GuardrailsStackDiagram = ({
       name: "Container Isolation",
       desc: "Ephemeral containers ensure no state or contamination persists between runs.",
       Icon: Container,
-    },
-    {
-      name: "Secretless Broker",
-      desc: "Credentials live outside the sandbox. The agent requests work, but never holds the keys.",
-      Icon: Lock,
     },
   ];
 
@@ -172,12 +167,6 @@ const GuardrailsStackDiagram = ({
           );
         })}
       </g>
-
-      {/* Moving Pointer (Triangle) */}
-      <path
-        d={`M ${pointerX} ${pointerY} L ${pointerX + pointerSize} ${pointerY - pointerSize/1.5} L ${pointerX + pointerSize} ${pointerY + pointerSize/1.5} Z`}
-        fill={t.primary}
-      />
 
       {/* Detail Panel */}
       <g transform={`translate(${detailX}, ${detailY})`}>

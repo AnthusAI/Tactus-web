@@ -10,6 +10,10 @@ set -euo pipefail
 # Optional:
 #   BABULUS_PYTHON=python3.11 bin/babulus generate
 
+if [[ -n "${BABULUS_PYTHON:-}" ]]; then
+  exec "${BABULUS_PYTHON}" -m babulus "$@"
+fi
+
 if command -v babulus >/dev/null 2>&1; then
   exec babulus "$@"
 fi
@@ -22,10 +26,6 @@ fi
 
 if [[ -n "${VIRTUAL_ENV:-}" && -x "${VIRTUAL_ENV}/bin/python" ]]; then
   exec "${VIRTUAL_ENV}/bin/python" -m babulus "$@"
-fi
-
-if [[ -n "${BABULUS_PYTHON:-}" ]]; then
-  exec "${BABULUS_PYTHON}" -m babulus "$@"
 fi
 
 if command -v python3 >/dev/null 2>&1; then

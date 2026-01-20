@@ -12,7 +12,7 @@ import type { GeneratedTimeline } from "@/babulus/audioTypes";
 import GuardrailsStackDiagram from "../../components/diagrams/GuardrailsStackDiagram";
 import LeastPrivilegeDiagram from "../../components/diagrams/LeastPrivilegeDiagram";
 import PromptEngineeringCeilingDiagram from "../../components/diagrams/PromptEngineeringCeilingDiagram";
-import ContainerSandboxDiagram from "../../components/diagrams/ContainerSandboxDiagram";
+import { CTAScene } from "../../components/CTAScene";
 
 export type GuardrailsVideoProps = {
   audioSrc?: string | null;
@@ -83,7 +83,7 @@ export const GuardrailsVideo: React.FC<GuardrailsVideoProps> = ({
       case "example":
         return <ExampleScene />;
       case "closing":
-        return <ClosingScene />;
+        return <CTAScene />;
       default:
         return null;
     }
@@ -385,26 +385,3 @@ const ExampleScene: React.FC = () => {
   );
 };
 
-const ClosingScene: React.FC = () => {
-  const anim = useIntroAnim(0);
-  const anim2 = useIntroAnim(10);
-  const anim3 = useIntroAnim(18);
-
-  return (
-    <Layout>
-      <H2 style={{ opacity: anim, textAlign: "center" }}>
-        <TitleBlock>Guardrails enable autonomy</TitleBlock>
-      </H2>
-      <div style={{ marginTop: 34, width: 1500, opacity: anim2 }}>
-        <Body size="lg">
-          The race car needs brakes. The surgeon needs protocols. The organization needs governance. The agent needs guardrails.
-        </Body>
-        <Body style={{ marginBottom: 0 }}>
-          Build systems where the right thing is structurally easier than the wrong thing — and where failures are constrained before
-          they become disasters.
-        </Body>
-      </div>
-      <Body style={{ opacity: anim3, marginTop: 34, textAlign: "center" }}>Read more: tactus.run/guardrails</Body>
-    </Layout>
-  );
-};

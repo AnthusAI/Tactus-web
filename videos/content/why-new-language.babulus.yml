@@ -1,23 +1,28 @@
 poster_time: "383s"
 
-audio:
-  sfx_provider:
-    development: dry-run
-    aws: dry-run
-    azure: dry-run
-    production: elevenlabs
-  music_provider:
-    development: dry-run
-    aws: dry-run
-    azure: dry-run
-    production: elevenlabs
-
 voiceover:
+  # Environment-based TTS provider
+  # Development: openai (fast iteration)
+  # AWS: aws-polly (uses AWS credentials)
+  # Azure: azure-speech (uses API key)
+  # Production: elevenlabs (best quality)
   provider:
-    development: openai                     # Fast iteration
+    development: openai
+    marin: openai                  # Test environment with marin voice
     aws: aws
     azure: azure
-    production: elevenlabs                  # Best quality
+    production: elevenlabs
+
+  # Optional: Override model per environment
+  model:
+    development: "gpt-4o-mini-tts"  # OpenAI mini model (cheap, fast)
+    marin: "gpt-4o-mini-tts"        # OpenAI mini model
+    production: "eleven_v3"         # ElevenLabs v3 (best quality)
+
+  voice:
+    development: "echo"            # OpenAI voice
+    marin: "marin"                 # OpenAI marin voice
+    production: "iE8bC87uXfqLphg7Abzw"  # ElevenLabs voice ID
 
   # Optional: Override model per environment
   # model:
@@ -73,8 +78,8 @@ scenes:
       - id: title
         label: "Title"
         voice:
-          pause_seconds: 0.8
           segments:
+            - pause_seconds: 0.8
             - voice: >
                 Why do we need a new language?
             - pause_seconds: 0.4

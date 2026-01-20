@@ -19,7 +19,7 @@ import OldWayFlowchartDiagram from "../../components/diagrams/OldWayFlowchartDia
 import NewWayFlowchartDiagram from "../../components/diagrams/NewWayFlowchartDiagram";
 import HumanInTheLoopDiagram from "../../components/diagrams/HumanInTheLoopDiagram";
 import { HITL_PRESETS } from "../../components/diagrams/hitlPresets";
-import iconImg from "../../assets/images/icon.png";
+import { CTAScene } from "../../components/CTAScene";
 import type { Scene, Script } from "@/babulus/types";
 import { secondsToFrames } from "@/babulus/utils";
 import whyNewLanguageScript from "@/videos/why-new-language/why-new-language.script.json";
@@ -924,69 +924,3 @@ const EvolutionScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = () =>
   );
 };
 
-const CTAScene: React.FC = () => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-
-  const animation = spring({
-    frame,
-    fps,
-    config: { damping: 100, stiffness: 200, mass: 0.5 },
-  });
-
-  const iconAnimation = spring({
-    frame: frame - 30,
-    fps,
-    config: { damping: 100, stiffness: 150, mass: 0.6 },
-  });
-
-  return (
-    <Layout>
-      <H2
-        style={{
-          opacity: animation,
-          transform: `scale(${0.9 + animation * 0.1})`,
-        }}
-      >
-        <TitleBlock>Learn More</TitleBlock>
-      </H2>
-
-      <Body
-        size="lg"
-        style={{
-          opacity: animation,
-          marginTop: 32,
-          textAlign: "center",
-          fontSize: 32,
-        }}
-      >
-        Visit <Code inline style={{ fontSize: "1em" }}>tactus.anth.us</Code>
-      </Body>
-
-      {iconAnimation > 0 && (
-        <div
-          style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: "50%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            pointerEvents: "none",
-          }}
-        >
-          <Img
-            src={iconImg}
-            style={{
-              width: 210,
-              opacity: iconAnimation,
-              transform: `scale(${iconAnimation})`,
-            }}
-          />
-        </div>
-      )}
-    </Layout>
-  );
-};

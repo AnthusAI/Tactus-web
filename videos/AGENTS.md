@@ -176,6 +176,53 @@ const animation = spring({
 5. **Upload videos to S3**:
    - Use the AWS profile `anthus`: `AWS_PROFILE=anthus npm run videos:upload`
 
+## Babulus Watch Mode
+
+### Development Mode (Fast Iteration)
+```bash
+npm run babulus:watch
+```
+Uses fast/cheap providers (configured in `.babulus/config.yml`) for quick iteration.
+
+### Production Mode (High Quality)
+```bash
+BABULUS_ENV=production npm run babulus:watch
+```
+Uses production providers (typically Eleven Labs for TTS) for high-quality audio generation. Watch mode continuously re-generates timelines and audio when `.babulus.yml` files change.
+
+### Production Rendering Workflow
+When working with production audio and videos:
+
+**Terminal 1** - Generate production audio with watch:
+```bash
+BABULUS_ENV=production npm run babulus:watch
+```
+
+**Terminal 2** - Re-render videos (run this after Babulus updates timelines):
+```bash
+npm run videos:render
+```
+
+Or render a specific video:
+```bash
+npm run videos:render Intro
+```
+
+### Available Babulus Commands
+| Command | Description |
+|---------|-------------|
+| `npm run babulus:watch` | Watch DSL files and regenerate (development mode) |
+| `BABULUS_ENV=production npm run babulus:watch` | Watch DSL files and regenerate (production mode) |
+| `npm run babulus:generate -- content/intro.babulus.yml` | One-time generation of a specific video |
+| `BABULUS_ENV=production npm run babulus:generate -- content/intro.babulus.yml` | One-time production generation |
+| `npm run babulus:clean` | Remove all generated artifacts |
+| `npm run babulus:sfx` | Manage sound-effect variants |
+
+### Environment Variables
+- `BABULUS_ENV`: Set to `production` for high-quality audio (default: `development`)
+- `BABULUS_PYTHON`: Path to Python executable if not in PATH
+- Uses fallback chain: `development → aws → azure → production → static` (allows reusing production audio during development)
+
 ## Rendering System
 
 ### Output Directory

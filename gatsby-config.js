@@ -15,6 +15,7 @@ module.exports = {
     siteUrl: `https://main.dfkbdffs2viq8.amplifyapp.com/`,
     socialImage: `/og/monkey.png`,
     socialImageAlt: `A small monkey holding a straight razor.`,
+    socialIcon: `/og/icon.png`,
   },
   plugins: [
     `gatsby-plugin-image`,

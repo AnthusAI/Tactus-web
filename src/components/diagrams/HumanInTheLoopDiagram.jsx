@@ -44,7 +44,9 @@ const QueueVisual = ({ x, yTop, yBottom, isOverloaded, t }) => (
                 <animate attributeName="r" values="12;16;12" dur="1s" repeatCount="indefinite" />
                 <animate attributeName="opacity" values="0.2;0.5;0.2" dur="1s" repeatCount="indefinite" />
             </circle>
-            <AlertCircle size={20} color="var(--color-primary)" style={{ transform: "translate(-10px, -10px)" }} />
+            <g transform="translate(-10, -10)">
+                <AlertCircle size={20} color="var(--color-primary)" />
+            </g>
         </g>
     </g>
 )

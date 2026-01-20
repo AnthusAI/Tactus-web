@@ -1191,7 +1191,10 @@ const HumanInTheLoopDiagram = ({
           width={68}
           height={68}
           opacity={1}
-          style={{ transition: "opacity 0.5s ease-in-out" }}
+          style={{ 
+            transition: "opacity 0.5s ease-in-out",
+            filter: theme === "dark" ? "invert(1)" : "none"
+          }}
         />
       )}
 

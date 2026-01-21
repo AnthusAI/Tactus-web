@@ -861,14 +861,15 @@ const NewLanguageScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = () 
         </div>
 
         <div style={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "flex-start", paddingTop: 6 }}>
-          <div style={{ width: "100%", maxWidth: 760 }}>
-            <HumanInTheLoopDiagram
-              theme="light"
-              time={timeMs}
-              scenario={HITL_PRESETS.RETURNS_ALL.scenario}
-              config={HITL_PRESETS.RETURNS_ALL.config}
-            />
-          </div>
+	          <div style={{ width: "100%", maxWidth: 760 }}>
+	            <HumanInTheLoopDiagram
+	              theme="light"
+	              disableCssTransitions
+	              time={timeMs}
+	              scenario={HITL_PRESETS.RETURNS_ALL.scenario}
+	              config={HITL_PRESETS.RETURNS_ALL.config}
+	            />
+	          </div>
         </div>
       </div>
     </Layout>
@@ -923,4 +924,3 @@ const EvolutionScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = () =>
     </Layout>
   );
 };
-

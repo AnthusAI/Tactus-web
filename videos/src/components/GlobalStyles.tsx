@@ -1,14 +1,23 @@
 import React from "react";
-import { AbsoluteFill } from "remotion";
+import { AbsoluteFill, getRemotionEnvironment } from "remotion";
 import { loadFont } from "@remotion/google-fonts/SourceSans3";
 import { loadFont as loadSerif } from "@remotion/google-fonts/SourceSerif4";
 import { loadFont as loadMono } from "@remotion/google-fonts/SourceCodePro";
 import { colors } from "../lib/theme";
 
 // Load Google Fonts
-const { fontFamily: sourceSans } = loadFont();
-const { fontFamily: sourceSerif } = loadSerif();
-const { fontFamily: sourceMono } = loadMono();
+const { fontFamily: sourceSans } = loadFont("normal", {
+  weights: ["600", "700", "800"],
+  subsets: ["latin"],
+});
+const { fontFamily: sourceSerif } = loadSerif("normal", {
+  weights: ["400", "600", "700", "800", "900"],
+  subsets: ["latin"],
+});
+const { fontFamily: sourceMono } = loadMono("normal", {
+  weights: ["400", "600"],
+  subsets: ["latin"],
+});
 
 interface GlobalStylesProps {
   children: React.ReactNode;
@@ -23,6 +32,7 @@ export const GlobalStyles: React.FC<GlobalStylesProps> = ({
   children,
   backgroundColor = colors.bg,
 }) => {
+  const { isRendering } = getRemotionEnvironment();
   return (
     <AbsoluteFill
       style={{
@@ -31,6 +41,9 @@ export const GlobalStyles: React.FC<GlobalStylesProps> = ({
         color: colors.text,
       }}
     >
+      {isRendering ? (
+        <style>{`*,*::before,*::after{transition:none !important;animation:none !important;}`}</style>
+      ) : null}
       {children}
     </AbsoluteFill>
   );

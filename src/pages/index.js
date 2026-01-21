@@ -585,7 +585,7 @@ const IndexPage = () => {
                 </div>
 
                 <div className={styles.hitlVariant}>
-                  <h3 className={styles.hitlVariantTitle}>Completely unsupervised</h3>
+                  <h3 className={styles.hitlVariantTitle}>Completely unattended</h3>
                   <p className={styles.hitlVariantBody}>
                     You can remove the human entirely and let the agent run free. This scales beautifully: you can process thousands of items at machine speed without waiting for anyone. But running an agent this way is like giving a monkey a razor blade — if you don't trust it perfectly, you're asking for trouble.
                   </p>
@@ -700,7 +700,11 @@ const IndexPage = () => {
           Diagram={ContainerSandboxDiagram}
         />
 
-        <Breakout title="Why do we need a new language?" size="section">
+        <Breakout
+          title="Why do we need a new language?"
+          size="section"
+          className={styles.whyLanguageBreakout}
+        >
           <p>
             We have Python. We have TypeScript. We have powerful agent frameworks.
             But they were built to manipulate deterministic logic, not probabilistic behavior.

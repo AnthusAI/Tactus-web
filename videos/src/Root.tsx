@@ -7,14 +7,16 @@ import introScript from "@/videos/intro/intro.script.json";
 import whyNewLanguageScript from "@/videos/why-new-language/why-new-language.script.json";
 import guardrailsScript from "@/videos/guardrails/guardrails.script.json";
 
+const FPS = 24;
+
 export const RemotionRoot: React.FC = () => {
   return (
     <>
       <Composition
         id="Intro"
         component={IntroVideo}
-        durationInFrames={getScriptDurationInFrames(introScript, 30)}
-        fps={30}
+        durationInFrames={getScriptDurationInFrames(introScript, FPS)}
+        fps={FPS}
         width={1920}
         height={1080}
         defaultProps={{ audioSrc: null }}
@@ -22,8 +24,8 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="WhyNewLanguage"
         component={WhyNewLanguageVideo}
-        durationInFrames={getScriptDurationInFrames(whyNewLanguageScript, 30)}
-        fps={30}
+        durationInFrames={getScriptDurationInFrames(whyNewLanguageScript, FPS)}
+        fps={FPS}
         width={1920}
         height={1080}
         defaultProps={{ audioSrc: null }}
@@ -31,8 +33,8 @@ export const RemotionRoot: React.FC = () => {
       <Composition
         id="Guardrails"
         component={GuardrailsVideo}
-        durationInFrames={getScriptDurationInFrames(guardrailsScript, 30)}
-        fps={30}
+        durationInFrames={getScriptDurationInFrames(guardrailsScript, FPS)}
+        fps={FPS}
         width={1920}
         height={1080}
         defaultProps={{ audioSrc: null }}

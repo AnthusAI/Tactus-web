@@ -29,8 +29,70 @@ const TRAVEL_DURATION = 500  // Agent to human queue travel (matching agent entr
 const EXIT_DURATION = 400  // Faster ejection animation
 const CYCLE_DURATION = 15000
 
+const clamp01 = (v) => Math.min(1, Math.max(0, v))
+const lerp = (a, b, t) => a + (b - a) * t
+const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2)
+
+const getAwayProgress = (timeMs, periods, transitionMs) => {
+  let progress = 0
+  for (const p of periods) {
+    const start = p.start
+    const end = p.end
+
+    if (timeMs < start) continue
+
+    if (timeMs >= start && timeMs < start + transitionMs) {
+      progress = Math.max(progress, easeInOutCubic(clamp01((timeMs - start) / transitionMs)))
+      continue
+    }
+
+    if (timeMs >= start + transitionMs && timeMs < end) {
+      progress = Math.max(progress, 1)
+      continue
+    }
+
+    if (timeMs >= end && timeMs < end + transitionMs) {
+      progress = Math.max(progress, 1 - easeInOutCubic(clamp01((timeMs - end) / transitionMs)))
+      continue
+    }
+  }
+  return progress
+}
+
+const getQueueShiftResidualPx = ({
+  timeMs,
+  items,
+  item,
+  getEntryTime,
+  getLeaveTime,
+  slotSpacing,
+  transitionMs,
+}) => {
+  const entryTime = getEntryTime(item)
+  if (entryTime === undefined || entryTime === null) return 0
+
+  let residual = 0
+  for (const other of items) {
+    if (other.id === item.id) continue
+    const otherEntry = getEntryTime(other)
+    if (otherEntry === undefined || otherEntry === null) continue
+    if (otherEntry >= entryTime) continue // only earlier items can shift us down
+
+    const otherLeave = getLeaveTime(other)
+    if (otherLeave === undefined || otherLeave === null) continue
+
+    const dt = timeMs - otherLeave
+    if (dt < 0 || dt >= transitionMs) continue
+
+    const p = easeInOutCubic(clamp01(dt / transitionMs))
+    residual += (1 - p) * slotSpacing
+  }
+
+  return residual
+}
+
 // --- Helper Components ---
-const QueueVisual = ({ x, yTop, yBottom, isOverloaded, t }) => (
+const QueueVisual = ({ x, yTop, yBottom, isOverloaded, t, pulse = 0 }) => (
     <g>
         <path d={`M ${x - 25},${yTop - 10} L ${x - 25},${yBottom + 20}`} stroke={isOverloaded ? t.primary : t.surface2} strokeWidth={4} fill="none" strokeLinecap="round" />
         <path d={`M ${x + 25},${yTop - 10} L ${x + 25},${yBottom + 20}`} stroke={isOverloaded ? t.primary : t.surface2} strokeWidth={4} fill="none" strokeLinecap="round" />
@@ -40,10 +102,7 @@ const QueueVisual = ({ x, yTop, yBottom, isOverloaded, t }) => (
             transform={`translate(${x}, ${yBottom + 23})`}
             opacity={isOverloaded ? 1 : 0}
         >
-            <circle r={12} fill="var(--color-primary)" opacity={0.2} >
-                <animate attributeName="r" values="12;16;12" dur="1s" repeatCount="indefinite" />
-                <animate attributeName="opacity" values="0.2;0.5;0.2" dur="1s" repeatCount="indefinite" />
-            </circle>
+            <circle r={12 + pulse * 4} fill="var(--color-primary)" opacity={0.2 + pulse * 0.3} />
             <g transform="translate(-10, -10)">
                 <AlertCircle size={20} color="var(--color-primary)" />
             </g>
@@ -486,10 +545,14 @@ const HumanInTheLoopDiagram = ({
   config = {},
   style,
   className,
-  showMonkey = false
+  showMonkey = false,
+  disableCssTransitions = false
 }) => {
   const t = diagramTokens
   const timeMs = time
+  const overloadPulse = (Math.sin((timeMs / 1000) * 2 * Math.PI) + 1) / 2
+  const QUEUE_DROP_MS = 240
+  const HUMAN_TRANSITION_MS = 800
 
   // --- Layout Constants ---
   // Shifted Right to accommodate Input Queue
@@ -718,6 +781,7 @@ const HumanInTheLoopDiagram = ({
   let itemsInHumanQueue = []
   let processedItemExitTimes = new Map() // For dynamic mode: item.id -> time when processing completed
   let supervisedCompletionTimes = new Map() // For dynamic mode: item.id -> time when supervision completed
+  let humanAbsencePeriods = []
 
   const stepBackAfterItems = mergedConfig.stepBackAfterItems
 
@@ -786,6 +850,9 @@ const HumanInTheLoopDiagram = ({
       }
     }
 
+    // Expose supervised absence periods for deterministic animation (used for human slide)
+    humanAbsencePeriods = absencePeriods
+
     // Second pass: determine current human state at timeMs
     humanPresent = true
     for (const absence of absencePeriods) {
@@ -795,17 +862,19 @@ const HumanInTheLoopDiagram = ({
       }
     }
 
-    // For manual items, run a separate state machine if there are any
-    const manualItems = capacityConstrainedItems.filter(item =>
-      item.flowType === 'manual' && item.tQueueEntry !== undefined
-    ).sort((a, b) => (a.tQueueEntry ?? 0) - (b.tQueueEntry ?? 0))
+	    // For manual items, run a separate state machine if there are any
+	    const manualItems = capacityConstrainedItems.filter(item =>
+	      item.flowType === 'manual' && item.tQueueEntry !== undefined
+	    ).sort((a, b) => (a.tQueueEntry ?? 0) - (b.tQueueEntry ?? 0))
 
-    const processed = new Map() // item.id -> exitTime (for manual items)
+	    const processed = new Map() // item.id -> exitTime (for manual items)
+	    const manualAbsencePeriods = []
+	    let manualAwayStart = null
 
-    // If there are manual items, process them with the manual queue state machine
-    if (manualItems.length > 0) {
-      // Reset state machine for manual items
-      let manualHumanPresent = true
+	    // If there are manual items, process them with the manual queue state machine
+	    if (manualItems.length > 0) {
+	      // Reset state machine for manual items
+	      let manualHumanPresent = true
       let manualSessionProcessedCount = 0
       let manualLastSessionStart = -Infinity
       let manualHumanBusyUntil = 0
@@ -818,19 +887,22 @@ const HumanInTheLoopDiagram = ({
         if (!arrivalTime || arrivalTime > timeMs) break
 
         // Before processing this arrival, check if any items completed
-        while (manualHumanBusyUntil <= arrivalTime && manualHumanBusyUntil <= timeMs) {
-          if (manualCurrentlyProcessingItem) {
-            processed.set(manualCurrentlyProcessingItem.id, manualHumanBusyUntil)
-            if (manualHumanBusyUntil >= manualLastSessionStart) {
-              manualSessionProcessedCount++
-            }
-            manualCurrentlyProcessingItem = null
+	        while (manualHumanBusyUntil <= arrivalTime && manualHumanBusyUntil <= timeMs) {
+	          if (manualCurrentlyProcessingItem) {
+	            processed.set(manualCurrentlyProcessingItem.id, manualHumanBusyUntil)
+	            if (manualHumanBusyUntil >= manualLastSessionStart) {
+	              manualSessionProcessedCount++
+	            }
+	            manualCurrentlyProcessingItem = null
 
-            if (manualSessionProcessedCount >= stepBackAfterItems && manualWaitingQueue.length === 0) {
-              manualHumanPresent = false
-              manualSessionProcessedCount = 0
-            }
-          }
+	            if (manualSessionProcessedCount >= stepBackAfterItems && manualWaitingQueue.length === 0) {
+	              manualHumanPresent = false
+	              if (manualAwayStart === null) {
+	                manualAwayStart = manualHumanBusyUntil
+	              }
+	              manualSessionProcessedCount = 0
+	            }
+	          }
 
           if (manualHumanPresent && manualWaitingQueue.length > 0 && !manualCurrentlyProcessingItem) {
             manualCurrentlyProcessingItem = manualWaitingQueue.shift()
@@ -840,14 +912,18 @@ const HumanInTheLoopDiagram = ({
           }
         }
 
-        manualWaitingQueue.push(item)
+	        manualWaitingQueue.push(item)
 
-        if (!manualHumanPresent && manualWaitingQueue.length > 5) {
-          manualHumanPresent = true
-          manualSessionProcessedCount = 0
-          manualLastSessionStart = arrivalTime
-          manualHumanBusyUntil = arrivalTime
-        }
+	        if (!manualHumanPresent && manualWaitingQueue.length > 5) {
+	          manualHumanPresent = true
+	          if (manualAwayStart !== null) {
+	            manualAbsencePeriods.push({ start: manualAwayStart, end: arrivalTime })
+	            manualAwayStart = null
+	          }
+	          manualSessionProcessedCount = 0
+	          manualLastSessionStart = arrivalTime
+	          manualHumanBusyUntil = arrivalTime
+	        }
 
         if (manualHumanPresent && !manualCurrentlyProcessingItem && manualWaitingQueue.length > 0) {
           manualCurrentlyProcessingItem = manualWaitingQueue.shift()
@@ -857,19 +933,22 @@ const HumanInTheLoopDiagram = ({
       }
 
       // After all arrivals, continue processing until current time
-      while (manualHumanBusyUntil <= timeMs) {
-        if (manualCurrentlyProcessingItem) {
-          processed.set(manualCurrentlyProcessingItem.id, manualHumanBusyUntil)
-          if (manualHumanBusyUntil >= manualLastSessionStart) {
-            manualSessionProcessedCount++
-          }
-          manualCurrentlyProcessingItem = null
+	      while (manualHumanBusyUntil <= timeMs) {
+	        if (manualCurrentlyProcessingItem) {
+	          processed.set(manualCurrentlyProcessingItem.id, manualHumanBusyUntil)
+	          if (manualHumanBusyUntil >= manualLastSessionStart) {
+	            manualSessionProcessedCount++
+	          }
+	          manualCurrentlyProcessingItem = null
 
-          if (manualSessionProcessedCount >= stepBackAfterItems && manualWaitingQueue.length === 0) {
-            manualHumanPresent = false
-            manualSessionProcessedCount = 0
-          }
-        }
+	          if (manualSessionProcessedCount >= stepBackAfterItems && manualWaitingQueue.length === 0) {
+	            manualHumanPresent = false
+	            if (manualAwayStart === null) {
+	              manualAwayStart = manualHumanBusyUntil
+	            }
+	            manualSessionProcessedCount = 0
+	          }
+	        }
 
         if (manualHumanPresent && manualWaitingQueue.length > 0 && !manualCurrentlyProcessingItem) {
           manualCurrentlyProcessingItem = manualWaitingQueue.shift()
@@ -879,12 +958,16 @@ const HumanInTheLoopDiagram = ({
         }
       }
 
-      // Use manual human presence state
-      humanPresent = manualHumanPresent
-    }
+	      // Use manual human presence state
+	      humanPresent = manualHumanPresent
+	      if (manualAwayStart !== null) {
+	        manualAbsencePeriods.push({ start: manualAwayStart, end: Infinity })
+	      }
+	      humanAbsencePeriods = manualAbsencePeriods
+	    }
 
-    // Final check: is human present right now?
-    isHumanAway = !humanPresent
+	    // Final check: is human present right now?
+	    isHumanAway = !humanPresent
 
     // Now build the current queue visualization
     // Items in queue are those that have arrived and haven't STARTED their exit animation
@@ -902,35 +985,54 @@ const HumanInTheLoopDiagram = ({
     // Expose processed exit times for render logic
     processedItemExitTimes = processed
 
-  } else {
-    // NON-DYNAMIC MODE: Use pre-scheduled queue times
-    itemsInHumanQueue = capacityConstrainedItems.filter(item =>
-      item.tQueueEntry !== undefined &&
+	  } else {
+	    // NON-DYNAMIC MODE: Use pre-scheduled queue times
+	    itemsInHumanQueue = capacityConstrainedItems.filter(item =>
+	      item.tQueueEntry !== undefined &&
       timeMs >= item.tQueueEntry &&
       timeMs < item.tQueueExit
     )
     itemsInHumanQueue.sort((a, b) => a.tQueueEntry - b.tQueueEntry)
     itemsInHumanQueue.forEach((item, index) => humanQueueMap.set(item.id, index))
 
-    // Fixed outage window mode
-    const finalOutageStart = effectiveOutageStart ?? mergedConfig.outageStart
-    if (finalOutageStart !== undefined && finalOutageStart !== null) {
-      const start = finalOutageStart
-      const end = start + (mergedConfig.outageDuration ?? 0)
-      // Handle wrapping in visual
-      if (end <= CYCLE_DURATION) {
-         if (cycleTime >= start && cycleTime < end) isHumanAway = true
-      } else {
+	    // Fixed outage window mode
+	    const finalOutageStart = effectiveOutageStart ?? mergedConfig.outageStart
+	    if (finalOutageStart !== undefined && finalOutageStart !== null) {
+	      const start = finalOutageStart
+	      const end = start + (mergedConfig.outageDuration ?? 0)
+	      // Build outage periods in absolute time across cycle boundaries so we can animate transitions.
+	      const periods = []
+	      const baseCycleIndex = Math.floor(timeMs / CYCLE_DURATION)
+	      for (const idx of [baseCycleIndex - 1, baseCycleIndex, baseCycleIndex + 1]) {
+	        if (idx < 0) continue
+	        const cycleBase = idx * CYCLE_DURATION
+	        const startAbs = cycleBase + start
+	        const endAbs = startAbs + (mergedConfig.outageDuration ?? 0)
+	        const cycleEnd = cycleBase + CYCLE_DURATION
+	        if (endAbs <= cycleEnd) {
+	          periods.push({ start: startAbs, end: endAbs })
+	        } else {
+	          periods.push({ start: startAbs, end: cycleEnd })
+	          periods.push({ start: cycleBase, end: cycleBase + (endAbs % CYCLE_DURATION) })
+	        }
+	      }
+	      humanAbsencePeriods = periods
+	      // Handle wrapping in visual
+	      if (end <= CYCLE_DURATION) {
+	         if (cycleTime >= start && cycleTime < end) isHumanAway = true
+	      } else {
          const wrappedEnd = end % CYCLE_DURATION
          if (cycleTime >= start || cycleTime < wrappedEnd) isHumanAway = true
       }
     }
   }
 
-  const isHumanOverloaded = itemsInHumanQueue.length > 5
-  
-  const renderItems = capacityConstrainedItems.map(item => {
-    const processedExitTime = processedItemExitTimes.get(item.id)
+	  const isHumanOverloaded = itemsInHumanQueue.length > 5
+	  const humanAwayProgress = getAwayProgress(timeMs, humanAbsencePeriods, HUMAN_TRANSITION_MS)
+	  const humanShiftPx = humanAwayProgress * 60
+	  
+	  const renderItems = capacityConstrainedItems.map(item => {
+	    const processedExitTime = processedItemExitTimes.get(item.id)
 
     // For dynamic mode: items have complex lifecycle that doesn't match pre-scheduled endTime
     if (stepBackAfterItems !== undefined && item.flowType === 'manual') {
@@ -1063,7 +1165,7 @@ const HumanInTheLoopDiagram = ({
 
     const p = effectiveP
     let x = 0, y = 0, opacity = 1, phase = effectiveStep.type
-    let transitionStyle = "opacity 0.2s" // Default
+    let transitionStyle = disableCssTransitions ? "none" : "opacity 0.2s" // Default
 
     // Slot position logic
     const humanSlotIndex = humanQueueMap.get(item.id) ?? 0
@@ -1087,12 +1189,28 @@ const HumanInTheLoopDiagram = ({
              opacity = 1
              phase = "traveling_input"
              break
-        case 'input_queue':
-             x = pInputQueueTop.x
-             y = inputSlotY
-             phase = "queued_input"
-             transitionStyle = "cy 0.15s ease-out, opacity 0.2s"
-             break
+	        case 'input_queue':
+	             x = pInputQueueTop.x
+	             {
+	               const entryTime = item.tInputQueueEntry ?? activeStep.startTime
+	               const shiftResidual = getQueueShiftResidualPx({
+	                 timeMs,
+	                 items: capacityConstrainedItems,
+	                 item,
+	                 getEntryTime: (it) => it.tInputQueueEntry,
+	                 getLeaveTime: (it) => it.tInputQueueExit,
+	                 slotSpacing: SLOT_SPACING,
+	                 transitionMs: QUEUE_DROP_MS,
+	               })
+	               const dropP = easeInOutCubic(clamp01((timeMs - entryTime) / QUEUE_DROP_MS))
+	               const targetY = inputSlotY - shiftResidual
+	               y = lerp(pInputQueueTop.y, targetY, dropP)
+	             }
+	             phase = "queued_input"
+	             if (!disableCssTransitions) {
+	               transitionStyle = "cy 0.15s ease-out, opacity 0.2s"
+	             }
+	             break
         case 'travel_to_agent':
              // Input Queue Bottom -> Agent Left
              const ptAgent = getQuadBezierPoint(p, pInputQueueBottom, cInputToAgent, pAgentLeft)
@@ -1119,12 +1237,31 @@ const HumanInTheLoopDiagram = ({
             x = pt1.x; y = pt1.y
             phase = "traveling_to"
             break
-        case 'queue':
-            x = pHumanQueueTop.x
-            y = humanSlotY
-            phase = "queued"
-            transitionStyle = "cy 0.3s ease-out, opacity 0.2s" // Smooth sliding
-            break
+	        case 'queue':
+	            x = pHumanQueueTop.x
+	            {
+	              const entryTime = item.tQueueEntry ?? activeStep.startTime
+	              const shiftResidual = getQueueShiftResidualPx({
+	                timeMs,
+	                items: capacityConstrainedItems,
+	                item,
+	                getEntryTime: (it) => it.tQueueEntry,
+	                getLeaveTime: (it) =>
+	                  stepBackAfterItems !== undefined
+	                    ? processedItemExitTimes.get(it.id) ?? it.tQueueExit
+	                    : it.tQueueExit,
+	                slotSpacing: SLOT_SPACING,
+	                transitionMs: QUEUE_DROP_MS,
+	              })
+	              const dropP = easeInOutCubic(clamp01((timeMs - entryTime) / QUEUE_DROP_MS))
+	              const targetY = humanSlotY - shiftResidual
+	              y = lerp(pHumanQueueTop.y, targetY, dropP)
+	            }
+	            phase = "queued"
+	            if (!disableCssTransitions) {
+	              transitionStyle = "cy 0.3s ease-out, opacity 0.2s" // Smooth sliding
+	            }
+	            break
         case 'return':
             const pt2 = getQuadBezierPoint(p, pHumanQueueBottom, cFromHumanQueue, pAgentBottom)
             x = pt2.x; y = pt2.y
@@ -1164,10 +1301,10 @@ const HumanInTheLoopDiagram = ({
 
   const activePathOpacity = theme === 'dark' ? 0.6 : 0.2
 
-  return (
-    <svg
-      className={className}
-      data-diagram-renderer="d3"
+	  return (
+	    <svg
+	      className={className}
+	      data-diagram-renderer="d3"
       style={{
         ...getDiagramThemeVars(theme),
         display: "block",
@@ -1185,89 +1322,83 @@ const HumanInTheLoopDiagram = ({
       </defs>
 
       {/* Monkey image - behind everything in the agent loop */}
-      {showMonkey && (
-        <image
-          href="/og/monkey.png"
-          x={agentCenter.x - 34}
-          y={agentCenter.y - 34}
-          width={68}
-          height={68}
-          opacity={1}
-          style={{ 
-            transition: "opacity 0.5s ease-in-out",
-            filter: theme === "dark" ? "invert(1)" : "none"
-          }}
-        />
-      )}
+	      {showMonkey && (
+	        <image
+	          href="/og/monkey.png"
+	          x={agentCenter.x - 34}
+	          y={agentCenter.y - 34}
+	          width={68}
+	          height={68}
+	          opacity={1}
+	          style={{ 
+	            transition: disableCssTransitions ? undefined : "opacity 0.5s ease-in-out",
+	            filter: theme === "dark" ? "invert(1)" : "none"
+	          }}
+	        />
+	      )}
 
-      <circle cx={agentCenter.x} cy={agentCenter.y} r={agentRadius} fill="none" stroke={t.primary} strokeWidth={2} opacity={0.3} />
-      
-      {/* Input Queue */}
-      <QueueVisual x={inputQueueX} yTop={queueTopY} yBottom={queueBottomY} isOverloaded={isInputOverloaded} t={t} />
+	      <circle cx={agentCenter.x} cy={agentCenter.y} r={agentRadius} fill="none" stroke={t.primary} strokeWidth={2} opacity={0.3} />
+	      
+	      {/* Input Queue */}
+	      <QueueVisual x={inputQueueX} yTop={queueTopY} yBottom={queueBottomY} isOverloaded={isInputOverloaded} t={t} pulse={overloadPulse} />
 
-      {/* Human Queue - HIDDEN IN AUTONOMOUS MODE OR CLOSELY SUPERVISED */}
-      {!isAutonomous && !isCloselySupervised && (
-          <QueueVisual x={humanQueueX} yTop={queueTopY} yBottom={queueBottomY} isOverloaded={isHumanOverloaded} t={t} />
-      )}
+	      {/* Human Queue - HIDDEN IN AUTONOMOUS MODE OR CLOSELY SUPERVISED */}
+	      {!isAutonomous && !isCloselySupervised && (
+	          <QueueVisual x={humanQueueX} yTop={queueTopY} yBottom={queueBottomY} isOverloaded={isHumanOverloaded} t={t} pulse={overloadPulse} />
+	      )}
 
-      {/* Path: Input -> Agent */}
-      <path d={`M ${vInputToAgentStart.x},${vInputToAgentStart.y} Q ${cInputToAgent.x},${cInputToAgent.y} ${vInputToAgentEnd.x},${vInputToAgentEnd.y}`} fill="none" stroke={t.primary} strokeWidth={2} strokeDasharray="4 4" markerEnd="url(#hitlArrow)" style={{ transition: "opacity 0.3s", color: t.primary }} opacity={showInputPath ? activePathOpacity : 0} />
+	      {/* Path: Input -> Agent */}
+	      <path d={`M ${vInputToAgentStart.x},${vInputToAgentStart.y} Q ${cInputToAgent.x},${cInputToAgent.y} ${vInputToAgentEnd.x},${vInputToAgentEnd.y}`} fill="none" stroke={t.primary} strokeWidth={2} strokeDasharray="4 4" markerEnd="url(#hitlArrow)" style={{ transition: disableCssTransitions ? undefined : "opacity 0.3s", color: t.primary }} opacity={showInputPath ? activePathOpacity : 0} />
 
-      {/* Path: Agent -> Human Queue */}
-      {!isAutonomous && (
-        <path d={`M ${vToQueueStart.x},${vToQueueStart.y} Q ${cToHumanQueue.x},${cToHumanQueue.y} ${vToQueueEnd.x},${vToQueueEnd.y}`} fill="none" stroke={t.primary} strokeWidth={2} strokeDasharray="4 4" markerEnd="url(#hitlArrow)" style={{ transition: "opacity 0.3s", color: t.primary }} opacity={showToPath ? activePathOpacity : 0} />
-      )}
+	      {/* Path: Agent -> Human Queue */}
+	      {!isAutonomous && (
+	        <path d={`M ${vToQueueStart.x},${vToQueueStart.y} Q ${cToHumanQueue.x},${cToHumanQueue.y} ${vToQueueEnd.x},${vToQueueEnd.y}`} fill="none" stroke={t.primary} strokeWidth={2} strokeDasharray="4 4" markerEnd="url(#hitlArrow)" style={{ transition: disableCssTransitions ? undefined : "opacity 0.3s", color: t.primary }} opacity={showToPath ? activePathOpacity : 0} />
+	      )}
 
-      {/* Path: Human Queue -> Agent */}
-      {!isAutonomous && (
-        <path d={`M ${vFromQueueStart.x},${vFromQueueStart.y} Q ${cFromHumanQueue.x},${cFromHumanQueue.y} ${vFromQueueEnd.x},${vFromQueueEnd.y}`} fill="none" stroke={t.primary} strokeWidth={2} strokeDasharray="4 4" markerEnd="url(#hitlArrow)" style={{ transition: "opacity 0.3s", color: t.primary }} opacity={showFromPath ? activePathOpacity : 0} />
-      )}
+	      {/* Path: Human Queue -> Agent */}
+	      {!isAutonomous && (
+	        <path d={`M ${vFromQueueStart.x},${vFromQueueStart.y} Q ${cFromHumanQueue.x},${cFromHumanQueue.y} ${vFromQueueEnd.x},${vFromQueueEnd.y}`} fill="none" stroke={t.primary} strokeWidth={2} strokeDasharray="4 4" markerEnd="url(#hitlArrow)" style={{ transition: disableCssTransitions ? undefined : "opacity 0.3s", color: t.primary }} opacity={showFromPath ? activePathOpacity : 0} />
+	      )}
 
-      {/* Path: Agent -> Exit (Over Human Queue) */}
-      <path d={`M ${vAgentExitStart.x},${vAgentExitStart.y} Q ${cAgentExit.x},${cAgentExit.y} ${vAgentExitEnd.x},${vAgentExitEnd.y}`} fill="none" stroke={t.primary} strokeWidth={2} strokeDasharray="4 4" markerEnd="url(#hitlArrow)" style={{ transition: "opacity 0.3s", color: t.primary }} opacity={showAgentExitPath ? activePathOpacity : 0} />
+	      {/* Path: Agent -> Exit (Over Human Queue) */}
+	      <path d={`M ${vAgentExitStart.x},${vAgentExitStart.y} Q ${cAgentExit.x},${cAgentExit.y} ${vAgentExitEnd.x},${vAgentExitEnd.y}`} fill="none" stroke={t.primary} strokeWidth={2} strokeDasharray="4 4" markerEnd="url(#hitlArrow)" style={{ transition: disableCssTransitions ? undefined : "opacity 0.3s", color: t.primary }} opacity={showAgentExitPath ? activePathOpacity : 0} />
 
-      {/* Path: Human -> Exit */}
-      {!isAutonomous && (
-        <path d={`M ${vHumanExitStart.x},${vHumanExitStart.y} Q ${cHumanExit.x},${cHumanExit.y} ${vHumanExitEnd.x},${vHumanExitEnd.y}`} fill="none" stroke={t.primary} strokeWidth={2} strokeDasharray="4 4" markerEnd="url(#hitlArrow)" style={{ transition: "opacity 0.3s", color: t.primary }} opacity={showHumanExitPath ? activePathOpacity : 0} />
-      )}
+	      {/* Path: Human -> Exit */}
+	      {!isAutonomous && (
+	        <path d={`M ${vHumanExitStart.x},${vHumanExitStart.y} Q ${cHumanExit.x},${cHumanExit.y} ${vHumanExitEnd.x},${vHumanExitEnd.y}`} fill="none" stroke={t.primary} strokeWidth={2} strokeDasharray="4 4" markerEnd="url(#hitlArrow)" style={{ transition: disableCssTransitions ? undefined : "opacity 0.3s", color: t.primary }} opacity={showHumanExitPath ? activePathOpacity : 0} />
+	      )}
 
       {/* Brain icon - fades out when monkey is shown */}
-      <g
-        transform={`translate(${agentCenter.x - 32}, ${agentCenter.y - 32})`}
-        opacity={showMonkey ? 0 : 1}
-        style={{ transition: "opacity 0.5s ease-in-out" }}
-      >
-        <Brain size={64} color={t.primary} strokeWidth={1.5} />
-      </g>
+	      <g
+	        transform={`translate(${agentCenter.x - 32}, ${agentCenter.y - 32})`}
+	        opacity={showMonkey ? 0 : 1}
+	        style={disableCssTransitions ? undefined : { transition: "opacity 0.5s ease-in-out" }}
+	      >
+	        <Brain size={64} color={t.primary} strokeWidth={1.5} />
+	      </g>
       
       {/* Human Icon with 'Steps Back' Animation */}
-      {!isAutonomous && (
-          <>
-            {/* Icon Group - Outer G handles Base Position, Inner G handles Animation */}
-            <g transform={`translate(${targetHumanX - 32}, ${humanCenter.y - 32})`}>
-              <g
-                style={{
-                    transform: `translateX(${isHumanAway ? 60 : 0}px)`,
-                    opacity: isHumanAway ? 0.3 : 1,
-                    transition: "transform 1s ease-in-out, opacity 1s ease-in-out"
-                }}
-              >
-                <User size={64} color={t.inkSecondary} strokeWidth={1.5} />
-              </g>
-            </g>
+	      {!isAutonomous && (
+	          <>
+	            {/* Icon Group - Outer G handles Base Position, Inner G handles Animation */}
+	            <g transform={`translate(${targetHumanX - 32}, ${humanCenter.y - 32})`}>
+	              <g
+	                transform={`translate(${humanShiftPx}, 0)`}
+	                opacity={1 - humanAwayProgress * 0.7}
+	              >
+	                <User size={64} color={t.inkSecondary} strokeWidth={1.5} />
+	              </g>
+	            </g>
 
             {/* Label Group - Outer G handles Base Position, Inner G handles Animation */}
-            <g transform={`translate(${targetHumanX}, 256)`}>
-              <g
-                style={{
-                    transform: `translateX(${isHumanAway ? 60 : 0}px)`,
-                    opacity: isHumanAway ? 0.3 : 1,
-                    transition: "transform 1s ease-in-out, opacity 1s ease-in-out"
-                }}
-              >
-                <text
-                  x={0}
-                  y={0}
+	            <g transform={`translate(${targetHumanX}, 256)`}>
+	              <g
+	                transform={`translate(${humanShiftPx}, 0)`}
+	                opacity={1 - humanAwayProgress * 0.7}
+	              >
+	                <text
+	                  x={0}
+	                  y={0}
                   textAnchor="middle"
                   fontSize="11"
                   fill={t.inkSecondary}

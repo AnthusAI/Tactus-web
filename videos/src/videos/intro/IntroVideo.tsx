@@ -690,6 +690,7 @@ const HitlScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ scene, 
         <div style={{ width: "100%" }}>
           <HumanInTheLoopDiagram
             theme="light"
+            disableCssTransitions
             time={timeMs}
             scenario={HITL_PRESETS.RETURNS_ALL.scenario}
             config={HITL_PRESETS.RETURNS_ALL.config}
@@ -916,7 +917,7 @@ const InterfaceScene: React.FC<{
           marginBottom: 36,
         }}
       >
-        <TitleBlock>The Interface Layer</TitleBlock>
+        <TitleBlock>The Human Interface</TitleBlock>
       </H2>
 
       {/* Closely Supervised */}
@@ -935,6 +936,7 @@ const InterfaceScene: React.FC<{
           <div style={{ width: "100%" }}>
             <HumanInTheLoopDiagram
               theme="light"
+              disableCssTransitions
               time={timeMs - supervisedStart * 1000}
               scenario={HITL_PRESETS.CLOSELY_SUPERVISED.scenario}
               config={{
@@ -963,6 +965,7 @@ const InterfaceScene: React.FC<{
           <div style={{ width: "100%" }}>
             <HumanInTheLoopDiagram
               theme="light"
+              disableCssTransitions
               time={timeMs - unsupervisedStart * 1000}
               scenario={HITL_PRESETS.UNSUPERVISED_MONKEY.scenario}
               config={HITL_PRESETS.UNSUPERVISED_MONKEY.config}
@@ -1027,6 +1030,7 @@ const InterfaceScene: React.FC<{
           <div style={{ width: "100%" }}>
             <HumanInTheLoopDiagram
               theme="light"
+              disableCssTransitions
               time={timeMs - hitlStart * 1000}
               scenario={HITL_PRESETS.HUMAN_STEPS_BACK.scenario}
               config={HITL_PRESETS.HUMAN_STEPS_BACK.config}

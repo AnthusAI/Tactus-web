@@ -87,23 +87,23 @@ scenes:
                 Instead of explicitly handling every possible scenario, you depend on AI models to make decisions and take action for you.
             - pause_seconds: 0.18
             - voice: >
-                In this new kind of programming, first you start with an agent—a language model.
+                In this new kind of programming, first you start with an agent—a language model.  Then you give it a tool.
             - pause_seconds: 0.18
             - voice: >
-                Then you give it a tool.
+                And then you assign it a procedure to follow. 
             - pause_seconds: 0.18
             - voice: >
-                And then you assign it a procedure to follow.
+                And then you put guardrails around that to guide it toward the goal.
             - pause_seconds: 0.18
             - voice: >
-                This is a completely new way to automate work with computers.
+                This is a completely new way to automate work with computers.  A new kind of computer program.
       - id: paradigm_wrap
         label: "Paradigm Wrap"
         voice:
           segments:
             - pause_seconds: 0.4
             - voice: >
-                Okay... But how do you do that, exactly? Is there some new way to write a computer program that's about giving agents tools and procedures instead of a bunch of if/then statements?
+                Okay... But how do you do that, exactly? Is there some new way to write code that's about giving agents tools and procedures?  Instead of a bunch of if/then statements?
             - pause_seconds: 0.6
             - voice: >
                 Yes. Tactus is a programming language for this new paradigm.
@@ -125,7 +125,7 @@ scenes:
             - pause_seconds: 0.2
 
   - id: interface
-    title: "The Interface Layer"
+    title: "The Human Interface"
     cues:
       - id: interface_supervised
         label: "Closely Supervised"

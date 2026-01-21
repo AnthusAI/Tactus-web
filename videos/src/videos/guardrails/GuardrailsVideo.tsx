@@ -12,6 +12,7 @@ import type { GeneratedTimeline } from "@/babulus/audioTypes";
 import GuardrailsStackDiagram from "../../components/diagrams/GuardrailsStackDiagram";
 import LeastPrivilegeDiagram from "../../components/diagrams/LeastPrivilegeDiagram";
 import PromptEngineeringCeilingDiagram from "../../components/diagrams/PromptEngineeringCeilingDiagram";
+import ContainerSandboxDiagram from "../../components/diagrams/ContainerSandboxDiagram";
 import { CTAScene } from "../../components/CTAScene";
 
 export type GuardrailsVideoProps = {

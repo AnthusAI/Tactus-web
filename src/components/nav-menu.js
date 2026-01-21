@@ -16,9 +16,9 @@ export const NAV_CONFIG = {
         { label: 'Why a New Language?', to: '/why-new-language/' },
         { label: 'The AI Engineer’s Toolbox', to: '/ai-engineers-toolbox/' },
         { label: 'Guardrails for Agent Autonomy', to: '/guardrails/' },
-        { label: 'Validation', to: '/validation/' },
         { label: 'Behavior Specifications', to: '/specifications/' },
         { label: 'Evaluations', to: '/evaluations/' },
+        { label: 'Validation', to: '/validation/' },
       ]
     },
     {

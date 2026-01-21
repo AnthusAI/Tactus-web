@@ -391,7 +391,7 @@ const IndexPage = () => {
             <div className={styles.narrativeSection}>
               <div className={styles.narrativeGrid}>
                 <div className={styles.narrativeContent}>
-                  <h3 className={styles.sectionTitle}>
+                  <h3 className={styles.paradigmCardTitle}>
                     The old way: anticipate everything
                   </h3>
                   <p className={styles.sectionSubtitle}>
@@ -418,7 +418,7 @@ const IndexPage = () => {
             <div className={styles.narrativeSection}>
               <div className={styles.narrativeGrid}>
                 <div className={styles.narrativeContent}>
-                  <h3 className={styles.sectionTitle}>
+                  <h3 className={styles.paradigmCardTitle}>
                     The new way: agents with guardrails
                   </h3>
                   <p className={styles.sectionSubtitle}>

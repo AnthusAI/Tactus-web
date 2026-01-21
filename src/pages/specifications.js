@@ -3,6 +3,7 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 import BottomCta from "../components/bottom-cta"
 import SpecificationsDiagram from "../components/diagrams/SpecificationsDiagram"
+// import AnimatedCodeBlock from "../components/animated/AnimatedCodeBlock"
 import * as styles from "./specifications.module.css"
 
 const SpecificationsPage = () => {
@@ -59,6 +60,12 @@ const SpecificationsPage = () => {
             
             <div className={styles.diagramWrap}>
               <SpecificationsDiagram theme={theme} className={styles.diagram} />
+              {/* <div style={{ padding: 40, background: '#eee', textAlign: 'center' }}>Diagram Temporarily Disabled for Debugging</div> */}
+              {/* <AnimatedCodeBlock
+                label="Direct Test"
+                code="Test Code"
+                theme={theme}
+              /> */}
             </div>
 
             <p className={styles.bodyText}>

@@ -22,7 +22,7 @@ const EvaluationsDiagram = ({ theme, className, style }) => {
         language="tactus"
         showTypewriter={false}
         typewriterLoop={false}
-        autoHeight={true}
+        autoHeight={false}
         blockWidth={1400}
         width="100%"
         autoPlay={false}

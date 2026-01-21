@@ -185,16 +185,14 @@ scenes:
                 Model selection. Choose and fine-tune models for specific capabilities and safety profiles.
             - pause_seconds: 0.35
             - voice: >
-                Tool boundaries. Strict schemas and validation at the edge where the agent touches the world.
+                Tool selection. Give the agent only the capabilities it needs, and stage access over time.
             - pause_seconds: 0.35
             - voice: >
                 Code sandboxing. Isolated execution environments prevent unauthorized system access.
             - pause_seconds: 0.35
             - voice: >
-                Container isolation. Ephemeral containers ensure no state persists between runs.
+                Container isolation. Ephemeral containers constrain what the runtime can touch and firewall side effects inside the container.
             - pause_seconds: 0.35
-            - voice: >
-                And at the foundation: a secretless broker. Credentials live outside the sandbox. The agent requests work but never holds the keys.
 
   - id: least_privilege
     title: "Least Privilege by Design"
@@ -244,7 +242,8 @@ scenes:
                 The keys live outside the sandbox, in a trusted broker.
             - pause_seconds: 0.45
             - voice: >
-                When there’s nothing to steal, a whole class of attacks collapses.
+                This is the security model: don’t make secrets hard to steal—make sure there are no secrets inside the runtime to steal.
+                It’s like letting a burglar into an empty building. Even if they get in, there’s nothing valuable to take.
 
   - id: example
     title: "A Concrete Example"

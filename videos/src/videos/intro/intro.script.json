@@ -4,22 +4,22 @@
       "id": "paradigm",
       "title": "A New Kind of Computer Program",
       "startSec": 0.25,
-      "endSec": 67.48617726946915,
+      "endSec": 54.98617726946916,
       "cues": [
         {
           "id": "paradigm",
           "label": "Paradigm",
           "startSec": 0.25,
-          "endSec": 44.519999999999996,
-          "text": "Since the dawn of computing over 80 years ago, programming has meant the same thing: anticipate every scenario and write code for it. If you miss a case, the program breaks.\n But tool\u2011using agents flip the script. Instead of explicitly handling every possible scenario, you depend on AI models to make decisions and take actions for you.\n In this new kind of programming, first you start with an AI agent, a language model.\n then you give it a tool.\n And then you assign it a procedure to follow,\n and you put guardrails around that, to guide it toward the goal.  This is a completely new way to automate work with computers.",
+          "endSec": 37.97,
+          "text": "Since the dawn of computing, programming has always meant the same thing: anticipate every scenario and write code for it. If you miss a case, the program breaks.\n But tool\u2011using agents flip the script. Instead of explicitly handling every possible scenario, you depend on AI models to make decisions and take action for you.\n In this new kind of programming, first you start with an agent\u2014a language model.\n Then you give it a tool.\n And then you assign it a procedure to follow.\n This is a completely new way to automate work with computers.",
           "bullets": []
         },
         {
           "id": "paradigm_wrap",
           "label": "Paradigm Wrap",
-          "startSec": 44.63617726946916,
-          "endSec": 67.48617726946915,
-          "text": "Okay...  But how do you do that, exactly?  Is there some new way to write a computer program that's about giving agents tools and procedures and guardrails instead of a bunch of if/else statements?\n Yes.  There's a new kind of programming language for this new kind of program.  Tactus is a programming language for tool\u2011using agents.",
+          "startSec": 38.08617726946916,
+          "endSec": 54.98617726946916,
+          "text": "Okay... But how do you do that, exactly? Is there some new way to write a computer program that's about giving agents tools and procedures instead of a bunch of if/then statements?\n Yes. Tactus is a programming language for this new paradigm.",
           "bullets": []
         }
       ]
@@ -27,47 +27,47 @@
     {
       "id": "hello_world",
       "title": "Hello, World",
-      "startSec": 67.48617726946915,
-      "endSec": 112.48617726946915,
+      "startSec": 54.98617726946916,
+      "endSec": 92.18617726946916,
       "cues": [
         {
           "id": "hello_world",
           "label": "Hello World",
-          "startSec": 67.48617726946915,
-          "endSec": 112.48617726946915,
-          "text": "Tactus procedures are computer programs that include imperative instructions, like any other programming language, but it has first-class, high-level constructs for the building blocks of AI systems: AI models, tools, context, and prompts.\n You run Tactus procedures just like you wold run a program in any other language like Python or Node, as command-line programs or by embedding them in applications.\n Here's an exmaple of running a hello-world program from the command line.  The procedure runs and returns the response from the agent.  This code doesn't use an AI framework like Langchain or OpenAI's SDK because with Tactus code those capabilities are built right in.",
+          "startSec": 54.98617726946916,
+          "endSec": 92.18617726946916,
+          "text": "Tactus procedures are computer programs that include imperative instructions, like any other language, but they have first-class, high-level constructs for the building blocks of the problem space: agents, tools, context, and prompts.\n You run Tactus procedures just like you would run a program in any other language like Python or Node\u2014as command-line programs or by embedding them in applications.\n Here's an example of running a hello-world program. The procedure runs and returns the response from the agent. It doesn't use a framework because the capabilities are built right into the language.",
           "bullets": []
         }
       ]
     },
     {
-      "id": "tools",
-      "title": "The AI Engineer's Toolbox",
-      "startSec": 112.48617726946915,
-      "endSec": 152.08617726946918,
+      "id": "interface",
+      "title": "The Interface Layer",
+      "startSec": 92.18617726946916,
+      "endSec": 190.92608566244039,
       "cues": [
         {
-          "id": "tools",
-          "label": "Tools",
-          "startSec": 112.48617726946915,
-          "endSec": 152.08617726946918,
-          "text": "Tactus makes it easy to define tools for your agents. You can define tools directly in your procedure using the Tactus programming language, which is an extension of Lua.\n You can also use Python functions when that makes more sense, including code written in the runtime sandbox by the AI agents you set up in your Tactus code.\n Or drop down to the shell to run commands like git, ffmpeg, or your own CLIs inside the container.  Maybe you want to make a procedure that can write its own shell scripts to do something complex.\n And of course, you can connect to any MCP server, either local or remote.",
+          "id": "interface_supervised",
+          "label": "Closely Supervised",
+          "startSec": 92.18617726946916,
+          "endSec": 129.93617726946917,
+          "text": "Connecting to agents and tools is just the beginning.  The real challenge is the interface layer between the agent and the operator.\n The common interface for agents today is chat.  You watch every step, you steer, and you stop the agent if it goes sideways. That works great for some things but depends on the human operator.\n The user becomes a bottleneck.  When you step away to eat or sleep, the whole system stops doing anything. If you're trying to process a lot of items at scale then your capacity is limited by the human operator.You can't scale this up.",
           "bullets": []
-        }
-      ]
-    },
-    {
-      "id": "security",
-      "title": "Tools Are Sharp",
-      "startSec": 152.08617726946918,
-      "endSec": 190.3861772694692,
-      "cues": [
+        },
         {
-          "id": "security",
-          "label": "Security",
-          "startSec": 152.08617726946918,
-          "endSec": 190.3861772694692,
-          "text": "Okay, so we give powerful tools to AI agents and let them run around unsupervised.  What could possibly go wrong?\n Running tool\u2011using agents unattended is like giving a monkey a razor blade and hoping for the best.  And \"hope\" is not a strategy for scaling AI in production.\n You want to get things done without without turning your laptop or cloud account into a crime scene.  You need ways to delegate responsibility to AI agents in a safe and secure way, where you still have control but where you don't have to sit there closely supervising them.",
+          "id": "interface_unsupervised",
+          "label": "Unsupervised",
+          "startSec": 130.0579174314446,
+          "endSec": 148.9579174314446,
+          "text": "You could remove the human entirely and let the agent run free. This scales beautifully\u2014you can process thousands of items at machine speed.\n But running an agent this way is like giving a monkey a razor blade.  And scaling that up to industrial levels is a recipe for disaster.",
+          "bullets": []
+        },
+        {
+          "id": "interface_hitl",
+          "label": "Durable HITL",
+          "startSec": 149.07608566244036,
+          "endSec": 190.92608566244039,
+          "text": "Tactus provides a new interface layer between the human and the computer. It enables agents to send requests to the human operator and wait for a response.  Requests can queue up, so that the system can continue running while the human operator isn't available.\n When a procedure needs a human\u2014to approve a risky action, or to provide a missing detail\u2014it pauses. It doesn't use any compute while it's suspended, and it doesn't depend on the runtime to continue running in memory.\n It can resume hours or days later, exactly where it left off. This lets you move from synchronous chat to asynchronous, industrial-scale workflows.",
           "bullets": []
         }
       ]
@@ -75,79 +75,31 @@
     {
       "id": "defense_layers",
       "title": "Defense in Depth",
-      "startSec": 190.3861772694692,
-      "endSec": 232.48617726946924,
+      "startSec": 190.92608566244039,
+      "endSec": 236.37608566244043,
       "cues": [
         {
           "id": "defense_layers",
           "label": "Defense Layers",
-          "startSec": 190.3861772694692,
-          "endSec": 232.48617726946924,
-          "text": "Tactus delivers the safety and security through defense in depth: multiple layers of guardrails, where each layer reduces a different class of risk.\n Strict cost limits prevent billing surprises.\n Prompt engineering guides model behavior.\n Context engineering restricts information flow to the agent.\n Model selection lets you balance capability and data privacy.\n A secretless broker keeps credentials out of the sandbox.\n Code sandboxing restricts system access.\n And container isolation ensures a clean environment for every run.",
+          "startSec": 190.92608566244039,
+          "endSec": 236.37608566244043,
+          "text": "Tactus gives you levers of control at multiple layers. Because no single layer is sufficient on its own.\n Cost and limits to prevent runaway loops and billing surprises.\n Prompt engineering to guide model behavior.\n Context engineering to ensure the model has the right information, not just all information.\n Model selection for the right capabilities and safety profiles.\n Tool selection. Give the agent only the capabilities it needs.\n Code sandboxing in isolated environments.\n And container isolation to constrain what the agent can touch, and to firewall side effects inside an ephemeral container.",
           "bullets": []
         }
       ]
     },
     {
-      "id": "least_privilege",
-      "title": "Least Privilege by Design",
-      "startSec": 232.48617726946924,
-      "endSec": 266.1361772694693,
+      "id": "sandboxing",
+      "title": "Sandboxing",
+      "startSec": 236.37608566244043,
+      "endSec": 284.27608566244044,
       "cues": [
         {
-          "id": "least_privilege",
-          "label": "Least Privilege",
-          "startSec": 232.48617726946924,
-          "endSec": 266.1361772694693,
-          "text": "Each of these guardrails enforces a principle: least privilege.\n Tactus limits what agents can do, along multiple dimensions.\n Minimal toolsets\u2014only what the procedure needs.\n Curated context\u2014relevant information, not everything.\n Network isolation\u2014the runtime is networkless by default.\n A secretless broker\u2014credentials stay outside the container.\n And temporal gating, which means that tools and information become available only when the workflow stage requires them.",
-          "bullets": []
-        }
-      ]
-    },
-    {
-      "id": "guardrails",
-      "title": "Sandboxed and Contained",
-      "startSec": 266.1361772694693,
-      "endSec": 331.28617726946925,
-      "cues": [
-        {
-          "id": "guardrails",
-          "label": "Guardrails",
-          "startSec": 266.1361772694693,
-          "endSec": 331.28617726946925,
-          "text": "We know AI models make mistakes and that things can go wrong.  Maybe your agent writes buggy tool code that deletes files.  Or maybe some hacker injects prompts that tell your agent to send all your API keys to them.  We have to plan for failure.  Complex, unanticipated failures.\n To keep the surprises firewalled off, Tactus runs your code in a restricted Lua sandbox. It has no network access and can only touch what you explicitly share.\n That sandbox runs in a fresh, ephemeral container for every execution\u2014like a Lambda function. It sees only your project folder, which you can mount read-only to prevent accidents.\n When the agent needs privileged access\u2014like calling an AI model or a credentialed API\u2014it goes through a broker outside the sandbox.\n This way, your API keys stay safe outside the container. Your procedure can use powerful third-party tools without ever exposing your credentials to the AI or the code it writes.",
-          "bullets": []
-        }
-      ]
-    },
-    {
-      "id": "hitl",
-      "title": "Human-in-the-Loop",
-      "startSec": 331.28617726946925,
-      "endSec": 373.13617726946916,
-      "cues": [
-        {
-          "id": "hitl",
-          "label": "HITL",
-          "startSec": 331.28617726946925,
-          "endSec": 373.13617726946916,
-          "text": "Even with guardrails, you still need humans at the moments that matter. If an agent is about to take an irreversible action, you want a human to approve it.\n And sometimes the right outcome isn\u2019t yes or no \u2014 it\u2019s: send it back for edits. A procedure can draft an artifact, ask for review, and then continue with the revised version.\n And it\u2019s durable. The procedure can pause completely while it waits, without using any compute or incurring any costs, and then resume hours or days or years later, exactly where it left off.  You don't need the procedure to keep running in memory to be able to resume it later. That\u2019s what really makes it possible to scale up to industrial levels.",
-          "bullets": []
-        }
-      ]
-    },
-    {
-      "id": "graphs",
-      "title": "No Graphs Required",
-      "startSec": 373.13617726946916,
-      "endSec": 401.7861772694692,
-      "cues": [
-        {
-          "id": "graphs",
-          "label": "Compare",
-          "startSec": 373.13617726946916,
-          "endSec": 401.7861772694692,
-          "text": "A Python program can't continue again if the Python interpreter stops running.  In most programming languages, achiving durable program execution forces you into something like a graph workflow, where you have to write code that's structured around nodes, edges, and conditional edges.\n With Tactus, it\u2019s transparent. You write normal code, and the runtime handles pausing and resuming behind the scenes.  The graph nodes are still there, but you don't have to think about them.",
+          "id": "sandboxing",
+          "label": "Sandboxing",
+          "startSec": 236.37608566244043,
+          "endSec": 284.27608566244044,
+          "text": "We know AI models make mistakes. Maybe your agent writes buggy tool code that deletes files. Or maybe a prompt injection tells it to send your data to a competitor.\n To keep the surprises firewalled off, Tactus runs your code in a restricted Lua sandbox inside a networkless container. That answers one security question: what can it touch?\n The other question is the one that matters most: what can it steal? Tactus keeps the runtime secretless: keys and privileged calls live outside the container, behind a broker boundary.\n It\u2019s like letting a burglar into an empty building. Even if they get in, there\u2019s nothing valuable inside to take. Your procedure can use powerful tools without ever handing secrets to the agent runtime.",
           "bullets": []
         }
       ]
@@ -155,15 +107,15 @@
     {
       "id": "nutshell",
       "title": "Tactus in a Nutshell",
-      "startSec": 401.7861772694692,
-      "endSec": 426.3361772694692,
+      "startSec": 284.27608566244044,
+      "endSec": 300.5760856624405,
       "cues": [
         {
           "id": "nutshell",
           "label": "Nutshell",
-          "startSec": 401.7861772694692,
-          "endSec": 426.3361772694692,
-          "text": "In a nutshell, Tactus is a programming language for getting things done with agents. You arm an agent with the tools it needs to follow a procedure, you run it in a double-walled sandboxed, and then you use guardrails to guide it toward the finish line.\n We keep the monkey in a cage along with exactly the resources it needs to do the work, instead of handing it a razor blade and hoping for the best.",
+          "startSec": 284.27608566244044,
+          "endSec": 300.5760856624405,
+          "text": "In a nutshell, Tactus is the interface layer for the new age of computing.\n It gives you high-level concepts to construct solutions, a durable runtime to handle human interaction, and a safety architecture to keep the monkey in the box.",
           "bullets": []
         }
       ]
@@ -171,14 +123,14 @@
     {
       "id": "cta",
       "title": "Get Started",
-      "startSec": 426.3361772694692,
-      "endSec": 433.98617726946924,
+      "startSec": 300.5760856624405,
+      "endSec": 308.22608566244054,
       "cues": [
         {
           "id": "cta",
           "label": "CTA",
-          "startSec": 426.3361772694692,
-          "endSec": 433.98617726946924,
+          "startSec": 300.5760856624405,
+          "endSec": 308.22608566244054,
           "text": "Ready to try it? Visit the Tactus website to download the IDE and run your first procedure.",
           "bullets": []
         }

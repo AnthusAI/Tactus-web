@@ -144,20 +144,17 @@ export const IntroVideo: React.FC<IntroVideoProps> = ({
         return <ParadigmScene scene={scene} ttsStartsSec={getCueTtsStarts(scene.id, "paradigm")} />;
       case "hello_world":
         return <HelloWorldScene scene={scene} ttsStartsSec={getCueTtsStarts(scene.id, "hello_world")} />;
-      case "tools":
-        return <ToolsScene scene={scene} ttsStartsSec={getCueTtsStarts(scene.id, "tools")} />;
-      case "security":
-        return <SecurityScene scene={scene} ttsStartsSec={getCueTtsStarts(scene.id, "security")} />;
+      case "interface":
+        return <InterfaceScene 
+          scene={scene} 
+          supervisedStarts={getCueTtsStarts(scene.id, "interface_supervised")}
+          unsupervisedStarts={getCueTtsStarts(scene.id, "interface_unsupervised")}
+          hitlStarts={getCueTtsStarts(scene.id, "interface_hitl")}
+        />;
       case "defense_layers":
         return <DefenseLayersScene scene={scene} ttsStartsSec={getCueTtsStarts(scene.id, "defense_layers")} />;
-      case "least_privilege":
-        return <LeastPrivilegeScene scene={scene} ttsStartsSec={getCueTtsStarts(scene.id, "least_privilege")} />;
-      case "guardrails":
-        return <GuardrailsScene scene={scene} ttsStartsSec={getCueTtsStarts(scene.id, "guardrails")} />;
-      case "hitl":
-        return <HitlScene scene={scene} ttsStartsSec={getCueTtsStarts(scene.id, "hitl")} />;
-      case "graphs":
-        return <GraphsScene scene={scene} ttsStartsSec={getCueTtsStarts(scene.id, "graphs")} />;
+      case "sandboxing":
+        return <SandboxingScene scene={scene} ttsStartsSec={getCueTtsStarts(scene.id, "sandboxing")} />;
       case "nutshell":
         return <NutshellScene scene={scene} ttsStartsSec={getCueTtsStarts(scene.id, "nutshell")} />;
       case "cta":
@@ -510,7 +507,7 @@ const DefenseLayersScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = (
           marginBottom: 40,
         }}
       >
-        <TitleBlock>Defense in Depth</TitleBlock>
+        <TitleBlock>Levels of Control</TitleBlock>
       </H2>
 
       <div
@@ -872,3 +869,221 @@ const NutshellScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ sce
   );
 };
 
+const InterfaceScene: React.FC<{ 
+  scene: Scene; 
+  supervisedStarts: number[];
+  unsupervisedStarts: number[];
+  hitlStarts: number[];
+}> = ({ scene, supervisedStarts, unsupervisedStarts, hitlStarts }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const localSec = frame / fps;
+  const timeMs = localSec * 1000;
+  
+  // Convert to scene-local times
+  const supervisedLocal = supervisedStarts.map(s => s - scene.startSec);
+  const unsupervisedLocal = unsupervisedStarts.map(s => s - scene.startSec);
+  const hitlLocal = hitlStarts.map(s => s - scene.startSec);
+
+  const supervisedStart = supervisedLocal[0] ?? 0;
+  const unsupervisedStart = unsupervisedLocal[0] ?? supervisedStart + 8;
+  const monkeyStart = unsupervisedLocal[1] ?? unsupervisedStart + 4;
+  const hitlStart = hitlLocal[0] ?? monkeyStart + 4;
+
+  const titleAnimation = spring({
+    frame,
+    fps,
+    config: { damping: 100, stiffness: 200, mass: 0.5 },
+  });
+
+  const showSupervised = localSec >= supervisedStart && localSec < unsupervisedStart;
+  const showUnsupervised = localSec >= unsupervisedStart && localSec < monkeyStart;
+  const showMonkey = localSec >= monkeyStart && localSec < hitlStart;
+  const showHitl = localSec >= hitlStart;
+
+  const monkeyAnimation = spring({
+    frame: frame - secondsToFrames(Math.max(0, monkeyStart), fps),
+    fps,
+    config: { damping: 100, stiffness: 120, mass: 0.8 },
+  });
+
+  return (
+    <Layout justify="flex-start" style={{ paddingTop: 96 }}>
+      <H2
+        style={{
+          opacity: titleAnimation,
+          transform: `translateY(${(1 - titleAnimation) * 40}px)`,
+          marginBottom: 36,
+        }}
+      >
+        <TitleBlock>The Interface Layer</TitleBlock>
+      </H2>
+
+      {/* Closely Supervised */}
+      {showSupervised && (
+        <div
+          style={{
+            width: "100%",
+            maxWidth: 1850,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            opacity: animIn(localSec - supervisedStart),
+            transform: `translateY(12px)`,
+          }}
+        >
+          <div style={{ width: "100%" }}>
+            <HumanInTheLoopDiagram
+              theme="light"
+              time={timeMs - supervisedStart * 1000}
+              scenario={HITL_PRESETS.CLOSELY_SUPERVISED.scenario}
+              config={{
+                ...HITL_PRESETS.CLOSELY_SUPERVISED.config,
+                stepBackAfterItems: 1,
+                outageDuration: 8000
+              }}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Unsupervised Monkey */}
+      {showUnsupervised && (
+        <div
+          style={{
+            width: "100%",
+            maxWidth: 1850,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            opacity: animIn(localSec - unsupervisedStart),
+            transform: `translateY(12px)`,
+          }}
+        >
+          <div style={{ width: "100%" }}>
+            <HumanInTheLoopDiagram
+              theme="light"
+              time={timeMs - unsupervisedStart * 1000}
+              scenario={HITL_PRESETS.UNSUPERVISED_MONKEY.scenario}
+              config={HITL_PRESETS.UNSUPERVISED_MONKEY.config}
+              cycleMonkey={HITL_PRESETS.UNSUPERVISED_MONKEY.cycleMonkey}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Monkey with Razor Blade */}
+      {showMonkey && (
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+            <Img
+              src={monkeyImg}
+              style={{
+                width: 600,
+                opacity: monkeyAnimation,
+                transform: `translateX(${(1 - monkeyAnimation) * 200}px)`,
+                marginBottom: 24,
+              }}
+            />
+            <Body
+              size="md"
+              weight={700}
+              style={{
+                opacity: monkeyAnimation,
+                transform: `translateX(${(1 - monkeyAnimation) * 200}px)`,
+                color: "#c7007e",
+                textAlign: "center",
+                fontFamily: '"Source Sans 3", sans-serif',
+                margin: 0,
+                fontSize: 32,
+              }}
+            >
+              Like giving a monkey a razor blade
+            </Body>
+          </div>
+        </div>
+      )}
+
+      {/* Human Steps Back (HITL) */}
+      {showHitl && (
+        <div
+          style={{
+            width: "100%",
+            maxWidth: 1850,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            opacity: animIn(localSec - hitlStart),
+            transform: `translateY(12px)`,
+          }}
+        >
+          <div style={{ width: "100%" }}>
+            <HumanInTheLoopDiagram
+              theme="light"
+              time={timeMs - hitlStart * 1000}
+              scenario={HITL_PRESETS.HUMAN_STEPS_BACK.scenario}
+              config={HITL_PRESETS.HUMAN_STEPS_BACK.config}
+            />
+          </div>
+        </div>
+      )}
+    </Layout>
+  );
+};
+
+const SandboxingScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ scene, ttsStartsSec }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const localSec = frame / fps;
+  const cueStartsLocal = ttsStartsSec.map((s) => s - scene.startSec);
+  const beat1 = cueStartsLocal[0] ?? 0;
+
+  const titleAnimation = spring({
+    frame,
+    fps,
+    config: { damping: 100, stiffness: 200, mass: 0.5 },
+  });
+
+  const diagramAnimation = spring({
+    frame: frame - 12,
+    fps,
+    config: { damping: 90, stiffness: 160, mass: 0.7 },
+  });
+
+  return (
+    <Layout justify="flex-start" style={{ paddingTop: 96 }}>
+      <H2
+        style={{
+          opacity: titleAnimation,
+          transform: `translateY(${(1 - titleAnimation) * 40}px)`,
+          marginBottom: 40,
+        }}
+      >
+        <TitleBlock>A Sandbox in a Container</TitleBlock>
+      </H2>
+
+      <div
+        style={{
+          opacity: diagramAnimation,
+          transform: `translateY(${(1 - diagramAnimation) * 24}px)`,
+          width: "100%",
+          maxWidth: 1850,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <div style={{ width: "100%" }}>
+          <ContainerSandboxDiagram theme="light" />
+        </div>
+      </div>
+    </Layout>
+  );
+};

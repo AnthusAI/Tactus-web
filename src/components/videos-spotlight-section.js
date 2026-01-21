@@ -11,6 +11,7 @@ const VideosSpotlightSection = ({
   featuredIds = ["why-new-language", "guardrails"],
   to = "/videos/",
   ctaText = "Watch videos",
+  ctaVariant = "secondary",
   withContainer = true,
   withPadding = true,
   mutedBackground = false,
@@ -43,7 +44,7 @@ const VideosSpotlightSection = ({
         <p className={styles.moreCopy}>
           {moreCount > 0 ? `Plus ${moreCount} more video${moreCount === 1 ? "" : "s"} on the videos page.` : null}
         </p>
-        <Button to={to} variant="secondary" shadow>
+        <Button to={to} variant={ctaVariant} shadow>
           {ctaText}
         </Button>
       </div>

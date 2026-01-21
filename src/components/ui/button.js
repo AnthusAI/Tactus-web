@@ -5,7 +5,7 @@ import * as styles from "./button.module.css"
 const Button = ({
   to,
   href,
-  variant = "primary", // "primary" | "secondary"
+  variant = "primary", // "primary" | "secondary" | "tertiary"
   size = "medium", // "medium" | "large"
   shadow = false, // boolean to enable flat shadow
   as: Component = "button", // allow overriding the component (e.g. "div")

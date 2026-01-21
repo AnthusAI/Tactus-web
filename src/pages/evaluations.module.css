@@ -1,0 +1,129 @@
+.page {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: var(--size-content);
+  padding: 0 var(--size-gutter);
+  width: 100%;
+  --breakout-content-width: 100%;
+}
+
+.container p {
+  max-width: none;
+}
+
+.section {
+  padding: var(--space-6) 0;
+}
+
+.bgMuted {
+  background: var(--color-surface-2);
+}
+
+.hero {
+  padding: var(--space-6) 0 var(--space-5);
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: var(--font-sx);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: var(--space-3);
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: var(--space-4);
+}
+
+.lede {
+  margin: 0;
+  font-size: 1.35rem;
+  line-height: var(--line-height-loose);
+  color: var(--color-text-muted);
+}
+
+.sectionTitle {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 var(--space-4);
+  scroll-margin-top: 100px;
+}
+
+.subsectionTitle {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 650;
+  margin: var(--space-5) 0 var(--space-3);
+  color: var(--color-text);
+  scroll-margin-top: 100px;
+}
+
+.bodyText {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  margin-bottom: var(--space-4);
+  color: var(--color-text);
+}
+
+.bodyTextMuted {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  margin-bottom: var(--space-4);
+  color: var(--color-text-muted);
+}
+
+.bodyText strong {
+  color: var(--color-text);
+  font-weight: 650;
+}
+
+.diagramWrap {
+  margin: var(--space-5) 0;
+  background: var(--color-surface);
+  border-radius: 20px;
+  padding: 16px;
+}
+
+.diagram {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.subtleCard {
+  background: var(--color-surface);
+  border-radius: 16px;
+  padding: var(--space-4);
+  margin: var(--space-5) 0;
+}
+
+.checkList {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.checkList li {
+  margin: 0.35rem 0;
+}
+
+.kicker {
+  margin: 0 0 var(--space-2);
+  font-family: var(--font-sans);
+  font-weight: 900;
+  font-size: var(--font-sm);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}

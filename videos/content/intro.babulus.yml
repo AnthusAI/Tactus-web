@@ -2,9 +2,6 @@ poster_time: "48s"
 
 audio:
   # Environment-based providers (BABULUS_ENV=development, aws, azure, or production)
-  # Development: dry-run (free, instant)
-  # AWS/Azure: dry-run (SFX/music not needed for TTS testing)
-  # Production: elevenlabs (costs credits, high quality)
   sfx_provider:
     development: dry-run
     aws: dry-run
@@ -17,63 +14,40 @@ audio:
     production: elevenlabs
 
 voiceover:
-  # Environment-based TTS provider
-  # Development: openai (fast iteration)
-  # AWS: aws-polly (uses AWS credentials)
-  # Azure: azure-speech (uses API key)
-  # Production: elevenlabs (best quality)
   provider:
     development: openai
-    marin: openai                  # Test environment with marin voice
+    marin: openai
     aws: aws
     azure: azure
     production: elevenlabs
 
-  # Optional: Override model per environment
   model:
-    development: "gpt-4o-mini-tts"  # OpenAI mini model (cheap, fast)
-    marin: "gpt-4o-mini-tts"        # OpenAI mini model
-    production: "eleven_v3"         # ElevenLabs v3 (best quality)
+    development: "gpt-4o-mini-tts"
+    marin: "gpt-4o-mini-tts"
+    production: "eleven_v3"
 
-  # Optional: Override voice per environment
   voice:
-    development: "echo"            # OpenAI voice
-    marin: "marin"                 # OpenAI marin voice
-    production: "iE8bC87uXfqLphg7Abzw"  # ElevenLabs voice ID
+    development: "echo"
+    marin: "marin"
+    production: "iE8bC87uXfqLphg7Abzw"
 
-  # Automatically create/update an ElevenLabs pronunciation dictionary from lexemes below,
-  # and attach it to every TTS request.
   pronunciation_dictionary:
     name: tactus
   pronunciations:
     - lexeme:
         grapheme: "Tactus"
-        # Option 1: alias (simple phonetic guide, good for basic cases)
-        # alias: "tack-tus"
-        # Option 2: phoneme with CMU Arpabet (RECOMMENDED for precise control)
         phoneme: "T AE1 K T AH0 S"
         alphabet: "cmu-arpabet"
-        # Option 3: phoneme with IPA (alternative, less reliable with AI models)
-        # phoneme: "ˈtæktəs"
-        # alphabet: "ipa"
 
-  # Provider-specific sample rates:
-  # - OpenAI: 24000 Hz
-  # - AWS Polly (PCM): 8000 or 16000 Hz only
-  # - Azure Speech: 8000, 16000, 24000, or 44100 Hz
-  # - ElevenLabs: 44100 Hz (also supports 22050, 24000, others)
   sample_rate_hz:
-    development: 24000  # OpenAI native sample rate
-    marin: 24000        # OpenAI marin voice native sample rate
-    aws: 16000          # AWS Polly PCM maximum quality
-    azure: 24000        # Azure Speech (good balance)
-    production: 44100   # ElevenLabs native sample rate
+    development: 24000
+    marin: 24000
+    aws: 16000
+    azure: 24000
+    production: 44100
 
-  # Optional: add natural variation between cues (repeatable via seed).
   seed: 1337
-  # Helps avoid the very first word being clipped by initial decode/playback startup.
   lead_in_seconds: 0.25
-  # Disable global trimming to avoid accidentally cutting words; use per-segment trim only when needed.
   trim_end_seconds: 0
   pause_between_items_gaussian:
     mean_seconds: 0.18
@@ -105,34 +79,34 @@ scenes:
           segments:
             - pause_seconds: 0.6
             - voice: >
-                Since the dawn of computing over 80 years ago, programming has meant the same thing: anticipate every scenario and write code for it.
+                Since the dawn of computing, programming has always meant the same thing: anticipate every scenario and write code for it.
                 If you miss a case, the program breaks.
             - pause_seconds: 0.35
             - voice: >
                 But tool‑using agents flip the script.
-                Instead of explicitly handling every possible scenario, you depend on AI models to make decisions and take actions for you.
+                Instead of explicitly handling every possible scenario, you depend on AI models to make decisions and take action for you.
             - pause_seconds: 0.18
             - voice: >
-                In this new kind of programming, first you start with an AI agent, a language model.
+                In this new kind of programming, first you start with an agent—a language model.
             - pause_seconds: 0.18
             - voice: >
-                then you give it a tool.
+                Then you give it a tool.
             - pause_seconds: 0.18
             - voice: >
-                And then you assign it a procedure to follow,
+                And then you assign it a procedure to follow.
             - pause_seconds: 0.18
             - voice: >
-                and you put guardrails around that, to guide it toward the goal.  This is a completely new way to automate work with computers.
+                This is a completely new way to automate work with computers.
       - id: paradigm_wrap
         label: "Paradigm Wrap"
         voice:
           segments:
             - pause_seconds: 0.4
             - voice: >
-                Okay...  But how do you do that, exactly?  Is there some new way to write a computer program that's about giving agents tools and procedures and guardrails instead of a bunch of if/else statements?
+                Okay... But how do you do that, exactly? Is there some new way to write a computer program that's about giving agents tools and procedures instead of a bunch of if/then statements?
             - pause_seconds: 0.6
             - voice: >
-                Yes.  There's a new kind of programming language for this new kind of program.  Tactus is a programming language for tool‑using agents.
+                Yes. Tactus is a programming language for this new paradigm.
 
   - id: hello_world
     title: "Hello, World"
@@ -142,59 +116,52 @@ scenes:
         voice:
           segments:
             - voice: >
-                Tactus procedures are computer programs that include imperative instructions, like any other programming language, but it has first-class, high-level constructs for the building blocks of AI systems: AI models, tools, context, and prompts.
+                Tactus procedures are computer programs that include imperative instructions, like any other language, but they have first-class, high-level constructs for the building blocks of the problem space: agents, tools, context, and prompts.
             - pause_seconds: 0.35
             - voice: >
-                You run Tactus procedures just like you wold run a program in any other language like Python or Node, as command-line programs or by embedding them in applications.
+                You run Tactus procedures just like you would run a program in any other language like Python or Node—as command-line programs or by embedding them in applications.
             - voice: >
-                Here's an exmaple of running a hello-world program from the command line.  The procedure runs and returns the response from the agent.  This code doesn't use an AI framework like Langchain or OpenAI's SDK because with Tactus code those capabilities are built right in.
+                Here's an example of running a hello-world program. The procedure runs and returns the response from the agent. It doesn't use a framework because the capabilities are built right into the language.
             - pause_seconds: 0.2
 
-  - id: tools
-    title: "The AI Engineer's Toolbox"
+  - id: interface
+    title: "The Interface Layer"
     cues:
-      - id: tools
-        label: "Tools"
+      - id: interface_supervised
+        label: "Closely Supervised"
         voice:
           segments:
             - voice: >
-                Tactus makes it easy to define tools for your agents.
-                You can define tools directly in your procedure using the Tactus programming language, which is an extension of Lua.
+                Connecting to agents and tools is just the beginning.  The real challenge is the interface layer between the agent and the operator.
             - pause_seconds: 0.4
             - voice: >
-                You can also use Python functions when that makes more sense, including code written in the runtime sandbox by the AI agents you set up in your Tactus code.
+                The common interface for agents today is chat.  You watch every step, you steer, and you stop the agent if it goes sideways. That works great for some things but depends on the human operator.
             - pause_seconds: 0.4
             - voice: >
-                Or drop down to the shell to run commands like git, ffmpeg, or your own CLIs inside the container.  Maybe you want to make a procedure that can write its own shell scripts to do something complex.
+                The user becomes a bottleneck.  When you step away to eat or sleep, the whole system stops doing anything. If you're trying to process a lot of items at scale then your capacity is limited by the human operator.You can't scale this up.
             - pause_seconds: 0.4
-            - voice: >
-                And of course, you can connect to any MCP server, either local or remote.
-
-  - id: security
-    title: "Tools Are Sharp"
-    cues:
-      - id: security
-        label: "Security"
-        audio:
-          - define: whoosh
-            kind: sfx
-            volume: 55%
-            prompt: "Fast cinematic whoosh transition, deep bass, airy, clean, no harsh distortion, no voice, no vocals"
-            duration_seconds: 3
-            pause_seconds: 0.0
-            variants: 8
-            pick: 2
+      - id: interface_unsupervised
+        label: "Unsupervised"
         voice:
           segments:
-            - pause_seconds: 0.15
             - voice: >
-                Okay, so we give powerful tools to AI agents and let them run around unsupervised.  What could possibly go wrong?
-            - pause_seconds: 0.25
+                You could remove the human entirely and let the agent run free. This scales beautifully—you can process thousands of items at machine speed.
+            - pause_seconds: 0.4
             - voice: >
-                Running tool‑using agents unattended is like giving a monkey a razor blade and hoping for the best.  And "hope" is not a strategy for scaling AI in production.
-            - pause_seconds: 0.25
+                But running an agent this way is like giving a monkey a razor blade.  And scaling that up to industrial levels is a recipe for disaster.
+            - pause_seconds: 0.4
+      - id: interface_hitl
+        label: "Durable HITL"
+        voice:
+          segments:
             - voice: >
-                You want to get things done without without turning your laptop or cloud account into a crime scene.  You need ways to delegate responsibility to AI agents in a safe and secure way, where you still have control but where you don't have to sit there closely supervising them.
+                Tactus provides a new interface layer between the human and the computer. It enables agents to send requests to the human operator and wait for a response.  Requests can queue up, so that the system can continue running while the human operator isn't available.
+            - pause_seconds: 0.4
+            - voice: >
+                When a procedure needs a human—to approve a risky action, or to provide a missing detail—it pauses. It doesn't use any compute while it's suspended, and it doesn't depend on the runtime to continue running in memory.
+            - pause_seconds: 0.4
+            - voice: >
+                It can resume hours or days later, exactly where it left off. This lets you move from synchronous chat to asynchronous, industrial-scale workflows.
 
   - id: defense_layers
     title: "Defense in Depth"
@@ -204,118 +171,51 @@ scenes:
         voice:
           segments:
             - voice: >
-                Tactus delivers the safety and security through defense in depth: multiple layers of guardrails, where each layer reduces a different class of risk.
+                Tactus gives you levers of control at multiple layers. Because no single layer is sufficient on its own.
             - pause_seconds: 0.5
             - voice: >
-                Strict cost limits prevent billing surprises.
+                Cost and limits to prevent runaway loops and billing surprises.
             - pause_seconds: 0.4
             - voice: >
-                Prompt engineering guides model behavior.
+                Prompt engineering to guide model behavior.
             - pause_seconds: 0.4
             - voice: >
-                Context engineering restricts information flow to the agent.
+                Context engineering to ensure the model has the right information, not just all information.
             - pause_seconds: 0.4
             - voice: >
-                Model selection lets you balance capability and data privacy.
+                Model selection for the right capabilities and safety profiles.
             - pause_seconds: 0.4
             - voice: >
-                A secretless broker keeps credentials out of the sandbox.
+                Tool selection. Give the agent only the capabilities it needs.
             - pause_seconds: 0.4
             - voice: >
-                Code sandboxing restricts system access.
+                Code sandboxing in isolated environments.
             - pause_seconds: 0.4
             - voice: >
-                And container isolation ensures a clean environment for every run.
+                And container isolation to constrain what the agent can touch, and to firewall side effects inside an ephemeral container.
+            - pause_seconds: 0.4
 
-
-  - id: least_privilege
-    title: "Least Privilege by Design"
+  - id: sandboxing
+    title: "Sandboxing"
     cues:
-      - id: least_privilege
-        label: "Least Privilege"
+      - id: sandboxing
+        label: "Sandboxing"
         voice:
           segments:
             - voice: >
-                Each of these guardrails enforces a principle: least privilege.
+                We know AI models make mistakes. Maybe your agent writes buggy tool code that deletes files. Or maybe a prompt injection tells it to send your data to a competitor.
             - pause_seconds: 0.4
             - voice: >
-                Tactus limits what agents can do, along multiple dimensions.
-            - pause_seconds: 0.35
-            - voice: >
-                Minimal toolsets—only what the procedure needs.
-            - pause_seconds: 0.3
-            - voice: >
-                Curated context—relevant information, not everything.
-            - pause_seconds: 0.3
-            - voice: >
-                Network isolation—the runtime is networkless by default.
-            - pause_seconds: 0.3
-            - voice: >
-                A secretless broker—credentials stay outside the container.
-            - pause_seconds: 0.3
-            - voice: >
-                And temporal gating, which means that tools and information become available only when the workflow stage requires them.
-
-  - id: guardrails
-    title: "Sandboxed and Contained"
-    cues:
-      - id: guardrails
-        label: "Guardrails"
-        audio:
-          - use: whoosh
-            kind: sfx
-            volume: 35%
-            pause_seconds: 0.0
-            pick: 2
-        voice:
-          segments:
-            - voice: >
-                We know AI models make mistakes and that things can go wrong.  Maybe your agent writes buggy tool code that deletes files.  Or maybe some hacker injects prompts that tell your agent to send all your API keys to them.  We have to plan for failure.  Complex, unanticipated failures.
-            - pause_seconds: 0.4
-            - voice: >
-                To keep the surprises firewalled off, Tactus runs your code in a restricted Lua sandbox. It has no network access and can only touch what you explicitly share.
+                To keep the surprises firewalled off, Tactus runs your code in a restricted Lua sandbox inside a networkless container.
+                That answers one security question: what can it touch?
             - pause_seconds: 0.5
             - voice: >
-                That sandbox runs in a fresh, ephemeral container for every execution—like a Lambda function. It sees only your project folder, which you can mount read-only to prevent accidents.
+                The other question is the one that matters most: what can it steal?
+                Tactus keeps the runtime secretless: keys and privileged calls live outside the container, behind a broker boundary.
             - pause_seconds: 0.5
             - voice: >
-                When the agent needs privileged access—like calling an AI model or a credentialed API—it goes through a broker outside the sandbox.
-            - pause_seconds: 0.5
-            - voice: >
-                This way, your API keys stay safe outside the container. Your procedure can use powerful third-party tools without ever exposing your credentials to the AI or the code it writes.
-
-  - id: hitl
-    title: "Human-in-the-Loop"
-    cues:
-      - id: hitl
-        label: "HITL"
-        voice:
-          segments:
-            - voice: >
-                Even with guardrails, you still need humans at the moments that matter.
-                If an agent is about to take an irreversible action, you want a human to approve it.
-            - pause_seconds: 0.4
-            - voice: >
-                And sometimes the right outcome isn’t yes or no — it’s: send it back for edits.
-                A procedure can draft an artifact, ask for review, and then continue with the revised version.
-            - pause_seconds: 0.4
-            - voice: >
-                And it’s durable. The procedure can pause completely while it waits, without using any compute or incurring any costs, and then resume hours or days or years later, exactly where it left off.  You don't need the procedure to keep running in memory to be able to resume it later.
-                That’s what really makes it possible to scale up to industrial levels.
-
-  - id: graphs
-    title: "No Graphs Required"
-    cues:
-      - id: graphs
-        label: "Compare"
-        voice:
-          segments:
-            - voice: >
-                A Python program can't continue again if the Python interpreter stops running.  In most programming languages, achiving durable program execution forces you into something like a graph workflow, where you have to write code that's structured around nodes, edges, and conditional edges.
-            - pause_seconds: 0.35
-            - voice: >
-                With Tactus, it’s transparent.
-                You write normal code, and the runtime handles pausing and resuming behind the scenes.  The graph nodes are still there, but you don't have to think about them.
+                It’s like letting a burglar into an empty building. Even if they get in, there’s nothing valuable inside to take.
+                Your procedure can use powerful tools without ever handing secrets to the agent runtime.
 
   - id: nutshell
     title: "Tactus in a Nutshell"
@@ -326,11 +226,11 @@ scenes:
           segments:
             - pause_seconds: 1.2
             - voice: >
-                In a nutshell, Tactus is a programming language for getting things done with agents.
-                You arm an agent with the tools it needs to follow a procedure, you run it in a double-walled sandboxed, and then you use guardrails to guide it toward the finish line.
+                In a nutshell, Tactus is the interface layer for the new age of computing.
             - pause_seconds: 0.35
             - voice: >
-                We keep the monkey in a cage along with exactly the resources it needs to do the work, instead of handing it a razor blade and hoping for the best.
+                It gives you high-level concepts to construct solutions, a durable runtime to handle human interaction, and a safety architecture to keep the monkey in the box.
+            - pause_seconds: 0.35
 
   - id: cta
     title: "Get Started"

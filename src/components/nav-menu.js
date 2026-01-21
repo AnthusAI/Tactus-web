@@ -16,6 +16,9 @@ export const NAV_CONFIG = {
         { label: 'Why a New Language?', to: '/why-new-language/' },
         { label: 'The AI Engineer’s Toolbox', to: '/ai-engineers-toolbox/' },
         { label: 'Guardrails for Agent Autonomy', to: '/guardrails/' },
+        { label: 'Validation', to: '/validation/' },
+        { label: 'Behavior Specifications', to: '/specifications/' },
+        { label: 'Evaluations', to: '/evaluations/' },
       ]
     },
     {
@@ -26,6 +29,7 @@ export const NAV_CONFIG = {
         { label: 'Download', to: '/download/' },
       ]
     },
+    /*
     {
       id: "example-usage",
       label: "Example Usage",
@@ -36,6 +40,7 @@ export const NAV_CONFIG = {
         { label: "Self-Evolving Agents", to: "/examples/self-evolving-agents/" },
       ],
     },
+    */
     {
       id: "resources",
       label: "Resources",

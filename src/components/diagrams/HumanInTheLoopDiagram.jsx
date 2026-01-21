@@ -532,7 +532,7 @@ const HumanInTheLoopDiagram = ({
   const cFromHumanQueue = { x: (humanQueueX + agentCenter.x) / 2, y: 260 }
 
   // Agent Exit (Arc OVER Human Queue)
-  const cAgentExit = { x: 300, y: 80 } 
+  const cAgentExit = { x: 300, y: 105 } 
 
   // Human Exit (Short arc to right)
   const cHumanExit = { x: 370, y: 240 }
@@ -1162,6 +1162,8 @@ const HumanInTheLoopDiagram = ({
   
   const targetHumanX = isCloselySupervised ? agentCenter.x + 80 : humanCenter.x
 
+  const activePathOpacity = theme === 'dark' ? 0.6 : 0.2
+
   return (
     <svg
       className={className}
@@ -1174,7 +1176,7 @@ const HumanInTheLoopDiagram = ({
         background: "transparent",
         ...style,
       }}
-      viewBox="0 70 460 220"
+      viewBox="0 100 460 180"
     >
       <defs>
         <marker id="hitlArrow" viewBox="0 -5 10 10" refX={8} refY={0} markerWidth={4} markerHeight={4} orient="auto">
@@ -1209,24 +1211,24 @@ const HumanInTheLoopDiagram = ({
       )}
 
       {/* Path: Input -> Agent */}
-      <path d={`M ${vInputToAgentStart.x},${vInputToAgentStart.y} Q ${cInputToAgent.x},${cInputToAgent.y} ${vInputToAgentEnd.x},${vInputToAgentEnd.y}`} fill="none" stroke={t.primary} strokeWidth={2} strokeDasharray="4 4" markerEnd="url(#hitlArrow)" style={{ transition: "opacity 0.3s", color: t.primary }} opacity={showInputPath ? 0.2 : 0} />
+      <path d={`M ${vInputToAgentStart.x},${vInputToAgentStart.y} Q ${cInputToAgent.x},${cInputToAgent.y} ${vInputToAgentEnd.x},${vInputToAgentEnd.y}`} fill="none" stroke={t.primary} strokeWidth={2} strokeDasharray="4 4" markerEnd="url(#hitlArrow)" style={{ transition: "opacity 0.3s", color: t.primary }} opacity={showInputPath ? activePathOpacity : 0} />
 
       {/* Path: Agent -> Human Queue */}
       {!isAutonomous && (
-        <path d={`M ${vToQueueStart.x},${vToQueueStart.y} Q ${cToHumanQueue.x},${cToHumanQueue.y} ${vToQueueEnd.x},${vToQueueEnd.y}`} fill="none" stroke={t.primary} strokeWidth={2} strokeDasharray="4 4" markerEnd="url(#hitlArrow)" style={{ transition: "opacity 0.3s", color: t.primary }} opacity={showToPath ? 0.2 : 0} />
+        <path d={`M ${vToQueueStart.x},${vToQueueStart.y} Q ${cToHumanQueue.x},${cToHumanQueue.y} ${vToQueueEnd.x},${vToQueueEnd.y}`} fill="none" stroke={t.primary} strokeWidth={2} strokeDasharray="4 4" markerEnd="url(#hitlArrow)" style={{ transition: "opacity 0.3s", color: t.primary }} opacity={showToPath ? activePathOpacity : 0} />
       )}
 
       {/* Path: Human Queue -> Agent */}
       {!isAutonomous && (
-        <path d={`M ${vFromQueueStart.x},${vFromQueueStart.y} Q ${cFromHumanQueue.x},${cFromHumanQueue.y} ${vFromQueueEnd.x},${vFromQueueEnd.y}`} fill="none" stroke={t.primary} strokeWidth={2} strokeDasharray="4 4" markerEnd="url(#hitlArrow)" style={{ transition: "opacity 0.3s", color: t.primary }} opacity={showFromPath ? 0.2 : 0} />
+        <path d={`M ${vFromQueueStart.x},${vFromQueueStart.y} Q ${cFromHumanQueue.x},${cFromHumanQueue.y} ${vFromQueueEnd.x},${vFromQueueEnd.y}`} fill="none" stroke={t.primary} strokeWidth={2} strokeDasharray="4 4" markerEnd="url(#hitlArrow)" style={{ transition: "opacity 0.3s", color: t.primary }} opacity={showFromPath ? activePathOpacity : 0} />
       )}
 
       {/* Path: Agent -> Exit (Over Human Queue) */}
-      <path d={`M ${vAgentExitStart.x},${vAgentExitStart.y} Q ${cAgentExit.x},${cAgentExit.y} ${vAgentExitEnd.x},${vAgentExitEnd.y}`} fill="none" stroke={t.primary} strokeWidth={2} strokeDasharray="4 4" markerEnd="url(#hitlArrow)" style={{ transition: "opacity 0.3s", color: t.primary }} opacity={showAgentExitPath ? 0.2 : 0} />
+      <path d={`M ${vAgentExitStart.x},${vAgentExitStart.y} Q ${cAgentExit.x},${cAgentExit.y} ${vAgentExitEnd.x},${vAgentExitEnd.y}`} fill="none" stroke={t.primary} strokeWidth={2} strokeDasharray="4 4" markerEnd="url(#hitlArrow)" style={{ transition: "opacity 0.3s", color: t.primary }} opacity={showAgentExitPath ? activePathOpacity : 0} />
 
       {/* Path: Human -> Exit */}
       {!isAutonomous && (
-        <path d={`M ${vHumanExitStart.x},${vHumanExitStart.y} Q ${cHumanExit.x},${cHumanExit.y} ${vHumanExitEnd.x},${vHumanExitEnd.y}`} fill="none" stroke={t.primary} strokeWidth={2} strokeDasharray="4 4" markerEnd="url(#hitlArrow)" style={{ transition: "opacity 0.3s", color: t.primary }} opacity={showHumanExitPath ? 0.2 : 0} />
+        <path d={`M ${vHumanExitStart.x},${vHumanExitStart.y} Q ${cHumanExit.x},${cHumanExit.y} ${vHumanExitEnd.x},${vHumanExitEnd.y}`} fill="none" stroke={t.primary} strokeWidth={2} strokeDasharray="4 4" markerEnd="url(#hitlArrow)" style={{ transition: "opacity 0.3s", color: t.primary }} opacity={showHumanExitPath ? activePathOpacity : 0} />
       )}
 
       {/* Brain icon - fades out when monkey is shown */}
@@ -1241,32 +1243,41 @@ const HumanInTheLoopDiagram = ({
       {/* Human Icon with 'Steps Back' Animation */}
       {!isAutonomous && (
           <>
-            <g
-              transform={`translate(${targetHumanX - 32}, ${humanCenter.y - 32})`}
-              style={{
-                  transform: `translate(${targetHumanX - 32 + (isHumanAway ? 60 : 0)}px, ${humanCenter.y - 32}px)`,
-                  opacity: isHumanAway ? 0.3 : 1,
-                  transition: "transform 1s ease-in-out, opacity 1s ease-in-out"
-              }}
-            >
-              <User size={64} color={t.inkSecondary} strokeWidth={1.5} />
+            {/* Icon Group - Outer G handles Base Position, Inner G handles Animation */}
+            <g transform={`translate(${targetHumanX - 32}, ${humanCenter.y - 32})`}>
+              <g
+                style={{
+                    transform: `translateX(${isHumanAway ? 60 : 0}px)`,
+                    opacity: isHumanAway ? 0.3 : 1,
+                    transition: "transform 1s ease-in-out, opacity 1s ease-in-out"
+                }}
+              >
+                <User size={64} color={t.inkSecondary} strokeWidth={1.5} />
+              </g>
             </g>
-            <text
-              x={targetHumanX}
-              y={256}
-              textAnchor="middle"
-              fontSize="11"
-              fill={t.inkSecondary}
-              fontFamily="system-ui, -apple-system, sans-serif"
-              letterSpacing="-0.5"
-              style={{
-                  transform: `translate(${isHumanAway ? 60 : 0}px, 0)`,
-                  opacity: isHumanAway ? 0.3 : 1,
-                  transition: "transform 1s ease-in-out, opacity 1s ease-in-out"
-              }}
-            >
-              Human
-            </text>
+
+            {/* Label Group - Outer G handles Base Position, Inner G handles Animation */}
+            <g transform={`translate(${targetHumanX}, 256)`}>
+              <g
+                style={{
+                    transform: `translateX(${isHumanAway ? 60 : 0}px)`,
+                    opacity: isHumanAway ? 0.3 : 1,
+                    transition: "transform 1s ease-in-out, opacity 1s ease-in-out"
+                }}
+              >
+                <text
+                  x={0}
+                  y={0}
+                  textAnchor="middle"
+                  fontSize="11"
+                  fill={t.inkSecondary}
+                  fontFamily="system-ui, -apple-system, sans-serif"
+                  letterSpacing="-0.5"
+                >
+                  Human
+                </text>
+              </g>
+            </g>
           </>
       )}
 

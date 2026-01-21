@@ -4,7 +4,17 @@ import AIEngineersToolboxDiagram from "./AIEngineersToolboxDiagram"
 const AnimatedAIEngineersToolboxDiagram = (props) => {
   const [progress, setProgress] = React.useState(0)
   const [isVisible, setIsVisible] = React.useState(false)
+  const [isMobile, setIsMobile] = React.useState(false)
   const ref = React.useRef(null)
+
+  // Mobile detection
+  React.useEffect(() => {
+    if (typeof window === 'undefined') return
+    const checkMobile = () => setIsMobile(window.innerWidth < 800)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   // Observer to start animation when visible
   React.useEffect(() => {
@@ -42,7 +52,7 @@ const AnimatedAIEngineersToolboxDiagram = (props) => {
 
   return (
     <div ref={ref} className={props.className} style={props.style}>
-      <AIEngineersToolboxDiagram {...props} progress={progress} />
+      <AIEngineersToolboxDiagram {...props} progress={progress} isMobile={isMobile} />
     </div>
   )
 }

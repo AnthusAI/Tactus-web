@@ -1,6 +1,21 @@
 .root {
+  /* Base styles */
+}
+
+.primary {
   background: var(--color-primary);
   color: var(--color-primary-ink);
+}
+
+.muted {
+  background: var(--color-surface-2);
+  color: var(--color-text);
+}
+
+@media (prefers-color-scheme: dark) {
+  .muted {
+    background: var(--color-bg);
+  }
 }
 
 .bleed {
@@ -18,8 +33,21 @@
   left: 50%;
   width: 100vw;
   transform: translateX(-50%);
-  background: var(--color-primary);
   z-index: -1;
+}
+
+.primary.bleed::before {
+  background: var(--color-primary);
+}
+
+.muted.bleed::before {
+  background: var(--color-surface-2);
+}
+
+@media (prefers-color-scheme: dark) {
+  .muted.bleed::before {
+    background: var(--color-bg);
+  }
 }
 
 @supports (width: 100dvw) {
@@ -55,13 +83,27 @@
   font-size: 2rem;
   font-weight: 700;
   letter-spacing: -0.02em;
+}
+
+.primary .title {
   color: var(--color-primary-ink);
 }
 
+.muted .title {
+  color: var(--color-text);
+}
+
 .body {
-  color: rgba(255, 255, 255, 0.9);
   line-height: var(--line-height-loose);
   font-size: 1.25rem;
+}
+
+.primary .body {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.muted .body {
+  color: var(--color-text);
 }
 
 .body p {

@@ -272,7 +272,7 @@
       "sceneId": "defense_in_depth",
       "cueId": "defense_in_depth",
       "startSec": 118.15000000000002,
-      "endSec": 195.65000000000003,
+      "endSec": 189.3,
       "segments": [
         {
           "type": "tts",
@@ -373,23 +373,23 @@
         {
           "type": "tts",
           "startSec": 166.35000000000002,
-          "endSec": 172.25000000000003,
-          "text": "Tool boundaries. Strict schemas and validation at the edge where the agent touches the world.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails/env/development/segments/defense_in_depth--defense_in_depth--tts--2c62eb7072c4--1.wav",
-          "durationSec": 5.9,
-          "rawDurationSec": 5.9,
+          "endSec": 173.45000000000002,
+          "text": "Tool selection. Give the agent only the capabilities it needs, and stage access over time.\n",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails/env/development/segments/defense_in_depth--defense_in_depth--tts--b4edbaa8c99b--1.wav",
+          "durationSec": 7.1,
+          "rawDurationSec": 7.1,
           "trimEndSec": 0.0
         },
         {
           "type": "pause",
-          "startSec": 172.25000000000003,
-          "endSec": 172.60000000000002,
+          "startSec": 173.45000000000002,
+          "endSec": 173.8,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 172.60000000000002,
-          "endSec": 179.35000000000002,
+          "startSec": 173.8,
+          "endSec": 180.55,
           "text": "Code sandboxing. Isolated execution environments prevent unauthorized system access.\n",
           "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails/env/development/segments/defense_in_depth--defense_in_depth--tts--07c5320c006f--1.wav",
           "durationSec": 6.75,
@@ -398,35 +398,25 @@
         },
         {
           "type": "pause",
-          "startSec": 179.35000000000002,
-          "endSec": 179.70000000000002,
+          "startSec": 180.55,
+          "endSec": 180.9,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 179.70000000000002,
-          "endSec": 185.75000000000003,
-          "text": "Container isolation. Ephemeral containers ensure no state persists between runs.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails/env/development/segments/defense_in_depth--defense_in_depth--tts--a01bf47ca63b--1.wav",
-          "durationSec": 6.05,
-          "rawDurationSec": 6.05,
+          "startSec": 180.9,
+          "endSec": 188.95000000000002,
+          "text": "Container isolation. Ephemeral containers constrain what the runtime can touch and firewall side effects inside the container.\n",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails/env/development/segments/defense_in_depth--defense_in_depth--tts--3b6c262919d1--1.wav",
+          "durationSec": 8.05,
+          "rawDurationSec": 8.05,
           "trimEndSec": 0.0
         },
         {
           "type": "pause",
-          "startSec": 185.75000000000003,
-          "endSec": 186.10000000000002,
+          "startSec": 188.95000000000002,
+          "endSec": 189.3,
           "seconds": 0.35
-        },
-        {
-          "type": "tts",
-          "startSec": 186.10000000000002,
-          "endSec": 195.65000000000003,
-          "text": "And at the foundation: a secretless broker. Credentials live outside the sandbox. The agent requests work but never holds the keys.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails/env/development/segments/defense_in_depth--defense_in_depth--tts--aa32acacb930--1.wav",
-          "durationSec": 9.55,
-          "rawDurationSec": 9.55,
-          "trimEndSec": 0.0
         }
       ]
     },
@@ -434,13 +424,13 @@
       "type": "tts",
       "sceneId": "least_privilege",
       "cueId": "least_privilege",
-      "startSec": 195.65000000000003,
-      "endSec": 232.20000000000005,
+      "startSec": 189.3,
+      "endSec": 225.85000000000002,
       "segments": [
         {
           "type": "tts",
-          "startSec": 195.65000000000003,
-          "endSec": 202.25000000000003,
+          "startSec": 189.3,
+          "endSec": 195.9,
           "text": "Tactus enforces least privilege by design, across multiple dimensions.\n",
           "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails/env/development/segments/least_privilege--least_privilege--tts--c408d85eaeb7--1.wav",
           "durationSec": 6.6,
@@ -449,14 +439,14 @@
         },
         {
           "type": "pause",
-          "startSec": 202.25000000000003,
-          "endSec": 202.65000000000003,
+          "startSec": 195.9,
+          "endSec": 196.3,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 202.65000000000003,
-          "endSec": 208.65000000000003,
+          "startSec": 196.3,
+          "endSec": 202.3,
           "text": "Minimal toolsets: agents get only the tools they need, not a kitchen sink.\n",
           "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails/env/development/segments/least_privilege--least_privilege--tts--c75757f97fad--1.wav",
           "durationSec": 6.0,
@@ -465,14 +455,14 @@
         },
         {
           "type": "pause",
-          "startSec": 208.65000000000003,
-          "endSec": 209.00000000000003,
+          "startSec": 202.3,
+          "endSec": 202.65,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 209.00000000000003,
-          "endSec": 214.30000000000004,
+          "startSec": 202.65,
+          "endSec": 207.95000000000002,
           "text": "Curated context: relevant information only, not everything.\n",
           "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails/env/development/segments/least_privilege--least_privilege--tts--2117203e9478--1.wav",
           "durationSec": 5.3,
@@ -481,14 +471,14 @@
         },
         {
           "type": "pause",
-          "startSec": 214.30000000000004,
-          "endSec": 214.65000000000003,
+          "startSec": 207.95000000000002,
+          "endSec": 208.3,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 214.65000000000003,
-          "endSec": 219.20000000000005,
+          "startSec": 208.3,
+          "endSec": 212.85000000000002,
           "text": "Network isolation: the runtime is networkless by default.\n",
           "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails/env/development/segments/least_privilege--least_privilege--tts--0db78d2d7330--1.wav",
           "durationSec": 4.55,
@@ -497,14 +487,14 @@
         },
         {
           "type": "pause",
-          "startSec": 219.20000000000005,
-          "endSec": 219.55000000000004,
+          "startSec": 212.85000000000002,
+          "endSec": 213.20000000000002,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 219.55000000000004,
-          "endSec": 225.85000000000005,
+          "startSec": 213.20000000000002,
+          "endSec": 219.50000000000003,
           "text": "Secretless broker: credentials stay outside, the agent requests work but never holds keys.\n",
           "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails/env/development/segments/least_privilege--least_privilege--tts--cfa11950c9bf--1.wav",
           "durationSec": 6.3,
@@ -513,14 +503,14 @@
         },
         {
           "type": "pause",
-          "startSec": 225.85000000000005,
-          "endSec": 226.20000000000005,
+          "startSec": 219.50000000000003,
+          "endSec": 219.85000000000002,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 226.20000000000005,
-          "endSec": 232.20000000000005,
+          "startSec": 219.85000000000002,
+          "endSec": 225.85000000000002,
           "text": "Temporal gating: tools become available only when the workflow stage requires them.\n",
           "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails/env/development/segments/least_privilege--least_privilege--tts--c3bb8ae15ee2--1.wav",
           "durationSec": 6.0,
@@ -533,13 +523,13 @@
       "type": "tts",
       "sceneId": "sandbox_broker",
       "cueId": "sandbox_broker",
-      "startSec": 232.20000000000005,
-      "endSec": 276.0,
+      "startSec": 225.85000000000002,
+      "endSec": 276.35,
       "segments": [
         {
           "type": "tts",
-          "startSec": 232.20000000000005,
-          "endSec": 245.70000000000005,
+          "startSec": 225.85000000000002,
+          "endSec": 239.35000000000002,
           "text": "Once you let an agent write files or run code, you want a cage. Tactus runs orchestration inside a sandboxed Lua environment, and when sandboxing is enabled, inside an ephemeral container.\n",
           "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails/env/development/segments/sandbox_broker--sandbox_broker--tts--387473f94d00--1.wav",
           "durationSec": 13.5,
@@ -548,14 +538,14 @@
         },
         {
           "type": "pause",
-          "startSec": 245.70000000000005,
-          "endSec": 246.20000000000005,
+          "startSec": 239.35000000000002,
+          "endSec": 239.85000000000002,
           "seconds": 0.5
         },
         {
           "type": "tts",
-          "startSec": 246.20000000000005,
-          "endSec": 254.70000000000005,
+          "startSec": 239.85000000000002,
+          "endSec": 248.35000000000002,
           "text": "But containers answer only one security question: what can it touch? The other question is: what can it steal?\n",
           "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails/env/development/segments/sandbox_broker--sandbox_broker--tts--102dbe4e92aa--1.wav",
           "durationSec": 8.5,
@@ -564,14 +554,14 @@
         },
         {
           "type": "pause",
-          "startSec": 254.70000000000005,
-          "endSec": 255.20000000000005,
+          "startSec": 248.35000000000002,
+          "endSec": 248.85000000000002,
           "seconds": 0.5
         },
         {
           "type": "tts",
-          "startSec": 255.20000000000005,
-          "endSec": 269.40000000000003,
+          "startSec": 248.85000000000002,
+          "endSec": 263.05,
           "text": "The broker boundary is the game changer. Keep the runtime secretless and networkless by default. The sandbox can request tool calls, but it never holds provider keys. The keys live outside the sandbox, in a trusted broker.\n",
           "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails/env/development/segments/sandbox_broker--sandbox_broker--tts--e78101fa24a9--1.wav",
           "durationSec": 14.2,
@@ -580,18 +570,18 @@
         },
         {
           "type": "pause",
-          "startSec": 269.40000000000003,
-          "endSec": 269.85,
+          "startSec": 263.05,
+          "endSec": 263.5,
           "seconds": 0.45
         },
         {
           "type": "tts",
-          "startSec": 269.85,
-          "endSec": 276.0,
-          "text": "When there\u2019s nothing to steal, a whole class of attacks collapses.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails/env/development/segments/sandbox_broker--sandbox_broker--tts--8f0c87290597--1.wav",
-          "durationSec": 6.15,
-          "rawDurationSec": 6.15,
+          "startSec": 263.5,
+          "endSec": 276.35,
+          "text": "This is the security model: don\u2019t make secrets hard to steal\u2014make sure there are no secrets inside the runtime to steal. It\u2019s like letting a burglar into an empty building. Even if they get in, there\u2019s nothing valuable to take.\n",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails/env/development/segments/sandbox_broker--sandbox_broker--tts--c8a4f6a14a1a--1.wav",
+          "durationSec": 12.85,
+          "rawDurationSec": 12.85,
           "trimEndSec": 0.0
         }
       ]
@@ -600,13 +590,13 @@
       "type": "tts",
       "sceneId": "example",
       "cueId": "recap_emails",
-      "startSec": 276.0,
-      "endSec": 301.6499999999999,
+      "startSec": 276.35,
+      "endSec": 301.99999999999994,
       "segments": [
         {
           "type": "tts",
-          "startSec": 276.0,
-          "endSec": 280.9,
+          "startSec": 276.35,
+          "endSec": 281.25,
           "text": "Consider a workflow that drafts and sends recap emails from meeting notes.\n",
           "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails/env/development/segments/example--recap_emails--tts--5002ec9814ba--1.wav",
           "durationSec": 4.9,
@@ -615,14 +605,14 @@
         },
         {
           "type": "pause",
-          "startSec": 280.9,
-          "endSec": 281.29999999999995,
+          "startSec": 281.25,
+          "endSec": 281.65,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 281.29999999999995,
-          "endSec": 289.29999999999995,
+          "startSec": 281.65,
+          "endSec": 289.65,
           "text": "Without guardrails, you either supervise every run, or you give the agent side-effect tools and accept unacceptable risk.\n",
           "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails/env/development/segments/example--recap_emails--tts--3bd8da7bab42--1.wav",
           "durationSec": 8.0,
@@ -631,14 +621,14 @@
         },
         {
           "type": "pause",
-          "startSec": 289.29999999999995,
-          "endSec": 289.74999999999994,
+          "startSec": 289.65,
+          "endSec": 290.09999999999997,
           "seconds": 0.45
         },
         {
           "type": "tts",
-          "startSec": 289.74999999999994,
-          "endSec": 301.6499999999999,
+          "startSec": 290.09999999999997,
+          "endSec": 301.99999999999994,
           "text": "With staged tools and durable approvals, the agent drafts with read-only tools, a human reviews at a checkpoint, and only after approval does the send tool become available.\n",
           "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails/env/development/segments/example--recap_emails--tts--b10cf5ed280b--1.wav",
           "durationSec": 11.9,
@@ -651,13 +641,13 @@
       "type": "tts",
       "sceneId": "closing",
       "cueId": "closing",
-      "startSec": 301.6499999999999,
-      "endSec": 321.6499999999999,
+      "startSec": 301.99999999999994,
+      "endSec": 321.99999999999994,
       "segments": [
         {
           "type": "tts",
-          "startSec": 301.6499999999999,
-          "endSec": 306.24999999999994,
+          "startSec": 301.99999999999994,
+          "endSec": 306.59999999999997,
           "text": "Guardrails aren\u2019t a tax. They\u2019re the engine of delegation.\n",
           "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails/env/development/segments/closing--closing--tts--145f10f01ff1--1.wav",
           "durationSec": 4.6,
@@ -666,14 +656,14 @@
         },
         {
           "type": "pause",
-          "startSec": 306.24999999999994,
-          "endSec": 306.6499999999999,
+          "startSec": 306.59999999999997,
+          "endSec": 306.99999999999994,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 306.6499999999999,
-          "endSec": 315.99999999999994,
+          "startSec": 306.99999999999994,
+          "endSec": 316.34999999999997,
           "text": "The race car needs brakes. The surgeon needs protocols. The organization needs governance. The agent needs guardrails.\n",
           "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails/env/development/segments/closing--closing--tts--86178000a3c4--1.wav",
           "durationSec": 9.35,
@@ -682,14 +672,14 @@
         },
         {
           "type": "pause",
-          "startSec": 315.99999999999994,
-          "endSec": 316.49999999999994,
+          "startSec": 316.34999999999997,
+          "endSec": 316.84999999999997,
           "seconds": 0.5
         },
         {
           "type": "tts",
-          "startSec": 316.49999999999994,
-          "endSec": 321.6499999999999,
+          "startSec": 316.84999999999997,
+          "endSec": 321.99999999999994,
           "text": "Read the full story at tactus dot run slash guardrails.\n",
           "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails/env/development/segments/closing--closing--tts--d7729fa6aeab--1.wav",
           "durationSec": 5.15,
@@ -874,41 +864,33 @@
             "volume": 1.0
           },
           {
-            "id": "defense_in_depth--defense_in_depth--tts--2c62eb7072c4--1",
+            "id": "defense_in_depth--defense_in_depth--tts--b4edbaa8c99b--1",
             "kind": "file",
             "startSec": 166.35000000000002,
-            "durationSec": 5.9,
-            "src": "babulus/guardrails/segments/defense_in_depth--defense_in_depth--tts--2c62eb7072c4--1.wav",
+            "durationSec": 7.1,
+            "src": "babulus/guardrails/segments/defense_in_depth--defense_in_depth--tts--b4edbaa8c99b--1.wav",
             "volume": 1.0
           },
           {
             "id": "defense_in_depth--defense_in_depth--tts--07c5320c006f--1",
             "kind": "file",
-            "startSec": 172.60000000000002,
+            "startSec": 173.8,
             "durationSec": 6.75,
             "src": "babulus/guardrails/segments/defense_in_depth--defense_in_depth--tts--07c5320c006f--1.wav",
             "volume": 1.0
           },
           {
-            "id": "defense_in_depth--defense_in_depth--tts--a01bf47ca63b--1",
+            "id": "defense_in_depth--defense_in_depth--tts--3b6c262919d1--1",
             "kind": "file",
-            "startSec": 179.70000000000002,
-            "durationSec": 6.05,
-            "src": "babulus/guardrails/segments/defense_in_depth--defense_in_depth--tts--a01bf47ca63b--1.wav",
-            "volume": 1.0
-          },
-          {
-            "id": "defense_in_depth--defense_in_depth--tts--aa32acacb930--1",
-            "kind": "file",
-            "startSec": 186.10000000000002,
-            "durationSec": 9.55,
-            "src": "babulus/guardrails/segments/defense_in_depth--defense_in_depth--tts--aa32acacb930--1.wav",
+            "startSec": 180.9,
+            "durationSec": 8.05,
+            "src": "babulus/guardrails/segments/defense_in_depth--defense_in_depth--tts--3b6c262919d1--1.wav",
             "volume": 1.0
           },
           {
             "id": "least_privilege--least_privilege--tts--c408d85eaeb7--1",
             "kind": "file",
-            "startSec": 195.65000000000003,
+            "startSec": 189.3,
             "durationSec": 6.6,
             "src": "babulus/guardrails/segments/least_privilege--least_privilege--tts--c408d85eaeb7--1.wav",
             "volume": 1.0
@@ -916,7 +898,7 @@
           {
             "id": "least_privilege--least_privilege--tts--c75757f97fad--1",
             "kind": "file",
-            "startSec": 202.65000000000003,
+            "startSec": 196.3,
             "durationSec": 6.0,
             "src": "babulus/guardrails/segments/least_privilege--least_privilege--tts--c75757f97fad--1.wav",
             "volume": 1.0
@@ -924,7 +906,7 @@
           {
             "id": "least_privilege--least_privilege--tts--2117203e9478--1",
             "kind": "file",
-            "startSec": 209.00000000000003,
+            "startSec": 202.65,
             "durationSec": 5.3,
             "src": "babulus/guardrails/segments/least_privilege--least_privilege--tts--2117203e9478--1.wav",
             "volume": 1.0
@@ -932,7 +914,7 @@
           {
             "id": "least_privilege--least_privilege--tts--0db78d2d7330--1",
             "kind": "file",
-            "startSec": 214.65000000000003,
+            "startSec": 208.3,
             "durationSec": 4.55,
             "src": "babulus/guardrails/segments/least_privilege--least_privilege--tts--0db78d2d7330--1.wav",
             "volume": 1.0
@@ -940,7 +922,7 @@
           {
             "id": "least_privilege--least_privilege--tts--cfa11950c9bf--1",
             "kind": "file",
-            "startSec": 219.55000000000004,
+            "startSec": 213.20000000000002,
             "durationSec": 6.3,
             "src": "babulus/guardrails/segments/least_privilege--least_privilege--tts--cfa11950c9bf--1.wav",
             "volume": 1.0
@@ -948,7 +930,7 @@
           {
             "id": "least_privilege--least_privilege--tts--c3bb8ae15ee2--1",
             "kind": "file",
-            "startSec": 226.20000000000005,
+            "startSec": 219.85000000000002,
             "durationSec": 6.0,
             "src": "babulus/guardrails/segments/least_privilege--least_privilege--tts--c3bb8ae15ee2--1.wav",
             "volume": 1.0
@@ -956,7 +938,7 @@
           {
             "id": "sandbox_broker--sandbox_broker--tts--387473f94d00--1",
             "kind": "file",
-            "startSec": 232.20000000000005,
+            "startSec": 225.85000000000002,
             "durationSec": 13.5,
             "src": "babulus/guardrails/segments/sandbox_broker--sandbox_broker--tts--387473f94d00--1.wav",
             "volume": 1.0
@@ -964,7 +946,7 @@
           {
             "id": "sandbox_broker--sandbox_broker--tts--102dbe4e92aa--1",
             "kind": "file",
-            "startSec": 246.20000000000005,
+            "startSec": 239.85000000000002,
             "durationSec": 8.5,
             "src": "babulus/guardrails/segments/sandbox_broker--sandbox_broker--tts--102dbe4e92aa--1.wav",
             "volume": 1.0
@@ -972,23 +954,23 @@
           {
             "id": "sandbox_broker--sandbox_broker--tts--e78101fa24a9--1",
             "kind": "file",
-            "startSec": 255.20000000000005,
+            "startSec": 248.85000000000002,
             "durationSec": 14.2,
             "src": "babulus/guardrails/segments/sandbox_broker--sandbox_broker--tts--e78101fa24a9--1.wav",
             "volume": 1.0
           },
           {
-            "id": "sandbox_broker--sandbox_broker--tts--8f0c87290597--1",
+            "id": "sandbox_broker--sandbox_broker--tts--c8a4f6a14a1a--1",
             "kind": "file",
-            "startSec": 269.85,
-            "durationSec": 6.15,
-            "src": "babulus/guardrails/segments/sandbox_broker--sandbox_broker--tts--8f0c87290597--1.wav",
+            "startSec": 263.5,
+            "durationSec": 12.85,
+            "src": "babulus/guardrails/segments/sandbox_broker--sandbox_broker--tts--c8a4f6a14a1a--1.wav",
             "volume": 1.0
           },
           {
             "id": "example--recap_emails--tts--5002ec9814ba--1",
             "kind": "file",
-            "startSec": 276.0,
+            "startSec": 276.35,
             "durationSec": 4.9,
             "src": "babulus/guardrails/segments/example--recap_emails--tts--5002ec9814ba--1.wav",
             "volume": 1.0
@@ -996,7 +978,7 @@
           {
             "id": "example--recap_emails--tts--3bd8da7bab42--1",
             "kind": "file",
-            "startSec": 281.29999999999995,
+            "startSec": 281.65,
             "durationSec": 8.0,
             "src": "babulus/guardrails/segments/example--recap_emails--tts--3bd8da7bab42--1.wav",
             "volume": 1.0
@@ -1004,7 +986,7 @@
           {
             "id": "example--recap_emails--tts--b10cf5ed280b--1",
             "kind": "file",
-            "startSec": 289.74999999999994,
+            "startSec": 290.09999999999997,
             "durationSec": 11.9,
             "src": "babulus/guardrails/segments/example--recap_emails--tts--b10cf5ed280b--1.wav",
             "volume": 1.0
@@ -1012,7 +994,7 @@
           {
             "id": "closing--closing--tts--145f10f01ff1--1",
             "kind": "file",
-            "startSec": 301.6499999999999,
+            "startSec": 301.99999999999994,
             "durationSec": 4.6,
             "src": "babulus/guardrails/segments/closing--closing--tts--145f10f01ff1--1.wav",
             "volume": 1.0
@@ -1020,7 +1002,7 @@
           {
             "id": "closing--closing--tts--86178000a3c4--1",
             "kind": "file",
-            "startSec": 306.6499999999999,
+            "startSec": 306.99999999999994,
             "durationSec": 9.35,
             "src": "babulus/guardrails/segments/closing--closing--tts--86178000a3c4--1.wav",
             "volume": 1.0
@@ -1028,7 +1010,7 @@
           {
             "id": "closing--closing--tts--d7729fa6aeab--1",
             "kind": "file",
-            "startSec": 316.49999999999994,
+            "startSec": 316.84999999999997,
             "durationSec": 5.15,
             "src": "babulus/guardrails/segments/closing--closing--tts--d7729fa6aeab--1.wav",
             "volume": 1.0

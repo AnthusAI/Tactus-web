@@ -10,6 +10,9 @@ import BottomCta from "../components/bottom-cta"
 import SpotlightSection from "../components/spotlight-section"
 import GuardrailsSpotlight from "../components/guardrails-spotlight"
 import AnimatedAIEngineersToolboxDiagram from "../components/diagrams/AnimatedAIEngineersToolboxDiagram"
+import ContainerSandboxDiagram from "../components/diagrams/ContainerSandboxDiagram"
+import SpecificationsDiagram from "../components/diagrams/SpecificationsDiagram"
+import EvaluationsDiagram from "../components/diagrams/EvaluationsDiagram"
 import AnimatedHumanInTheLoopDiagram from "../components/diagrams/AnimatedHumanInTheLoopDiagram"
 import { HITL_PRESETS } from "../components/diagrams/hitlPresets"
 import AnimatedOldWayFlowchartDiagram from "../components/diagrams/AnimatedOldWayFlowchartDiagram"
@@ -68,17 +71,7 @@ const DURABILITY_EXAMPLE = `local approved = Human.approve({
 
 if approved then
     deploy()
-end`
-
-const SPECIFICATIONS_EXAMPLE = `Specifications([[
-Feature: Deployments are safe
-
-  Scenario: Produces a decision
-    Given the procedure has started
-    When the procedure runs
-    Then the procedure should complete successfully
-    And the output approved should exist
-]])`
+    end`
 
 const VALIDATION_EXAMPLE = `researcher = Agent {
     provider = "openai",
@@ -353,57 +346,28 @@ const IndexPage = () => {
                   loop={false}
                 />
               </div>
-
-              <div className={styles.videoCard}>
-                <div className={styles.videoHeader}>
-                  <span className={styles.videoTitle}>Intro to Tactus (4 min)</span>
-                  <Link className={styles.videoLink} to="/videos/">
-                    All videos
-                  </Link>
-                </div>
-                <video
-                  className={styles.video}
-                  controls
-                  preload="metadata"
-                  playsInline
-                  src={getVideoSrc("intro.mp4")}
-                  poster={getVideoSrc("intro-poster.jpg")}
-                />
-              </div>
-
-              <div className={styles.exampleCopy}>
-                <p className={styles.exampleLead}>
-                  In Cursor or Claude, tool-using agents feel safe because you're
-                  there to supervise: you see every tool call, you steer, and you
-                  can stop the run the moment it goes sideways.
-                </p>
-                <p className={styles.exampleLead}>
-                  But how do we step back and give agents more agency to do things on their own—with
-                  powerful tools that have full control and can act on the systems and data we care about?
-                </p>
-
-                <div className={styles.compareGrid}>
-                  <div className={styles.compareCard}>
-                    <h3 className={styles.compareTitle}><Icons.Eye /> Supervised (chat)</h3>
-                    <ul className={styles.compareList}>
-                      <li>You watch every step and tool call.</li>
-                      <li>You can correct course mid-run.</li>
-                      <li>You can halt before damage is done.</li>
-                    </ul>
-                  </div>
-                  <div className={styles.compareCard}>
-                    <h3 className={styles.compareTitle}><Icons.Alert /> Unattended (production)</h3>
-                    <ul className={styles.compareList}>
-                      <li>Runs without you—and runs many times.</li>
-                      <li>Small failure rates become incidents.</li>
-                      <li>Needs enforcement, not hope.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </section>
+
+        <Breakout theme="muted" size="section">
+          <div className={styles.videoCard} style={{ marginTop: 0 }}>
+            <div className={styles.videoHeader}>
+              <span className={styles.videoTitle}>Intro to Tactus (5 min)</span>
+              <Link className={styles.videoLink} to="/videos/">
+                All videos
+              </Link>
+            </div>
+            <video
+              className={styles.video}
+              controls
+              preload="metadata"
+              playsInline
+              src={getVideoSrc("intro.mp4")}
+              poster={getVideoSrc("intro-poster.jpg")}
+            />
+          </div>
+        </Breakout>
 
         {/* Paradigm Shift - Main Header */}
         <section className={`${styles.section}`}>
@@ -554,16 +518,51 @@ const IndexPage = () => {
               <header className={styles.sectionHeader}>
                 <p className={styles.eyebrow}>Human in the loop</p>
                 <h2 className={styles.sectionTitle}>Scale autonomy safely</h2>
-                <p className={styles.sectionSubtitle}>
-                  Approve, reject, and provide input — without babysitting a chat window.
-                </p>
               </header>
 
               <div className={styles.hitlVariantsIntro}>
                 <p className={styles.exampleLead}>
-                  Tool-using agents are useful — and dangerous. The moment an agent can take irreversible actions, “hope for the
-                  best” stops being a viable safety strategy.
+                  In Cursor or Claude, tool-using agents feel safe because you're
+                  there to supervise: you see every tool call, you steer, and you
+                  can stop the run the moment it goes sideways.
                 </p>
+                <p className={styles.exampleLead}>
+                  But how do we step back and give agents more agency to do things on their own—with
+                  powerful tools that have full control and can act on the systems and data we care about?
+                </p>
+
+                <div className={styles.compareGrid}>
+                  <div className={styles.compareCard}>
+                    <h3 className={styles.compareTitle}>
+                      <Icons.Eye /> 
+                      <div className={styles.compareTitleText}>
+                        Supervised <span className={styles.compareSubtitle}>(chat)</span>
+                      </div>
+                    </h3>
+                    <ul className={styles.compareList}>
+                      <li>You watch every step and tool call.</li>
+                      <li>You can correct course mid-run.</li>
+                      <li>You can halt before damage is done.</li>
+                    </ul>
+                  </div>
+                  <div className={styles.compareSeparator}>
+                    <div className={styles.vsLine}></div>
+                    <span className={styles.vsBadge}>vs</span>
+                  </div>
+                  <div className={styles.compareCard}>
+                    <h3 className={styles.compareTitle}>
+                      <Icons.Alert /> 
+                      <div className={styles.compareTitleText}>
+                        Unattended <span className={styles.compareSubtitle}>(production)</span>
+                      </div>
+                    </h3>
+                    <ul className={styles.compareList}>
+                      <li>Runs without you—and runs many times.</li>
+                      <li>Small failure rates become incidents.</li>
+                      <li>Needs enforcement, not hope.</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
 
               <div className={styles.hitlVariantsStack}>
@@ -651,7 +650,7 @@ const IndexPage = () => {
               </div>
 
               <div className={styles.hitlCta}>
-                <p className={styles.hitlVariantBody} style={{ marginBottom: 'var(--space-4)', maxWidth: '65ch', marginLeft: 'auto', marginRight: 'auto' }}>
+                <p className={styles.hitlVariantBody} style={{ marginBottom: 'var(--space-4)' }}>
                   The Tactus runtime is built with these features by default. It can queue responses, suspend programs without incurring CPU costs, and resume execution the moment human input arrives. And because it's an omni-channel system, that input can come from anywhere—email, Slack, or a custom UI.
                 </p>
                 <Button to="/human-in-the-loop/" variant="primary" shadow>
@@ -679,64 +678,123 @@ const IndexPage = () => {
           ctaText="Learn more"
         />
 
-		        <GuardrailsSpotlight id="guardrails" eyebrow="Learn" />
-
         <SpotlightSection
           id="toolbox"
-          eyebrow="Learn"
+          eyebrow={null}
           title="The AI Engineer’s Toolbox"
-          lede="Tools are how agents touch reality. Tactus treats tools as explicit capabilities: schema-first, inspectable, and controllable — so you can build workflows you can deploy."
+          lede="Tools are how agents touch reality. Tactus treats them as first-class primitives—safe, inspectable, and effortless to deploy—so your agents can get real work done without the security headaches."
           to="/ai-engineers-toolbox/"
           ctaText="Read: Toolbox"
           Diagram={AnimatedAIEngineersToolboxDiagram}
+        />
+
+		        <GuardrailsSpotlight id="guardrails" eyebrow={null} />
+
+        <SpotlightSection
+          id="sandboxing"
+          eyebrow={null}
+          title="Sandboxing & Isolation"
+          lede="Agents run in a Lua sandbox inside a networkless container, constraining what they can touch and firewalling side effects. Privileged operations are brokered by a separate process that holds the secrets. It’s like letting a burglar into an empty building: even if the agent is compromised, there’s nothing valuable inside to steal—and nowhere to send it."
+          to="/guardrails/#sandboxing"
+          ctaText="Read: Sandboxing"
+          Diagram={ContainerSandboxDiagram}
+        />
+
+        <Breakout title="Why do we need a new language?" size="section">
+          <p>
+            We have Python. We have TypeScript. We have powerful agent frameworks.
+            But they were built to manipulate deterministic logic, not probabilistic behavior.
+          </p>
+          <p>
+            <strong>The abstraction level is wrong.</strong>
+          </p>
+          <ul>
+            <li>
+              Using general-purpose languages for agents feels like writing web apps in assembly.
+            </li>
+            <li>
+              We need new primitives for a world where code doesn't strictly control execution.
+            </li>
+            <li>
+              Tactus aligns the language with the actual problems of production AI.
+            </li>
+          </ul>
+        </Breakout>
+
+        <section className={styles.section}>
+          <div className={styles.container}>
+            <div className={styles.whyLanguageAnswer}>
+              <p className={styles.whyLanguageAnswerText}>
+                Programming languages evolve to match the problems we care about. When computers were
+                banks of vacuum tubes, zeros and ones were the right tool—they matched the physical reality.
+                When we moved to complex logic, we built languages like C to manage the new concerns:
+                loops, branches, and reusability.
+              </p>
+              <p className={styles.whyLanguageAnswerText}>
+                Today, the "atoms" of computing have changed again. We are building with stochastic,
+                decision-making models that we guide rather than control. Tactus raises the abstraction
+                level to match this new reality, giving you first-class primitives for the things that
+                matter now: reliability, sandboxing, and human oversight. It's not just a new syntax—it's
+                a language built for the new problem space.
+              </p>
+              <div className={styles.whyLanguageCta}>
+                <Button to="/why-new-language/" variant="primary" shadow>
+                  Read: Why a New Language?
+                </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <Breakout theme="muted" size="section">
+          <div className={styles.videoCard} style={{ marginTop: 0 }}>
+            <div className={styles.videoHeader}>
+              <span className={styles.videoTitle}>
+                Why a New Language? (7 min)
+              </span>
+            </div>
+            <video
+              className={styles.video}
+              controls
+              preload="metadata"
+              playsInline
+              src={getVideoSrc("why-new-language.mp4")}
+              poster={getVideoSrc("why-new-language-poster.jpg")}
+            />
+          </div>
+        </Breakout>
+
+        <SpotlightSection
+          id="specifications"
+          eyebrow={null}
+          title="Behavior Specifications"
+          lede="Tactus treats Gherkin specs as a first-class feature, integrating them directly into the language and toolchain. This provides constant visibility into procedure reliability, ensuring your agents act correctly even as models and tools evolve."
+          to="/specifications/"
+          ctaText="Read: Specifications"
+          Diagram={SpecificationsDiagram}
+          flip={true}
+        />
+
+        <SpotlightSection
+          id="evaluations"
+          eyebrow={null}
+          title="Evaluations"
+          lede="One successful run is luck. Reliability is a statistic. Evaluations let you measure accuracy, cost, and reliability performance across datasets so you can ship with confidence."
+          to="/evaluations/"
+          ctaText="Read: Evaluations"
+          Diagram={EvaluationsDiagram}
         />
 
         {/* Code Examples Group */}
         <section className={`${styles.section}`}>
           <div className={styles.container}>
 
-
-            {/* Specs */}
-            <div className={styles.example} style={{ marginBottom: 'var(--space-6)' }}>
-              <header className={styles.sectionHeader}>
-                <h2 className={styles.sectionTitle}>
-                  Specifications + evaluations
-                </h2>
-                <p className={styles.sectionSubtitle}>
-                  Write behavior as specs, then measure reliability across runs and
-                  datasets.
-                </p>
-              </header>
-              <div className={styles.codeBlockPlayer}>
-                <AnimatedCodeBlock
-                  label="Specifications"
-                  filename="examples-safe-deploy.feature"
-                  hint="BDD"
-                  code={SPECIFICATIONS_EXAMPLE}
-                  language="gherkin"
-                  showTypewriter={false}
-                  typewriterLoop={false}
-                  autoHeight={true}
-                  blockWidth={1400}
-                  width="100%"
-                  autoPlay={false}
-                  controls={false}
-                  loop={false}
-                />
-              </div>
-              <div className={styles.exampleCopy}>
-                <p className={styles.exampleLead}>
-                  Specs encode what must be true. They let you test workflows
-                  directly and catch regressions as prompts, tools, and models
-                  evolve.
-                </p>
-              </div>
-            </div>
-
             {/* Validation */}
             <div className={styles.example}>
               <header className={styles.sectionHeader}>
-                <h2 className={styles.sectionTitle}>Validation is built in</h2>
+                <h2 className={styles.sectionTitle}>
+                  <Link to="/validation/" className={styles.titleLink}>Validation is built in</Link>
+                </h2>
                 <p className={styles.sectionSubtitle}>
                   Procedures declare typed inputs and outputs, validated with
                   Pydantic.
@@ -765,71 +823,14 @@ const IndexPage = () => {
                   to validate inputs, structure outputs, and power tooling (like
                   auto-generated forms and safer integrations).
                 </p>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        <Breakout title="Why do we need a new language?" size="section">
-          <p>
-            We have Python. We have TypeScript. We have powerful agent frameworks.
-            But they were built to manipulate deterministic logic, not probabilistic behavior.
-          </p>
-          <p>
-            <strong>The abstraction level is wrong.</strong>
-          </p>
-          <ul>
-            <li>
-              Using general-purpose languages for agents feels like writing web apps in assembly.
-            </li>
-            <li>
-              We need new primitives for a world where code doesn't strictly control execution.
-            </li>
-            <li>
-              Tactus aligns the language with the actual problems of production AI.
-            </li>
-          </ul>
-        </Breakout>
-
-        <section className={`${styles.section}`}>
-          <div className={styles.container}>
-            <div className={styles.whyLanguageAnswer}>
-              <p className={styles.whyLanguageAnswerText}>
-                Programming languages evolve to match the problems we care about. When computers were
-                banks of vacuum tubes, zeros and ones were the right tool—they matched the physical reality.
-                When we moved to complex logic, we built languages like C to manage the new concerns:
-                loops, branches, and reusability.
-              </p>
-              <p className={styles.whyLanguageAnswerText}>
-                Today, the "atoms" of computing have changed again. We are building with stochastic,
-                decision-making models that we guide rather than control. Tactus raises the abstraction
-                level to match this new reality, giving you first-class primitives for the things that
-                matter now: reliability, sandboxing, and human oversight. It's not just a new syntax—it's
-                a language built for the new problem space.
-              </p>
-              <div className={styles.whyLanguageCta}>
-                <Link className={styles.secondaryButton} to="/why-new-language/">
-                  Read the full article
-                </Link>
-              </div>
-
-              <div className={styles.videoCard}>
-                <div className={styles.videoHeader}>
-                  <span className={styles.videoTitle}>
-                    Why a New Language? (7 min)
-                  </span>
+                <div style={{ marginTop: 'var(--space-4)' }}>
+                  <Button to="/validation/" variant="secondary" shadow>
+                    Read: Validation
+                  </Button>
                 </div>
-                <video
-                  className={styles.video}
-                  controls
-                  preload="metadata"
-                  playsInline
-                  src={getVideoSrc("why-new-language.mp4")}
-                  poster={getVideoSrc("why-new-language-poster.jpg")}
-                />
               </div>
             </div>
+
           </div>
         </section>
 

@@ -102,7 +102,7 @@ const FeaturesPage = () => {
 
         <FeatureHighlightsSection
           title="Built for real systems"
-          subtitle="The headline feature is not a keyword — it’s the control surface: sandboxing, capability control, durable HITL, and a secretless broker boundary."
+          subtitle="The headline feature is not a keyword — it’s the control surface: sandboxing, capability control, durable HITL, and a secretless broker boundary (so even if something breaks in, there’s nothing valuable inside to steal)."
           items={highlights}
         />
 

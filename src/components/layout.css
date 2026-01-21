@@ -47,10 +47,10 @@
   /* Source Code Pro for Code */
   --font-mono: "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
-  --font-lg: 18px;
-  --font-md: 16px;
-  --font-sm: 14px;
-  --font-sx: 12px;
+  --font-lg: 20px;
+  --font-md: 18px;
+  --font-sm: 16px;
+  --font-sx: 14px;
   --line-height-loose: 1.75;
   --line-height-normal: 1.6;
   --line-height-dense: 1.1;

@@ -84,14 +84,14 @@
       "id": "defense_in_depth",
       "title": "Guardrails as First-Class Architecture",
       "startSec": 118.15000000000002,
-      "endSec": 195.65000000000003,
+      "endSec": 189.3,
       "cues": [
         {
           "id": "defense_in_depth",
           "label": "Defense in Depth",
           "startSec": 118.15000000000002,
-          "endSec": 195.65000000000003,
-          "text": "This is the philosophy behind Tactus. Guardrails are not add-ons you bolt on later. They're architectural decisions baked into the execution model.\n No single technique solves everything. Guardrails work as defense in depth: layers that each reduce a different class of risk.\n At the top: cost and limits. Hard quotas prevent runaway loops before they become billing nightmares.\n Prompt engineering. Structured instructions guide behavior and reduce error rates.\n Context engineering. Curated context ensures the model has the right information, not just all information.\n Model selection. Choose and fine-tune models for specific capabilities and safety profiles.\n Tool boundaries. Strict schemas and validation at the edge where the agent touches the world.\n Code sandboxing. Isolated execution environments prevent unauthorized system access.\n Container isolation. Ephemeral containers ensure no state persists between runs.\n And at the foundation: a secretless broker. Credentials live outside the sandbox. The agent requests work but never holds the keys.",
+          "endSec": 189.3,
+          "text": "This is the philosophy behind Tactus. Guardrails are not add-ons you bolt on later. They're architectural decisions baked into the execution model.\n No single technique solves everything. Guardrails work as defense in depth: layers that each reduce a different class of risk.\n At the top: cost and limits. Hard quotas prevent runaway loops before they become billing nightmares.\n Prompt engineering. Structured instructions guide behavior and reduce error rates.\n Context engineering. Curated context ensures the model has the right information, not just all information.\n Model selection. Choose and fine-tune models for specific capabilities and safety profiles.\n Tool selection. Give the agent only the capabilities it needs, and stage access over time.\n Code sandboxing. Isolated execution environments prevent unauthorized system access.\n Container isolation. Ephemeral containers constrain what the runtime can touch and firewall side effects inside the container.",
           "bullets": []
         }
       ]
@@ -99,14 +99,14 @@
     {
       "id": "least_privilege",
       "title": "Least Privilege by Design",
-      "startSec": 195.65000000000003,
-      "endSec": 232.20000000000005,
+      "startSec": 189.3,
+      "endSec": 225.85000000000002,
       "cues": [
         {
           "id": "least_privilege",
           "label": "Least Privilege",
-          "startSec": 195.65000000000003,
-          "endSec": 232.20000000000005,
+          "startSec": 189.3,
+          "endSec": 225.85000000000002,
           "text": "Tactus enforces least privilege by design, across multiple dimensions.\n Minimal toolsets: agents get only the tools they need, not a kitchen sink.\n Curated context: relevant information only, not everything.\n Network isolation: the runtime is networkless by default.\n Secretless broker: credentials stay outside, the agent requests work but never holds keys.\n Temporal gating: tools become available only when the workflow stage requires them.",
           "bullets": []
         }
@@ -115,15 +115,15 @@
     {
       "id": "sandbox_broker",
       "title": "Sandboxing + a Secretless Broker Boundary",
-      "startSec": 232.20000000000005,
-      "endSec": 276.0,
+      "startSec": 225.85000000000002,
+      "endSec": 276.35,
       "cues": [
         {
           "id": "sandbox_broker",
           "label": "Sandbox + Broker",
-          "startSec": 232.20000000000005,
-          "endSec": 276.0,
-          "text": "Once you let an agent write files or run code, you want a cage. Tactus runs orchestration inside a sandboxed Lua environment, and when sandboxing is enabled, inside an ephemeral container.\n But containers answer only one security question: what can it touch? The other question is: what can it steal?\n The broker boundary is the game changer. Keep the runtime secretless and networkless by default. The sandbox can request tool calls, but it never holds provider keys. The keys live outside the sandbox, in a trusted broker.\n When there\u2019s nothing to steal, a whole class of attacks collapses.",
+          "startSec": 225.85000000000002,
+          "endSec": 276.35,
+          "text": "Once you let an agent write files or run code, you want a cage. Tactus runs orchestration inside a sandboxed Lua environment, and when sandboxing is enabled, inside an ephemeral container.\n But containers answer only one security question: what can it touch? The other question is: what can it steal?\n The broker boundary is the game changer. Keep the runtime secretless and networkless by default. The sandbox can request tool calls, but it never holds provider keys. The keys live outside the sandbox, in a trusted broker.\n This is the security model: don\u2019t make secrets hard to steal\u2014make sure there are no secrets inside the runtime to steal. It\u2019s like letting a burglar into an empty building. Even if they get in, there\u2019s nothing valuable to take.",
           "bullets": []
         }
       ]
@@ -131,14 +131,14 @@
     {
       "id": "example",
       "title": "A Concrete Example",
-      "startSec": 276.0,
-      "endSec": 301.6499999999999,
+      "startSec": 276.35,
+      "endSec": 301.99999999999994,
       "cues": [
         {
           "id": "recap_emails",
           "label": "Recap Emails",
-          "startSec": 276.0,
-          "endSec": 301.6499999999999,
+          "startSec": 276.35,
+          "endSec": 301.99999999999994,
           "text": "Consider a workflow that drafts and sends recap emails from meeting notes.\n Without guardrails, you either supervise every run, or you give the agent side-effect tools and accept unacceptable risk.\n With staged tools and durable approvals, the agent drafts with read-only tools, a human reviews at a checkpoint, and only after approval does the send tool become available.",
           "bullets": []
         }
@@ -147,14 +147,14 @@
     {
       "id": "closing",
       "title": "Closing",
-      "startSec": 301.6499999999999,
-      "endSec": 321.6499999999999,
+      "startSec": 301.99999999999994,
+      "endSec": 321.99999999999994,
       "cues": [
         {
           "id": "closing",
           "label": "Closing",
-          "startSec": 301.6499999999999,
-          "endSec": 321.6499999999999,
+          "startSec": 301.99999999999994,
+          "endSec": 321.99999999999994,
           "text": "Guardrails aren\u2019t a tax. They\u2019re the engine of delegation.\n The race car needs brakes. The surgeon needs protocols. The organization needs governance. The agent needs guardrails.\n Read the full story at tactus dot run slash guardrails.",
           "bullets": []
         }

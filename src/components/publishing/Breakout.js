@@ -10,9 +10,11 @@ const Breakout = ({
   withContainer = true,
   className = "",
   TitleTag = "h3",
+  theme = "primary",
 }) => {
   const rootClassName = [
     styles.root,
+    styles[theme],
     size === "section" ? styles.section : styles.callout,
     bleed ? styles.bleed : "",
     className,

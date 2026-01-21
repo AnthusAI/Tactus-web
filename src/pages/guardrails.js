@@ -360,8 +360,12 @@ const GuardrailsPage = () => {
 
             <Breakout title="When there’s nothing to steal, a whole class of attacks collapses" withContainer={false}>
               <p>
-                Containers answer “what can it touch?” Secretless execution answers “what can it steal?” If the runtime never holds
-                API keys, prompt injection can’t turn into credential theft.
+                Containers answer “what can it touch?” Secretless execution answers “what can it steal?” The security model isn’t to
+                make secrets hard to steal — it’s to keep secrets out of the runtime entirely.
+              </p>
+              <p>
+                It’s like letting a burglar into an empty building: even if they get in, there’s nothing valuable inside to take. If
+                the runtime never holds API keys, prompt injection can’t turn into credential theft.
               </p>
             </Breakout>
           </div>

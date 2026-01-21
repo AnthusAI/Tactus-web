@@ -306,6 +306,8 @@
 
 .narrativeContent {
   /* Text content on the left */
+  display: flex;
+  flex-direction: column;
 }
 
 .narrativeDiagramColumn {
@@ -394,24 +396,24 @@
 .hitlVariant {
   display: flex;
   flex-direction: column;
-  gap: var(--space-3);
 }
 
 .hitlVariantDiagram {
   width: 100%;
-  margin-top: var(--space-2);
+  margin-top: 0;
 }
 
 .hitlVariantTitle {
-  margin: 0;
+  margin: 0 0 var(--space-4);
   font-size: 1.35rem;
   font-weight: 800;
   letter-spacing: -0.01em;
 }
 
 .hitlVariantBody {
-  margin: 0;
+  margin: 0 0 var(--space-2);
   color: var(--color-text-muted);
+  font-size: var(--font-lg);
   line-height: var(--line-height-loose);
   max-width: none;
 }
@@ -419,21 +421,58 @@
 .compareGrid {
   display: grid;
   gap: var(--space-4);
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin-top: var(--space-2);
+  /* 3 columns: content, separator, content */
+  grid-template-columns: 1fr auto 1fr;
+  margin-top: var(--space-4);
+  align-items: stretch;
 }
 
 .compareCard {
-  border-radius: var(--border-radius);
-  background: var(--color-surface-2);
-  padding: var(--space-4);
-  box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.1);
-  transition: transform 140ms ease, box-shadow 140ms ease;
+  /* Remove card styling to draw on page background */
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+  box-shadow: none;
+  transition: none;
 }
 
+/* Remove hover effect */
 .compareCard:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 0 0 rgba(0, 0, 0, 0.1);
+  transform: none;
+  box-shadow: none;
+}
+
+.compareSeparator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  min-width: 3rem; /* Provide space for the badge */
+}
+
+.vsLine {
+  width: 4px; /* Thicker stroke */
+  height: 100%;
+  background: var(--color-primary);
+  opacity: 0.3; /* Subtle line */
+}
+
+.vsBadge {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--color-bg); /* Match page background to hide line behind */
+  color: var(--color-text);
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  padding: 0.2rem 0.4rem;
+  border: 1px solid var(--color-primary);
+  border-radius: 999px;
+  z-index: 1;
 }
 
 .compareTitle {
@@ -445,6 +484,22 @@
   display: flex;
   align-items: center;
   gap: var(--space-2);
+}
+
+.compareTitleText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  gap: 0;
+}
+
+.compareSubtitle {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+  text-transform: none;
+  letter-spacing: 0;
 }
 
 .compareList {
@@ -533,6 +588,17 @@
   margin-bottom: 0;
 }
 
+.whyLanguageSection {
+  padding: var(--space-6) 0;
+  background: var(--color-surface-2);
+}
+
+@media (prefers-color-scheme: dark) {
+  .whyLanguageSection {
+    background: var(--color-bg);
+  }
+}
+
 .whyLanguageAnswer {
   max-width: 58rem;
 }
@@ -568,6 +634,16 @@
   font-family: var(--font-serif);
   font-size: clamp(1.6rem, 3vw, 2.2rem);
   letter-spacing: -0.02em;
+}
+
+.titleLink {
+  color: inherit;
+  text-decoration: none;
+}
+
+.titleLink:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
 }
 
 .sectionSubtitle {
@@ -748,12 +824,66 @@
     grid-template-columns: 1fr;
   }
 
-  .compareGrid {
-    grid-template-columns: 1fr;
-  }
+  /* .compareGrid styles moved to smaller breakpoint */
 
   .featureGrid {
     grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 680px) {
+  .compareGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-5); /* Increase gap for vertical spacing */
+    justify-items: center; /* Horizontally center the cards */
+  }
+
+  .compareCard {
+    /* Keep width constrained to look good centered, but flexible */
+    width: 100%; 
+    max-width: 420px; /* Optional: prevent it from getting too wide if undesired */
+    display: flex;
+    flex-direction: column;
+    /* align-items: center;  <-- DO NOT DO THIS if we want bullet points left aligned. 
+       Actually, the card content is title + ul. 
+       If we center the CARD, the text inside stays left aligned by default. 
+       Let's ensure the title is also centered if desired, or kept left? 
+       User said: "keep the bullet lists left-aligned, but it should horizontally center the overall bullet list."
+       This usually means the block (ul) is centered but text is left aligned.
+    */
+    align-items: center; /* Centers the title and the UL block itself */
+  }
+  
+  .compareCard h3 {
+     /* Center the title too? User didn't specify, but usually looks better centered above a centered list */
+     /* But "Supervised" icon+text is a flex row. */
+     justify-content: center;
+     width: 100%;
+  }
+
+  .compareList {
+    /* The UL itself needs to be somewhat constrained or just centered block */
+    /* If align-items: center is on parent, this flex item (ul) is centered. */
+    /* Text inside li is left-aligned by default. */
+    /* We just need to make sure the UL isn't 100% width if the items are short, 
+       otherwise "centering" the UL doesn't look like anything if it spans full width. 
+       But usually UL is block. 
+    */
+    text-align: left; /* Ensure list text is left aligned */
+    width: fit-content; /* Shrink to fit content so it can be centered by parent */
+    min-width: 200px; /* Prevent being too narrow */
+  }
+
+  .compareSeparator {
+    flex-direction: row; /* Horizontal line */
+    width: 100%;
+    min-height: 2rem; /* Space for badge */
+    min-width: auto;
+  }
+
+  .vsLine {
+    width: 100%;
+    height: 4px; /* Thicker horizontal line */
   }
 }
 

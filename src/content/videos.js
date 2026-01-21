@@ -18,7 +18,7 @@ export const VIDEOS = [
   {
     id: "guardrails",
     title: "Guardrails for Agent Autonomy",
-    description: "Why constraints enable autonomy: staged tools, human gates, and a secretless broker boundary.",
+    description: "Why constraints enable autonomy: staged tools, human gates, and a secretless broker boundary (so there’s nothing in the runtime to steal).",
     filename: "guardrails.mp4",
     poster: "guardrails-poster.jpg",
   },

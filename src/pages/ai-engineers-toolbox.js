@@ -164,6 +164,10 @@ const AIToolboxPage = () => {
                 how you build bounded autonomy: the workflow can run on its own for long stretches, and it can still be safe when it
                 reaches a step that needs real side effects.
               </p>
+              <p className={styles.bodyText}>
+                In plain terms, it’s like letting a burglar into an empty building: even if an attacker gets into the runtime, there’s
+                nothing valuable inside to steal.
+              </p>
             </section>
 
             <section id="reliability" style={{ marginTop: "var(--space-6)" }}>

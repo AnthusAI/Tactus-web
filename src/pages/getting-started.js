@@ -108,6 +108,8 @@ return World("Hello, World!").response`}
 
       <BookSeriesSection id="books" mutedBackground={true} />
 
+      <div style={{ height: 'var(--space-6)', backgroundColor: 'var(--color-bg)' }} />
+
       <VideosSpotlightSection id="videos" title="Videos" mutedBackground={true} />
     </div>
   </Layout>

@@ -4,7 +4,17 @@ import GuardrailsStackDiagram from "./GuardrailsStackDiagram"
 const AnimatedGuardrailsStackDiagram = (props) => {
   const [progress, setProgress] = React.useState(0)
   const [isVisible, setIsVisible] = React.useState(false)
+  const [isMobile, setIsMobile] = React.useState(false)
   const ref = React.useRef(null)
+
+  // Mobile detection
+  React.useEffect(() => {
+    if (typeof window === 'undefined') return
+    const checkMobile = () => setIsMobile(window.innerWidth < 800)
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   // Observer to start animation when visible
   React.useEffect(() => {
@@ -45,7 +55,7 @@ const AnimatedGuardrailsStackDiagram = (props) => {
 
   return (
     <div ref={ref} className={props.className} style={props.style}>
-      <GuardrailsStackDiagram {...props} progress={progress} />
+      <GuardrailsStackDiagram {...props} progress={progress} isMobile={isMobile} />
     </div>
   )
 }

@@ -59,6 +59,17 @@ a.button:hover {
   color: var(--color-text);
 }
 
+/* Tertiary: White/Surface background, Primary text (for use on Primary backgrounds) */
+.tertiary {
+  background: var(--color-bg);
+  color: var(--color-primary);
+}
+
+.button.tertiary:hover {
+  background: var(--color-surface); /* Slightly distinct from surface if needed, or same */
+  color: var(--color-primary);
+}
+
 /* Shadow Utility - applied via prop */
 /* Flat-colored shadow (solid, no blur) matching the request */
 .shadow.primary {
@@ -75,4 +86,12 @@ a.button:hover {
 
 .shadow.secondary:hover {
   box-shadow: 0 6px 0 0 rgba(0, 0, 0, 0.1);
+}
+
+.shadow.tertiary {
+  box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.2); 
+}
+
+.shadow.tertiary:hover {
+  box-shadow: 0 6px 0 0 rgba(0, 0, 0, 0.2);
 }

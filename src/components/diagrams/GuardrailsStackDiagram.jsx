@@ -6,11 +6,35 @@ import {
   Database,
   Box,
   Container,
-  Lock,
   CircleDollarSign,
+  Wrench,
 } from "lucide-react";
 
 import { diagramTokens, getDiagramThemeVars } from "./diagramTheme";
+
+// lucide-react icons vary by version; keep a local icon so the diagram doesn't crash
+// at runtime due to an undefined import.
+const SquareCodeIcon = ({
+  size = 24,
+  color = "currentColor",
+  strokeWidth = 2,
+}) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke={color}
+    strokeWidth={strokeWidth}
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <rect x="4" y="4" width="16" height="16" rx="2" />
+    <polyline points="10 9 7.5 12 10 15" />
+    <polyline points="14 9 16.5 12 14 15" />
+  </svg>
+);
 
 // Helper for clamping
 const clamp = (val, min, max) => Math.min(Math.max(val, min), max);
@@ -20,6 +44,7 @@ const GuardrailsStackDiagram = ({
   progress = 0, // 0 to 1
   style,
   className,
+  isMobile = false,
 }) => {
   const t = diagramTokens;
   // Ensure progress is 0-1
@@ -47,19 +72,19 @@ const GuardrailsStackDiagram = ({
       Icon: Brain,
     },
     {
-      name: "Secretless Broker",
-      desc: "Credentials live outside the sandbox. The agent requests work, but never holds the keys.",
-      Icon: Lock,
+      name: "Tool Selection",
+      desc: "Give agents only the tools they need (and only when they need them). Capability boundaries are guardrails.",
+      Icon: Wrench,
     },
     {
       name: "Code Sandboxing",
       desc: "Execution in isolated environments (Lua) prevents unauthorized system access.",
-      Icon: Box,
+      Icon: SquareCodeIcon,
     },
     {
       name: "Container Isolation",
-      desc: "Ephemeral containers ensure no state or contamination persists between runs.",
-      Icon: Container,
+      desc: "Ephemeral containers constrain what the runtime can touch and firewall side effects inside the container.",
+      Icon: Box,
     },
   ];
 
@@ -86,7 +111,148 @@ const GuardrailsStackDiagram = ({
      pointerIndex = activeIndex + easeInOut(moveP);
   }
 
-  // Layout
+  // --- Mobile Layout (Accordion) ---
+  if (isMobile) {
+    const width = 360;
+    const collapsedHeight = 50;
+    const expandedHeight = 240;
+    const gap = 8;
+    
+    // Calculate total height: (N-1)*collapsed + 1*expanded + gaps
+    const totalHeight = ((totalLayers - 1) * collapsedHeight) + expandedHeight + (totalLayers * gap);
+    
+    return (
+      <svg
+        className={className}
+        style={{
+          ...getDiagramThemeVars(theme),
+          display: "block",
+          width: "100%",
+          height: "auto",
+          background: "transparent", // Let page bg show through
+          ...style,
+        }}
+        viewBox={`0 0 ${width} ${totalHeight}`}
+        role="img"
+        aria-label={`Guardrails stack diagram showing: ${activeLayer.name}`}
+      >
+        {/* Force background to match page background, overriding container surface color */}
+        <rect width="100%" height="100%" fill="var(--color-bg)" />
+
+        {layers.map((layer, i) => {
+          const isActive = i === activeIndex;
+          
+          // Calculate Y position
+          // If this item is AFTER the active one, it needs to be pushed down by the expansion difference
+          let y = i * (collapsedHeight + gap);
+          if (i > activeIndex) {
+            y += (expandedHeight - collapsedHeight);
+          }
+          
+          // Animate the Y position smoothly as activeIndex changes
+          // Note: SVG transitions are tricky, but since we re-render on activeIndex change,
+          // simply transitioning the transform will work if the key is stable.
+          
+          return (
+            <g 
+              key={i} 
+              transform={`translate(0, ${y})`} 
+              style={{ transition: "transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)" }}
+            >
+              <rect
+                width={width}
+                height={isActive ? expandedHeight : collapsedHeight}
+                rx={8}
+                fill={isActive ? "var(--color-bg)" : t.cardTitle}
+                stroke={isActive ? t.primary : "none"}
+                strokeWidth={isActive ? 2 : 0}
+                style={{ transition: "height 0.4s cubic-bezier(0.25, 1, 0.5, 1), fill 0.2s, stroke 0.2s" }}
+              />
+              
+              {/* Collapsed/Header View */}
+              <g 
+                transform="translate(16, 25)" 
+                opacity={isActive ? 0 : 1}
+                style={{ transition: "opacity 0.2s" }}
+              >
+                 <text
+                    fill={t.ink} // Use regular text color for inactive
+                    fontSize="16"
+                    fontWeight="600"
+                    fontFamily={t.fontSans}
+                    dy="5" // Center vertically
+                 >
+                   {layer.name}
+                 </text>
+              </g>
+
+              {/* Expanded/Active View */}
+              <g 
+                opacity={isActive ? 1 : 0}
+                style={{ transition: "opacity 0.3s 0.1s" }} // Delay fade-in
+              >
+                {/* Header inside expanded */}
+                <text
+                  x={20}
+                  y={40}
+                  fill={t.ink}
+                  fontSize="18"
+                  fontWeight="800"
+                  fontFamily={t.fontSans}
+                >
+                  {layer.name}
+                </text>
+                
+                {/* Icon - Top Right */}
+                <g transform={`translate(${width - 68}, 20)`}>
+                   {React.createElement(layer.Icon, {
+                      size: 48,
+                      color: t.ink,
+                      strokeWidth: 1.5
+                   })}
+                </g>
+                
+                {/* Description */}
+                <WrappedText
+                  x={20}
+                  y={100}
+                  width={320}
+                  lineHeight={24}
+                  text={layer.desc}
+                  style={{
+                    fill: t.muted,
+                    fontSize: "16px",
+                    fontFamily: t.fontSerif,
+                    fontWeight: "400"
+                  }}
+                />
+                
+                {/* Progress Bar inside expanded card */}
+                <rect 
+                  x={20} 
+                  y={expandedHeight - 12} 
+                  width={width - 40} 
+                  height={4} 
+                  fill={t.surface2} 
+                  rx={2} 
+                />
+                <rect 
+                  x={20} 
+                  y={expandedHeight - 12} 
+                  width={(width - 40) * Math.min(localP / dwellTime, 1)} 
+                  height={4} 
+                  fill={t.primary} 
+                  rx={2} 
+                />
+              </g>
+            </g>
+          );
+        })}
+      </svg>
+    );
+  }
+
+  // Layout (Desktop)
   const width = 960;
   const height = 400;
   

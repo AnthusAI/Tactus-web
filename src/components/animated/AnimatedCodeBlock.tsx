@@ -72,6 +72,16 @@ export const AnimatedCodeBlock: React.FC<GatsbyAnimatedCodeBlockProps> = ({
   // Detect system color scheme if theme not explicitly provided
   const [detectedTheme, setDetectedTheme] = React.useState<'light' | 'dark'>('light');
   const [measuredHeight, setMeasuredHeight] = React.useState<number | null>(null);
+  const [windowWidth, setWindowWidth] = React.useState<number | null>(null);
+
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setWindowWidth(window.innerWidth);
+      const handleResize = () => setWindowWidth(window.innerWidth);
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }
+  }, []);
 
   React.useEffect(() => {
     // Only run in browser environment
@@ -99,6 +109,19 @@ export const AnimatedCodeBlock: React.FC<GatsbyAnimatedCodeBlockProps> = ({
 
   const fps = 30;
 
+  const effectiveBlockWidth = React.useMemo(() => {
+    // If on mobile (and the requested block is large), use a smaller composition width
+    // to "zoom in" and keep the text readable.
+    if (windowWidth !== null && blockWidth > 800) {
+      if (windowWidth < 640) {
+        return 680;
+      } else if (windowWidth < 1024) {
+        return 960;
+      }
+    }
+    return blockWidth;
+  }, [windowWidth, blockWidth]);
+
   // Measure full-content height (in composition pixels) to avoid cropping on web pages.
   // We render an invisible clone with the full code to "hold the box open" even while
   // the typewriter animation is still typing (or empty).
@@ -112,7 +135,7 @@ export const AnimatedCodeBlock: React.FC<GatsbyAnimatedCodeBlockProps> = ({
     const h = Math.ceil(node.getBoundingClientRect().height);
     const safe = Math.max(120, h + 2); // +2px avoids subpixel clipping on the last line
     setMeasuredHeight(safe);
-  }, [autoHeight, code, hideTitleBar, filename, hint, blockWidth]);
+  }, [autoHeight, code, hideTitleBar, filename, hint, effectiveBlockWidth]);
 
   // Calculate the frame where typing completes
   const typingCompleteFrame = React.useMemo(() => {
@@ -145,7 +168,6 @@ export const AnimatedCodeBlock: React.FC<GatsbyAnimatedCodeBlockProps> = ({
     return cycleLength;
   }, [durationFrames, showTypewriter, fps, cycleLength]);
 
-  const effectiveBlockWidth = blockWidth;
   const effectiveBlockHeight = autoHeight && measuredHeight ? measuredHeight : blockHeight;
 
   const rootStyle: React.CSSProperties | undefined = autoHeight
@@ -297,6 +319,7 @@ export const AnimatedCodeBlock: React.FC<GatsbyAnimatedCodeBlockProps> = ({
                 whiteSpace: "pre-wrap",
                 fontFamily: "monospace",
                 margin: 0,
+                border: "none",
               }}
             >
               {code}

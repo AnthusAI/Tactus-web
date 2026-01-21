@@ -16,6 +16,7 @@ const AIEngineersToolboxDiagram = ({
   progress = 0, // 0 to 1
   style,
   className,
+  isMobile = false,
 }) => {
   const t = diagramTokens;
   const p = clamp(progress, 0, 1);
@@ -84,6 +85,165 @@ local results = fetch({
 
   // Local progress for the bar (0..1)
   const localP = floatIndex - activeIndex;
+
+  // --- Mobile Layout (Accordion) ---
+  if (isMobile) {
+    const width = 360;
+    const collapsedHeight = 50;
+    const expandedHeight = 420; // Taller for code snippet
+    const gap = 8;
+    
+    const totalHeight = ((totalTools - 1) * collapsedHeight) + expandedHeight + (totalTools * gap);
+
+    return (
+      <svg
+        className={className}
+        style={{
+          ...getDiagramThemeVars(theme),
+          display: "block",
+          width: "100%",
+          height: "auto",
+          background: "transparent",
+          ...style,
+        }}
+        viewBox={`0 0 ${width} ${totalHeight}`}
+        role="img"
+        aria-label={`AI Engineer's Toolbox diagram showing: ${activeTool.name}`}
+      >
+        {/* Force background to match page background */}
+        <rect width="100%" height="100%" fill="var(--color-bg)" />
+
+        {tools.map((tool, i) => {
+          const isActive = i === activeIndex;
+          
+          let y = i * (collapsedHeight + gap);
+          if (i > activeIndex) {
+            y += (expandedHeight - collapsedHeight);
+          }
+
+          return (
+            <g 
+              key={tool.id} 
+              transform={`translate(0, ${y})`}
+              style={{ transition: "transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)" }}
+            >
+              <rect
+                width={width}
+                height={isActive ? expandedHeight : collapsedHeight}
+                rx={8}
+                fill={isActive ? "var(--color-bg)" : t.cardTitle}
+                stroke={isActive ? t.primary : "none"}
+                strokeWidth={isActive ? 2 : 0}
+                style={{ transition: "height 0.4s cubic-bezier(0.25, 1, 0.5, 1), fill 0.2s, stroke 0.2s" }}
+              />
+
+              {/* Collapsed/Header View */}
+              <g 
+                transform="translate(16, 25)"
+                opacity={isActive ? 0 : 1}
+                style={{ transition: "opacity 0.2s" }}
+              >
+                 <text
+                    fill={t.ink}
+                    fontSize="16"
+                    fontWeight="600"
+                    fontFamily={t.fontSans}
+                    dy="5"
+                 >
+                   {tool.name}
+                 </text>
+              </g>
+
+              {/* Expanded/Active View */}
+              <g 
+                opacity={isActive ? 1 : 0}
+                style={{ transition: "opacity 0.3s 0.1s" }}
+              >
+                {/* Header */}
+                <text
+                  x={20}
+                  y={40}
+                  fill={t.ink}
+                  fontSize="18"
+                  fontWeight="800"
+                  fontFamily={t.fontSans}
+                >
+                  {tool.name}
+                </text>
+
+                {/* Icon - Top Right */}
+                <g transform={`translate(${width - 68}, 20)`}>
+                   {React.createElement(tool.icon, {
+                      size: 48,
+                      color: t.ink,
+                      strokeWidth: 1.5
+                   })}
+                </g>
+
+                {/* Description */}
+                <WrappedText
+                  x={20}
+                  y={100}
+                  width={320}
+                  lineHeight={24}
+                  text={tool.desc}
+                  style={{
+                    fill: t.muted,
+                    fontSize: "16px",
+                    fontFamily: t.fontSerif,
+                    fontWeight: "400"
+                  }}
+                />
+
+                {/* Code Snippet Window */}
+                <g transform="translate(20, 160)">
+                    <rect
+                        width={width - 40}
+                        height={200}
+                        rx={6}
+                        fill={t.codeBg}
+                    />
+                    <foreignObject x="0" y="0" width={width - 40} height={200}>
+                        <div style={{
+                            padding: "16px",
+                            fontFamily: t.fontMono,
+                            fontSize: "13px",
+                            lineHeight: "1.5",
+                            color: t.code,
+                            overflow: "hidden",
+                            whiteSpace: "pre",
+                            height: "100%",
+                            boxSizing: "border-box"
+                        }}>
+                            {tool.code}
+                        </div>
+                    </foreignObject>
+                </g>
+
+                {/* Progress Bar */}
+                <rect 
+                  x={20} 
+                  y={expandedHeight - 12} 
+                  width={width - 40} 
+                  height={4} 
+                  fill={t.surface2} 
+                  rx={2} 
+                />
+                <rect 
+                  x={20} 
+                  y={expandedHeight - 12} 
+                  width={(width - 40) * localP} 
+                  height={4} 
+                  fill={t.primary} 
+                  rx={2} 
+                />
+              </g>
+            </g>
+          );
+        })}
+      </svg>
+    );
+  }
 
   // Layout constants
   const width = 960;

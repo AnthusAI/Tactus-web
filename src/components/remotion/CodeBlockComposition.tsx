@@ -217,6 +217,7 @@ export const CodeBlockComposition: React.FC<CodeBlockCompositionProps> = ({
             margin: 0,
             flex: 1,
             overflow: "hidden",
+            border: "none",
           }}
         >
           {typewriterText}

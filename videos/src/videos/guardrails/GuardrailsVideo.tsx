@@ -275,14 +275,14 @@ const DefenseInDepthScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = 
   // Convert to scene-local times
   const cueStartsLocal = ttsStartsSec.map(s => s - scene.startSec);
 
-  // We have 10 segments total (intro + 8 layers)
+  // We have 9 segments total (intro + 7 layers)
   // Segments 0-1: intro
-  // Segments 2-9: the 8 layers (Cost, Prompt, Context, Model, Tool, Code, Container, Broker)
+  // Segments 2-8: the 7 layers (Cost, Prompt, Context, Model, ToolSelection, Code, Container)
   const introEnd = cueStartsLocal[1] ?? 3;
-  const layerStarts = cueStartsLocal.slice(2, 10); // 8 layer start times
+  const layerStarts = cueStartsLocal.slice(2, 9); // 7 layer start times
 
-  // Map time to progress (0-1) - sweep through all 8 layers
-  const lastLayerStart = layerStarts[7] ?? introEnd + 20;
+  // Map time to progress (0-1) - sweep through all 7 layers
+  const lastLayerStart = layerStarts[6] ?? introEnd + 20;
   const diagramProgress = interpolate(
     localSec,
     [introEnd, lastLayerStart + 1.5],  // Start after intro, end after last layer

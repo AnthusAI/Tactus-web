@@ -718,19 +718,24 @@
   background: var(--color-surface);
 }
 
+.videoHeaderExtras {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-1);
+  text-align: right;
+}
+
 .videoTitle {
   font-weight: 700;
   letter-spacing: -0.01em;
 }
 
-.videoLink {
-  color: var(--color-text-muted);
+.videoDuration {
   font-size: var(--font-sm);
-  text-decoration: none;
-}
-
-.videoLink:hover {
-  text-decoration: underline;
+  color: var(--color-text-muted);
+  font-family: var(--font-sans);
+  font-weight: 600;
 }
 
 .video {
@@ -933,6 +938,10 @@
 
   .section {
     padding: var(--space-4) 0;
+  }
+
+  .videoHeaderExtras {
+    display: none;
   }
 
   .featureGrid {

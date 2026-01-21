@@ -353,10 +353,10 @@ const IndexPage = () => {
         <Breakout theme="muted" size="section">
           <div className={styles.videoCard} style={{ marginTop: 0 }}>
             <div className={styles.videoHeader}>
-              <span className={styles.videoTitle}>Intro to Tactus (5 min)</span>
-              <Link className={styles.videoLink} to="/videos/">
-                All videos
-              </Link>
+              <span className={styles.videoTitle}>Intro to Tactus</span>
+              <div className={styles.videoHeaderExtras}>
+                <span className={styles.videoDuration}>5 minutes</span>
+              </div>
             </div>
             <video
               className={styles.video}

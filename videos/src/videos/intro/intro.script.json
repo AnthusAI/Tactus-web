@@ -28,14 +28,14 @@
       "id": "hello_world",
       "title": "Hello, World",
       "startSec": 61.23617726946916,
-      "endSec": 98.43617726946916,
+      "endSec": 99.63617726946916,
       "cues": [
         {
           "id": "hello_world",
           "label": "Hello World",
           "startSec": 61.23617726946916,
-          "endSec": 98.43617726946916,
-          "text": "Tactus procedures are computer programs that include imperative instructions, like any other language, but they have first-class, high-level constructs for the building blocks of the problem space: agents, tools, context, and prompts.\n You run Tactus procedures just like you would run a program in any other language like Python or Node\u2014as command-line programs or by embedding them in applications.\n Here's an example of running a hello-world program. The procedure runs and returns the response from the agent. It doesn't use a framework because the capabilities are built right into the language.",
+          "endSec": 99.63617726946916,
+          "text": "Tactus procedures are computer programs that include imperative instructions, like any other language, but they have first-class, high-level constructs for the building blocks that we work with in AI engineering: agents, tools, context, and prompts.\n You run Tactus procedures just like you would run a program in any other language like Python or Node\u2014as command-line programs or by embedding them in applications.\n Here's an example of running a hello-world program. The procedure runs and returns the response from the agent. It doesn't use a framework because the capabilities are built right into the language.",
           "bullets": []
         }
       ]
@@ -43,30 +43,30 @@
     {
       "id": "interface",
       "title": "The Human Interface",
-      "startSec": 98.43617726946916,
-      "endSec": 197.17608566244039,
+      "startSec": 99.63617726946916,
+      "endSec": 198.37608566244037,
       "cues": [
         {
           "id": "interface_supervised",
           "label": "Closely Supervised",
-          "startSec": 98.43617726946916,
-          "endSec": 136.18617726946917,
+          "startSec": 99.63617726946916,
+          "endSec": 137.38617726946916,
           "text": "Connecting to agents and tools is just the beginning.  The real challenge is the interface layer between the agent and the operator.\n The common interface for agents today is chat.  You watch every step, you steer, and you stop the agent if it goes sideways. That works great for some things but depends on the human operator.\n The user becomes a bottleneck.  When you step away to eat or sleep, the whole system stops doing anything. If you're trying to process a lot of items at scale then your capacity is limited by the human operator.You can't scale this up.",
           "bullets": []
         },
         {
           "id": "interface_unsupervised",
           "label": "Unsupervised",
-          "startSec": 136.3079174314446,
-          "endSec": 155.2079174314446,
+          "startSec": 137.50791743144458,
+          "endSec": 156.4079174314446,
           "text": "You could remove the human entirely and let the agent run free. This scales beautifully\u2014you can process thousands of items at machine speed.\n But running an agent this way is like giving a monkey a razor blade.  And scaling that up to industrial levels is a recipe for disaster.",
           "bullets": []
         },
         {
           "id": "interface_hitl",
           "label": "Durable HITL",
-          "startSec": 155.32608566244036,
-          "endSec": 197.17608566244039,
+          "startSec": 156.52608566244035,
+          "endSec": 198.37608566244037,
           "text": "Tactus provides a new interface layer between the human and the computer. It enables agents to send requests to the human operator and wait for a response.  Requests can queue up, so that the system can continue running while the human operator isn't available.\n When a procedure needs a human\u2014to approve a risky action, or to provide a missing detail\u2014it pauses. It doesn't use any compute while it's suspended, and it doesn't depend on the runtime to continue running in memory.\n It can resume hours or days later, exactly where it left off. This lets you move from synchronous chat to asynchronous, industrial-scale workflows.",
           "bullets": []
         }
@@ -75,14 +75,14 @@
     {
       "id": "defense_layers",
       "title": "Defense in Depth",
-      "startSec": 197.17608566244039,
-      "endSec": 242.62608566244043,
+      "startSec": 198.37608566244037,
+      "endSec": 243.82608566244042,
       "cues": [
         {
           "id": "defense_layers",
           "label": "Defense Layers",
-          "startSec": 197.17608566244039,
-          "endSec": 242.62608566244043,
+          "startSec": 198.37608566244037,
+          "endSec": 243.82608566244042,
           "text": "Tactus gives you levers of control at multiple layers. Because no single layer is sufficient on its own.\n Cost and limits to prevent runaway loops and billing surprises.\n Prompt engineering to guide model behavior.\n Context engineering to ensure the model has the right information, not just all information.\n Model selection for the right capabilities and safety profiles.\n Tool selection. Give the agent only the capabilities it needs.\n Code sandboxing in isolated environments.\n And container isolation to constrain what the agent can touch, and to firewall side effects inside an ephemeral container.",
           "bullets": []
         }
@@ -91,14 +91,14 @@
     {
       "id": "sandboxing",
       "title": "Sandboxing",
-      "startSec": 242.62608566244043,
-      "endSec": 290.52608566244044,
+      "startSec": 243.82608566244042,
+      "endSec": 291.72608566244037,
       "cues": [
         {
           "id": "sandboxing",
           "label": "Sandboxing",
-          "startSec": 242.62608566244043,
-          "endSec": 290.52608566244044,
+          "startSec": 243.82608566244042,
+          "endSec": 291.72608566244037,
           "text": "We know AI models make mistakes. Maybe your agent writes buggy tool code that deletes files. Or maybe a prompt injection tells it to send your data to a competitor.\n To keep the surprises firewalled off, Tactus runs your code in a restricted Lua sandbox inside a networkless container. That answers one security question: what can it touch?\n The other question is the one that matters most: what can it steal? Tactus keeps the runtime secretless: keys and privileged calls live outside the container, behind a broker boundary.\n It\u2019s like letting a burglar into an empty building. Even if they get in, there\u2019s nothing valuable inside to take. Your procedure can use powerful tools without ever handing secrets to the agent runtime.",
           "bullets": []
         }
@@ -107,14 +107,14 @@
     {
       "id": "nutshell",
       "title": "Tactus in a Nutshell",
-      "startSec": 290.52608566244044,
-      "endSec": 306.8260856624405,
+      "startSec": 291.72608566244037,
+      "endSec": 308.02608566244044,
       "cues": [
         {
           "id": "nutshell",
           "label": "Nutshell",
-          "startSec": 290.52608566244044,
-          "endSec": 306.8260856624405,
+          "startSec": 291.72608566244037,
+          "endSec": 308.02608566244044,
           "text": "In a nutshell, Tactus is the interface layer for the new age of computing.\n It gives you high-level concepts to construct solutions, a durable runtime to handle human interaction, and a safety architecture to keep the monkey in the box.",
           "bullets": []
         }
@@ -123,14 +123,14 @@
     {
       "id": "cta",
       "title": "Get Started",
-      "startSec": 306.8260856624405,
-      "endSec": 314.47608566244054,
+      "startSec": 308.02608566244044,
+      "endSec": 315.67608566244047,
       "cues": [
         {
           "id": "cta",
           "label": "CTA",
-          "startSec": 306.8260856624405,
-          "endSec": 314.47608566244054,
+          "startSec": 308.02608566244044,
+          "endSec": 315.67608566244047,
           "text": "Ready to try it? Visit the Tactus website to download the IDE and run your first procedure.",
           "bullets": []
         }

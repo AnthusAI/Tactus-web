@@ -116,7 +116,7 @@ scenes:
         voice:
           segments:
             - voice: >
-                Tactus procedures are computer programs that include imperative instructions, like any other language, but they have first-class, high-level constructs for the building blocks of the problem space: agents, tools, context, and prompts.
+                Tactus procedures are computer programs that include imperative instructions, like any other language, but they have first-class, high-level constructs for the building blocks that we work with in AI engineering: agents, tools, context, and prompts.
             - pause_seconds: 0.35
             - voice: >
                 You run Tactus procedures just like you would run a program in any other language like Python or Node—as command-line programs or by embedding them in applications.

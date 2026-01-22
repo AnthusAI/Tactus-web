@@ -42,6 +42,7 @@ videos/out/
 videos/public/babulus/
 videos/.babulus/out/
 .babulus/out/
+.babulus/config.yml
 .fabulus/
 .claude/
 

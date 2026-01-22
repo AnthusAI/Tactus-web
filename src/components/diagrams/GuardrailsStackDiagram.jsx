@@ -52,14 +52,14 @@ const GuardrailsStackDiagram = ({
 
   const layers = [
     {
+      name: "Prompt Engineering",
+      desc: "Structured instructions and personas guide model behavior — but prompts are suggestions, not controls.",
+      Icon: FileText,
+    },
+    {
       name: "Cost & Limits",
       desc: "Hard quotas prevent runaway loops and billing surprises before they happen.",
       Icon: CircleDollarSign,
-    },
-    {
-      name: "Prompt Engineering",
-      desc: "Structured instructions and personas guide model behavior and reduce error rates.",
-      Icon: FileText,
     },
     {
       name: "Context Engineering",
@@ -78,12 +78,12 @@ const GuardrailsStackDiagram = ({
     },
     {
       name: "Code Sandboxing",
-      desc: "Execution in isolated environments (Lua) prevents unauthorized system access.",
+      desc: "Running agent code in a restricted environment so it can't cause damage.",
       Icon: SquareCodeIcon,
     },
     {
       name: "Container Isolation",
-      desc: "Ephemeral containers constrain what the runtime can touch and firewall side effects inside the container.",
+      desc: "Firewalling agent activity so it can't reach the network or touch your server.",
       Icon: Box,
     },
   ];

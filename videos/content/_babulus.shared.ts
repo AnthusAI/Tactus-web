@@ -4,6 +4,7 @@ import type { PauseSpec } from "babulus/dsl";
 const env = defineEnv();
 
 export const sharedDefaults = defineDefaults({
+  meta: { fps: 24 },
   voiceover: {
     provider: env.value("openai", { aws: "aws", azure: "azure", production: "elevenlabs" }),
     model: env.value<string | null>(null, { development: "gpt-4o-mini-tts", production: "eleven_v3" }),

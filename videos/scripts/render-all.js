@@ -28,7 +28,7 @@ const ensurePublicAssetsFromTimeline = (slug) => {
 
   const timeline = JSON.parse(fs.readFileSync(timelinePath, "utf8"));
   const stack = [timeline];
-  const srcs = new Set();
+  const referencedAssets = new Set();
 
   while (stack.length > 0) {
     const node = stack.pop();
@@ -43,35 +43,48 @@ const ensurePublicAssetsFromTimeline = (slug) => {
 
     const src = node.src;
     if (typeof src === "string" && src.startsWith("babulus/")) {
-      srcs.add(src);
+      referencedAssets.add(src);
     }
 
     for (const value of Object.values(node)) stack.push(value);
   }
 
-  for (const src of srcs) {
+  const copyAsset = (src) => {
+    const relative = src.slice("babulus/".length);
     let fromRelative = null;
+    const slugEnvPrefix = `${slug}/env/${envName}/`;
+    const envPrefix = `env/${envName}/`;
 
-    const segmentsPrefix = `babulus/${slug}/segments/`;
-    if (src.startsWith(segmentsPrefix)) {
-      const filename = src.slice(segmentsPrefix.length);
-      fromRelative = path.join(".babulus", "out", slug, "env", envName, "segments", filename);
-    } else if (src.startsWith("babulus/music/bed/")) {
-      const filename = src.split("/").pop();
-      fromRelative = path.join(".babulus", "out", slug, "env", envName, "music", filename);
-    } else if (src.startsWith("babulus/sfx/")) {
-      const filename = src.split("/").pop();
-      fromRelative = path.join(".babulus", "out", slug, "env", envName, "sfx", filename);
+    if (relative.startsWith(slugEnvPrefix)) {
+      const suffix = relative.slice(slugEnvPrefix.length);
+      fromRelative = path.join(".babulus", "out", slug, "env", envName, suffix);
+    } else if (relative.startsWith(envPrefix)) {
+      const suffix = relative.slice(envPrefix.length);
+      const segments = suffix.split("/");
+      if (segments[0] === "music" || segments[0] === "sfx") {
+        const filename = segments[segments.length - 1];
+        fromRelative = path.join(".babulus", "out", slug, "env", envName, segments[0], filename);
+      } else {
+        fromRelative = path.join(".babulus", "out", slug, "env", envName, suffix);
+      }
+    } else if (relative.startsWith(`${slug}/`)) {
+      const suffix = relative.slice(`${slug}/`.length);
+      fromRelative = path.join(".babulus", "out", slug, suffix);
+    } else {
+      fromRelative = path.join(".babulus", "out", slug, relative);
     }
-
-    if (!fromRelative) continue;
 
     const absFrom = path.join(__dirname, "..", fromRelative);
     const absTo = path.join(__dirname, "..", "public", src);
+
     if (fs.existsSync(absFrom) && !fs.existsSync(absTo)) {
       fs.mkdirSync(path.dirname(absTo), { recursive: true });
       fs.copyFileSync(absFrom, absTo);
     }
+  };
+
+  for (const src of referencedAssets) {
+    copyAsset(src);
   }
 };
 
@@ -146,7 +159,7 @@ for (const composition of compositions) {
     ensurePublicAssetsFromTimeline(slug);
 
     execSync(
-      `${remotionBin} render src/index.ts ${composition.id} ${outputPath}`,
+      `${remotionBin} render src/index.ts ${composition.id} ${outputPath} --concurrency=1`,
       {
         stdio: "inherit",
         cwd: path.join(__dirname, ".."),

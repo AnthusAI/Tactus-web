@@ -255,21 +255,20 @@ const MachineCodeScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ 
 
   // Map beats to the TTS segments
   // history segments (see `videos/content/why-new-language.babulus.ts`, cue `machine_code_era.history`)
-  const beat0 = cueStartsLocal[0] ?? 0; // machine code
-  const beat1 = cueStartsLocal[1] ?? beat0 + 8; // hex
-  const beat2 = cueStartsLocal[2] ?? beat1 + 7; // assembly / assemblers
-  const beat3 = cueStartsLocal[3] ?? beat2 + 7; // two-step workflow (assembler + your program)
-  const beat4 = cueStartsLocal[4] ?? beat3 + 6; // translation explanation
-  const beat5 = cueStartsLocal[5] ?? beat4 + 6; // "key step" meta insight
-  const beat6 = cueStartsLocal[6] ?? beat5 + 7; // early high-level languages (Lisp, etc.)
-  const beat7 = cueStartsLocal[7] ?? beat6 + 7; // C
-  const beat8 = cueStartsLocal[8] ?? beat7 + 8; // C++
-  const beat9 = cueStartsLocal[9] ?? beat8 + 8; // Ruby
-  const beat10 = cueStartsLocal[10] ?? beat9 + 9; // paradigm constant
-  const beat11 = cueStartsLocal[11] ?? beat10 + 10; // AI parallel
-  const beat12 = cueStartsLocal[12] ?? beat11 + 9; // Tactus
-  const beat13 = cueStartsLocal[13] ?? beat12 + 9; // the difference
-
+    const beat0 = cueStartsLocal[0] ?? 0; // machine code
+  // Hex removed
+  const beat2 = cueStartsLocal[1] ?? beat0 + 8; // assembly / assemblers
+  const beat3 = cueStartsLocal[2] ?? beat2 + 7; // two-step workflow (assembler + your program)
+  const beat4 = cueStartsLocal[3] ?? beat3 + 6; // translation explanation
+  const beat5 = cueStartsLocal[4] ?? beat4 + 6; // "key step" meta insight
+  const beat6 = cueStartsLocal[5] ?? beat5 + 7; // early high-level languages (Lisp, etc.)
+  const beat7 = cueStartsLocal[6] ?? beat6 + 7; // C
+  const beat8 = cueStartsLocal[7] ?? beat7 + 8; // C++
+  const beat9 = cueStartsLocal[8] ?? beat8 + 8; // Ruby
+  const beat10 = cueStartsLocal[9] ?? beat9 + 9; // paradigm constant
+  const beat11 = cueStartsLocal[10] ?? beat10 + 10; // AI parallel
+  const beat12 = cueStartsLocal[11] ?? beat11 + 9; // Tactus
+  const beat13 = cueStartsLocal[12] ?? beat12 + 9; // the difference
   const titleAnimation = spring({
     frame,
     fps,
@@ -358,9 +357,7 @@ Greeter.new("World").greet`;
 return World("Hello, World!").response`;
 
   const codeExamples = [
-    { label: "1940s: Machine Code", code: MACHINE_CODE, startTime: beat0 },
-    { label: "1940s: Hexadecimal", code: HEX_CODE, startTime: beat1 },
-    { label: "1950s: Assembly", code: ASSEMBLY_CODE, startTime: beat2 },
+    { label: "1940s: Machine Code", code: MACHINE_CODE, startTime: beat0 },    { label: "1950s: Assembly", code: ASSEMBLY_CODE, startTime: beat2 },
     { label: "1958: Lisp", code: LISP_CODE, startTime: beat6 },
     { label: "1970s: C", code: C_CODE, startTime: beat7 },
     { label: "1980s: C++", code: CPP_CODE, startTime: beat8 },

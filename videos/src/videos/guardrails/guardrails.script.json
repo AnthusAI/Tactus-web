@@ -161,5 +161,6 @@
       ]
     }
   ],
-  "posterTimeSec": 81
+  "posterTimeSec": 81,
+  "fps": 24
 }

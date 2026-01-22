@@ -1,5 +1,11 @@
 # Tactus-web (Gatsby) on AWS Amplify (Gen 2)
 
+## CRITICAL PROTOCOL: GIT COMMITS
+**NEVER** commit changes without explicit user approval.
+- Always show the user what you have done and ask for confirmation before running `git commit`.
+- If the user asks you to "do X", implementing X is your job. Committing X is a separate step that requires separate approval.
+- Exception: If the user explicitly says "fix X and commit", you may commit. Otherwise, assume you are in a "review pending" state.
+
 ## What this repo is
 
 - Gatsby site deployed via **AWS Amplify Hosting** (CI/CD + static hosting).

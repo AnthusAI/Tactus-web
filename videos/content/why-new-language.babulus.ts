@@ -29,6 +29,7 @@ export default defineVideo((video) => {
             0.4,
           ]);
 
+        });
       });
     });
 
@@ -38,19 +39,13 @@ export default defineVideo((video) => {
           voiceSegments(voice, [
             t`
               In the beginning, programmers wrote raw machine code. Zeros and ones.
-              It was cumbersome, confusing, slow, and error-prone.
+              It was slow, tedious, and error-prone.
               And it was *low-level* in a very literal sense: those zeros and ones corresponded to physical states—
               voltage on a wire, a relay position, or a vacuum tube being on or off.
               Sometimes that meant wiring plugboards or toggling switches. Later it meant punching numeric opcodes.
               You were squinting down in the guts of the machine, and your “program” was basically a description of that machine.
             `,
             0.35,
-            t`
-              One practical mercy was hexadecimal notation.
-              Hex wasn’t invented for computers — it’s ancient — but it became newly useful here.
-              It didn’t change what the computer executed, but it gave humans patterns and chunks they could recognize.
-            `,
-            0.4,
             t`
               Assemblers emerged almost immediately. Instead of binary opcodes, you could write
               symbolic instructions. Researchers formalized those patterns into names and labels,
@@ -79,7 +74,7 @@ export default defineVideo((video) => {
             t`
               From there, the ladder of abstraction rose quickly.
               In the late 1950s and 1960s, early high-level languages like Fortran, Lisp, COBOL, ALGOL, and APL
-              let humans describe problems more directly, while compilers handled the low-level details.
+              enabled humans describe problems more directly, while compilers handled the low-level details.
               Lisp, for example, was built for symbolic problems: lists, recursion, and treating code as data so you can transform programs like any other structure.
             `,
             0.3,

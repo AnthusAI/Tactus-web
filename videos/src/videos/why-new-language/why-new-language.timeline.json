@@ -11,7 +11,7 @@
       "sceneId": "title_card",
       "cueId": "title",
       "startSec": 0.25,
-      "endSec": 3.9954545454545456,
+      "endSec": 22.849999999999994,
       "segments": [
         {
           "type": "pause",
@@ -32,65 +32,56 @@
         {
           "type": "pause",
           "startSec": 3.5954545454545457,
-          "endSec": 3.9954545454545456,
-          "seconds": 0.4
-        }
-      ]
-    },
-    {
-      "type": "tts",
-      "sceneId": "purpose",
-      "cueId": "purpose",
-      "startSec": 3.9954545454545456,
-      "endSec": 22.85,
-      "segments": [
-        {
-          "type": "pause",
-          "startSec": 3.9954545454545456,
-          "endSec": 4.495454545454546,
+          "endSec": 4.095454545454546,
           "seconds": 0.5
         },
         {
           "type": "tts",
-          "startSec": 4.495454545454546,
-          "endSec": 11.040909090909091,
+          "startSec": 4.095454545454546,
+          "endSec": 10.64090909090909,
           "text": "To answer that question, we need to think about what the purpose of a computer programming language is.",
-          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/purpose--purpose--tts--15ebc08b1cfa--1.wav",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/title_card--title--tts--f556d7c54039--1.wav",
           "durationSec": 6.545454545454545,
           "rawDurationSec": 6.545454545454545,
           "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 11.040909090909091,
-          "endSec": 11.440909090909091,
+          "startSec": 10.64090909090909,
+          "endSec": 11.040909090909091,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 11.440909090909091,
-          "endSec": 16.168181818181818,
+          "startSec": 11.040909090909091,
+          "endSec": 15.768181818181818,
           "text": "It is to provide a high-level model for recording reproducible solutions to problems.",
-          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/purpose--purpose--tts--7128b7081404--1.wav",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/title_card--title--tts--168f47c13e1a--1.wav",
           "durationSec": 4.727272727272727,
           "rawDurationSec": 4.727272727272727,
           "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 16.168181818181818,
-          "endSec": 16.668181818181818,
+          "startSec": 15.768181818181818,
+          "endSec": 16.268181818181816,
           "seconds": 0.5
         },
         {
           "type": "tts",
-          "startSec": 16.668181818181818,
-          "endSec": 22.85,
+          "startSec": 16.268181818181816,
+          "endSec": 22.449999999999996,
           "text": "So to see why we need a new one, let's look at how those models have evolved.",
-          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/purpose--purpose--tts--59c6041357fd--1.wav",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/title_card--title--tts--66649d15593e--1.wav",
           "durationSec": 6.181818181818182,
           "rawDurationSec": 6.181818181818182,
           "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 22.449999999999996,
+          "endSec": 22.849999999999994,
+          "seconds": 0.4
         }
       ]
     },
@@ -98,45 +89,29 @@
       "type": "tts",
       "sceneId": "machine_code_era",
       "cueId": "history",
-      "startSec": 22.85,
-      "endSec": 222.62272727272733,
+      "startSec": 22.849999999999994,
+      "endSec": 208.0409090909091,
       "segments": [
         {
           "type": "tts",
-          "startSec": 22.85,
-          "endSec": 53.39545454545454,
-          "text": "In the beginning, programmers wrote raw machine code. Zeros and ones. It was cumbersome, confusing, slow, and error-prone. And it was *low-level* in a very literal sense: those zeros and ones corresponded to physical states— voltage on a wire, a relay position, or a vacuum tube being on or off. Sometimes that meant wiring plugboards or toggling switches. Later it meant punching numeric opcodes. You were squinting down in the guts of the machine, and your “program” was basically a description of that machine.",
-          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/machine_code_era--history--tts--541b1649c858--1.wav",
-          "durationSec": 30.545454545454543,
-          "rawDurationSec": 30.545454545454543,
+          "startSec": 22.849999999999994,
+          "endSec": 53.03181818181818,
+          "text": "In the beginning, programmers wrote raw machine code. Zeros and ones. It was slow, tedious, and error-prone. And it was *low-level* in a very literal sense: those zeros and ones corresponded to physical states— voltage on a wire, a relay position, or a vacuum tube being on or off. Sometimes that meant wiring plugboards or toggling switches. Later it meant punching numeric opcodes. You were squinting down in the guts of the machine, and your “program” was basically a description of that machine.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/machine_code_era--history--tts--5ae348a361cc--1.wav",
+          "durationSec": 30.181818181818183,
+          "rawDurationSec": 30.181818181818183,
           "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 53.39545454545454,
-          "endSec": 53.74545454545454,
+          "startSec": 53.03181818181818,
+          "endSec": 53.38181818181818,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 53.74545454545454,
-          "endSec": 67.56363636363636,
-          "text": "One practical mercy was hexadecimal notation. Hex wasn’t invented for computers — it’s ancient — but it became newly useful here. It didn’t change what the computer executed, but it gave humans patterns and chunks they could recognize.",
-          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/machine_code_era--history--tts--fb06654d69b0--1.wav",
-          "durationSec": 13.818181818181818,
-          "rawDurationSec": 13.818181818181818,
-          "trimEndSec": 0
-        },
-        {
-          "type": "pause",
-          "startSec": 67.56363636363636,
-          "endSec": 67.96363636363637,
-          "seconds": 0.4
-        },
-        {
-          "type": "tts",
-          "startSec": 67.96363636363637,
-          "endSec": 87.96363636363637,
+          "startSec": 53.38181818181818,
+          "endSec": 73.38181818181818,
           "text": "Assemblers emerged almost immediately. Instead of binary opcodes, you could write symbolic instructions. Researchers formalized those patterns into names and labels, making “machine instructions” legible to humans. The computer translated them into machine code. And once you can name things, you can reuse them: labels, macros, and early subroutines made programs repeatable instead of handcrafted.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/machine_code_era--history--tts--92f9e315eff1--1.wav",
           "durationSec": 20,
@@ -145,14 +120,14 @@
         },
         {
           "type": "pause",
-          "startSec": 87.96363636363637,
-          "endSec": 88.36363636363637,
+          "startSec": 73.38181818181818,
+          "endSec": 73.78181818181818,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 88.36363636363637,
-          "endSec": 97.0909090909091,
+          "startSec": 73.78181818181818,
+          "endSec": 82.5090909090909,
           "text": "But the deeper shift is that assemblers introduced a two‑step workflow. Now there are two programs in the story: the assembler, and *your* program.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/machine_code_era--history--tts--238963526660--1.wav",
           "durationSec": 8.727272727272727,
@@ -161,14 +136,14 @@
         },
         {
           "type": "pause",
-          "startSec": 97.0909090909091,
-          "endSec": 97.44090909090909,
+          "startSec": 82.5090909090909,
+          "endSec": 82.8590909090909,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 97.44090909090909,
-          "endSec": 110.16818181818182,
+          "startSec": 82.8590909090909,
+          "endSec": 95.58636363636363,
           "text": "You write code in a form that’s easier for humans to understand. Then you run the assembler — a program — to turn that into machine code. And *then* the computer runs the machine code.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/machine_code_era--history--tts--dff1542a9b03--1.wav",
           "durationSec": 12.727272727272728,
@@ -177,14 +152,14 @@
         },
         {
           "type": "pause",
-          "startSec": 110.16818181818182,
-          "endSec": 110.51818181818182,
+          "startSec": 95.58636363636363,
+          "endSec": 95.93636363636362,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 110.51818181818182,
-          "endSec": 126.51818181818182,
+          "startSec": 95.93636363636362,
+          "endSec": 111.93636363636362,
           "text": "That’s the key step: one of the first useful things people ever did with computers was use them to make using computers easier. Even when computer time was precious, people spent some of it on tools that made programming faster, safer, and more repeatable.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/machine_code_era--history--tts--7c617bab78cb--1.wav",
           "durationSec": 16,
@@ -193,30 +168,30 @@
         },
         {
           "type": "pause",
-          "startSec": 126.51818181818182,
-          "endSec": 126.81818181818181,
+          "startSec": 111.93636363636362,
+          "endSec": 112.23636363636362,
           "seconds": 0.3
         },
         {
           "type": "tts",
-          "startSec": 126.81818181818181,
-          "endSec": 148.63636363636363,
-          "text": "From there, the ladder of abstraction rose quickly. In the late 1950s and 1960s, early high-level languages like Fortran, Lisp, COBOL, ALGOL, and APL let humans describe problems more directly, while compilers handled the low-level details. Lisp, for example, was built for symbolic problems: lists, recursion, and treating code as data so you can transform programs like any other structure.",
-          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/machine_code_era--history--tts--06653016f3f6--1.wav",
+          "startSec": 112.23636363636362,
+          "endSec": 134.05454545454543,
+          "text": "From there, the ladder of abstraction rose quickly. In the late 1950s and 1960s, early high-level languages like Fortran, Lisp, COBOL, ALGOL, and APL enabled humans describe problems more directly, while compilers handled the low-level details. Lisp, for example, was built for symbolic problems: lists, recursion, and treating code as data so you can transform programs like any other structure.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/machine_code_era--history--tts--3a84e4aabc90--1.wav",
           "durationSec": 21.81818181818182,
           "rawDurationSec": 21.81818181818182,
           "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 148.63636363636363,
-          "endSec": 148.93636363636364,
+          "startSec": 134.05454545454543,
+          "endSec": 134.35454545454544,
           "seconds": 0.3
         },
         {
           "type": "tts",
-          "startSec": 148.93636363636364,
-          "endSec": 162.02727272727273,
+          "startSec": 134.35454545454544,
+          "endSec": 147.44545454545454,
           "text": "One especially influential descendant of that era was C. It kept you close to the machine, but its constructs made repetition and reuse explicit: functions you could call again, and control flow you could reason about.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/machine_code_era--history--tts--fb397cae6361--1.wav",
           "durationSec": 13.09090909090909,
@@ -225,14 +200,14 @@
         },
         {
           "type": "pause",
-          "startSec": 162.02727272727273,
-          "endSec": 162.32727272727274,
+          "startSec": 147.44545454545454,
+          "endSec": 147.74545454545455,
           "seconds": 0.3
         },
         {
           "type": "tts",
-          "startSec": 162.32727272727274,
-          "endSec": 171.7818181818182,
+          "startSec": 147.74545454545455,
+          "endSec": 157.2,
           "text": "C plus plus — and object-oriented programming more broadly — tried to match another problem space: large systems made of interacting “things” with state and responsibilities.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/machine_code_era--history--tts--287351ba37df--1.wav",
           "durationSec": 9.454545454545453,
@@ -241,14 +216,14 @@
         },
         {
           "type": "pause",
-          "startSec": 171.7818181818182,
-          "endSec": 172.08181818181822,
+          "startSec": 157.2,
+          "endSec": 157.5,
           "seconds": 0.3
         },
         {
           "type": "tts",
-          "startSec": 172.08181818181822,
-          "endSec": 181.53636363636366,
+          "startSec": 157.5,
+          "endSec": 166.95454545454544,
           "text": "And languages like Ruby pushed toward expressing intent directly: code that reads closer to what a human means, so the computer does more of the bookkeeping.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/machine_code_era--history--tts--291a9f8f285f--1.wav",
           "durationSec": 9.454545454545453,
@@ -257,14 +232,14 @@
         },
         {
           "type": "pause",
-          "startSec": 181.53636363636366,
-          "endSec": 181.93636363636367,
+          "startSec": 166.95454545454544,
+          "endSec": 167.35454545454544,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 181.93636363636367,
-          "endSec": 189.20909090909095,
+          "startSec": 167.35454545454544,
+          "endSec": 174.62727272727273,
           "text": "But through all of this, the paradigm never changed. The programmer still specified control flow. The computer still followed instructions.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/machine_code_era--history--tts--86a3e95a00f7--1.wav",
           "durationSec": 7.272727272727273,
@@ -273,14 +248,14 @@
         },
         {
           "type": "pause",
-          "startSec": 189.20909090909095,
-          "endSec": 189.60909090909095,
+          "startSec": 174.62727272727273,
+          "endSec": 175.02727272727273,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 189.60909090909095,
-          "endSec": 201.97272727272733,
+          "startSec": 175.02727272727273,
+          "endSec": 187.3909090909091,
           "text": "Today, we're seeing the same pattern repeat with AI. One of the first valuable uses of AI is to turn it on itself: using AI to make programming easier, and to write better code.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/machine_code_era--history--tts--0617e9b9d041--1.wav",
           "durationSec": 12.363636363636363,
@@ -289,14 +264,14 @@
         },
         {
           "type": "pause",
-          "startSec": 201.97272727272733,
-          "endSec": 202.32272727272732,
+          "startSec": 187.3909090909091,
+          "endSec": 187.7409090909091,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 202.32272727272732,
-          "endSec": 213.95909090909095,
+          "startSec": 187.7409090909091,
+          "endSec": 199.37727272727273,
           "text": "Tactus continues that tradition. It raises the level of abstraction to match what engineers care about in agentic systems: procedures, tools, guardrails, checkpoints, and evaluation. So you can express those concerns directly.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/machine_code_era--history--tts--d3ff98f7d2be--1.wav",
           "durationSec": 11.636363636363637,
@@ -305,14 +280,14 @@
         },
         {
           "type": "pause",
-          "startSec": 213.95909090909095,
-          "endSec": 214.25909090909096,
+          "startSec": 199.37727272727273,
+          "endSec": 199.67727272727274,
           "seconds": 0.3
         },
         {
           "type": "tts",
-          "startSec": 214.25909090909096,
-          "endSec": 222.62272727272733,
+          "startSec": 199.67727272727274,
+          "endSec": 208.0409090909091,
           "text": "But this time, something deeper is changing. It's not just a higher level of abstraction. It's a fundamentally different way of making decisions.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/machine_code_era--history--tts--be3b92925b11--1.wav",
           "durationSec": 8.363636363636363,
@@ -325,13 +300,13 @@
       "type": "tts",
       "sceneId": "control_flow",
       "cueId": "shift",
-      "startSec": 222.62272727272733,
-      "endSec": 274.96818181818185,
+      "startSec": 208.0409090909091,
+      "endSec": 260.3863636363636,
       "segments": [
         {
           "type": "tts",
-          "startSec": 222.62272727272733,
-          "endSec": 227.35000000000005,
+          "startSec": 208.0409090909091,
+          "endSec": 212.76818181818183,
           "text": "Today, decisions are no longer made entirely by imperative logic written by programmers.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/control_flow--shift--tts--2704b65cb1f1--1.wav",
           "durationSec": 4.727272727272727,
@@ -340,14 +315,14 @@
         },
         {
           "type": "pause",
-          "startSec": 227.35000000000005,
-          "endSec": 227.70000000000005,
+          "startSec": 212.76818181818183,
+          "endSec": 213.11818181818182,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 227.70000000000005,
-          "endSec": 237.15454545454548,
+          "startSec": 213.11818181818182,
+          "endSec": 222.57272727272726,
           "text": "In agentic patterns like the ReAct loop, you *explicitly* hand control flow to the model: it decides what tool to call next, and when it’s done.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/control_flow--shift--tts--0398d90e65ed--1.wav",
           "durationSec": 9.454545454545453,
@@ -356,14 +331,14 @@
         },
         {
           "type": "pause",
-          "startSec": 237.15454545454548,
-          "endSec": 237.5545454545455,
+          "startSec": 222.57272727272726,
+          "endSec": 222.97272727272727,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 237.5545454545455,
-          "endSec": 243.3727272727273,
+          "startSec": 222.97272727272727,
+          "endSec": 228.79090909090908,
           "text": "That’s one of the clearest definitions of “agentic programming”: the agent is making the control-flow decisions.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/control_flow--shift--tts--ed9acd0f6cd3--1.wav",
           "durationSec": 5.818181818181818,
@@ -372,14 +347,14 @@
         },
         {
           "type": "pause",
-          "startSec": 243.3727272727273,
-          "endSec": 243.7227272727273,
+          "startSec": 228.79090909090908,
+          "endSec": 229.14090909090908,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 243.7227272727273,
-          "endSec": 255.35909090909092,
+          "startSec": 229.14090909090908,
+          "endSec": 240.7772727272727,
           "text": "And that’s what we mean by a new kind of computer program. Instead of specifying every branch, you yield control to the AI model — and you surround that loop with guardrails.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/control_flow--shift--tts--e09c2ae5bc91--1.wav",
           "durationSec": 11.636363636363637,
@@ -388,14 +363,14 @@
         },
         {
           "type": "pause",
-          "startSec": 255.35909090909092,
-          "endSec": 255.70909090909092,
+          "startSec": 240.7772727272727,
+          "endSec": 241.1272727272727,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 255.70909090909092,
-          "endSec": 268.8,
+          "startSec": 241.1272727272727,
+          "endSec": 254.2181818181818,
           "text": "Even a basic guardrail matters immediately: you can’t let the loop run forever. So you might cap it at, say, twelve tool calls — and require the agent to stop or ask for help after that.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/control_flow--shift--tts--fb2575eb9225--1.wav",
           "durationSec": 13.09090909090909,
@@ -404,14 +379,14 @@
         },
         {
           "type": "pause",
-          "startSec": 268.8,
-          "endSec": 269.15000000000003,
+          "startSec": 254.2181818181818,
+          "endSec": 254.56818181818178,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 269.15000000000003,
-          "endSec": 274.96818181818185,
+          "startSec": 254.56818181818178,
+          "endSec": 260.3863636363636,
           "text": "Tactus is designed to make that style of program—and those guardrails—explicit and easy to reason about.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/control_flow--shift--tts--5783bf76d878--1.wav",
           "durationSec": 5.818181818181818,
@@ -424,13 +399,13 @@
       "type": "tts",
       "sceneId": "tools_strain",
       "cueId": "python_problem",
-      "startSec": 274.96818181818185,
-      "endSec": 299.4772727272728,
+      "startSec": 260.3863636363636,
+      "endSec": 284.8954545454546,
       "segments": [
         {
           "type": "tts",
-          "startSec": 274.96818181818185,
-          "endSec": 279.3318181818182,
+          "startSec": 260.3863636363636,
+          "endSec": 264.75,
           "text": "So why not just use Python? Or TypeScript? They're powerful, flexible languages.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/tools_strain--python_problem--tts--038b8b68f4e4--1.wav",
           "durationSec": 4.363636363636363,
@@ -439,14 +414,14 @@
         },
         {
           "type": "pause",
-          "startSec": 279.3318181818182,
-          "endSec": 279.68181818181824,
+          "startSec": 264.75,
+          "endSec": 265.1,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 279.68181818181824,
-          "endSec": 281.86363636363643,
+          "startSec": 265.1,
+          "endSec": 267.2818181818182,
           "text": "The problem isn't capability. It's fit.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/tools_strain--python_problem--tts--c86e0bb49df9--1.wav",
           "durationSec": 2.1818181818181817,
@@ -455,14 +430,14 @@
         },
         {
           "type": "pause",
-          "startSec": 281.86363636363643,
-          "endSec": 282.2636363636364,
+          "startSec": 267.2818181818182,
+          "endSec": 267.6818181818182,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 282.2636363636364,
-          "endSec": 290.99090909090916,
+          "startSec": 267.6818181818182,
+          "endSec": 276.40909090909093,
           "text": "Look at this code. How do you checkpoint an agent call? How do you test it? How do you prevent it from reading slash-etsy-slash-password?",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/tools_strain--python_problem--tts--f3a06049bb0a--1.wav",
           "durationSec": 8.727272727272727,
@@ -471,14 +446,14 @@
         },
         {
           "type": "pause",
-          "startSec": 290.99090909090916,
-          "endSec": 291.49090909090916,
+          "startSec": 276.40909090909093,
+          "endSec": 276.90909090909093,
           "seconds": 0.5
         },
         {
           "type": "tts",
-          "startSec": 291.49090909090916,
-          "endSec": 296.9454545454546,
+          "startSec": 276.90909090909093,
+          "endSec": 282.3636363636364,
           "text": "These concerns exist, but they're bolted on. Fragmented across code, prompts, configuration, and external frameworks.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/tools_strain--python_problem--tts--025d9d9df49b--1.wav",
           "durationSec": 5.454545454545455,
@@ -487,14 +462,14 @@
         },
         {
           "type": "pause",
-          "startSec": 296.9454545454546,
-          "endSec": 297.2954545454546,
+          "startSec": 282.3636363636364,
+          "endSec": 282.7136363636364,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 297.2954545454546,
-          "endSec": 299.4772727272728,
+          "startSec": 282.7136363636364,
+          "endSec": 284.8954545454546,
           "text": "The language wasn't designed for this.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/tools_strain--python_problem--tts--9a4be45994cf--1.wav",
           "durationSec": 2.1818181818181817,
@@ -507,13 +482,13 @@
       "type": "tts",
       "sceneId": "practices_collapse",
       "cueId": "testing_breaks",
-      "startSec": 299.4772727272728,
-      "endSec": 323.52272727272737,
+      "startSec": 284.8954545454546,
+      "endSec": 308.94090909090914,
       "segments": [
         {
           "type": "tts",
-          "startSec": 299.4772727272728,
-          "endSec": 304.20454545454555,
+          "startSec": 284.8954545454546,
+          "endSec": 289.62272727272733,
           "text": "For decades, software engineering best practices have been built around one assumption: determinism.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/practices_collapse--testing_breaks--tts--a03790814004--1.wav",
           "durationSec": 4.727272727272727,
@@ -522,14 +497,14 @@
         },
         {
           "type": "pause",
-          "startSec": 304.20454545454555,
-          "endSec": 304.5545454545456,
+          "startSec": 289.62272727272733,
+          "endSec": 289.97272727272735,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 304.5545454545456,
-          "endSec": 310.009090909091,
+          "startSec": 289.97272727272735,
+          "endSec": 295.4272727272728,
           "text": "Unit tests assert exact values. Code coverage measures every line. Regression tests catch unexpected changes.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/practices_collapse--testing_breaks--tts--4f87f9a8aa42--1.wav",
           "durationSec": 5.454545454545455,
@@ -538,14 +513,14 @@
         },
         {
           "type": "pause",
-          "startSec": 310.009090909091,
-          "endSec": 310.409090909091,
+          "startSec": 295.4272727272728,
+          "endSec": 295.82727272727277,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 310.409090909091,
-          "endSec": 314.77272727272737,
+          "startSec": 295.82727272727277,
+          "endSec": 300.19090909090914,
           "text": "But when your system makes decisions probabilistically, all of these practices break.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/practices_collapse--testing_breaks--tts--9be7b5fb66d2--1.wav",
           "durationSec": 4.363636363636363,
@@ -554,14 +529,14 @@
         },
         {
           "type": "pause",
-          "startSec": 314.77272727272737,
-          "endSec": 315.1227272727274,
+          "startSec": 300.19090909090914,
+          "endSec": 300.54090909090917,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 315.1227272727274,
-          "endSec": 320.5772727272728,
+          "startSec": 300.54090909090917,
+          "endSec": 305.9954545454546,
           "text": "Output varies between runs. Behavior comes from models, not code. Natural variation looks like regression.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/practices_collapse--testing_breaks--tts--54203d780b37--1.wav",
           "durationSec": 5.454545454545455,
@@ -570,14 +545,14 @@
         },
         {
           "type": "pause",
-          "startSec": 320.5772727272728,
-          "endSec": 320.9772727272728,
+          "startSec": 305.9954545454546,
+          "endSec": 306.3954545454546,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 320.9772727272728,
-          "endSec": 323.52272727272737,
+          "startSec": 306.3954545454546,
+          "endSec": 308.94090909090914,
           "text": "Instead of proving correctness, you measure alignment.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/practices_collapse--testing_breaks--tts--d1f94a0db147--1.wav",
           "durationSec": 2.5454545454545454,
@@ -590,13 +565,13 @@
       "type": "tts",
       "sceneId": "beyond_mlops",
       "cueId": "mlops_comparison",
-      "startSec": 323.52272727272737,
-      "endSec": 343.89545454545464,
+      "startSec": 308.94090909090914,
+      "endSec": 329.3136363636364,
       "segments": [
         {
           "type": "tts",
-          "startSec": 323.52272727272737,
-          "endSec": 329.70454545454555,
+          "startSec": 308.94090909090914,
+          "endSec": 315.12272727272733,
           "text": "Machine learning practitioners have dealt with stochastic systems for years. They track experiments. Compare models. Optimize metrics.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/beyond_mlops--mlops_comparison--tts--d7bdfbd5dbec--1.wav",
           "durationSec": 6.181818181818182,
@@ -605,14 +580,14 @@
         },
         {
           "type": "pause",
-          "startSec": 329.70454545454555,
-          "endSec": 330.0545454545456,
+          "startSec": 315.12272727272733,
+          "endSec": 315.47272727272735,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 330.0545454545456,
-          "endSec": 332.9636363636365,
+          "startSec": 315.47272727272735,
+          "endSec": 318.3818181818183,
           "text": "But MLOps is optimized for models, not behavior.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/beyond_mlops--mlops_comparison--tts--7a3288e0563b--1.wav",
           "durationSec": 2.909090909090909,
@@ -621,14 +596,14 @@
         },
         {
           "type": "pause",
-          "startSec": 332.9636363636365,
-          "endSec": 333.3636363636365,
+          "startSec": 318.3818181818183,
+          "endSec": 318.78181818181827,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 333.3636363636365,
-          "endSec": 338.45454545454555,
+          "startSec": 318.78181818181827,
+          "endSec": 323.87272727272733,
           "text": "Agentic systems don't just produce predictions. They take actions. Use tools. Generate multi-step behaviors.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/beyond_mlops--mlops_comparison--tts--ff50bda36174--1.wav",
           "durationSec": 5.090909090909091,
@@ -637,14 +612,14 @@
         },
         {
           "type": "pause",
-          "startSec": 338.45454545454555,
-          "endSec": 338.8045454545456,
+          "startSec": 323.87272727272733,
+          "endSec": 324.22272727272735,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 338.8045454545456,
-          "endSec": 343.89545454545464,
+          "startSec": 324.22272727272735,
+          "endSec": 329.3136363636364,
           "text": "Success isn't a single number. It's whether the system behaves acceptably given the situation.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/beyond_mlops--mlops_comparison--tts--fca752e963b4--1.wav",
           "durationSec": 5.090909090909091,
@@ -657,13 +632,13 @@
       "type": "tts",
       "sceneId": "specifications",
       "cueId": "specs_and_evals",
-      "startSec": 343.89545454545464,
-      "endSec": 369.75909090909096,
+      "startSec": 329.3136363636364,
+      "endSec": 355.17727272727274,
       "segments": [
         {
           "type": "tts",
-          "startSec": 343.89545454545464,
-          "endSec": 348.9863636363637,
+          "startSec": 329.3136363636364,
+          "endSec": 334.4045454545455,
           "text": "When correctness becomes alignment, you need new ways to say what \"good\" looks like.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/specifications--specs_and_evals--tts--6c8e3e254430--1.wav",
           "durationSec": 5.090909090909091,
@@ -672,14 +647,14 @@
         },
         {
           "type": "pause",
-          "startSec": 348.9863636363637,
-          "endSec": 349.3363636363637,
+          "startSec": 334.4045454545455,
+          "endSec": 334.7545454545455,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 349.3363636363637,
-          "endSec": 353.7000000000001,
+          "startSec": 334.7545454545455,
+          "endSec": 339.1181818181819,
           "text": "Behavioral specifications express what a system should do without prescribing exactly how.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/specifications--specs_and_evals--tts--0f91fd387ffb--1.wav",
           "durationSec": 4.363636363636363,
@@ -688,14 +663,14 @@
         },
         {
           "type": "pause",
-          "startSec": 353.7000000000001,
-          "endSec": 354.1000000000001,
+          "startSec": 339.1181818181819,
+          "endSec": 339.51818181818186,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 354.1000000000001,
-          "endSec": 359.9181818181819,
+          "startSec": 339.51818181818186,
+          "endSec": 345.33636363636367,
           "text": "A specification might say: the agent should call the search tool before answering a factual question.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/specifications--specs_and_evals--tts--4728c8540b5e--1.wav",
           "durationSec": 5.818181818181818,
@@ -704,14 +679,14 @@
         },
         {
           "type": "pause",
-          "startSec": 359.9181818181819,
-          "endSec": 360.2681818181819,
+          "startSec": 345.33636363636367,
+          "endSec": 345.6863636363637,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 360.2681818181819,
-          "endSec": 366.0863636363637,
+          "startSec": 345.6863636363637,
+          "endSec": 351.5045454545455,
           "text": "Then evaluation measures reliability. Does it do that ninety-five percent of the time? Eighty percent? Sixty?",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/specifications--specs_and_evals--tts--e3c2cb9bc68c--1.wav",
           "durationSec": 5.818181818181818,
@@ -720,14 +695,14 @@
         },
         {
           "type": "pause",
-          "startSec": 366.0863636363637,
-          "endSec": 366.4863636363637,
+          "startSec": 351.5045454545455,
+          "endSec": 351.9045454545455,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 366.4863636363637,
-          "endSec": 369.75909090909096,
+          "startSec": 351.9045454545455,
+          "endSec": 355.17727272727274,
           "text": "Specifications plus evaluations give you a foundation for alignment.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/specifications--specs_and_evals--tts--d6a0903c1d6a--1.wav",
           "durationSec": 3.2727272727272725,
@@ -740,13 +715,13 @@
       "type": "tts",
       "sceneId": "props",
       "cueId": "procedures",
-      "startSec": 369.75909090909096,
-      "endSec": 395.6090909090909,
+      "startSec": 355.17727272727274,
+      "endSec": 381.0272727272727,
       "segments": [
         {
           "type": "tts",
-          "startSec": 369.75909090909096,
-          "endSec": 373.75909090909096,
+          "startSec": 355.17727272727274,
+          "endSec": 359.17727272727274,
           "text": "This brings us to a new operational discipline: PrOps. Procedure Operations.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/props--procedures--tts--23097ded821f--1.wav",
           "durationSec": 4,
@@ -755,14 +730,14 @@
         },
         {
           "type": "pause",
-          "startSec": 373.75909090909096,
-          "endSec": 374.15909090909093,
+          "startSec": 359.17727272727274,
+          "endSec": 359.5772727272727,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 374.15909090909093,
-          "endSec": 377.4318181818182,
+          "startSec": 359.5772727272727,
+          "endSec": 362.84999999999997,
           "text": "DevOps operates deterministic programs. MLOps trains and serves models.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/props--procedures--tts--80e2ca2e7e69--1.wav",
           "durationSec": 3.2727272727272725,
@@ -771,14 +746,14 @@
         },
         {
           "type": "pause",
-          "startSec": 377.4318181818182,
-          "endSec": 377.7818181818182,
+          "startSec": 362.84999999999997,
+          "endSec": 363.2,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 377.7818181818182,
-          "endSec": 380.32727272727277,
+          "startSec": 363.2,
+          "endSec": 365.74545454545455,
           "text": "But agentic systems are neither. They're procedures.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/props--procedures--tts--6ce166f83587--1.wav",
           "durationSec": 2.5454545454545454,
@@ -787,14 +762,14 @@
         },
         {
           "type": "pause",
-          "startSec": 380.32727272727277,
-          "endSec": 380.72727272727275,
+          "startSec": 365.74545454545455,
+          "endSec": 366.1454545454545,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 380.72727272727275,
-          "endSec": 386.54545454545456,
+          "startSec": 366.1454545454545,
+          "endSec": 371.96363636363634,
           "text": "Systems that combine imperative logic, learned components, tools, constraints, and evaluation into a single decision-making process.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/props--procedures--tts--d60fe715bfed--1.wav",
           "durationSec": 5.818181818181818,
@@ -803,14 +778,14 @@
         },
         {
           "type": "pause",
-          "startSec": 386.54545454545456,
-          "endSec": 386.8954545454546,
+          "startSec": 371.96363636363634,
+          "endSec": 372.31363636363636,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 386.8954545454546,
-          "endSec": 391.98636363636365,
+          "startSec": 372.31363636363636,
+          "endSec": 377.4045454545454,
           "text": "A procedure's quality can't be proven in advance or reduced to a single metric.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/props--procedures--tts--6c276c623edc--1.wav",
           "durationSec": 5.090909090909091,
@@ -819,14 +794,14 @@
         },
         {
           "type": "pause",
-          "startSec": 391.98636363636365,
-          "endSec": 392.33636363636367,
+          "startSec": 377.4045454545454,
+          "endSec": 377.75454545454545,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 392.33636363636367,
-          "endSec": 395.6090909090909,
+          "startSec": 377.75454545454545,
+          "endSec": 381.0272727272727,
           "text": "It must be observed, measured, and aligned over time.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/props--procedures--tts--2aac50d044fd--1.wav",
           "durationSec": 3.2727272727272725,
@@ -839,13 +814,13 @@
       "type": "tts",
       "sceneId": "new_language",
       "cueId": "first_class_primitives",
-      "startSec": 395.6090909090909,
-      "endSec": 433.1545454545455,
+      "startSec": 381.0272727272727,
+      "endSec": 418.57272727272726,
       "segments": [
         {
           "type": "tts",
-          "startSec": 395.6090909090909,
-          "endSec": 401.7909090909091,
+          "startSec": 381.0272727272727,
+          "endSec": 387.2090909090909,
           "text": "Once procedures become the primary unit of computation, the limitations of existing languages become impossible to ignore.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/new_language--first_class_primitives--tts--8aa9aa879db9--1.wav",
           "durationSec": 6.181818181818182,
@@ -854,14 +829,14 @@
         },
         {
           "type": "pause",
-          "startSec": 401.7909090909091,
-          "endSec": 402.1909090909091,
+          "startSec": 387.2090909090909,
+          "endSec": 387.60909090909087,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 402.1909090909091,
-          "endSec": 408.3727272727273,
+          "startSec": 387.60909090909087,
+          "endSec": 393.79090909090905,
           "text": "Programming languages shape how humans think about problems. They determine what's easy to express and what's invisible.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/new_language--first_class_primitives--tts--f866462a140c--1.wav",
           "durationSec": 6.181818181818182,
@@ -870,14 +845,14 @@
         },
         {
           "type": "pause",
-          "startSec": 408.3727272727273,
-          "endSec": 408.7227272727273,
+          "startSec": 393.79090909090905,
+          "endSec": 394.1409090909091,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 408.7227272727273,
-          "endSec": 410.9045454545455,
+          "startSec": 394.1409090909091,
+          "endSec": 396.32272727272726,
           "text": "Procedural, behavior-driven systems need different primitives.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/new_language--first_class_primitives--tts--a6e84cd27293--1.wav",
           "durationSec": 2.1818181818181817,
@@ -886,14 +861,14 @@
         },
         {
           "type": "pause",
-          "startSec": 410.9045454545455,
-          "endSec": 411.4045454545455,
+          "startSec": 396.32272727272726,
+          "endSec": 396.82272727272726,
           "seconds": 0.5
         },
         {
           "type": "tts",
-          "startSec": 411.4045454545455,
-          "endSec": 413.95000000000005,
+          "startSec": 396.82272727272726,
+          "endSec": 399.3681818181818,
           "text": "Durability by default. Automatic checkpointing and resumption.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/new_language--first_class_primitives--tts--64b72dd23cac--1.wav",
           "durationSec": 2.5454545454545454,
@@ -902,14 +877,14 @@
         },
         {
           "type": "pause",
-          "startSec": 413.95000000000005,
-          "endSec": 414.20000000000005,
+          "startSec": 399.3681818181818,
+          "endSec": 399.6181818181818,
           "seconds": 0.25
         },
         {
           "type": "tts",
-          "startSec": 414.20000000000005,
-          "endSec": 417.109090909091,
+          "startSec": 399.6181818181818,
+          "endSec": 402.52727272727276,
           "text": "Sandboxing by default. Isolated execution with controlled access.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/new_language--first_class_primitives--tts--960bbb97ca22--1.wav",
           "durationSec": 2.909090909090909,
@@ -918,14 +893,14 @@
         },
         {
           "type": "pause",
-          "startSec": 417.109090909091,
-          "endSec": 417.359090909091,
+          "startSec": 402.52727272727276,
+          "endSec": 402.77727272727276,
           "seconds": 0.25
         },
         {
           "type": "tts",
-          "startSec": 417.359090909091,
-          "endSec": 418.45000000000005,
+          "startSec": 402.77727272727276,
+          "endSec": 403.8681818181818,
           "text": "Tool capability control.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/new_language--first_class_primitives--tts--ce3584323feb--1.wav",
           "durationSec": 1.0909090909090908,
@@ -934,14 +909,14 @@
         },
         {
           "type": "pause",
-          "startSec": 418.45000000000005,
-          "endSec": 418.70000000000005,
+          "startSec": 403.8681818181818,
+          "endSec": 404.1181818181818,
           "seconds": 0.25
         },
         {
           "type": "tts",
-          "startSec": 418.70000000000005,
-          "endSec": 424.51818181818186,
+          "startSec": 404.1181818181818,
+          "endSec": 409.93636363636364,
           "text": "Durable human‑in‑the‑loop: approvals and review loops that can pause and resume without keeping a process alive.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/new_language--first_class_primitives--tts--c2d091ca873f--1.wav",
           "durationSec": 5.818181818181818,
@@ -950,14 +925,14 @@
         },
         {
           "type": "pause",
-          "startSec": 424.51818181818186,
-          "endSec": 424.76818181818186,
+          "startSec": 409.93636363636364,
+          "endSec": 410.18636363636364,
           "seconds": 0.25
         },
         {
           "type": "tts",
-          "startSec": 424.76818181818186,
-          "endSec": 426.2227272727273,
+          "startSec": 410.18636363636364,
+          "endSec": 411.6409090909091,
           "text": "Behavioral testing. Observable execution.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/new_language--first_class_primitives--tts--66453e7734cf--1.wav",
           "durationSec": 1.4545454545454546,
@@ -966,14 +941,14 @@
         },
         {
           "type": "pause",
-          "startSec": 426.2227272727273,
-          "endSec": 426.6227272727273,
+          "startSec": 411.6409090909091,
+          "endSec": 412.04090909090905,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 426.6227272727273,
-          "endSec": 430.98636363636365,
+          "startSec": 412.04090909090905,
+          "endSec": 416.4045454545454,
           "text": "These concerns can't be bolted onto languages that weren't designed for them.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/new_language--first_class_primitives--tts--a88470c27a3f--1.wav",
           "durationSec": 4.363636363636363,
@@ -982,14 +957,14 @@
         },
         {
           "type": "pause",
-          "startSec": 430.98636363636365,
-          "endSec": 431.33636363636367,
+          "startSec": 416.4045454545454,
+          "endSec": 416.75454545454545,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 431.33636363636367,
-          "endSec": 433.1545454545455,
+          "startSec": 416.75454545454545,
+          "endSec": 418.57272727272726,
           "text": "They need to be first-class.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/new_language--first_class_primitives--tts--0bce5d09b24e--1.wav",
           "durationSec": 1.8181818181818183,
@@ -1002,13 +977,13 @@
       "type": "tts",
       "sceneId": "evolution",
       "cueId": "conclusion",
-      "startSec": 433.1545454545455,
-      "endSec": 472.6454545454546,
+      "startSec": 418.57272727272726,
+      "endSec": 458.06363636363636,
       "segments": [
         {
           "type": "tts",
-          "startSec": 433.1545454545455,
-          "endSec": 436.0636363636364,
+          "startSec": 418.57272727272726,
+          "endSec": 421.4818181818182,
           "text": "From a theoretical standpoint, nothing fundamental has broken.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/evolution--conclusion--tts--4132aa4518cc--1.wav",
           "durationSec": 2.909090909090909,
@@ -1017,14 +992,14 @@
         },
         {
           "type": "pause",
-          "startSec": 436.0636363636364,
-          "endSec": 436.41363636363644,
+          "startSec": 421.4818181818182,
+          "endSec": 421.8318181818182,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 436.41363636363644,
-          "endSec": 442.959090909091,
+          "startSec": 421.8318181818182,
+          "endSec": 428.3772727272728,
           "text": "These systems still run on conventional hardware. They're still Turing-complete. There's no alien machinery hiding beneath the surface.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/evolution--conclusion--tts--53ae407a3239--1.wav",
           "durationSec": 6.545454545454545,
@@ -1033,14 +1008,14 @@
         },
         {
           "type": "pause",
-          "startSec": 442.959090909091,
-          "endSec": 443.359090909091,
+          "startSec": 428.3772727272728,
+          "endSec": 428.77727272727276,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 443.359090909091,
-          "endSec": 449.1772727272728,
+          "startSec": 428.77727272727276,
+          "endSec": 434.5954545454546,
           "text": "What has changed is how decisions are made and how humans must reason about those decisions.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/evolution--conclusion--tts--0070fdafd30a--1.wav",
           "durationSec": 5.818181818181818,
@@ -1049,14 +1024,14 @@
         },
         {
           "type": "pause",
-          "startSec": 449.1772727272728,
-          "endSec": 449.57727272727277,
+          "startSec": 434.5954545454546,
+          "endSec": 434.99545454545455,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 449.57727272727277,
-          "endSec": 453.94090909090914,
+          "startSec": 434.99545454545455,
+          "endSec": 439.3590909090909,
           "text": "For most of computing history, programming meant specifying control flow in advance.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/evolution--conclusion--tts--41b2b65c62ee--1.wav",
           "durationSec": 4.363636363636363,
@@ -1065,14 +1040,14 @@
         },
         {
           "type": "pause",
-          "startSec": 453.94090909090914,
-          "endSec": 454.29090909090917,
+          "startSec": 439.3590909090909,
+          "endSec": 439.70909090909095,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 454.29090909090917,
-          "endSec": 459.38181818181823,
+          "startSec": 439.70909090909095,
+          "endSec": 444.8,
           "text": "Today, many of the most important systems we build no longer operate that way.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/evolution--conclusion--tts--bbc3e4aa247a--1.wav",
           "durationSec": 5.090909090909091,
@@ -1081,14 +1056,14 @@
         },
         {
           "type": "pause",
-          "startSec": 459.38181818181823,
-          "endSec": 459.7818181818182,
+          "startSec": 444.8,
+          "endSec": 445.2,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 459.7818181818182,
-          "endSec": 469.23636363636365,
+          "startSec": 445.2,
+          "endSec": 454.6545454545454,
           "text": "Languages follow mental models. When the mental model changes, new languages emerge—not to replace what came before, but to make the new reality tractable for humans.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/evolution--conclusion--tts--86661ea9b310--1.wav",
           "durationSec": 9.454545454545453,
@@ -1097,14 +1072,14 @@
         },
         {
           "type": "pause",
-          "startSec": 469.23636363636365,
-          "endSec": 469.73636363636365,
+          "startSec": 454.6545454545454,
+          "endSec": 455.1545454545454,
           "seconds": 0.5
         },
         {
           "type": "tts",
-          "startSec": 469.73636363636365,
-          "endSec": 472.6454545454546,
+          "startSec": 455.1545454545454,
+          "endSec": 458.06363636363636,
           "text": "This isn't a revolution in computation. It's evolution.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/evolution--conclusion--tts--597c7a8b79d7--1.wav",
           "durationSec": 2.909090909090909,
@@ -1117,13 +1092,13 @@
       "type": "tts",
       "sceneId": "cta",
       "cueId": "cta",
-      "startSec": 472.6454545454546,
-      "endSec": 475.91818181818184,
+      "startSec": 458.06363636363636,
+      "endSec": 461.3363636363636,
       "segments": [
         {
           "type": "tts",
-          "startSec": 472.6454545454546,
-          "endSec": 475.91818181818184,
+          "startSec": 458.06363636363636,
+          "endSec": 461.3363636363636,
           "text": "Learn more at tactus dot anth dot u s.",
           "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/segments/cta--cta--tts--e0975b2daa4b--1.wav",
           "durationSec": 3.2727272727272725,
@@ -1148,49 +1123,41 @@
             "volume": 1
           },
           {
-            "id": "purpose--purpose--tts--15ebc08b1cfa--1",
+            "id": "title_card--title--tts--f556d7c54039--1",
             "kind": "file",
-            "startSec": 4.495454545454546,
+            "startSec": 4.095454545454546,
             "durationSec": 6.545454545454545,
-            "src": "babulus/why-new-language/env/development/segments/purpose--purpose--tts--15ebc08b1cfa--1.wav",
+            "src": "babulus/why-new-language/env/development/segments/title_card--title--tts--f556d7c54039--1.wav",
             "volume": 1
           },
           {
-            "id": "purpose--purpose--tts--7128b7081404--1",
+            "id": "title_card--title--tts--168f47c13e1a--1",
             "kind": "file",
-            "startSec": 11.440909090909091,
+            "startSec": 11.040909090909091,
             "durationSec": 4.727272727272727,
-            "src": "babulus/why-new-language/env/development/segments/purpose--purpose--tts--7128b7081404--1.wav",
+            "src": "babulus/why-new-language/env/development/segments/title_card--title--tts--168f47c13e1a--1.wav",
             "volume": 1
           },
           {
-            "id": "purpose--purpose--tts--59c6041357fd--1",
+            "id": "title_card--title--tts--66649d15593e--1",
             "kind": "file",
-            "startSec": 16.668181818181818,
+            "startSec": 16.268181818181816,
             "durationSec": 6.181818181818182,
-            "src": "babulus/why-new-language/env/development/segments/purpose--purpose--tts--59c6041357fd--1.wav",
+            "src": "babulus/why-new-language/env/development/segments/title_card--title--tts--66649d15593e--1.wav",
             "volume": 1
           },
           {
-            "id": "machine_code_era--history--tts--541b1649c858--1",
+            "id": "machine_code_era--history--tts--5ae348a361cc--1",
             "kind": "file",
-            "startSec": 22.85,
-            "durationSec": 30.545454545454543,
-            "src": "babulus/why-new-language/env/development/segments/machine_code_era--history--tts--541b1649c858--1.wav",
-            "volume": 1
-          },
-          {
-            "id": "machine_code_era--history--tts--fb06654d69b0--1",
-            "kind": "file",
-            "startSec": 53.74545454545454,
-            "durationSec": 13.818181818181818,
-            "src": "babulus/why-new-language/env/development/segments/machine_code_era--history--tts--fb06654d69b0--1.wav",
+            "startSec": 22.849999999999994,
+            "durationSec": 30.181818181818183,
+            "src": "babulus/why-new-language/env/development/segments/machine_code_era--history--tts--5ae348a361cc--1.wav",
             "volume": 1
           },
           {
             "id": "machine_code_era--history--tts--92f9e315eff1--1",
             "kind": "file",
-            "startSec": 67.96363636363637,
+            "startSec": 53.38181818181818,
             "durationSec": 20,
             "src": "babulus/why-new-language/env/development/segments/machine_code_era--history--tts--92f9e315eff1--1.wav",
             "volume": 1
@@ -1198,7 +1165,7 @@
           {
             "id": "machine_code_era--history--tts--238963526660--1",
             "kind": "file",
-            "startSec": 88.36363636363637,
+            "startSec": 73.78181818181818,
             "durationSec": 8.727272727272727,
             "src": "babulus/why-new-language/env/development/segments/machine_code_era--history--tts--238963526660--1.wav",
             "volume": 1
@@ -1206,7 +1173,7 @@
           {
             "id": "machine_code_era--history--tts--dff1542a9b03--1",
             "kind": "file",
-            "startSec": 97.44090909090909,
+            "startSec": 82.8590909090909,
             "durationSec": 12.727272727272728,
             "src": "babulus/why-new-language/env/development/segments/machine_code_era--history--tts--dff1542a9b03--1.wav",
             "volume": 1
@@ -1214,23 +1181,23 @@
           {
             "id": "machine_code_era--history--tts--7c617bab78cb--1",
             "kind": "file",
-            "startSec": 110.51818181818182,
+            "startSec": 95.93636363636362,
             "durationSec": 16,
             "src": "babulus/why-new-language/env/development/segments/machine_code_era--history--tts--7c617bab78cb--1.wav",
             "volume": 1
           },
           {
-            "id": "machine_code_era--history--tts--06653016f3f6--1",
+            "id": "machine_code_era--history--tts--3a84e4aabc90--1",
             "kind": "file",
-            "startSec": 126.81818181818181,
+            "startSec": 112.23636363636362,
             "durationSec": 21.81818181818182,
-            "src": "babulus/why-new-language/env/development/segments/machine_code_era--history--tts--06653016f3f6--1.wav",
+            "src": "babulus/why-new-language/env/development/segments/machine_code_era--history--tts--3a84e4aabc90--1.wav",
             "volume": 1
           },
           {
             "id": "machine_code_era--history--tts--fb397cae6361--1",
             "kind": "file",
-            "startSec": 148.93636363636364,
+            "startSec": 134.35454545454544,
             "durationSec": 13.09090909090909,
             "src": "babulus/why-new-language/env/development/segments/machine_code_era--history--tts--fb397cae6361--1.wav",
             "volume": 1
@@ -1238,7 +1205,7 @@
           {
             "id": "machine_code_era--history--tts--287351ba37df--1",
             "kind": "file",
-            "startSec": 162.32727272727274,
+            "startSec": 147.74545454545455,
             "durationSec": 9.454545454545453,
             "src": "babulus/why-new-language/env/development/segments/machine_code_era--history--tts--287351ba37df--1.wav",
             "volume": 1
@@ -1246,7 +1213,7 @@
           {
             "id": "machine_code_era--history--tts--291a9f8f285f--1",
             "kind": "file",
-            "startSec": 172.08181818181822,
+            "startSec": 157.5,
             "durationSec": 9.454545454545453,
             "src": "babulus/why-new-language/env/development/segments/machine_code_era--history--tts--291a9f8f285f--1.wav",
             "volume": 1
@@ -1254,7 +1221,7 @@
           {
             "id": "machine_code_era--history--tts--86a3e95a00f7--1",
             "kind": "file",
-            "startSec": 181.93636363636367,
+            "startSec": 167.35454545454544,
             "durationSec": 7.272727272727273,
             "src": "babulus/why-new-language/env/development/segments/machine_code_era--history--tts--86a3e95a00f7--1.wav",
             "volume": 1
@@ -1262,7 +1229,7 @@
           {
             "id": "machine_code_era--history--tts--0617e9b9d041--1",
             "kind": "file",
-            "startSec": 189.60909090909095,
+            "startSec": 175.02727272727273,
             "durationSec": 12.363636363636363,
             "src": "babulus/why-new-language/env/development/segments/machine_code_era--history--tts--0617e9b9d041--1.wav",
             "volume": 1
@@ -1270,7 +1237,7 @@
           {
             "id": "machine_code_era--history--tts--d3ff98f7d2be--1",
             "kind": "file",
-            "startSec": 202.32272727272732,
+            "startSec": 187.7409090909091,
             "durationSec": 11.636363636363637,
             "src": "babulus/why-new-language/env/development/segments/machine_code_era--history--tts--d3ff98f7d2be--1.wav",
             "volume": 1
@@ -1278,7 +1245,7 @@
           {
             "id": "machine_code_era--history--tts--be3b92925b11--1",
             "kind": "file",
-            "startSec": 214.25909090909096,
+            "startSec": 199.67727272727274,
             "durationSec": 8.363636363636363,
             "src": "babulus/why-new-language/env/development/segments/machine_code_era--history--tts--be3b92925b11--1.wav",
             "volume": 1
@@ -1286,7 +1253,7 @@
           {
             "id": "control_flow--shift--tts--2704b65cb1f1--1",
             "kind": "file",
-            "startSec": 222.62272727272733,
+            "startSec": 208.0409090909091,
             "durationSec": 4.727272727272727,
             "src": "babulus/why-new-language/env/development/segments/control_flow--shift--tts--2704b65cb1f1--1.wav",
             "volume": 1
@@ -1294,7 +1261,7 @@
           {
             "id": "control_flow--shift--tts--0398d90e65ed--1",
             "kind": "file",
-            "startSec": 227.70000000000005,
+            "startSec": 213.11818181818182,
             "durationSec": 9.454545454545453,
             "src": "babulus/why-new-language/env/development/segments/control_flow--shift--tts--0398d90e65ed--1.wav",
             "volume": 1
@@ -1302,7 +1269,7 @@
           {
             "id": "control_flow--shift--tts--ed9acd0f6cd3--1",
             "kind": "file",
-            "startSec": 237.5545454545455,
+            "startSec": 222.97272727272727,
             "durationSec": 5.818181818181818,
             "src": "babulus/why-new-language/env/development/segments/control_flow--shift--tts--ed9acd0f6cd3--1.wav",
             "volume": 1
@@ -1310,7 +1277,7 @@
           {
             "id": "control_flow--shift--tts--e09c2ae5bc91--1",
             "kind": "file",
-            "startSec": 243.7227272727273,
+            "startSec": 229.14090909090908,
             "durationSec": 11.636363636363637,
             "src": "babulus/why-new-language/env/development/segments/control_flow--shift--tts--e09c2ae5bc91--1.wav",
             "volume": 1
@@ -1318,7 +1285,7 @@
           {
             "id": "control_flow--shift--tts--fb2575eb9225--1",
             "kind": "file",
-            "startSec": 255.70909090909092,
+            "startSec": 241.1272727272727,
             "durationSec": 13.09090909090909,
             "src": "babulus/why-new-language/env/development/segments/control_flow--shift--tts--fb2575eb9225--1.wav",
             "volume": 1
@@ -1326,7 +1293,7 @@
           {
             "id": "control_flow--shift--tts--5783bf76d878--1",
             "kind": "file",
-            "startSec": 269.15000000000003,
+            "startSec": 254.56818181818178,
             "durationSec": 5.818181818181818,
             "src": "babulus/why-new-language/env/development/segments/control_flow--shift--tts--5783bf76d878--1.wav",
             "volume": 1
@@ -1334,7 +1301,7 @@
           {
             "id": "tools_strain--python_problem--tts--038b8b68f4e4--1",
             "kind": "file",
-            "startSec": 274.96818181818185,
+            "startSec": 260.3863636363636,
             "durationSec": 4.363636363636363,
             "src": "babulus/why-new-language/env/development/segments/tools_strain--python_problem--tts--038b8b68f4e4--1.wav",
             "volume": 1
@@ -1342,7 +1309,7 @@
           {
             "id": "tools_strain--python_problem--tts--c86e0bb49df9--1",
             "kind": "file",
-            "startSec": 279.68181818181824,
+            "startSec": 265.1,
             "durationSec": 2.1818181818181817,
             "src": "babulus/why-new-language/env/development/segments/tools_strain--python_problem--tts--c86e0bb49df9--1.wav",
             "volume": 1
@@ -1350,7 +1317,7 @@
           {
             "id": "tools_strain--python_problem--tts--f3a06049bb0a--1",
             "kind": "file",
-            "startSec": 282.2636363636364,
+            "startSec": 267.6818181818182,
             "durationSec": 8.727272727272727,
             "src": "babulus/why-new-language/env/development/segments/tools_strain--python_problem--tts--f3a06049bb0a--1.wav",
             "volume": 1
@@ -1358,7 +1325,7 @@
           {
             "id": "tools_strain--python_problem--tts--025d9d9df49b--1",
             "kind": "file",
-            "startSec": 291.49090909090916,
+            "startSec": 276.90909090909093,
             "durationSec": 5.454545454545455,
             "src": "babulus/why-new-language/env/development/segments/tools_strain--python_problem--tts--025d9d9df49b--1.wav",
             "volume": 1
@@ -1366,7 +1333,7 @@
           {
             "id": "tools_strain--python_problem--tts--9a4be45994cf--1",
             "kind": "file",
-            "startSec": 297.2954545454546,
+            "startSec": 282.7136363636364,
             "durationSec": 2.1818181818181817,
             "src": "babulus/why-new-language/env/development/segments/tools_strain--python_problem--tts--9a4be45994cf--1.wav",
             "volume": 1
@@ -1374,7 +1341,7 @@
           {
             "id": "practices_collapse--testing_breaks--tts--a03790814004--1",
             "kind": "file",
-            "startSec": 299.4772727272728,
+            "startSec": 284.8954545454546,
             "durationSec": 4.727272727272727,
             "src": "babulus/why-new-language/env/development/segments/practices_collapse--testing_breaks--tts--a03790814004--1.wav",
             "volume": 1
@@ -1382,7 +1349,7 @@
           {
             "id": "practices_collapse--testing_breaks--tts--4f87f9a8aa42--1",
             "kind": "file",
-            "startSec": 304.5545454545456,
+            "startSec": 289.97272727272735,
             "durationSec": 5.454545454545455,
             "src": "babulus/why-new-language/env/development/segments/practices_collapse--testing_breaks--tts--4f87f9a8aa42--1.wav",
             "volume": 1
@@ -1390,7 +1357,7 @@
           {
             "id": "practices_collapse--testing_breaks--tts--9be7b5fb66d2--1",
             "kind": "file",
-            "startSec": 310.409090909091,
+            "startSec": 295.82727272727277,
             "durationSec": 4.363636363636363,
             "src": "babulus/why-new-language/env/development/segments/practices_collapse--testing_breaks--tts--9be7b5fb66d2--1.wav",
             "volume": 1
@@ -1398,7 +1365,7 @@
           {
             "id": "practices_collapse--testing_breaks--tts--54203d780b37--1",
             "kind": "file",
-            "startSec": 315.1227272727274,
+            "startSec": 300.54090909090917,
             "durationSec": 5.454545454545455,
             "src": "babulus/why-new-language/env/development/segments/practices_collapse--testing_breaks--tts--54203d780b37--1.wav",
             "volume": 1
@@ -1406,7 +1373,7 @@
           {
             "id": "practices_collapse--testing_breaks--tts--d1f94a0db147--1",
             "kind": "file",
-            "startSec": 320.9772727272728,
+            "startSec": 306.3954545454546,
             "durationSec": 2.5454545454545454,
             "src": "babulus/why-new-language/env/development/segments/practices_collapse--testing_breaks--tts--d1f94a0db147--1.wav",
             "volume": 1
@@ -1414,7 +1381,7 @@
           {
             "id": "beyond_mlops--mlops_comparison--tts--d7bdfbd5dbec--1",
             "kind": "file",
-            "startSec": 323.52272727272737,
+            "startSec": 308.94090909090914,
             "durationSec": 6.181818181818182,
             "src": "babulus/why-new-language/env/development/segments/beyond_mlops--mlops_comparison--tts--d7bdfbd5dbec--1.wav",
             "volume": 1
@@ -1422,7 +1389,7 @@
           {
             "id": "beyond_mlops--mlops_comparison--tts--7a3288e0563b--1",
             "kind": "file",
-            "startSec": 330.0545454545456,
+            "startSec": 315.47272727272735,
             "durationSec": 2.909090909090909,
             "src": "babulus/why-new-language/env/development/segments/beyond_mlops--mlops_comparison--tts--7a3288e0563b--1.wav",
             "volume": 1
@@ -1430,7 +1397,7 @@
           {
             "id": "beyond_mlops--mlops_comparison--tts--ff50bda36174--1",
             "kind": "file",
-            "startSec": 333.3636363636365,
+            "startSec": 318.78181818181827,
             "durationSec": 5.090909090909091,
             "src": "babulus/why-new-language/env/development/segments/beyond_mlops--mlops_comparison--tts--ff50bda36174--1.wav",
             "volume": 1
@@ -1438,7 +1405,7 @@
           {
             "id": "beyond_mlops--mlops_comparison--tts--fca752e963b4--1",
             "kind": "file",
-            "startSec": 338.8045454545456,
+            "startSec": 324.22272727272735,
             "durationSec": 5.090909090909091,
             "src": "babulus/why-new-language/env/development/segments/beyond_mlops--mlops_comparison--tts--fca752e963b4--1.wav",
             "volume": 1
@@ -1446,7 +1413,7 @@
           {
             "id": "specifications--specs_and_evals--tts--6c8e3e254430--1",
             "kind": "file",
-            "startSec": 343.89545454545464,
+            "startSec": 329.3136363636364,
             "durationSec": 5.090909090909091,
             "src": "babulus/why-new-language/env/development/segments/specifications--specs_and_evals--tts--6c8e3e254430--1.wav",
             "volume": 1
@@ -1454,7 +1421,7 @@
           {
             "id": "specifications--specs_and_evals--tts--0f91fd387ffb--1",
             "kind": "file",
-            "startSec": 349.3363636363637,
+            "startSec": 334.7545454545455,
             "durationSec": 4.363636363636363,
             "src": "babulus/why-new-language/env/development/segments/specifications--specs_and_evals--tts--0f91fd387ffb--1.wav",
             "volume": 1
@@ -1462,7 +1429,7 @@
           {
             "id": "specifications--specs_and_evals--tts--4728c8540b5e--1",
             "kind": "file",
-            "startSec": 354.1000000000001,
+            "startSec": 339.51818181818186,
             "durationSec": 5.818181818181818,
             "src": "babulus/why-new-language/env/development/segments/specifications--specs_and_evals--tts--4728c8540b5e--1.wav",
             "volume": 1
@@ -1470,7 +1437,7 @@
           {
             "id": "specifications--specs_and_evals--tts--e3c2cb9bc68c--1",
             "kind": "file",
-            "startSec": 360.2681818181819,
+            "startSec": 345.6863636363637,
             "durationSec": 5.818181818181818,
             "src": "babulus/why-new-language/env/development/segments/specifications--specs_and_evals--tts--e3c2cb9bc68c--1.wav",
             "volume": 1
@@ -1478,7 +1445,7 @@
           {
             "id": "specifications--specs_and_evals--tts--d6a0903c1d6a--1",
             "kind": "file",
-            "startSec": 366.4863636363637,
+            "startSec": 351.9045454545455,
             "durationSec": 3.2727272727272725,
             "src": "babulus/why-new-language/env/development/segments/specifications--specs_and_evals--tts--d6a0903c1d6a--1.wav",
             "volume": 1
@@ -1486,7 +1453,7 @@
           {
             "id": "props--procedures--tts--23097ded821f--1",
             "kind": "file",
-            "startSec": 369.75909090909096,
+            "startSec": 355.17727272727274,
             "durationSec": 4,
             "src": "babulus/why-new-language/env/development/segments/props--procedures--tts--23097ded821f--1.wav",
             "volume": 1
@@ -1494,7 +1461,7 @@
           {
             "id": "props--procedures--tts--80e2ca2e7e69--1",
             "kind": "file",
-            "startSec": 374.15909090909093,
+            "startSec": 359.5772727272727,
             "durationSec": 3.2727272727272725,
             "src": "babulus/why-new-language/env/development/segments/props--procedures--tts--80e2ca2e7e69--1.wav",
             "volume": 1
@@ -1502,7 +1469,7 @@
           {
             "id": "props--procedures--tts--6ce166f83587--1",
             "kind": "file",
-            "startSec": 377.7818181818182,
+            "startSec": 363.2,
             "durationSec": 2.5454545454545454,
             "src": "babulus/why-new-language/env/development/segments/props--procedures--tts--6ce166f83587--1.wav",
             "volume": 1
@@ -1510,7 +1477,7 @@
           {
             "id": "props--procedures--tts--d60fe715bfed--1",
             "kind": "file",
-            "startSec": 380.72727272727275,
+            "startSec": 366.1454545454545,
             "durationSec": 5.818181818181818,
             "src": "babulus/why-new-language/env/development/segments/props--procedures--tts--d60fe715bfed--1.wav",
             "volume": 1
@@ -1518,7 +1485,7 @@
           {
             "id": "props--procedures--tts--6c276c623edc--1",
             "kind": "file",
-            "startSec": 386.8954545454546,
+            "startSec": 372.31363636363636,
             "durationSec": 5.090909090909091,
             "src": "babulus/why-new-language/env/development/segments/props--procedures--tts--6c276c623edc--1.wav",
             "volume": 1
@@ -1526,7 +1493,7 @@
           {
             "id": "props--procedures--tts--2aac50d044fd--1",
             "kind": "file",
-            "startSec": 392.33636363636367,
+            "startSec": 377.75454545454545,
             "durationSec": 3.2727272727272725,
             "src": "babulus/why-new-language/env/development/segments/props--procedures--tts--2aac50d044fd--1.wav",
             "volume": 1
@@ -1534,7 +1501,7 @@
           {
             "id": "new_language--first_class_primitives--tts--8aa9aa879db9--1",
             "kind": "file",
-            "startSec": 395.6090909090909,
+            "startSec": 381.0272727272727,
             "durationSec": 6.181818181818182,
             "src": "babulus/why-new-language/env/development/segments/new_language--first_class_primitives--tts--8aa9aa879db9--1.wav",
             "volume": 1
@@ -1542,7 +1509,7 @@
           {
             "id": "new_language--first_class_primitives--tts--f866462a140c--1",
             "kind": "file",
-            "startSec": 402.1909090909091,
+            "startSec": 387.60909090909087,
             "durationSec": 6.181818181818182,
             "src": "babulus/why-new-language/env/development/segments/new_language--first_class_primitives--tts--f866462a140c--1.wav",
             "volume": 1
@@ -1550,7 +1517,7 @@
           {
             "id": "new_language--first_class_primitives--tts--a6e84cd27293--1",
             "kind": "file",
-            "startSec": 408.7227272727273,
+            "startSec": 394.1409090909091,
             "durationSec": 2.1818181818181817,
             "src": "babulus/why-new-language/env/development/segments/new_language--first_class_primitives--tts--a6e84cd27293--1.wav",
             "volume": 1
@@ -1558,7 +1525,7 @@
           {
             "id": "new_language--first_class_primitives--tts--64b72dd23cac--1",
             "kind": "file",
-            "startSec": 411.4045454545455,
+            "startSec": 396.82272727272726,
             "durationSec": 2.5454545454545454,
             "src": "babulus/why-new-language/env/development/segments/new_language--first_class_primitives--tts--64b72dd23cac--1.wav",
             "volume": 1
@@ -1566,7 +1533,7 @@
           {
             "id": "new_language--first_class_primitives--tts--960bbb97ca22--1",
             "kind": "file",
-            "startSec": 414.20000000000005,
+            "startSec": 399.6181818181818,
             "durationSec": 2.909090909090909,
             "src": "babulus/why-new-language/env/development/segments/new_language--first_class_primitives--tts--960bbb97ca22--1.wav",
             "volume": 1
@@ -1574,7 +1541,7 @@
           {
             "id": "new_language--first_class_primitives--tts--ce3584323feb--1",
             "kind": "file",
-            "startSec": 417.359090909091,
+            "startSec": 402.77727272727276,
             "durationSec": 1.0909090909090908,
             "src": "babulus/why-new-language/env/development/segments/new_language--first_class_primitives--tts--ce3584323feb--1.wav",
             "volume": 1
@@ -1582,7 +1549,7 @@
           {
             "id": "new_language--first_class_primitives--tts--c2d091ca873f--1",
             "kind": "file",
-            "startSec": 418.70000000000005,
+            "startSec": 404.1181818181818,
             "durationSec": 5.818181818181818,
             "src": "babulus/why-new-language/env/development/segments/new_language--first_class_primitives--tts--c2d091ca873f--1.wav",
             "volume": 1
@@ -1590,7 +1557,7 @@
           {
             "id": "new_language--first_class_primitives--tts--66453e7734cf--1",
             "kind": "file",
-            "startSec": 424.76818181818186,
+            "startSec": 410.18636363636364,
             "durationSec": 1.4545454545454546,
             "src": "babulus/why-new-language/env/development/segments/new_language--first_class_primitives--tts--66453e7734cf--1.wav",
             "volume": 1
@@ -1598,7 +1565,7 @@
           {
             "id": "new_language--first_class_primitives--tts--a88470c27a3f--1",
             "kind": "file",
-            "startSec": 426.6227272727273,
+            "startSec": 412.04090909090905,
             "durationSec": 4.363636363636363,
             "src": "babulus/why-new-language/env/development/segments/new_language--first_class_primitives--tts--a88470c27a3f--1.wav",
             "volume": 1
@@ -1606,7 +1573,7 @@
           {
             "id": "new_language--first_class_primitives--tts--0bce5d09b24e--1",
             "kind": "file",
-            "startSec": 431.33636363636367,
+            "startSec": 416.75454545454545,
             "durationSec": 1.8181818181818183,
             "src": "babulus/why-new-language/env/development/segments/new_language--first_class_primitives--tts--0bce5d09b24e--1.wav",
             "volume": 1
@@ -1614,7 +1581,7 @@
           {
             "id": "evolution--conclusion--tts--4132aa4518cc--1",
             "kind": "file",
-            "startSec": 433.1545454545455,
+            "startSec": 418.57272727272726,
             "durationSec": 2.909090909090909,
             "src": "babulus/why-new-language/env/development/segments/evolution--conclusion--tts--4132aa4518cc--1.wav",
             "volume": 1
@@ -1622,7 +1589,7 @@
           {
             "id": "evolution--conclusion--tts--53ae407a3239--1",
             "kind": "file",
-            "startSec": 436.41363636363644,
+            "startSec": 421.8318181818182,
             "durationSec": 6.545454545454545,
             "src": "babulus/why-new-language/env/development/segments/evolution--conclusion--tts--53ae407a3239--1.wav",
             "volume": 1
@@ -1630,7 +1597,7 @@
           {
             "id": "evolution--conclusion--tts--0070fdafd30a--1",
             "kind": "file",
-            "startSec": 443.359090909091,
+            "startSec": 428.77727272727276,
             "durationSec": 5.818181818181818,
             "src": "babulus/why-new-language/env/development/segments/evolution--conclusion--tts--0070fdafd30a--1.wav",
             "volume": 1
@@ -1638,7 +1605,7 @@
           {
             "id": "evolution--conclusion--tts--41b2b65c62ee--1",
             "kind": "file",
-            "startSec": 449.57727272727277,
+            "startSec": 434.99545454545455,
             "durationSec": 4.363636363636363,
             "src": "babulus/why-new-language/env/development/segments/evolution--conclusion--tts--41b2b65c62ee--1.wav",
             "volume": 1
@@ -1646,7 +1613,7 @@
           {
             "id": "evolution--conclusion--tts--bbc3e4aa247a--1",
             "kind": "file",
-            "startSec": 454.29090909090917,
+            "startSec": 439.70909090909095,
             "durationSec": 5.090909090909091,
             "src": "babulus/why-new-language/env/development/segments/evolution--conclusion--tts--bbc3e4aa247a--1.wav",
             "volume": 1
@@ -1654,7 +1621,7 @@
           {
             "id": "evolution--conclusion--tts--86661ea9b310--1",
             "kind": "file",
-            "startSec": 459.7818181818182,
+            "startSec": 445.2,
             "durationSec": 9.454545454545453,
             "src": "babulus/why-new-language/env/development/segments/evolution--conclusion--tts--86661ea9b310--1.wav",
             "volume": 1
@@ -1662,7 +1629,7 @@
           {
             "id": "evolution--conclusion--tts--597c7a8b79d7--1",
             "kind": "file",
-            "startSec": 469.73636363636365,
+            "startSec": 455.1545454545454,
             "durationSec": 2.909090909090909,
             "src": "babulus/why-new-language/env/development/segments/evolution--conclusion--tts--597c7a8b79d7--1.wav",
             "volume": 1
@@ -1670,7 +1637,7 @@
           {
             "id": "cta--cta--tts--e0975b2daa4b--1",
             "kind": "file",
-            "startSec": 472.6454545454546,
+            "startSec": 458.06363636363636,
             "durationSec": 3.2727272727272725,
             "src": "babulus/why-new-language/env/development/segments/cta--cta--tts--e0975b2daa4b--1.wav",
             "volume": 1
@@ -1691,18 +1658,18 @@
             "variants": [
               {
                 "variant": 0,
-                "seed": 238616907,
-                "path": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/music/bed--v1--0e39014b6875.wav",
-                "durationSec": 475.66818181818184
+                "seed": 1557124727,
+                "path": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/music/bed--v1--dccfd67699b4.wav",
+                "durationSec": 461.0863636363636
               }
             ],
             "chosen": {
               "variant": 0,
-              "seed": 238616907,
-              "path": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/music/bed--v1--0e39014b6875.wav",
-              "durationSec": 475.66818181818184
+              "seed": 1557124727,
+              "path": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/why-new-language/env/development/music/bed--v1--dccfd67699b4.wav",
+              "durationSec": 461.0863636363636
             },
-            "src": "babulus/env/development/music/bed/bed--v1--0e39014b6875.wav",
+            "src": "babulus/env/development/music/bed/bed--v1--dccfd67699b4.wav",
             "playThrough": true,
             "volumeEnvelope": [
               {
@@ -1718,11 +1685,11 @@
                 "volume": 0.1
               },
               {
-                "atSec": 470.66818181818184,
+                "atSec": 456.0863636363636,
                 "volume": 0.1
               },
               {
-                "atSec": 473.66818181818184,
+                "atSec": 459.0863636363636,
                 "volume": 0.6
               }
             ]

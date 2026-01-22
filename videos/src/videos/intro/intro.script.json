@@ -4,7 +4,7 @@
       "id": "paradigm",
       "title": "A New Kind of Computer Program",
       "startSec": 0.25,
-      "endSec": 58.812419499482786,
+      "endSec": 58.634888736019036,
       "cues": [
         {
           "id": "paradigm",
@@ -17,8 +17,8 @@
         {
           "id": "paradigm_wrap",
           "label": "Paradigm Wrap",
-          "startSec": 43.26696495402824,
-          "endSec": 58.812419499482786,
+          "startSec": 43.08943419056449,
+          "endSec": 58.634888736019036,
           "text": "Okay... But how do you do that, exactly? Is there some new way to write code that's about giving agents tools and procedures? Instead of a bunch of if/then statements? Yes. Tactus is a programming language for this new paradigm.",
           "bullets": []
         }
@@ -27,14 +27,14 @@
     {
       "id": "hello_world",
       "title": "Hello, World",
-      "startSec": 58.812419499482786,
-      "endSec": 93.54423768130097,
+      "startSec": 58.634888736019036,
+      "endSec": 93.36670691783722,
       "cues": [
         {
           "id": "hello_world",
           "label": "Hello World",
-          "startSec": 58.812419499482786,
-          "endSec": 93.54423768130097,
+          "startSec": 58.634888736019036,
+          "endSec": 93.36670691783722,
           "text": "Tactus procedures are computer programs that include imperative instructions, like any other language, but they have first-class, high-level constructs for the building blocks that we work with in AI engineering: agents, tools, context, and prompts. You run Tactus procedures just like you would run a program in any other language like Python or Node—as command-line programs or by embedding them in applications. Here's an example of running a hello-world program. The procedure runs and returns the response from the agent. It doesn't use a framework because the capabilities are built right into the language.",
           "bullets": []
         }
@@ -43,30 +43,30 @@
     {
       "id": "interface",
       "title": "The Human Interface",
-      "startSec": 93.54423768130097,
-      "endSec": 188.77566229812666,
+      "startSec": 93.36670691783722,
+      "endSec": 188.64672784189293,
       "cues": [
         {
           "id": "interface_supervised",
           "label": "Closely Supervised",
-          "startSec": 93.54423768130097,
-          "endSec": 131.10787404493735,
+          "startSec": 93.36670691783722,
+          "endSec": 130.9303432814736,
           "text": "Connecting to agents and tools is just the beginning. The real challenge is the interface layer between the agent and the operator. The common interface for agents today is chat. You watch every step, you steer, and you stop the agent if it goes sideways. That works great for some things but depends on the human operator. The user becomes a bottleneck. When you step away to eat or sleep, the whole system stops doing anything. If you're trying to process a lot of items at scale then your capacity is limited by the human operator.You can't scale this up.",
           "bullets": []
         },
         {
           "id": "interface_unsupervised",
           "label": "Unsupervised",
-          "startSec": 131.3227667883678,
-          "endSec": 149.94094860654965,
+          "startSec": 131.13567095979516,
+          "endSec": 149.75385277797702,
           "text": "You could remove the human entirely and let the agent run free. This scales beautifully—you can process thousands of items at machine speed. But running an agent this way is like giving a monkey a razor blade. And scaling that up to industrial levels is a recipe for disaster.",
           "bullets": []
         },
         {
           "id": "interface_hitl",
           "label": "Durable HITL",
-          "startSec": 150.1574804799448,
-          "endSec": 188.77566229812666,
+          "startSec": 150.02854602371107,
+          "endSec": 188.64672784189293,
           "text": "Tactus provides a new interface layer between the human and the computer. It enables agents to send requests to the human operator and wait for a response. Requests can queue up, so that the system can continue running while the human operator isn't available. When a procedure needs a human—to approve a risky action, or to provide a missing detail—it pauses. It doesn't use any compute while it's suspended, and it doesn't depend on the runtime to continue running in memory. It can resume hours or days later, exactly where it left off. This lets you move from synchronous chat to asynchronous, industrial-scale workflows.",
           "bullets": []
         }
@@ -75,14 +75,14 @@
     {
       "id": "graphs",
       "title": "No Graphs Required",
-      "startSec": 188.77566229812666,
-      "endSec": 214.06657138903574,
+      "startSec": 188.64672784189293,
+      "endSec": 213.937636932802,
       "cues": [
         {
           "id": "graphs",
           "label": "No Graphs Required",
-          "startSec": 188.77566229812666,
-          "endSec": 214.06657138903574,
+          "startSec": 188.64672784189293,
+          "endSec": 213.937636932802,
           "text": "In most programming languages, if you want execution that can pause and resume like this, you're forced into something like a graph workflow, where you have to write code that's structured around nodes, edges, and conditional edges. With Tactus, it's transparent. You write normal code, and the runtime handles pausing and resuming behind the scenes. The graph nodes are still there, but you don't have to think about them.",
           "bullets": []
         }
@@ -91,14 +91,14 @@
     {
       "id": "prompt_ceiling_intro",
       "title": "The Prompt-Engineering Ceiling",
-      "startSec": 214.06657138903574,
-      "endSec": 245.88475320721756,
+      "startSec": 213.937636932802,
+      "endSec": 245.75581875098382,
       "cues": [
         {
           "id": "prompt_ceiling_intro",
           "label": "Prompt Ceiling",
-          "startSec": 214.06657138903574,
-          "endSec": 245.88475320721756,
+          "startSec": 213.937636932802,
+          "endSec": 245.75581875098382,
           "text": "To operate confidently in production—safely and securely—you need a minimum threshold of reliability. The obvious first type of control that everyone reaches for is prompt engineering. But prompts are suggestions, not controls. There are things you just can't reliably make a model do or not do with prompts alone. There's a gap between what you can achieve with prompt engineering and the minimum reliability you need to run at scale in production. To close that gap, you need different types of control.",
           "bullets": []
         }
@@ -107,14 +107,14 @@
     {
       "id": "defense_layers",
       "title": "Defense in Depth",
-      "startSec": 245.88475320721756,
-      "endSec": 286.96657138903555,
+      "startSec": 245.75581875098382,
+      "endSec": 286.8376369328018,
       "cues": [
         {
           "id": "defense_layers",
           "label": "Defense Layers",
-          "startSec": 245.88475320721756,
-          "endSec": 286.96657138903555,
+          "startSec": 245.75581875098382,
+          "endSec": 286.8376369328018,
           "text": "Tactus gives you multiple types of control. Because no single type is sufficient on its own. Prompt engineering guides model behavior, but it's not enough on its own. Cost and limits block requests before they hit the model—preventing runaway loops and billing surprises. Context engineering ensures the model has the right information, not just all information. Model selection for the right capabilities and safety profiles. Tool selection. Give the agent only the capabilities it needs. Code sandboxing. Running agent code in a restricted environment so it can't cause damage. And container isolation. Firewalling agent activity so it can't reach the network or touch your server.",
           "bullets": []
         }
@@ -123,14 +123,14 @@
     {
       "id": "sandboxing",
       "title": "Sandboxing",
-      "startSec": 286.96657138903555,
-      "endSec": 338.5483895708537,
+      "startSec": 286.8376369328018,
+      "endSec": 338.41945511461995,
       "cues": [
         {
           "id": "sandboxing",
           "label": "Sandboxing",
-          "startSec": 286.96657138903555,
-          "endSec": 338.5483895708537,
+          "startSec": 286.8376369328018,
+          "endSec": 338.41945511461995,
           "text": "We know AI models make mistakes. Maybe your agent writes buggy tool code. Or maybe an attacker uses a prompt injection to hijack the agent and try something malicious. You want agents that can write files and run programs—they need to be powerful and useful. But you don't want them reaching out to the network or deleting files on your server. Tactus runs agent code in a restricted Lua sandbox inside a networkless container. The agent can do real work, but it can't vandalize your system or phone home to some attacker's website. The other risk is credentials. Your procedure might need keys to call third-party services, but you don't want the agent to see them. Tactus keeps secrets outside the container in a separate process. Even if something goes wrong, there's nothing for the agent to steal.",
           "bullets": []
         }
@@ -139,14 +139,14 @@
     {
       "id": "nutshell",
       "title": "Tactus in a Nutshell",
-      "startSec": 338.5483895708537,
-      "endSec": 352.8256622981265,
+      "startSec": 338.41945511461995,
+      "endSec": 352.6967278418927,
       "cues": [
         {
           "id": "nutshell",
           "label": "Nutshell",
-          "startSec": 338.5483895708537,
-          "endSec": 352.8256622981265,
+          "startSec": 338.41945511461995,
+          "endSec": 352.6967278418927,
           "text": "In a nutshell, Tactus is a high-level agent programming model, with default-on sandboxing and container isolation, capability and context control, human-in-the-loop gates, and durable checkpoints so long-running workflows can pause, resume, and be audited safely.",
           "bullets": []
         }
@@ -155,19 +155,20 @@
     {
       "id": "cta",
       "title": "Get Started",
-      "startSec": 352.8256622981265,
-      "endSec": 359.3574804799447,
+      "startSec": 352.6967278418927,
+      "endSec": 359.2285460237109,
       "cues": [
         {
           "id": "cta",
           "label": "CTA",
-          "startSec": 352.8256622981265,
-          "endSec": 359.3574804799447,
+          "startSec": 352.6967278418927,
+          "endSec": 359.2285460237109,
           "text": "Ready to try it? Visit the Tactus website to download the IDE and run your first procedure.",
           "bullets": []
         }
       ]
     }
   ],
-  "posterTimeSec": 48
+  "posterTimeSec": 48,
+  "fps": 24
 }

@@ -29,9 +29,7 @@ export default defineVideo((video) => {
               Instead of explicitly handling every possible scenario, you depend on AI models to make decisions and take action for you.
             `,
             0.18,
-            t`
-              In this new kind of programming, first you start with an agent—a language model. Then you give it a tool.
-            `,
+            "In this new kind of programming, first you start with an agent—a language model. Then you give it a tool.",
             0.18,
             "And then you assign it a procedure to follow.",
             0.18,
@@ -80,7 +78,9 @@ export default defineVideo((video) => {
       scene.cue("Closely Supervised", { id: "interface_supervised" }, (cue) => {
         cue.voice((voice) => {
           voiceSegments(voice, [
-            "Connecting to agents and tools is just the beginning. The real challenge is the interface layer between the agent and the operator.",
+            t`
+              Connecting to agents and tools is just the beginning. The real challenge is the interface layer between the agent and the operator.
+            `,
             0.4,
             t`
               The common interface for agents today is chat. You watch every step, you steer, and you stop the agent if it goes sideways. That works great for some things but depends on the human operator.
@@ -122,26 +122,56 @@ export default defineVideo((video) => {
       });
     });
 
+    comp.scene("No Graphs Required", { id: "graphs" }, (scene) => {
+      scene.cue("No Graphs Required", { id: "graphs" }, (cue) => {
+        cue.voice((voice) => {
+          voiceSegments(voice, [
+            0.2,
+            t`
+              In most programming languages, if you want execution that can pause and resume like this, you're forced into something like a graph workflow, where you have to write code that's structured around nodes, edges, and conditional edges. With Tactus, it's transparent. You write normal code, and the runtime handles pausing and resuming behind the scenes. The graph nodes are still there, but you don't have to think about them.
+            `,
+          ]);
+        });
+      });
+    });
+
+    comp.scene("The Prompt-Engineering Ceiling", { id: "prompt_ceiling_intro" }, (scene) => {
+      scene.cue("Prompt Ceiling", { id: "prompt_ceiling_intro" }, (cue) => {
+        cue.voice((voice) => {
+          voiceSegments(voice, [
+            "To operate confidently in production—safely and securely—you need a minimum threshold of reliability.",
+            0.5,
+            "The obvious first type of control that everyone reaches for is prompt engineering.",
+            0.5,
+            "But prompts are suggestions, not controls. There are things you just can't reliably make a model do or not do with prompts alone.",
+            0.5,
+            "There's a gap between what you can achieve with prompt engineering and the minimum reliability you need to run at scale in production.",
+            0.5,
+            "To close that gap, you need different types of control.",
+          ]);
+        });
+      });
+    });
+
     comp.scene("Defense in Depth", { id: "defense_layers" }, (scene) => {
       scene.cue("Defense Layers", { id: "defense_layers" }, (cue) => {
         cue.voice((voice) => {
           voiceSegments(voice, [
-            "Tactus gives you levers of control at multiple layers. Because no single layer is sufficient on its own.",
+            "Tactus gives you multiple types of control. Because no single type is sufficient on its own.",
             0.5,
-            "Cost and limits to prevent runaway loops and billing surprises.",
+            "Prompt engineering guides model behavior, but it's not enough on its own.",
             0.4,
-            "Prompt engineering to guide model behavior.",
+            "Cost and limits block requests before they hit the model—preventing runaway loops and billing surprises.",
             0.4,
-            "Context engineering to ensure the model has the right information, not just all information.",
+            "Context engineering ensures the model has the right information, not just all information.",
             0.4,
             "Model selection for the right capabilities and safety profiles.",
             0.4,
             "Tool selection. Give the agent only the capabilities it needs.",
             0.4,
-            "Code sandboxing in isolated environments.",
+            "Code sandboxing. Running agent code in a restricted environment so it can't cause damage.",
             0.4,
-            "And container isolation to constrain what the agent can touch, and to firewall side effects inside an ephemeral container.",
-            0.4,
+            "And container isolation. Firewalling agent activity so it can't reach the network or touch your server.",
           ]);
         });
       });
@@ -151,20 +181,15 @@ export default defineVideo((video) => {
       scene.cue("Sandboxing", { id: "sandboxing" }, (cue) => {
         cue.voice((voice) => {
           voiceSegments(voice, [
-            "We know AI models make mistakes. Maybe your agent writes buggy tool code that deletes files. Or maybe a prompt injection tells it to send your data to a competitor.",
+            "We know AI models make mistakes. Maybe your agent writes buggy tool code. Or maybe an attacker uses a prompt injection to hijack the agent and try something malicious.",
             0.4,
-            t`
-              To keep the surprises firewalled off, Tactus runs your code in a restricted Lua sandbox inside a networkless container. That answers one security question: what can it touch?
-            `,
+            "You want agents that can write files and run programs—they need to be powerful and useful. But you don't want them reaching out to the network or deleting files on your server.",
+            0.5,
+            "Tactus runs agent code in a restricted Lua sandbox inside a networkless container. The agent can do real work, but it can't vandalize your system or phone home to some attacker's website.",
             0.5,
             t`
-              The other question is the one that matters most: what can it steal?
-              Tactus keeps the runtime secretless: keys and privileged calls live outside the container, behind a broker boundary.
-            `,
-            0.5,
-            t`
-              It’s like letting a burglar into an empty building. Even if they get in, there’s nothing valuable inside to take.
-              Your procedure can use powerful tools without ever handing secrets to the agent runtime.
+              The other risk is credentials. Your procedure might need keys to call third-party services, but you don't want the agent to see them.
+              Tactus keeps secrets outside the container in a separate process. Even if something goes wrong, there's nothing for the agent to steal.
             `,
           ]);
         });
@@ -176,9 +201,9 @@ export default defineVideo((video) => {
         cue.voice((voice) => {
           voiceSegments(voice, [
             1.2,
-            "In a nutshell, Tactus is the interface layer for the new age of computing.",
-            0.35,
-            "It gives you high-level concepts to construct solutions, a durable runtime to handle human interaction, and a safety architecture to keep the monkey in the box.",
+            t`
+              In a nutshell, Tactus is a high-level agent programming model, with default-on sandboxing and container isolation, capability and context control, human-in-the-loop gates, and durable checkpoints so long-running workflows can pause, resume, and be audited safely.
+            `,
             0.35,
           ]);
         });

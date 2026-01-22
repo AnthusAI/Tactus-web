@@ -20,26 +20,15 @@ export default defineVideo((video) => {
           voiceSegments(voice, [
             0.8,
             "Why do we need a new language?",
-            0.4,
-          ]);
-        });
-      });
-    });
-
-
-
-    comp.scene("The Purpose of Language", { id: "purpose" }, (scene) => {
-      scene.cue("Purpose", { id: "purpose" }, (cue) => {
-        cue.voice((voice) => {
-          voiceSegments(voice, [
             0.5,
             "To answer that question, we need to think about what the purpose of a computer programming language is.",
             0.4,
             "It is to provide a high-level model for recording reproducible solutions to problems.",
             0.5,
             "So to see why we need a new one, let's look at how those models have evolved.",
+            0.4,
           ]);
-        });
+
       });
     });
 

@@ -21,6 +21,7 @@ import ContainerSandboxDiagram from "../../components/diagrams/ContainerSandboxD
 import GuardrailsStackDiagram from "../../components/diagrams/GuardrailsStackDiagram";
 import AIEngineersToolboxDiagram from "../../components/diagrams/AIEngineersToolboxDiagram";
 import LeastPrivilegeDiagram from "../../components/diagrams/LeastPrivilegeDiagram";
+import PromptEngineeringCeilingDiagram from "../../components/diagrams/PromptEngineeringCeilingDiagram";
 import { HITL_PRESETS } from "../../components/diagrams/hitlPresets";
 import monkeyImg from "../../assets/images/monkey.png";
 import nutshellCoverAnimalImg from "../../assets/images/nutshell-cover-animal.png";
@@ -144,13 +145,17 @@ export const IntroVideo: React.FC<IntroVideoProps> = ({
         return <ParadigmScene scene={scene} ttsStartsSec={getCueTtsStarts(scene.id, "paradigm")} />;
       case "hello_world":
         return <HelloWorldScene scene={scene} ttsStartsSec={getCueTtsStarts(scene.id, "hello_world")} />;
+      case "graphs":
+        return <GraphsScene scene={scene} ttsStartsSec={getCueTtsStarts(scene.id, "graphs")} />;
       case "interface":
-        return <InterfaceScene 
-          scene={scene} 
+        return <InterfaceScene
+          scene={scene}
           supervisedStarts={getCueTtsStarts(scene.id, "interface_supervised")}
           unsupervisedStarts={getCueTtsStarts(scene.id, "interface_unsupervised")}
           hitlStarts={getCueTtsStarts(scene.id, "interface_hitl")}
         />;
+      case "prompt_ceiling_intro":
+        return <PromptCeilingIntroScene scene={scene} ttsStartsSec={getCueTtsStarts(scene.id, "prompt_ceiling_intro")} />;
       case "defense_layers":
         return <DefenseLayersScene scene={scene} ttsStartsSec={getCueTtsStarts(scene.id, "defense_layers")} />;
       case "sandboxing":
@@ -782,6 +787,53 @@ Procedure {
           <Body style={{ fontSize: 28, fontWeight: 900, marginBottom: 12 }}>Tactus code</Body>
           <Code style={{ fontSize: 28, lineHeight: 1.25, whiteSpace: "pre-wrap" }}>{tactusCode}</Code>
         </Card>
+      </div>
+    </Layout>
+  );
+};
+
+const PromptCeilingIntroScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ scene, ttsStartsSec }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const localSec = frame / fps;
+
+  const titleAnimation = spring({
+    frame,
+    fps,
+    config: { damping: 100, stiffness: 200, mass: 0.5 },
+  });
+
+  const diagramAnimation = spring({
+    frame: Math.max(0, frame - 14),
+    fps,
+    config: { damping: 100, stiffness: 200, mass: 0.5 },
+  });
+
+  // Slow down the diagram animation to match the voiceover pacing
+  // The gap should appear when voiceover talks about it (~24-31 seconds into scene)
+  // Start reliability threshold early, delay the prompt engineering curve to sync with gap discussion
+  const diagramProgress = interpolate(localSec, [2.0, 30.0], [0, 1], {
+    extrapolateLeft: "clamp",
+    extrapolateRight: "clamp",
+  });
+
+  return (
+    <Layout justify="flex-start" style={{ paddingTop: 45 }}>
+      <H2 style={{ opacity: titleAnimation, textAlign: "center" }}>
+        <TitleBlock>The prompt-engineering ceiling</TitleBlock>
+      </H2>
+      <Body size="sm" style={{ opacity: diagramAnimation, textAlign: "center", maxWidth: 1500 }}>
+        Not enough reliability to safely scale in production.
+      </Body>
+      <div
+        style={{
+          marginTop: 0,
+          width: "100%",
+          maxWidth: 1400,
+          opacity: diagramAnimation,
+        }}
+      >
+        <PromptEngineeringCeilingDiagram theme="light" progress={diagramProgress} style={{ width: "100%", height: "auto" }} />
       </div>
     </Layout>
   );

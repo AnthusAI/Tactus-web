@@ -65,8 +65,6 @@ export const GuardrailsVideo: React.FC<GuardrailsVideoProps> = ({
 
   const renderScene = (scene: Scene) => {
     switch (scene.id) {
-      case "title_card":
-        return <TitleCardScene />;
       case "paradox":
         return <ParadoxScene />;
       case "patterns":
@@ -117,25 +115,6 @@ const useIntroAnim = (delayFrames = 0) => {
   });
 };
 
-const TitleCardScene: React.FC = () => {
-  const anim = useIntroAnim(0);
-  const anim2 = useIntroAnim(10);
-
-  return (
-    <Layout>
-      <H2 style={{ opacity: anim, transform: `scale(${0.94 + anim * 0.06})`, textAlign: "center" }}>
-        <TitleBlock>Guardrails for Agent Autonomy</TitleBlock>
-      </H2>
-      <Body size="lg" style={{ opacity: anim2, marginTop: 26, textAlign: "center" }}>
-        You can’t drive fast without brakes.
-      </Body>
-      <Body style={{ opacity: anim2, textAlign: "center", maxWidth: 1400 }}>
-        Constraints enable capability. Protocols enable autonomy. Boundaries enable delegation.
-      </Body>
-    </Layout>
-  );
-};
-
 const ParadoxScene: React.FC = () => {
   const anim = useIntroAnim(0);
   const anim2 = useIntroAnim(12);
@@ -147,14 +126,14 @@ const ParadoxScene: React.FC = () => {
       </H2>
       <div style={{ marginTop: 34, width: 1500, opacity: anim2 }}>
         <Body size="lg">
-          Guardrails aren’t a limitation on autonomy — they’re the prerequisite for it.
+          If agents can take real actions with side effects, guardrails stop being a nice-to-have. They become the price of admission.
         </Body>
         <Body>
-          • If agents can take real actions, “most of the time” isn’t a strategy.
+          • Prompts are suggestions, not controls.
           <br />
-          • Suggestions (prompts) aren’t enforceable controls.
+          • Guardrails are enforceable boundaries.
           <br />
-          • The safety story has to be architectural.
+          • Start with a threat model: assets, entry points, trust boundaries, and controls.
         </Body>
       </div>
     </Layout>
@@ -245,7 +224,7 @@ const ManualAssemblyScene: React.FC = () => {
       </H2>
       <div style={{ marginTop: 34, width: 1500, opacity: anim2 }}>
         <Body size="lg">
-          The best teams already add guardrails in Python — schemas, validation, retries, approvals, sandboxing, secrets hygiene.
+          Many teams already add guardrails in Python — schemas, validation, retries, approval gates, sandboxing, secrets hygiene.
         </Body>
         <Body>
           But it’s easy to miss a layer when you’re assembling everything by convention across mismatched systems.
@@ -385,4 +364,3 @@ const ExampleScene: React.FC = () => {
     </Layout>
   );
 };
-

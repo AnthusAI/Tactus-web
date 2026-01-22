@@ -38,6 +38,7 @@ const GuardrailsPage = () => {
               <h1 className={styles.title}>Guardrails for Agent Autonomy</h1>
               <p className={styles.lede}>
                 Guardrails are not a limitation on agent autonomy — they’re a prerequisite for it. The brakes enable the speed.
+                {" "}Prompts help, but guardrails are enforceable boundaries.
               </p>
             </div>
 
@@ -80,10 +81,14 @@ const GuardrailsPage = () => {
                 <strong>You’d crash on the first turn.</strong>
               </p>
               <p>
-                The best racing teams don’t debate whether brakes slow them down. They know something deeper:{" "}
-                <strong>brakes are what let you go fast in the first place.</strong>
+                Brakes don't make the car slower overall. They’re what make speed possible:{" "}
+                <strong>you can only push it when you know you can stop.</strong>
               </p>
             </Breakout>
+
+            <p className={styles.bodyText}>
+              That’s the paradox of agent autonomy. Guardrails are not a limitation on autonomy — they’re part of what enable us to delegate responsibility.
+            </p>
 
             <p className={styles.bodyText}>
               The same paradox shows up whenever humans build powerful systems that take real action in the world. Constraints enable
@@ -192,6 +197,21 @@ const GuardrailsPage = () => {
               you won’t know the difference ahead of time.
             </p>
 
+            <h3 className={styles.subsectionTitle}>Start with a threat model</h3>
+            <p className={styles.bodyText}>
+              Threat modeling doesn’t have to be heavyweight to be useful. For agent workflows, a one‑page model is often enough if you
+              keep it concrete.
+            </p>
+            <div className={styles.subtleCard}>
+              <p className={styles.kicker}>A lightweight threat model</p>
+              <ul className={styles.checkList}>
+                <li>Assets: secrets, sensitive data, and system integrity</li>
+                <li>Entry points: anything that flows into the model</li>
+                <li>Trust boundaries: what’s untrusted vs. what’s privileged</li>
+                <li>Controls: what you enforce (in code), and where</li>
+              </ul>
+            </div>
+
             <h3 className={styles.subsectionTitle}>The prompt-engineering ceiling</h3>
             <p className={styles.bodyText}>
               Prompts matter. They shape behavior, reduce error rates, and make models more reliable. But prompts are suggestions, not
@@ -213,13 +233,13 @@ const GuardrailsPage = () => {
 
             <h3 className={styles.subsectionTitle}>The manual assembly problem</h3>
             <p className={styles.bodyText}>
-              The best AI engineering teams already build guardrails in Python: schemas, validation, retries, approval gates,
+              Many AI engineering teams already build guardrails in Python: schemas, validation, retries, approval gates,
               sandboxing, and secrets hygiene. The problem isn’t ignorance — it’s that you have to remember and assemble all of it,
               under pressure, across layers that weren’t designed to fit together.
             </p>
             <p className={styles.bodyTextMuted}>
               It’s like building a car from parts. You can do it. Smart teams do. But you have to remember every safety system
-              yourself — and missing a layer won’t feel like a mistake until it becomes an incident.
+              yourself — and missing a layer won’t feel like a mistake until it becomes a crime scene.
             </p>
             <p className={styles.bodyTextMuted}>
               Frameworks can help, but they can’t eliminate the underlying fragmentation. Prompts live here. Tool wrappers live there.

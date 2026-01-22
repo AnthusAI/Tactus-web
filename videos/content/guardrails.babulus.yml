@@ -63,20 +63,6 @@ voiceover:
     max_seconds: 0.5
 
 scenes:
-  - id: title_card
-    title: "Guardrails for Agent Autonomy"
-    cues:
-      - id: title
-        label: "Title"
-        voice:
-          segments:
-            - pause_seconds: 0.7
-            - voice: >
-                Guardrails for agent autonomy.
-            - pause_seconds: 0.45
-            - voice: >
-                Why you can't drive fast without brakes.
-
   - id: paradox
     title: "The Paradox of Power"
     cues:
@@ -84,20 +70,34 @@ scenes:
         label: "Brakes"
         voice:
           segments:
+            - pause_seconds: 0.7
+            - voice: >
+                You can't drive fast without brakes.
+            - pause_seconds: 0.35
+            - voice: >
+                Prompts help, but guardrails are enforceable boundaries.
+            - pause_seconds: 0.55
             - voice: >
                 Picture a Formula One car with its brake system removed.
-                Lighter. Simpler. Fewer things to go wrong.
+                Lighter. Simpler.
             - pause_seconds: 0.5
             - voice: >
                 You’d crash on the first turn.
             - pause_seconds: 0.45
             - voice: >
-                The best racing teams don’t debate whether brakes slow them down.
-                They know something deeper: brakes are what let you go fast in the first place.
+                Brakes don't make the car slower overall.
+                They’re what make speed possible: you can only push it when you know you can stop.
             - pause_seconds: 0.55
             - voice: >
                 That’s the paradox of agent autonomy.
-                Guardrails are not a limitation on autonomy — they’re the prerequisite for it.
+                Guardrails are not a limitation on autonomy — they’re part of what enable us to delegate responsibility.
+            - pause_seconds: 0.45
+            - voice: >
+                This is the central tension in agent development today.
+                If you want agents to do meaningful work without you watching every step — and if those agents can take real actions with side effects —
+                guardrails stop being a nice-to-have. They become the price of admission.
+                If agents can take real actions with side effects, “most of the time” isn’t a strategy.
+                Start with a threat model: assets, entry points, trust boundaries, and enforceable controls.
 
   - id: patterns
     title: "The Pattern Repeats Across Domains"
@@ -131,7 +131,7 @@ scenes:
             - voice: >
                 But prompts are suggestions, not controls.
                 When an agent has access to powerful tools, you eventually hit a ceiling.
-                You can make failure less likely, but you can’t make it vanish.
+                You can make failure less likely, but you can’t eliminate it.  AI models are inherently stochastic, and sooner or later something will go sideways.
             - pause_seconds: 0.5
             - voice: >
                 Production safety can’t be built out of suggestions alone.
@@ -145,7 +145,7 @@ scenes:
         voice:
           segments:
             - voice: >
-                The best teams already add guardrails in Python:
+                Many teams already add guardrails in Python:
                 schemas, validation, retries, approval gates, sandboxing, and secrets hygiene.
             - pause_seconds: 0.4
             - voice: >
@@ -282,4 +282,3 @@ scenes:
             - pause_seconds: 0.5
             - voice: >
                 Read the full story at tactus dot run slash guardrails.
-

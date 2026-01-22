@@ -4,24 +4,20 @@ set -euo pipefail
 # Project-local wrapper around the Node-based Babulus CLI.
 #
 # Usage:
-#   bin/babulus generate
-#   bin/babulus sfx next --clip whoosh --variants 8 --apply
+#   bin/babulus generate content/intro.babulus.ts
+#   bin/babulus generate content/ --watch
+#   bin/babulus sfx next --clip whoosh --variants 8
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-LOCAL_BIN="$ROOT_DIR/node_modules/.bin/babulus"
+BABULUS_SRC="$ROOT_DIR/node_modules/babulus/src/cli.ts"
+TSX_BIN="$ROOT_DIR/node_modules/babulus/node_modules/.bin/tsx"
 
-if [[ -x "$LOCAL_BIN" ]]; then
-  export PATH="$ROOT_DIR/node_modules/.bin:$PATH"
-  exec "$LOCAL_BIN" "$@"
+# Set config path if not already set
+export BABULUS_PATH="${BABULUS_PATH:-$ROOT_DIR/../.babulus/config.yml}"
+
+if [[ -f "$TSX_BIN" && -f "$BABULUS_SRC" ]]; then
+  exec node "$TSX_BIN" "$BABULUS_SRC" "$@"
 fi
 
-if command -v babulus >/dev/null 2>&1; then
-  exec babulus "$@"
-fi
-
-if command -v npx >/dev/null 2>&1; then
-  exec npx --no-install babulus "$@"
-fi
-
-echo "babulus: CLI not found. Run 'npm install' in $ROOT_DIR or install babulus globally." >&2
+echo "babulus: CLI not found. Run 'npm install' in $ROOT_DIR to install babulus." >&2
 exit 127

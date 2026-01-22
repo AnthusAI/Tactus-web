@@ -109,33 +109,64 @@
 
 ### Babulus (Voiceover Generation)
 
-Babulus generates TTS audio and timing JSON from `.babulus.yml` DSL files in `videos/content/`.
+Babulus generates TTS audio and timing JSON from TypeScript DSL files (`.babulus.ts`) in `videos/content/`.
 
-**Generate audio (from root)**:
+**Quick Start**:
 ```bash
-# Generate audio for all videos (cheap/fast - OpenAI)
+# From Tactus-web root - generate audio for all videos
+cd videos
 npm run babulus
 
-# Watch mode (auto-regenerate on DSL changes)
+# Watch mode (auto-regenerate on DSL or config changes)
 npm run babulus:watch
 
-# Clean generated artifacts
-npm run babulus:clean
+# Development mode with explicit environment
+npm run babulus:dev
+```
+
+**All Available Commands** (run from `videos/` directory):
+```bash
+# Basic generation
+npm run babulus              # Generate all videos with OpenAI (development mode)
+npm run babulus:watch        # Watch mode - auto-regenerate on changes
+npm run babulus:dev          # Same as watch, explicitly sets --env development
+
+# Testing & iteration
+npm run babulus:dry          # Dry-run mode - no API calls, instant generation
+npm run babulus:fresh        # Force fresh regeneration (ignore cache)
+
+# Maintenance
+npm run babulus:clean        # Clean generated files for current environment
+npm run babulus:sfx          # SFX variant management (next/prev/set)
 ```
 
 **Remotion Studio**:
 ```bash
-# Start the Remotion studio to preview videos
-npm run remotion
+# Start the Remotion studio to preview videos (from videos/ directory)
+npm run start
 ```
 
-**Outputs**:
-- `src/videos/<video>/<video>.script.json` - Timing data for Remotion
-- `src/videos/<video>/<video>.timeline.json` - Audio tracks
-- `public/babulus/<video>.wav` - Voiceover audio
-- `.babulus/out/<video>/env/<environment>/` - Cached audio segments
+**DSL Files**:
+- **Input**: `videos/content/<video>.babulus.ts` - TypeScript DSL defining scenes, cues, narration
+- **Shared**: `videos/content/_babulus.shared.ts` - Default settings for all videos
 
-**Key benefit**: Environment-aware caching prevents burning through API quotas. Only regenerates changed segments (79x faster on cache hits).
+**Outputs**:
+- `videos/src/videos/<video>/<video>.script.json` - Timing data for Remotion
+- `videos/src/videos/<video>/<video>.timeline.json` - Audio tracks
+- `videos/public/babulus/<video>.wav` - Concatenated voiceover audio
+- `.babulus/out/<video>/env/<environment>/` - Cached audio segments per environment
+
+**Environment-Aware Caching**:
+- Cache structure: `.babulus/out/<video>/env/<environment>/`
+- Environments: `development` (OpenAI), `production` (ElevenLabs), `aws` (Polly), `azure`, `static`
+- Fallback chain: development → aws → azure → production → static
+- **Key benefit**: Switch TTS providers without regenerating unchanged segments (79x faster on cache hits)
+- Only regenerates segments that changed or don't exist in cache for current environment
+
+**Configuration**:
+- Config file: `.babulus/config.yml` (in Tactus-web root, not in videos/)
+- Example: `.babulus/config.example.yml`
+- Environment: Set via `BABULUS_ENV` or `--env` flag (defaults to `development`)
 
 ### Infra (S3 + CloudFront)
 

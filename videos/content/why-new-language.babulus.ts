@@ -26,49 +26,6 @@ export default defineVideo((video) => {
       });
     });
 
-    comp.scene("A New Kind of Computer Program", { id: "paradigm" }, (scene) => {
-      scene.cue("Paradigm Shift", { id: "paradigm_shift" }, (cue) => {
-        cue.voice((voice) => {
-          voiceSegments(voice, [
-            t`
-              Since the dawn of computing over 80 years ago, programming has meant one thing: anticipate every scenario and write code for it.
-              Parse this format. Catch that error. Map these fields to those fields.
-              If you miss a case, the program breaks.
-            `,
-            0.5,
-            t`
-              But tool‑using agents flip the script.
-              Instead of explicitly handling every possible scenario, you define the procedure and let the agent work inside guardrails.
-            `,
-            0.18,
-            "In this new kind of programming, first you start with an AI agent, a language model.",
-            0.18,
-            "then you give it a tool.",
-            0.18,
-            "You assign it a procedure to follow,",
-            0.18,
-            "and you put guardrails around that, to guide it toward the goal.",
-          ]);
-        });
-      });
-
-      scene.cue("Paradigm Shift Wrap", { id: "paradigm_shift_wrap" }, (cue) => {
-        cue.voice((voice) => {
-          voiceSegments(voice, [
-            t`
-              Well... okay, but how do you do that, exactly?
-              How do you write programs where the important ideas are procedures, tools, and guardrails?
-            `,
-            0.45,
-            t`
-              That kind of question about how to represent the things that we care about in our computer programs has been the story of programming from the start:
-              as the problems change, we keep inventing higher-level ways to express what we mean.
-              So let’s rewind.
-            `,
-          ]);
-        });
-      });
-    });
 
     comp.scene("In the Beginning", { id: "machine_code_era" }, (scene) => {
       scene.cue("History", { id: "history" }, (cue) => {

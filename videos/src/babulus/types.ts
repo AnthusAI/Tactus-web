@@ -22,5 +22,5 @@ export type Scene = {
 
 export type Script = {
   scenes: Scene[];
+  posterTimeSec?: number | null;
 };
-

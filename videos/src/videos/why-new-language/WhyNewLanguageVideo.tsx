@@ -254,7 +254,7 @@ const MachineCodeScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ 
   const cueStartsLocal = ttsStartsSec.map((s) => s - scene.startSec);
 
   // Map beats to the TTS segments
-  // history segments (see `videos/content/why-new-language.babulus.yml`, cue `machine_code_era.history`)
+  // history segments (see `videos/content/why-new-language.babulus.ts`, cue `machine_code_era.history`)
   const beat0 = cueStartsLocal[0] ?? 0; // machine code
   const beat1 = cueStartsLocal[1] ?? beat0 + 8; // hex
   const beat2 = cueStartsLocal[2] ?? beat1 + 7; // assembly / assemblers

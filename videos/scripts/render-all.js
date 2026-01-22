@@ -155,21 +155,26 @@ for (const composition of compositions) {
     console.log(`✅ Successfully rendered: ${composition.outputFile}\n`);
     successCount++;
 
-    // Extract poster frame if configured in Babulus YAML
-    const yamlPath = path.join(__dirname, "..", "content",
-                               composition.outputFile.replace(".mp4", ".babulus.yml"));
-    if (fs.existsSync(yamlPath)) {
+    // Extract poster frame if configured in the generated script JSON
+    const scriptPath = path.join(
+      __dirname,
+      "..",
+      "src",
+      "videos",
+      slug,
+      `${slug}.script.json`
+    );
+    if (fs.existsSync(scriptPath)) {
       try {
-        const yaml = require('js-yaml');
-        const config = yaml.load(fs.readFileSync(yamlPath, 'utf8'));
-
-        if (config.poster_time) {
+        const script = JSON.parse(fs.readFileSync(scriptPath, "utf8"));
+        const posterTimeSec = script.posterTimeSec;
+        if (typeof posterTimeSec === "number" && posterTimeSec > 0) {
           const posterPath = outputPath.replace(".mp4", "-poster.jpg");
-          console.log(`🖼️  Extracting thumbnail at ${config.poster_time}...`);
+          console.log(`🖼️  Extracting thumbnail at ${posterTimeSec}s...`);
 
           // FFmpeg: extract frame at timestamp with 85% JPG quality (q:v 4)
           execSync(
-            `ffmpeg -y -ss ${config.poster_time} -i "${outputPath}" -frames:v 1 -q:v 4 "${posterPath}"`,
+            `ffmpeg -y -ss ${posterTimeSec} -i "${outputPath}" -frames:v 1 -q:v 4 "${posterPath}"`,
             { stdio: "inherit" }
           );
           console.log(`✅ Thumbnail saved: ${path.basename(posterPath)}`);

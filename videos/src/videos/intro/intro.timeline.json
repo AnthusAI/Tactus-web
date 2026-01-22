@@ -2,7 +2,7 @@
   "items": [
     {
       "type": "lead_in",
-      "startSec": 0.0,
+      "startSec": 0,
       "endSec": 0.25,
       "seconds": 0.25
     },
@@ -11,7 +11,7 @@
       "sceneId": "paradigm",
       "cueId": "paradigm",
       "startSec": 0.25,
-      "endSec": 45.32,
+      "endSec": 43.01090909090909,
       "segments": [
         {
           "type": "pause",
@@ -22,140 +22,140 @@
         {
           "type": "tts",
           "startSec": 0.85,
-          "endSec": 11.65,
-          "text": "Since the dawn of computing, programming has always meant the same thing: anticipate every scenario and write code for it. If you miss a case, the program breaks.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/paradigm--paradigm--tts--caa1149b24a0--1.wav",
-          "durationSec": 10.8,
-          "rawDurationSec": 10.8,
-          "trimEndSec": 0.0
+          "endSec": 11.031818181818181,
+          "text": "Since the dawn of computing, programming has always meant the same thing: anticipate every scenario and write code for it. If you miss a case, the program breaks.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/paradigm--paradigm--tts--308393d4d811--1.wav",
+          "durationSec": 10.181818181818182,
+          "rawDurationSec": 10.181818181818182,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 11.65,
-          "endSec": 12.0,
+          "startSec": 11.031818181818181,
+          "endSec": 11.381818181818181,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 12.0,
-          "endSec": 23.15,
-          "text": "But tool\u2011using agents flip the script. Instead of explicitly handling every possible scenario, you depend on AI models to make decisions and take action for you.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/paradigm--paradigm--tts--b9ed7a4cad8c--1.wav",
-          "durationSec": 11.15,
-          "rawDurationSec": 11.15,
-          "trimEndSec": 0.0
+          "startSec": 11.381818181818181,
+          "endSec": 20.836363636363636,
+          "text": "But tool‑using agents flip the script. Instead of explicitly handling every possible scenario, you depend on AI models to make decisions and take action for you.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/paradigm--paradigm--tts--6be5a7a26a19--1.wav",
+          "durationSec": 9.454545454545453,
+          "rawDurationSec": 9.454545454545453,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 23.15,
-          "endSec": 23.33,
+          "startSec": 20.836363636363636,
+          "endSec": 21.016363636363636,
           "seconds": 0.18
         },
         {
           "type": "tts",
-          "startSec": 23.33,
-          "endSec": 30.43,
-          "text": "In this new kind of programming, first you start with an agent\u2014a language model.  Then you give it a tool.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/paradigm--paradigm--tts--77e7864d709e--1.wav",
-          "durationSec": 7.1,
-          "rawDurationSec": 7.1,
-          "trimEndSec": 0.0
+          "startSec": 21.016363636363636,
+          "endSec": 28.28909090909091,
+          "text": "In this new kind of programming, first you start with an agent—a language model. Then you give it a tool.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/paradigm--paradigm--tts--2959d1a509a6--1.wav",
+          "durationSec": 7.272727272727273,
+          "rawDurationSec": 7.272727272727273,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 30.43,
-          "endSec": 30.61,
+          "startSec": 28.28909090909091,
+          "endSec": 28.46909090909091,
           "seconds": 0.18
         },
         {
           "type": "tts",
-          "startSec": 30.61,
-          "endSec": 33.76,
-          "text": "And then you assign it a procedure to follow. \n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/paradigm--paradigm--tts--e4aa210a734e--1.wav",
-          "durationSec": 3.15,
-          "rawDurationSec": 3.15,
-          "trimEndSec": 0.0
+          "startSec": 28.46909090909091,
+          "endSec": 31.741818181818182,
+          "text": "And then you assign it a procedure to follow.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/paradigm--paradigm--tts--3b87e82e19fb--1.wav",
+          "durationSec": 3.2727272727272725,
+          "rawDurationSec": 3.2727272727272725,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 33.76,
-          "endSec": 33.94,
+          "startSec": 31.741818181818182,
+          "endSec": 31.921818181818182,
           "seconds": 0.18
         },
         {
           "type": "tts",
-          "startSec": 33.94,
-          "endSec": 38.54,
-          "text": "And then you put guardrails around that to guide it toward the goal.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/paradigm--paradigm--tts--73f4f922e3a9--1.wav",
-          "durationSec": 4.6,
-          "rawDurationSec": 4.6,
-          "trimEndSec": 0.0
+          "startSec": 31.921818181818182,
+          "endSec": 36.64909090909091,
+          "text": "And then you put guardrails around that to guide it toward the goal.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/paradigm--paradigm--tts--57924bb87fe2--1.wav",
+          "durationSec": 4.727272727272727,
+          "rawDurationSec": 4.727272727272727,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 38.54,
-          "endSec": 38.72,
+          "startSec": 36.64909090909091,
+          "endSec": 36.82909090909091,
           "seconds": 0.18
         },
         {
           "type": "tts",
-          "startSec": 38.72,
-          "endSec": 45.32,
-          "text": "This is a completely new way to automate work with computers.  A new kind of computer program.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/paradigm--paradigm--tts--6666f93644cc--1.wav",
-          "durationSec": 6.6,
-          "rawDurationSec": 6.6,
-          "trimEndSec": 0.0
+          "startSec": 36.82909090909091,
+          "endSec": 43.01090909090909,
+          "text": "This is a completely new way to automate work with computers. A new kind of computer program.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/paradigm--paradigm--tts--adb26d3ed826--1.wav",
+          "durationSec": 6.181818181818182,
+          "rawDurationSec": 6.181818181818182,
+          "trimEndSec": 0
         }
       ]
     },
     {
       "type": "pause",
       "sceneId": "paradigm",
-      "startSec": 45.32,
-      "endSec": 45.43617726946916,
-      "seconds": 0.1161772694691636
+      "startSec": 43.01090909090909,
+      "endSec": 43.33181776417889,
+      "seconds": 0.3209086732698048
     },
     {
       "type": "tts",
       "sceneId": "paradigm",
       "cueId": "paradigm_wrap",
-      "startSec": 45.43617726946916,
-      "endSec": 61.23617726946916,
+      "startSec": 43.33181776417889,
+      "endSec": 58.87727230963344,
       "segments": [
         {
           "type": "pause",
-          "startSec": 45.43617726946916,
-          "endSec": 45.83617726946916,
+          "startSec": 43.33181776417889,
+          "endSec": 43.73181776417889,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 45.83617726946916,
-          "endSec": 56.13617726946916,
-          "text": "Okay... But how do you do that, exactly? Is there some new way to write code that's about giving agents tools and procedures?  Instead of a bunch of if/then statements?\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/paradigm--paradigm_wrap--tts--cff5993e032c--1.wav",
-          "durationSec": 10.3,
-          "rawDurationSec": 10.3,
-          "trimEndSec": 0.0
+          "startSec": 43.73181776417889,
+          "endSec": 54.640908673269806,
+          "text": "Okay... But how do you do that, exactly? Is there some new way to write code that's about giving agents tools and procedures? Instead of a bunch of if/then statements?",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/paradigm--paradigm_wrap--tts--102546a8ee73--1.wav",
+          "durationSec": 10.90909090909091,
+          "rawDurationSec": 10.90909090909091,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 56.13617726946916,
-          "endSec": 56.73617726946916,
+          "startSec": 54.640908673269806,
+          "endSec": 55.24090867326981,
           "seconds": 0.6
         },
         {
           "type": "tts",
-          "startSec": 56.73617726946916,
-          "endSec": 61.23617726946916,
-          "text": "Yes. Tactus is a programming language for this new paradigm.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/paradigm--paradigm_wrap--tts--0c4d8da50777--1.wav",
-          "durationSec": 4.5,
-          "rawDurationSec": 4.5,
-          "trimEndSec": 0.0
+          "startSec": 55.24090867326981,
+          "endSec": 58.87727230963344,
+          "text": "Yes. Tactus is a programming language for this new paradigm.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/paradigm--paradigm_wrap--tts--078e8fd872c2--1.wav",
+          "durationSec": 3.6363636363636367,
+          "rawDurationSec": 3.6363636363636367,
+          "trimEndSec": 0
         }
       ]
     },
@@ -163,49 +163,49 @@
       "type": "tts",
       "sceneId": "hello_world",
       "cueId": "hello_world",
-      "startSec": 61.23617726946916,
-      "endSec": 99.63617726946916,
+      "startSec": 58.87727230963344,
+      "endSec": 93.60909049145162,
       "segments": [
         {
           "type": "tts",
-          "startSec": 61.23617726946916,
-          "endSec": 76.38617726946916,
-          "text": "Tactus procedures are computer programs that include imperative instructions, like any other language, but they have first-class, high-level constructs for the building blocks that we work with in AI engineering: agents, tools, context, and prompts.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/hello_world--hello_world--tts--743065166b35--1.wav",
-          "durationSec": 15.15,
-          "rawDurationSec": 15.15,
-          "trimEndSec": 0.0
+          "startSec": 58.87727230963344,
+          "endSec": 71.60454503690617,
+          "text": "Tactus procedures are computer programs that include imperative instructions, like any other language, but they have first-class, high-level constructs for the building blocks that we work with in AI engineering: agents, tools, context, and prompts.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/hello_world--hello_world--tts--48d45dc98154--1.wav",
+          "durationSec": 12.727272727272728,
+          "rawDurationSec": 12.727272727272728,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 76.38617726946916,
-          "endSec": 76.73617726946915,
+          "startSec": 71.60454503690617,
+          "endSec": 71.95454503690617,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 76.73617726946915,
-          "endSec": 87.63617726946916,
-          "text": "You run Tactus procedures just like you would run a program in any other language like Python or Node\u2014as command-line programs or by embedding them in applications.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/hello_world--hello_world--tts--2473927edc28--1.wav",
-          "durationSec": 10.9,
-          "rawDurationSec": 10.9,
-          "trimEndSec": 0.0
+          "startSec": 71.95454503690617,
+          "endSec": 81.77272685508798,
+          "text": "You run Tactus procedures just like you would run a program in any other language like Python or Node—as command-line programs or by embedding them in applications.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/hello_world--hello_world--tts--1f7ab14f4a74--1.wav",
+          "durationSec": 9.818181818181818,
+          "rawDurationSec": 9.818181818181818,
+          "trimEndSec": 0
         },
         {
           "type": "tts",
-          "startSec": 87.63617726946916,
-          "endSec": 99.43617726946916,
-          "text": "Here's an example of running a hello-world program. The procedure runs and returns the response from the agent. It doesn't use a framework because the capabilities are built right into the language.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/hello_world--hello_world--tts--f878e28be110--1.wav",
-          "durationSec": 11.8,
-          "rawDurationSec": 11.8,
-          "trimEndSec": 0.0
+          "startSec": 81.77272685508798,
+          "endSec": 93.40909049145162,
+          "text": "Here's an example of running a hello-world program. The procedure runs and returns the response from the agent. It doesn't use a framework because the capabilities are built right into the language.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/hello_world--hello_world--tts--2017219acc64--1.wav",
+          "durationSec": 11.636363636363637,
+          "rawDurationSec": 11.636363636363637,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 99.43617726946916,
-          "endSec": 99.63617726946916,
+          "startSec": 93.40909049145162,
+          "endSec": 93.60909049145162,
           "seconds": 0.2
         }
       ]
@@ -214,55 +214,55 @@
       "type": "tts",
       "sceneId": "interface",
       "cueId": "interface_supervised",
-      "startSec": 99.63617726946916,
-      "endSec": 137.38617726946916,
+      "startSec": 93.60909049145162,
+      "endSec": 131.172726855088,
       "segments": [
         {
           "type": "tts",
-          "startSec": 99.63617726946916,
-          "endSec": 107.68617726946916,
-          "text": "Connecting to agents and tools is just the beginning.  The real challenge is the interface layer between the agent and the operator.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/interface--interface_supervised--tts--05bff1c70fd7--1.wav",
-          "durationSec": 8.05,
-          "rawDurationSec": 8.05,
-          "trimEndSec": 0.0
+          "startSec": 93.60909049145162,
+          "endSec": 101.60909049145162,
+          "text": "Connecting to agents and tools is just the beginning. The real challenge is the interface layer between the agent and the operator.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/interface--interface_supervised--tts--febc0d111a03--1.wav",
+          "durationSec": 8,
+          "rawDurationSec": 8,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 107.68617726946916,
-          "endSec": 108.08617726946916,
+          "startSec": 101.60909049145162,
+          "endSec": 102.00909049145163,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 108.08617726946916,
-          "endSec": 121.68617726946916,
-          "text": "The common interface for agents today is chat.  You watch every step, you steer, and you stop the agent if it goes sideways. That works great for some things but depends on the human operator.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/interface--interface_supervised--tts--21b907cf79b9--1.wav",
-          "durationSec": 13.6,
-          "rawDurationSec": 13.6,
-          "trimEndSec": 0.0
+          "startSec": 102.00909049145163,
+          "endSec": 114.73636321872436,
+          "text": "The common interface for agents today is chat. You watch every step, you steer, and you stop the agent if it goes sideways. That works great for some things but depends on the human operator.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/interface--interface_supervised--tts--4f6c838a79c9--1.wav",
+          "durationSec": 12.727272727272728,
+          "rawDurationSec": 12.727272727272728,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 121.68617726946916,
-          "endSec": 122.08617726946916,
+          "startSec": 114.73636321872436,
+          "endSec": 115.13636321872437,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 122.08617726946916,
-          "endSec": 136.98617726946915,
-          "text": "The user becomes a bottleneck.  When you step away to eat or sleep, the whole system stops doing anything. If you're trying to process a lot of items at scale then your capacity is limited by the human operator.You can't scale this up.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/interface--interface_supervised--tts--c68241fa7cbb--1.wav",
-          "durationSec": 14.9,
-          "rawDurationSec": 14.9,
-          "trimEndSec": 0.0
+          "startSec": 115.13636321872437,
+          "endSec": 130.772726855088,
+          "text": "The user becomes a bottleneck. When you step away to eat or sleep, the whole system stops doing anything. If you're trying to process a lot of items at scale then your capacity is limited by the human operator.You can't scale this up.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/interface--interface_supervised--tts--9085cb73f1bf--1.wav",
+          "durationSec": 15.636363636363637,
+          "rawDurationSec": 15.636363636363637,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 136.98617726946915,
-          "endSec": 137.38617726946916,
+          "startSec": 130.772726855088,
+          "endSec": 131.172726855088,
           "seconds": 0.4
         }
       ]
@@ -270,47 +270,47 @@
     {
       "type": "pause",
       "sceneId": "interface",
-      "startSec": 137.38617726946916,
-      "endSec": 137.50791743144458,
-      "seconds": 0.12174016197543183
+      "startSec": 131.172726855088,
+      "endSec": 131.33491943669534,
+      "seconds": 0.16219258160733685
     },
     {
       "type": "tts",
       "sceneId": "interface",
       "cueId": "interface_unsupervised",
-      "startSec": 137.50791743144458,
-      "endSec": 156.4079174314446,
+      "startSec": 131.33491943669534,
+      "endSec": 149.95310125487717,
       "segments": [
         {
           "type": "tts",
-          "startSec": 137.50791743144458,
-          "endSec": 145.75791743144458,
-          "text": "You could remove the human entirely and let the agent run free. This scales beautifully\u2014you can process thousands of items at machine speed.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/interface--interface_unsupervised--tts--eb6f05f90993--1.wav",
-          "durationSec": 8.25,
-          "rawDurationSec": 8.25,
-          "trimEndSec": 0.0
+          "startSec": 131.33491943669534,
+          "endSec": 139.69855580033172,
+          "text": "You could remove the human entirely and let the agent run free. This scales beautifully—you can process thousands of items at machine speed.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/interface--interface_unsupervised--tts--82b77f6fb5b2--1.wav",
+          "durationSec": 8.363636363636363,
+          "rawDurationSec": 8.363636363636363,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 145.75791743144458,
-          "endSec": 146.1579174314446,
+          "startSec": 139.69855580033172,
+          "endSec": 140.09855580033172,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 146.1579174314446,
-          "endSec": 156.00791743144458,
-          "text": "But running an agent this way is like giving a monkey a razor blade.  And scaling that up to industrial levels is a recipe for disaster.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/interface--interface_unsupervised--tts--98434133777e--1.wav",
-          "durationSec": 9.85,
-          "rawDurationSec": 9.85,
-          "trimEndSec": 0.0
+          "startSec": 140.09855580033172,
+          "endSec": 149.55310125487716,
+          "text": "But running an agent this way is like giving a monkey a razor blade. And scaling that up to industrial levels is a recipe for disaster.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/interface--interface_unsupervised--tts--c458edeb1eb0--1.wav",
+          "durationSec": 9.454545454545453,
+          "rawDurationSec": 9.454545454545453,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 156.00791743144458,
-          "endSec": 156.4079174314446,
+          "startSec": 149.55310125487716,
+          "endSec": 149.95310125487717,
           "seconds": 0.4
         }
       ]
@@ -318,58 +318,58 @@
     {
       "type": "pause",
       "sceneId": "interface",
-      "startSec": 156.4079174314446,
-      "endSec": 156.52608566244035,
-      "seconds": 0.11816823099576988
+      "startSec": 149.95310125487717,
+      "endSec": 150.17517794955344,
+      "seconds": 0.22207669467626354
     },
     {
       "type": "tts",
       "sceneId": "interface",
       "cueId": "interface_hitl",
-      "startSec": 156.52608566244035,
-      "endSec": 198.37608566244037,
+      "startSec": 150.17517794955344,
+      "endSec": 188.7933597677353,
       "segments": [
         {
           "type": "tts",
-          "startSec": 156.52608566244035,
-          "endSec": 173.12608566244035,
-          "text": "Tactus provides a new interface layer between the human and the computer. It enables agents to send requests to the human operator and wait for a response.  Requests can queue up, so that the system can continue running while the human operator isn't available.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/interface--interface_hitl--tts--79695d7e9953--1.wav",
-          "durationSec": 16.6,
-          "rawDurationSec": 16.6,
-          "trimEndSec": 0.0
+          "startSec": 150.17517794955344,
+          "endSec": 166.17517794955344,
+          "text": "Tactus provides a new interface layer between the human and the computer. It enables agents to send requests to the human operator and wait for a response. Requests can queue up, so that the system can continue running while the human operator isn't available.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/interface--interface_hitl--tts--38c3065fc3f1--1.wav",
+          "durationSec": 16,
+          "rawDurationSec": 16,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 173.12608566244035,
-          "endSec": 173.52608566244035,
+          "startSec": 166.17517794955344,
+          "endSec": 166.57517794955345,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 173.52608566244035,
-          "endSec": 187.17608566244036,
-          "text": "When a procedure needs a human\u2014to approve a risky action, or to provide a missing detail\u2014it pauses. It doesn't use any compute while it's suspended, and it doesn't depend on the runtime to continue running in memory.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/interface--interface_hitl--tts--d2e1dee947ea--1.wav",
-          "durationSec": 13.65,
-          "rawDurationSec": 13.65,
-          "trimEndSec": 0.0
+          "startSec": 166.57517794955345,
+          "endSec": 180.02972340409892,
+          "text": "When a procedure needs a human—to approve a risky action, or to provide a missing detail—it pauses. It doesn't use any compute while it's suspended, and it doesn't depend on the runtime to continue running in memory.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/interface--interface_hitl--tts--cae0086de055--1.wav",
+          "durationSec": 13.454545454545455,
+          "rawDurationSec": 13.454545454545455,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 187.17608566244036,
-          "endSec": 187.57608566244036,
+          "startSec": 180.02972340409892,
+          "endSec": 180.42972340409892,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 187.57608566244036,
-          "endSec": 198.37608566244037,
-          "text": "It can resume hours or days later, exactly where it left off. This lets you move from synchronous chat to asynchronous, industrial-scale workflows.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/interface--interface_hitl--tts--72502cd5bd38--1.wav",
-          "durationSec": 10.8,
-          "rawDurationSec": 10.8,
-          "trimEndSec": 0.0
+          "startSec": 180.42972340409892,
+          "endSec": 188.7933597677353,
+          "text": "It can resume hours or days later, exactly where it left off. This lets you move from synchronous chat to asynchronous, industrial-scale workflows.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/interface--interface_hitl--tts--c1178788fe03--1.wav",
+          "durationSec": 8.363636363636363,
+          "rawDurationSec": 8.363636363636363,
+          "trimEndSec": 0
         }
       ]
     },
@@ -377,135 +377,135 @@
       "type": "tts",
       "sceneId": "defense_layers",
       "cueId": "defense_layers",
-      "startSec": 198.37608566244037,
-      "endSec": 243.82608566244042,
+      "startSec": 188.7933597677353,
+      "endSec": 225.1842688586444,
       "segments": [
         {
           "type": "tts",
-          "startSec": 198.37608566244037,
-          "endSec": 205.37608566244037,
-          "text": "Tactus gives you levers of control at multiple layers. Because no single layer is sufficient on its own.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/defense_layers--defense_layers--tts--58b59bc93a7c--1.wav",
-          "durationSec": 7.0,
-          "rawDurationSec": 7.0,
-          "trimEndSec": 0.0
+          "startSec": 188.7933597677353,
+          "endSec": 195.33881431318983,
+          "text": "Tactus gives you levers of control at multiple layers. Because no single layer is sufficient on its own.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/defense_layers--defense_layers--tts--442e1e806b41--1.wav",
+          "durationSec": 6.545454545454545,
+          "rawDurationSec": 6.545454545454545,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 205.37608566244037,
-          "endSec": 205.87608566244037,
+          "startSec": 195.33881431318983,
+          "endSec": 195.83881431318983,
           "seconds": 0.5
         },
         {
           "type": "tts",
-          "startSec": 205.87608566244037,
-          "endSec": 210.17608566244039,
-          "text": "Cost and limits to prevent runaway loops and billing surprises.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/defense_layers--defense_layers--tts--5b800923e99d--1.wav",
-          "durationSec": 4.3,
-          "rawDurationSec": 4.3,
-          "trimEndSec": 0.0
+          "startSec": 195.83881431318983,
+          "endSec": 199.47517794955345,
+          "text": "Cost and limits to prevent runaway loops and billing surprises.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/defense_layers--defense_layers--tts--252f8549a090--1.wav",
+          "durationSec": 3.6363636363636367,
+          "rawDurationSec": 3.6363636363636367,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 210.17608566244039,
-          "endSec": 210.5760856624404,
+          "startSec": 199.47517794955345,
+          "endSec": 199.87517794955346,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 210.5760856624404,
-          "endSec": 213.9760856624404,
-          "text": "Prompt engineering to guide model behavior.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/defense_layers--defense_layers--tts--c2950675cddd--1.wav",
-          "durationSec": 3.4,
-          "rawDurationSec": 3.4,
-          "trimEndSec": 0.0
+          "startSec": 199.87517794955346,
+          "endSec": 202.05699613137165,
+          "text": "Prompt engineering to guide model behavior.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/defense_layers--defense_layers--tts--c6934669d05d--1.wav",
+          "durationSec": 2.1818181818181817,
+          "rawDurationSec": 2.1818181818181817,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 213.9760856624404,
-          "endSec": 214.3760856624404,
+          "startSec": 202.05699613137165,
+          "endSec": 202.45699613137165,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 214.3760856624404,
-          "endSec": 220.2260856624404,
-          "text": "Context engineering to ensure the model has the right information, not just all information.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/defense_layers--defense_layers--tts--8d13cd5bbbc8--1.wav",
-          "durationSec": 5.85,
-          "rawDurationSec": 5.85,
-          "trimEndSec": 0.0
+          "startSec": 202.45699613137165,
+          "endSec": 207.54790522228075,
+          "text": "Context engineering to ensure the model has the right information, not just all information.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/defense_layers--defense_layers--tts--6d2e8393a56b--1.wav",
+          "durationSec": 5.090909090909091,
+          "rawDurationSec": 5.090909090909091,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 220.2260856624404,
-          "endSec": 220.6260856624404,
+          "startSec": 207.54790522228075,
+          "endSec": 207.94790522228075,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 220.6260856624404,
-          "endSec": 225.3260856624404,
-          "text": "Model selection for the right capabilities and safety profiles.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/defense_layers--defense_layers--tts--e1d3eef6b46c--1.wav",
-          "durationSec": 4.7,
-          "rawDurationSec": 4.7,
-          "trimEndSec": 0.0
+          "startSec": 207.94790522228075,
+          "endSec": 211.22063249500803,
+          "text": "Model selection for the right capabilities and safety profiles.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/defense_layers--defense_layers--tts--e8af634954fc--1.wav",
+          "durationSec": 3.2727272727272725,
+          "rawDurationSec": 3.2727272727272725,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 225.3260856624404,
-          "endSec": 225.7260856624404,
+          "startSec": 211.22063249500803,
+          "endSec": 211.62063249500804,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 225.7260856624404,
-          "endSec": 230.67608566244039,
-          "text": "Tool selection. Give the agent only the capabilities it needs.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/defense_layers--defense_layers--tts--efe6cc1c451a--1.wav",
-          "durationSec": 4.95,
-          "rawDurationSec": 4.95,
-          "trimEndSec": 0.0
+          "startSec": 211.62063249500804,
+          "endSec": 215.25699613137166,
+          "text": "Tool selection. Give the agent only the capabilities it needs.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/defense_layers--defense_layers--tts--4357b5d09b8b--1.wav",
+          "durationSec": 3.6363636363636367,
+          "rawDurationSec": 3.6363636363636367,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 230.67608566244039,
-          "endSec": 231.0760856624404,
+          "startSec": 215.25699613137166,
+          "endSec": 215.65699613137167,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 231.0760856624404,
-          "endSec": 234.9760856624404,
-          "text": "Code sandboxing in isolated environments.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/defense_layers--defense_layers--tts--8a303775f184--1.wav",
-          "durationSec": 3.9,
-          "rawDurationSec": 3.9,
-          "trimEndSec": 0.0
+          "startSec": 215.65699613137167,
+          "endSec": 217.47517794955348,
+          "text": "Code sandboxing in isolated environments.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/defense_layers--defense_layers--tts--da5a4f415839--1.wav",
+          "durationSec": 1.8181818181818183,
+          "rawDurationSec": 1.8181818181818183,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 234.9760856624404,
-          "endSec": 235.3760856624404,
+          "startSec": 217.47517794955348,
+          "endSec": 217.8751779495535,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 235.3760856624404,
-          "endSec": 243.4260856624404,
-          "text": "And container isolation to constrain what the agent can touch, and to firewall side effects inside an ephemeral container.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/defense_layers--defense_layers--tts--7433cddb8857--1.wav",
-          "durationSec": 8.05,
-          "rawDurationSec": 8.05,
-          "trimEndSec": 0.0
+          "startSec": 217.8751779495535,
+          "endSec": 224.7842688586444,
+          "text": "And container isolation to constrain what the agent can touch, and to firewall side effects inside an ephemeral container.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/defense_layers--defense_layers--tts--2d50f0e5eb47--1.wav",
+          "durationSec": 6.909090909090909,
+          "rawDurationSec": 6.909090909090909,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 243.4260856624404,
-          "endSec": 243.82608566244042,
+          "startSec": 224.7842688586444,
+          "endSec": 225.1842688586444,
           "seconds": 0.4
         }
       ]
@@ -514,66 +514,66 @@
       "type": "tts",
       "sceneId": "sandboxing",
       "cueId": "sandboxing",
-      "startSec": 243.82608566244042,
-      "endSec": 291.72608566244037,
+      "startSec": 225.1842688586444,
+      "endSec": 270.9479052222808,
       "segments": [
         {
           "type": "tts",
-          "startSec": 243.82608566244042,
-          "endSec": 254.9260856624404,
-          "text": "We know AI models make mistakes. Maybe your agent writes buggy tool code that deletes files. Or maybe a prompt injection tells it to send your data to a competitor.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/sandboxing--sandboxing--tts--cd2c5b3aa024--1.wav",
-          "durationSec": 11.1,
-          "rawDurationSec": 11.1,
-          "trimEndSec": 0.0
+          "startSec": 225.1842688586444,
+          "endSec": 236.0933597677353,
+          "text": "We know AI models make mistakes. Maybe your agent writes buggy tool code that deletes files. Or maybe a prompt injection tells it to send your data to a competitor.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/sandboxing--sandboxing--tts--ea19851b0a3f--1.wav",
+          "durationSec": 10.90909090909091,
+          "rawDurationSec": 10.90909090909091,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 254.9260856624404,
-          "endSec": 255.32608566244042,
+          "startSec": 236.0933597677353,
+          "endSec": 236.4933597677353,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 255.32608566244042,
-          "endSec": 267.0760856624404,
-          "text": "To keep the surprises firewalled off, Tactus runs your code in a restricted Lua sandbox inside a networkless container. That answers one security question: what can it touch?\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/sandboxing--sandboxing--tts--d037491713c2--1.wav",
-          "durationSec": 11.75,
-          "rawDurationSec": 11.75,
-          "trimEndSec": 0.0
+          "startSec": 236.4933597677353,
+          "endSec": 246.6751779495535,
+          "text": "To keep the surprises firewalled off, Tactus runs your code in a restricted Lua sandbox inside a networkless container. That answers one security question: what can it touch?",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/sandboxing--sandboxing--tts--8f8e47821eff--1.wav",
+          "durationSec": 10.181818181818182,
+          "rawDurationSec": 10.181818181818182,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 267.0760856624404,
-          "endSec": 267.5760856624404,
+          "startSec": 246.6751779495535,
+          "endSec": 247.1751779495535,
           "seconds": 0.5
         },
         {
           "type": "tts",
-          "startSec": 267.5760856624404,
-          "endSec": 279.0760856624404,
-          "text": "The other question is the one that matters most: what can it steal? Tactus keeps the runtime secretless: keys and privileged calls live outside the container, behind a broker boundary.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/sandboxing--sandboxing--tts--8029016112db--1.wav",
-          "durationSec": 11.5,
-          "rawDurationSec": 11.5,
-          "trimEndSec": 0.0
+          "startSec": 247.1751779495535,
+          "endSec": 258.0842688586444,
+          "text": "The other question is the one that matters most: what can it steal? Tactus keeps the runtime secretless: keys and privileged calls live outside the container, behind a broker boundary.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/sandboxing--sandboxing--tts--da5be21304e4--1.wav",
+          "durationSec": 10.90909090909091,
+          "rawDurationSec": 10.90909090909091,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 279.0760856624404,
-          "endSec": 279.5760856624404,
+          "startSec": 258.0842688586444,
+          "endSec": 258.5842688586444,
           "seconds": 0.5
         },
         {
           "type": "tts",
-          "startSec": 279.5760856624404,
-          "endSec": 291.72608566244037,
-          "text": "It\u2019s like letting a burglar into an empty building. Even if they get in, there\u2019s nothing valuable inside to take. Your procedure can use powerful tools without ever handing secrets to the agent runtime.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/sandboxing--sandboxing--tts--55261ca69e3b--1.wav",
-          "durationSec": 12.15,
-          "rawDurationSec": 12.15,
-          "trimEndSec": 0.0
+          "startSec": 258.5842688586444,
+          "endSec": 270.9479052222808,
+          "text": "It’s like letting a burglar into an empty building. Even if they get in, there’s nothing valuable inside to take. Your procedure can use powerful tools without ever handing secrets to the agent runtime.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/sandboxing--sandboxing--tts--38af1b5d41a0--1.wav",
+          "durationSec": 12.363636363636363,
+          "rawDurationSec": 12.363636363636363,
+          "trimEndSec": 0
         }
       ]
     },
@@ -581,45 +581,45 @@
       "type": "tts",
       "sceneId": "nutshell",
       "cueId": "nutshell",
-      "startSec": 291.72608566244037,
-      "endSec": 308.02608566244044,
+      "startSec": 270.9479052222808,
+      "endSec": 287.3933597677353,
       "segments": [
         {
           "type": "pause",
-          "startSec": 291.72608566244037,
-          "endSec": 292.92608566244036,
+          "startSec": 270.9479052222808,
+          "endSec": 272.14790522228077,
           "seconds": 1.2
         },
         {
           "type": "tts",
-          "startSec": 292.92608566244036,
-          "endSec": 297.2760856624404,
-          "text": "In a nutshell, Tactus is the interface layer for the new age of computing.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/nutshell--nutshell--tts--0bf7f6231bb6--1.wav",
-          "durationSec": 4.35,
-          "rawDurationSec": 4.35,
-          "trimEndSec": 0.0
+          "startSec": 272.14790522228077,
+          "endSec": 277.23881431318983,
+          "text": "In a nutshell, Tactus is the interface layer for the new age of computing.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/nutshell--nutshell--tts--af274182ce59--1.wav",
+          "durationSec": 5.090909090909091,
+          "rawDurationSec": 5.090909090909091,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 297.2760856624404,
-          "endSec": 297.6260856624404,
+          "startSec": 277.23881431318983,
+          "endSec": 277.58881431318986,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 297.6260856624404,
-          "endSec": 307.6760856624404,
-          "text": "It gives you high-level concepts to construct solutions, a durable runtime to handle human interaction, and a safety architecture to keep the monkey in the box.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/nutshell--nutshell--tts--6eb841223401--1.wav",
-          "durationSec": 10.05,
-          "rawDurationSec": 10.05,
-          "trimEndSec": 0.0
+          "startSec": 277.58881431318986,
+          "endSec": 287.0433597677353,
+          "text": "It gives you high-level concepts to construct solutions, a durable runtime to handle human interaction, and a safety architecture to keep the monkey in the box.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/nutshell--nutshell--tts--684b14a31e30--1.wav",
+          "durationSec": 9.454545454545453,
+          "rawDurationSec": 9.454545454545453,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 307.6760856624404,
-          "endSec": 308.02608566244044,
+          "startSec": 287.0433597677353,
+          "endSec": 287.3933597677353,
           "seconds": 0.35
         }
       ]
@@ -628,23 +628,23 @@
       "type": "tts",
       "sceneId": "cta",
       "cueId": "cta",
-      "startSec": 308.02608566244044,
-      "endSec": 315.67608566244047,
+      "startSec": 287.3933597677353,
+      "endSec": 293.92517794955353,
       "segments": [
         {
           "type": "tts",
-          "startSec": 308.02608566244044,
-          "endSec": 315.32608566244045,
-          "text": "Ready to try it? Visit the Tactus website to download the IDE and run your first procedure.\n",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/cta--cta--tts--d3fcb6c17805--1.wav",
-          "durationSec": 7.3,
-          "rawDurationSec": 7.3,
-          "trimEndSec": 0.0
+          "startSec": 287.3933597677353,
+          "endSec": 293.5751779495535,
+          "text": "Ready to try it? Visit the Tactus website to download the IDE and run your first procedure.",
+          "segmentPath": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/segments/cta--cta--tts--6918fe4db938--1.wav",
+          "durationSec": 6.181818181818182,
+          "rawDurationSec": 6.181818181818182,
+          "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 315.32608566244045,
-          "endSec": 315.67608566244047,
+          "startSec": 293.5751779495535,
+          "endSec": 293.92517794955353,
           "seconds": 0.35
         }
       ]
@@ -657,276 +657,276 @@
         "kind": "narration",
         "clips": [
           {
-            "id": "paradigm--paradigm--tts--caa1149b24a0--1",
+            "id": "paradigm--paradigm--tts--308393d4d811--1",
             "kind": "file",
             "startSec": 0.85,
-            "durationSec": 10.8,
-            "src": "babulus/intro/segments/paradigm--paradigm--tts--caa1149b24a0--1.wav",
-            "volume": 1.0
+            "durationSec": 10.181818181818182,
+            "src": "babulus/intro/env/development/segments/paradigm--paradigm--tts--308393d4d811--1.wav",
+            "volume": 1
           },
           {
-            "id": "paradigm--paradigm--tts--b9ed7a4cad8c--1",
+            "id": "paradigm--paradigm--tts--6be5a7a26a19--1",
             "kind": "file",
-            "startSec": 12.0,
-            "durationSec": 11.15,
-            "src": "babulus/intro/segments/paradigm--paradigm--tts--b9ed7a4cad8c--1.wav",
-            "volume": 1.0
+            "startSec": 11.381818181818181,
+            "durationSec": 9.454545454545453,
+            "src": "babulus/intro/env/development/segments/paradigm--paradigm--tts--6be5a7a26a19--1.wav",
+            "volume": 1
           },
           {
-            "id": "paradigm--paradigm--tts--77e7864d709e--1",
+            "id": "paradigm--paradigm--tts--2959d1a509a6--1",
             "kind": "file",
-            "startSec": 23.33,
-            "durationSec": 7.1,
-            "src": "babulus/intro/segments/paradigm--paradigm--tts--77e7864d709e--1.wav",
-            "volume": 1.0
+            "startSec": 21.016363636363636,
+            "durationSec": 7.272727272727273,
+            "src": "babulus/intro/env/development/segments/paradigm--paradigm--tts--2959d1a509a6--1.wav",
+            "volume": 1
           },
           {
-            "id": "paradigm--paradigm--tts--e4aa210a734e--1",
+            "id": "paradigm--paradigm--tts--3b87e82e19fb--1",
             "kind": "file",
-            "startSec": 30.61,
-            "durationSec": 3.15,
-            "src": "babulus/intro/segments/paradigm--paradigm--tts--e4aa210a734e--1.wav",
-            "volume": 1.0
+            "startSec": 28.46909090909091,
+            "durationSec": 3.2727272727272725,
+            "src": "babulus/intro/env/development/segments/paradigm--paradigm--tts--3b87e82e19fb--1.wav",
+            "volume": 1
           },
           {
-            "id": "paradigm--paradigm--tts--73f4f922e3a9--1",
+            "id": "paradigm--paradigm--tts--57924bb87fe2--1",
             "kind": "file",
-            "startSec": 33.94,
-            "durationSec": 4.6,
-            "src": "babulus/intro/segments/paradigm--paradigm--tts--73f4f922e3a9--1.wav",
-            "volume": 1.0
+            "startSec": 31.921818181818182,
+            "durationSec": 4.727272727272727,
+            "src": "babulus/intro/env/development/segments/paradigm--paradigm--tts--57924bb87fe2--1.wav",
+            "volume": 1
           },
           {
-            "id": "paradigm--paradigm--tts--6666f93644cc--1",
+            "id": "paradigm--paradigm--tts--adb26d3ed826--1",
             "kind": "file",
-            "startSec": 38.72,
-            "durationSec": 6.6,
-            "src": "babulus/intro/segments/paradigm--paradigm--tts--6666f93644cc--1.wav",
-            "volume": 1.0
+            "startSec": 36.82909090909091,
+            "durationSec": 6.181818181818182,
+            "src": "babulus/intro/env/development/segments/paradigm--paradigm--tts--adb26d3ed826--1.wav",
+            "volume": 1
           },
           {
-            "id": "paradigm--paradigm_wrap--tts--cff5993e032c--1",
+            "id": "paradigm--paradigm_wrap--tts--102546a8ee73--1",
             "kind": "file",
-            "startSec": 45.83617726946916,
-            "durationSec": 10.3,
-            "src": "babulus/intro/segments/paradigm--paradigm_wrap--tts--cff5993e032c--1.wav",
-            "volume": 1.0
+            "startSec": 43.73181776417889,
+            "durationSec": 10.90909090909091,
+            "src": "babulus/intro/env/development/segments/paradigm--paradigm_wrap--tts--102546a8ee73--1.wav",
+            "volume": 1
           },
           {
-            "id": "paradigm--paradigm_wrap--tts--0c4d8da50777--1",
+            "id": "paradigm--paradigm_wrap--tts--078e8fd872c2--1",
             "kind": "file",
-            "startSec": 56.73617726946916,
-            "durationSec": 4.5,
-            "src": "babulus/intro/segments/paradigm--paradigm_wrap--tts--0c4d8da50777--1.wav",
-            "volume": 1.0
+            "startSec": 55.24090867326981,
+            "durationSec": 3.6363636363636367,
+            "src": "babulus/intro/env/development/segments/paradigm--paradigm_wrap--tts--078e8fd872c2--1.wav",
+            "volume": 1
           },
           {
-            "id": "hello_world--hello_world--tts--743065166b35--1",
+            "id": "hello_world--hello_world--tts--48d45dc98154--1",
             "kind": "file",
-            "startSec": 61.23617726946916,
-            "durationSec": 15.15,
-            "src": "babulus/intro/segments/hello_world--hello_world--tts--743065166b35--1.wav",
-            "volume": 1.0
+            "startSec": 58.87727230963344,
+            "durationSec": 12.727272727272728,
+            "src": "babulus/intro/env/development/segments/hello_world--hello_world--tts--48d45dc98154--1.wav",
+            "volume": 1
           },
           {
-            "id": "hello_world--hello_world--tts--2473927edc28--1",
+            "id": "hello_world--hello_world--tts--1f7ab14f4a74--1",
             "kind": "file",
-            "startSec": 76.73617726946915,
-            "durationSec": 10.9,
-            "src": "babulus/intro/segments/hello_world--hello_world--tts--2473927edc28--1.wav",
-            "volume": 1.0
+            "startSec": 71.95454503690617,
+            "durationSec": 9.818181818181818,
+            "src": "babulus/intro/env/development/segments/hello_world--hello_world--tts--1f7ab14f4a74--1.wav",
+            "volume": 1
           },
           {
-            "id": "hello_world--hello_world--tts--f878e28be110--1",
+            "id": "hello_world--hello_world--tts--2017219acc64--1",
             "kind": "file",
-            "startSec": 87.63617726946916,
-            "durationSec": 11.8,
-            "src": "babulus/intro/segments/hello_world--hello_world--tts--f878e28be110--1.wav",
-            "volume": 1.0
+            "startSec": 81.77272685508798,
+            "durationSec": 11.636363636363637,
+            "src": "babulus/intro/env/development/segments/hello_world--hello_world--tts--2017219acc64--1.wav",
+            "volume": 1
           },
           {
-            "id": "interface--interface_supervised--tts--05bff1c70fd7--1",
+            "id": "interface--interface_supervised--tts--febc0d111a03--1",
             "kind": "file",
-            "startSec": 99.63617726946916,
-            "durationSec": 8.05,
-            "src": "babulus/intro/segments/interface--interface_supervised--tts--05bff1c70fd7--1.wav",
-            "volume": 1.0
+            "startSec": 93.60909049145162,
+            "durationSec": 8,
+            "src": "babulus/intro/env/development/segments/interface--interface_supervised--tts--febc0d111a03--1.wav",
+            "volume": 1
           },
           {
-            "id": "interface--interface_supervised--tts--21b907cf79b9--1",
+            "id": "interface--interface_supervised--tts--4f6c838a79c9--1",
             "kind": "file",
-            "startSec": 108.08617726946916,
-            "durationSec": 13.6,
-            "src": "babulus/intro/segments/interface--interface_supervised--tts--21b907cf79b9--1.wav",
-            "volume": 1.0
+            "startSec": 102.00909049145163,
+            "durationSec": 12.727272727272728,
+            "src": "babulus/intro/env/development/segments/interface--interface_supervised--tts--4f6c838a79c9--1.wav",
+            "volume": 1
           },
           {
-            "id": "interface--interface_supervised--tts--c68241fa7cbb--1",
+            "id": "interface--interface_supervised--tts--9085cb73f1bf--1",
             "kind": "file",
-            "startSec": 122.08617726946916,
-            "durationSec": 14.9,
-            "src": "babulus/intro/segments/interface--interface_supervised--tts--c68241fa7cbb--1.wav",
-            "volume": 1.0
+            "startSec": 115.13636321872437,
+            "durationSec": 15.636363636363637,
+            "src": "babulus/intro/env/development/segments/interface--interface_supervised--tts--9085cb73f1bf--1.wav",
+            "volume": 1
           },
           {
-            "id": "interface--interface_unsupervised--tts--eb6f05f90993--1",
+            "id": "interface--interface_unsupervised--tts--82b77f6fb5b2--1",
             "kind": "file",
-            "startSec": 137.50791743144458,
-            "durationSec": 8.25,
-            "src": "babulus/intro/segments/interface--interface_unsupervised--tts--eb6f05f90993--1.wav",
-            "volume": 1.0
+            "startSec": 131.33491943669534,
+            "durationSec": 8.363636363636363,
+            "src": "babulus/intro/env/development/segments/interface--interface_unsupervised--tts--82b77f6fb5b2--1.wav",
+            "volume": 1
           },
           {
-            "id": "interface--interface_unsupervised--tts--98434133777e--1",
+            "id": "interface--interface_unsupervised--tts--c458edeb1eb0--1",
             "kind": "file",
-            "startSec": 146.1579174314446,
-            "durationSec": 9.85,
-            "src": "babulus/intro/segments/interface--interface_unsupervised--tts--98434133777e--1.wav",
-            "volume": 1.0
+            "startSec": 140.09855580033172,
+            "durationSec": 9.454545454545453,
+            "src": "babulus/intro/env/development/segments/interface--interface_unsupervised--tts--c458edeb1eb0--1.wav",
+            "volume": 1
           },
           {
-            "id": "interface--interface_hitl--tts--79695d7e9953--1",
+            "id": "interface--interface_hitl--tts--38c3065fc3f1--1",
             "kind": "file",
-            "startSec": 156.52608566244035,
-            "durationSec": 16.6,
-            "src": "babulus/intro/segments/interface--interface_hitl--tts--79695d7e9953--1.wav",
-            "volume": 1.0
+            "startSec": 150.17517794955344,
+            "durationSec": 16,
+            "src": "babulus/intro/env/development/segments/interface--interface_hitl--tts--38c3065fc3f1--1.wav",
+            "volume": 1
           },
           {
-            "id": "interface--interface_hitl--tts--d2e1dee947ea--1",
+            "id": "interface--interface_hitl--tts--cae0086de055--1",
             "kind": "file",
-            "startSec": 173.52608566244035,
-            "durationSec": 13.65,
-            "src": "babulus/intro/segments/interface--interface_hitl--tts--d2e1dee947ea--1.wav",
-            "volume": 1.0
+            "startSec": 166.57517794955345,
+            "durationSec": 13.454545454545455,
+            "src": "babulus/intro/env/development/segments/interface--interface_hitl--tts--cae0086de055--1.wav",
+            "volume": 1
           },
           {
-            "id": "interface--interface_hitl--tts--72502cd5bd38--1",
+            "id": "interface--interface_hitl--tts--c1178788fe03--1",
             "kind": "file",
-            "startSec": 187.57608566244036,
-            "durationSec": 10.8,
-            "src": "babulus/intro/segments/interface--interface_hitl--tts--72502cd5bd38--1.wav",
-            "volume": 1.0
+            "startSec": 180.42972340409892,
+            "durationSec": 8.363636363636363,
+            "src": "babulus/intro/env/development/segments/interface--interface_hitl--tts--c1178788fe03--1.wav",
+            "volume": 1
           },
           {
-            "id": "defense_layers--defense_layers--tts--58b59bc93a7c--1",
+            "id": "defense_layers--defense_layers--tts--442e1e806b41--1",
             "kind": "file",
-            "startSec": 198.37608566244037,
-            "durationSec": 7.0,
-            "src": "babulus/intro/segments/defense_layers--defense_layers--tts--58b59bc93a7c--1.wav",
-            "volume": 1.0
+            "startSec": 188.7933597677353,
+            "durationSec": 6.545454545454545,
+            "src": "babulus/intro/env/development/segments/defense_layers--defense_layers--tts--442e1e806b41--1.wav",
+            "volume": 1
           },
           {
-            "id": "defense_layers--defense_layers--tts--5b800923e99d--1",
+            "id": "defense_layers--defense_layers--tts--252f8549a090--1",
             "kind": "file",
-            "startSec": 205.87608566244037,
-            "durationSec": 4.3,
-            "src": "babulus/intro/segments/defense_layers--defense_layers--tts--5b800923e99d--1.wav",
-            "volume": 1.0
+            "startSec": 195.83881431318983,
+            "durationSec": 3.6363636363636367,
+            "src": "babulus/intro/env/development/segments/defense_layers--defense_layers--tts--252f8549a090--1.wav",
+            "volume": 1
           },
           {
-            "id": "defense_layers--defense_layers--tts--c2950675cddd--1",
+            "id": "defense_layers--defense_layers--tts--c6934669d05d--1",
             "kind": "file",
-            "startSec": 210.5760856624404,
-            "durationSec": 3.4,
-            "src": "babulus/intro/segments/defense_layers--defense_layers--tts--c2950675cddd--1.wav",
-            "volume": 1.0
+            "startSec": 199.87517794955346,
+            "durationSec": 2.1818181818181817,
+            "src": "babulus/intro/env/development/segments/defense_layers--defense_layers--tts--c6934669d05d--1.wav",
+            "volume": 1
           },
           {
-            "id": "defense_layers--defense_layers--tts--8d13cd5bbbc8--1",
+            "id": "defense_layers--defense_layers--tts--6d2e8393a56b--1",
             "kind": "file",
-            "startSec": 214.3760856624404,
-            "durationSec": 5.85,
-            "src": "babulus/intro/segments/defense_layers--defense_layers--tts--8d13cd5bbbc8--1.wav",
-            "volume": 1.0
+            "startSec": 202.45699613137165,
+            "durationSec": 5.090909090909091,
+            "src": "babulus/intro/env/development/segments/defense_layers--defense_layers--tts--6d2e8393a56b--1.wav",
+            "volume": 1
           },
           {
-            "id": "defense_layers--defense_layers--tts--e1d3eef6b46c--1",
+            "id": "defense_layers--defense_layers--tts--e8af634954fc--1",
             "kind": "file",
-            "startSec": 220.6260856624404,
-            "durationSec": 4.7,
-            "src": "babulus/intro/segments/defense_layers--defense_layers--tts--e1d3eef6b46c--1.wav",
-            "volume": 1.0
+            "startSec": 207.94790522228075,
+            "durationSec": 3.2727272727272725,
+            "src": "babulus/intro/env/development/segments/defense_layers--defense_layers--tts--e8af634954fc--1.wav",
+            "volume": 1
           },
           {
-            "id": "defense_layers--defense_layers--tts--efe6cc1c451a--1",
+            "id": "defense_layers--defense_layers--tts--4357b5d09b8b--1",
             "kind": "file",
-            "startSec": 225.7260856624404,
-            "durationSec": 4.95,
-            "src": "babulus/intro/segments/defense_layers--defense_layers--tts--efe6cc1c451a--1.wav",
-            "volume": 1.0
+            "startSec": 211.62063249500804,
+            "durationSec": 3.6363636363636367,
+            "src": "babulus/intro/env/development/segments/defense_layers--defense_layers--tts--4357b5d09b8b--1.wav",
+            "volume": 1
           },
           {
-            "id": "defense_layers--defense_layers--tts--8a303775f184--1",
+            "id": "defense_layers--defense_layers--tts--da5a4f415839--1",
             "kind": "file",
-            "startSec": 231.0760856624404,
-            "durationSec": 3.9,
-            "src": "babulus/intro/segments/defense_layers--defense_layers--tts--8a303775f184--1.wav",
-            "volume": 1.0
+            "startSec": 215.65699613137167,
+            "durationSec": 1.8181818181818183,
+            "src": "babulus/intro/env/development/segments/defense_layers--defense_layers--tts--da5a4f415839--1.wav",
+            "volume": 1
           },
           {
-            "id": "defense_layers--defense_layers--tts--7433cddb8857--1",
+            "id": "defense_layers--defense_layers--tts--2d50f0e5eb47--1",
             "kind": "file",
-            "startSec": 235.3760856624404,
-            "durationSec": 8.05,
-            "src": "babulus/intro/segments/defense_layers--defense_layers--tts--7433cddb8857--1.wav",
-            "volume": 1.0
+            "startSec": 217.8751779495535,
+            "durationSec": 6.909090909090909,
+            "src": "babulus/intro/env/development/segments/defense_layers--defense_layers--tts--2d50f0e5eb47--1.wav",
+            "volume": 1
           },
           {
-            "id": "sandboxing--sandboxing--tts--cd2c5b3aa024--1",
+            "id": "sandboxing--sandboxing--tts--ea19851b0a3f--1",
             "kind": "file",
-            "startSec": 243.82608566244042,
-            "durationSec": 11.1,
-            "src": "babulus/intro/segments/sandboxing--sandboxing--tts--cd2c5b3aa024--1.wav",
-            "volume": 1.0
+            "startSec": 225.1842688586444,
+            "durationSec": 10.90909090909091,
+            "src": "babulus/intro/env/development/segments/sandboxing--sandboxing--tts--ea19851b0a3f--1.wav",
+            "volume": 1
           },
           {
-            "id": "sandboxing--sandboxing--tts--d037491713c2--1",
+            "id": "sandboxing--sandboxing--tts--8f8e47821eff--1",
             "kind": "file",
-            "startSec": 255.32608566244042,
-            "durationSec": 11.75,
-            "src": "babulus/intro/segments/sandboxing--sandboxing--tts--d037491713c2--1.wav",
-            "volume": 1.0
+            "startSec": 236.4933597677353,
+            "durationSec": 10.181818181818182,
+            "src": "babulus/intro/env/development/segments/sandboxing--sandboxing--tts--8f8e47821eff--1.wav",
+            "volume": 1
           },
           {
-            "id": "sandboxing--sandboxing--tts--8029016112db--1",
+            "id": "sandboxing--sandboxing--tts--da5be21304e4--1",
             "kind": "file",
-            "startSec": 267.5760856624404,
-            "durationSec": 11.5,
-            "src": "babulus/intro/segments/sandboxing--sandboxing--tts--8029016112db--1.wav",
-            "volume": 1.0
+            "startSec": 247.1751779495535,
+            "durationSec": 10.90909090909091,
+            "src": "babulus/intro/env/development/segments/sandboxing--sandboxing--tts--da5be21304e4--1.wav",
+            "volume": 1
           },
           {
-            "id": "sandboxing--sandboxing--tts--55261ca69e3b--1",
+            "id": "sandboxing--sandboxing--tts--38af1b5d41a0--1",
             "kind": "file",
-            "startSec": 279.5760856624404,
-            "durationSec": 12.15,
-            "src": "babulus/intro/segments/sandboxing--sandboxing--tts--55261ca69e3b--1.wav",
-            "volume": 1.0
+            "startSec": 258.5842688586444,
+            "durationSec": 12.363636363636363,
+            "src": "babulus/intro/env/development/segments/sandboxing--sandboxing--tts--38af1b5d41a0--1.wav",
+            "volume": 1
           },
           {
-            "id": "nutshell--nutshell--tts--0bf7f6231bb6--1",
+            "id": "nutshell--nutshell--tts--af274182ce59--1",
             "kind": "file",
-            "startSec": 292.92608566244036,
-            "durationSec": 4.35,
-            "src": "babulus/intro/segments/nutshell--nutshell--tts--0bf7f6231bb6--1.wav",
-            "volume": 1.0
+            "startSec": 272.14790522228077,
+            "durationSec": 5.090909090909091,
+            "src": "babulus/intro/env/development/segments/nutshell--nutshell--tts--af274182ce59--1.wav",
+            "volume": 1
           },
           {
-            "id": "nutshell--nutshell--tts--6eb841223401--1",
+            "id": "nutshell--nutshell--tts--684b14a31e30--1",
             "kind": "file",
-            "startSec": 297.6260856624404,
-            "durationSec": 10.05,
-            "src": "babulus/intro/segments/nutshell--nutshell--tts--6eb841223401--1.wav",
-            "volume": 1.0
+            "startSec": 277.58881431318986,
+            "durationSec": 9.454545454545453,
+            "src": "babulus/intro/env/development/segments/nutshell--nutshell--tts--684b14a31e30--1.wav",
+            "volume": 1
           },
           {
-            "id": "cta--cta--tts--d3fcb6c17805--1",
+            "id": "cta--cta--tts--6918fe4db938--1",
             "kind": "file",
-            "startSec": 308.02608566244044,
-            "durationSec": 7.3,
-            "src": "babulus/intro/segments/cta--cta--tts--d3fcb6c17805--1.wav",
-            "volume": 1.0
+            "startSec": 287.3933597677353,
+            "durationSec": 6.181818181818182,
+            "src": "babulus/intro/env/development/segments/cta--cta--tts--6918fe4db938--1.wav",
+            "volume": 1
           }
         ]
       },
@@ -944,38 +944,38 @@
             "variants": [
               {
                 "variant": 0,
-                "seed": 850325801,
-                "path": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/music/bed--v1--b2aef128b5b7.wav",
-                "durationSec": 315.42608566244047
+                "seed": 530406686,
+                "path": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/music/bed--v1--1f9d5d1e1c67.wav",
+                "durationSec": 293.67517794955353
               }
             ],
             "chosen": {
               "variant": 0,
-              "seed": 850325801,
-              "path": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/intro/env/development/music/bed--v1--b2aef128b5b7.wav",
-              "durationSec": 315.42608566244047
+              "seed": 530406686,
+              "path": "/Users/ryan/projects/Tactus-web/videos/.babulus/out/intro/env/development/music/bed--v1--1f9d5d1e1c67.wav",
+              "durationSec": 293.67517794955353
             },
-            "src": "babulus/music/bed/bed--v1--b2aef128b5b7.wav",
+            "src": "babulus/env/development/music/bed/bed--v1--1f9d5d1e1c67.wav",
             "playThrough": true,
             "volumeEnvelope": [
               {
-                "atSec": 0.0,
+                "atSec": 0,
                 "volume": 0.7
               },
               {
-                "atSec": 3.0,
+                "atSec": 3,
                 "volume": 0.7
               },
               {
-                "atSec": 6.0,
+                "atSec": 6,
                 "volume": 0.12
               },
               {
-                "atSec": 310.42608566244047,
+                "atSec": 288.67517794955353,
                 "volume": 0.12
               },
               {
-                "atSec": 313.42608566244047,
+                "atSec": 291.67517794955353,
                 "volume": 0.7
               }
             ]

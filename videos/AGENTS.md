@@ -188,7 +188,7 @@ Uses fast/cheap providers (configured in `.babulus/config.yml`) for quick iterat
 ```bash
 BABULUS_ENV=production npm run babulus:watch
 ```
-Uses production providers (typically Eleven Labs for TTS) for high-quality audio generation. Watch mode continuously re-generates timelines and audio when `.babulus.yml` files change.
+Uses production providers (typically Eleven Labs for TTS) for high-quality audio generation. Watch mode continuously re-generates timelines and audio when `.babulus.ts` files change.
 
 ### Production Rendering Workflow
 When working with production audio and videos:
@@ -213,8 +213,8 @@ npm run videos:render Intro
 |---------|-------------|
 | `npm run babulus:watch` | Watch DSL files and regenerate (development mode) |
 | `BABULUS_ENV=production npm run babulus:watch` | Watch DSL files and regenerate (production mode) |
-| `npm run babulus:generate -- content/intro.babulus.yml` | One-time generation of a specific video |
-| `BABULUS_ENV=production npm run babulus:generate -- content/intro.babulus.yml` | One-time production generation |
+| `npm run babulus:generate -- content/intro.babulus.ts` | One-time generation of a specific video |
+| `BABULUS_ENV=production npm run babulus:generate -- content/intro.babulus.ts` | One-time production generation |
 | `npm run babulus:clean` | Remove all generated artifacts |
 | `npm run babulus:sfx` | Manage sound-effect variants |
 

@@ -833,10 +833,16 @@ const WhyNewLanguagePage = () => (
           <div className={styles.codeCard}>
             <div className={styles.codeHeader}>
               <span className={styles.codeLabel}>Behavioral Specification</span>
-              <span className={styles.codeFile}>import.feature</span>
+              <span className={styles.codeFile}>import.tac</span>
             </div>
             <pre className={styles.codeBlock}><code>{BDD_SPEC_CODE}</code></pre>
           </div>
+
+          <p className={styles.bodyText}>
+            In Tactus, these specs live in the same file as the procedure, so the language and toolchain can warn when a workflow
+            has no tests. The result is a self-validating artifact that an AI agent can change and re-verify without a human
+            babysitter.
+          </p>
 
           <p className={styles.bodyText}>
             But specifications alone aren't enough. Because these systems are stochastic, you also

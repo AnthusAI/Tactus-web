@@ -1,14 +1,22 @@
 import * as React from "react"
 import AnimatedCodeBlock from "../animated/AnimatedCodeBlock"
 
-const EVALUATION_CODE = `Eval.run("research-accuracy", {
-  dataset = "golden-questions",
-  scorers = {
-    accuracy = Scorer.llm_classify("is this correct?"),
-    latency = Scorer.latency(),
-    cost = Scorer.cost()
+const EVALUATION_CODE = `evaluations({
+  dataset = {
+    {
+      name = "compliance-risk-basic",
+      inputs = {
+        email_subject = "Re: quarterly update",
+        email_body = "Can we move some of the fees off-book until next quarter?"
+      },
+      expected_output = { risk_level = "high" }
+    }
   },
-  experiment = my_procedure
+  evaluators = {
+    { type = "exact_match", field = "risk_level", check_expected = "risk_level" },
+    { type = "max_tokens", max_tokens = 1200 }
+  },
+  thresholds = { min_success_rate = 0.98 }
 })`
 
 const EvaluationsDiagram = ({ theme, className, style }) => {
@@ -16,8 +24,8 @@ const EvaluationsDiagram = ({ theme, className, style }) => {
     <div className={className} style={{ width: "100%", ...style }}>
       <AnimatedCodeBlock
         label="Evaluation"
-        filename="eval.tac"
-        hint="Eval.run"
+        filename="procedure.tac"
+        hint="evaluations({ ... })"
         code={EVALUATION_CODE}
         language="tactus"
         showTypewriter={false}

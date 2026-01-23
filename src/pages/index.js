@@ -19,6 +19,7 @@ import AnimatedOldWayFlowchartDiagram from "../components/diagrams/AnimatedOldWa
 import AnimatedNewWayFlowchartDiagram from "../components/diagrams/AnimatedNewWayFlowchartDiagram"
 import FeatureHighlightsSection from "../components/feature-highlights-section"
 import BookSeriesSection from "../components/book-series-section"
+import TechStackSection from "../components/tech-stack-section"
 import Button from "../components/ui/button"
 import Breakout from "../components/publishing/Breakout"
 import getVideoSrc from "../lib/getVideoSrc"
@@ -772,7 +773,7 @@ const IndexPage = () => {
           id="specifications"
           eyebrow={null}
           title="Behavior Specifications"
-          lede="Tactus treats Gherkin specs as a first-class feature, integrating them directly into the language and toolchain. This provides constant visibility into procedure reliability, ensuring your agents act correctly even as models and tools evolve."
+          lede="Tactus treats behavior specs as part of the language itself: inline with procedures, executable by the runtime, and visible in every run. They define invariants, prevent regressions, and keep reliability measurable as models and tools evolve."
           to="/specifications/"
           ctaText="Read: Specifications"
           Diagram={SpecificationsDiagram}
@@ -839,6 +840,8 @@ const IndexPage = () => {
         </section>
 
         <BookSeriesSection id="books" mutedBackground={true} />
+
+        <TechStackSection />
 
         <BottomCta
           title="Ready to start building?"

@@ -116,17 +116,22 @@
   }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 600px) {
   .navCategories {
     grid-template-columns: 1fr 1fr;
     grid-template-areas:
       "learn get"
+      "learn concepts"
       "learn resources";
     align-items: start;
   }
 
   .navCategory[data-category="learn-more"] {
     grid-area: learn;
+  }
+
+  .navCategory[data-category="concepts"] {
+    grid-area: concepts;
   }
 
   .navCategory[data-category="get-started"] {

@@ -10,6 +10,10 @@
   width: 100%;
 }
 
+.wideProse p {
+  max-width: none;
+}
+
 .section {
   padding: var(--space-6) 0;
 }
@@ -43,6 +47,10 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--color-text-muted);
+}
+
+.eyebrowPrimary {
+  color: var(--color-primary);
 }
 
 .title {

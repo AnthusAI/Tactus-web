@@ -19,10 +19,6 @@
   padding: var(--space-6) 0;
 }
 
-.bgMuted {
-  background: var(--color-surface-2);
-}
-
 .hero {
   padding: var(--space-6) 0 var(--space-5);
 }
@@ -92,8 +88,8 @@
 .diagramWrap {
   margin: var(--space-5) 0;
   background: var(--color-surface);
-  border-radius: 20px;
-  padding: 16px;
+  border-radius: var(--border-radius);
+  padding: var(--space-3);
 }
 
 .diagram {
@@ -104,18 +100,18 @@
 
 .subtleCard {
   background: var(--color-surface);
-  border-radius: 16px;
+  border-radius: var(--border-radius);
   padding: var(--space-4);
   margin: var(--space-5) 0;
 }
 
 .checkList {
   margin: 0;
-  padding-left: 1.2rem;
+  padding-left: var(--space-4);
 }
 
 .checkList li {
-  margin: 0.35rem 0;
+  margin: var(--space-1) 0;
 }
 
 .kicker {
@@ -126,4 +122,30 @@
   color: var(--color-text-muted);
   text-transform: uppercase;
   letter-spacing: 0.08em;
+}
+
+.commandGrid {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  margin: var(--space-5) 0;
+}
+
+.commandCard {
+  background: var(--color-surface);
+  border-radius: var(--border-radius);
+  padding: var(--space-4);
+}
+
+.codeBlock {
+  margin: var(--space-2) 0 0;
+  padding: var(--space-3);
+  background: var(--color-code-bg);
+  color: var(--color-code);
+  border: none;
+  border-radius: var(--border-radius);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  overflow-x: auto;
 }

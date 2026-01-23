@@ -1,7 +1,11 @@
 import * as React from "react"
 import AnimatedCodeBlock from "../animated/AnimatedCodeBlock"
 
-const SPECIFICATIONS_CODE = `Specifications([[
+const SPECIFICATIONS_CODE = `Procedure {
+  -- ... orchestration, tools, agent turns ...
+}
+
+Specifications([[
 Feature: Deployments are safe
 
   Scenario: Produces a decision
@@ -16,13 +20,13 @@ const SpecificationsDiagram = ({ theme, className, style }) => {
     <div className={className} style={{ width: "100%", ...style }}>
       <AnimatedCodeBlock
         label="Specifications"
-        filename="examples-safe-deploy.feature"
-        hint="BDD"
+        filename="safe-deploy.tac"
+        hint="Given/When/Then"
         code={SPECIFICATIONS_CODE}
-        language="gherkin"
+        language="tactus"
         showTypewriter={false}
         typewriterLoop={false}
-        autoHeight={false} 
+        autoHeight={false}
         blockWidth={1400}
         width="100%"
         autoPlay={false}

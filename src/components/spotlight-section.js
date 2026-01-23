@@ -32,7 +32,7 @@ const SpotlightSection = ({
       <div className={styles.container}>
         <div className={styles.stack}>
           <div className={styles.content}>
-            <p className={styles.eyebrow}>{eyebrow}</p>
+            {eyebrow ? <p className={styles.eyebrow}>{eyebrow}</p> : null}
             <h2 className={styles.title}>{title}</h2>
             <p className={styles.lede}>{lede}</p>
             {to && (

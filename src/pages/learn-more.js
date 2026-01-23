@@ -6,6 +6,7 @@ import AnimatedAIEngineersToolboxDiagram from "../components/diagrams/AnimatedAI
 import ContainerSandboxDiagram from "../components/diagrams/ContainerSandboxDiagram"
 import SpecificationsDiagram from "../components/diagrams/SpecificationsDiagram"
 import EvaluationsDiagram from "../components/diagrams/EvaluationsDiagram"
+import AnimatedGuardrailsStackDiagram from "../components/diagrams/AnimatedGuardrailsStackDiagram"
 import VideosSpotlightSection from "../components/videos-spotlight-section"
 import BookSeriesSection from "../components/book-series-section"
 import Breakout from "../components/publishing/Breakout"
@@ -20,7 +21,6 @@ const LearnMorePage = () => {
         <section className={styles.section}>
           <div className={styles.container}>
             <div className={styles.hero}>
-              <p className={styles.eyebrow}>Learn More</p>
               <h1 className={styles.title}>Learn More</h1>
               <p className={styles.lede}>
                 Deep-dive articles that explain how to give agents tools, keep them safe with guardrails, and measure their reliability.
@@ -29,9 +29,11 @@ const LearnMorePage = () => {
           </div>
         </section>
 
+        <BookSeriesSection id="learn-books" mutedBackground={true} />
+
         <SpotlightSection
           id="learn-toolbox"
-          eyebrow="Learn More"
+          eyebrow={null}
           title="The AI Engineer’s Toolbox"
           lede="A marketing-forward perspective on tool design: schema-first capabilities, inspectable tool calls, deterministic orchestration, and staged access."
           to="/ai-engineers-toolbox/"
@@ -42,17 +44,17 @@ const LearnMorePage = () => {
 
         <SpotlightSection
           id="learn-guardrails"
-          eyebrow="Learn More"
+          eyebrow={null}
           title="Guardrails for Agent Autonomy"
           lede="Tactus gives you levers of control at every level: capability, context, network, and human oversight. You don't hope for safety—you engineer it."
           to="/guardrails/"
           ctaText="Read: Guardrails"
-          Diagram={null}
+          Diagram={AnimatedGuardrailsStackDiagram}
         />
 
         <SpotlightSection
           id="learn-validation"
-          eyebrow="Learn More"
+          eyebrow={null}
           title="Validation"
           lede="Procedures declare typed inputs and outputs, validated with Pydantic. This isn't just decoration: it's a contract that guarantees type safety at the edges of your agentic workflows."
           to="/validation/"
@@ -74,7 +76,7 @@ const LearnMorePage = () => {
 
         <SpotlightSection
           id="learn-sandboxing"
-          eyebrow="Learn More"
+          eyebrow={null}
           title="Sandboxing & Isolation"
           lede="Agents run in a Lua sandbox inside a networkless container, constraining what they can touch and firewalling side effects. Privileged operations are brokered by a separate process that holds the secrets. It’s like letting a burglar into an empty building: even if the agent is compromised, there’s nothing valuable inside to steal—and nowhere to send it."
           to="/guardrails/#sandboxing"
@@ -111,9 +113,9 @@ const LearnMorePage = () => {
 
         <SpotlightSection
           id="learn-specifications"
-          eyebrow="Learn More"
+          eyebrow={null}
           title="Behavior Specifications"
-          lede="Tactus treats Gherkin specs as a first-class feature, integrating them directly into the language and toolchain. This provides constant visibility into procedure reliability, ensuring your agents act correctly even as models and tools evolve."
+          lede="Tactus treats behavior specs as part of the language itself: inline with procedures, executable by the runtime, and tied directly to evaluations so reliability stays visible as your system changes."
           to="/specifications/"
           ctaText="Read: Specifications"
           Diagram={SpecificationsDiagram}
@@ -122,15 +124,13 @@ const LearnMorePage = () => {
 
         <SpotlightSection
           id="learn-evaluations"
-          eyebrow="Learn More"
+          eyebrow={null}
           title="Evaluations"
           lede="One successful run is luck. Reliability is a statistic. Evaluations let you measure accuracy, cost, and reliability performance across datasets so you can ship with confidence."
           to="/evaluations/"
           ctaText="Read: Evaluations"
           Diagram={EvaluationsDiagram}
         />
-
-        <BookSeriesSection id="learn-books" mutedBackground={true} />
 
       </div>
     </Layout>

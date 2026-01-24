@@ -332,7 +332,8 @@ const SpecificationsPage = () => {
             <p className={styles.bodyTextMuted}>
               This is a layered guardrails stack: <Link to="/validation/">validation</Link> catches missing fields and wrong types early, specs lock in what must
               not change (and prevent vanishing features), and <Link to="/evaluations/">evaluations</Link> act like a reliability gauge. Together they close the
-              loop so an agent can iterate and self-check without you watching every step. See <Link to="/guardrails/">Guardrails</Link>.
+              loop so an agent can iterate and self-check without you watching every step. See <Link to="/guardrails/">Guardrails</Link> and{" "}
+              <Link to="/guiding-principles/">Guiding Principles</Link>.
             </p>
           </div>
         </section>

@@ -24,6 +24,7 @@ export const NAV_CONFIG = {
       label: 'Concepts',
       // No top-level link for Concepts as per current structure of other similar items unless requested
       items: [
+        { label: 'Guiding Principles', to: '/guiding-principles/' },
         { label: 'Why a New Language?', to: '/why-new-language/' },
         { label: 'Guardrails for Agent Autonomy', to: '/guardrails/' },
       ]
@@ -55,6 +56,14 @@ export const NAV_CONFIG = {
       items: [
         { label: "Videos", to: "/resources/#videos" },
         { label: "Books", to: "/resources/#books" },
+      ],
+    },
+    {
+      id: "examples",
+      label: "Examples",
+      items: [
+        { label: "Examples Overview", to: "/examples/" },
+        { label: "Use Cases", to: "/use-cases/" },
       ],
     },
   ]

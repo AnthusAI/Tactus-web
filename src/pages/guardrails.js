@@ -7,6 +7,7 @@ import AnimatedGuardrailsStackDiagram from "../components/diagrams/AnimatedGuard
 import LeastPrivilegeDiagram from "../components/diagrams/LeastPrivilegeDiagram"
 import ContainerSandboxDiagram from "../components/diagrams/ContainerSandboxDiagram"
 import PromptEngineeringCeilingDiagram from "../components/diagrams/PromptEngineeringCeilingDiagram"
+import { Link } from "gatsby"
 import * as styles from "./guardrails.module.css"
 
 const usePreferredTheme = () => {
@@ -101,6 +102,10 @@ const GuardrailsPage = () => {
             </p>
             <p className={styles.bodyTextMuted}>
               Guardrails are not a limitation on autonomy. They’re the prerequisite for it. You can’t drive fast without brakes.
+            </p>
+            <p className={styles.bodyTextMuted}>
+              For Tactus’s broader set of opinions (shift-left validation, closing the loop, and why specs/evals are first-class), see{" "}
+              <Link to="/guiding-principles/">Guiding Principles</Link>.
             </p>
           </div>
         </section>

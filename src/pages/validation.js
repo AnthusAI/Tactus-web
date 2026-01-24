@@ -166,7 +166,7 @@ const ValidationPage = () => {
               <p className={styles.sectionSubtitle}>
                 Next: pair this with <Link to="/specifications/">behavior specifications</Link> to lock in “what must always be true,” then run{" "}
                 <Link to="/evaluations/">evaluations</Link> to quantify how often it stays true across real inputs. For the broader “layers of guardrails” story,
-                see <Link to="/guardrails/">Guardrails</Link>.
+                see <Link to="/guardrails/">Guardrails</Link> and <Link to="/guiding-principles/">Guiding Principles</Link>.
               </p>
             </div>
           </div>

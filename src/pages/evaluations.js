@@ -74,7 +74,7 @@ const EvaluationsPage = () => {
             <p className={styles.bodyTextMuted}>
               Think of evals as a gauge, not a gate: specs are pass/fail guardrails; evals tell you whether your change made the system better or worse. Pair
               evals with <Link to="/validation/">validation</Link> to fail fast at the boundary, and with <Link to="/specifications/">behavior specifications</Link>{" "}
-              to lock in what must not change. See <Link to="/guardrails/">Guardrails</Link>.
+              to lock in what must not change. See <Link to="/guardrails/">Guardrails</Link> and <Link to="/guiding-principles/">Guiding Principles</Link>.
             </p>
           </div>
         </section>

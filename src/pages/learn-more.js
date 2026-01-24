@@ -29,6 +29,17 @@ const LearnMorePage = () => {
           </div>
         </section>
 
+        <SpotlightSection
+          id="learn-guiding-principles"
+          eyebrow={null}
+          title="Guiding Principles"
+          lede="Tactus is opinionated on purpose: close the loop with verifiable iteration, shift left to catch errors early, and use layered guardrails so agents can do real work safely."
+          to="/guiding-principles/"
+          ctaText="Read: Principles"
+          Diagram={null}
+          flip={true}
+        />
+
         <BookSeriesSection id="learn-books" mutedBackground={true} />
 
         <SpotlightSection

@@ -72,6 +72,9 @@ typings/
 .cache/
 public
 
+# Generated examples data
+src/data/examples.json
+
 # Generated exports
 /_output/
 

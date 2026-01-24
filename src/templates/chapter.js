@@ -76,7 +76,8 @@ const ChapterTemplate = ({ pageContext }) => {
 
         <BottomCta
           title="Want to contribute?"
-          text="The examples repository is open source. Add your own examples or improve existing ones."
+          text="The examples repository is open source.
+Add your own examples or improve existing ones."
           buttonLabel="View on GitHub"
           to="https://github.com/AnthusAI/Tactus-examples"
         />

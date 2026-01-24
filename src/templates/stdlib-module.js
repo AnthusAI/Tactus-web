@@ -1,9 +1,34 @@
 import * as React from "react"
 import { Link } from "gatsby"
+import { Copy, Check } from "lucide-react"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import BottomCta from "../components/bottom-cta"
 import * as styles from "./stdlib-module.module.css"
+
+const CommandBlock = ({ command }) => {
+  const [copied, setCopied] = React.useState(false)
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(command)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  return (
+    <pre className={styles.commandBlock}>
+      <span className={styles.commandPrompt}>$</span>
+      <code>{command}</code>
+      <button
+        className={`${styles.copyButton} ${copied ? styles.copied : ''}`}
+        onClick={handleCopy}
+        aria-label="Copy command"
+      >
+        {copied ? <Check size={16} /> : <Copy size={16} />}
+      </button>
+    </pre>
+  )
+}
 
 // Simple markdown renderer for code blocks and basic formatting
 const renderMarkdown = (markdown) => {
@@ -234,9 +259,7 @@ const StdlibModuleTemplate = ({ pageContext }) => {
 
         <section className={`${styles.section} ${styles.bgMuted}`}>
           <div className={styles.container}>
-            <div className={styles.content}>
-              {renderMarkdown(module.markdown)}
-            </div>
+            {renderMarkdown(module.markdown)}
           </div>
         </section>
 
@@ -246,12 +269,18 @@ const StdlibModuleTemplate = ({ pageContext }) => {
               <h2 className={styles.sectionTitle}>Classes</h2>
               <div className={styles.submodulesList}>
                 {module.submodules.map((sub) => (
-                  <div key={sub.name} className={styles.submodule}>
+                  <a
+                    key={sub.name}
+                    href={`${module.githubUrl}/${sub.file}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.submodule}
+                  >
                     <h3 className={styles.submoduleName}>{sub.name}</h3>
                     <p className={styles.submoduleFile}>
                       <code>{sub.file}</code>
                     </p>
-                  </div>
+                  </a>
                 ))}
               </div>
             </div>
@@ -264,17 +293,17 @@ const StdlibModuleTemplate = ({ pageContext }) => {
 
             <div className={styles.commandSection}>
               <h3 className={styles.commandTitle}>Load the module:</h3>
-              <pre className={styles.commandBlock}>
-                <code>local {module.slug} = require("tactus.{module.slug}")</code>
-              </pre>
+              <div className={styles.codeBlock}>
+                <pre className={styles.pre}>
+                  <code>{`local ${module.slug} = require("tactus.${module.slug}")`}</code>
+                </pre>
+              </div>
             </div>
 
             {module.hasSpecs && (
               <div className={styles.commandSection}>
                 <h3 className={styles.commandTitle}>Run the specs:</h3>
-                <pre className={styles.commandBlock}>
-                  <code>tactus test tactus/stdlib/tac/tactus/{module.slug}.spec.tac</code>
-                </pre>
+                <CommandBlock command={`tactus test tactus/stdlib/tac/tactus/${module.slug}.spec.tac`} />
               </div>
             )}
 

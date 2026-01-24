@@ -120,6 +120,24 @@ exports.createPages = async ({ actions }) => {
  * @type {import('gatsby').GatsbyNode['onCreateWebpackConfig']}
  */
 exports.onCreateWebpackConfig = ({ actions, stage }) => {
+  const path = require("path")
+
+  // If the HITL component library isn't installed (e.g. Amplify builds without
+  // private registry access), alias it to a local shim so the site still builds.
+  const resolveAlias = {}
+  try {
+    require.resolve("@anthus/tactus-hitl-components")
+  } catch (e) {
+    resolveAlias["@anthus/tactus-hitl-components"] = path.resolve(
+      __dirname,
+      "./src/shims/tactus-hitl-components.js"
+    )
+    resolveAlias["@anthus/tactus-hitl-components/styles.css"] = path.resolve(
+      __dirname,
+      "./src/shims/tactus-hitl-components.css"
+    )
+  }
+
   // Exclude videos directory from Gatsby webpack processing
   // This prevents Remotion components from being evaluated during build
   actions.setWebpackConfig({
@@ -129,5 +147,6 @@ exports.onCreateWebpackConfig = ({ actions, stage }) => {
           '../../../videos/src/components/AnimatedFuchsiaSquare': 'commonjs ../../../videos/src/components/AnimatedFuchsiaSquare',
         }
       : {},
+    resolve: Object.keys(resolveAlias).length ? { alias: resolveAlias } : {},
   })
 }

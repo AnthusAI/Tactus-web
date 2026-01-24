@@ -66,6 +66,13 @@ export const NAV_CONFIG = {
         { label: "Use Cases", to: "/use-cases/" },
       ],
     },
+    {
+      id: "documentation",
+      label: "Documentation",
+      items: [
+        { label: "Standard Library", to: "/stdlib/" },
+      ],
+    },
   ]
 }
 

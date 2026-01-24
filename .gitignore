@@ -75,6 +75,9 @@ public
 # Generated examples data
 src/data/examples.json
 
+# Generated stdlib data
+src/data/stdlib.json
+
 # Generated exports
 /_output/
 

@@ -10,6 +10,24 @@ import {
 import "@anthus/tactus-hitl-components/styles.css"
 import * as styles from "./projects.module.css"
 
+/**
+ * Keep the embedded HITL components in sync with the site's light/dark mode.
+ * Gatsby SSR-safe (window access only in effect).
+ */
+function usePreferredTheme() {
+  const [theme, setTheme] = React.useState("light")
+
+  React.useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
+    const updateTheme = () => setTheme(mediaQuery.matches ? "dark" : "light")
+    updateTheme()
+    mediaQuery.addEventListener("change", updateTheme)
+    return () => mediaQuery.removeEventListener("change", updateTheme)
+  }, [])
+
+  return theme
+}
+
 const baseRequest = {
   request_id: "req_projects_01",
   procedure_id: "copilot-project",
@@ -23,9 +41,11 @@ const baseRequest = {
 }
 
 const GettingStartedProjectsPage = () => {
+  const systemTheme = usePreferredTheme()
+
   return (
     <Layout fullWidth={true}>
-      <ThemeProvider defaultTheme="light">
+      <ThemeProvider defaultTheme={systemTheme}>
         <div className={styles.page}>
           <section className={styles.section}>
             <div className={styles.container}>
@@ -187,4 +207,3 @@ export const Head = () => (
 )
 
 export default GettingStartedProjectsPage
-

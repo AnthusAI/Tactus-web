@@ -16,16 +16,6 @@ const USE_CASES = [
     lede: "Classify text reliably with guardrails: validation, specs, and evals.",
     to: "/use-cases/text-classification/",
   },
-  {
-    title: "Meeting recap with approval",
-    lede: "Draft, review, and send—using durable human gates before side effects.",
-    to: "/use-cases/meeting-recap-approval/",
-  },
-  {
-    title: "Contact import with tools",
-    lede: "Map messy inputs into a strict schema via tools and policy at the seam.",
-    to: "/use-cases/contact-import/",
-  },
 ]
 
 const UseCasesPage = () => {

@@ -19,7 +19,26 @@ function findExampleById(exampleId) {
   return null
 }
 
+/**
+ * Keep the embedded HITL components in sync with the site's light/dark mode.
+ * Gatsby SSR-safe (window access only in effect).
+ */
+function usePreferredTheme() {
+  const [theme, setTheme] = React.useState("light")
+
+  React.useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
+    const updateTheme = () => setTheme(mediaQuery.matches ? "dark" : "light")
+    updateTheme()
+    mediaQuery.addEventListener("change", updateTheme)
+    return () => mediaQuery.removeEventListener("change", updateTheme)
+  }, [])
+
+  return theme
+}
+
 const GettingStartedPage = () => {
+  const systemTheme = usePreferredTheme()
   const helloWorld = findExampleById("hello-world")
 
   const helloWorldCode =
@@ -49,7 +68,7 @@ $ tactus run 01-getting-started/01-hello-world.tac`
 
   return (
     <Layout fullWidth={true}>
-      <ThemeProvider defaultTheme="light">
+      <ThemeProvider defaultTheme={systemTheme}>
         <div className={styles.page}>
         <section className={styles.section}>
           <div className={styles.container}>

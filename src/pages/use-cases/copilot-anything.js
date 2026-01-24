@@ -11,6 +11,24 @@ import {
 import "@anthus/tactus-hitl-components/styles.css"
 import * as chatStyles from "./copilot-anything.module.css"
 
+/**
+ * Keep the embedded HITL components in sync with the site's light/dark mode.
+ * Gatsby SSR-safe (window access only in effect).
+ */
+function usePreferredTheme() {
+  const [theme, setTheme] = React.useState("light")
+
+  React.useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
+    const updateTheme = () => setTheme(mediaQuery.matches ? "dark" : "light")
+    updateTheme()
+    mediaQuery.addEventListener("change", updateTheme)
+    return () => mediaQuery.removeEventListener("change", updateTheme)
+  }, [])
+
+  return theme
+}
+
 const baseRequest = {
   request_id: "req_2471",
   procedure_id: "acme-copilot",
@@ -25,9 +43,11 @@ const baseRequest = {
 }
 
 const CopilotAnythingUseCasePage = () => {
+  const systemTheme = usePreferredTheme()
+
   return (
     <Layout fullWidth={true}>
-      <ThemeProvider defaultTheme="light">
+      <ThemeProvider defaultTheme={systemTheme}>
         <div className={chatStyles.page}>
           <section className={chatStyles.section}>
             <div className={chatStyles.container}>
@@ -225,4 +245,3 @@ export const Head = () => (
 )
 
 export default CopilotAnythingUseCasePage
-

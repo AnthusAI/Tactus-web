@@ -85,6 +85,35 @@ exports.createPages = async ({ actions }) => {
   } else {
     console.warn('⚠️  examples.json not found. Run `npm run examples:ingest` first.')
   }
+
+  // Load stdlib data and create dynamic pages
+  const stdlibDataPath = path.resolve(__dirname, './src/data/stdlib.json')
+
+  if (fs.existsSync(stdlibDataPath)) {
+    const stdlibData = JSON.parse(fs.readFileSync(stdlibDataPath, 'utf-8'))
+    const { modules } = stdlibData
+
+    // Create module detail pages
+    modules.forEach((module, index) => {
+      const prevModule = index > 0 ? modules[index - 1] : null
+      const nextModule = index < modules.length - 1 ? modules[index + 1] : null
+
+      createPage({
+        path: `/stdlib/${module.slug}/`,
+        component: path.resolve('./src/templates/stdlib-module.js'),
+        context: {
+          module,
+          prevModule,
+          nextModule,
+          allModules: modules,
+        },
+      })
+    })
+
+    console.log(`✅ Created ${modules.length} stdlib module pages`)
+  } else {
+    console.warn('⚠️  stdlib.json not found. Run `npm run stdlib:ingest` first.')
+  }
 }
 
 /**

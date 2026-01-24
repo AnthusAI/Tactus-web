@@ -101,3 +101,15 @@
   margin: var(--space-1) 0;
 }
 
+.codeBlock {
+  margin: var(--space-4) 0;
+  padding: var(--space-3);
+  background: var(--color-code-bg);
+  color: var(--color-code);
+  border: none;
+  border-radius: var(--border-radius);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  overflow-x: auto;
+}

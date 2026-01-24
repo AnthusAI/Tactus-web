@@ -6,18 +6,46 @@ import Seo from "../components/seo"
 import BookSeriesSection from "../components/book-series-section"
 import VideosSpotlightSection from "../components/videos-spotlight-section"
 import * as styles from "./getting-started.module.css"
+import examplesData from "../data/examples.json"
 
-const GettingStartedPage = () => (
-  <Layout fullWidth={true}>
-    <div className={styles.page}>
-      <section className={styles.section}>
-        <div className={styles.container}>
-          <div className={styles.hero}>
-            <h1 className={styles.title}>Get Started</h1>
-            <p className={styles.subtitle}>
-              Run your first procedure in minutes — from the CLI or the IDE.
-            </p>
-          </div>
+function findExampleById(exampleId) {
+  for (const chapter of examplesData?.chapters || []) {
+    for (const ex of chapter.examples || []) {
+      if (ex.id === exampleId) return ex
+    }
+  }
+  return null
+}
+
+const GettingStartedPage = () => {
+  const helloWorld = findExampleById("hello-world")
+
+  const helloWorldCode =
+    helloWorld?.code ||
+    "// Example not found. Run: npm run examples:ingest\n"
+
+  const QUICKSTART_COMMANDS = `$ pip install tactus
+$ git clone https://github.com/AnthusAI/Tactus-examples.git
+$ cd Tactus-examples
+
+# Run the spec suite without API keys (fast, deterministic)
+$ tactus test 01-getting-started/01-hello-world.tac --mock
+
+# Run it for real (requires OPENAI_API_KEY)
+$ export OPENAI_API_KEY=your-key
+$ tactus run 01-getting-started/01-hello-world.tac`
+
+  return (
+    <Layout fullWidth={true}>
+      <div className={styles.page}>
+        <section className={styles.section}>
+          <div className={styles.container}>
+            <div className={styles.hero}>
+              <h1 className={styles.title}>Get Started</h1>
+              <p className={styles.subtitle}>
+                The fastest way to learn Tactus is to clone the examples repo and run procedures that already have embedded specifications.
+              </p>
+            </div>
 
           <div className={styles.pathGrid}>
             {/* Path 1: IDE */}
@@ -36,31 +64,42 @@ const GettingStartedPage = () => (
               <div className={styles.pathCard}>
                 <h2 className={styles.pathTitle}>Command Line</h2>
                 <p className={styles.pathText}>
-                For running procedures locally, on servers, or in CI/CD. Install once, then run
-                any <code>.tac</code> file.
+                Install the CLI, clone <code>Tactus-examples</code>, then run specs in mock mode (no API keys) before running against real models.
                 </p>
                 <div className={styles.codeBlock}>
-                  $ pip install tactus
+                  {QUICKSTART_COMMANDS}
                 </div>
               </div>
           </div>
 
           {/* Walkthrough */}
           <div className={styles.conceptSection}>
-            <h2 className={styles.conceptTitle}>Hello, world (walkthrough)</h2>
+            <h2 className={styles.conceptTitle}>Hello, world (from Tactus-examples)</h2>
             <p className={styles.conceptIntro}>
-              Use the IDE to run the built-in Hello World example, or paste this into <code>hello.tac</code> and run it from the CLI.
+              This is the canonical Hello World example from the <code>Tactus-examples</code> repository. It includes an embedded behavior specification so you can
+              test it deterministically in mock mode.
             </p>
 
             <div className={styles.longCodeBlock} aria-label="Hello world example">
-              {`World = Agent {
-    provider = "openai",
-    model = "gpt-4o-mini",
-    system_prompt = "Your name is World."
-}
-
-return World("Hello, World!").response`}
+              {helloWorldCode}
             </div>
+
+            <p className={styles.conceptIntro} style={{ marginTop: "var(--space-3)" }}>
+              {helloWorld?.githubUrl ? (
+                <>
+                  Source:{" "}
+                  <a href={helloWorld.githubUrl} target="_blank" rel="noreferrer">
+                    {helloWorld.tacPath}
+                  </a>
+                  {" · "}
+                  <Link to="/examples/">How to download and run examples</Link>
+                </>
+              ) : (
+                <>
+                  <Link to="/examples/">How to download and run examples</Link>
+                </>
+              )}
+            </p>
 
             <div className={styles.stepsGrid}>
               <div className={styles.stepsCard}>
@@ -85,10 +124,13 @@ return World("Hello, World!").response`}
                     Install Tactus: <code>pip install tactus</code>
                   </li>
                   <li>
-                    Set your OpenAI key: <code>export OPENAI_API_KEY=your-key</code>
+                    Clone examples: <code>git clone https://github.com/AnthusAI/Tactus-examples.git</code>
                   </li>
                   <li>
-                    Run: <code>tactus run hello.tac</code>
+                    Run specs without API keys: <code>tactus test 01-getting-started/01-hello-world.tac --mock</code>
+                  </li>
+                  <li>
+                    Run for real: <code>export OPENAI_API_KEY=your-key</code>, then <code>tactus run 01-getting-started/01-hello-world.tac</code>
                   </li>
                 </ol>
               </div>
@@ -99,7 +141,8 @@ return World("Hello, World!").response`}
           <div className={styles.examplesCallout}>
             <h2 className={styles.examplesTitle}>Explore More Examples</h2>
             <p className={styles.examplesText}>
-              The best way to learn Tactus is by running real examples. Browse our curated collection of runnable, tested examples — from basics to advanced patterns. Each example includes embedded specifications and can be executed directly from your machine.
+              Start with the curated examples repo. Each example is designed to be runnable and includes embedded behavior specifications, so you can verify your
+              environment before you spend tokens.
             </p>
             <div className={styles.examplesButtons}>
               <Link to="/examples/" className={styles.primaryButton}>
@@ -137,6 +180,7 @@ return World("Hello, World!").response`}
     </div>
   </Layout>
 )
+}
 
 export const Head = () => <Seo title="Getting Started" pathname="/getting-started/" />
 

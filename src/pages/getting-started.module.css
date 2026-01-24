@@ -112,6 +112,7 @@
   font-size: 0.9rem;
   overflow-x: auto;
   margin-top: var(--space-2);
+  white-space: pre;
 }
 
 .conceptSection {

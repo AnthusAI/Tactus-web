@@ -94,7 +94,7 @@
   font-weight: 700;
   text-decoration: none;
   align-self: start;
-  margin-top: var(--space-4);
+  gap: var(--space-2);
   box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.1);
 }
 

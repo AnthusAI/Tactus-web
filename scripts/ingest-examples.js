@@ -32,6 +32,14 @@ function getExamplesDir() {
     return EXAMPLES_DIR
   }
 
+  // Dev-friendly default: if a sibling ../Tactus-examples repo exists, prefer it.
+  // This keeps local site content aligned with locally edited examples.
+  const siblingExamplesDir = path.resolve(__dirname, '../../Tactus-examples')
+  if (fs.existsSync(siblingExamplesDir)) {
+    console.log(`Using sibling examples directory: ${siblingExamplesDir}`)
+    return siblingExamplesDir
+  }
+
   console.log(`Cloning examples repo from ${EXAMPLES_REPO_URL}...`)
 
   // Clean cache if it exists

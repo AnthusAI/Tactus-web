@@ -7,6 +7,8 @@ import BookSeriesSection from "../components/book-series-section"
 import VideosSpotlightSection from "../components/videos-spotlight-section"
 import * as styles from "./getting-started.module.css"
 import examplesData from "../data/examples.json"
+import { ApprovalPanel, ThemeProvider } from "@anthus/tactus-hitl-components"
+import "@anthus/tactus-hitl-components/styles.css"
 
 function findExampleById(exampleId) {
   for (const chapter of examplesData?.chapters || []) {
@@ -35,9 +37,20 @@ $ tactus test 01-getting-started/01-hello-world.tac --mock
 $ export OPENAI_API_KEY=your-key
 $ tactus run 01-getting-started/01-hello-world.tac`
 
+  const baseRequest = {
+    request_id: "req_getting_started_01",
+    procedure_id: "getting-started",
+    procedure_name: "Getting Started",
+    invocation_id: "inv_getting_started_01",
+    subject: "Getting Started",
+    elapsed_seconds: 0,
+    input_summary: { surface: "IDE" },
+  }
+
   return (
     <Layout fullWidth={true}>
-      <div className={styles.page}>
+      <ThemeProvider defaultTheme="light">
+        <div className={styles.page}>
         <section className={styles.section}>
           <div className={styles.container}>
             <div className={styles.hero}>
@@ -160,6 +173,58 @@ $ tactus run 01-getting-started/01-hello-world.tac`
             </div>
           </div>
 
+          <div className={styles.projectsCallout}>
+            <div className={styles.projectsHeader}>
+              <h2 className={styles.examplesTitle}>Try a project</h2>
+              <p className={styles.examplesText}>
+                Use cases are concrete project ideas. If you want a strong first build, start with an embedded copilot and add one or two Human-in-the-Loop
+                checkpoints.
+              </p>
+            </div>
+
+            <div className={styles.projectsGrid}>
+              <div className={styles.projectsCopy}>
+                <p className={styles.projectsBody}>
+                  The <Link to="/download/">Tactus IDE</Link> includes the standard Human-in-the-Loop components. Use the IDE as a safe playground to experience
+                  approvals and structured inputs, then embed the same components in any application.
+                </p>
+                <div className={styles.projectsLinks}>
+                  <Link to="/use-cases/copilot-anything/" className={styles.primaryButton}>
+                    Read the copilot use case
+                  </Link>
+                  <Link to="/getting-started/projects/" className={styles.secondaryButton}>
+                    Projects to try
+                  </Link>
+                </div>
+                <p className={styles.projectsFootnote}>
+                  Component reference: <Link to="/resources/components/">Standard Component Library</Link>
+                </p>
+              </div>
+
+              <div className={styles.projectsDemo} aria-label="Human-in-the-loop demo">
+                <div className={styles.demoLabel}>HITL preview</div>
+                <ApprovalPanel
+                  request={{
+                    ...baseRequest,
+                    request_type: "approval",
+                    message: "Approve sending this message? (Tool: send_message)",
+                    options: [
+                      { label: "Send", value: true, style: "primary" },
+                      { label: "Cancel", value: false, style: "secondary" },
+                    ],
+                    metadata: {
+                      artifact_type: "chat_message",
+                      artifact:
+                        "I can draft the reply and prepare the tool call. You approve before I send anything.",
+                    },
+                  }}
+                  onRespond={() => {}}
+                  showContext={false}
+                />
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -178,7 +243,8 @@ $ tactus run 01-getting-started/01-hello-world.tac`
 
       <VideosSpotlightSection id="videos" title="Videos" mutedBackground={true} />
     </div>
-  </Layout>
+      </ThemeProvider>
+    </Layout>
 )
 }
 

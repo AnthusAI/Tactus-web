@@ -7,6 +7,11 @@ import * as styles from "./use-cases.module.css"
 
 const USE_CASES = [
   {
+    title: "A copilot for anything",
+    lede: "Embed agents in your app: chat UX, tools, and human checkpoints via standard HITL components.",
+    to: "/use-cases/copilot-anything/",
+  },
+  {
     title: "Text classification",
     lede: "Classify text reliably with guardrails: validation, specs, and evals.",
     to: "/use-cases/text-classification/",
@@ -62,7 +67,8 @@ const UseCasesPage = () => {
             </div>
 
             <p className={styles.bodyTextMuted}>
-              These pages are intentionally lightweight at first; we’ll expand them as the examples repo and cookbook grow.
+              Some pages are early sketches. If you want a strong first project, start with{" "}
+              <Link to="/use-cases/copilot-anything/">A copilot for anything</Link>.
             </p>
           </div>
         </section>
@@ -86,4 +92,3 @@ export const Head = () => (
 )
 
 export default UseCasesPage
-

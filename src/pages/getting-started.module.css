@@ -209,12 +209,75 @@
   flex-wrap: wrap;
 }
 
+.projectsCallout {
+  margin-top: var(--space-5);
+  padding: var(--space-6);
+  background: var(--color-surface-2);
+  border-radius: var(--border-radius);
+}
+
+.projectsHeader {
+  max-width: 56rem;
+}
+
+.projectsGrid {
+  margin-top: var(--space-5);
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: var(--space-5);
+  align-items: start;
+}
+
+.projectsCopy {
+  background: var(--color-surface-1);
+  border-radius: var(--border-radius);
+  padding: var(--space-5);
+}
+
+.projectsBody {
+  margin: 0 0 var(--space-4);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-loose);
+  font-size: 1.05rem;
+}
+
+.projectsLinks {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.projectsFootnote {
+  margin: var(--space-4) 0 0;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.projectsDemo {
+  background: var(--color-surface-1);
+  border-radius: var(--border-radius);
+  padding: var(--space-5);
+}
+
+.demoLabel {
+  margin: 0 0 var(--space-3);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+}
+
 @media (max-width: 720px) {
   .pathGrid {
     grid-template-columns: 1fr;
   }
 
   .stepsGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .projectsGrid {
     grid-template-columns: 1fr;
   }
 

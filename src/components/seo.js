@@ -8,7 +8,24 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
-function Seo({ description, title, children }) {
+function resolveSocialUrl(siteUrl, value) {
+  if (!value) return null
+  if (value.startsWith("http://") || value.startsWith("https://")) return value
+  return `${siteUrl}${value}`
+}
+
+function Seo({
+  description,
+  title,
+  // By default we prefer a small icon-style preview (Discord/Twitter summary).
+  // Pages that want a large feature image can pass `useIconPreview={false}` or
+  // explicitly pass `image`.
+  useIconPreview = true,
+  image,
+  imageAlt,
+  twitterCard,
+  children,
+}) {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -39,8 +56,14 @@ function Seo({ description, title, children }) {
       ? `${title} | ${defaultTitle}`
       : defaultTitle || title
 
-  const ogImageUrl = socialImage ? `${siteUrl}${socialImage}` : null
-  const ogIconUrl = socialIcon ? `${siteUrl}${socialIcon}` : null
+  const defaultPreviewPath = useIconPreview ? socialIcon : socialImage
+  const ogImageUrl = resolveSocialUrl(siteUrl, image || defaultPreviewPath)
+  const resolvedImageAlt = imageAlt || socialImageAlt
+
+  const isIconPreview =
+    useIconPreview && !image && Boolean(socialIcon) && socialIcon === defaultPreviewPath
+  const resolvedTwitterCard =
+    twitterCard || (isIconPreview ? "summary" : "summary_large_image")
 
   return (
     <>
@@ -49,20 +72,19 @@ function Seo({ description, title, children }) {
       <meta property="og:title" content={resolvedTitle} />
       <meta property="og:description" content={metaDescription} />
       <meta property="og:type" content="website" />
-      
+
       {/* Open Graph Images */}
       {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
-      {ogIconUrl && <meta property="og:image" content={ogIconUrl} />}
-      {socialImageAlt && <meta property="og:image:alt" content={socialImageAlt} />}
+      {resolvedImageAlt && <meta property="og:image:alt" content={resolvedImageAlt} />}
 
       {/* Twitter Card */}
-      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:card" content={resolvedTwitterCard} />
       <meta name="twitter:creator" content={site.siteMetadata?.author || ``} />
       <meta name="twitter:title" content={resolvedTitle} />
       <meta name="twitter:description" content={metaDescription} />
       {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
-      {socialImageAlt && <meta name="twitter:image:alt" content={socialImageAlt} />}
-      
+      {resolvedImageAlt && <meta name="twitter:image:alt" content={resolvedImageAlt} />}
+
       {children}
     </>
   )

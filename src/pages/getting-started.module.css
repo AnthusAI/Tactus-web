@@ -183,9 +183,8 @@
 .examplesCallout {
   margin-top: var(--space-6);
   padding: var(--space-6);
-  background: linear-gradient(135deg, var(--color-primary-light, #f0f4ff) 0%, var(--color-surface-2) 100%);
+  background: var(--color-surface-2);
   border-radius: var(--border-radius);
-  border: 2px solid var(--color-primary-subtle, #e0e8ff);
 }
 
 .examplesTitle {

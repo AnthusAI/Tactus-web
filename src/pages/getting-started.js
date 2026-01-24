@@ -1,5 +1,6 @@
 import * as React from "react"
 import { Link } from "gatsby"
+import { Github } from "lucide-react"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import BookSeriesSection from "../components/book-series-section"
@@ -91,6 +92,28 @@ return World("Hello, World!").response`}
                   </li>
                 </ol>
               </div>
+            </div>
+          </div>
+
+          {/* Examples Section */}
+          <div className={styles.examplesCallout}>
+            <h2 className={styles.examplesTitle}>Explore More Examples</h2>
+            <p className={styles.examplesText}>
+              The best way to learn Tactus is by running real examples. Browse our curated collection of runnable, tested examples — from basics to advanced patterns. Each example includes embedded specifications and can be executed directly from your machine.
+            </p>
+            <div className={styles.examplesButtons}>
+              <Link to="/examples/" className={styles.primaryButton}>
+                Browse Examples
+              </Link>
+              <a
+                href="https://github.com/AnthusAI/Tactus-examples"
+                className={styles.secondaryButton}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github size={18} />
+                Examples on GitHub
+              </a>
             </div>
           </div>
 

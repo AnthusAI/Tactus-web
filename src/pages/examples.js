@@ -1,5 +1,6 @@
 import * as React from "react"
 import { Link } from "gatsby"
+import { Github } from "lucide-react"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import BottomCta from "../components/bottom-cta"
@@ -69,14 +70,17 @@ const ExamplesPage = () => {
                 href="https://github.com/AnthusAI/Tactus-examples"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={styles.card}
+                className={`${styles.card} ${styles.githubCard}`}
               >
                 <div className={styles.cardHeader}>
-                  <p className={styles.cardTitle}>Examples on GitHub</p>
+                  <p className={styles.cardTitle}>
+                    <Github size={20} style={{ marginRight: '0.5rem', verticalAlign: 'middle' }} />
+                    Examples on GitHub
+                  </p>
                 </div>
                 <div className={styles.cardBody}>
                   <p className={styles.cardText}>
-                    View the source repository with all examples, READMEs, and continuous integration tests.
+                    Clone the repository, run examples locally, and see the continuous integration tests in action.
                   </p>
                 </div>
               </a>

@@ -180,6 +180,35 @@
   margin: 0.5rem 0;
 }
 
+.examplesCallout {
+  margin-top: var(--space-6);
+  padding: var(--space-6);
+  background: linear-gradient(135deg, var(--color-primary-light, #f0f4ff) 0%, var(--color-surface-2) 100%);
+  border-radius: var(--border-radius);
+  border: 2px solid var(--color-primary-subtle, #e0e8ff);
+}
+
+.examplesTitle {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.examplesText {
+  margin: 0 0 var(--space-4);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-loose);
+  font-size: 1.125rem;
+  max-width: 48rem;
+}
+
+.examplesButtons {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
 @media (max-width: 720px) {
   .pathGrid {
     grid-template-columns: 1fr;
@@ -187,5 +216,15 @@
 
   .stepsGrid {
     grid-template-columns: 1fr;
+  }
+
+  .examplesButtons {
+    flex-direction: column;
+  }
+
+  .examplesButtons a {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
   }
 }

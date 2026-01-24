@@ -123,7 +123,7 @@ function discoverExamples(chapterPath) {
  * Parse example metadata from chapter README
  * Looks for example descriptions in the chapter README
  */
-function parseExampleMetadata(example, chapterPath, chapterSlug) {
+function parseExampleMetadata(example, chapterPath, chapterSlug, chapterDirName) {
   // Read the .tac file content
   const tacPath = example.isFolder
     ? path.join(example.path, `${example.slug}.tac`) // Assume main file has same name
@@ -172,7 +172,7 @@ function parseExampleMetadata(example, chapterPath, chapterSlug) {
     description: description || `Example: ${title}`,
     code,
     tacPath: relativePath,
-    githubUrl: `https://github.com/AnthusAI/Tactus-examples/blob/main/${chapterSlug}/${path.basename(tacPath)}`,
+    githubUrl: `https://github.com/AnthusAI/Tactus-examples/blob/main/${chapterDirName}/${path.basename(tacPath)}`,
     hasSpecs,
     hasEvals,
     requiresApiKeys
@@ -197,6 +197,7 @@ async function ingestExamples() {
     chapters: chapters.map(chapter => {
       const { title, description } = parseChapterReadme(chapter.path)
       const examples = discoverExamples(chapter.path)
+      const chapterDirName = path.basename(chapter.path)
 
       console.log(`  Chapter: ${title} (${examples.length} examples)`)
 
@@ -207,7 +208,7 @@ async function ingestExamples() {
         description,
         slug: chapter.slug,
         examples: examples.map(example => {
-          const metadata = parseExampleMetadata(example, chapter.path, chapter.slug)
+          const metadata = parseExampleMetadata(example, chapter.path, chapter.slug, chapterDirName)
           console.log(`    - ${metadata.title}`)
           return metadata
         })

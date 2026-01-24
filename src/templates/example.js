@@ -1,9 +1,34 @@
 import * as React from "react"
 import { Link } from "gatsby"
+import { AlertCircle, Copy, Check } from "lucide-react"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import BottomCta from "../components/bottom-cta"
 import * as styles from "./example.module.css"
+
+const CommandBlock = ({ command }) => {
+  const [copied, setCopied] = React.useState(false)
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(command)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  return (
+    <pre className={styles.commandBlock}>
+      <span className={styles.commandPrompt}>$</span>
+      <code>{command}</code>
+      <button
+        className={`${styles.copyButton} ${copied ? styles.copied : ''}`}
+        onClick={handleCopy}
+        aria-label="Copy command"
+      >
+        {copied ? <Check size={16} /> : <Copy size={16} />}
+      </button>
+    </pre>
+  )
+}
 
 const ExampleTemplate = ({ pageContext }) => {
   const { example, chapter, prevExample, nextExample } = pageContext
@@ -45,21 +70,20 @@ const ExampleTemplate = ({ pageContext }) => {
 
             <div className={styles.commandSection}>
               <h3 className={styles.commandTitle}>Run the example:</h3>
-              <pre className={styles.commandBlock}>
-                <code>tactus run {example.tacPath}</code>
-              </pre>
+              <CommandBlock command={`tactus run ${example.tacPath}`} />
             </div>
 
             <div className={styles.commandSection}>
               <h3 className={styles.commandTitle}>Test with mocks:</h3>
-              <pre className={styles.commandBlock}>
-                <code>tactus test {example.tacPath} --mock</code>
-              </pre>
+              <CommandBlock command={`tactus test ${example.tacPath} --mock`} />
             </div>
 
             {example.requiresApiKeys && (
               <div className={styles.note}>
-                <p className={styles.noteTitle}>📝 Note</p>
+                <p className={styles.noteTitle}>
+                  <AlertCircle size={18} style={{ marginRight: '0.5rem', verticalAlign: 'middle' }} />
+                  Note
+                </p>
                 <p>This example requires API keys. Set your <code>OPENAI_API_KEY</code> environment variable before running.</p>
               </div>
             )}

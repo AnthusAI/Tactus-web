@@ -160,6 +160,48 @@ $ tactus run 01-getting-started/01-hello-world.tac`
             </div>
           </div>
 
+          {/* Use Cases Section */}
+          <div className={styles.useCasesCallout}>
+            <h2 className={styles.examplesTitle}>Try a use case</h2>
+            <p className={styles.examplesText}>
+              Use cases are a good way to get unstuck when you're learning: pick a concrete project and adapt it. Start with the text classification use case,
+              then browse the rest for ideas.
+            </p>
+
+            <div className={styles.useCasesGrid}>
+              <div className={styles.useCaseFeatured}>
+                <p className={styles.useCaseEyebrow}>Recommended starting point</p>
+                <h3 className={styles.useCaseTitle}>Text classification</h3>
+                <p className={styles.useCaseBody}>
+                  Route real-world text into a small set of labels (e.g., inbox triage) using built-in guardrails like strict label validation and retry loops.
+                </p>
+                <div className={styles.useCaseActions}>
+                  <Link to="/use-cases/text-classification/" className={styles.primaryButton}>
+                    Open text classification
+                  </Link>
+                  <Link to="/use-cases/" className={styles.secondaryButton}>
+                    Browse all use cases
+                  </Link>
+                </div>
+              </div>
+
+              <div className={styles.useCaseSecondary}>
+                <h3 className={styles.useCaseSecondaryTitle}>More ideas</h3>
+                <p className={styles.useCaseSecondaryBody}>
+                  These are early sketches — useful for inspiration, but not as polished as the text classification walkthrough.
+                </p>
+                <ul className={styles.useCaseLinks}>
+                  <li>
+                    <Link to="/use-cases/meeting-recap-approval/">Meeting recap approval</Link>
+                  </li>
+                  <li>
+                    <Link to="/use-cases/contact-import/">Contact import</Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 

@@ -16,6 +16,16 @@ const USE_CASES = [
     lede: "Classify text reliably with guardrails: validation, specs, and evals.",
     to: "/use-cases/text-classification/",
   },
+  {
+    title: "Business process automation",
+    lede: "Automate intake, routing, and checklists with enforceable policies and approvals.",
+    to: "/use-cases/business-process-automation/",
+  },
+  {
+    title: "Level Zero Operator Agents",
+    lede: "Agent-based incident response for ITSM: investigate early, document continuously, escalate with context.",
+    to: "/use-cases/level-zero-operators/",
+  },
 ]
 
 const UseCasesPage = () => {
@@ -28,7 +38,9 @@ const UseCasesPage = () => {
               <p className={styles.eyebrow}>Examples</p>
               <h1 className={styles.title}>Use Cases</h1>
               <p className={styles.lede}>
-                Practical walkthroughs that show what to build, which guardrails matter, and how to keep behavior and reliability measurable as you iterate.
+                Practical walkthroughs that show what to build, which guardrails
+                matter, and how to keep behavior and reliability measurable as
+                you iterate.
               </p>
             </div>
           </div>
@@ -39,11 +51,12 @@ const UseCasesPage = () => {
             <h2 className={styles.sectionTitle}>Start Here</h2>
             <p className={styles.bodyText}>
               New to Tactus? Start with{" "}
-              <Link to="/guiding-principles/">Guiding Principles</Link>, then use cases help you apply the patterns to concrete workflows.
+              <Link to="/guiding-principles/">Guiding Principles</Link>, then
+              use cases help you apply the patterns to concrete workflows.
             </p>
 
             <div className={styles.cardGrid}>
-              {USE_CASES.map((item) => (
+              {USE_CASES.map(item => (
                 <Link key={item.to} to={item.to} className={styles.card}>
                   <div className={styles.cardHeader}>
                     <p className={styles.cardTitle}>{item.title}</p>
@@ -57,8 +70,12 @@ const UseCasesPage = () => {
             </div>
 
             <p className={styles.bodyTextMuted}>
-              Some pages are early sketches. If you want a strong first project, start with{" "}
-              <Link to="/use-cases/copilot-anything/">A copilot for anything</Link>.
+              Some pages are early sketches. If you want a strong first project,
+              start with{" "}
+              <Link to="/use-cases/copilot-anything/">
+                A copilot for anything
+              </Link>
+              .
             </p>
           </div>
         </section>

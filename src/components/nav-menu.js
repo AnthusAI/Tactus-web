@@ -8,34 +8,32 @@ export const NAV_CONFIG = {
   categories: [
     {
       id: "learn-more",
-      label: 'Learn More',
+      label: "Learn More",
       to: "/learn-more/",
       items: [
-        { label: 'Features', to: '/features/' },
-        { label: 'Human in the Loop', to: '/human-in-the-loop/' },
-        { label: 'The AI Engineer’s Toolbox', to: '/ai-engineers-toolbox/' },
-        { label: 'Behavior Specifications', to: '/specifications/' },
-        { label: 'Evaluations', to: '/evaluations/' },
-        { label: 'Validation', to: '/validation/' },
-      ]
+        { label: "Features", to: "/features/" },
+        { label: "Human in the Loop", to: "/human-in-the-loop/" },
+        { label: "The AI Engineer’s Toolbox", to: "/ai-engineers-toolbox/" },
+        { label: "Behavior Specifications", to: "/specifications/" },
+        { label: "Evaluations", to: "/evaluations/" },
+        { label: "Validation", to: "/validation/" },
+      ],
     },
     {
       id: "concepts",
-      label: 'Concepts',
+      label: "Concepts",
       // No top-level link for Concepts as per current structure of other similar items unless requested
       items: [
-        { label: 'Guiding Principles', to: '/guiding-principles/' },
-        { label: 'Why a New Language?', to: '/why-new-language/' },
-        { label: 'Guardrails for Agent Autonomy', to: '/guardrails/' },
-      ]
+        { label: "Guiding Principles", to: "/guiding-principles/" },
+        { label: "Why a New Language?", to: "/why-new-language/" },
+        { label: "Guardrails for Agent Autonomy", to: "/guardrails/" },
+      ],
     },
     {
       id: "get-started",
-      label: 'Get Started',
+      label: "Get Started",
       to: "/getting-started/",
-      items: [
-        { label: 'Download', to: '/download/' },
-      ]
+      items: [{ label: "Download", to: "/download/" }],
     },
     /*
     {
@@ -64,15 +62,15 @@ export const NAV_CONFIG = {
       id: "examples",
       label: "Examples",
       items: [
-        { label: "Examples Overview", to: "/examples/" },
         { label: "Use Cases", to: "/use-cases/" },
+        { label: "Examples Overview", to: "/examples/" },
       ],
     },
-  ]
+  ],
 }
 
 const NavMenu = ({ onNavigate }) => {
-  const handleClick = (to) => (e) => {
+  const handleClick = to => e => {
     e.preventDefault()
     onNavigate?.()
     navigate(to)
@@ -82,42 +80,43 @@ const NavMenu = ({ onNavigate }) => {
     <div className={styles.navMenu}>
       <div className={styles.navMenuInner}>
         <div className={styles.navCategories}>
-          {NAV_CONFIG.categories.map((category) => (
-            (category.to || category.items.length > 0) && (
-              <section
-                key={category.label}
-                className={styles.navCategory}
-                data-category={category.id || category.label}
-              >
-                <h2 className={styles.navCategoryLabel}>
-                  {category.to ? (
-                    <Link
-                      to={category.to}
-                      onClick={handleClick(category.to)}
-                      aria-label={category.label}
-                    >
-                      {category.label}
-                    </Link>
-                  ) : (
-                    category.label
-                  )}
-                </h2>
-                <ul className={styles.navCategoryItems}>
-                  {category.items.map((item) => (
-                    <li key={item.to} className={styles.navCategoryItem}>
+          {NAV_CONFIG.categories.map(
+            category =>
+              (category.to || category.items.length > 0) && (
+                <section
+                  key={category.label}
+                  className={styles.navCategory}
+                  data-category={category.id || category.label}
+                >
+                  <h2 className={styles.navCategoryLabel}>
+                    {category.to ? (
                       <Link
-                        to={item.to}
-                        activeClassName="active"
-                        onClick={handleClick(item.to)}
+                        to={category.to}
+                        onClick={handleClick(category.to)}
+                        aria-label={category.label}
                       >
-                        {item.label}
+                        {category.label}
                       </Link>
-                    </li>
-                  ))}
-                </ul>
-              </section>
-            )
-          ))}
+                    ) : (
+                      category.label
+                    )}
+                  </h2>
+                  <ul className={styles.navCategoryItems}>
+                    {category.items.map(item => (
+                      <li key={item.to} className={styles.navCategoryItem}>
+                        <Link
+                          to={item.to}
+                          activeClassName="active"
+                          onClick={handleClick(item.to)}
+                        >
+                          {item.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )
+          )}
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 import * as React from "react"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import Breakout from "../components/publishing/Breakout"
 import * as styles from "./download.module.css"
 
 const Icons = {
@@ -61,6 +62,45 @@ const DownloadPage = () => {
                   <span className={styles.latestVersionNumber}>{versionLabel}</span>
                 </div>
               ) : null}
+
+              <div style={{ marginTop: "var(--space-5)", textAlign: "left" }}>
+                <Breakout
+                  title="Warning: Alpha Version"
+                  theme="primary"
+                  bleed={true}
+                >
+                  <p>
+                    The version number starts with 0., which means this is an alpha
+                    release. The feature set is not complete and is changing
+                    rapidly. I am moving fast and breaking things, making breaking
+                    changes literally every day.
+                  </p>
+                  <p>
+                    If you're willing to sign up for an adventure, you have a chance
+                    to get early, high-level support and shape the future of the
+                    language, but I can't make any guarantees about stability,
+                    especially over the next couple of months.
+                  </p>
+                  <p>
+                    Tactus is already a mission-critical technology in production
+                    for my own projects, but it is not publicly supported yet—use
+                    it at your own risk.
+                  </p>
+                  <p
+                    style={{
+                      marginTop: "var(--space-4)",
+                      borderTop: "1px solid rgba(255,255,255,0.2)",
+                      paddingTop: "var(--space-4)",
+                    }}
+                  >
+                    <strong>Note on Desktop Apps:</strong> Please note that the
+                    Electron apps are less tested than running the web application
+                    through Node. They share a common codebase, but have platform
+                    differences. My development focus is primarily on the Node web
+                    application.
+                  </p>
+                </Breakout>
+              </div>
             </div>
 
             <div className={styles.grid}>
@@ -71,6 +111,12 @@ const DownloadPage = () => {
                 <p className={styles.cardMeta}>
                   Universal (Intel & Apple Silicon)
                 </p>
+                <div className={styles.macWarning}>
+                  <strong>Distribution Warning</strong>
+                  The distributed macOS app does not yet distribute smoothly. (I have to pay Apple to sign it and I will...) You are
+                  better off building the Electron app yourself or using the Node
+                  web application.
+                </div>
                 <a
                   href={macUrl || fallbackUrl}
                   className={styles.downloadButton}

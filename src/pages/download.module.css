@@ -142,3 +142,21 @@
   max-width: 32rem;
   text-align: left;
 }
+
+.macWarning {
+  background: var(--color-bg);
+  padding: var(--space-3);
+  margin: var(--space-3) 0 0;
+  border-radius: var(--border-radius);
+  font-size: 0.875rem;
+  color: var(--color-text);
+  width: 100%;
+  text-align: left;
+  line-height: 1.4;
+}
+
+.macWarning strong {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--color-primary);
+}

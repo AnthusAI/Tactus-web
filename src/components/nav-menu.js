@@ -56,6 +56,8 @@ export const NAV_CONFIG = {
       items: [
         { label: "Videos", to: "/resources/#videos" },
         { label: "Books", to: "/resources/#books" },
+        { label: "Component Library", to: "/resources/components/" },
+        { label: "Standard Code Library", to: "/stdlib/" },
       ],
     },
     {
@@ -64,13 +66,6 @@ export const NAV_CONFIG = {
       items: [
         { label: "Examples Overview", to: "/examples/" },
         { label: "Use Cases", to: "/use-cases/" },
-      ],
-    },
-    {
-      id: "documentation",
-      label: "Documentation",
-      items: [
-        { label: "Standard Library", to: "/stdlib/" },
       ],
     },
   ]

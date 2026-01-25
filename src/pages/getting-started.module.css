@@ -133,9 +133,14 @@
 
 .conceptIntro {
   margin: 0;
+  margin-bottom: var(--space-3);
   color: var(--color-text-muted);
   line-height: var(--line-height-loose);
   max-width: 48rem;
+}
+
+.conceptIntro:last-child {
+  margin-bottom: 0;
 }
 
 .longCodeBlock {

@@ -4,7 +4,7 @@
   top: 0;
   z-index: 10;
   background: var(--color-bg);
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .inner {
@@ -70,7 +70,7 @@
 }
 
 .primaryNav a:global(.active)::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -94,7 +94,7 @@
 }
 
 .menuToggle:hover {
-  background: rgba(0,0,0,0.05);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .menuToggle:focus-visible {

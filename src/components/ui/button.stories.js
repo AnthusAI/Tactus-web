@@ -103,15 +103,27 @@ export const LightModeGrid = () => (
     <div style={{ display: "flex", gap: "2rem", flexDirection: "column" }}>
       <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
         <Button variant="primary">Primary</Button>
-        <Button variant="primary" shadow>Primary (Shadow)</Button>
+        <Button variant="primary" shadow>
+          Primary (Shadow)
+        </Button>
         <Button variant="secondary">Secondary</Button>
-        <Button variant="secondary" shadow>Secondary (Shadow)</Button>
+        <Button variant="secondary" shadow>
+          Secondary (Shadow)
+        </Button>
       </div>
       <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
-        <Button variant="primary" size="large">Large</Button>
-        <Button variant="primary" size="large" shadow>Large (Shadow)</Button>
-        <Button variant="secondary" size="large">Secondary</Button>
-        <Button variant="secondary" size="large" shadow>Secondary (Shadow)</Button>
+        <Button variant="primary" size="large">
+          Large
+        </Button>
+        <Button variant="primary" size="large" shadow>
+          Large (Shadow)
+        </Button>
+        <Button variant="secondary" size="large">
+          Secondary
+        </Button>
+        <Button variant="secondary" size="large" shadow>
+          Secondary (Shadow)
+        </Button>
       </div>
     </div>
   </ThemeWrapper>
@@ -122,9 +134,13 @@ export const DarkModeGrid = () => (
     <div style={{ display: "flex", gap: "2rem", flexDirection: "column" }}>
       <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
         <Button variant="primary">Primary</Button>
-        <Button variant="primary" shadow>Primary (Shadow)</Button>
+        <Button variant="primary" shadow>
+          Primary (Shadow)
+        </Button>
         <Button variant="secondary">Secondary</Button>
-        <Button variant="secondary" shadow>Secondary (Shadow)</Button>
+        <Button variant="secondary" shadow>
+          Secondary (Shadow)
+        </Button>
       </div>
     </div>
   </ThemeWrapper>

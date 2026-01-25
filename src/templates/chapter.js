@@ -9,7 +9,8 @@ const ChapterTemplate = ({ pageContext }) => {
   const { chapter, allChapters } = pageContext
   const currentIndex = allChapters.findIndex(c => c.id === chapter.id)
   const prevChapter = currentIndex > 0 ? allChapters[currentIndex - 1] : null
-  const nextChapter = currentIndex < allChapters.length - 1 ? allChapters[currentIndex + 1] : null
+  const nextChapter =
+    currentIndex < allChapters.length - 1 ? allChapters[currentIndex + 1] : null
 
   return (
     <Layout fullWidth={true}>
@@ -31,7 +32,7 @@ const ChapterTemplate = ({ pageContext }) => {
             <h2 className={styles.sectionTitle}>Examples in This Chapter</h2>
 
             <div className={styles.examplesList}>
-              {chapter.examples.map((example) => (
+              {chapter.examples.map(example => (
                 <Link
                   key={example.id}
                   to={`/examples/${chapter.slug}/${example.slug}/`}
@@ -40,12 +41,22 @@ const ChapterTemplate = ({ pageContext }) => {
                   <div className={styles.exampleHeader}>
                     <h3 className={styles.exampleTitle}>{example.title}</h3>
                     <div className={styles.badges}>
-                      {example.hasSpecs && <span className={styles.badge}>Has Specs</span>}
-                      {example.hasEvals && <span className={styles.badge}>Has Evals</span>}
-                      {example.requiresApiKeys && <span className={styles.badgeWarning}>Requires API Keys</span>}
+                      {example.hasSpecs && (
+                        <span className={styles.badge}>Has Specs</span>
+                      )}
+                      {example.hasEvals && (
+                        <span className={styles.badge}>Has Evals</span>
+                      )}
+                      {example.requiresApiKeys && (
+                        <span className={styles.badgeWarning}>
+                          Requires API Keys
+                        </span>
+                      )}
                     </div>
                   </div>
-                  <p className={styles.exampleDescription}>{example.description}</p>
+                  <p className={styles.exampleDescription}>
+                    {example.description}
+                  </p>
                   <p className={styles.exampleCta}>View example →</p>
                 </Link>
               ))}
@@ -58,13 +69,19 @@ const ChapterTemplate = ({ pageContext }) => {
             <div className={styles.container}>
               <div className={styles.navigation}>
                 {prevChapter && (
-                  <Link to={`/examples/${prevChapter.slug}/`} className={styles.navLink}>
+                  <Link
+                    to={`/examples/${prevChapter.slug}/`}
+                    className={styles.navLink}
+                  >
                     <span className={styles.navLabel}>← Previous Chapter</span>
                     <span className={styles.navTitle}>{prevChapter.title}</span>
                   </Link>
                 )}
                 {nextChapter && (
-                  <Link to={`/examples/${nextChapter.slug}/`} className={`${styles.navLink} ${styles.navLinkNext}`}>
+                  <Link
+                    to={`/examples/${nextChapter.slug}/`}
+                    className={`${styles.navLink} ${styles.navLinkNext}`}
+                  >
                     <span className={styles.navLabel}>Next Chapter →</span>
                     <span className={styles.navTitle}>{nextChapter.title}</span>
                   </Link>

@@ -61,7 +61,10 @@ function Seo({
   const resolvedImageAlt = imageAlt || socialImageAlt
 
   const isIconPreview =
-    useIconPreview && !image && Boolean(socialIcon) && socialIcon === defaultPreviewPath
+    useIconPreview &&
+    !image &&
+    Boolean(socialIcon) &&
+    socialIcon === defaultPreviewPath
   const resolvedTwitterCard =
     twitterCard || (isIconPreview ? "summary" : "summary_large_image")
 
@@ -75,7 +78,9 @@ function Seo({
 
       {/* Open Graph Images */}
       {ogImageUrl && <meta property="og:image" content={ogImageUrl} />}
-      {resolvedImageAlt && <meta property="og:image:alt" content={resolvedImageAlt} />}
+      {resolvedImageAlt && (
+        <meta property="og:image:alt" content={resolvedImageAlt} />
+      )}
 
       {/* Twitter Card */}
       <meta name="twitter:card" content={resolvedTwitterCard} />
@@ -83,7 +88,9 @@ function Seo({
       <meta name="twitter:title" content={resolvedTitle} />
       <meta name="twitter:description" content={metaDescription} />
       {ogImageUrl && <meta name="twitter:image" content={ogImageUrl} />}
-      {resolvedImageAlt && <meta name="twitter:image:alt" content={resolvedImageAlt} />}
+      {resolvedImageAlt && (
+        <meta name="twitter:image:alt" content={resolvedImageAlt} />
+      )}
 
       {children}
     </>

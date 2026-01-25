@@ -1,3 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 99.2%; /* #fdfdfd - Tactus bg */
+    --foreground: 240 5% 15.9%; /* #27272a - Tactus text */
+    --card: 0 0% 100%; /* #ffffff - Tactus surface */
+    --card-foreground: 240 5% 15.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 5% 15.9%;
+    --primary: 322 100% 39%; /* #c7007e - Tactus primary */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 92.9%; /* #ededed - Tactus surface-2 */
+    --secondary-foreground: 240 5% 15.9%;
+    --muted: 0 0% 92.9%;
+    --muted-foreground: 240 3.8% 46.1%; /* #71717a approx */
+    --accent: 0 0% 92.9%;
+    --accent-foreground: 240 5% 15.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 322 100% 39%;
+    --radius: 0.5rem;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+  }
+
+  .dark {
+    --background: 0 0% 7.1%; /* #121212 */
+    --foreground: 0 0% 98%;
+    --card: 0 0% 11.8%; /* #1e1e1e */
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 11.8%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 322 100% 39%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 240 3.7% 15.9%; /* #27272a */
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 322 100% 39%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
 :root {
   /*
    * Minimal Color Palette
@@ -21,31 +82,34 @@
    */
 
   /* Brand */
-  --color-primary: #c7007e;       /* Magenta - primary brand color */
-  --color-primary-ink: #ffffff;   /* Text on primary backgrounds */
+  --color-primary: #c7007e; /* Magenta - primary brand color */
+  --color-primary-ink: #ffffff; /* Text on primary backgrounds */
 
   /* Surfaces - Softened "Paper" Tones (8+8 proportional spacing) */
-  --color-bg: #fdfdfd;            /* Page background (253) - off-white, not pure white */
-  --color-surface: #ffffff;       /* Elevated surfaces (255) - pure white for depth */
-  --color-card-title: #f5f5f5;    /* Card title bars (245) - 8 units darker than bg */
-  --color-surface-2: #ededed;     /* Muted background (237) - 8 units darker than card-title */
+  --color-bg: #fdfdfd; /* Page background (253) - off-white, not pure white */
+  --color-surface: #ffffff; /* Elevated surfaces (255) - pure white for depth */
+  --color-card-title: #f5f5f5; /* Card title bars (245) - 8 units darker than bg */
+  --color-surface-2: #ededed; /* Muted background (237) - 8 units darker than card-title */
 
   /* Text - Softened Charcoal */
-  --color-text: #27272a;          /* Main text - soft charcoal, not pure black */
+  --color-text: #27272a; /* Main text - soft charcoal, not pure black */
   --color-text-secondary: #3f3f46; /* Card titles - between text and muted */
-  --color-text-muted: #52525b;    /* Secondary text - medium gray */
+  --color-text-muted: #52525b; /* Secondary text - medium gray */
 
   /* Code */
-  --color-code-bg: #ededed;       /* Code block background - same as surface-2 */
-  --color-code: #27272a;          /* Code text - same as main text */
+  --color-code-bg: #ededed; /* Code block background - same as surface-2 */
+  --color-code: #27272a; /* Code text - same as main text */
 
   /* Typography - "Technical Book" Stack */
   /* Source Sans 3 for UI/Headers */
-  --font-sans: "Source Sans 3", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Source Sans 3", ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   /* Source Serif 4 for Body/Reading */
-  --font-serif: "Source Serif 4", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-serif: "Source Serif 4", ui-serif, Georgia, Cambria, "Times New Roman",
+    Times, serif;
   /* Source Code Pro for Code */
-  --font-mono: "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-mono: "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, "Liberation Mono", "Courier New", monospace;
 
   --font-lg: 20px;
   --font-md: 18px;
@@ -71,11 +135,11 @@
 @media (prefers-color-scheme: dark) {
   :root {
     /* Dark Mode - Softened "E-Ink" Tones */
-    --color-bg: #18181b;      /* Was #0c0c10 - now lighter zinc */
+    --color-bg: #18181b; /* Was #0c0c10 - now lighter zinc */
     --color-surface: #27272a;
     --color-card-title: #1f1f23; /* Card title bars - midway between bg and surface */
     --color-surface-2: #27272a;
-    --color-text: #e4e4e7;    /* Softened white */
+    --color-text: #e4e4e7; /* Softened white */
     --color-text-secondary: #d4d4d8; /* Card titles - between text and muted */
     --color-text-muted: #a1a1aa;
     --color-code-bg: #27272a;
@@ -85,7 +149,7 @@
 }
 
 /* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,400;0,600;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap");
 
 html {
   -webkit-text-size-adjust: 100%;
@@ -115,7 +179,13 @@ body {
 }
 
 /* UI Elements stay Sans-Serif and use Lining Figures (123...) */
-a, button, input, select, textarea, .nav, .footer {
+a,
+button,
+input,
+select,
+textarea,
+.nav,
+.footer {
   font-family: var(--font-sans);
   font-variant-numeric: lining-nums;
 }
@@ -138,7 +208,12 @@ a:hover {
   background: rgba(199, 0, 126, 0.1);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
   margin-bottom: var(--space-3);
   padding: 0;
@@ -172,7 +247,10 @@ img {
   max-width: 100%;
 }
 
-code, kbd, pre, samp {
+code,
+kbd,
+pre,
+samp {
   font-family: var(--font-mono);
   font-size: 0.9em;
   font-variant-numeric: lining-nums; /* Code always uses lining figures */
@@ -181,21 +259,28 @@ code, kbd, pre, samp {
 hr {
   box-sizing: content-box;
   margin: var(--space-5) 0;
-  background: var(--color-border, rgba(0,0,0,0.1));
+  background: var(--color-border, rgba(0, 0, 0, 0.1));
   border: none;
   height: 1px;
 }
 
-* { box-sizing: inherit; }
-*:before { box-sizing: inherit; }
-*:after { box-sizing: inherit; }
+* {
+  box-sizing: inherit;
+}
+*:before {
+  box-sizing: inherit;
+}
+*:after {
+  box-sizing: inherit;
+}
 
 p {
   margin-bottom: var(--space-3);
   max-width: 65ch;
 }
 
-ul, ol {
+ul,
+ol {
   margin-bottom: var(--space-3);
   padding-left: var(--space-4);
 }
@@ -212,7 +297,7 @@ pre {
   border-radius: var(--border-radius);
   padding: var(--space-4);
   overflow: auto;
-  border: 1px solid rgba(0,0,0,0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 code {

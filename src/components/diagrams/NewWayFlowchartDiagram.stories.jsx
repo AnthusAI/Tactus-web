@@ -22,7 +22,7 @@ export const Static = {
     theme: "light",
     progress: 1,
   },
-  render: (args) => (
+  render: args => (
     <Frame>
       <NewWayFlowchartDiagram {...args} />
     </Frame>
@@ -37,7 +37,7 @@ function AnimatedDemo({ theme }) {
     const start = performance.now()
     const durationMs = 2600
 
-    const tick = (now) => {
+    const tick = now => {
       const t = ((now - start) % durationMs) / durationMs
       setProgress(t)
       raf = requestAnimationFrame(tick)
@@ -61,7 +61,7 @@ export const Animated = {
   argTypes: {
     progress: { table: { disable: true } },
   },
-  render: (args) => <AnimatedDemo theme={args.theme} />,
+  render: args => <AnimatedDemo theme={args.theme} />,
 }
 
 export const VideoFrame = {
@@ -72,10 +72,9 @@ export const VideoFrame = {
   parameters: {
     videoCanvas: { enabled: true, showGuides: true },
   },
-  render: (args) => (
+  render: args => (
     <div style={{ width: "70%", maxWidth: 1200 }}>
       <NewWayFlowchartDiagram {...args} />
     </div>
   ),
 }
-

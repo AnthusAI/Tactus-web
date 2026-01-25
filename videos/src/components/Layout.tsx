@@ -1,12 +1,12 @@
-import React, { CSSProperties } from "react";
-import { colors, spacing } from "../lib/theme";
+import React, { CSSProperties } from "react"
+import { colors, spacing } from "../lib/theme"
 
 interface LayoutProps {
-  children: React.ReactNode;
-  padding?: keyof typeof spacing;
-  align?: "flex-start" | "center" | "flex-end";
-  justify?: "flex-start" | "center" | "flex-end" | "space-between";
-  style?: CSSProperties;
+  children: React.ReactNode
+  padding?: keyof typeof spacing
+  align?: "flex-start" | "center" | "flex-end"
+  justify?: "flex-start" | "center" | "flex-end" | "space-between"
+  style?: CSSProperties
 }
 
 /**
@@ -34,13 +34,13 @@ export const Layout: React.FC<LayoutProps> = ({
     >
       {children}
     </div>
-  );
-};
+  )
+}
 
 interface ContainerProps {
-  children: React.ReactNode;
-  maxWidth?: number;
-  style?: CSSProperties;
+  children: React.ReactNode
+  maxWidth?: number
+  style?: CSSProperties
 }
 
 /**
@@ -62,5 +62,5 @@ export const Container: React.FC<ContainerProps> = ({
     >
       {children}
     </div>
-  );
-};
+  )
+}

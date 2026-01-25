@@ -20,7 +20,7 @@ const CommandBlock = ({ command }) => {
       <span className={styles.commandPrompt}>$</span>
       <code>{command}</code>
       <button
-        className={`${styles.copyButton} ${copied ? styles.copied : ''}`}
+        className={`${styles.copyButton} ${copied ? styles.copied : ""}`}
         onClick={handleCopy}
         aria-label="Copy command"
       >
@@ -40,13 +40,21 @@ const ExampleTemplate = ({ pageContext }) => {
           <div className={styles.container}>
             <div className={styles.hero}>
               <p className={styles.eyebrow}>
-                <Link to="/examples/">Examples</Link> / <Link to={`/examples/${chapter.slug}/`}>{chapter.title}</Link> / {example.title}
+                <Link to="/examples/">Examples</Link> /{" "}
+                <Link to={`/examples/${chapter.slug}/`}>{chapter.title}</Link> /{" "}
+                {example.title}
               </p>
               <h1 className={styles.title}>{example.title}</h1>
               <div className={styles.badges}>
-                {example.hasSpecs && <span className={styles.badge}>Has Specs</span>}
-                {example.hasEvals && <span className={styles.badge}>Has Evals</span>}
-                {example.requiresApiKeys && <span className={styles.badgeWarning}>Requires API Keys</span>}
+                {example.hasSpecs && (
+                  <span className={styles.badge}>Has Specs</span>
+                )}
+                {example.hasEvals && (
+                  <span className={styles.badge}>Has Evals</span>
+                )}
+                {example.requiresApiKeys && (
+                  <span className={styles.badgeWarning}>Requires API Keys</span>
+                )}
               </div>
               <p className={styles.lede}>{example.description}</p>
             </div>
@@ -81,15 +89,26 @@ const ExampleTemplate = ({ pageContext }) => {
             {example.requiresApiKeys && (
               <div className={styles.note}>
                 <p className={styles.noteTitle}>
-                  <AlertCircle size={18} style={{ marginRight: '0.5rem', verticalAlign: 'middle' }} />
+                  <AlertCircle
+                    size={18}
+                    style={{ marginRight: "0.5rem", verticalAlign: "middle" }}
+                  />
                   Note
                 </p>
-                <p>This example requires API keys. Set your <code>OPENAI_API_KEY</code> environment variable before running.</p>
+                <p>
+                  This example requires API keys. Set your{" "}
+                  <code>OPENAI_API_KEY</code> environment variable before
+                  running.
+                </p>
               </div>
             )}
 
             <p className={styles.bodyText}>
-              <a href={example.githubUrl} target="_blank" rel="noopener noreferrer">
+              <a
+                href={example.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 View source on GitHub →
               </a>
             </p>
@@ -101,13 +120,21 @@ const ExampleTemplate = ({ pageContext }) => {
             <div className={styles.container}>
               <div className={styles.navigation}>
                 {prevExample ? (
-                  <Link to={`/examples/${chapter.slug}/${prevExample.slug}/`} className={styles.navLink}>
+                  <Link
+                    to={`/examples/${chapter.slug}/${prevExample.slug}/`}
+                    className={styles.navLink}
+                  >
                     <span className={styles.navLabel}>← Previous Example</span>
                     <span className={styles.navTitle}>{prevExample.title}</span>
                   </Link>
-                ) : <div />}
+                ) : (
+                  <div />
+                )}
                 {nextExample && (
-                  <Link to={`/examples/${chapter.slug}/${nextExample.slug}/`} className={`${styles.navLink} ${styles.navLinkNext}`}>
+                  <Link
+                    to={`/examples/${chapter.slug}/${nextExample.slug}/`}
+                    className={`${styles.navLink} ${styles.navLinkNext}`}
+                  >
                     <span className={styles.navLabel}>Next Example →</span>
                     <span className={styles.navTitle}>{nextExample.title}</span>
                   </Link>

@@ -1,11 +1,11 @@
-import React, { CSSProperties } from "react";
-import { colors, spacing, borderRadius } from "../lib/theme";
+import React, { CSSProperties } from "react"
+import { colors, spacing, borderRadius } from "../lib/theme"
 
 interface CardProps {
-  children: React.ReactNode;
-  padding?: keyof typeof spacing;
-  variant?: "surface" | "muted";
-  style?: CSSProperties;
+  children: React.ReactNode
+  padding?: keyof typeof spacing
+  variant?: "surface" | "muted"
+  style?: CSSProperties
 }
 
 /**
@@ -31,13 +31,13 @@ export const Card: React.FC<CardProps> = ({
     >
       {children}
     </div>
-  );
-};
+  )
+}
 
 interface CodeBlockProps {
-  children: React.ReactNode;
-  padding?: keyof typeof spacing;
-  style?: CSSProperties;
+  children: React.ReactNode
+  padding?: keyof typeof spacing
+  style?: CSSProperties
 }
 
 /**
@@ -60,5 +60,5 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
     >
       {children}
     </div>
-  );
-};
+  )
+}

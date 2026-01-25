@@ -19,10 +19,6 @@
   padding: var(--space-6) 0;
 }
 
-.bgMuted {
-  background: var(--color-surface-2);
-}
-
 /* Hero */
 .hero {
   padding: var(--space-6) 0 var(--space-5);
@@ -136,9 +132,8 @@
 /* Diagram + code embeds */
 .diagramWrap {
   margin: var(--space-5) 0;
-  background: var(--color-surface);
-  border-radius: var(--border-radius);
-  padding: var(--space-3);
+  background: transparent;
+  padding: 0;
 }
 
 .diagram {
@@ -149,4 +144,73 @@
 
 .codeEmbed {
   margin: var(--space-4) 0 var(--space-5);
+}
+
+.componentBlock {
+  margin: var(--space-5) 0;
+}
+
+.chatShell {
+  background: var(--color-surface);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  border: 1px solid rgba(127, 127, 127, 0.18);
+}
+
+.chatHeader {
+  padding: var(--space-4);
+  background: var(--color-card-title);
+  border-bottom: 1px solid rgba(127, 127, 127, 0.18);
+}
+
+.chatTitle {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin: 0;
+  color: var(--color-text);
+}
+
+.chatMeta {
+  margin-top: 0.25rem;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.chatLog {
+  padding: var(--space-4);
+  background: color-mix(in srgb, var(--color-primary) 4%, var(--color-bg));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.chatScroll {
+  scrollbar-gutter: auto !important;
+}
+
+.chatFooter {
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border-top: 1px solid rgba(127, 127, 127, 0.18);
+}
+
+.footerHint {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.fullWidthMessage {
+  width: 100%;
+}
+
+@media (max-width: 720px) {
+  .chatHeader {
+    padding: var(--space-3);
+  }
+
+  .chatLog {
+    padding: var(--space-3);
+  }
 }

@@ -35,8 +35,8 @@ const AnimatedDiagram = ({
     if (!currentRef) return
 
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+      entries => {
+        entries.forEach(entry => {
           if (entry.isIntersecting && !hasAnimated) {
             setIsVisible(true)
             if (!loop) {
@@ -61,13 +61,12 @@ const AnimatedDiagram = ({
     let raf = 0
     const start = performance.now()
 
-    const tick = (now) => {
+    const tick = now => {
       const elapsed = (now - start) % durationMs
       const t = elapsed / durationMs
 
-      const normalizedProgress = holdProgress < 1.0 && t < holdProgress
-        ? t / holdProgress
-        : 1.0
+      const normalizedProgress =
+        holdProgress < 1.0 && t < holdProgress ? t / holdProgress : 1.0
 
       setProgress(normalizedProgress)
 

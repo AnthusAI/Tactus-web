@@ -34,7 +34,7 @@ const scheduleTerminate = () => {
   terminateTimer.unref?.()
 }
 
-const onOutput = (chunk) => {
+const onOutput = chunk => {
   const text = chunk.toString()
   process.stdout.write(text)
 
@@ -45,7 +45,7 @@ const onOutput = (chunk) => {
   }
 }
 
-const onErrorOutput = (chunk) => {
+const onErrorOutput = chunk => {
   const text = chunk.toString()
   process.stderr.write(text)
   tail = (tail + text).slice(-20000)
@@ -54,7 +54,7 @@ const onErrorOutput = (chunk) => {
 child.stdout.on("data", onOutput)
 child.stderr.on("data", onErrorOutput)
 
-child.on("error", (err) => {
+child.on("error", err => {
   process.stderr.write(String(err) + "\n")
   process.exit(1)
 })
@@ -68,4 +68,3 @@ child.on("exit", (code, signal) => {
   }
   process.exit(code === null ? 1 : code)
 })
-

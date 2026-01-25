@@ -10,12 +10,15 @@ const VideosCatalogSection = ({ id = "videos", showHeader = true }) => {
         {showHeader ? (
           <header className={styles.header}>
             <h2 className={styles.title}>Videos</h2>
-            <p className={styles.subtitle}>Short walkthroughs and longer deep dives, paired with the articles and diagrams.</p>
+            <p className={styles.subtitle}>
+              Short walkthroughs and longer deep dives, paired with the articles
+              and diagrams.
+            </p>
           </header>
         ) : null}
 
         <div className={styles.grid}>
-          {VIDEOS.map((v) => (
+          {VIDEOS.map(v => (
             <VideoCard
               key={v.id}
               className={styles.card}

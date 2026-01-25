@@ -27,7 +27,9 @@ const Breakout = ({
       {withContainer ? (
         <div className={styles.inner}>
           <div className={styles.content}>
-            {title ? <TitleTag className={styles.title}>{title}</TitleTag> : null}
+            {title ? (
+              <TitleTag className={styles.title}>{title}</TitleTag>
+            ) : null}
             <div className={styles.body}>{children}</div>
           </div>
         </div>

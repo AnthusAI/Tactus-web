@@ -1,4 +1,5 @@
 import * as React from "react"
+import { Link } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Breakout from "../components/publishing/Breakout"
@@ -19,7 +20,7 @@ const Icons = {
     <svg viewBox="0 0 24 24" fill="currentColor" className={styles.icon}>
       <path d="M20 19V7H4v12h16m0-16a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16m-7 14v-2h5v2h-5m-3.42-4L5.57 9H8.4l3.3 3.29l-3.3 3.29H5.57l4.01-3.29Z" />
     </svg>
-  )
+  ),
 }
 
 const DownloadPage = () => {
@@ -51,15 +52,22 @@ const DownloadPage = () => {
         <section className={styles.section}>
           <div className={styles.container}>
             <div className={styles.hero}>
-              <h1 className={styles.title}>Download the Tactus IDE</h1>
+              <h1 className={styles.title}>Download Tactus</h1>
               <p className={styles.subtitle}>
                 The desktop environment for building, running, and debugging
                 Tactus agents.
               </p>
               {versionLabel ? (
-                <div className={styles.latestVersion} aria-label="Latest version">
-                  <span className={styles.latestVersionLabel}>Latest version</span>
-                  <span className={styles.latestVersionNumber}>{versionLabel}</span>
+                <div
+                  className={styles.latestVersion}
+                  aria-label="Latest version"
+                >
+                  <span className={styles.latestVersionLabel}>
+                    Latest version
+                  </span>
+                  <span className={styles.latestVersionNumber}>
+                    {versionLabel}
+                  </span>
                 </div>
               ) : null}
 
@@ -70,36 +78,39 @@ const DownloadPage = () => {
                   bleed={true}
                 >
                   <p>
-                    The version number starts with 0., which means this is an alpha
-                    release. The feature set is not complete and is changing
-                    rapidly. I am moving fast and breaking things, making breaking
-                    changes literally every day.
+                    The version number starts with 0., which means this is an
+                    alpha release. The feature set is not complete and is
+                    changing rapidly. I am moving fast and breaking things,
+                    making breaking changes literally every day.
                   </p>
                   <p>
-                    If you're willing to sign up for an adventure, you have a chance
-                    to get early, high-level support and shape the future of the
-                    language, but I can't make any guarantees about stability,
-                    especially over the next couple of months.
+                    If you're willing to sign up for an adventure, you have a
+                    chance to get early, high-level support and shape the future
+                    of the language, but I can't make any guarantees about
+                    stability, especially over the next couple of months.
                   </p>
                   <p>
-                    Tactus is already a mission-critical technology in production
-                    for my own projects, but it is not publicly supported yet—use
-                    it at your own risk.
-                  </p>
-                  <p
-                    style={{
-                      marginTop: "var(--space-4)",
-                      borderTop: "1px solid rgba(255,255,255,0.2)",
-                      paddingTop: "var(--space-4)",
-                    }}
-                  >
-                    <strong>Note on Desktop Apps:</strong> Please note that the
-                    Electron apps are less tested than running the web application
-                    through Node. They share a common codebase, but have platform
-                    differences. My development focus is primarily on the Node web
-                    application.
+                    Tactus is already a mission-critical technology in
+                    production for my own projects, but it is not publicly
+                    supported yet—use it at your own risk.
                   </p>
                 </Breakout>
+                <div
+                  style={{
+                    marginTop: "var(--space-4)",
+                    maxWidth: "var(--size-content)",
+                    margin: "var(--space-4) auto 0",
+                    textAlign: "left",
+                  }}
+                >
+                  <p>
+                    <strong>Note on Desktop Apps:</strong> Please note that the
+                    Electron apps are less tested than running the web
+                    application through Node. They share a common codebase, but
+                    have platform differences. My development focus is primarily
+                    on the Node web application.
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -113,9 +124,10 @@ const DownloadPage = () => {
                 </p>
                 <div className={styles.macWarning}>
                   <strong>Distribution Warning</strong>
-                  The distributed macOS app does not yet distribute smoothly. (I have to pay Apple to sign it and I will...) You are
-                  better off building the Electron app yourself or using the Node
-                  web application.
+                  The distributed macOS app does not yet distribute smoothly. (I
+                  have to pay Apple to sign it and I will...) You are better off
+                  building the Electron app yourself or using the Node web
+                  application.
                 </div>
                 <a
                   href={macUrl || fallbackUrl}
@@ -158,15 +170,86 @@ const DownloadPage = () => {
           <div className={styles.container}>
             <div className={styles.hero} style={{ paddingTop: 0 }}>
               <h2 className={styles.title} style={{ fontSize: "2rem" }}>
-                Command Line Interface
+                Install Tactus for Nerds
               </h2>
               <p className={styles.subtitle}>
-                For running agents on servers or CI/CD, install the Python
-                package.
+                You don’t need the Electron app. You can run agents via the CLI
+                or run the web IDE locally.
               </p>
+            </div>
 
-              <div className={styles.codeBlock}>
-                $ pip install tactus
+            <div className={styles.nerdGrid}>
+              {/* Option 1: CLI */}
+              <div className={styles.nerdCard}>
+                <h3 className={styles.nerdTitle}>Option 1: Tactus CLI</h3>
+                <p className={styles.nerdText}>
+                  Install the Python package to run agents from your terminal.
+                  This is the core runtime. Docker is required for the default
+                  sandboxed execution mode.
+                </p>
+                <div className={styles.codeBlock}>
+                  $ pip install tactus{"\n"}$ git clone
+                  https://github.com/AnthusAI/Tactus-examples.git{"\n"}$ cd
+                  Tactus-examples{"\n"}
+                  {"\n"}# Run specs (fast, mock mode){"\n"}$ tactus test
+                  01-getting-started/01-hello-world.tac --mock{"\n"}
+                  {"\n"}# Run live{"\n"}$ export OPENAI_API_KEY=your-key{"\n"}$
+                  tactus run 01-getting-started/01-hello-world.tac{"\n"}
+                  {"\n"}# No Docker? Opt out explicitly (no isolation){"\n"}$
+                  tactus run 01-getting-started/01-hello-world.tac --no-sandbox
+                </div>
+              </div>
+
+              {/* Option 2: Web IDE Source */}
+              <div className={styles.nerdCard}>
+                <h3 className={styles.nerdTitle}>Option 2: Web IDE Source</h3>
+                <p className={styles.nerdText}>
+                  Prefer the visual IDE but hate Electron? Run the Node.js web
+                  application directly from source.
+                </p>
+                <div className={styles.codeBlock}>
+                  $ git clone https://github.com/AnthusAI/Tactus.git{"\n"}$ cd
+                  Tactus{"\n"}$ npm install{"\n"}$ npm start{"\n"}
+                  {"\n"}# Open http://localhost:3000
+                </div>
+                <div style={{ marginTop: "var(--space-3)" }}>
+                  <a
+                    href="https://github.com/AnthusAI/Tactus"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ fontWeight: 700 }}
+                  >
+                    View Repository →
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.section} style={{ paddingTop: 0 }}>
+          <div className={styles.container}>
+            <div className={styles.nextSteps}>
+              <h2 className={styles.nextStepsTitle}>Next Steps</h2>
+              <div className={styles.nextStepsGrid}>
+                <Link to="/getting-started/" className={styles.nextStepCard}>
+                  <h3 className={styles.nextStepTitle}>Get Started</h3>
+                  <p className={styles.nextStepText}>
+                    Install dependencies and run your first agent.
+                  </p>
+                </Link>
+                <Link to="/examples/" className={styles.nextStepCard}>
+                  <h3 className={styles.nextStepTitle}>Examples Library</h3>
+                  <p className={styles.nextStepText}>
+                    Browse runnable code examples for common patterns.
+                  </p>
+                </Link>
+                <Link to="/use-cases/" className={styles.nextStepCard}>
+                  <h3 className={styles.nextStepTitle}>Use Cases</h3>
+                  <p className={styles.nextStepText}>
+                    See full walkthroughs of production workflows.
+                  </p>
+                </Link>
               </div>
             </div>
           </div>

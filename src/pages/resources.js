@@ -14,7 +14,10 @@ const ResourcesPage = () => {
             <div className={styles.hero}>
               <p className={styles.eyebrow}>Resources</p>
               <h1 className={styles.title}>Resources</h1>
-              <p className={styles.lede}>Books and videos that pair with the site’s articles and patterns.</p>
+              <p className={styles.lede}>
+                Books and videos that pair with the site’s articles and
+                patterns.
+              </p>
             </div>
           </div>
         </section>
@@ -29,4 +32,3 @@ const ResourcesPage = () => {
 export const Head = () => <Seo title="Resources" />
 
 export default ResourcesPage
-

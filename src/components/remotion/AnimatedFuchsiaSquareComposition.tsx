@@ -1,10 +1,5 @@
 import React from "react"
-import {
-  useCurrentFrame,
-  useVideoConfig,
-  spring,
-  interpolate,
-} from "remotion"
+import { useCurrentFrame, useVideoConfig, spring, interpolate } from "remotion"
 import { FuchsiaSquare } from "../primitives/FuchsiaSquare"
 
 export interface AnimatedFuchsiaSquareProps {
@@ -24,7 +19,9 @@ export interface AnimatedFuchsiaSquareProps {
  * The Player component provides the Remotion context (useCurrentFrame, useVideoConfig)
  * so this component works identically in both contexts.
  */
-export const AnimatedFuchsiaSquareComposition: React.FC<AnimatedFuchsiaSquareProps> = ({
+export const AnimatedFuchsiaSquareComposition: React.FC<
+  AnimatedFuchsiaSquareProps
+> = ({
   size = 200,
   minStrokeWidth = 2,
   maxStrokeWidth = 20,
@@ -46,11 +43,7 @@ export const AnimatedFuchsiaSquareComposition: React.FC<AnimatedFuchsiaSquarePro
         },
       })
 
-      return interpolate(
-        animation,
-        [0, 1],
-        [minStrokeWidth, maxStrokeWidth]
-      )
+      return interpolate(animation, [0, 1], [minStrokeWidth, maxStrokeWidth])
     } else {
       return interpolate(
         frame,
@@ -62,7 +55,14 @@ export const AnimatedFuchsiaSquareComposition: React.FC<AnimatedFuchsiaSquarePro
         }
       )
     }
-  }, [frame, fps, shouldUseSpring, minStrokeWidth, maxStrokeWidth, durationFrames])
+  }, [
+    frame,
+    fps,
+    shouldUseSpring,
+    minStrokeWidth,
+    maxStrokeWidth,
+    durationFrames,
+  ])
 
   return <FuchsiaSquare size={size} strokeWidth={strokeWidth} />
 }

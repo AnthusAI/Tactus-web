@@ -42,11 +42,11 @@ const parseArgs = () => {
   return out
 }
 
-const listMp4s = (dir) => {
+const listMp4s = dir => {
   if (!existsSync(dir)) return []
   return readdirSync(dir)
-    .filter((f) => f.toLowerCase().endsWith(".mp4"))
-    .map((f) => path.join(dir, f))
+    .filter(f => f.toLowerCase().endsWith(".mp4"))
+    .map(f => path.join(dir, f))
 }
 
 const run = (cmd, opts = {}) => {
@@ -79,15 +79,17 @@ const main = () => {
   const s3Dest = `s3://${opts.bucket}/${opts.prefix}/`
   const dry = opts.dryRun ? "--dryrun" : ""
 
-  console.log(`Uploading ${mp4s.length} video(s) from ${opts.outDir} -> ${s3Dest}`)
+  console.log(
+    `Uploading ${mp4s.length} video(s) from ${opts.outDir} -> ${s3Dest}`
+  )
   run(
     [
       "aws s3 sync",
       `"${opts.outDir}"`,
       `"${s3Dest}"`,
-      "--exclude \"*\"",
-      "--include \"*.mp4\"",
-      "--include \"*.jpg\"",
+      '--exclude "*"',
+      '--include "*.mp4"',
+      '--include "*.jpg"',
       `--cache-control "${opts.cacheControl}"`,
       dry,
     ]

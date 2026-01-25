@@ -6,9 +6,9 @@ import * as styles from "./header.module.css"
 
 // Primary navigation items shown inline on desktop
 const PRIMARY_NAV = [
-  { label: 'Learn More', to: '/learn-more/' },
-  { label: 'Get Started', to: '/getting-started/' },
-  { label: 'Download', to: '/download/' },
+  { label: "Learn More", to: "/learn-more/" },
+  { label: "Get Started", to: "/getting-started/" },
+  { label: "Download", to: "/download/" },
 ]
 
 const Header = ({ siteTitle, isMenuOpen, setIsMenuOpen }) => {
@@ -16,26 +16,31 @@ const Header = ({ siteTitle, isMenuOpen, setIsMenuOpen }) => {
 
   // Handle ESC key to close menu
   React.useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === 'Escape' && isMenuOpen) {
+    const handleKeyDown = e => {
+      if (e.key === "Escape" && isMenuOpen) {
         setIsMenuOpen(false)
       }
     }
-    document.addEventListener('keydown', handleKeyDown)
-    return () => document.removeEventListener('keydown', handleKeyDown)
+    document.addEventListener("keydown", handleKeyDown)
+    return () => document.removeEventListener("keydown", handleKeyDown)
   }, [isMenuOpen, setIsMenuOpen])
 
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
         {/* Brand */}
-        <Link to="/" className={styles.brand} aria-label="Tactus home" onClick={() => setIsMenuOpen(false)}>
+        <Link
+          to="/"
+          className={styles.brand}
+          aria-label="Tactus home"
+          onClick={() => setIsMenuOpen(false)}
+        >
           <span className={styles.brandMark}>{siteTitle}</span>
         </Link>
 
         {/* Primary Navigation (Desktop Inline) */}
         <nav className={styles.primaryNav} aria-label="Primary navigation">
-          {PRIMARY_NAV.map((item) => (
+          {PRIMARY_NAV.map(item => (
             <Link
               key={item.to}
               to={item.to}

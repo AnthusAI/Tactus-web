@@ -102,6 +102,21 @@
   color: rgba(255, 255, 255, 0.9);
 }
 
+.primary .body code {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: var(--color-primary-ink);
+}
+
+.primary .body pre {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.primary .body pre code {
+  background-color: transparent;
+  color: var(--color-primary-ink);
+}
+
 .muted .body {
   color: var(--color-text);
 }

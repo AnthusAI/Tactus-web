@@ -20,7 +20,7 @@ export const Default = {
   args: {
     theme: "light",
   },
-  render: (args) => (
+  render: args => (
     <Frame>
       <IsolatedToolsDiagram {...args} />
     </Frame>
@@ -34,7 +34,7 @@ export const VideoFrame = {
   parameters: {
     videoCanvas: { enabled: true, showGuides: true },
   },
-  render: (args) => (
+  render: args => (
     <div style={{ width: "85%", maxWidth: 1400 }}>
       <IsolatedToolsDiagram {...args} />
     </div>

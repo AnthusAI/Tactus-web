@@ -32,24 +32,26 @@ src/
 
 Configured in both `tsconfig.json` and `remotion.config.ts`:
 
-| Alias | Resolves To | Purpose |
-|-------|-------------|---------|
+| Alias            | Resolves To        | Purpose              |
+| ---------------- | ------------------ | -------------------- |
 | `@/components/*` | `src/components/*` | Shared UI components |
-| `@/videos/*` | `src/videos/*` | Video compositions |
-| `@/lib/*` | `src/lib/*` | Utility functions |
-| `@/tactus/*` | `src/tactus/*` | Tactus-specific code |
+| `@/videos/*`     | `src/videos/*`     | Video compositions   |
+| `@/lib/*`        | `src/lib/*`        | Utility functions    |
+| `@/tactus/*`     | `src/tactus/*`     | Tactus-specific code |
 
 ## Tactus Branding
 
 The project uses the Tactus website's light mode design system:
 
 ### Design Tokens (`src/lib/theme.ts`)
+
 - **Primary Color**: `#c7007e` (Magenta/Pink)
 - **Background**: `#fdfdfd` (Off-white paper)
 - **Text**: `#27272a` (Charcoal)
 - **Fonts**: Source Sans 3 (headers), Source Serif 4 (body), Source Code Pro (code)
 
 ### Core Components
+
 - **GlobalStyles**: Wraps content, loads fonts, applies background
 - **Layout**: Flexbox container with consistent spacing
 - **Typography**: H1, H2, H3, Body, Code, Subtitle components
@@ -62,12 +64,13 @@ The project uses the Tactus website's light mode design system:
 1. **Create video directory**: `src/videos/<video-name>/`
 2. **Create component file**: `src/videos/<video-name>/<VideoName>.tsx`
 3. **Implement the video component**:
+
    ```typescript
-   import React from "react";
-   import { Sequence } from "remotion";
-   import { GlobalStyles } from "../../components/GlobalStyles";
-   import { Layout } from "../../components/Layout";
-   import { H1, Subtitle } from "../../components/Typography";
+   import React from "react"
+   import { Sequence } from "remotion"
+   import { GlobalStyles } from "../../components/GlobalStyles"
+   import { Layout } from "../../components/Layout"
+   import { H1, Subtitle } from "../../components/Typography"
 
    export const MyVideo: React.FC = () => {
      return (
@@ -79,15 +82,17 @@ The project uses the Tactus website's light mode design system:
            </Layout>
          </Sequence>
        </GlobalStyles>
-     );
-   };
+     )
+   }
    ```
+
 4. **Register in Root.tsx**:
+
    ```typescript
-   import { MyVideo } from "@/videos/<video-name>/<VideoName>";
-   
+   import { MyVideo } from "@/videos/<video-name>/<VideoName>"
+
    // Add to RemotionRoot component:
-   <Composition
+   ;<Composition
      id="MyVideo"
      component={MyVideo}
      durationInFrames={150}
@@ -96,12 +101,13 @@ The project uses the Tactus website's light mode design system:
      height={1080}
    />
    ```
+
 5. **Add to render script** (optional): Edit `scripts/render-all.js`:
    ```javascript
    const compositions = [
      { id: "Intro", outputFile: "intro.mp4" },
      { id: "MyVideo", outputFile: "my-video.mp4" },
-   ];
+   ]
    ```
 
 ### Adding a Reusable Component
@@ -131,10 +137,10 @@ The project uses the Tactus website's light mode design system:
 Use Remotion's `spring()` function for smooth animations:
 
 ```typescript
-import { spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { spring, useCurrentFrame, useVideoConfig } from "remotion"
 
-const frame = useCurrentFrame();
-const { fps } = useVideoConfig();
+const frame = useCurrentFrame()
+const { fps } = useVideoConfig()
 
 const animation = spring({
   frame,
@@ -144,7 +150,7 @@ const animation = spring({
     stiffness: 200,
     mass: 0.5,
   },
-});
+})
 
 // Use animation value (0 to 1) for opacity, transforms, etc.
 ```
@@ -152,14 +158,17 @@ const animation = spring({
 ## Configuration Files
 
 ### package.json
+
 - Defines dependencies and scripts
 - Scripts: `start` (studio), `render` (all videos), `render:intro` (single video), `test` (lint + typecheck)
 
 ### tsconfig.json
+
 - TypeScript configuration
 - Path aliases defined in `compilerOptions.paths`
 
 ### remotion.config.ts
+
 - Remotion-specific configuration
 - Webpack alias configuration (mirrors tsconfig paths)
 - Video format settings
@@ -179,46 +188,56 @@ const animation = spring({
 ## Babulus Watch Mode
 
 ### Development Mode (Fast Iteration)
+
 ```bash
 npm run babulus:watch
 ```
+
 Uses fast/cheap providers (configured in `.babulus/config.yml`) for quick iteration.
 
 ### Production Mode (High Quality)
+
 ```bash
 BABULUS_ENV=production npm run babulus:watch
 ```
+
 Uses production providers (typically Eleven Labs for TTS) for high-quality audio generation. Watch mode continuously re-generates timelines and audio when `.babulus.ts` files change.
 
 ### Production Rendering Workflow
+
 When working with production audio and videos:
 
 **Terminal 1** - Generate production audio with watch:
+
 ```bash
 BABULUS_ENV=production npm run babulus:watch
 ```
 
 **Terminal 2** - Re-render videos (run this after Babulus updates timelines):
+
 ```bash
 npm run videos:render
 ```
 
 Or render a specific video:
+
 ```bash
 npm run videos:render Intro
 ```
 
 ### Available Babulus Commands
-| Command | Description |
-|---------|-------------|
-| `npm run babulus:watch` | Watch DSL files and regenerate (development mode) |
-| `BABULUS_ENV=production npm run babulus:watch` | Watch DSL files and regenerate (production mode) |
-| `npm run babulus:generate -- content/intro.babulus.ts` | One-time generation of a specific video |
-| `BABULUS_ENV=production npm run babulus:generate -- content/intro.babulus.ts` | One-time production generation |
-| `npm run babulus:clean` | Remove all generated artifacts |
-| `npm run babulus:sfx` | Manage sound-effect variants |
+
+| Command                                                                       | Description                                       |
+| ----------------------------------------------------------------------------- | ------------------------------------------------- |
+| `npm run babulus:watch`                                                       | Watch DSL files and regenerate (development mode) |
+| `BABULUS_ENV=production npm run babulus:watch`                                | Watch DSL files and regenerate (production mode)  |
+| `npm run babulus:generate -- content/intro.babulus.ts`                        | One-time generation of a specific video           |
+| `BABULUS_ENV=production npm run babulus:generate -- content/intro.babulus.ts` | One-time production generation                    |
+| `npm run babulus:clean`                                                       | Remove all generated artifacts                    |
+| `npm run babulus:sfx`                                                         | Manage sound-effect variants                      |
 
 ### Environment Variables
+
 - `BABULUS_ENV`: Set to `production` for high-quality audio (default: `development`)
 - `BABULUS_PYTHON`: Path to Python executable if not in PATH
 - Uses fallback chain: `development → aws → azure → production → static` (allows reusing production audio during development)
@@ -226,17 +245,20 @@ npm run videos:render Intro
 ## Rendering System
 
 ### Output Directory
+
 All rendered videos are saved to `out/` directory (git-ignored by default).
 
 ### Render Scripts
 
 **Automated rendering** (`scripts/render-all.js`):
+
 - Renders all compositions defined in the script
 - Provides progress feedback
 - Handles errors gracefully
 - Usage: `npm run render`
 
 **Manual rendering**:
+
 ```bash
 npx remotion render src/index.ts <CompositionId> out/<output-file>.mp4
 ```
@@ -255,7 +277,7 @@ const compositions = [
     id: "YourNewVideo",
     outputFile: "your-new-video.mp4",
   },
-];
+]
 ```
 
 ## Best Practices
@@ -286,13 +308,17 @@ The generated timeline JSON contains segment start times. Use `getCueTtsStarts()
 ```typescript
 // In the video component, extract TTS segment start times
 const getCueTtsStarts = (sceneId: string, cueId: string): number[] => {
-  const items = timeline?.items ?? [];
-  const cueItem = items.find(it => it.type === "tts" && it.sceneId === sceneId && it.cueId === cueId);
-  return (cueItem?.segments ?? []).filter(s => s.type === "tts").map(s => s.startSec);
-};
+  const items = timeline?.items ?? []
+  const cueItem = items.find(
+    it => it.type === "tts" && it.sceneId === sceneId && it.cueId === cueId
+  )
+  return (cueItem?.segments ?? [])
+    .filter(s => s.type === "tts")
+    .map(s => s.startSec)
+}
 
 // Pass to scene component
-<MyScene ttsStartsSec={getCueTtsStarts("my_scene", "my_cue")} />
+;<MyScene ttsStartsSec={getCueTtsStarts("my_scene", "my_cue")} />
 ```
 
 ### 2. Map voice cue beats to diagram progress
@@ -300,37 +326,40 @@ const getCueTtsStarts = (sceneId: string, cueId: string): number[] => {
 In the scene component, use Remotion's `interpolate()` to map time to progress:
 
 ```typescript
-const MyScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({ scene, ttsStartsSec }) => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
-  const localSec = frame / fps;
+const MyScene: React.FC<{ scene: Scene; ttsStartsSec: number[] }> = ({
+  scene,
+  ttsStartsSec,
+}) => {
+  const frame = useCurrentFrame()
+  const { fps } = useVideoConfig()
+  const localSec = frame / fps
 
   // Convert absolute timestamps to scene-local times
-  const cueStartsLocal = ttsStartsSec.map(s => s - scene.startSec);
-  const beat1 = cueStartsLocal[0] ?? 0;
-  const beat2 = cueStartsLocal[1] ?? beat1 + 3;
-  const beat3 = cueStartsLocal[2] ?? beat2 + 3;
+  const cueStartsLocal = ttsStartsSec.map(s => s - scene.startSec)
+  const beat1 = cueStartsLocal[0] ?? 0
+  const beat2 = cueStartsLocal[1] ?? beat1 + 3
+  const beat3 = cueStartsLocal[2] ?? beat2 + 3
 
   // Map time to diagram progress (0-1)
   const diagramProgress = interpolate(
     localSec,
-    [beat1, beat2, beat3, beat3 + 5],  // keyframe times
-    [0, 0.33, 0.66, 1],                 // progress values
+    [beat1, beat2, beat3, beat3 + 5], // keyframe times
+    [0, 0.33, 0.66, 1], // progress values
     { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-  );
+  )
 
-  return <GuardrailsStackDiagram theme="light" progress={diagramProgress} />;
-};
+  return <GuardrailsStackDiagram theme="light" progress={diagramProgress} />
+}
 ```
 
 ### 3. Available diagrams with progress/pointer control
 
-| Diagram | Progress Prop | Behavior |
-|---------|--------------|----------|
-| `GuardrailsStackDiagram` | `progress` (0-1) | Highlights layer index = floor(progress * 8), moves pointer |
-| `LeastPrivilegeDiagram` | `progress` (0-1) | Highlights dimension index = floor(progress * 5), shows 5 dimensions of least privilege |
-| `PromptEngineeringCeilingDiagram` | `progress` (0-1) | Animates ceiling visualization |
-| `HumanInTheLoopDiagram` | `time` (ms) + `scenario` + `config` | Runs simulation at given time |
+| Diagram                           | Progress Prop                       | Behavior                                                                                 |
+| --------------------------------- | ----------------------------------- | ---------------------------------------------------------------------------------------- |
+| `GuardrailsStackDiagram`          | `progress` (0-1)                    | Highlights layer index = floor(progress \* 8), moves pointer                             |
+| `LeastPrivilegeDiagram`           | `progress` (0-1)                    | Highlights dimension index = floor(progress \* 5), shows 5 dimensions of least privilege |
+| `PromptEngineeringCeilingDiagram` | `progress` (0-1)                    | Animates ceiling visualization                                                           |
+| `HumanInTheLoopDiagram`           | `time` (ms) + `scenario` + `config` | Runs simulation at given time                                                            |
 
 ### 4. Babulus YAML voice segment structure
 
@@ -341,11 +370,11 @@ cues:
   - id: defense_layers
     voice:
       segments:
-        - voice: "First layer: cost limits..."    # → progress 0.0
+        - voice: "First layer: cost limits..." # → progress 0.0
         - pause_seconds: 0.5
-        - voice: "Second layer: prompts..."       # → progress 0.125
+        - voice: "Second layer: prompts..." # → progress 0.125
         - pause_seconds: 0.5
-        - voice: "Third layer: context..."        # → progress 0.25
+        - voice: "Third layer: context..." # → progress 0.25
 ```
 
 ## LeastPrivilegeDiagram
@@ -353,6 +382,7 @@ cues:
 Shows how Tactus enforces least privilege across 5 dimensions in a radial hub design.
 
 ### Five Dimensions:
+
 1. **Minimal Toolsets** - Only tools needed for the task
 2. **Curated Context** - Limited information, not everything
 3. **Network Isolation** - Default networkless execution
@@ -360,15 +390,17 @@ Shows how Tactus enforces least privilege across 5 dimensions in a radial hub de
 5. **Temporal Gating** - Tools available only when workflow stage requires
 
 ### Props:
+
 - `progress` (0-1): Animates through dimensions sequentially (each dimension gets 0.2 of progress range)
 - `theme`: "light" | "dark"
 - `style`: Optional CSS properties
 - `className`: Optional CSS class
 
 ### Usage Example:
+
 ```jsx
 // Static usage (web page)
-<LeastPrivilegeDiagram theme="light" />
+;<LeastPrivilegeDiagram theme="light" />
 
 // Animated usage (video with voice sync)
 const diagramProgress = interpolate(
@@ -376,11 +408,12 @@ const diagramProgress = interpolate(
   [introEnd, dim1Start, dim2Start, dim3Start, dim4Start, dim5Start],
   [0, 0.2, 0.4, 0.6, 0.8, 1.0],
   { extrapolateLeft: "clamp", extrapolateRight: "clamp" }
-);
-<LeastPrivilegeDiagram theme="light" progress={diagramProgress} />
+)
+;<LeastPrivilegeDiagram theme="light" progress={diagramProgress} />
 ```
 
 ### Visual Layout:
+
 - Center hub displays "TACTUS Least Privilege Engine"
 - 5 dimensions radiate outward at different angles
 - Active dimension (based on progress) has higher opacity and colored border
@@ -390,14 +423,17 @@ const diagramProgress = interpolate(
 ## Troubleshooting
 
 ### Path alias not resolving
+
 - Ensure both `tsconfig.json` and `remotion.config.ts` have matching alias configurations
 - Restart the Remotion studio after configuration changes
 
 ### Type errors
+
 - Run `npm test` to see all TypeScript errors
 - Check that all imports use correct paths and exported names
 
 ### Video not appearing in studio
+
 - Ensure the composition is registered in `Root.tsx`
 - Check that the component is properly exported
 - Verify the import path is correct

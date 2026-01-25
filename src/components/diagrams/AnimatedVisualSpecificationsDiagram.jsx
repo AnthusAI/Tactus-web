@@ -34,8 +34,8 @@ const AnimatedVisualSpecificationsDiagram = ({
     const element = ref.current
     if (!element) return
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+      entries => {
+        entries.forEach(entry => {
           if (entry.isIntersecting) {
             setIsVisible(true)
           }
@@ -53,7 +53,7 @@ const AnimatedVisualSpecificationsDiagram = ({
     let raf = 0
     let start = performance.now()
 
-    const tick = (now) => {
+    const tick = now => {
       const elapsed = now - start
       setTime(startAtMs + elapsed)
       raf = requestAnimationFrame(tick)

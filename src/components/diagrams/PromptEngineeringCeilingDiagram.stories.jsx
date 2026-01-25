@@ -22,7 +22,7 @@ export const Default = {
     theme: "light",
     progress: 1,
   },
-  render: (args) => (
+  render: args => (
     <Frame>
       <PromptEngineeringCeilingDiagram {...args} />
     </Frame>
@@ -37,7 +37,7 @@ export const VideoFrame = {
   parameters: {
     videoCanvas: { enabled: true, showGuides: true },
   },
-  render: (args) => (
+  render: args => (
     <div style={{ width: "85%", maxWidth: 1400 }}>
       <PromptEngineeringCeilingDiagram {...args} />
     </div>

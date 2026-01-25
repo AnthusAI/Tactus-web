@@ -9,7 +9,12 @@ import {
   ViewerProtocolPolicy,
 } from "aws-cdk-lib/aws-cloudfront"
 import { S3Origin } from "aws-cdk-lib/aws-cloudfront-origins"
-import { ArnPrincipal, CanonicalUserPrincipal, Effect, PolicyStatement } from "aws-cdk-lib/aws-iam"
+import {
+  ArnPrincipal,
+  CanonicalUserPrincipal,
+  Effect,
+  PolicyStatement,
+} from "aws-cdk-lib/aws-iam"
 import { BlockPublicAccess, Bucket, BucketEncryption } from "aws-cdk-lib/aws-s3"
 
 const backend = defineBackend({})
@@ -31,7 +36,9 @@ videosBucket.addToResourcePolicy(
   new PolicyStatement({
     effect: Effect.ALLOW,
     principals: [
-      new CanonicalUserPrincipal(originAccessIdentity.cloudFrontOriginAccessIdentityS3CanonicalUserId),
+      new CanonicalUserPrincipal(
+        originAccessIdentity.cloudFrontOriginAccessIdentityS3CanonicalUserId
+      ),
     ],
     actions: ["s3:GetObject"],
     resources: [videosBucket.arnForObjects("*")],
@@ -57,16 +64,20 @@ videosBucket.addToResourcePolicy(
   })
 )
 
-const corsHeaders = new ResponseHeadersPolicy(videosStack, "VideosCorsHeaders", {
-  corsBehavior: {
-    accessControlAllowCredentials: false,
-    accessControlAllowHeaders: ["*"],
-    accessControlAllowMethods: ["GET", "HEAD", "OPTIONS"],
-    accessControlAllowOrigins: ["*"],
-    accessControlMaxAge: Duration.minutes(10),
-    originOverride: true,
-  },
-})
+const corsHeaders = new ResponseHeadersPolicy(
+  videosStack,
+  "VideosCorsHeaders",
+  {
+    corsBehavior: {
+      accessControlAllowCredentials: false,
+      accessControlAllowHeaders: ["*"],
+      accessControlAllowMethods: ["GET", "HEAD", "OPTIONS"],
+      accessControlAllowOrigins: ["*"],
+      accessControlMaxAge: Duration.minutes(10),
+      originOverride: true,
+    },
+  }
+)
 
 const videosCdn = new Distribution(videosStack, "VideosCdn", {
   defaultBehavior: {

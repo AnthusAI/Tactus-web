@@ -1,24 +1,24 @@
-import React from "react";
-import { Img, spring, useCurrentFrame, useVideoConfig } from "remotion";
-import { Layout } from "./Layout";
-import { Body, Code, H2, TitleBlock } from "./Typography";
-import iconImg from "../assets/images/icon.png";
+import React from "react"
+import { Img, spring, useCurrentFrame, useVideoConfig } from "remotion"
+import { Layout } from "./Layout"
+import { Body, Code, H2, TitleBlock } from "./Typography"
+import iconImg from "../assets/images/icon.png"
 
 export const CTAScene: React.FC = () => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
+  const frame = useCurrentFrame()
+  const { fps } = useVideoConfig()
 
   const animation = spring({
     frame,
     fps,
     config: { damping: 100, stiffness: 200, mass: 0.5 },
-  });
+  })
 
   const iconAnimation = spring({
     frame: frame - 60,
     fps,
     config: { damping: 100, stiffness: 150, mass: 0.6 },
-  });
+  })
 
   return (
     <Layout justify="space-evenly">
@@ -38,7 +38,11 @@ export const CTAScene: React.FC = () => {
           textAlign: "center",
         }}
       >
-        Visit <Code inline style={{ fontSize: "1em" }}>https://tactus.anth.us</Code> to learn more
+        Visit{" "}
+        <Code inline style={{ fontSize: "1em" }}>
+          https://tactus.anth.us
+        </Code>{" "}
+        to learn more
       </Body>
 
       {iconAnimation > 0 && (
@@ -60,5 +64,5 @@ export const CTAScene: React.FC = () => {
         </div>
       )}
     </Layout>
-  );
-};
+  )
+}

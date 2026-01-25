@@ -1,4 +1,4 @@
-const getVideoSrc = (filename) => {
+const getVideoSrc = filename => {
   let base = process.env.GATSBY_VIDEOS_BASE_URL
 
   if (!base) {
@@ -20,4 +20,3 @@ const getVideoSrc = (filename) => {
 }
 
 export default getVideoSrc
-

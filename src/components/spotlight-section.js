@@ -16,14 +16,14 @@ const usePreferredTheme = () => {
   return theme
 }
 
-const SpotlightSection = ({ 
-  id, 
-  eyebrow = "Learn", 
-  title, 
-  lede, 
-  to, 
-  ctaText = "Read more", 
-  Diagram, 
+const SpotlightSection = ({
+  id,
+  eyebrow = "Learn",
+  title,
+  lede,
+  to,
+  ctaText = "Read more",
+  Diagram,
 }) => {
   const theme = usePreferredTheme()
 

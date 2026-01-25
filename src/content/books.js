@@ -6,7 +6,8 @@ export const BOOKS = [
   {
     id: "learning-tactus",
     title: "Learning Tactus",
-    description: "A coherent introduction: the why, the mental model, and the core patterns.",
+    description:
+      "A coherent introduction: the why, the mental model, and the core patterns.",
     href: "https://anthusai.github.io/Learning-Tactus/",
     pdf: "https://anthusai.github.io/Learning-Tactus/pdf/Learning-Tactus.pdf",
     repo: "https://github.com/AnthusAI/Learning-Tactus",
@@ -32,5 +33,4 @@ export const BOOKS = [
   },
 ]
 
-export const getBookById = (id) => BOOKS.find((book) => book.id === id)
-
+export const getBookById = id => BOOKS.find(book => book.id === id)

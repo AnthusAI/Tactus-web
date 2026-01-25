@@ -1,11 +1,11 @@
-import * as React from "react";
-import { 
-  Box, 
-  Container, 
-  ShieldCheck, 
-  Globe, 
-  Key, 
-  Lock, 
+import * as React from "react"
+import {
+  Box,
+  Container,
+  ShieldCheck,
+  Globe,
+  Key,
+  Lock,
   Code2,
   Server,
   Cloud,
@@ -17,41 +17,37 @@ import {
   Folder,
   Wrench,
   Cpu,
-  Zap
-} from "lucide-react";
-import { diagramTokens, getDiagramThemeVars } from "./diagramTheme";
+  Zap,
+} from "lucide-react"
+import { diagramTokens, getDiagramThemeVars } from "./diagramTheme"
 
-const IsolatedToolsDiagram = ({
-  theme = "light",
-  style,
-  className,
-}) => {
-  const t = diagramTokens;
+const IsolatedToolsDiagram = ({ theme = "light", style, className }) => {
+  const t = diagramTokens
 
   // Layout Constants
-  const width = 960;
-  const height = 400;
+  const width = 960
+  const height = 400
 
   // --- Host Infrastructure (Wraps all 3 columns) ---
-  const hostX = 20;
-  const hostY = 50;
-  const hostW = 920;
-  const hostH = 340;
+  const hostX = 20
+  const hostY = 50
+  const hostW = 920
+  const hostH = 340
 
   // Column Layout
-  const colY = hostY + 50;
-  const colH = hostH - 70; // 270
-  const colW = 260;
-  const gap = 30;
+  const colY = hostY + 50
+  const colH = hostH - 70 // 270
+  const colW = 260
+  const gap = 30
 
   // 1. Runtime Container (Left)
-  const runX = hostX + 30;
-  
+  const runX = hostX + 30
+
   // 2. Broker / Trusted (Middle)
-  const midX = runX + colW + gap;
-  
+  const midX = runX + colW + gap
+
   // 3. Isolated Container (Right)
-  const isoX = midX + colW + gap;
+  const isoX = midX + colW + gap
 
   return (
     <svg
@@ -85,17 +81,30 @@ const IsolatedToolsDiagram = ({
       {/* =========================================
           HOST INFRASTRUCTURE
          ========================================= */}
-      
+
       <g transform={`translate(${hostX}, ${hostY - 22})`}>
         <Monitor size={18} color={t.muted} />
-        <text x={26} y={14} fill={t.muted} fontSize="14" fontWeight="700" fontFamily={t.fontSans}>
+        <text
+          x={26}
+          y={14}
+          fill={t.muted}
+          fontSize="14"
+          fontWeight="700"
+          fontFamily={t.fontSans}
+        >
           Host Infrastructure
         </text>
       </g>
 
-      <rect 
-        x={hostX} y={hostY} width={hostW} height={hostH} 
-        rx={8} fill={t.surface2} stroke={t.border} strokeWidth="1" 
+      <rect
+        x={hostX}
+        y={hostY}
+        width={hostW}
+        height={hostH}
+        rx={8}
+        fill={t.surface2}
+        stroke={t.border}
+        strokeWidth="1"
       />
 
       {/* =========================================
@@ -105,50 +114,141 @@ const IsolatedToolsDiagram = ({
 
       <g transform={`translate(${runX}, ${colY - 22})`}>
         <Box size={18} color={t.muted} />
-        <text x={26} y={14} fill={t.muted} fontSize="14" fontWeight="700" fontFamily={t.fontSans}>
+        <text
+          x={26}
+          y={14}
+          fill={t.muted}
+          fontSize="14"
+          fontWeight="700"
+          fontFamily={t.fontSans}
+        >
           Runtime Container
         </text>
       </g>
 
-      <rect 
-        x={runX} y={colY} width={colW} height={colH} 
-        rx={8} fill={t.surface} stroke={t.border} strokeWidth="1" 
+      <rect
+        x={runX}
+        y={colY}
+        width={colW}
+        height={colH}
+        rx={8}
+        fill={t.surface}
+        stroke={t.border}
+        strokeWidth="1"
       />
       {/* Dashed Outline */}
-      <rect 
-        x={runX} y={colY} width={colW} height={colH} 
-        rx={10} fill="none" stroke={t.ink} strokeWidth="2.5" strokeDasharray="8 6" opacity={0.5}
+      <rect
+        x={runX}
+        y={colY}
+        width={colW}
+        height={colH}
+        rx={10}
+        fill="none"
+        stroke={t.ink}
+        strokeWidth="2.5"
+        strokeDasharray="8 6"
+        opacity={0.5}
       />
 
       {/* Content: Lua Sandbox */}
       <g transform={`translate(${runX + 20}, ${colY + 20})`}>
-        <rect x="0" y="0" width={colW - 40} height={100} rx={8} fill={t.codeBg} />
-        <rect x="0" y="0" width={colW - 40} height={100} rx={8} fill="none" stroke={t.primary} strokeWidth="2" strokeDasharray="6 4" />
-        
+        <rect
+          x="0"
+          y="0"
+          width={colW - 40}
+          height={100}
+          rx={8}
+          fill={t.codeBg}
+        />
+        <rect
+          x="0"
+          y="0"
+          width={colW - 40}
+          height={100}
+          rx={8}
+          fill="none"
+          stroke={t.primary}
+          strokeWidth="2"
+          strokeDasharray="6 4"
+        />
+
         <g transform="translate(15, 20)">
-            <Code2 size={16} color={t.primary} />
-            <text x={24} y={12} fill={t.ink} fontSize="13" fontWeight="800" fontFamily={t.fontSans}>Lua Sandbox</text>
-            <text x={0} y={40} fill={t.code} fontSize="11" fontFamily={t.fontMono}>agent()</text>
-            <text x={0} y={56} fill={t.code} fontSize="11" fontFamily={t.fontMono}>-- logic & flow</text>
+          <Code2 size={16} color={t.primary} />
+          <text
+            x={24}
+            y={12}
+            fill={t.ink}
+            fontSize="13"
+            fontWeight="800"
+            fontFamily={t.fontSans}
+          >
+            Lua Sandbox
+          </text>
+          <text
+            x={0}
+            y={40}
+            fill={t.code}
+            fontSize="11"
+            fontFamily={t.fontMono}
+          >
+            agent()
+          </text>
+          <text
+            x={0}
+            y={56}
+            fill={t.code}
+            fontSize="11"
+            fontFamily={t.fontMono}
+          >
+            -- logic & flow
+          </text>
         </g>
       </g>
 
       {/* Content: Un-trusted Tools */}
       <g transform={`translate(${runX + 20}, ${colY + 140})`}>
-        <rect x="0" y="0" width={colW - 40} height={100} rx={4} fill={t.surface2} opacity="0.6" />
-        
+        <rect
+          x="0"
+          y="0"
+          width={colW - 40}
+          height={100}
+          rx={4}
+          fill={t.surface2}
+          opacity="0.6"
+        />
+
         <g transform="translate(15, 20)">
-            <Wrench size={16} color={t.text} />
-            <text x={24} y={12} fill={t.text} fontSize="13" fontWeight="700" fontFamily={t.fontSans}>Un-trusted Tools</text>
-            <text x={0} y={40} fill={t.muted} fontSize="11" fontFamily={t.fontSans}>
-                • User-contributed code
-            </text>
-            <text x={0} y={56} fill={t.muted} fontSize="11" fontFamily={t.fontSans}>
-                • AI-generated code
-            </text>
+          <Wrench size={16} color={t.text} />
+          <text
+            x={24}
+            y={12}
+            fill={t.text}
+            fontSize="13"
+            fontWeight="700"
+            fontFamily={t.fontSans}
+          >
+            Un-trusted Tools
+          </text>
+          <text
+            x={0}
+            y={40}
+            fill={t.muted}
+            fontSize="11"
+            fontFamily={t.fontSans}
+          >
+            • User-contributed code
+          </text>
+          <text
+            x={0}
+            y={56}
+            fill={t.muted}
+            fontSize="11"
+            fontFamily={t.fontSans}
+          >
+            • AI-generated code
+          </text>
         </g>
       </g>
-
 
       {/* =========================================
           COLUMN 2: BROKER & TRUSTED TOOLS
@@ -157,47 +257,125 @@ const IsolatedToolsDiagram = ({
 
       <g transform={`translate(${midX}, ${colY - 22})`}>
         <ShieldCheck size={18} color={t.primary} />
-        <text x={26} y={14} fill={t.ink} fontSize="14" fontWeight="800" fontFamily={t.fontSans}>
+        <text
+          x={26}
+          y={14}
+          fill={t.ink}
+          fontSize="14"
+          fontWeight="800"
+          fontFamily={t.fontSans}
+        >
           Secret Broker
         </text>
       </g>
 
       {/* Broker Box (Top Half) */}
-      <rect 
-        x={midX} y={colY} width={colW} height={120} 
-        rx={8} fill={t.surface} stroke={t.primary} strokeWidth="2" 
+      <rect
+        x={midX}
+        y={colY}
+        width={colW}
+        height={120}
+        rx={8}
+        fill={t.surface}
+        stroke={t.primary}
+        strokeWidth="2"
       />
-      
+
       <g transform={`translate(${midX + 20}, ${colY + 25})`}>
-         <g transform="translate(0, 0)">
-            <Key size={14} color={t.primary} />
-            <text x={20} y={10} fill={t.code} fontSize="11" fontFamily={t.fontMono}>API_KEYS</text>
-         </g>
-         <g transform="translate(0, 25)">
-            <Lock size={14} color={t.ink} />
-            <text x={20} y={10} fill={t.ink} fontSize="11" fontFamily={t.fontSans} fontWeight="600">Access Policies</text>
-         </g>
-         <text x={0} y={75} fill={t.muted} fontSize="12" fontStyle="italic" fontFamily={t.fontSerif}>
-            Routes requests
-         </text>
+        <g transform="translate(0, 0)">
+          <Key size={14} color={t.primary} />
+          <text
+            x={20}
+            y={10}
+            fill={t.code}
+            fontSize="11"
+            fontFamily={t.fontMono}
+          >
+            API_KEYS
+          </text>
+        </g>
+        <g transform="translate(0, 25)">
+          <Lock size={14} color={t.ink} />
+          <text
+            x={20}
+            y={10}
+            fill={t.ink}
+            fontSize="11"
+            fontFamily={t.fontSans}
+            fontWeight="600"
+          >
+            Access Policies
+          </text>
+        </g>
+        <text
+          x={0}
+          y={75}
+          fill={t.muted}
+          fontSize="12"
+          fontStyle="italic"
+          fontFamily={t.fontSerif}
+        >
+          Routes requests
+        </text>
       </g>
 
       {/* Trusted Tools (Bottom Half - Inside Host) */}
       <g transform={`translate(${midX}, ${colY + 140})`}>
-        <rect x="0" y="0" width={colW} height={100} rx={8} fill={t.surface} stroke={t.border} strokeWidth="1" />
-        
+        <rect
+          x="0"
+          y="0"
+          width={colW}
+          height={100}
+          rx={8}
+          fill={t.surface}
+          stroke={t.border}
+          strokeWidth="1"
+        />
+
         <g transform="translate(15, 15)">
-            <Wrench size={16} color={t.ink} />
-            <text x={24} y={12} fill={t.ink} fontSize="13" fontWeight="700" fontFamily={t.fontSans}>Trusted Tools</text>
-            <text x={130} y={12} fill={t.muted} fontSize="11" fontFamily={t.fontMono}>(Host)</text>
-            
-            <g transform="translate(0, 35)">
-                <text x={0} y={0} fill={t.muted} fontSize="11" fontFamily={t.fontSans}>• Standard Library</text>
-                <text x={0} y={16} fill={t.muted} fontSize="11" fontFamily={t.fontSans}>• Admin-vetted tools</text>
-            </g>
+          <Wrench size={16} color={t.ink} />
+          <text
+            x={24}
+            y={12}
+            fill={t.ink}
+            fontSize="13"
+            fontWeight="700"
+            fontFamily={t.fontSans}
+          >
+            Trusted Tools
+          </text>
+          <text
+            x={130}
+            y={12}
+            fill={t.muted}
+            fontSize="11"
+            fontFamily={t.fontMono}
+          >
+            (Host)
+          </text>
+
+          <g transform="translate(0, 35)">
+            <text
+              x={0}
+              y={0}
+              fill={t.muted}
+              fontSize="11"
+              fontFamily={t.fontSans}
+            >
+              • Standard Library
+            </text>
+            <text
+              x={0}
+              y={16}
+              fill={t.muted}
+              fontSize="11"
+              fontFamily={t.fontSans}
+            >
+              • Admin-vetted tools
+            </text>
+          </g>
         </g>
       </g>
-
 
       {/* =========================================
           COLUMN 3: ISOLATED CONTAINER
@@ -206,42 +384,91 @@ const IsolatedToolsDiagram = ({
 
       <g transform={`translate(${isoX}, ${colY - 22})`}>
         <Box size={18} color={t.muted} />
-        <text x={26} y={14} fill={t.muted} fontSize="14" fontWeight="700" fontFamily={t.fontSans}>
+        <text
+          x={26}
+          y={14}
+          fill={t.muted}
+          fontSize="14"
+          fontWeight="700"
+          fontFamily={t.fontSans}
+        >
           Isolated Container
         </text>
       </g>
 
-      <rect 
-        x={isoX} y={colY} width={colW} height={colH} 
-        rx={8} fill={t.surface} stroke={t.border} strokeWidth="1" 
+      <rect
+        x={isoX}
+        y={colY}
+        width={colW}
+        height={colH}
+        rx={8}
+        fill={t.surface}
+        stroke={t.border}
+        strokeWidth="1"
       />
       {/* Dashed Outline */}
-      <rect 
-        x={isoX} y={colY} width={colW} height={colH} 
-        rx={10} fill="none" stroke={t.ink} strokeWidth="2.5" strokeDasharray="8 6" opacity={0.5}
+      <rect
+        x={isoX}
+        y={colY}
+        width={colW}
+        height={colH}
+        rx={10}
+        fill="none"
+        stroke={t.ink}
+        strokeWidth="2.5"
+        strokeDasharray="8 6"
+        opacity={0.5}
       />
 
       {/* Content: Isolated Tools */}
       <g transform={`translate(${isoX + 20}, ${colY + 85})`}>
-        <rect x="0" y="0" width={colW - 40} height={100} rx={4} fill={t.surface2} opacity="0.6" />
-        
+        <rect
+          x="0"
+          y="0"
+          width={colW - 40}
+          height={100}
+          rx={4}
+          fill={t.surface2}
+          opacity="0.6"
+        />
+
         <g transform="translate(15, 20)">
-            <Wrench size={16} color={t.primary} />
-            <text x={24} y={12} fill={t.text} fontSize="13" fontWeight="700" fontFamily={t.fontSans}>Isolated Tools</text>
-            <text x={0} y={40} fill={t.muted} fontSize="11" fontFamily={t.fontSans}>
-                • User-contributed code
-            </text>
-            <text x={0} y={56} fill={t.muted} fontSize="11" fontFamily={t.fontSans}>
-                • AI-generated code
-            </text>
+          <Wrench size={16} color={t.primary} />
+          <text
+            x={24}
+            y={12}
+            fill={t.text}
+            fontSize="13"
+            fontWeight="700"
+            fontFamily={t.fontSans}
+          >
+            Isolated Tools
+          </text>
+          <text
+            x={0}
+            y={40}
+            fill={t.muted}
+            fontSize="11"
+            fontFamily={t.fontSans}
+          >
+            • User-contributed code
+          </text>
+          <text
+            x={0}
+            y={56}
+            fill={t.muted}
+            fontSize="11"
+            fontFamily={t.fontSans}
+          >
+            • AI-generated code
+          </text>
         </g>
       </g>
-
 
       {/* =========================================
           ARROWS
          ========================================= */}
-      
+
       {/* 1. Sandbox -> Broker */}
       <path
         d={`M ${runX + colW - 20} ${colY + 70} 
@@ -269,7 +496,9 @@ const IsolatedToolsDiagram = ({
 
       {/* 3. Broker -> Trusted Tools (Down) */}
       <path
-        d={`M ${midX + colW/2} ${colY + 120} L ${midX + colW/2} ${colY + 140}`}
+        d={`M ${midX + colW / 2} ${colY + 120} L ${midX + colW / 2} ${
+          colY + 140
+        }`}
         fill="none"
         stroke={t.primary}
         strokeWidth="2"
@@ -287,9 +516,8 @@ const IsolatedToolsDiagram = ({
         strokeWidth="3"
         markerEnd="url(#itdArrow)"
       />
-
     </svg>
-  );
-};
+  )
+}
 
-export default IsolatedToolsDiagram;
+export default IsolatedToolsDiagram

@@ -124,14 +124,14 @@
   /* Inherits border-radius from Button */
   /* Inherits background from Button (secondary) */
   /* Inherits border from Button */
-  
+
   /* Layout specific to grid placement */
   flex: 1 1 18rem;
   min-width: min(28rem, 100%);
-  
+
   /* Restore gap/padding specifics if needed, or let Button handle it */
   gap: 0.5rem;
-  
+
   /* Button.large padding is 0.6rem 1.5rem. 
      We might want slightly less horizontal padding for the code snippet? 
      Or stick with Button padding for consistency. 
@@ -168,14 +168,14 @@
   padding: 0.4rem 0.7rem;
   border-radius: 999px;
   border: none;
-  
+
   /* Secondary Button is surface-2. 
      To stand out, this inner button needs contrast.
      Maybe white (surface) or card-title?
   */
-  background: var(--color-surface); 
+  background: var(--color-surface);
   box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.1);
-  
+
   color: var(--color-text);
   font-weight: 700;
   font-size: var(--font-sx);
@@ -229,7 +229,6 @@
   text-decoration: none;
 }
 
-
 .heroAside {
   float: right;
   width: 50%;
@@ -237,7 +236,7 @@
   margin-left: var(--space-5);
   margin-bottom: var(--space-6); /* Significant spacing below image/caption */
   /* Ensure it doesn't push down relative to the text block start */
-  margin-top: 0; 
+  margin-top: 0;
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
@@ -276,7 +275,6 @@
 .example {
   padding-top: var(--space-4);
 }
-
 
 .exampleCopy {
   margin-top: var(--space-4);
@@ -772,7 +770,8 @@
   color: var(--color-text-muted);
   font-family: var(--font-mono);
   font-size: var(--font-sm);
-  border: 2px dashed color-mix(in srgb, var(--color-text-muted) 30%, transparent);
+  border: 2px dashed
+    color-mix(in srgb, var(--color-text-muted) 30%, transparent);
 }
 
 .bookGrid {
@@ -857,7 +856,7 @@
 
   .compareCard {
     /* Keep width constrained to look good centered, but flexible */
-    width: 100%; 
+    width: 100%;
     max-width: 420px; /* Optional: prevent it from getting too wide if undesired */
     display: flex;
     flex-direction: column;
@@ -870,12 +869,12 @@
     */
     align-items: center; /* Centers the title and the UL block itself */
   }
-  
+
   .compareCard h3 {
-     /* Center the title too? User didn't specify, but usually looks better centered above a centered list */
-     /* But "Supervised" icon+text is a flex row. */
-     justify-content: center;
-     width: 100%;
+    /* Center the title too? User didn't specify, but usually looks better centered above a centered list */
+    /* But "Supervised" icon+text is a flex row. */
+    justify-content: center;
+    width: 100%;
   }
 
   .compareList {

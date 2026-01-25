@@ -52,18 +52,20 @@ const GettingStartedProjectsPage = () => {
               <p className={styles.eyebrow}>Getting Started</p>
               <h1 className={styles.title}>Projects to try</h1>
               <p className={styles.lede}>
-                A practical way to learn Tactus is to pick a concrete project and
-                build a tiny end-to-end loop: chat UI, tools, and a couple of
-                human checkpoints.
+                A practical way to learn Tactus is to pick a concrete project
+                and build a tiny end-to-end loop: chat UI, tools, and a couple
+                of human checkpoints.
               </p>
 
               <div className={styles.callout}>
-                <div className={styles.calloutTitle}>Use the IDE to explore</div>
+                <div className={styles.calloutTitle}>
+                  Use the IDE to explore
+                </div>
                 <p className={styles.calloutBody}>
-                  The <Link to="/download/">Tactus IDE</Link> includes the standard
-                  Human-in-the-Loop components. Use the IDE to experience the
-                  interactions quickly, then embed the same components in your
-                  own app when you are ready.
+                  The <Link to="/download/">Tactus IDE</Link> includes the
+                  standard Human-in-the-Loop components. Use the IDE to
+                  experience the interactions quickly, then embed the same
+                  components in your own app when you are ready.
                 </p>
                 <p className={styles.calloutBody}>
                   Component reference:{" "}
@@ -81,15 +83,18 @@ const GettingStartedProjectsPage = () => {
                 Project: embed a copilot in your app
               </h2>
               <p className={styles.body}>
-                Imagine a chat-based copilot inside your product. It can call your
-                tools to propose changes and drafts, but it pauses for explicit
-                human confirmation at the seams where mistakes are costly.
+                Imagine a chat-based copilot inside your product. It can call
+                your tools to propose changes and drafts, but it pauses for
+                explicit human confirmation at the seams where mistakes are
+                costly.
               </p>
 
               <div className={styles.grid}>
                 <div className={styles.card}>
                   <div className={styles.cardHeader}>
-                    <div className={styles.cardTitle}>Checkpoint 1: approve side effects</div>
+                    <div className={styles.cardTitle}>
+                      Checkpoint 1: approve side effects
+                    </div>
                     <div className={styles.cardKicker}>
                       “I’m about to call a tool that changes the world.”
                     </div>
@@ -98,7 +103,8 @@ const GettingStartedProjectsPage = () => {
                     request={{
                       ...baseRequest,
                       request_type: "approval",
-                      message: "Approve publishing this change? (Tool: publish_release)",
+                      message:
+                        "Approve publishing this change? (Tool: publish_release)",
                       options: [
                         { label: "Publish", value: true, style: "primary" },
                         { label: "Hold", value: false, style: "secondary" },
@@ -135,7 +141,9 @@ const GettingStartedProjectsPage = () => {
                           request_type: "input",
                           message: "Give this task a short title",
                           required: true,
-                          metadata: { placeholder: "e.g., Update help center article" },
+                          metadata: {
+                            placeholder: "e.g., Update help center article",
+                          },
                         },
                         {
                           item_id: "owner",
@@ -159,7 +167,10 @@ const GettingStartedProjectsPage = () => {
               </div>
 
               <div className={styles.linksRow}>
-                <Link to="/use-cases/copilot-anything/" className={styles.primaryLink}>
+                <Link
+                  to="/use-cases/copilot-anything/"
+                  className={styles.primaryLink}
+                >
                   Read the copilot use case
                 </Link>
                 <Link to="/use-cases/" className={styles.secondaryLink}>
@@ -174,11 +185,14 @@ const GettingStartedProjectsPage = () => {
               <h2 className={styles.sectionTitle}>Next steps</h2>
               <ul className={styles.bullets}>
                 <li>
-                  Start from a runnable example: <Link to="/examples/">browse examples</Link>
+                  Start from a runnable example:{" "}
+                  <Link to="/examples/">browse examples</Link>
                 </li>
                 <li>
                   Read the use case for the UX story:{" "}
-                  <Link to="/use-cases/copilot-anything/">A copilot for anything</Link>
+                  <Link to="/use-cases/copilot-anything/">
+                    A copilot for anything
+                  </Link>
                 </li>
                 <li>
                   Embed the components directly in your app:{" "}

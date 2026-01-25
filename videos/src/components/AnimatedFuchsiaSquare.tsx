@@ -1,13 +1,9 @@
 import React from "react"
-import {
-  useCurrentFrame,
-  useVideoConfig,
-  spring,
-  interpolate,
-} from "remotion"
+import { useCurrentFrame, useVideoConfig, spring, interpolate } from "remotion"
 import { FuchsiaSquare, FuchsiaSquareProps } from "./primitives/FuchsiaSquare"
 
-export interface AnimatedFuchsiaSquareProps extends Omit<FuchsiaSquareProps, "strokeWidth"> {
+export interface AnimatedFuchsiaSquareProps
+  extends Omit<FuchsiaSquareProps, "strokeWidth"> {
   /**
    * Minimum stroke width
    * @default 2
@@ -77,11 +73,7 @@ export const AnimatedFuchsiaSquare: React.FC<AnimatedFuchsiaSquareProps> = ({
         },
       })
 
-      return interpolate(
-        animation,
-        [0, 1],
-        [minStrokeWidth, maxStrokeWidth]
-      )
+      return interpolate(animation, [0, 1], [minStrokeWidth, maxStrokeWidth])
     } else {
       // Use linear interpolation for predictable timing
       return interpolate(
@@ -94,7 +86,15 @@ export const AnimatedFuchsiaSquare: React.FC<AnimatedFuchsiaSquareProps> = ({
         }
       )
     }
-  }, [frame, startFrame, fps, shouldUseSpring, minStrokeWidth, maxStrokeWidth, durationFrames])
+  }, [
+    frame,
+    startFrame,
+    fps,
+    shouldUseSpring,
+    minStrokeWidth,
+    maxStrokeWidth,
+    durationFrames,
+  ])
 
   return <FuchsiaSquare size={size} strokeWidth={strokeWidth} {...props} />
 }

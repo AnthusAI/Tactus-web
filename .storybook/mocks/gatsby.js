@@ -4,7 +4,7 @@ export const Link = React.forwardRef(({ to, ...props }, ref) => (
   <a ref={ref} href={to} {...props} />
 ))
 
-export const navigate = (to) => {
+export const navigate = to => {
   if (typeof window === "undefined") return
   window.location.assign(to)
 }
@@ -23,5 +23,4 @@ export const useStaticQuery = () => ({
 
 export const StaticQuery = ({ render }) => render(useStaticQuery())
 
-export const withPrefix = (path) => path
-
+export const withPrefix = path => path

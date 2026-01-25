@@ -1,19 +1,22 @@
-import type { Meta, StoryObj } from '@storybook/react';
-import { AnimatedCodeBlock } from '../../src/components/animated/AnimatedCodeBlock';
+import type { Meta, StoryObj } from "@storybook/react"
+import { AnimatedCodeBlock } from "../../src/components/animated/AnimatedCodeBlock"
 
 // Decorator to force background colors
-const withForcedBackground = (backgroundColor: string) => (Story: any) => (
-  <div style={{
-    width: '100vw',
-    height: '100vh',
-    backgroundColor,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  }}>
-    <Story />
-  </div>
-);
+const withForcedBackground = (backgroundColor: string) => (Story: any) =>
+  (
+    <div
+      style={{
+        width: "100vw",
+        height: "100vh",
+        backgroundColor,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Story />
+    </div>
+  )
 
 /**
  * CodeBlock stories for auditioning components in different contexts.
@@ -27,37 +30,37 @@ const withForcedBackground = (backgroundColor: string) => (Story: any) => (
  * ensuring consistent animation behavior.
  */
 const meta = {
-  title: 'Video Components/CodeBlock',
+  title: "Video Components/CodeBlock",
   component: AnimatedCodeBlock,
   parameters: {
-    layout: 'fullscreen',
+    layout: "fullscreen",
   },
-  tags: ['autodocs'],
-} satisfies Meta<typeof AnimatedCodeBlock>;
+  tags: ["autodocs"],
+} satisfies Meta<typeof AnimatedCodeBlock>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 // ============================================================================
 // Hello World - Three Variants
 // ============================================================================
 
 const helloWorldBaseArgs = {
-  label: 'Hello World in Tactus',
+  label: "Hello World in Tactus",
   code: `print("Hello, World!")`,
-  filename: 'hello_world.tac',
-  hint: 'Basic output',
+  filename: "hello_world.tac",
+  hint: "Basic output",
   startTime: 0,
-  language: 'tactus',
+  language: "tactus",
   showTypewriter: true,
   typewriterDelay: 0.5,
   typewriterSpeed: 0.25,
-  typewriterLoop: true,      // Loop the typing: types, pauses, restarts
-  typewriterEndDelay: 1.5,   // 1.5 second pause after typing before restarting
+  typewriterLoop: true, // Loop the typing: types, pauses, restarts
+  typewriterEndDelay: 1.5, // 1.5 second pause after typing before restarting
   controls: false,
   autoPlay: true,
   playbackRate: 1,
-};
+}
 
 /**
  * Hello World - Website Light Mode
@@ -70,10 +73,10 @@ export const HelloWorldWebsiteLight: Story = {
     blockWidth: 800,
     width: 800,
     height: 300,
-    theme: 'light',
+    theme: "light",
   },
-  decorators: [withForcedBackground('#fdfdfd')],
-};
+  decorators: [withForcedBackground("#fdfdfd")],
+}
 
 /**
  * Hello World - Website Dark Mode
@@ -86,10 +89,10 @@ export const HelloWorldWebsiteDark: Story = {
     blockWidth: 800,
     width: 800,
     height: 300,
-    theme: 'dark',
+    theme: "dark",
   },
-  decorators: [withForcedBackground('#18181b')],
-};
+  decorators: [withForcedBackground("#18181b")],
+}
 
 /**
  * Hello World - Video Mode
@@ -102,7 +105,7 @@ export const HelloWorldVideo: Story = {
     blockWidth: 1000,
     width: 1000,
     height: 300,
-    theme: 'light',
+    theme: "light",
   },
   parameters: {
     videoCanvas: {
@@ -112,33 +115,33 @@ export const HelloWorldVideo: Story = {
       height: 2160,
     },
   },
-};
+}
 
 // ============================================================================
 // Multi-line Example - Three Variants
 // ============================================================================
 
 const multiLineBaseArgs = {
-  label: 'Function Definition',
+  label: "Function Definition",
   code: `fn greet(name: String) -> String {
   return "Hello, " + name + "!"
 }
 
 let message = greet("World")
 print(message)`,
-  filename: 'greet.tac',
-  hint: 'Function',
+  filename: "greet.tac",
+  hint: "Function",
   startTime: 0,
-  language: 'tactus',
+  language: "tactus",
   showTypewriter: true,
   typewriterDelay: 0.5,
   typewriterSpeed: 0.25,
-  typewriterLoop: false,     // Don't loop - type once and stay visible
-  typewriterEndDelay: 2.0,   // Show completed text for 2 seconds (not used when loop=false)
+  typewriterLoop: false, // Don't loop - type once and stay visible
+  typewriterEndDelay: 2.0, // Show completed text for 2 seconds (not used when loop=false)
   controls: false,
   autoPlay: true,
   playbackRate: 1,
-};
+}
 
 /**
  * Multi-line Example - Website Light Mode
@@ -150,10 +153,10 @@ export const MultiLineWebsiteLight: Story = {
     blockWidth: 900,
     width: 900,
     height: 500,
-    theme: 'light',
+    theme: "light",
   },
-  decorators: [withForcedBackground('#fdfdfd')],
-};
+  decorators: [withForcedBackground("#fdfdfd")],
+}
 
 /**
  * Multi-line Example - Website Dark Mode
@@ -165,10 +168,10 @@ export const MultiLineWebsiteDark: Story = {
     blockWidth: 900,
     width: 900,
     height: 500,
-    theme: 'dark',
+    theme: "dark",
   },
-  decorators: [withForcedBackground('#18181b')],
-};
+  decorators: [withForcedBackground("#18181b")],
+}
 
 /**
  * Multi-line Example - Video Mode
@@ -180,7 +183,7 @@ export const MultiLineVideo: Story = {
     blockWidth: 1000,
     width: 1000,
     height: 500,
-    theme: 'light',
+    theme: "light",
   },
   parameters: {
     videoCanvas: {
@@ -190,30 +193,30 @@ export const MultiLineVideo: Story = {
       height: 2160,
     },
   },
-};
+}
 
 // ============================================================================
 // Static Example - Three Variants
 // ============================================================================
 
 const staticBaseArgs = {
-  label: 'Data Structures',
+  label: "Data Structures",
   code: `struct Point {
   x: Float
   y: Float
 }
 
 let origin = Point { x: 0.0, y: 0.0 }`,
-  filename: 'point.tac',
-  hint: 'Struct',
+  filename: "point.tac",
+  hint: "Struct",
   startTime: 0,
-  language: 'tactus',
-  showTypewriter: false,  // No animation - display immediately
+  language: "tactus",
+  showTypewriter: false, // No animation - display immediately
   controls: false,
   autoPlay: false,
   playbackRate: 1,
   durationFrames: 1, // Static, no animation
-};
+}
 
 /**
  * Static Example - Website Light Mode
@@ -225,10 +228,10 @@ export const StaticWebsiteLight: Story = {
     blockWidth: 850,
     width: 850,
     height: 450,
-    theme: 'light',
+    theme: "light",
   },
-  decorators: [withForcedBackground('#fdfdfd')],
-};
+  decorators: [withForcedBackground("#fdfdfd")],
+}
 
 /**
  * Static Example - Website Dark Mode
@@ -240,10 +243,10 @@ export const StaticWebsiteDark: Story = {
     blockWidth: 850,
     width: 850,
     height: 450,
-    theme: 'dark',
+    theme: "dark",
   },
-  decorators: [withForcedBackground('#18181b')],
-};
+  decorators: [withForcedBackground("#18181b")],
+}
 
 /**
  * Static Example - Video Mode
@@ -255,7 +258,7 @@ export const StaticVideo: Story = {
     blockWidth: 1000,
     width: 1000,
     height: 450,
-    theme: 'light',
+    theme: "light",
   },
   parameters: {
     videoCanvas: {
@@ -265,30 +268,30 @@ export const StaticVideo: Story = {
       height: 2160,
     },
   },
-};
+}
 
 // ============================================================================
 // Fast Typing - Three Variants
 // ============================================================================
 
 const fastTypingBaseArgs = {
-  label: 'Quick Example',
+  label: "Quick Example",
   code: `let numbers = [1, 2, 3, 4, 5]
 let doubled = numbers.map(n => n * 2)
 print(doubled)`,
-  filename: 'map.tac',
-  hint: 'Array operations',
+  filename: "map.tac",
+  hint: "Array operations",
   startTime: 0,
-  language: 'tactus',
+  language: "tactus",
   showTypewriter: true,
   typewriterDelay: 0.2,
-  typewriterSpeed: 0.5,       // Faster typing speed
-  typewriterLoop: true,       // Loop the fast typing: types, pauses, restarts
-  typewriterEndDelay: 1.0,    // 1 second pause after typing before restarting
+  typewriterSpeed: 0.5, // Faster typing speed
+  typewriterLoop: true, // Loop the fast typing: types, pauses, restarts
+  typewriterEndDelay: 1.0, // 1 second pause after typing before restarting
   controls: false,
   autoPlay: true,
   playbackRate: 1,
-};
+}
 
 /**
  * Fast Typing - Website Light Mode
@@ -300,10 +303,10 @@ export const FastTypingWebsiteLight: Story = {
     blockWidth: 850,
     width: 850,
     height: 350,
-    theme: 'light',
+    theme: "light",
   },
-  decorators: [withForcedBackground('#fdfdfd')],
-};
+  decorators: [withForcedBackground("#fdfdfd")],
+}
 
 /**
  * Fast Typing - Website Dark Mode
@@ -315,10 +318,10 @@ export const FastTypingWebsiteDark: Story = {
     blockWidth: 850,
     width: 850,
     height: 350,
-    theme: 'dark',
+    theme: "dark",
   },
-  decorators: [withForcedBackground('#18181b')],
-};
+  decorators: [withForcedBackground("#18181b")],
+}
 
 /**
  * Fast Typing - Video Mode
@@ -330,7 +333,7 @@ export const FastTypingVideo: Story = {
     blockWidth: 1000,
     width: 1000,
     height: 350,
-    theme: 'light',
+    theme: "light",
   },
   parameters: {
     videoCanvas: {
@@ -340,4 +343,4 @@ export const FastTypingVideo: Story = {
       height: 2160,
     },
   },
-};
+}

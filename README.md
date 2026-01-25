@@ -49,6 +49,7 @@ npx ampx generate outputs --app-id dfkbdffs2viq8 --branch main --profile anthus
 ```
 
 This creates `amplify_outputs.json` with:
+
 - `custom.videosBucketName` - S3 bucket for videos
 - `custom.videosCdnUrl` - CloudFront distribution URL
 

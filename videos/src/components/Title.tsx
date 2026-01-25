@@ -1,14 +1,14 @@
-import React from "react";
-import { spring, useCurrentFrame, useVideoConfig } from "remotion";
+import React from "react"
+import { spring, useCurrentFrame, useVideoConfig } from "remotion"
 
 interface TitleProps {
-  text: string;
-  subtitle?: string;
+  text: string
+  subtitle?: string
 }
 
 export const Title: React.FC<TitleProps> = ({ text, subtitle }) => {
-  const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
+  const frame = useCurrentFrame()
+  const { fps } = useVideoConfig()
 
   const titleAnimation = spring({
     frame,
@@ -18,7 +18,7 @@ export const Title: React.FC<TitleProps> = ({ text, subtitle }) => {
       stiffness: 200,
       mass: 0.5,
     },
-  });
+  })
 
   const subtitleAnimation = spring({
     frame: frame - 10,
@@ -28,7 +28,7 @@ export const Title: React.FC<TitleProps> = ({ text, subtitle }) => {
       stiffness: 200,
       mass: 0.5,
     },
-  });
+  })
 
   return (
     <div
@@ -68,5 +68,5 @@ export const Title: React.FC<TitleProps> = ({ text, subtitle }) => {
         </p>
       )}
     </div>
-  );
-};
+  )
+}

@@ -104,7 +104,7 @@
   padding: var(--space-4);
   background: #1e1e1e;
   overflow-x: auto;
-  font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+  font-family: "Fira Code", "Consolas", "Monaco", monospace;
   font-size: 0.9rem;
   line-height: 1.6;
 }
@@ -129,7 +129,7 @@
   padding: var(--space-4);
   background: #1e1e1e;
   border-radius: var(--border-radius);
-  font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+  font-family: "Fira Code", "Consolas", "Monaco", monospace;
   font-size: 0.9rem;
   color: #d4d4d4;
   overflow-x: auto;

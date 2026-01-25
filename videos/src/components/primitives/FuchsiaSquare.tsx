@@ -1,10 +1,10 @@
-import * as React from "react";
+import * as React from "react"
 
 export interface FuchsiaSquareProps {
-  size?: number;
-  strokeWidth?: number;
-  style?: React.CSSProperties;
-  className?: string;
+  size?: number
+  strokeWidth?: number
+  style?: React.CSSProperties
+  className?: string
 }
 
 export const FuchsiaSquare: React.FC<FuchsiaSquareProps> = ({
@@ -39,8 +39,7 @@ export const FuchsiaSquare: React.FC<FuchsiaSquareProps> = ({
         />
       </svg>
     </div>
-  );
-};
+  )
+}
 
-export default FuchsiaSquare;
-
+export default FuchsiaSquare

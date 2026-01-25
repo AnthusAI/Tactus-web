@@ -1,15 +1,15 @@
-import { Config } from "@remotion/cli/config";
-import path from "path";
+import { Config } from "@remotion/cli/config"
+import path from "path"
 
-Config.setVideoImageFormat("jpeg");
-Config.setOverwriteOutput(true);
+Config.setVideoImageFormat("jpeg")
+Config.setOverwriteOutput(true)
 
 // Set output directory for rendered videos
-Config.setOutputLocation("out");
+Config.setOutputLocation("out")
 
 // Configure webpack to support path aliases
-Config.overrideWebpackConfig((config) => {
-  const projectRoot = process.cwd();
+Config.overrideWebpackConfig(config => {
+  const projectRoot = process.cwd()
   return {
     ...config,
     resolve: {
@@ -24,5 +24,5 @@ Config.overrideWebpackConfig((config) => {
         "@/babulus": path.resolve(projectRoot, "src/babulus"),
       },
     },
-  };
-});
+  }
+})

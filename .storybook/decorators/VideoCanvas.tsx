@@ -1,10 +1,10 @@
-import React from "react";
+import React from "react"
 
 export interface VideoCanvasProps {
-  children: React.ReactNode;
-  showGuides?: boolean;
-  width?: number;
-  height?: number;
+  children: React.ReactNode
+  showGuides?: boolean
+  width?: number
+  height?: number
 }
 
 /**
@@ -26,8 +26,8 @@ export const VideoCanvas: React.FC<VideoCanvasProps> = ({
   height = 2160,
 }) => {
   // Calculate guide boundaries as percentages
-  const actionSafeMargin = 5; // 90% area (5% margin on each side)
-  const titleSafeMargin = 10; // 80% area (10% margin on each side)
+  const actionSafeMargin = 5 // 90% area (5% margin on each side)
+  const titleSafeMargin = 10 // 80% area (10% margin on each side)
 
   return (
     <div
@@ -57,7 +57,15 @@ export const VideoCanvas: React.FC<VideoCanvasProps> = ({
         }}
       >
         {/* Content */}
-        <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center" }}>
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           {children}
         </div>
 
@@ -174,7 +182,9 @@ export const VideoCanvas: React.FC<VideoCanvasProps> = ({
                 textAlign: "right",
               }}
             >
-              <div>{width} × {height}</div>
+              <div>
+                {width} × {height}
+              </div>
               <div style={{ fontSize: "12px", marginTop: "4px" }}>
                 4K UHD (16:9)
               </div>
@@ -183,8 +193,8 @@ export const VideoCanvas: React.FC<VideoCanvasProps> = ({
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
 /**
  * Storybook decorator function that wraps stories in the VideoCanvas.
@@ -192,19 +202,19 @@ export const VideoCanvas: React.FC<VideoCanvasProps> = ({
  */
 export const withVideoCanvas = (Story: React.ComponentType, context: any) => {
   // Only use VideoCanvas if explicitly enabled
-  const enabled = context.parameters?.videoCanvas?.enabled === true;
+  const enabled = context.parameters?.videoCanvas?.enabled === true
 
   if (!enabled) {
-    return <Story />;
+    return <Story />
   }
 
-  const showGuides = context.parameters?.videoCanvas?.showGuides !== false;
-  const width = context.parameters?.videoCanvas?.width || 3840;
-  const height = context.parameters?.videoCanvas?.height || 2160;
+  const showGuides = context.parameters?.videoCanvas?.showGuides !== false
+  const width = context.parameters?.videoCanvas?.width || 3840
+  const height = context.parameters?.videoCanvas?.height || 2160
 
   return (
     <VideoCanvas showGuides={showGuides} width={width} height={height}>
       <Story />
     </VideoCanvas>
-  );
-};
+  )
+}

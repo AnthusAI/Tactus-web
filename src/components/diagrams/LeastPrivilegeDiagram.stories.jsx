@@ -9,9 +9,9 @@ export default {
   },
   argTypes: {
     theme: { control: "select", options: ["light", "dark"] },
-    progress: { 
+    progress: {
       control: { type: "range", min: 0, max: 1, step: 0.01 },
-      description: "Animation progress (0-1)" 
+      description: "Animation progress (0-1)",
     },
   },
 }
@@ -25,7 +25,7 @@ export const Default = {
     theme: "light",
     progress: 0.1, // Selects first item (0-0.2)
   },
-  render: (args) => (
+  render: args => (
     <Frame>
       <LeastPrivilegeDiagram {...args} />
     </Frame>
@@ -37,7 +37,7 @@ export const DarkMode = {
     theme: "dark",
     progress: 0.5, // Selects middle item
   },
-  render: (args) => (
+  render: args => (
     <Frame>
       <LeastPrivilegeDiagram {...args} />
     </Frame>
@@ -52,7 +52,7 @@ export const VideoFrame = {
   parameters: {
     videoCanvas: { enabled: true, showGuides: true },
   },
-  render: (args) => (
+  render: args => (
     <div style={{ width: "85%", maxWidth: 1400 }}>
       <LeastPrivilegeDiagram {...args} />
     </div>

@@ -19,31 +19,37 @@ const DemoAnimatedSquarePage = () => {
         <h3>Shared Primitive Component</h3>
         <p>
           <code>src/components/primitives/FuchsiaSquare.tsx</code> - A pure
-          presentational component with no animation logic. It accepts props
-          for size, strokeWidth, and styling.
+          presentational component with no animation logic. It accepts props for
+          size, strokeWidth, and styling.
         </p>
       </div>
 
       <div style={{ marginBottom: "2rem" }}>
         <h3>Single Animation Implementation</h3>
         <p>
-          <code>videos/src/components/AnimatedFuchsiaSquare.tsx</code> - Contains
-          ALL the animation logic using Remotion primitives (useCurrentFrame,
-          spring, interpolate). This same code works in:
+          <code>videos/src/components/AnimatedFuchsiaSquare.tsx</code> -
+          Contains ALL the animation logic using Remotion primitives
+          (useCurrentFrame, spring, interpolate). This same code works in:
         </p>
         <ul>
-          <li><strong>Remotion Studio</strong> - For developing animations</li>
-          <li><strong>Video Rendering</strong> - For exporting to MP4/WebM</li>
-          <li><strong>Gatsby Website</strong> - Via Remotion Player (this page!)</li>
+          <li>
+            <strong>Remotion Studio</strong> - For developing animations
+          </li>
+          <li>
+            <strong>Video Rendering</strong> - For exporting to MP4/WebM
+          </li>
+          <li>
+            <strong>Gatsby Website</strong> - Via Remotion Player (this page!)
+          </li>
         </ul>
       </div>
 
       <div style={{ marginBottom: "2rem" }}>
         <h3>Gatsby Wrapper (This Page)</h3>
         <p>
-          <code>src/components/animated/AnimatedFuchsiaSquare.tsx</code> - A thin
-          wrapper around Remotion Player that embeds the animation composition.
-          No animation logic here, just Player configuration!
+          <code>src/components/animated/AnimatedFuchsiaSquare.tsx</code> - A
+          thin wrapper around Remotion Player that embeds the animation
+          composition. No animation logic here, just Player configuration!
         </p>
       </div>
 
@@ -62,8 +68,8 @@ const DemoAnimatedSquarePage = () => {
         <div style={{ textAlign: "center" }}>
           <h3>Default Animation</h3>
           <p style={{ maxWidth: "400px", margin: "0 auto 1rem" }}>
-            Stroke width animates using Remotion's spring animation.
-            This is the exact same code that renders in videos.
+            Stroke width animates using Remotion's spring animation. This is the
+            exact same code that renders in videos.
           </p>
           <AnimatedFuchsiaSquare />
         </div>
@@ -71,8 +77,8 @@ const DemoAnimatedSquarePage = () => {
         <div style={{ textAlign: "center" }}>
           <h3>With Playback Controls</h3>
           <p style={{ maxWidth: "400px", margin: "0 auto 1rem" }}>
-            Shows Remotion Player's built-in controls. Try pausing,
-            seeking, or changing playback speed.
+            Shows Remotion Player's built-in controls. Try pausing, seeking, or
+            changing playback speed.
           </p>
           <AnimatedFuchsiaSquare controls />
         </div>
@@ -134,16 +140,16 @@ const DemoAnimatedSquarePage = () => {
           rendered to video without changes
         </li>
         <li>
-          <strong>Frame-precise control</strong> - Deterministic animations
-          for reliable playback
+          <strong>Frame-precise control</strong> - Deterministic animations for
+          reliable playback
         </li>
         <li>
           <strong>Type safety</strong> - TypeScript ensures parameter
           consistency across all contexts
         </li>
         <li>
-          <strong>No Framer Motion needed</strong> - One animation system
-          for everything
+          <strong>No Framer Motion needed</strong> - One animation system for
+          everything
         </li>
       </ul>
 
@@ -151,14 +157,16 @@ const DemoAnimatedSquarePage = () => {
 
       <div style={{ marginTop: "2rem", marginBottom: "2rem" }}>
         <h3>❌ Old Approach (Duplication)</h3>
-        <pre style={{
-          background: "var(--color-code-bg)",
-          padding: "1.5rem",
-          borderRadius: "8px",
-          overflow: "auto",
-          fontSize: "0.875rem",
-        }}>
-{`// Gatsby version (Framer Motion)
+        <pre
+          style={{
+            background: "var(--color-code-bg)",
+            padding: "1.5rem",
+            borderRadius: "8px",
+            overflow: "auto",
+            fontSize: "0.875rem",
+          }}
+        >
+          {`// Gatsby version (Framer Motion)
 const GatsbyAnimated = () => {
   const controls = useAnimationControls();
   controls.start({
@@ -186,14 +194,16 @@ const RemotionAnimated = () => {
 
       <div style={{ marginTop: "2rem", marginBottom: "2rem" }}>
         <h3>✅ New Approach (Single Source of Truth)</h3>
-        <pre style={{
-          background: "var(--color-code-bg)",
-          padding: "1.5rem",
-          borderRadius: "8px",
-          overflow: "auto",
-          fontSize: "0.875rem",
-        }}>
-{`// Animation logic (ONE place)
+        <pre
+          style={{
+            background: "var(--color-code-bg)",
+            padding: "1.5rem",
+            borderRadius: "8px",
+            overflow: "auto",
+            fontSize: "0.875rem",
+          }}
+        >
+          {`// Animation logic (ONE place)
 // videos/src/components/AnimatedFuchsiaSquare.tsx
 const AnimatedFuchsiaSquare = () => {
   const frame = useCurrentFrame();
@@ -226,14 +236,16 @@ const AnimatedFuchsiaSquare = () => {
 
       <h2>File Structure</h2>
 
-      <pre style={{
-        background: "var(--color-code-bg)",
-        padding: "1.5rem",
-        borderRadius: "8px",
-        overflow: "auto",
-        fontSize: "0.875rem",
-      }}>
-{`/Users/ryan.porter/Projects/Tactus-web/
+      <pre
+        style={{
+          background: "var(--color-code-bg)",
+          padding: "1.5rem",
+          borderRadius: "8px",
+          overflow: "auto",
+          fontSize: "0.875rem",
+        }}
+      >
+        {`/Users/ryan.porter/Projects/Tactus-web/
 ├── src/
 │   ├── components/
 │   │   ├── primitives/
@@ -258,12 +270,11 @@ const AnimatedFuchsiaSquare = () => {
 
       <p>
         Framer Motion is excellent for UI interactions, but it creates a
-        fundamental problem: <strong>you have to implement animations twice</strong>.
+        fundamental problem:{" "}
+        <strong>you have to implement animations twice</strong>.
       </p>
 
-      <p>
-        By using Remotion Player everywhere, we get:
-      </p>
+      <p>By using Remotion Player everywhere, we get:</p>
       <ul>
         <li>One animation system to learn</li>
         <li>One implementation to maintain</li>

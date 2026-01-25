@@ -12,19 +12,20 @@
  * - TACTUS_REF: Branch/tag to fetch (default: main)
  */
 
-const fs = require('fs-extra')
-const path = require('path')
-const { execSync } = require('child_process')
+const fs = require("fs-extra")
+const path = require("path")
+const { execSync } = require("child_process")
 
 // Configuration
 const STDLIB_DIR = process.env.STDLIB_DIR
-const TACTUS_REPO_URL = process.env.TACTUS_REPO_URL || 'https://github.com/AnthusAI/Tactus.git'
-const TACTUS_REF = process.env.TACTUS_REF || 'main'
-const CACHE_DIR = path.join(__dirname, '../.cache/tactus-stdlib')
-const OUTPUT_FILE = path.join(__dirname, '../src/data/stdlib.json')
+const TACTUS_REPO_URL =
+  process.env.TACTUS_REPO_URL || "https://github.com/AnthusAI/Tactus.git"
+const TACTUS_REF = process.env.TACTUS_REF || "main"
+const CACHE_DIR = path.join(__dirname, "../.cache/tactus-stdlib")
+const OUTPUT_FILE = path.join(__dirname, "../src/data/stdlib.json")
 
 // Path within Tactus repo to stdlib modules
-const STDLIB_SUBPATH = 'tactus/stdlib/tac/tactus'
+const STDLIB_SUBPATH = "tactus/stdlib/tac/tactus"
 
 /**
  * Get the path to the stdlib directory (local or cached clone)
@@ -45,14 +46,17 @@ function getStdlibDir() {
 
   // Clone repo (sparse checkout for just the stdlib)
   fs.ensureDirSync(path.dirname(CACHE_DIR))
-  execSync(`git clone --depth 1 --branch ${TACTUS_REF} --filter=blob:none --sparse ${TACTUS_REPO_URL} ${CACHE_DIR}`, {
-    stdio: 'inherit'
-  })
+  execSync(
+    `git clone --depth 1 --branch ${TACTUS_REF} --filter=blob:none --sparse ${TACTUS_REPO_URL} ${CACHE_DIR}`,
+    {
+      stdio: "inherit",
+    }
+  )
 
   // Sparse checkout just the stdlib directory
   execSync(`git sparse-checkout set ${STDLIB_SUBPATH}`, {
     cwd: CACHE_DIR,
-    stdio: 'inherit'
+    stdio: "inherit",
   })
 
   return path.join(CACHE_DIR, STDLIB_SUBPATH)
@@ -68,12 +72,12 @@ function discoverModules(stdlibDir) {
     .filter(entry => {
       if (!entry.isDirectory()) return false
       // Check if directory has index.md (indicating it's a documented module)
-      const indexPath = path.join(stdlibDir, entry.name, 'index.md')
+      const indexPath = path.join(stdlibDir, entry.name, "index.md")
       return fs.existsSync(indexPath)
     })
     .map(entry => ({
       slug: entry.name,
-      path: path.join(stdlibDir, entry.name)
+      path: path.join(stdlibDir, entry.name),
     }))
     .sort((a, b) => a.slug.localeCompare(b.slug))
 }
@@ -82,27 +86,29 @@ function discoverModules(stdlibDir) {
  * Parse module index.md to extract title, description, and full markdown
  */
 function parseModuleIndex(modulePath) {
-  const indexPath = path.join(modulePath, 'index.md')
+  const indexPath = path.join(modulePath, "index.md")
 
   if (!fs.existsSync(indexPath)) {
-    return { title: 'Untitled Module', description: '', markdown: '' }
+    return { title: "Untitled Module", description: "", markdown: "" }
   }
 
-  const content = fs.readFileSync(indexPath, 'utf-8')
-  const lines = content.split('\n')
+  const content = fs.readFileSync(indexPath, "utf-8")
+  const lines = content.split("\n")
 
   // Extract title (first # heading)
-  const titleMatch = lines.find(line => line.startsWith('# '))
-  const title = titleMatch ? titleMatch.replace(/^# /, '').trim() : 'Untitled Module'
+  const titleMatch = lines.find(line => line.startsWith("# "))
+  const title = titleMatch
+    ? titleMatch.replace(/^# /, "").trim()
+    : "Untitled Module"
 
   // Extract description (first paragraph after title)
-  const titleIndex = lines.findIndex(line => line.startsWith('# '))
+  const titleIndex = lines.findIndex(line => line.startsWith("# "))
   let descriptionLines = []
   let foundNonEmpty = false
 
   for (let i = titleIndex + 1; i < lines.length; i++) {
     const line = lines[i]
-    if (line.startsWith('##')) break // Stop at next heading
+    if (line.startsWith("##")) break // Stop at next heading
 
     if (line.trim()) {
       foundNonEmpty = true
@@ -112,7 +118,7 @@ function parseModuleIndex(modulePath) {
     }
   }
 
-  const description = descriptionLines.join(' ').trim()
+  const description = descriptionLines.join(" ").trim()
 
   return { title, description, markdown: content }
 }
@@ -132,16 +138,21 @@ function discoverSubmodules(modulePath) {
   const entries = fs.readdirSync(modulePath, { withFileTypes: true })
 
   return entries
-    .filter(entry => entry.isFile() && entry.name.endsWith('.tac') && entry.name !== 'init.tac')
+    .filter(
+      entry =>
+        entry.isFile() &&
+        entry.name.endsWith(".tac") &&
+        entry.name !== "init.tac"
+    )
     .map(entry => {
-      const name = entry.name.replace('.tac', '')
+      const name = entry.name.replace(".tac", "")
       // Convert filename to class name (e.g., "llm" -> "LLMClassifier")
       const className = name.charAt(0).toUpperCase() + name.slice(1)
 
       return {
         name: className,
         file: entry.name,
-        path: path.join(modulePath, entry.name)
+        path: path.join(modulePath, entry.name),
       }
     })
     .sort((a, b) => a.name.localeCompare(b.name))
@@ -159,8 +170,8 @@ function parseModuleMetadata(module, stdlibDir) {
   let specCount = 0
 
   if (fs.existsSync(specPath)) {
-    const specContent = fs.readFileSync(specPath, 'utf-8')
-    hasSpecs = specContent.includes('Specification([[')
+    const specContent = fs.readFileSync(specPath, "utf-8")
+    hasSpecs = specContent.includes("Specification([[")
     specCount = countScenarios(specContent)
   }
 
@@ -179,7 +190,7 @@ function parseModuleMetadata(module, stdlibDir) {
     hasSpecs,
     specCount,
     submodules,
-    githubUrl
+    githubUrl,
   }
 }
 
@@ -187,7 +198,7 @@ function parseModuleMetadata(module, stdlibDir) {
  * Main ingestion function
  */
 async function ingestStdlib() {
-  console.log('Starting Tactus stdlib ingestion...')
+  console.log("Starting Tactus stdlib ingestion...")
 
   // Get stdlib directory
   const stdlibDir = getStdlibDir()
@@ -200,9 +211,11 @@ async function ingestStdlib() {
   const data = {
     modules: modules.map(module => {
       const metadata = parseModuleMetadata(module, stdlibDir)
-      console.log(`  Module: ${metadata.name} (${metadata.submodules.length} submodules, ${metadata.specCount} specs)`)
+      console.log(
+        `  Module: ${metadata.name} (${metadata.submodules.length} submodules, ${metadata.specCount} specs)`
+      )
       return metadata
-    })
+    }),
   }
 
   // Ensure output directory exists
@@ -211,13 +224,18 @@ async function ingestStdlib() {
   // Write JSON file
   fs.writeJsonSync(OUTPUT_FILE, data, { spaces: 2 })
   console.log(`\nGenerated: ${OUTPUT_FILE}`)
-  console.log(`Total: ${data.modules.length} modules, ${data.modules.reduce((sum, m) => sum + m.specCount, 0)} specs`)
+  console.log(
+    `Total: ${data.modules.length} modules, ${data.modules.reduce(
+      (sum, m) => sum + m.specCount,
+      0
+    )} specs`
+  )
 }
 
 // Run if called directly
 if (require.main === module) {
   ingestStdlib().catch(err => {
-    console.error('Error during ingestion:', err)
+    console.error("Error during ingestion:", err)
     process.exit(1)
   })
 }

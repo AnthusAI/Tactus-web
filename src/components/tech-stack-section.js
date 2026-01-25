@@ -8,19 +8,22 @@ import pydanticLogo from "../images/logos/pydantic.svg"
 const ITEMS = [
   {
     name: "Lua",
-    description: "A fast, lightweight, and securely sandboxable scripting runtime.",
+    description:
+      "A fast, lightweight, and securely sandboxable scripting runtime.",
     logo: luaLogo,
     url: "https://www.lua.org",
   },
   {
     name: "DSPy",
-    description: "Algorithmic optimization of prompts and weights for reliable agents.",
+    description:
+      "Algorithmic optimization of prompts and weights for reliable agents.",
     logo: dspyLogo,
     url: "https://dspy.ai",
   },
   {
     name: "Pydantic",
-    description: "The industry standard for data validation and schema definition.",
+    description:
+      "The industry standard for data validation and schema definition.",
     logo: pydanticLogo,
     url: "https://docs.pydantic.dev",
   },
@@ -40,20 +43,22 @@ const TechStackSection = () => {
           <h2 className={styles.title}>Built on the shoulders of giants</h2>
         </header>
         <div className={styles.grid}>
-          {ITEMS.map((item) => (
+          {ITEMS.map(item => (
             <a
               key={item.name}
               href={item.url}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.card}
-              style={{ textDecoration: 'none' }}
+              style={{ textDecoration: "none" }}
             >
               <div className={styles.logoContainer}>
                 <img
                   src={item.logo}
                   alt={`${item.name} logo`}
-                  className={`${styles.logo} ${styles[`logo${item.name.replace(/\s+/g, '')}`]}`}
+                  className={`${styles.logo} ${
+                    styles[`logo${item.name.replace(/\s+/g, "")}`]
+                  }`}
                 />
               </div>
               <h3 className={styles.name}>{item.name}</h3>

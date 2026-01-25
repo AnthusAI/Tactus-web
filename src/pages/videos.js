@@ -16,7 +16,8 @@ const VideosPage = () => {
           <div className={styles.container}>
             <h1 className={styles.title}>Videos</h1>
             <p className={styles.subtitle}>
-              Short, practical walkthroughs of Tactus: the mental model, safety design, and real workflows.
+              Short, practical walkthroughs of Tactus: the mental model, safety
+              design, and real workflows.
             </p>
           </div>
         </section>
@@ -34,7 +35,7 @@ const VideosPage = () => {
         <section className={styles.section}>
           <div className={styles.container}>
             <div id="all" className={styles.grid}>
-              {VIDEOS.map((v) => (
+              {VIDEOS.map(v => (
                 <article key={v.id} id={v.id} className={styles.card}>
                   <div className={styles.cardBody}>
                     <h2 className={styles.cardTitle}>{v.title}</h2>

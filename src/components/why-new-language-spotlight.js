@@ -1,7 +1,10 @@
 import * as React from "react"
 import SpotlightSection from "./spotlight-section"
 
-const WhyNewLanguageSpotlight = ({ id = "why-new-language", eyebrow = "Learn More" }) => {
+const WhyNewLanguageSpotlight = ({
+  id = "why-new-language",
+  eyebrow = "Learn More",
+}) => {
   return (
     <SpotlightSection
       id={id}
@@ -15,4 +18,3 @@ const WhyNewLanguageSpotlight = ({ id = "why-new-language", eyebrow = "Learn Mor
 }
 
 export default WhyNewLanguageSpotlight
-

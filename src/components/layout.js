@@ -21,7 +21,8 @@ const Layout = ({ children, fullWidth = false }) => {
     if (!isMenuOpen) return
     if (typeof window === "undefined") return
 
-    const scrollToTop = () => window.scrollTo({ top: 0, left: 0, behavior: "auto" })
+    const scrollToTop = () =>
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" })
     scrollToTop()
     window.requestAnimationFrame(scrollToTop)
   }, [isMenuOpen])

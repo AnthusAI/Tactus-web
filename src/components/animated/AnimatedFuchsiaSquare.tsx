@@ -27,7 +27,9 @@ export interface GatsbyAnimatedFuchsiaSquareProps {
  * 3. Player provides Remotion context (useCurrentFrame, useVideoConfig)
  * 4. Works in SSR/hydration naturally
  */
-export const AnimatedFuchsiaSquare: React.FC<GatsbyAnimatedFuchsiaSquareProps> = ({
+export const AnimatedFuchsiaSquare: React.FC<
+  GatsbyAnimatedFuchsiaSquareProps
+> = ({
   size = 200,
   minStrokeWidth = 2,
   maxStrokeWidth = 20,

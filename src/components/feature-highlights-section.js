@@ -2,7 +2,13 @@ import * as React from "react"
 import * as styles from "./feature-highlights-section.module.css"
 import Button from "./ui/button"
 
-const FeatureHighlightsSection = ({ title, subtitle, items, ctaTo, ctaText = "Learn more" }) => {
+const FeatureHighlightsSection = ({
+  title,
+  subtitle,
+  items,
+  ctaTo,
+  ctaText = "Learn more",
+}) => {
   return (
     <section className={styles.section}>
       <div className={styles.container}>
@@ -12,7 +18,7 @@ const FeatureHighlightsSection = ({ title, subtitle, items, ctaTo, ctaText = "Le
         </header>
 
         <div className={styles.grid}>
-          {items.map((item) => (
+          {items.map(item => (
             <div key={item.title} className={styles.card}>
               <div className={styles.iconWrapper}>
                 {item.icon ? item.icon : null}

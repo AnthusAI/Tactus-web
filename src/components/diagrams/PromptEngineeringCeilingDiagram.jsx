@@ -1,28 +1,38 @@
-import * as React from "react";
-import * as d3 from "d3";
+import * as React from "react"
+import * as d3 from "d3"
 
-import { diagramTokens, getDiagramThemeVars } from "./diagramTheme";
+import { diagramTokens, getDiagramThemeVars } from "./diagramTheme"
 
-const clamp01 = (v) => Math.min(1, Math.max(0, v));
-const lerp = (a, b, t) => a + (b - a) * t;
-const smoothstep = (t) => t * t * (3 - 2 * t);
+const clamp01 = v => Math.min(1, Math.max(0, v))
+const lerp = (a, b, t) => a + (b - a) * t
+const smoothstep = t => t * t * (3 - 2 * t)
 const between = (t, a, b) => {
-  if (a === b) return t >= b ? 1 : 0;
-  const u = clamp01((t - a) / (b - a));
-  return smoothstep(u);
-};
+  if (a === b) return t >= b ? 1 : 0
+  const u = clamp01((t - a) / (b - a))
+  return smoothstep(u)
+}
 
 const PromptExampleChip = ({ x, y, text, opacity, t }) => {
-  const paddingX = 12;
-  const height = 30;
-  const fontSize = 13;
+  const paddingX = 12
+  const height = 30
+  const fontSize = 13
 
-  const approxCharWidth = fontSize * 0.6;
-  const width = Math.max(120, Math.min(260, paddingX * 2 + text.length * approxCharWidth));
+  const approxCharWidth = fontSize * 0.6
+  const width = Math.max(
+    120,
+    Math.min(260, paddingX * 2 + text.length * approxCharWidth)
+  )
 
   return (
     <g style={{ opacity }}>
-      <rect x={x} y={y} width={width} height={height} rx="var(--border-radius)" fill={t.surface2} />
+      <rect
+        x={x}
+        y={y}
+        width={width}
+        height={height}
+        rx="var(--border-radius)"
+        fill={t.surface2}
+      />
       <text
         x={x + width / 2}
         y={y + height / 2 + 4}
@@ -35,8 +45,8 @@ const PromptExampleChip = ({ x, y, text, opacity, t }) => {
         {text}
       </text>
     </g>
-  );
-};
+  )
+}
 
 const PromptEngineeringCeilingDiagram = ({
   theme = "light",
@@ -44,66 +54,101 @@ const PromptEngineeringCeilingDiagram = ({
   className,
   progress = 1,
 }) => {
-  const t = diagramTokens;
+  const t = diagramTokens
 
-  const width = 700;
-  const height = 400;
-  const margin = { top: 40, right: 40, bottom: 60, left: 80 };
-  const chartWidth = width - margin.left - margin.right;
-  const chartHeight = height - margin.top - margin.bottom;
+  const width = 700
+  const height = 400
+  const margin = { top: 40, right: 40, bottom: 60, left: 80 }
+  const chartWidth = width - margin.left - margin.right
+  const chartHeight = height - margin.top - margin.bottom
 
-  const xScale = d3.scaleLinear().domain([0, 100]).range([0, chartWidth]);
-  const yScale = d3.scaleLinear().domain([0, 100]).range([chartHeight, 0]);
+  const xScale = d3.scaleLinear().domain([0, 100]).range([0, chartWidth])
+  const yScale = d3.scaleLinear().domain([0, 100]).range([chartHeight, 0])
 
-  const productionLevel = 85;
-  const plateauLevel = 65;
+  const productionLevel = 85
+  const plateauLevel = 65
 
   const curveData = React.useMemo(() => {
-    const data = [];
+    const data = []
     for (let x = 0; x <= 100; x += 2) {
-      const y = plateauLevel * (1 - Math.exp(-x / 20));
-      data.push({ x, y });
+      const y = plateauLevel * (1 - Math.exp(-x / 20))
+      data.push({ x, y })
     }
-    return data;
-  }, []);
+    return data
+  }, [])
 
   const curvePath = React.useMemo(() => {
     const line = d3
       .line()
-      .x((d) => xScale(d.x))
-      .y((d) => yScale(d.y))
-      .curve(d3.curveMonotoneX);
-    return line(curveData) ?? "";
-  }, []);
+      .x(d => xScale(d.x))
+      .y(d => yScale(d.y))
+      .curve(d3.curveMonotoneX)
+    return line(curveData) ?? ""
+  }, [])
 
-  const p = clamp01(progress);
-  const productionT = between(p, 0.05, 0.22);
-  const curveT = between(p, 0.25, 0.78);
-  const plateauT = between(p, 0.34, 0.82);
-  const gapT = between(p, 0.78, 1.0);
+  const p = clamp01(progress)
+  const productionT = between(p, 0.05, 0.22)
+  const curveT = between(p, 0.25, 0.78)
+  const plateauT = between(p, 0.34, 0.82)
+  const gapT = between(p, 0.78, 1.0)
 
-  const gapX = xScale(82);
-  const gapTop = yScale(productionLevel);
-  const gapTopInsetPx = 4;
-  const gapBottomInsetPx = 3;
-  const gapTopInsetY = gapTop + gapTopInsetPx;
-  const gapBottom = yScale(plateauLevel) - gapBottomInsetPx;
-  const gapY2 = lerp(gapBottom, gapTopInsetY, gapT);
+  const gapX = xScale(82)
+  const gapTop = yScale(productionLevel)
+  const gapTopInsetPx = 4
+  const gapBottomInsetPx = 3
+  const gapTopInsetY = gapTop + gapTopInsetPx
+  const gapBottom = yScale(plateauLevel) - gapBottomInsetPx
+  const gapY2 = lerp(gapBottom, gapTopInsetY, gapT)
 
   const chipDefs = React.useMemo(
     () => [
-      { key: "one-sentence", text: "1 sentence", x: 18, y: 18, dx: 10, dy: 188 },
+      {
+        key: "one-sentence",
+        text: "1 sentence",
+        x: 18,
+        y: 18,
+        dx: 10,
+        dy: 188,
+      },
       { key: "json-only", text: "JSON only", x: 30, y: 28, dx: 28, dy: 152 },
       { key: "english", text: "English only", x: 44, y: 22, dx: 60, dy: 6 },
-      { key: "three-options", text: "Provide 3 options", x: 58, y: 34, dx: -10, dy: -6 },
-      { key: "avoid-flowery", text: 'Answer either "YES" or "NO".', x: 56, y: 44, dx: -90, dy: -14 },
+      {
+        key: "three-options",
+        text: "Provide 3 options",
+        x: 58,
+        y: 34,
+        dx: -10,
+        dy: -6,
+      },
+      {
+        key: "avoid-flowery",
+        text: 'Answer either "YES" or "NO".',
+        x: 56,
+        y: 44,
+        dx: -90,
+        dy: -14,
+      },
 
       // "Gap" examples: keep them higher + more left, so they're clearly above the plateau.
-      { key: "no-secrets", text: "Don’t look at secrets", x: 58, y: 80, dx: -320, dy: 6 },
-      { key: "no-deletes", text: "Don’t delete important files", x: 62, y: 80, dx: -150, dy: -4 },
+      {
+        key: "no-secrets",
+        text: "Don’t look at secrets",
+        x: 58,
+        y: 80,
+        dx: -320,
+        dy: 6,
+      },
+      {
+        key: "no-deletes",
+        text: "Don’t delete important files",
+        x: 62,
+        y: 80,
+        dx: -150,
+        dy: -4,
+      },
     ],
-    [],
-  );
+    []
+  )
 
   return (
     <svg
@@ -130,8 +175,22 @@ const PromptEngineeringCeilingDiagram = ({
           rx="var(--border-radius)"
         />
 
-        <line x1="0" y1={chartHeight} x2={chartWidth} y2={chartHeight} stroke={t.inkSecondary} strokeWidth="2" />
-        <line x1="0" y1="0" x2="0" y2={chartHeight} stroke={t.inkSecondary} strokeWidth="2" />
+        <line
+          x1="0"
+          y1={chartHeight}
+          x2={chartWidth}
+          y2={chartHeight}
+          stroke={t.inkSecondary}
+          strokeWidth="2"
+        />
+        <line
+          x1="0"
+          y1="0"
+          x2="0"
+          y2={chartHeight}
+          stroke={t.inkSecondary}
+          strokeWidth="2"
+        />
 
         <text
           x={chartWidth / 2}
@@ -216,16 +275,33 @@ const PromptEngineeringCeilingDiagram = ({
         />
 
         {/* Prompt examples (pithy; appear as the curve draws) */}
-        {chipDefs.map((chip) => {
-          const revealAt = chip.x / 100;
-          const chipOpacity = between(curveT, revealAt - 0.12, revealAt + 0.02);
-          const cx = xScale(chip.x) + chip.dx;
-          const cy = yScale(chip.y) + chip.dy;
-          return <PromptExampleChip key={chip.key} x={cx} y={cy} text={chip.text} opacity={chipOpacity} t={t} />;
+        {chipDefs.map(chip => {
+          const revealAt = chip.x / 100
+          const chipOpacity = between(curveT, revealAt - 0.12, revealAt + 0.02)
+          const cx = xScale(chip.x) + chip.dx
+          const cy = yScale(chip.y) + chip.dy
+          return (
+            <PromptExampleChip
+              key={chip.key}
+              x={cx}
+              y={cy}
+              text={chip.text}
+              opacity={chipOpacity}
+              t={t}
+            />
+          )
         })}
 
         <g style={{ opacity: gapT }}>
-          <line x1={gapX} y1={gapBottom} x2={gapX} y2={gapY2} stroke={t.primary} strokeWidth="3" strokeLinecap="round" />
+          <line
+            x1={gapX}
+            y1={gapBottom}
+            x2={gapX}
+            y2={gapY2}
+            stroke={t.primary}
+            strokeWidth="3"
+            strokeLinecap="round"
+          />
           <line
             x1={gapX - 8}
             y1={gapBottom}
@@ -259,7 +335,7 @@ const PromptEngineeringCeilingDiagram = ({
         </g>
       </g>
     </svg>
-  );
-};
+  )
+}
 
-export default PromptEngineeringCeilingDiagram;
+export default PromptEngineeringCeilingDiagram

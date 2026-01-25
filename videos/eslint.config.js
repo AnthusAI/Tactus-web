@@ -1,11 +1,17 @@
-const tsParser = require("@typescript-eslint/parser");
-const tsPlugin = require("@typescript-eslint/eslint-plugin");
-const reactPlugin = require("eslint-plugin-react");
+const tsParser = require("@typescript-eslint/parser")
+const tsPlugin = require("@typescript-eslint/eslint-plugin")
+const reactPlugin = require("eslint-plugin-react")
 
 /** @type {import("eslint").Linter.FlatConfig[]} */
 module.exports = [
   {
-    ignores: ["node_modules/**", "out/**", ".remotion/**", "public/**", "babulus/**"],
+    ignores: [
+      "node_modules/**",
+      "out/**",
+      ".remotion/**",
+      "public/**",
+      "babulus/**",
+    ],
   },
   {
     files: ["src/**/*.{ts,tsx,js,jsx}"],
@@ -47,4 +53,4 @@ module.exports = [
       "@typescript-eslint/no-require-imports": "off",
     },
   },
-];
+]

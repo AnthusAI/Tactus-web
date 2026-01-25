@@ -13,8 +13,8 @@ const run = (cmd, opts = {}) => {
 
 const main = () => {
   const args = process.argv.slice(2)
-  const passThroughArgs = args.filter(Boolean).map((a) => a.trim())
-  const targetComposition = passThroughArgs.find((a) => a && !a.startsWith("--"))
+  const passThroughArgs = args.filter(Boolean).map(a => a.trim())
+  const targetComposition = passThroughArgs.find(a => a && !a.startsWith("--"))
 
   if (!existsSync(videosDir)) {
     throw new Error(`Missing videos/ subproject at ${videosDir}`)
@@ -56,13 +56,15 @@ const main = () => {
     }
   }
 
-  run(`npm run render -- ${passThroughArgs.join(" ")}`.trim(), { cwd: videosDir })
+  run(`npm run render -- ${passThroughArgs.join(" ")}`.trim(), {
+    cwd: videosDir,
+  })
 
   // Copy rendered artifacts into Gatsby's `static/videos/` for local preview.
   // (These are not bundled; production should use the CDN URLs.)
   const outFiles = existsSync(outDir) ? readdirSync(outDir) : []
   const toCopy = outFiles.filter(
-    (f) => f.toLowerCase().endsWith(".mp4") || f.toLowerCase().endsWith(".jpg")
+    f => f.toLowerCase().endsWith(".mp4") || f.toLowerCase().endsWith(".jpg")
   )
 
   for (const filename of toCopy) {

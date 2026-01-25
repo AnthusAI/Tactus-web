@@ -22,7 +22,7 @@ export const Static = {
     theme: "light",
     progress: 1,
   },
-  render: (args) => (
+  render: args => (
     <Frame>
       <OldWayFlowchartDiagram {...args} />
     </Frame>
@@ -37,7 +37,7 @@ function AnimatedDemo({ theme }) {
     const start = performance.now()
     const durationMs = 4200
 
-    const tick = (now) => {
+    const tick = now => {
       const t = ((now - start) % durationMs) / durationMs
       // Pause briefly on the fully-drawn state so the end is easy to inspect.
       const hold = t < 0.85 ? t / 0.85 : 1
@@ -63,7 +63,7 @@ export const Animated = {
   argTypes: {
     progress: { table: { disable: true } },
   },
-  render: (args) => <AnimatedDemo theme={args.theme} />,
+  render: args => <AnimatedDemo theme={args.theme} />,
 }
 
 export const VideoFrame = {
@@ -74,7 +74,7 @@ export const VideoFrame = {
   parameters: {
     videoCanvas: { enabled: true, showGuides: true },
   },
-  render: (args) => (
+  render: args => (
     <div style={{ width: "70%", maxWidth: 1200 }}>
       <OldWayFlowchartDiagram {...args} />
     </div>
@@ -83,7 +83,10 @@ export const VideoFrame = {
 
 function ProofDemo({ theme, progress }) {
   const wrapperRef = React.useRef(null)
-  const [proof, setProof] = React.useState({ renderer: "unknown", childCount: 0 })
+  const [proof, setProof] = React.useState({
+    renderer: "unknown",
+    childCount: 0,
+  })
 
   React.useEffect(() => {
     const el = wrapperRef.current
@@ -101,7 +104,14 @@ function ProofDemo({ theme, progress }) {
       <div ref={wrapperRef}>
         <OldWayFlowchartDiagram theme={theme} progress={progress} />
       </div>
-      <div style={{ marginTop: 12, fontFamily: "var(--font-mono)", fontSize: 12, color: "var(--color-text-muted)" }}>
+      <div
+        style={{
+          marginTop: 12,
+          fontFamily: "var(--font-mono)",
+          fontSize: 12,
+          color: "var(--color-text-muted)",
+        }}
+      >
         renderer: {proof.renderer} • svg nodes: {proof.childCount}
       </div>
     </Frame>
@@ -114,5 +124,5 @@ export const ProofItsD3 = {
     theme: "light",
     progress: 1,
   },
-  render: (args) => <ProofDemo theme={args.theme} progress={args.progress} />,
+  render: args => <ProofDemo theme={args.theme} progress={args.progress} />,
 }

@@ -15,24 +15,25 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-const withPage = (theme: "light" | "dark") => (StoryComponent: any) => (
-  <div
-    style={{
-      ...getDiagramThemeVars(theme),
-      minHeight: "100vh",
-      backgroundColor: "var(--color-bg)",
-      padding: 24,
-      boxSizing: "border-box",
-      display: "flex",
-      alignItems: "flex-start",
-      justifyContent: "center",
-    }}
-  >
-    <div style={{ width: "min(520px, 96vw)" }}>
-      <StoryComponent />
+const withPage = (theme: "light" | "dark") => (StoryComponent: any) =>
+  (
+    <div
+      style={{
+        ...getDiagramThemeVars(theme),
+        minHeight: "100vh",
+        backgroundColor: "var(--color-bg)",
+        padding: 24,
+        boxSizing: "border-box",
+        display: "flex",
+        alignItems: "flex-start",
+        justifyContent: "center",
+      }}
+    >
+      <div style={{ width: "min(520px, 96vw)" }}>
+        <StoryComponent />
+      </div>
     </div>
-  </div>
-)
+  )
 
 export const LearningTactus: Story = {
   args: {
@@ -45,4 +46,3 @@ export const LearningTactus: Story = {
   },
   decorators: [withPage("light")],
 }
-

@@ -1,7 +1,7 @@
 import * as React from "react"
 import AIEngineersToolboxDiagram from "./AIEngineersToolboxDiagram"
 
-const AnimatedAIEngineersToolboxDiagram = (props) => {
+const AnimatedAIEngineersToolboxDiagram = props => {
   const [progress, setProgress] = React.useState(0)
   const [isVisible, setIsVisible] = React.useState(false)
   const [isMobile, setIsMobile] = React.useState(false)
@@ -9,11 +9,11 @@ const AnimatedAIEngineersToolboxDiagram = (props) => {
 
   // Mobile detection
   React.useEffect(() => {
-    if (typeof window === 'undefined') return
+    if (typeof window === "undefined") return
     const checkMobile = () => setIsMobile(window.innerWidth < 800)
     checkMobile()
-    window.addEventListener('resize', checkMobile)
-    return () => window.removeEventListener('resize', checkMobile)
+    window.addEventListener("resize", checkMobile)
+    return () => window.removeEventListener("resize", checkMobile)
   }, [])
 
   // Observer to start animation when visible
@@ -39,7 +39,7 @@ const AnimatedAIEngineersToolboxDiagram = (props) => {
     const start = performance.now()
     const durationMs = 16000 // 4 tools * 4s each = 16s cycle
 
-    const tick = (now) => {
+    const tick = now => {
       const elapsed = now - start
       const t = (elapsed % durationMs) / durationMs
       setProgress(t)
@@ -52,7 +52,11 @@ const AnimatedAIEngineersToolboxDiagram = (props) => {
 
   return (
     <div ref={ref} className={props.className} style={props.style}>
-      <AIEngineersToolboxDiagram {...props} progress={progress} isMobile={isMobile} />
+      <AIEngineersToolboxDiagram
+        {...props}
+        progress={progress}
+        isMobile={isMobile}
+      />
     </div>
   )
 }

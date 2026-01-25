@@ -1,16 +1,10 @@
-import * as React from "react";
-import {
-  Wrench,
-  Database,
-  WifiOff,
-  Lock,
-  Clock,
-} from "lucide-react";
+import * as React from "react"
+import { Wrench, Database, WifiOff, Lock, Clock } from "lucide-react"
 
-import { diagramTokens, getDiagramThemeVars } from "./diagramTheme";
+import { diagramTokens, getDiagramThemeVars } from "./diagramTheme"
 
 // Helper for clamping
-const clamp = (val, min, max) => Math.min(Math.max(val, min), max);
+const clamp = (val, min, max) => Math.min(Math.max(val, min), max)
 
 const LeastPrivilegeDiagram = ({
   theme = "light",
@@ -18,8 +12,8 @@ const LeastPrivilegeDiagram = ({
   style,
   className,
 }) => {
-  const t = diagramTokens;
-  const p = clamp(progress, 0, 1);
+  const t = diagramTokens
+  const p = clamp(progress, 0, 1)
 
   const dimensions = [
     {
@@ -47,55 +41,55 @@ const LeastPrivilegeDiagram = ({
       description: "Tools available only when workflow stage requires",
       Icon: Clock,
     },
-  ];
+  ]
 
   // Calculate which dimension is active based on progress
-  const totalDimensions = dimensions.length;
-  const floatIndex = p * totalDimensions;
-  const activeIndex = Math.min(Math.floor(floatIndex), totalDimensions - 1);
+  const totalDimensions = dimensions.length
+  const floatIndex = p * totalDimensions
+  const activeIndex = Math.min(Math.floor(floatIndex), totalDimensions - 1)
 
   // Layout constants - matching GuardrailsStackDiagram aspect ratio (960x400)
-  const width = 960;
-  const height = 400;
-  const cardWidth = 280;
-  const cardHeight = 150;
-  const gapX = 20;
-  const gapY = 20;
+  const width = 960
+  const height = 400
+  const cardWidth = 280
+  const cardHeight = 150
+  const gapX = 20
+  const gapY = 20
 
   // Grid layout helper
-  const getPosition = (index) => {
+  const getPosition = index => {
     // Top row: 3 items
     // Bottom row: 2 items (centered)
-    
+
     if (index < 3) {
       // Row 1
-      const rowCount = 3;
-      const totalRowWidth = rowCount * cardWidth + (rowCount - 1) * gapX;
-      const startX = (width - totalRowWidth) / 2;
-      
-      const contentHeight = 2 * cardHeight + gapY;
-      const startY = (height - contentHeight) / 2;
+      const rowCount = 3
+      const totalRowWidth = rowCount * cardWidth + (rowCount - 1) * gapX
+      const startX = (width - totalRowWidth) / 2
+
+      const contentHeight = 2 * cardHeight + gapY
+      const startY = (height - contentHeight) / 2
 
       return {
         x: startX + index * (cardWidth + gapX),
-        y: startY
-      };
+        y: startY,
+      }
     } else {
       // Row 2
-      const rowCount = 2;
-      const totalRowWidth = rowCount * cardWidth + (rowCount - 1) * gapX;
-      const startX = (width - totalRowWidth) / 2;
-      const colIndex = index - 3;
+      const rowCount = 2
+      const totalRowWidth = rowCount * cardWidth + (rowCount - 1) * gapX
+      const startX = (width - totalRowWidth) / 2
+      const colIndex = index - 3
 
-      const contentHeight = 2 * cardHeight + gapY;
-      const startY = (height - contentHeight) / 2;
+      const contentHeight = 2 * cardHeight + gapY
+      const startY = (height - contentHeight) / 2
 
       return {
         x: startX + colIndex * (cardWidth + gapX),
-        y: startY + cardHeight + gapY
-      };
+        y: startY + cardHeight + gapY,
+      }
     }
-  };
+  }
 
   return (
     <svg
@@ -114,11 +108,15 @@ const LeastPrivilegeDiagram = ({
     >
       {/* Dimensions Grid */}
       {dimensions.map((dim, i) => {
-        const { x, y } = getPosition(i);
-        const isActive = i === activeIndex;
+        const { x, y } = getPosition(i)
+        const isActive = i === activeIndex
 
         return (
-          <g key={dim.name} transform={`translate(${x}, ${y})`} style={{ transition: "opacity 0.3s" }}>
+          <g
+            key={dim.name}
+            transform={`translate(${x}, ${y})`}
+            style={{ transition: "opacity 0.3s" }}
+          >
             {/* Card Background */}
             <rect
               width={cardWidth}
@@ -166,10 +164,10 @@ const LeastPrivilegeDiagram = ({
               </div>
             </foreignObject>
           </g>
-        );
+        )
       })}
     </svg>
-  );
-};
+  )
+}
 
-export default LeastPrivilegeDiagram;
+export default LeastPrivilegeDiagram

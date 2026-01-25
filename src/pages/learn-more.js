@@ -23,7 +23,8 @@ const LearnMorePage = () => {
             <div className={styles.hero}>
               <h1 className={styles.title}>Learn More</h1>
               <p className={styles.lede}>
-                Deep-dive articles that explain how to give agents tools, keep them safe with guardrails, and measure their reliability.
+                Deep-dive articles that explain how to give agents tools, keep
+                them safe with guardrails, and measure their reliability.
               </p>
             </div>
           </div>
@@ -97,8 +98,9 @@ const LearnMorePage = () => {
 
         <Breakout title="Why do we need a new language?" size="section">
           <p>
-            We have Python. We have TypeScript. We have powerful agent frameworks.
-            But they were built to manipulate deterministic logic, not probabilistic behavior.
+            We have Python. We have TypeScript. We have powerful agent
+            frameworks. But they were built to manipulate deterministic logic,
+            not probabilistic behavior.
           </p>
           <div className={styles.videoCard}>
             <div className={styles.videoHeader}>
@@ -115,7 +117,13 @@ const LearnMorePage = () => {
               poster={getVideoSrc("why-new-language-poster.jpg")}
             />
           </div>
-          <div style={{ marginTop: 'var(--space-4)', display: 'flex', justifyContent: 'center' }}>
+          <div
+            style={{
+              marginTop: "var(--space-4)",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
             <Button to="/why-new-language/" variant="tertiary" shadow>
               Read: Why a New Language?
             </Button>
@@ -142,7 +150,6 @@ const LearnMorePage = () => {
           ctaText="Read: Evaluations"
           Diagram={EvaluationsDiagram}
         />
-
       </div>
     </Layout>
   )

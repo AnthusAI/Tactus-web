@@ -1,26 +1,28 @@
-import React, { CSSProperties } from "react";
-import { colors, spacing, lineHeights, borderRadius } from "../lib/theme";
-import { fontFamilies } from "./GlobalStyles";
+import React, { CSSProperties } from "react"
+import { colors, spacing, lineHeights, borderRadius } from "../lib/theme"
+import { fontFamilies } from "./GlobalStyles"
 
-export const TitleBlock: React.FC<{ children: React.ReactNode; style?: CSSProperties }> = ({ 
-  children, 
-  style 
-}) => (
-  <span style={{ 
-    display: "inline-block", 
-    padding: "0.18em 0.22em", 
-    backgroundColor: colors.primary, 
-    color: colors.primaryInk,
-    lineHeight: 1,
-    ...style
-  }}>
+export const TitleBlock: React.FC<{
+  children: React.ReactNode
+  style?: CSSProperties
+}> = ({ children, style }) => (
+  <span
+    style={{
+      display: "inline-block",
+      padding: "0.18em 0.22em",
+      backgroundColor: colors.primary,
+      color: colors.primaryInk,
+      lineHeight: 1,
+      ...style,
+    }}
+  >
     {children}
   </span>
-);
+)
 
 interface HeadingProps {
-  children: React.ReactNode;
-  style?: CSSProperties;
+  children: React.ReactNode
+  style?: CSSProperties
 }
 
 /**
@@ -43,8 +45,8 @@ export const H1: React.FC<HeadingProps> = ({ children, style }) => {
     >
       {children}
     </h1>
-  );
-};
+  )
+}
 
 /**
  * H2 component - Uses Source Sans 3
@@ -66,8 +68,8 @@ export const H2: React.FC<HeadingProps> = ({ children, style }) => {
     >
       {children}
     </h2>
-  );
-};
+  )
+}
 
 /**
  * H3 component - Uses Source Sans 3
@@ -89,21 +91,27 @@ export const H3: React.FC<HeadingProps> = ({ children, style }) => {
     >
       {children}
     </h3>
-  );
-};
+  )
+}
 
 interface BodyProps {
-  children: React.ReactNode;
-  size?: "lg" | "md" | "sm" | "xl";
-  weight?: number;
-  style?: CSSProperties;
+  children: React.ReactNode
+  size?: "lg" | "md" | "sm" | "xl"
+  weight?: number
+  style?: CSSProperties
 }
 
 /**
  * Body text component - Uses Source Serif 4
  */
-export const Body: React.FC<BodyProps> = ({ children, size = "md", weight = 400, style }) => {
-  const fontSize = size === "xl" ? 60 : size === "lg" ? 50 : size === "md" ? 40 : 32;
+export const Body: React.FC<BodyProps> = ({
+  children,
+  size = "md",
+  weight = 400,
+  style,
+}) => {
+  const fontSize =
+    size === "xl" ? 60 : size === "lg" ? 50 : size === "md" ? 40 : 32
 
   return (
     <p
@@ -120,13 +128,13 @@ export const Body: React.FC<BodyProps> = ({ children, size = "md", weight = 400,
     >
       {children}
     </p>
-  );
-};
+  )
+}
 
 interface CodeProps {
-  children: React.ReactNode;
-  inline?: boolean;
-  style?: CSSProperties;
+  children: React.ReactNode
+  inline?: boolean
+  style?: CSSProperties
 }
 
 /**
@@ -152,7 +160,7 @@ export const Code: React.FC<CodeProps> = ({
       >
         {children}
       </code>
-    );
+    )
   }
 
   return (
@@ -172,12 +180,12 @@ export const Code: React.FC<CodeProps> = ({
     >
       <code>{children}</code>
     </pre>
-  );
-};
+  )
+}
 
 interface SubtitleProps {
-  children: React.ReactNode;
-  style?: CSSProperties;
+  children: React.ReactNode
+  style?: CSSProperties
 }
 
 /**
@@ -198,5 +206,5 @@ export const Subtitle: React.FC<SubtitleProps> = ({ children, style }) => {
     >
       {children}
     </p>
-  );
-};
+  )
+}

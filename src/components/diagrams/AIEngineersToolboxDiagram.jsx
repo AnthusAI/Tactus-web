@@ -1,15 +1,10 @@
-import * as React from "react";
-import {
-  FileCode,
-  Terminal,
-  Cable,
-  Braces,
-} from "lucide-react";
+import * as React from "react"
+import { FileCode, Terminal, Cable, Braces } from "lucide-react"
 
-import { diagramTokens, getDiagramThemeVars } from "./diagramTheme";
+import { diagramTokens, getDiagramThemeVars } from "./diagramTheme"
 
 // Helper for clamping
-const clamp = (val, min, max) => Math.min(Math.max(val, min), max);
+const clamp = (val, min, max) => Math.min(Math.max(val, min), max)
 
 const AIEngineersToolboxDiagram = ({
   theme = "light",
@@ -18,8 +13,8 @@ const AIEngineersToolboxDiagram = ({
   className,
   isMobile = false,
 }) => {
-  const t = diagramTokens;
-  const p = clamp(progress, 0, 1);
+  const t = diagramTokens
+  const p = clamp(progress, 0, 1)
 
   const tools = [
     {
@@ -32,7 +27,7 @@ const AIEngineersToolboxDiagram = ({
   function(args)
     return "Sent to " .. args.to
   end
-}`
+}`,
     },
     {
       id: "python",
@@ -44,7 +39,7 @@ const AIEngineersToolboxDiagram = ({
 async def query_db(ctx, query: str):
     # Runs on host, not in sandbox
     # Safe access to DB credentials
-    return await ctx.deps.db.fetch(query)`
+    return await ctx.deps.db.fetch(query)`,
     },
     {
       id: "bash",
@@ -59,7 +54,7 @@ async def query_db(ctx, query: str):
 
 if result.exit_code == 0 then
   Log.info("Found errors: " .. result.stdout)
-end`
+end`,
     },
     {
       id: "mcp",
@@ -73,27 +68,28 @@ end`
 local results = fetch({
   q = "Tactus documentation",
   count = 5
-})`
+})`,
     },
-  ];
+  ]
 
   // Timing logic
-  const totalTools = tools.length;
-  const floatIndex = p * totalTools;
-  const activeIndex = Math.min(Math.floor(floatIndex), totalTools - 1);
-  const activeTool = tools[activeIndex];
+  const totalTools = tools.length
+  const floatIndex = p * totalTools
+  const activeIndex = Math.min(Math.floor(floatIndex), totalTools - 1)
+  const activeTool = tools[activeIndex]
 
   // Local progress for the bar (0..1)
-  const localP = floatIndex - activeIndex;
+  const localP = floatIndex - activeIndex
 
   // --- Mobile Layout (Accordion) ---
   if (isMobile) {
-    const width = 360;
-    const collapsedHeight = 50;
-    const expandedHeight = 420; // Taller for code snippet
-    const gap = 8;
-    
-    const totalHeight = ((totalTools - 1) * collapsedHeight) + expandedHeight + (totalTools * gap);
+    const width = 360
+    const collapsedHeight = 50
+    const expandedHeight = 420 // Taller for code snippet
+    const gap = 8
+
+    const totalHeight =
+      (totalTools - 1) * collapsedHeight + expandedHeight + totalTools * gap
 
     return (
       <svg
@@ -114,18 +110,20 @@ local results = fetch({
         <rect width="100%" height="100%" fill="var(--color-bg)" />
 
         {tools.map((tool, i) => {
-          const isActive = i === activeIndex;
-          
-          let y = i * (collapsedHeight + gap);
+          const isActive = i === activeIndex
+
+          let y = i * (collapsedHeight + gap)
           if (i > activeIndex) {
-            y += (expandedHeight - collapsedHeight);
+            y += expandedHeight - collapsedHeight
           }
 
           return (
-            <g 
-              key={tool.id} 
+            <g
+              key={tool.id}
               transform={`translate(0, ${y})`}
-              style={{ transition: "transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)" }}
+              style={{
+                transition: "transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)",
+              }}
             >
               <rect
                 width={width}
@@ -134,28 +132,31 @@ local results = fetch({
                 fill={isActive ? "var(--color-bg)" : t.cardTitle}
                 stroke={isActive ? t.primary : "none"}
                 strokeWidth={isActive ? 2 : 0}
-                style={{ transition: "height 0.4s cubic-bezier(0.25, 1, 0.5, 1), fill 0.2s, stroke 0.2s" }}
+                style={{
+                  transition:
+                    "height 0.4s cubic-bezier(0.25, 1, 0.5, 1), fill 0.2s, stroke 0.2s",
+                }}
               />
 
               {/* Collapsed/Header View */}
-              <g 
+              <g
                 transform="translate(16, 25)"
                 opacity={isActive ? 0 : 1}
                 style={{ transition: "opacity 0.2s" }}
               >
-                 <text
-                    fill={t.ink}
-                    fontSize="16"
-                    fontWeight="600"
-                    fontFamily={t.fontSans}
-                    dy="5"
-                 >
-                   {tool.name}
-                 </text>
+                <text
+                  fill={t.ink}
+                  fontSize="16"
+                  fontWeight="600"
+                  fontFamily={t.fontSans}
+                  dy="5"
+                >
+                  {tool.name}
+                </text>
               </g>
 
               {/* Expanded/Active View */}
-              <g 
+              <g
                 opacity={isActive ? 1 : 0}
                 style={{ transition: "opacity 0.3s 0.1s" }}
               >
@@ -173,11 +174,11 @@ local results = fetch({
 
                 {/* Icon - Top Right */}
                 <g transform={`translate(${width - 68}, 20)`}>
-                   {React.createElement(tool.icon, {
-                      size: 48,
-                      color: t.ink,
-                      strokeWidth: 1.5
-                   })}
+                  {React.createElement(tool.icon, {
+                    size: 48,
+                    color: t.ink,
+                    strokeWidth: 1.5,
+                  })}
                 </g>
 
                 {/* Description */}
@@ -191,79 +192,81 @@ local results = fetch({
                     fill: t.muted,
                     fontSize: "16px",
                     fontFamily: t.fontSerif,
-                    fontWeight: "400"
+                    fontWeight: "400",
                   }}
                 />
 
                 {/* Code Snippet Window */}
                 <g transform="translate(20, 160)">
-                    <rect
-                        width={width - 40}
-                        height={200}
-                        rx={6}
-                        fill={t.codeBg}
-                    />
-                    <foreignObject x="0" y="0" width={width - 40} height={200}>
-                        <div style={{
-                            padding: "16px",
-                            fontFamily: t.fontMono,
-                            fontSize: "13px",
-                            lineHeight: "1.5",
-                            color: t.code,
-                            overflow: "hidden",
-                            whiteSpace: "pre",
-                            height: "100%",
-                            boxSizing: "border-box"
-                        }}>
-                            {tool.code}
-                        </div>
-                    </foreignObject>
+                  <rect
+                    width={width - 40}
+                    height={200}
+                    rx={6}
+                    fill={t.codeBg}
+                  />
+                  <foreignObject x="0" y="0" width={width - 40} height={200}>
+                    <div
+                      style={{
+                        padding: "16px",
+                        fontFamily: t.fontMono,
+                        fontSize: "13px",
+                        lineHeight: "1.5",
+                        color: t.code,
+                        overflow: "hidden",
+                        whiteSpace: "pre",
+                        height: "100%",
+                        boxSizing: "border-box",
+                      }}
+                    >
+                      {tool.code}
+                    </div>
+                  </foreignObject>
                 </g>
 
                 {/* Progress Bar */}
-                <rect 
-                  x={20} 
-                  y={expandedHeight - 12} 
-                  width={width - 40} 
-                  height={4} 
-                  fill={t.surface2} 
-                  rx={2} 
+                <rect
+                  x={20}
+                  y={expandedHeight - 12}
+                  width={width - 40}
+                  height={4}
+                  fill={t.surface2}
+                  rx={2}
                 />
-                <rect 
-                  x={20} 
-                  y={expandedHeight - 12} 
-                  width={(width - 40) * localP} 
-                  height={4} 
-                  fill={t.primary} 
-                  rx={2} 
+                <rect
+                  x={20}
+                  y={expandedHeight - 12}
+                  width={(width - 40) * localP}
+                  height={4}
+                  fill={t.primary}
+                  rx={2}
                 />
               </g>
             </g>
-          );
+          )
         })}
       </svg>
-    );
+    )
   }
 
   // Layout constants
-  const width = 960;
-  const height = 400;
-  
+  const width = 960
+  const height = 400
+
   // Left Grid
-  const gridX = 40;
-  const gridY = 40;
-  
+  const gridX = 40
+  const gridY = 40
+
   // 2x2 Grid
-  const colCount = 2;
-  const cellWidth = 170;
-  const cellHeight = 150;
-  const gap = 20;
+  const colCount = 2
+  const cellWidth = 170
+  const cellHeight = 150
+  const gap = 20
 
   // Detail Panel (Right)
-  const detailX = 440;
-  const detailY = 40;
-  const detailWidth = 480;
-  const detailHeight = 320;
+  const detailX = 440
+  const detailY = 40
+  const detailWidth = 480
+  const detailHeight = 320
 
   return (
     <svg
@@ -281,21 +284,23 @@ local results = fetch({
       role="img"
       aria-label={`AI Engineer's Toolbox diagram showing: ${activeTool.name}`}
     >
-      <defs>
-        {/* Gradients or filters if needed */}
-      </defs>
+      <defs>{/* Gradients or filters if needed */}</defs>
 
       {/* Grid Area */}
       <g transform={`translate(${gridX}, ${gridY})`}>
         {tools.map((tool, i) => {
-          const col = i % colCount;
-          const row = Math.floor(i / colCount);
-          const x = col * (cellWidth + gap);
-          const y = row * (cellHeight + gap);
-          const isActive = i === activeIndex;
+          const col = i % colCount
+          const row = Math.floor(i / colCount)
+          const x = col * (cellWidth + gap)
+          const y = row * (cellHeight + gap)
+          const isActive = i === activeIndex
 
           return (
-            <g key={tool.id} transform={`translate(${x}, ${y})`} style={{ transition: "all 0.2s" }}>
+            <g
+              key={tool.id}
+              transform={`translate(${x}, ${y})`}
+              style={{ transition: "all 0.2s" }}
+            >
               <rect
                 width={cellWidth}
                 height={cellHeight}
@@ -306,136 +311,131 @@ local results = fetch({
                 style={{ transition: "fill 0.2s, stroke 0.2s" }}
               />
               {/* Icon & Label */}
-              <g transform={`translate(${cellWidth/2}, ${cellHeight/2 - 10})`}>
-                 <g transform="translate(-24, -24)">
-                    {React.createElement(tool.icon, {
-                        size: 48,
-                        color: isActive ? t.primary : t.muted,
-                        strokeWidth: 1.5
-                    })}
-                 </g>
-                 <text
-                    x="0"
-                    y="40"
-                    textAnchor="middle"
-                    fill={isActive ? t.ink : t.muted}
-                    fontSize="16"
-                    fontWeight="700"
-                    fontFamily={t.fontSans}
-                 >
-                    {tool.name}
-                 </text>
+              <g
+                transform={`translate(${cellWidth / 2}, ${
+                  cellHeight / 2 - 10
+                })`}
+              >
+                <g transform="translate(-24, -24)">
+                  {React.createElement(tool.icon, {
+                    size: 48,
+                    color: isActive ? t.primary : t.muted,
+                    strokeWidth: 1.5,
+                  })}
+                </g>
+                <text
+                  x="0"
+                  y="40"
+                  textAnchor="middle"
+                  fill={isActive ? t.ink : t.muted}
+                  fontSize="16"
+                  fontWeight="700"
+                  fontFamily={t.fontSans}
+                >
+                  {tool.name}
+                </text>
               </g>
             </g>
-          );
+          )
         })}
       </g>
 
       {/* Detail Panel */}
       <g transform={`translate(${detailX}, ${detailY})`}>
-         <rect
-            width={detailWidth}
-            height={detailHeight}
-            rx={8}
-            fill={t.surface}
-            stroke={t.surface2}
-            strokeWidth={1}
-         />
+        <rect
+          width={detailWidth}
+          height={detailHeight}
+          rx={8}
+          fill={t.surface}
+          stroke={t.surface2}
+          strokeWidth={1}
+        />
 
-         {/* Timer/Progress Bar at bottom of detail panel */}
-         <g transform={`translate(0, ${detailHeight - 4})`}>
-            <rect
-              width={detailWidth}
-              height={4}
-              fill={t.surface2}
-              rx={2}
-            />
-            <rect
-              width={detailWidth * localP}
-              height={4}
-              fill={t.primary}
-              rx={2}
-              opacity={0.6}
-            />
-         </g>
+        {/* Timer/Progress Bar at bottom of detail panel */}
+        <g transform={`translate(0, ${detailHeight - 4})`}>
+          <rect width={detailWidth} height={4} fill={t.surface2} rx={2} />
+          <rect
+            width={detailWidth * localP}
+            height={4}
+            fill={t.primary}
+            rx={2}
+            opacity={0.6}
+          />
+        </g>
 
-         {/* Content */}
-         <g key={activeIndex}>
-            {/* Header */}
-            <text
-              x={30}
-              y={40}
-              fill={t.ink}
-              fontSize="24"
-              fontWeight="800"
-              fontFamily={t.fontSans}
-            >
-              {activeTool.name}
-            </text>
+        {/* Content */}
+        <g key={activeIndex}>
+          {/* Header */}
+          <text
+            x={30}
+            y={40}
+            fill={t.ink}
+            fontSize="24"
+            fontWeight="800"
+            fontFamily={t.fontSans}
+          >
+            {activeTool.name}
+          </text>
 
-            {/* Description */}
-            <WrappedText
-              x={30}
-              y={70}
-              width={420}
-              lineHeight={24}
-              text={activeTool.desc}
-              style={{
-                fill: t.muted,
-                fontSize: "16px",
-                fontFamily: t.fontSerif, // Serif for body
-                fontWeight: "400"
-              }}
-            />
+          {/* Description */}
+          <WrappedText
+            x={30}
+            y={70}
+            width={420}
+            lineHeight={24}
+            text={activeTool.desc}
+            style={{
+              fill: t.muted,
+              fontSize: "16px",
+              fontFamily: t.fontSerif, // Serif for body
+              fontWeight: "400",
+            }}
+          />
 
-            {/* Code Snippet Window */}
-            <g transform="translate(30, 130)">
-                <rect
-                    width={420}
-                    height={160}
-                    rx={6}
-                    fill={t.codeBg}
-                />
-                <foreignObject x="0" y="0" width="420" height="160">
-                    <div style={{
-                        padding: "16px",
-                        fontFamily: t.fontMono,
-                        fontSize: "13px",
-                        lineHeight: "1.5",
-                        color: t.code,
-                        overflow: "hidden",
-                        whiteSpace: "pre",
-                        height: "100%",
-                        boxSizing: "border-box"
-                    }}>
-                        {activeTool.code}
-                    </div>
-                </foreignObject>
-            </g>
-         </g>
+          {/* Code Snippet Window */}
+          <g transform="translate(30, 130)">
+            <rect width={420} height={160} rx={6} fill={t.codeBg} />
+            <foreignObject x="0" y="0" width="420" height="160">
+              <div
+                style={{
+                  padding: "16px",
+                  fontFamily: t.fontMono,
+                  fontSize: "13px",
+                  lineHeight: "1.5",
+                  color: t.code,
+                  overflow: "hidden",
+                  whiteSpace: "pre",
+                  height: "100%",
+                  boxSizing: "border-box",
+                }}
+              >
+                {activeTool.code}
+              </div>
+            </foreignObject>
+          </g>
+        </g>
       </g>
-
     </svg>
-  );
-};
+  )
+}
 
 // Simple text wrapper component for SVG
 const WrappedText = ({ x, y, width, lineHeight, text, style }) => {
-  const words = text.split(" ");
-  const lines = [];
-  let currentLine = words[0];
+  const words = text.split(" ")
+  const lines = []
+  let currentLine = words[0]
 
   for (let i = 1; i < words.length; i++) {
-    const word = words[i];
+    const word = words[i]
     // Rough character width estimation
     if ((currentLine + " " + word).length * 8 < width) {
-      currentLine += " " + word;
+      currentLine += " " + word
     } else {
-      lines.push(currentLine);
-      currentLine = word;
+      lines.push(currentLine)
+      currentLine = word
     }
   }
-  lines.push(currentLine);
+  lines.push(currentLine)
 
   return (
     <text x={x} y={y} {...style}>
@@ -445,7 +445,7 @@ const WrappedText = ({ x, y, width, lineHeight, text, style }) => {
         </tspan>
       ))}
     </text>
-  );
-};
+  )
+}
 
-export default AIEngineersToolboxDiagram;
+export default AIEngineersToolboxDiagram

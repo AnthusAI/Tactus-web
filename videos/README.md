@@ -67,10 +67,11 @@ When you run `babulus:generate`, Babulus:
 You can specify a poster timestamp per composition via the DSL:
 
 ```ts
-comp.posterTime(3.5);
+comp.posterTime(3.5)
 ```
 
 When you run `npm run render`, the render script will:
+
 1. Extract a frame at the specified timestamp using FFmpeg
 2. Save it as `{video-name}-poster.jpg` in the `out/` directory
 3. Embed the poster directly into the MP4 file (no re-encoding, zero quality loss)

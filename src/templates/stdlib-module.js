@@ -20,7 +20,7 @@ const CommandBlock = ({ command }) => {
       <span className={styles.commandPrompt}>$</span>
       <code>{command}</code>
       <button
-        className={`${styles.copyButton} ${copied ? styles.copied : ''}`}
+        className={`${styles.copyButton} ${copied ? styles.copied : ""}`}
         onClick={handleCopy}
         aria-label="Copy command"
       >
@@ -31,7 +31,7 @@ const CommandBlock = ({ command }) => {
 }
 
 // Simple markdown renderer for code blocks and basic formatting
-const renderMarkdown = (markdown) => {
+const renderMarkdown = markdown => {
   if (!markdown) return null
 
   // Split into sections by code blocks
@@ -47,7 +47,11 @@ const renderMarkdown = (markdown) => {
     if (line.startsWith("```")) {
       if (inCodeBlock) {
         // End code block
-        sections.push({ type: "code", lang: codeLang, content: codeContent.trim() })
+        sections.push({
+          type: "code",
+          lang: codeLang,
+          content: codeContent.trim(),
+        })
         codeContent = ""
         codeLang = ""
         inCodeBlock = false
@@ -77,7 +81,9 @@ const renderMarkdown = (markdown) => {
       return (
         <div key={i} className={styles.codeBlock}>
           <pre className={styles.pre}>
-            <code className={`language-${section.lang}`}>{section.content}</code>
+            <code className={`language-${section.lang}`}>
+              {section.content}
+            </code>
           </pre>
         </div>
       )
@@ -111,9 +117,17 @@ const renderMarkdown = (markdown) => {
 
       // Headings
       if (line.startsWith("### ")) {
-        elements.push(<h4 key={`${i}-${j}`} className={styles.h4}>{line.slice(4)}</h4>)
+        elements.push(
+          <h4 key={`${i}-${j}`} className={styles.h4}>
+            {line.slice(4)}
+          </h4>
+        )
       } else if (line.startsWith("## ")) {
-        elements.push(<h3 key={`${i}-${j}`} className={styles.h3}>{line.slice(3)}</h3>)
+        elements.push(
+          <h3 key={`${i}-${j}`} className={styles.h3}>
+            {line.slice(3)}
+          </h3>
+        )
       } else if (line.startsWith("# ")) {
         // Skip H1 as it's the title
         continue
@@ -144,7 +158,7 @@ const renderMarkdown = (markdown) => {
 }
 
 // Render inline formatting (bold, code, links)
-const renderInlineFormatting = (text) => {
+const renderInlineFormatting = text => {
   const parts = []
   let remaining = text
   let key = 0
@@ -158,10 +172,18 @@ const renderInlineFormatting = (text) => {
     const linkMatch = remaining.match(/\[([^\]]+)\]\(([^)]+)\)/)
 
     const matches = [
-      codeMatch ? { type: "code", match: codeMatch, index: codeMatch.index } : null,
-      boldMatch ? { type: "bold", match: boldMatch, index: boldMatch.index } : null,
-      linkMatch ? { type: "link", match: linkMatch, index: linkMatch.index } : null,
-    ].filter(Boolean).sort((a, b) => a.index - b.index)
+      codeMatch
+        ? { type: "code", match: codeMatch, index: codeMatch.index }
+        : null,
+      boldMatch
+        ? { type: "bold", match: boldMatch, index: boldMatch.index }
+        : null,
+      linkMatch
+        ? { type: "link", match: linkMatch, index: linkMatch.index }
+        : null,
+    ]
+      .filter(Boolean)
+      .sort((a, b) => a.index - b.index)
 
     if (matches.length === 0) {
       parts.push(remaining)
@@ -177,7 +199,11 @@ const renderInlineFormatting = (text) => {
 
     // Add formatted element
     if (first.type === "code") {
-      parts.push(<code key={key++} className={styles.inlineCode}>{first.match[1]}</code>)
+      parts.push(
+        <code key={key++} className={styles.inlineCode}>
+          {first.match[1]}
+        </code>
+      )
     } else if (first.type === "bold") {
       parts.push(<strong key={key++}>{first.match[1]}</strong>)
     } else if (first.type === "link") {
@@ -198,8 +224,11 @@ const renderInlineFormatting = (text) => {
 const renderTable = (lines, key) => {
   if (lines.length < 2) return null
 
-  const parseRow = (line) =>
-    line.split("|").map(cell => cell.trim()).filter(Boolean)
+  const parseRow = line =>
+    line
+      .split("|")
+      .map(cell => cell.trim())
+      .filter(Boolean)
 
   const headers = parseRow(lines[0])
   // Skip separator row (lines[1])
@@ -245,11 +274,13 @@ const StdlibModuleTemplate = ({ pageContext }) => {
               <div className={styles.badges}>
                 {module.hasSpecs && (
                   <span className={styles.badge}>
-                    {module.specCount} {module.specCount === 1 ? 'spec' : 'specs'}
+                    {module.specCount}{" "}
+                    {module.specCount === 1 ? "spec" : "specs"}
                   </span>
                 )}
                 <span className={styles.badge}>
-                  {module.submodules.length} {module.submodules.length === 1 ? 'class' : 'classes'}
+                  {module.submodules.length}{" "}
+                  {module.submodules.length === 1 ? "class" : "classes"}
                 </span>
               </div>
               <p className={styles.lede}>{module.description}</p>
@@ -268,7 +299,7 @@ const StdlibModuleTemplate = ({ pageContext }) => {
             <div className={styles.container}>
               <h2 className={styles.sectionTitle}>Classes</h2>
               <div className={styles.submodulesList}>
-                {module.submodules.map((sub) => (
+                {module.submodules.map(sub => (
                   <a
                     key={sub.name}
                     href={`${module.githubUrl}/${sub.file}`}
@@ -303,12 +334,18 @@ const StdlibModuleTemplate = ({ pageContext }) => {
             {module.hasSpecs && (
               <div className={styles.commandSection}>
                 <h3 className={styles.commandTitle}>Run the specs:</h3>
-                <CommandBlock command={`tactus test tactus/stdlib/tac/tactus/${module.slug}.spec.tac`} />
+                <CommandBlock
+                  command={`tactus test tactus/stdlib/tac/tactus/${module.slug}.spec.tac`}
+                />
               </div>
             )}
 
             <p className={styles.bodyText}>
-              <a href={module.githubUrl} target="_blank" rel="noopener noreferrer">
+              <a
+                href={module.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 View source on GitHub →
               </a>
             </p>
@@ -320,13 +357,21 @@ const StdlibModuleTemplate = ({ pageContext }) => {
             <div className={styles.container}>
               <div className={styles.navigation}>
                 {prevModule ? (
-                  <Link to={`/stdlib/${prevModule.slug}/`} className={styles.navLink}>
+                  <Link
+                    to={`/stdlib/${prevModule.slug}/`}
+                    className={styles.navLink}
+                  >
                     <span className={styles.navLabel}>← Previous Module</span>
                     <span className={styles.navTitle}>{prevModule.name}</span>
                   </Link>
-                ) : <div />}
+                ) : (
+                  <div />
+                )}
                 {nextModule && (
-                  <Link to={`/stdlib/${nextModule.slug}/`} className={`${styles.navLink} ${styles.navLinkNext}`}>
+                  <Link
+                    to={`/stdlib/${nextModule.slug}/`}
+                    className={`${styles.navLink} ${styles.navLinkNext}`}
+                  >
                     <span className={styles.navLabel}>Next Module →</span>
                     <span className={styles.navTitle}>{nextModule.name}</span>
                   </Link>

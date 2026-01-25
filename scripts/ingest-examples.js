@@ -12,16 +12,18 @@
  * - EXAMPLES_REF: Branch/tag to fetch (default: main)
  */
 
-const fs = require('fs-extra')
-const path = require('path')
-const { execSync } = require('child_process')
+const fs = require("fs-extra")
+const path = require("path")
+const { execSync } = require("child_process")
 
 // Configuration
 const EXAMPLES_DIR = process.env.EXAMPLES_DIR
-const EXAMPLES_REPO_URL = process.env.EXAMPLES_REPO_URL || 'https://github.com/AnthusAI/Tactus-examples.git'
-const EXAMPLES_REF = process.env.EXAMPLES_REF || 'main'
-const CACHE_DIR = path.join(__dirname, '../.cache/tactus-examples')
-const OUTPUT_FILE = path.join(__dirname, '../src/data/examples.json')
+const EXAMPLES_REPO_URL =
+  process.env.EXAMPLES_REPO_URL ||
+  "https://github.com/AnthusAI/Tactus-examples.git"
+const EXAMPLES_REF = process.env.EXAMPLES_REF || "main"
+const CACHE_DIR = path.join(__dirname, "../.cache/tactus-examples")
+const OUTPUT_FILE = path.join(__dirname, "../src/data/examples.json")
 
 /**
  * Get the path to the examples directory (local or cached clone)
@@ -34,7 +36,7 @@ function getExamplesDir() {
 
   // Dev-friendly default: if a sibling ../Tactus-examples repo exists, prefer it.
   // This keeps local site content aligned with locally edited examples.
-  const siblingExamplesDir = path.resolve(__dirname, '../../Tactus-examples')
+  const siblingExamplesDir = path.resolve(__dirname, "../../Tactus-examples")
   if (fs.existsSync(siblingExamplesDir)) {
     console.log(`Using sibling examples directory: ${siblingExamplesDir}`)
     return siblingExamplesDir
@@ -49,9 +51,12 @@ function getExamplesDir() {
 
   // Clone repo
   fs.ensureDirSync(path.dirname(CACHE_DIR))
-  execSync(`git clone --depth 1 --branch ${EXAMPLES_REF} ${EXAMPLES_REPO_URL} ${CACHE_DIR}`, {
-    stdio: 'inherit'
-  })
+  execSync(
+    `git clone --depth 1 --branch ${EXAMPLES_REF} ${EXAMPLES_REPO_URL} ${CACHE_DIR}`,
+    {
+      stdio: "inherit",
+    }
+  )
 
   return CACHE_DIR
 }
@@ -69,7 +74,7 @@ function discoverChapters(examplesDir) {
       return {
         order: parseInt(match[1], 10),
         slug: match[2],
-        path: path.join(examplesDir, entry.name)
+        path: path.join(examplesDir, entry.name),
       }
     })
     .sort((a, b) => a.order - b.order)
@@ -79,24 +84,31 @@ function discoverChapters(examplesDir) {
  * Parse chapter README to extract title and description
  */
 function parseChapterReadme(chapterPath) {
-  const readmePath = path.join(chapterPath, 'README.md')
+  const readmePath = path.join(chapterPath, "README.md")
 
   if (!fs.existsSync(readmePath)) {
-    return { title: 'Untitled Chapter', description: '' }
+    return { title: "Untitled Chapter", description: "" }
   }
 
-  const content = fs.readFileSync(readmePath, 'utf-8')
-  const lines = content.split('\n')
+  const content = fs.readFileSync(readmePath, "utf-8")
+  const lines = content.split("\n")
 
   // Extract title (first # heading)
-  const titleMatch = lines.find(line => line.startsWith('# '))
-  const title = titleMatch ? titleMatch.replace(/^# /, '').trim() : 'Untitled Chapter'
+  const titleMatch = lines.find(line => line.startsWith("# "))
+  const title = titleMatch
+    ? titleMatch.replace(/^# /, "").trim()
+    : "Untitled Chapter"
 
   // Extract description (text between title and first ## or ### heading)
-  const titleIndex = lines.findIndex(line => line.startsWith('# '))
-  const nextHeadingIndex = lines.findIndex((line, i) => i > titleIndex && line.match(/^##/))
-  const descLines = lines.slice(titleIndex + 1, nextHeadingIndex > 0 ? nextHeadingIndex : lines.length)
-  const description = descLines.join('\n').trim()
+  const titleIndex = lines.findIndex(line => line.startsWith("# "))
+  const nextHeadingIndex = lines.findIndex(
+    (line, i) => i > titleIndex && line.match(/^##/)
+  )
+  const descLines = lines.slice(
+    titleIndex + 1,
+    nextHeadingIndex > 0 ? nextHeadingIndex : lines.length
+  )
+  const description = descLines.join("\n").trim()
 
   return { title, description }
 }
@@ -109,7 +121,7 @@ function discoverExamples(chapterPath) {
 
   const examples = entries
     .filter(entry => {
-      if (entry.isFile() && entry.name.endsWith('.tac')) return true
+      if (entry.isFile() && entry.name.endsWith(".tac")) return true
       if (entry.isDirectory() && /^\d{2}-/.test(entry.name)) return true
       return false
     })
@@ -119,7 +131,7 @@ function discoverExamples(chapterPath) {
         order: parseInt(match[1], 10),
         slug: match[2],
         isFolder: entry.isDirectory(),
-        path: path.join(chapterPath, entry.name)
+        path: path.join(chapterPath, entry.name),
       }
     })
     .sort((a, b) => a.order - b.order)
@@ -131,44 +143,58 @@ function discoverExamples(chapterPath) {
  * Parse example metadata from chapter README
  * Looks for example descriptions in the chapter README
  */
-function parseExampleMetadata(example, chapterPath, chapterSlug, chapterDirName) {
+function parseExampleMetadata(
+  example,
+  chapterPath,
+  chapterSlug,
+  chapterDirName
+) {
   // Read the .tac file content
   const tacPath = example.isFolder
     ? path.join(example.path, `${example.slug}.tac`) // Assume main file has same name
     : example.path
 
-  let code = ''
+  let code = ""
   let hasSpecs = false
   let hasEvals = false
 
   if (fs.existsSync(tacPath)) {
-    code = fs.readFileSync(tacPath, 'utf-8')
-    hasSpecs = code.includes('Specification([[')
-    hasEvals = code.includes('Evaluation([[')
+    code = fs.readFileSync(tacPath, "utf-8")
+    hasSpecs = code.includes("Specification([[")
+    hasEvals = code.includes("Evaluation([[")
   }
 
   // Try to extract description from chapter README
-  const chapterReadme = fs.readFileSync(path.join(chapterPath, 'README.md'), 'utf-8')
-  const exampleSection = chapterReadme.match(new RegExp(`###.*${example.slug}.*?\\n([\\s\\S]*?)(?=###|$)`, 'i'))
-  let description = ''
+  const chapterReadme = fs.readFileSync(
+    path.join(chapterPath, "README.md"),
+    "utf-8"
+  )
+  const exampleSection = chapterReadme.match(
+    new RegExp(`###.*${example.slug}.*?\\n([\\s\\S]*?)(?=###|$)`, "i")
+  )
+  let description = ""
 
   if (exampleSection) {
     // Extract first paragraph after heading
-    const paragraphs = exampleSection[1].split('\n\n')
-    description = paragraphs.find(p => p.trim() && !p.startsWith('```') && !p.startsWith('**'))?.trim() || ''
+    const paragraphs = exampleSection[1].split("\n\n")
+    description =
+      paragraphs
+        .find(p => p.trim() && !p.startsWith("```") && !p.startsWith("**"))
+        ?.trim() || ""
   }
 
   // Generate title from slug
   const title = example.slug
-    .split('-')
+    .split("-")
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(' ')
+    .join(" ")
 
   // Determine if it requires API keys (basic heuristic)
-  const requiresApiKeys = code.includes('provider = "openai"') ||
-                          code.includes('provider = "anthropic"') ||
-                          code.includes('bedrock') ||
-                          code.includes('gemini')
+  const requiresApiKeys =
+    code.includes('provider = "openai"') ||
+    code.includes('provider = "anthropic"') ||
+    code.includes("bedrock") ||
+    code.includes("gemini")
 
   const relativePath = path.relative(path.dirname(chapterPath), tacPath)
 
@@ -180,10 +206,12 @@ function parseExampleMetadata(example, chapterPath, chapterSlug, chapterDirName)
     description: description || `Example: ${title}`,
     code,
     tacPath: relativePath,
-    githubUrl: `https://github.com/AnthusAI/Tactus-examples/blob/main/${chapterDirName}/${path.basename(tacPath)}`,
+    githubUrl: `https://github.com/AnthusAI/Tactus-examples/blob/main/${chapterDirName}/${path.basename(
+      tacPath
+    )}`,
     hasSpecs,
     hasEvals,
-    requiresApiKeys
+    requiresApiKeys,
   }
 }
 
@@ -191,7 +219,7 @@ function parseExampleMetadata(example, chapterPath, chapterSlug, chapterDirName)
  * Main ingestion function
  */
 async function ingestExamples() {
-  console.log('Starting Tactus examples ingestion...')
+  console.log("Starting Tactus examples ingestion...")
 
   // Get examples directory
   const examplesDir = getExamplesDir()
@@ -216,12 +244,17 @@ async function ingestExamples() {
         description,
         slug: chapter.slug,
         examples: examples.map(example => {
-          const metadata = parseExampleMetadata(example, chapter.path, chapter.slug, chapterDirName)
+          const metadata = parseExampleMetadata(
+            example,
+            chapter.path,
+            chapter.slug,
+            chapterDirName
+          )
           console.log(`    - ${metadata.title}`)
           return metadata
-        })
+        }),
       }
-    })
+    }),
   }
 
   // Ensure output directory exists
@@ -230,13 +263,18 @@ async function ingestExamples() {
   // Write JSON file
   fs.writeJsonSync(OUTPUT_FILE, data, { spaces: 2 })
   console.log(`\nGenerated: ${OUTPUT_FILE}`)
-  console.log(`Total: ${data.chapters.length} chapters, ${data.chapters.reduce((sum, ch) => sum + ch.examples.length, 0)} examples`)
+  console.log(
+    `Total: ${data.chapters.length} chapters, ${data.chapters.reduce(
+      (sum, ch) => sum + ch.examples.length,
+      0
+    )} examples`
+  )
 }
 
 // Run if called directly
 if (require.main === module) {
   ingestExamples().catch(err => {
-    console.error('Error during ingestion:', err)
+    console.error("Error during ingestion:", err)
     process.exit(1)
   })
 }

@@ -1,11 +1,11 @@
-import * as React from "react";
-import { 
-  Box, 
-  Container, 
-  ShieldCheck, 
-  Globe, 
-  Key, 
-  Lock, 
+import * as React from "react"
+import {
+  Box,
+  Container,
+  ShieldCheck,
+  Globe,
+  Key,
+  Lock,
   Code2,
   Server,
   Cloud,
@@ -14,79 +14,75 @@ import {
   Database,
   Monitor,
   Terminal,
-  Folder
-} from "lucide-react";
-import { diagramTokens, getDiagramThemeVars } from "./diagramTheme";
+  Folder,
+} from "lucide-react"
+import { diagramTokens, getDiagramThemeVars } from "./diagramTheme"
 
-const ContainerSandboxDiagram = ({
-  theme = "light",
-  style,
-  className,
-}) => {
-  const t = diagramTokens;
-  const [isMobile, setIsMobile] = React.useState(false);
+const ContainerSandboxDiagram = ({ theme = "light", style, className }) => {
+  const t = diagramTokens
+  const [isMobile, setIsMobile] = React.useState(false)
 
   React.useEffect(() => {
-    if (typeof window === "undefined") return;
-    const checkMobile = () => setIsMobile(window.innerWidth < 800);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
+    if (typeof window === "undefined") return
+    const checkMobile = () => setIsMobile(window.innerWidth < 800)
+    checkMobile()
+    window.addEventListener("resize", checkMobile)
+    return () => window.removeEventListener("resize", checkMobile)
+  }, [])
 
   if (isMobile) {
-    const width = 360;
-    const height = 920; // Increased height for vertical stack
+    const width = 360
+    const height = 920 // Increased height for vertical stack
 
     // Mobile Layout Constants
-    const hostX = 10;
-    const hostY = 40;
-    const hostW = 340;
-    
+    const hostX = 10
+    const hostY = 40
+    const hostW = 340
+
     // Runtime Container (Top inside Host)
-    const contX = hostX + 20;
-    const contY = hostY + 50;
-    const contW = hostW - 40;
-    const contH = 260; 
+    const contX = hostX + 20
+    const contY = hostY + 50
+    const contW = hostW - 40
+    const contH = 260
 
     // Lua Sandbox
-    const sandX = contX + 20;
-    const sandY = contY + 50;
-    const sandW = contW - 40;
-    const sandH = 100;
+    const sandX = contX + 20
+    const sandY = contY + 50
+    const sandW = contW - 40
+    const sandH = 100
 
     // Files/Bash
-    const fsY = sandY + sandH + 15;
-    const fsH = 50;
-    const subBoxW = (sandW - 10) / 2;
-    const fsX = sandX;
-    const bashX = sandX + subBoxW + 10;
+    const fsY = sandY + sandH + 15
+    const fsH = 50
+    const subBoxW = (sandW - 10) / 2
+    const fsX = sandX
+    const bashX = sandX + subBoxW + 10
 
     // Secret Broker (Bottom inside Host)
-    const brokW = contW;
-    const brokH = 220;
-    const brokX = contX;
-    const brokY = contY + contH + 40; // Gap for arrow
+    const brokW = contW
+    const brokH = 220
+    const brokX = contX
+    const brokY = contY + contH + 40 // Gap for arrow
 
-    const hostH = brokY + brokH + 20 - hostY;
+    const hostH = brokY + brokH + 20 - hostY
 
     // External World (Bottom)
-    const extX = hostX;
-    const extY = hostY + hostH + 40; // Gap for arrow
-    const extW = hostW;
-    const extH = 280; // Taller for grid
+    const extX = hostX
+    const extY = hostY + hostH + 40 // Gap for arrow
+    const extW = hostW
+    const extH = 280 // Taller for grid
 
     return (
-        <svg
+      <svg
         className={className}
-      style={{
-        ...getDiagramThemeVars(theme),
-        display: "block",
-        width: "100%",
-        height: "auto",
-        background: "var(--color-bg)", // Use normal page background color
-        ...style,
-      }}
+        style={{
+          ...getDiagramThemeVars(theme),
+          display: "block",
+          width: "100%",
+          height: "auto",
+          background: "var(--color-bg)", // Use normal page background color
+          ...style,
+        }}
         viewBox={`0 0 ${width} ${height}`}
         role="img"
         aria-label="Diagram showing Tactus architecture: Lua sandbox inside a networkless container, connecting to external APIs via a trusted broker that holds the secrets."
@@ -108,148 +104,462 @@ const ContainerSandboxDiagram = ({
         {/* HOST INFRASTRUCTURE */}
         <g transform={`translate(${hostX}, ${hostY - 22})`}>
           <Monitor size={18} color={t.muted} />
-          <text x={26} y={14} fill={t.muted} fontSize="14" fontWeight="700" fontFamily={t.fontSans}>
+          <text
+            x={26}
+            y={14}
+            fill={t.muted}
+            fontSize="14"
+            fontWeight="700"
+            fontFamily={t.fontSans}
+          >
             Host Infrastructure
           </text>
         </g>
-        <rect x={hostX} y={hostY} width={hostW} height={hostH} rx={8} fill={t.surface2} stroke={t.border} strokeWidth="1" />
+        <rect
+          x={hostX}
+          y={hostY}
+          width={hostW}
+          height={hostH}
+          rx={8}
+          fill={t.surface2}
+          stroke={t.border}
+          strokeWidth="1"
+        />
 
         {/* RUNTIME CONTAINER */}
         <g transform={`translate(${contX}, ${contY - 22})`}>
           <Box size={18} color={t.muted} />
-          <text x={26} y={14} fill={t.muted} fontSize="14" fontWeight="700" fontFamily={t.fontSans}>
+          <text
+            x={26}
+            y={14}
+            fill={t.muted}
+            fontSize="14"
+            fontWeight="700"
+            fontFamily={t.fontSans}
+          >
             Runtime Container
           </text>
-          <text x={170} y={14} fill={t.muted} fontSize="12" fontWeight="600" fontFamily={t.fontMono}>
+          <text
+            x={170}
+            y={14}
+            fill={t.muted}
+            fontSize="12"
+            fontWeight="600"
+            fontFamily={t.fontMono}
+          >
             (Network: None)
           </text>
         </g>
-        <rect x={contX} y={contY} width={contW} height={contH} rx={8} fill={t.surface} stroke={t.border} strokeWidth="1" />
-        <rect x={contX} y={contY} width={contW} height={contH} rx={10} fill="none" stroke={t.ink} strokeWidth="2.5" strokeDasharray="8 6" opacity={0.5} />
+        <rect
+          x={contX}
+          y={contY}
+          width={contW}
+          height={contH}
+          rx={8}
+          fill={t.surface}
+          stroke={t.border}
+          strokeWidth="1"
+        />
+        <rect
+          x={contX}
+          y={contY}
+          width={contW}
+          height={contH}
+          rx={10}
+          fill="none"
+          stroke={t.ink}
+          strokeWidth="2.5"
+          strokeDasharray="8 6"
+          opacity={0.5}
+        />
 
         {/* LUA SANDBOX */}
         <g transform={`translate(${sandX}, ${sandY - 22})`}>
           <Code2 size={18} color={t.primary} />
-          <text x={26} y={14} fill={t.ink} fontSize="15" fontWeight="800" fontFamily={t.fontSans}>
+          <text
+            x={26}
+            y={14}
+            fill={t.ink}
+            fontSize="15"
+            fontWeight="800"
+            fontFamily={t.fontSans}
+          >
             Lua Sandbox
           </text>
         </g>
-        <rect x={sandX} y={sandY} width={sandW} height={sandH} rx={8} fill={t.codeBg} stroke="none" />
-        <rect x={sandX} y={sandY} width={sandW} height={sandH} rx={8} fill="none" stroke={t.primary} strokeWidth="3" strokeDasharray="8 6" />
+        <rect
+          x={sandX}
+          y={sandY}
+          width={sandW}
+          height={sandH}
+          rx={8}
+          fill={t.codeBg}
+          stroke="none"
+        />
+        <rect
+          x={sandX}
+          y={sandY}
+          width={sandW}
+          height={sandH}
+          rx={8}
+          fill="none"
+          stroke={t.primary}
+          strokeWidth="3"
+          strokeDasharray="8 6"
+        />
 
         {/* Code Snippet */}
         <g transform={`translate(${sandX + 15}, ${sandY + 25})`}>
-            <text fill={t.code} fontSize="13" fontFamily={t.fontMono} style={{ whiteSpace: "pre" }}>
-                <tspan x="0" dy="0">worker = Agent &#123;</tspan>
-                <tspan x="10" dy="18">provider = "openai",</tspan>
-                <tspan x="10" dy="18">tools = &#123;search&#125;</tspan>
-                <tspan x="0" dy="18">&#125;</tspan>
-            </text>
+          <text
+            fill={t.code}
+            fontSize="13"
+            fontFamily={t.fontMono}
+            style={{ whiteSpace: "pre" }}
+          >
+            <tspan x="0" dy="0">
+              worker = Agent &#123;
+            </tspan>
+            <tspan x="10" dy="18">
+              provider = "openai",
+            </tspan>
+            <tspan x="10" dy="18">
+              tools = &#123;search&#125;
+            </tspan>
+            <tspan x="0" dy="18">
+              &#125;
+            </tspan>
+          </text>
         </g>
 
         {/* File System & Bash */}
-        <rect x={fsX} y={fsY} width={subBoxW} height={fsH} rx={4} fill={t.surface2} opacity="0.5" />
+        <rect
+          x={fsX}
+          y={fsY}
+          width={subBoxW}
+          height={fsH}
+          rx={4}
+          fill={t.surface2}
+          opacity="0.5"
+        />
         <g transform={`translate(${fsX + 10}, ${fsY + 20})`}>
-            <Folder size={16} color={t.muted} />
-            <text x={22} y={12} fill={t.muted} fontSize="12" fontWeight="700" fontFamily={t.fontSans}>Files</text>
+          <Folder size={16} color={t.muted} />
+          <text
+            x={22}
+            y={12}
+            fill={t.muted}
+            fontSize="12"
+            fontWeight="700"
+            fontFamily={t.fontSans}
+          >
+            Files
+          </text>
         </g>
-        <rect x={bashX} y={fsY} width={subBoxW} height={fsH} rx={4} fill={t.surface2} opacity="0.5" />
+        <rect
+          x={bashX}
+          y={fsY}
+          width={subBoxW}
+          height={fsH}
+          rx={4}
+          fill={t.surface2}
+          opacity="0.5"
+        />
         <g transform={`translate(${bashX + 10}, ${fsY + 20})`}>
-            <Terminal size={16} color={t.muted} />
-            <text x={22} y={12} fill={t.muted} fontSize="12" fontWeight="700" fontFamily={t.fontSans}>Bash</text>
+          <Terminal size={16} color={t.muted} />
+          <text
+            x={22}
+            y={12}
+            fill={t.muted}
+            fontSize="12"
+            fontWeight="700"
+            fontFamily={t.fontSans}
+          >
+            Bash
+          </text>
         </g>
 
         {/* SECRET BROKER */}
         <g transform={`translate(${brokX}, ${brokY - 22})`}>
           <ShieldCheck size={18} color={t.primary} />
-          <text x={26} y={14} fill={t.ink} fontSize="15" fontWeight="800" fontFamily={t.fontSans}>
+          <text
+            x={26}
+            y={14}
+            fill={t.ink}
+            fontSize="15"
+            fontWeight="800"
+            fontFamily={t.fontSans}
+          >
             Secret Broker
           </text>
         </g>
-        <rect x={brokX} y={brokY} width={brokW} height={brokH} rx={8} fill={t.surface} stroke={t.primary} strokeWidth="2" />
+        <rect
+          x={brokX}
+          y={brokY}
+          width={brokW}
+          height={brokH}
+          rx={8}
+          fill={t.surface}
+          stroke={t.primary}
+          strokeWidth="2"
+        />
 
         {/* Keys & Policy */}
         <g transform={`translate(${brokX + 20}, ${brokY + 25})`}>
-            <g transform="translate(0, 0)">
-                <rect x="0" y="0" width={brokW - 40} height={40} rx={4} fill={t.surface2} opacity="0.5" />
-                <g transform="translate(10, 10)">
-                    <ShieldCheck size={16} color={t.muted} />
-                    <text x={22} y={12} fill={t.muted} fontSize="12" fontWeight="700" fontFamily={t.fontSans} letterSpacing="0.5" style={{ textTransform: "uppercase" }}>AI Gateway</text>
-                </g>
+          <g transform="translate(0, 0)">
+            <rect
+              x="0"
+              y="0"
+              width={brokW - 40}
+              height={40}
+              rx={4}
+              fill={t.surface2}
+              opacity="0.5"
+            />
+            <g transform="translate(10, 10)">
+              <ShieldCheck size={16} color={t.muted} />
+              <text
+                x={22}
+                y={12}
+                fill={t.muted}
+                fontSize="12"
+                fontWeight="700"
+                fontFamily={t.fontSans}
+                letterSpacing="0.5"
+                style={{ textTransform: "uppercase" }}
+              >
+                AI Gateway
+              </text>
             </g>
-            <g transform="translate(0, 50)">
-                <rect x="0" y="0" width={brokW - 40} height={40} rx={4} fill={t.surface2} opacity="0.5" />
-                <g transform="translate(10, 10)">
-                    <Globe size={16} color={t.muted} />
-                    <text x={22} y={12} fill={t.muted} fontSize="12" fontWeight="700" fontFamily={t.fontSans} letterSpacing="0.5" style={{ textTransform: "uppercase" }}>Tool Gateway</text>
-                </g>
+          </g>
+          <g transform="translate(0, 50)">
+            <rect
+              x="0"
+              y="0"
+              width={brokW - 40}
+              height={40}
+              rx={4}
+              fill={t.surface2}
+              opacity="0.5"
+            />
+            <g transform="translate(10, 10)">
+              <Globe size={16} color={t.muted} />
+              <text
+                x={22}
+                y={12}
+                fill={t.muted}
+                fontSize="12"
+                fontWeight="700"
+                fontFamily={t.fontSans}
+                letterSpacing="0.5"
+                style={{ textTransform: "uppercase" }}
+              >
+                Tool Gateway
+              </text>
             </g>
-            <g transform="translate(0, 100)">
-                <rect x="0" y="0" width={brokW - 40} height={90} rx={4} fill={t.cardTitle} stroke={t.border} strokeWidth="1" strokeDasharray="4 4" />
-                <text x={10} y={20} fill={t.muted} fontSize="11" fontWeight="700" fontFamily={t.fontSans} letterSpacing="0.5" style={{ textTransform: "uppercase" }}>Security Layer</text>
-                <g transform="translate(10, 35)">
-                    <Key size={14} color={t.primary} />
-                    <text x={20} y={10} fill={t.code} fontSize="11" fontFamily={t.fontMono}>OPENAI_API_KEY</text>
-                </g>
-                 <g transform="translate(140, 35)">
-                    <Key size={14} color={t.primary} />
-                    <text x={20} y={10} fill={t.code} fontSize="11" fontFamily={t.fontMono}>AWS keys</text>
-                </g>
-                <g transform="translate(10, 60)">
-                    <Lock size={14} color={t.ink} />
-                    <text x={20} y={10} fill={t.ink} fontSize="11" fontFamily={t.fontSans} fontWeight="600">Policy: Allow search, read</text>
-                </g>
+          </g>
+          <g transform="translate(0, 100)">
+            <rect
+              x="0"
+              y="0"
+              width={brokW - 40}
+              height={90}
+              rx={4}
+              fill={t.cardTitle}
+              stroke={t.border}
+              strokeWidth="1"
+              strokeDasharray="4 4"
+            />
+            <text
+              x={10}
+              y={20}
+              fill={t.muted}
+              fontSize="11"
+              fontWeight="700"
+              fontFamily={t.fontSans}
+              letterSpacing="0.5"
+              style={{ textTransform: "uppercase" }}
+            >
+              Security Layer
+            </text>
+            <g transform="translate(10, 35)">
+              <Key size={14} color={t.primary} />
+              <text
+                x={20}
+                y={10}
+                fill={t.code}
+                fontSize="11"
+                fontFamily={t.fontMono}
+              >
+                OPENAI_API_KEY
+              </text>
             </g>
+            <g transform="translate(140, 35)">
+              <Key size={14} color={t.primary} />
+              <text
+                x={20}
+                y={10}
+                fill={t.code}
+                fontSize="11"
+                fontFamily={t.fontMono}
+              >
+                AWS keys
+              </text>
+            </g>
+            <g transform="translate(10, 60)">
+              <Lock size={14} color={t.ink} />
+              <text
+                x={20}
+                y={10}
+                fill={t.ink}
+                fontSize="11"
+                fontFamily={t.fontSans}
+                fontWeight="600"
+              >
+                Policy: Allow search, read
+              </text>
+            </g>
+          </g>
         </g>
 
         {/* EXTERNAL WORLD */}
         <g transform={`translate(${extX}, ${extY - 22})`}>
           <Globe size={18} color={t.muted} />
-          <text x={26} y={14} fill={t.muted} fontSize="14" fontWeight="700" fontFamily={t.fontSans}>
+          <text
+            x={26}
+            y={14}
+            fill={t.muted}
+            fontSize="14"
+            fontWeight="700"
+            fontFamily={t.fontSans}
+          >
             External World
           </text>
         </g>
-        <rect x={extX} y={extY} width={extW} height={extH} rx={8} fill="none" stroke={t.border} strokeWidth="1" strokeDasharray="4 4" />
-        
+        <rect
+          x={extX}
+          y={extY}
+          width={extW}
+          height={extH}
+          rx={8}
+          fill="none"
+          stroke={t.border}
+          strokeWidth="1"
+          strokeDasharray="4 4"
+        />
+
         {/* External Grid */}
         <g transform={`translate(${extX + 20}, ${extY + 30})`}>
-             <g transform="translate(0, 0)">
-                <Cloud size={24} color={t.text} fill="none" strokeWidth={1.5} />
-                <text x={34} y={18} fill={t.ink} fontSize="13" fontWeight="600" fontFamily={t.fontSans}>OpenAI API</text>
-             </g>
-             <g transform="translate(150, 0)">
-                <Cloud size={24} color={t.text} fill="none" strokeWidth={1.5} />
-                <text x={34} y={18} fill={t.ink} fontSize="13" fontWeight="600" fontFamily={t.fontSans}>Google Cloud</text>
-             </g>
-             <g transform="translate(0, 50)">
-                <Server size={24} color={t.text} fill="none" strokeWidth={1.5} />
-                <text x={34} y={18} fill={t.ink} fontSize="13" fontWeight="600" fontFamily={t.fontSans}>AWS</text>
-             </g>
-             <g transform="translate(150, 50)">
-                <Mail size={24} color={t.text} fill="none" strokeWidth={1.5} />
-                <text x={34} y={18} fill={t.ink} fontSize="13" fontWeight="600" fontFamily={t.fontSans}>SMTP / Email</text>
-             </g>
-             <g transform="translate(0, 100)">
-                <Search size={24} color={t.text} fill="none" strokeWidth={1.5} />
-                <text x={34} y={18} fill={t.ink} fontSize="13" fontWeight="600" fontFamily={t.fontSans}>Search / Web</text>
-             </g>
-             <g transform="translate(150, 100)">
-                <Database size={24} color={t.text} fill="none" strokeWidth={1.5} />
-                <text x={34} y={18} fill={t.ink} fontSize="13" fontWeight="600" fontFamily={t.fontSans}>CMS / DB</text>
-             </g>
-             <g transform="translate(0, 150)">
-                <Cloud size={24} color={t.text} fill="none" strokeWidth={1.5} />
-                <text x={34} y={18} fill={t.ink} fontSize="13" fontWeight="600" fontFamily={t.fontSans}>Github / Git</text>
-             </g>
-             <g transform="translate(150, 150)">
-                <text x={0} y={18} fill={t.muted} fontSize="13" fontWeight="500" fontFamily={t.fontSans} fontStyle="italic">Others...</text>
-             </g>
+          <g transform="translate(0, 0)">
+            <Cloud size={24} color={t.text} fill="none" strokeWidth={1.5} />
+            <text
+              x={34}
+              y={18}
+              fill={t.ink}
+              fontSize="13"
+              fontWeight="600"
+              fontFamily={t.fontSans}
+            >
+              OpenAI API
+            </text>
+          </g>
+          <g transform="translate(150, 0)">
+            <Cloud size={24} color={t.text} fill="none" strokeWidth={1.5} />
+            <text
+              x={34}
+              y={18}
+              fill={t.ink}
+              fontSize="13"
+              fontWeight="600"
+              fontFamily={t.fontSans}
+            >
+              Google Cloud
+            </text>
+          </g>
+          <g transform="translate(0, 50)">
+            <Server size={24} color={t.text} fill="none" strokeWidth={1.5} />
+            <text
+              x={34}
+              y={18}
+              fill={t.ink}
+              fontSize="13"
+              fontWeight="600"
+              fontFamily={t.fontSans}
+            >
+              AWS
+            </text>
+          </g>
+          <g transform="translate(150, 50)">
+            <Mail size={24} color={t.text} fill="none" strokeWidth={1.5} />
+            <text
+              x={34}
+              y={18}
+              fill={t.ink}
+              fontSize="13"
+              fontWeight="600"
+              fontFamily={t.fontSans}
+            >
+              SMTP / Email
+            </text>
+          </g>
+          <g transform="translate(0, 100)">
+            <Search size={24} color={t.text} fill="none" strokeWidth={1.5} />
+            <text
+              x={34}
+              y={18}
+              fill={t.ink}
+              fontSize="13"
+              fontWeight="600"
+              fontFamily={t.fontSans}
+            >
+              Search / Web
+            </text>
+          </g>
+          <g transform="translate(150, 100)">
+            <Database size={24} color={t.text} fill="none" strokeWidth={1.5} />
+            <text
+              x={34}
+              y={18}
+              fill={t.ink}
+              fontSize="13"
+              fontWeight="600"
+              fontFamily={t.fontSans}
+            >
+              CMS / DB
+            </text>
+          </g>
+          <g transform="translate(0, 150)">
+            <Cloud size={24} color={t.text} fill="none" strokeWidth={1.5} />
+            <text
+              x={34}
+              y={18}
+              fill={t.ink}
+              fontSize="13"
+              fontWeight="600"
+              fontFamily={t.fontSans}
+            >
+              Github / Git
+            </text>
+          </g>
+          <g transform="translate(150, 150)">
+            <text
+              x={0}
+              y={18}
+              fill={t.muted}
+              fontSize="13"
+              fontWeight="500"
+              fontFamily={t.fontSans}
+              fontStyle="italic"
+            >
+              Others...
+            </text>
+          </g>
         </g>
 
         {/* ARROWS */}
         {/* Container -> Broker (Vertical) */}
         <path
-          d={`M ${contX + contW/2} ${contY + contH + 5} L ${contX + contW/2} ${brokY - 5}`}
+          d={`M ${contX + contW / 2} ${contY + contH + 5} L ${
+            contX + contW / 2
+          } ${brokY - 5}`}
           fill="none"
           stroke={t.primary}
           strokeWidth="3"
@@ -257,43 +567,44 @@ const ContainerSandboxDiagram = ({
         />
 
         {/* Host -> External (Vertical) */}
-         <path
-          d={`M ${hostX + hostW/2} ${hostY + hostH + 5} L ${hostX + hostW/2} ${extY - 5}`}
+        <path
+          d={`M ${hostX + hostW / 2} ${hostY + hostH + 5} L ${
+            hostX + hostW / 2
+          } ${extY - 5}`}
           fill="none"
           stroke={t.primary}
           strokeWidth="3"
           markerEnd="url(#csdArrowMobile)"
         />
-
       </svg>
-    );
+    )
   }
 
   // Layout Constants
-  const width = 960;
-  const height = 400;
+  const width = 960
+  const height = 400
 
   // --- Host Infrastructure (Left Large Box) ---
-  const hostX = 20;
-  const hostY = 50;
-  const hostW = 660;
-  const hostH = 340; // Reduced from 380
+  const hostX = 20
+  const hostY = 50
+  const hostW = 660
+  const hostH = 340 // Reduced from 380
 
   // --- Runtime Container (Inside Host, Left) ---
-  const contX = hostX + 30;
-  const contY = hostY + 50;
-  const contW = 280;
-  const contH = hostH - 70; // 270
+  const contX = hostX + 30
+  const contY = hostY + 50
+  const contW = 280
+  const contH = hostH - 70 // 270
 
   // --- Lua Sandbox (Inside Container) ---
-  const sandX = contX + 25;
-  const sandY = contY + 50;
-  const sandW = contW - 50;
-  const sandH = 100; // Reduced from 120
+  const sandX = contX + 25
+  const sandY = contY + 50
+  const sandW = contW - 50
+  const sandH = 100 // Reduced from 120
 
   // --- File System (Inside Container, Below Sandbox) ---
-  const fsY = sandY + sandH + 15; // Tighter gap
-  const fsH = 50; // Slightly shorter boxes
+  const fsY = sandY + sandH + 15 // Tighter gap
+  const fsH = 50 // Slightly shorter boxes
   // Two boxes side-by-side: File System & Bash Tools
   // Total width available inside container padding: sandW
   // Let's split it: sandW is roughly 230px.
@@ -301,22 +612,22 @@ const ContainerSandboxDiagram = ({
   // Actually, sandW = contW - 50 = 280 - 50 = 230.
   // Squeezing side-by-side might be tight (110px each).
   // Let's try side-by-side with smaller icons.
-  
-  const subBoxW = (sandW - 10) / 2;
-  const fsX = sandX;
-  const bashX = sandX + subBoxW + 10;
+
+  const subBoxW = (sandW - 10) / 2
+  const fsX = sandX
+  const bashX = sandX + subBoxW + 10
 
   // --- Secret Broker (Inside Host, Right) ---
-  const brokX = contX + contW + 40;
-  const brokY = contY; // Align tops
-  const brokW = 280;
-  const brokH = contH; // Same height as container
+  const brokX = contX + contW + 40
+  const brokY = contY // Align tops
+  const brokW = 280
+  const brokH = contH // Same height as container
 
   // --- External World (Outside Host, Far Right) ---
-  const extX = hostX + hostW + 20;
-  const extY = hostY;
-  const extW = 240;
-  const extH = hostH;
+  const extX = hostX + hostW + 20
+  const extY = hostY
+  const extW = 240
+  const extH = hostH
 
   return (
     <svg
@@ -350,19 +661,32 @@ const ContainerSandboxDiagram = ({
       {/* =========================================
           HOST INFRASTRUCTURE
          ========================================= */}
-      
+
       {/* Label - moved slightly higher */}
       <g transform={`translate(${hostX}, ${hostY - 22})`}>
         <Monitor size={18} color={t.muted} />
-        <text x={26} y={14} fill={t.muted} fontSize="14" fontWeight="700" fontFamily={t.fontSans}>
+        <text
+          x={26}
+          y={14}
+          fill={t.muted}
+          fontSize="14"
+          fontWeight="700"
+          fontFamily={t.fontSans}
+        >
           Host Infrastructure
         </text>
       </g>
 
       {/* Box */}
-      <rect 
-        x={hostX} y={hostY} width={hostW} height={hostH} 
-        rx={8} fill={t.surface2} stroke={t.border} strokeWidth="1" 
+      <rect
+        x={hostX}
+        y={hostY}
+        width={hostW}
+        height={hostH}
+        rx={8}
+        fill={t.surface2}
+        stroke={t.border}
+        strokeWidth="1"
       />
 
       {/* =========================================
@@ -372,23 +696,51 @@ const ContainerSandboxDiagram = ({
       {/* Label - moved slightly higher */}
       <g transform={`translate(${contX}, ${contY - 22})`}>
         <Box size={18} color={t.muted} />
-        <text x={26} y={14} fill={t.muted} fontSize="14" fontWeight="700" fontFamily={t.fontSans}>
+        <text
+          x={26}
+          y={14}
+          fill={t.muted}
+          fontSize="14"
+          fontWeight="700"
+          fontFamily={t.fontSans}
+        >
           Runtime Container
         </text>
-        <text x={160} y={14} fill={t.muted} fontSize="12" fontWeight="600" fontFamily={t.fontMono}>
+        <text
+          x={160}
+          y={14}
+          fill={t.muted}
+          fontSize="12"
+          fontWeight="600"
+          fontFamily={t.fontMono}
+        >
           (Network: None)
         </text>
       </g>
 
       {/* Box */}
-      <rect 
-        x={contX} y={contY} width={contW} height={contH} 
-        rx={8} fill={t.surface} stroke={t.border} strokeWidth="1" 
+      <rect
+        x={contX}
+        y={contY}
+        width={contW}
+        height={contH}
+        rx={8}
+        fill={t.surface}
+        stroke={t.border}
+        strokeWidth="1"
       />
       {/* Dashed Outline */}
-      <rect 
-        x={contX} y={contY} width={contW} height={contH} 
-        rx={10} fill="none" stroke={t.ink} strokeWidth="2.5" strokeDasharray="8 6" opacity={0.5}
+      <rect
+        x={contX}
+        y={contY}
+        width={contW}
+        height={contH}
+        rx={10}
+        fill="none"
+        stroke={t.ink}
+        strokeWidth="2.5"
+        strokeDasharray="8 6"
+        opacity={0.5}
       />
 
       {/* =========================================
@@ -398,61 +750,117 @@ const ContainerSandboxDiagram = ({
       {/* Label - moved slightly higher */}
       <g transform={`translate(${sandX}, ${sandY - 22})`}>
         <Code2 size={18} color={t.primary} />
-        <text x={26} y={14} fill={t.ink} fontSize="15" fontWeight="800" fontFamily={t.fontSans}>
+        <text
+          x={26}
+          y={14}
+          fill={t.ink}
+          fontSize="15"
+          fontWeight="800"
+          fontFamily={t.fontSans}
+        >
           Lua Sandbox
         </text>
       </g>
 
       {/* Box */}
-      <rect 
-        x={sandX} y={sandY} width={sandW} height={sandH} 
-        rx={8} fill={t.codeBg} stroke="none"
+      <rect
+        x={sandX}
+        y={sandY}
+        width={sandW}
+        height={sandH}
+        rx={8}
+        fill={t.codeBg}
+        stroke="none"
       />
       {/* Dashed Outline */}
-      <rect 
-        x={sandX} y={sandY} width={sandW} height={sandH} 
-        rx={8} fill="none" stroke={t.primary} strokeWidth="3" strokeDasharray="8 6"
+      <rect
+        x={sandX}
+        y={sandY}
+        width={sandW}
+        height={sandH}
+        rx={8}
+        fill="none"
+        stroke={t.primary}
+        strokeWidth="3"
+        strokeDasharray="8 6"
       />
 
       {/* Code Snippet */}
       <g transform={`translate(${sandX + 15}, ${sandY + 25})`}>
-          <text fill={t.code} fontSize="13" fontFamily={t.fontMono} style={{ whiteSpace: "pre" }}>
-              <tspan x="0" dy="0">worker = Agent &#123;</tspan>
-              <tspan x="10" dy="18">provider = "openai",</tspan>
-              <tspan x="10" dy="18">tools = &#123;search&#125;</tspan>
-              <tspan x="0" dy="18">&#125;</tspan>
-          </text>
+        <text
+          fill={t.code}
+          fontSize="13"
+          fontFamily={t.fontMono}
+          style={{ whiteSpace: "pre" }}
+        >
+          <tspan x="0" dy="0">
+            worker = Agent &#123;
+          </tspan>
+          <tspan x="10" dy="18">
+            provider = "openai",
+          </tspan>
+          <tspan x="10" dy="18">
+            tools = &#123;search&#125;
+          </tspan>
+          <tspan x="0" dy="18">
+            &#125;
+          </tspan>
+        </text>
       </g>
 
       {/* =========================================
           FILE SYSTEM & BASH TOOLS (Inside Container)
          ========================================= */}
-      
+
       {/* File System Box */}
-      <rect 
-        x={fsX} y={fsY} width={subBoxW} height={fsH} rx={4} 
-        fill={t.surface2} opacity="0.5"
+      <rect
+        x={fsX}
+        y={fsY}
+        width={subBoxW}
+        height={fsH}
+        rx={4}
+        fill={t.surface2}
+        opacity="0.5"
       />
-      
+
       {/* File System Label */}
       <g transform={`translate(${fsX + 10}, ${fsY + 20})`}>
         <Folder size={16} color={t.muted} />
-        <text x={22} y={12} fill={t.muted} fontSize="12" fontWeight="700" fontFamily={t.fontSans}>
-            Files
+        <text
+          x={22}
+          y={12}
+          fill={t.muted}
+          fontSize="12"
+          fontWeight="700"
+          fontFamily={t.fontSans}
+        >
+          Files
         </text>
       </g>
 
       {/* Bash Tools Box */}
-      <rect 
-        x={bashX} y={fsY} width={subBoxW} height={fsH} rx={4} 
-        fill={t.surface2} opacity="0.5"
+      <rect
+        x={bashX}
+        y={fsY}
+        width={subBoxW}
+        height={fsH}
+        rx={4}
+        fill={t.surface2}
+        opacity="0.5"
       />
 
       {/* Bash Tools Label */}
       <g transform={`translate(${bashX + 10}, ${fsY + 20})`}>
         <Terminal size={16} color={t.muted} />
-        <text x={22} y={12} fill={t.muted} fontSize="12" fontWeight="700" fontFamily={t.fontSans}>
-            Bash
+        <text
+          x={22}
+          y={12}
+          fill={t.muted}
+          fontSize="12"
+          fontWeight="700"
+          fontFamily={t.fontSans}
+        >
+          Bash
         </text>
       </g>
 
@@ -463,66 +871,155 @@ const ContainerSandboxDiagram = ({
       {/* Label - moved slightly higher */}
       <g transform={`translate(${brokX}, ${brokY - 22})`}>
         <ShieldCheck size={18} color={t.primary} />
-        <text x={26} y={14} fill={t.ink} fontSize="15" fontWeight="800" fontFamily={t.fontSans}>
+        <text
+          x={26}
+          y={14}
+          fill={t.ink}
+          fontSize="15"
+          fontWeight="800"
+          fontFamily={t.fontSans}
+        >
           Secret Broker
         </text>
       </g>
 
       {/* Box */}
-      <rect 
-        x={brokX} y={brokY} width={brokW} height={brokH} 
-        rx={8} fill={t.surface} stroke={t.primary} strokeWidth="2" 
+      <rect
+        x={brokX}
+        y={brokY}
+        width={brokW}
+        height={brokH}
+        rx={8}
+        fill={t.surface}
+        stroke={t.primary}
+        strokeWidth="2"
       />
 
       {/* Visual Objects: Keys & Policy */}
       <g transform={`translate(${brokX + 20}, ${brokY + 25})`}>
-        
         {/* AI Gateway Visual */}
         <g transform="translate(0, 0)">
-            <rect x="0" y="0" width="240" height="50" rx="4" fill={t.surface2} opacity="0.5" />
-            <g transform="translate(10, 15)">
-                <ShieldCheck size={16} color={t.muted} />
-                <text x={22} y={12} fill={t.muted} fontSize="12" fontWeight="700" fontFamily={t.fontSans} letterSpacing="0.5" style={{ textTransform: "uppercase" }}>
-                    AI Gateway
-                </text>
-            </g>
+          <rect
+            x="0"
+            y="0"
+            width="240"
+            height="50"
+            rx="4"
+            fill={t.surface2}
+            opacity="0.5"
+          />
+          <g transform="translate(10, 15)">
+            <ShieldCheck size={16} color={t.muted} />
+            <text
+              x={22}
+              y={12}
+              fill={t.muted}
+              fontSize="12"
+              fontWeight="700"
+              fontFamily={t.fontSans}
+              letterSpacing="0.5"
+              style={{ textTransform: "uppercase" }}
+            >
+              AI Gateway
+            </text>
+          </g>
         </g>
 
         {/* Tool Gateway Visual */}
         <g transform="translate(0, 60)">
-            <rect x="0" y="0" width="240" height="50" rx="4" fill={t.surface2} opacity="0.5" />
-            <g transform="translate(10, 15)">
-                <Globe size={16} color={t.muted} />
-                <text x={22} y={12} fill={t.muted} fontSize="12" fontWeight="700" fontFamily={t.fontSans} letterSpacing="0.5" style={{ textTransform: "uppercase" }}>
-                    Tool Gateway
-                </text>
-            </g>
+          <rect
+            x="0"
+            y="0"
+            width="240"
+            height="50"
+            rx="4"
+            fill={t.surface2}
+            opacity="0.5"
+          />
+          <g transform="translate(10, 15)">
+            <Globe size={16} color={t.muted} />
+            <text
+              x={22}
+              y={12}
+              fill={t.muted}
+              fontSize="12"
+              fontWeight="700"
+              fontFamily={t.fontSans}
+              letterSpacing="0.5"
+              style={{ textTransform: "uppercase" }}
+            >
+              Tool Gateway
+            </text>
+          </g>
         </g>
 
         {/* Security Layer: Secrets & Policies */}
         <g transform="translate(0, 120)">
-            <rect x="0" y="0" width="240" height="100" rx="4" fill={t.cardTitle} stroke={t.border} strokeWidth="1" strokeDasharray="4 4" />
-            <text x="10" y="20" fill={t.muted} fontSize="11" fontWeight="700" fontFamily={t.fontSans} letterSpacing="0.5" style={{ textTransform: "uppercase" }}>
-                Security Layer
+          <rect
+            x="0"
+            y="0"
+            width="240"
+            height="100"
+            rx="4"
+            fill={t.cardTitle}
+            stroke={t.border}
+            strokeWidth="1"
+            strokeDasharray="4 4"
+          />
+          <text
+            x="10"
+            y="20"
+            fill={t.muted}
+            fontSize="11"
+            fontWeight="700"
+            fontFamily={t.fontSans}
+            letterSpacing="0.5"
+            style={{ textTransform: "uppercase" }}
+          >
+            Security Layer
+          </text>
+
+          {/* Secrets */}
+          <g transform="translate(10, 35)">
+            <Key size={14} color={t.primary} />
+            <text
+              x={20}
+              y={10}
+              fill={t.code}
+              fontSize="11"
+              fontFamily={t.fontMono}
+            >
+              OPENAI_API_KEY
             </text>
-            
-            {/* Secrets */}
-            <g transform="translate(10, 35)">
-                <Key size={14} color={t.primary} />
-                <text x={20} y={10} fill={t.code} fontSize="11" fontFamily={t.fontMono}>OPENAI_API_KEY</text>
-            </g>
-            <g transform="translate(130, 35)">
-                <Key size={14} color={t.primary} />
-                <text x={20} y={10} fill={t.code} fontSize="11" fontFamily={t.fontMono}>AWS keys</text>
-            </g>
+          </g>
+          <g transform="translate(130, 35)">
+            <Key size={14} color={t.primary} />
+            <text
+              x={20}
+              y={10}
+              fill={t.code}
+              fontSize="11"
+              fontFamily={t.fontMono}
+            >
+              AWS keys
+            </text>
+          </g>
 
-            {/* Policies */}
-            <g transform="translate(10, 65)">
-                <Lock size={14} color={t.ink} />
-                <text x={20} y={10} fill={t.ink} fontSize="11" fontFamily={t.fontSans} fontWeight="600">Policy: Allow search, read</text>
-            </g>
+          {/* Policies */}
+          <g transform="translate(10, 65)">
+            <Lock size={14} color={t.ink} />
+            <text
+              x={20}
+              y={10}
+              fill={t.ink}
+              fontSize="11"
+              fontFamily={t.fontSans}
+              fontWeight="600"
+            >
+              Policy: Allow search, read
+            </text>
+          </g>
         </g>
-
       </g>
 
       {/* =========================================
@@ -532,89 +1029,164 @@ const ContainerSandboxDiagram = ({
       {/* Label - moved slightly higher */}
       <g transform={`translate(${extX + 20}, ${extY - 22})`}>
         <Globe size={18} color={t.muted} />
-        <text x={34} y={14} fill={t.muted} fontSize="14" fontWeight="700" fontFamily={t.fontSans}>
+        <text
+          x={34}
+          y={14}
+          fill={t.muted}
+          fontSize="14"
+          fontWeight="700"
+          fontFamily={t.fontSans}
+        >
           External World
         </text>
       </g>
 
       {/* Box */}
-      <rect 
-        x={extX} y={extY} width={extW} height={extH} 
-        rx={8} fill="none" stroke={t.border} strokeWidth="1" strokeDasharray="4 4"
+      <rect
+        x={extX}
+        y={extY}
+        width={extW}
+        height={extH}
+        rx={8}
+        fill="none"
+        stroke={t.border}
+        strokeWidth="1"
+        strokeDasharray="4 4"
       />
 
       {/* Densely packed external services */}
       <g transform={`translate(${extX + 20}, ${extY + 40})`}>
-         
-         {/* OpenAI */}
-         <g transform="translate(0, 0)">
-            <Cloud size={24} color={t.text} fill="none" strokeWidth={1.5} />
-            <text x={34} y={18} fill={t.ink} fontSize="13" fontWeight="600" fontFamily={t.fontSans}>OpenAI API</text>
-         </g>
+        {/* OpenAI */}
+        <g transform="translate(0, 0)">
+          <Cloud size={24} color={t.text} fill="none" strokeWidth={1.5} />
+          <text
+            x={34}
+            y={18}
+            fill={t.ink}
+            fontSize="13"
+            fontWeight="600"
+            fontFamily={t.fontSans}
+          >
+            OpenAI API
+          </text>
+        </g>
 
-         {/* Google */}
-         <g transform="translate(0, 40)">
-            <Cloud size={24} color={t.text} fill="none" strokeWidth={1.5} />
-            <text x={34} y={18} fill={t.ink} fontSize="13" fontWeight="600" fontFamily={t.fontSans}>Google Cloud</text>
-         </g>
+        {/* Google */}
+        <g transform="translate(0, 40)">
+          <Cloud size={24} color={t.text} fill="none" strokeWidth={1.5} />
+          <text
+            x={34}
+            y={18}
+            fill={t.ink}
+            fontSize="13"
+            fontWeight="600"
+            fontFamily={t.fontSans}
+          >
+            Google Cloud
+          </text>
+        </g>
 
-         {/* AWS */}
-         <g transform="translate(0, 80)">
-            <Server size={24} color={t.text} fill="none" strokeWidth={1.5} />
-            <text x={34} y={18} fill={t.ink} fontSize="13" fontWeight="600" fontFamily={t.fontSans}>AWS</text>
-         </g>
+        {/* AWS */}
+        <g transform="translate(0, 80)">
+          <Server size={24} color={t.text} fill="none" strokeWidth={1.5} />
+          <text
+            x={34}
+            y={18}
+            fill={t.ink}
+            fontSize="13"
+            fontWeight="600"
+            fontFamily={t.fontSans}
+          >
+            AWS
+          </text>
+        </g>
 
-         {/* Email */}
-         <g transform="translate(0, 120)">
-            <Mail size={24} color={t.text} fill="none" strokeWidth={1.5} />
-            <text x={34} y={18} fill={t.ink} fontSize="13" fontWeight="600" fontFamily={t.fontSans}>SMTP / Email</text>
-         </g>
+        {/* Email */}
+        <g transform="translate(0, 120)">
+          <Mail size={24} color={t.text} fill="none" strokeWidth={1.5} />
+          <text
+            x={34}
+            y={18}
+            fill={t.ink}
+            fontSize="13"
+            fontWeight="600"
+            fontFamily={t.fontSans}
+          >
+            SMTP / Email
+          </text>
+        </g>
 
-         {/* Search */}
-         <g transform="translate(0, 160)">
-            <Search size={24} color={t.text} fill="none" strokeWidth={1.5} />
-            <text x={34} y={18} fill={t.ink} fontSize="13" fontWeight="600" fontFamily={t.fontSans}>Search / Web</text>
-         </g>
+        {/* Search */}
+        <g transform="translate(0, 160)">
+          <Search size={24} color={t.text} fill="none" strokeWidth={1.5} />
+          <text
+            x={34}
+            y={18}
+            fill={t.ink}
+            fontSize="13"
+            fontWeight="600"
+            fontFamily={t.fontSans}
+          >
+            Search / Web
+          </text>
+        </g>
 
-         {/* Database/CMS */}
-         <g transform="translate(0, 200)">
-            <Database size={24} color={t.text} fill="none" strokeWidth={1.5} />
-            <text x={34} y={18} fill={t.ink} fontSize="13" fontWeight="600" fontFamily={t.fontSans}>CMS / DB</text>
-         </g>
+        {/* Database/CMS */}
+        <g transform="translate(0, 200)">
+          <Database size={24} color={t.text} fill="none" strokeWidth={1.5} />
+          <text
+            x={34}
+            y={18}
+            fill={t.ink}
+            fontSize="13"
+            fontWeight="600"
+            fontFamily={t.fontSans}
+          >
+            CMS / DB
+          </text>
+        </g>
 
-         {/* Github */}
-         <g transform="translate(0, 240)">
-            <Cloud size={24} color={t.text} fill="none" strokeWidth={1.5} />
-            <text x={34} y={18} fill={t.ink} fontSize="13" fontWeight="600" fontFamily={t.fontSans}>Github / Git</text>
-         </g>
+        {/* Github */}
+        <g transform="translate(0, 240)">
+          <Cloud size={24} color={t.text} fill="none" strokeWidth={1.5} />
+          <text
+            x={34}
+            y={18}
+            fill={t.ink}
+            fontSize="13"
+            fontWeight="600"
+            fontFamily={t.fontSans}
+          >
+            Github / Git
+          </text>
+        </g>
 
-         {/* Others */}
-         <g transform="translate(0, 280)">
-            <text x={34} y={18} fill={t.muted} fontSize="13" fontWeight="500" fontFamily={t.fontSans} fontStyle="italic">Others...</text>
-         </g>
-
+        {/* Others */}
+        <g transform="translate(0, 280)">
+          <text
+            x={34}
+            y={18}
+            fill={t.muted}
+            fontSize="13"
+            fontWeight="500"
+            fontFamily={t.fontSans}
+            fontStyle="italic"
+          >
+            Others...
+          </text>
+        </g>
       </g>
-
 
       {/* =========================================
           ARROWS
          ========================================= */}
-      
+
       {/* 1. Sandbox <-> Broker */}
       {/* Straight horizontal line */}
       <path
-        d={`M ${sandX + sandW + 10} ${contY + contH/2} L ${brokX - 10} ${contY + contH/2}`}
-        fill="none"
-        stroke={t.primary}
-        strokeWidth="3"
-        markerEnd="url(#csdArrow)"
-        markerStart="url(#csdArrow)"
-      />
-      
-       {/* 2. Broker <-> External */}
-       {/* Straight horizontal line */}
-       <path
-        d={`M ${brokX + brokW + 10} ${contY + contH/2} L ${extX - 10} ${contY + contH/2}`}
+        d={`M ${sandX + sandW + 10} ${contY + contH / 2} L ${brokX - 10} ${
+          contY + contH / 2
+        }`}
         fill="none"
         stroke={t.primary}
         strokeWidth="3"
@@ -622,8 +1194,20 @@ const ContainerSandboxDiagram = ({
         markerStart="url(#csdArrow)"
       />
 
+      {/* 2. Broker <-> External */}
+      {/* Straight horizontal line */}
+      <path
+        d={`M ${brokX + brokW + 10} ${contY + contH / 2} L ${extX - 10} ${
+          contY + contH / 2
+        }`}
+        fill="none"
+        stroke={t.primary}
+        strokeWidth="3"
+        markerEnd="url(#csdArrow)"
+        markerStart="url(#csdArrow)"
+      />
     </svg>
-  );
-};
+  )
+}
 
-export default ContainerSandboxDiagram;
+export default ContainerSandboxDiagram

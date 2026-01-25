@@ -15,7 +15,9 @@ const MeetingRecapApprovalUseCasePage = () => {
               <p className={styles.eyebrow}>Use Case</p>
               <h1 className={styles.title}>Meeting Recap with Approval</h1>
               <p className={styles.lede}>
-                Draft an email recap from messy notes, pause for review, then send - with durable human-in-the-loop gates before irreversible actions.
+                Draft an email recap from messy notes, pause for review, then
+                send - with durable human-in-the-loop gates before irreversible
+                actions.
               </p>
             </div>
           </div>
@@ -25,21 +27,33 @@ const MeetingRecapApprovalUseCasePage = () => {
           <div className={styles.container}>
             <h2 className={styles.sectionTitle}>Why Tactus Fits</h2>
             <p className={styles.bodyText}>
-              This is a classic “agent + tools + side effects” workflow. The hard part isn’t generating text - it’s making the system safe when you’re not
-              watching every run.
+              This is a classic “agent + tools + side effects” workflow. The
+              hard part isn’t generating text - it’s making the system safe when
+              you’re not watching every run.
             </p>
 
             <div className={styles.subtleCard}>
               <p className={styles.kicker}>Guardrails to use</p>
               <ul className={styles.checkList}>
-                <li><Link to="/guardrails/">Guardrails</Link>: staged tool access and “review before send”</li>
-                <li><Link to="/specifications/">Behavior specs</Link>: <code>send_email</code> must never be called without approval</li>
-                <li><Link to="/validation/">Validation</Link>: subject/body/action items must be present and shaped correctly</li>
+                <li>
+                  <Link to="/guardrails/">Guardrails</Link>: staged tool access
+                  and “review before send”
+                </li>
+                <li>
+                  <Link to="/specifications/">Behavior specs</Link>:{" "}
+                  <code>send_email</code> must never be called without approval
+                </li>
+                <li>
+                  <Link to="/validation/">Validation</Link>: subject/body/action
+                  items must be present and shaped correctly
+                </li>
               </ul>
             </div>
 
             <p className={styles.bodyTextMuted}>
-              This page is a starter stub. Next we’ll add a runnable procedure and a spec suite that prevents accidental double-sends and missing approvals.
+              This page is a starter stub. Next we’ll add a runnable procedure
+              and a spec suite that prevents accidental double-sends and missing
+              approvals.
             </p>
           </div>
         </section>
@@ -63,4 +77,3 @@ export const Head = () => (
 )
 
 export default MeetingRecapApprovalUseCasePage
-

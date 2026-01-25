@@ -96,7 +96,7 @@
   transition: all 0.2s ease;
   font-weight: 400; /* Ensure normal weight */
   font-size: var(--font-xs); /* Standardized size */
-  
+
   /* Add styling for hover background */
   border-radius: 4px;
   padding: 0.1em 0.3em;
@@ -117,10 +117,10 @@
   gap: 6px;
   font-weight: 400; /* Changed from 600 to match others */
   /* Remove negative margins for the flex container link */
-  margin: 0; 
+  margin: 0;
   /* Add specific padding for the button-like link */
   padding: 0.2em 0.5em;
-  
+
   font-size: var(--font-xs); /* Ensure size match */
   letter-spacing: 0.02em;
   color: var(--color-text-muted); /* Explicitly force muted color */
@@ -148,7 +148,8 @@
     gap: var(--space-5);
   }
 
-  .left, .right {
+  .left,
+  .right {
     align-items: center;
     text-align: center;
     flex: auto;

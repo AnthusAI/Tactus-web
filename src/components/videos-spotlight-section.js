@@ -16,7 +16,9 @@ const VideosSpotlightSection = ({
   withPadding = true,
   mutedBackground = false,
 }) => {
-  const featuredVideos = featuredIds.map((videoId) => getVideoById(videoId)).filter(Boolean)
+  const featuredVideos = featuredIds
+    .map(videoId => getVideoById(videoId))
+    .filter(Boolean)
   const moreCount = Math.max(0, VIDEOS.length - featuredVideos.length)
 
   const content = (
@@ -27,7 +29,7 @@ const VideosSpotlightSection = ({
       </header>
 
       <div className={styles.grid}>
-        {featuredVideos.map((video) => (
+        {featuredVideos.map(video => (
           <VideoCard
             key={video.id}
             variant="compact"
@@ -42,7 +44,11 @@ const VideosSpotlightSection = ({
 
       <div className={styles.footerRow}>
         <p className={styles.moreCopy}>
-          {moreCount > 0 ? `Plus ${moreCount} more video${moreCount === 1 ? "" : "s"} on the videos page.` : null}
+          {moreCount > 0
+            ? `Plus ${moreCount} more video${
+                moreCount === 1 ? "" : "s"
+              } on the videos page.`
+            : null}
         </p>
         <Button to={to} variant={ctaVariant} shadow>
           {ctaText}
@@ -54,11 +60,15 @@ const VideosSpotlightSection = ({
   return (
     <section
       id={id}
-      className={`${withPadding ? styles.section : styles.sectionNoPadding} ${withContainer ? "" : styles.sectionNoContainer} ${
-        mutedBackground ? styles.muted : ""
-      }`}
+      className={`${withPadding ? styles.section : styles.sectionNoPadding} ${
+        withContainer ? "" : styles.sectionNoContainer
+      } ${mutedBackground ? styles.muted : ""}`}
     >
-      {withContainer ? <div className={styles.container}>{content}</div> : content}
+      {withContainer ? (
+        <div className={styles.container}>{content}</div>
+      ) : (
+        content
+      )}
     </section>
   )
 }

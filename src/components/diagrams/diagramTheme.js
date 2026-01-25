@@ -14,7 +14,8 @@ export const DIAGRAM_THEME_VARS = {
     "--border-radius": "8px",
     "--font-sans":
       '"Source Sans 3", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-    "--font-serif": '"Source Serif 4", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
+    "--font-serif":
+      '"Source Serif 4", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
     "--font-mono":
       '"Source Code Pro", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
   },
@@ -33,11 +34,12 @@ export const DIAGRAM_THEME_VARS = {
     "--border-radius": "8px",
     "--font-sans":
       '"Source Sans 3", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
-    "--font-serif": '"Source Serif 4", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
+    "--font-serif":
+      '"Source Serif 4", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif',
     "--font-mono":
       '"Source Code Pro", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
   },
-};
+}
 
 export const diagramTokens = {
   bg: "transparent",
@@ -53,13 +55,13 @@ export const diagramTokens = {
   code: "var(--color-code)",
   fontSans:
     'var(--font-sans, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif)',
-  fontSerif: 'var(--font-serif, ui-serif, Georgia, Cambria, "Times New Roman", Times, serif)',
+  fontSerif:
+    'var(--font-serif, ui-serif, Georgia, Cambria, "Times New Roman", Times, serif)',
   fontMono:
     'var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace)',
-};
+}
 
-export const getDiagramThemeVars = (theme) => {
-  if (theme === "dark") return DIAGRAM_THEME_VARS.dark;
-  return DIAGRAM_THEME_VARS.light;
-};
-
+export const getDiagramThemeVars = theme => {
+  if (theme === "dark") return DIAGRAM_THEME_VARS.dark
+  return DIAGRAM_THEME_VARS.light
+}

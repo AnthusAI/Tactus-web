@@ -27,12 +27,12 @@ a.button:hover {
 /* Sizes */
 .medium {
   padding: 0.5rem 1.25rem;
-  font-size: 1.35rem; 
+  font-size: 1.35rem;
 }
 
 .large {
   padding: 0.6rem 1.5rem;
-  font-size: 1.75rem; 
+  font-size: 1.75rem;
 }
 
 /* Variants */
@@ -66,7 +66,9 @@ a.button:hover {
 }
 
 .button.tertiary:hover {
-  background: var(--color-surface); /* Slightly distinct from surface if needed, or same */
+  background: var(
+    --color-surface
+  ); /* Slightly distinct from surface if needed, or same */
   color: var(--color-primary);
 }
 
@@ -89,7 +91,7 @@ a.button:hover {
 }
 
 .shadow.tertiary {
-  box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.2); 
+  box-shadow: 0 4px 0 0 rgba(0, 0, 0, 0.2);
 }
 
 .shadow.tertiary:hover {

@@ -1,26 +1,27 @@
-import type { Meta, StoryObj } from "@storybook/react";
-import PromptEngineeringCeilingDiagram from "../../src/components/diagrams/PromptEngineeringCeilingDiagram";
-import { getDiagramThemeVars } from "../../src/components/diagrams/diagramTheme";
+import type { Meta, StoryObj } from "@storybook/react"
+import PromptEngineeringCeilingDiagram from "../../src/components/diagrams/PromptEngineeringCeilingDiagram"
+import { getDiagramThemeVars } from "../../src/components/diagrams/diagramTheme"
 
-const withForcedBackground = (theme: "light" | "dark") => (Story: any) => (
-  <div
-    style={{
-      ...getDiagramThemeVars(theme),
-      width: "100vw",
-      height: "100vh",
-      backgroundColor: "var(--color-bg)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      padding: 24,
-      boxSizing: "border-box",
-    }}
-  >
-    <div style={{ width: "min(1100px, 96vw)" }}>
-      <Story />
+const withForcedBackground = (theme: "light" | "dark") => (Story: any) =>
+  (
+    <div
+      style={{
+        ...getDiagramThemeVars(theme),
+        width: "100vw",
+        height: "100vh",
+        backgroundColor: "var(--color-bg)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: 24,
+        boxSizing: "border-box",
+      }}
+    >
+      <div style={{ width: "min(1100px, 96vw)" }}>
+        <Story />
+      </div>
     </div>
-  </div>
-);
+  )
 
 const meta = {
   title: "Diagrams/PromptEngineeringCeilingDiagram",
@@ -29,24 +30,24 @@ const meta = {
     layout: "fullscreen",
   },
   tags: ["autodocs"],
-} satisfies Meta<typeof PromptEngineeringCeilingDiagram>;
+} satisfies Meta<typeof PromptEngineeringCeilingDiagram>
 
-export default meta;
-type Story = StoryObj<typeof meta>;
+export default meta
+type Story = StoryObj<typeof meta>
 
 export const WebsiteLight: Story = {
   args: {
     theme: "light",
   },
   decorators: [withForcedBackground("light")],
-};
+}
 
 export const WebsiteDark: Story = {
   args: {
     theme: "dark",
   },
   decorators: [withForcedBackground("dark")],
-};
+}
 
 export const Video: Story = {
   args: {
@@ -60,4 +61,4 @@ export const Video: Story = {
       height: 2160,
     },
   },
-};
+}

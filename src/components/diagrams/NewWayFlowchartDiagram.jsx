@@ -3,11 +3,17 @@ import { Brain, FileText, Wrench } from "lucide-react"
 
 import { diagramTokens, getDiagramThemeVars } from "./diagramTheme"
 
-const clamp01 = (v) => Math.max(0, Math.min(1, v))
-const smoothstep = (t) => t * t * (3 - 2 * t)
-const appear = (progress, start, duration = 0.18) => smoothstep(clamp01((progress - start) / duration))
+const clamp01 = v => Math.max(0, Math.min(1, v))
+const smoothstep = t => t * t * (3 - 2 * t)
+const appear = (progress, start, duration = 0.18) =>
+  smoothstep(clamp01((progress - start) / duration))
 
-const NewWayFlowchartDiagram = ({ theme = "light", progress = 1, style, className }) => {
+const NewWayFlowchartDiagram = ({
+  theme = "light",
+  progress = 1,
+  style,
+  className,
+}) => {
   const t = diagramTokens
   const p = clamp01(progress)
 
@@ -19,7 +25,7 @@ const NewWayFlowchartDiagram = ({ theme = "light", progress = 1, style, classNam
   const procedureA = appear(p, 0.44, 0.22)
   const railsA = appear(p, 0.74, 0.26)
 
-  const pop = (a) => 0.88 + 0.12 * a
+  const pop = a => 0.88 + 0.12 * a
 
   const railsDraw = railsA
 
@@ -80,7 +86,9 @@ const NewWayFlowchartDiagram = ({ theme = "light", progress = 1, style, classNam
 
       {/* Brain */}
       <g
-        transform={`translate(${centerX - 36}, ${centerY - 36}) scale(${pop(brainA)})`}
+        transform={`translate(${centerX - 36}, ${centerY - 36}) scale(${pop(
+          brainA
+        )})`}
         style={{ transformOrigin: `${centerX}px ${centerY}px` }}
         opacity={brainA}
       >
@@ -88,12 +96,22 @@ const NewWayFlowchartDiagram = ({ theme = "light", progress = 1, style, classNam
       </g>
 
       {/* Tool (Wrench) */}
-      <g transform={`translate(${centerX + 51}, ${centerY - 22}) scale(${pop(toolA)})`} opacity={toolA}>
+      <g
+        transform={`translate(${centerX + 51}, ${centerY - 22}) scale(${pop(
+          toolA
+        )})`}
+        opacity={toolA}
+      >
         <Wrench size={44} color={t.inkSecondary} strokeWidth={1.5} />
       </g>
 
       {/* Procedure */}
-      <g transform={`translate(${centerX - 95}, ${centerY - 22}) scale(${pop(procedureA)})`} opacity={procedureA}>
+      <g
+        transform={`translate(${centerX - 95}, ${centerY - 22}) scale(${pop(
+          procedureA
+        )})`}
+        opacity={procedureA}
+      >
         <FileText size={44} color={t.inkSecondary} strokeWidth={1.5} />
       </g>
     </svg>

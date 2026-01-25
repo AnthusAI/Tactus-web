@@ -19,14 +19,14 @@ Edit the `compositions` array in `render-all.js`:
 ```javascript
 const compositions = [
   {
-    id: "Intro",              // Must match the composition ID in src/Root.tsx
-    outputFile: "intro.mp4",  // Output filename in out/ directory
+    id: "Intro", // Must match the composition ID in src/Root.tsx
+    outputFile: "intro.mp4", // Output filename in out/ directory
   },
   {
     id: "YourNewVideo",
     outputFile: "your-new-video.mp4",
   },
-];
+]
 ```
 
 ### How It Works

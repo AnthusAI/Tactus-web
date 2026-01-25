@@ -46,15 +46,8 @@ const UseCasesPage = () => {
           </div>
         </section>
 
-        <section className={`${styles.section} ${styles.bgMuted}`}>
+        <section className={styles.section}>
           <div className={styles.container}>
-            <h2 className={styles.sectionTitle}>Start Here</h2>
-            <p className={styles.bodyText}>
-              New to Tactus? Start with{" "}
-              <Link to="/guiding-principles/">Guiding Principles</Link>, then
-              use cases help you apply the patterns to concrete workflows.
-            </p>
-
             <div className={styles.cardGrid}>
               {USE_CASES.map(item => (
                 <Link key={item.to} to={item.to} className={styles.card}>
@@ -68,15 +61,6 @@ const UseCasesPage = () => {
                 </Link>
               ))}
             </div>
-
-            <p className={styles.bodyTextMuted}>
-              Some pages are early sketches. If you want a strong first project,
-              start with{" "}
-              <Link to="/use-cases/copilot-anything/">
-                A copilot for anything
-              </Link>
-              .
-            </p>
           </div>
         </section>
 

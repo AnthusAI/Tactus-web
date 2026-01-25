@@ -15,7 +15,11 @@ const usePreferredTheme = () => {
   return theme
 }
 
-const AnimatedOldWayFlowchartDiagram = ({ durationMs = 8000, className, style }) => {
+const AnimatedOldWayFlowchartDiagram = ({
+  durationMs = 8000,
+  className,
+  style,
+}) => {
   const theme = usePreferredTheme()
   const [progress, setProgress] = React.useState(0)
   const [hasStarted, setHasStarted] = React.useState(false)
@@ -27,8 +31,8 @@ const AnimatedOldWayFlowchartDiagram = ({ durationMs = 8000, className, style })
     if (!element) return
 
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
+      entries => {
+        entries.forEach(entry => {
           if (entry.isIntersecting && !hasStarted) {
             setHasStarted(true)
           }
@@ -48,7 +52,7 @@ const AnimatedOldWayFlowchartDiagram = ({ durationMs = 8000, className, style })
     let raf = 0
     const start = performance.now()
 
-    const tick = (now) => {
+    const tick = now => {
       const elapsed = now - start
       const t = Math.min(elapsed / durationMs, 1)
       setProgress(t)
@@ -64,7 +68,12 @@ const AnimatedOldWayFlowchartDiagram = ({ durationMs = 8000, className, style })
 
   return (
     <div ref={ref}>
-      <OldWayFlowchartDiagram theme={theme} progress={progress} className={className} style={style} />
+      <OldWayFlowchartDiagram
+        theme={theme}
+        progress={progress}
+        className={className}
+        style={style}
+      />
     </div>
   )
 }

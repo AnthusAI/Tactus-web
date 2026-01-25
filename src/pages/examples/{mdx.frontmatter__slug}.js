@@ -1,9 +1,9 @@
-import * as React from 'react'
-import { graphql } from 'gatsby'
-import { CitationsProvider } from 'gatsby-citation-manager'
-import Layout from '../../components/layout'
-import Seo from '../../components/seo'
-import * as styles from './examples.module.css'
+import * as React from "react"
+import { graphql } from "gatsby"
+import { CitationsProvider } from "gatsby-citation-manager"
+import Layout from "../../components/layout"
+import Seo from "../../components/seo"
+import * as styles from "./examples.module.css"
 
 const ExampleTemplate = ({ data, children }) => {
   return (

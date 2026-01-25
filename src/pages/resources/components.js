@@ -54,48 +54,54 @@ const ResourcesComponentsPage = () => {
     <Layout fullWidth={true}>
       <ThemeProvider defaultTheme={systemTheme}>
         <div className={styles.page}>
-        <section className={styles.section}>
-          <div className={styles.container}>
-            <div className={styles.hero}>
-              <p className={styles.eyebrow}>Resources</p>
-              <h1 className={styles.title}>Standard Component Library</h1>
-              <p className={styles.lede}>
-                The Tactus component library provides a consistent set of Human-in-the-Loop UI
-                primitives for approvals, inputs, reviews, and batched forms. Use these in host
-                applications to keep HITL experiences predictable and on-brand while staying aligned
-                with the Tactus runtime.
-              </p>
-            </div>
+          <section className={styles.section}>
+            <div className={styles.container}>
+              <div className={styles.hero}>
+                <p className={styles.eyebrow}>Resources</p>
+                <h1 className={styles.title}>Standard Component Library</h1>
+                <p className={styles.lede}>
+                  The Tactus component library provides a consistent set of
+                  Human-in-the-Loop UI primitives for approvals, inputs,
+                  reviews, and batched forms. Use these in host applications to
+                  keep HITL experiences predictable and on-brand while staying
+                  aligned with the Tactus runtime.
+                </p>
+              </div>
 
-            <div className={styles.cardGrid}>
-              <a
-                href="https://github.com/AnthusAI/Tactus-HITL-components"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.card}
-              >
-                <div className={styles.cardHeader}>
-                  <p className={styles.cardTitle}>
-                    <Github size={20} style={{ marginRight: "0.5rem", verticalAlign: "middle" }} />
-                    Component library on GitHub
-                  </p>
-                </div>
-                <div className={styles.cardBody}>
-                  <p className={styles.cardText}>
-                    Browse the source, run Storybook, and integrate the standard HITL UI components
-                    into your own applications.
-                  </p>
-                </div>
-              </a>
+              <div className={styles.cardGrid}>
+                <a
+                  href="https://github.com/AnthusAI/Tactus-HITL-components"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.card}
+                >
+                  <div className={styles.cardHeader}>
+                    <p className={styles.cardTitle}>
+                      <Github
+                        size={20}
+                        style={{
+                          marginRight: "0.5rem",
+                          verticalAlign: "middle",
+                        }}
+                      />
+                      Component library on GitHub
+                    </p>
+                  </div>
+                  <div className={styles.cardBody}>
+                    <p className={styles.cardText}>
+                      Browse the source, run Storybook, and integrate the
+                      standard HITL UI components into your own applications.
+                    </p>
+                  </div>
+                </a>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section className={styles.sectionAlt}>
-          <div className={styles.container}>
-            <h2 className={styles.sectionTitle}>Approvals and Escalations</h2>
-            <div className={`${styles.demoGrid}`}>
-              <div className={styles.demoCard}>
+          <section className={styles.sectionAlt}>
+            <div className={styles.container}>
+              <h2 className={styles.sectionTitle}>Approvals and Escalations</h2>
+              <div className={`${styles.demoGrid}`}>
                 <ApprovalPanel
                   request={{
                     ...baseRequest,
@@ -109,8 +115,6 @@ const ResourcesComponentsPage = () => {
                   onRespond={() => {}}
                   showContext={false}
                 />
-              </div>
-              <div className={styles.demoCard}>
                 <EscalationAlert
                   request={{
                     ...baseRequest,
@@ -129,14 +133,12 @@ const ResourcesComponentsPage = () => {
                 />
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section className={styles.section}>
-          <div className={styles.container}>
-            <h2 className={styles.sectionTitle}>Inputs and Selection</h2>
-            <div className={`${styles.demoGrid}`}>
-              <div className={styles.demoCard}>
+          <section className={styles.section}>
+            <div className={styles.container}>
+              <h2 className={styles.sectionTitle}>Inputs and Selection</h2>
+              <div className={`${styles.demoGrid}`}>
                 <TextInput
                   request={{
                     ...baseRequest,
@@ -149,8 +151,6 @@ const ResourcesComponentsPage = () => {
                   onRespond={() => {}}
                   showContext={false}
                 />
-              </div>
-              <div className={styles.demoCard}>
                 <SelectSingle
                   request={{
                     ...baseRequest,
@@ -166,8 +166,6 @@ const ResourcesComponentsPage = () => {
                   onRespond={() => {}}
                   showContext={false}
                 />
-              </div>
-              <div className={styles.demoCard}>
                 <SelectMultiple
                   request={{
                     ...baseRequest,
@@ -185,22 +183,28 @@ const ResourcesComponentsPage = () => {
                 />
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section className={styles.sectionAlt}>
-          <div className={styles.container}>
-            <h2 className={styles.sectionTitle}>Reviews and Uploads</h2>
-            <div className={`${styles.demoGrid}`}>
-              <div className={styles.demoCard}>
+          <section className={styles.sectionAlt}>
+            <div className={styles.container}>
+              <h2 className={styles.sectionTitle}>Reviews and Uploads</h2>
+              <div className={`${styles.demoGrid}`}>
                 <ReviewPanel
                   request={{
                     ...baseRequest,
                     request_type: "review",
                     message: "Review the draft response",
                     options: [
-                      { label: "Approve", value: "approve", style: "primary" },
-                      { label: "Request changes", value: "changes", style: "secondary" },
+                      {
+                        label: "Approve",
+                        value: "approve",
+                        style: "primary",
+                      },
+                      {
+                        label: "Request changes",
+                        value: "changes",
+                        style: "secondary",
+                      },
                       { label: "Reject", value: "reject", style: "danger" },
                     ],
                     metadata: {
@@ -212,8 +216,6 @@ const ResourcesComponentsPage = () => {
                   onRespond={() => {}}
                   showContext={false}
                 />
-              </div>
-              <div className={styles.demoCard}>
                 <FileUpload
                   request={{
                     ...baseRequest,
@@ -230,17 +232,15 @@ const ResourcesComponentsPage = () => {
                 />
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <section className={styles.section}>
-          <div className={styles.container}>
-            <h2 className={styles.sectionTitle}>Batched Forms</h2>
-            <p className={styles.sectionBody}>
-              Use batched inputs to collect multiple fields in one HITL interaction with tabbed
-              navigation and validation.
-            </p>
-            <div className={`${styles.demoWide}`}>
+          <section className={styles.section}>
+            <div className={styles.container}>
+              <h2 className={styles.sectionTitle}>Batched Forms</h2>
+              <p className={styles.sectionBody}>
+                Use batched inputs to collect multiple fields in one HITL
+                interaction with tabbed navigation and validation.
+              </p>
               <HITLInputsPanel
                 request={{
                   ...baseRequest,
@@ -273,7 +273,10 @@ const ResourcesComponentsPage = () => {
                       request_type: "input",
                       message: "Deployment notes (optional)",
                       required: false,
-                      metadata: { placeholder: "Add notes...", multiline: true },
+                      metadata: {
+                        placeholder: "Add notes...",
+                        multiline: true,
+                      },
                     },
                   ],
                 }}
@@ -281,8 +284,7 @@ const ResourcesComponentsPage = () => {
                 showContext={false}
               />
             </div>
-          </div>
-        </section>
+          </section>
         </div>
       </ThemeProvider>
     </Layout>

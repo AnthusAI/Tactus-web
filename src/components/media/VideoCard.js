@@ -12,9 +12,16 @@ const VideoCard = ({
   className,
 }) => {
   return (
-    <article className={`${styles.card} ${styles[variant]} ${className || ""}`.trim()}>
+    <article
+      className={`${styles.card} ${styles[variant]} ${className || ""}`.trim()}
+    >
       <a className={styles.thumbLink} href={to}>
-        <img className={styles.thumb} src={getVideoSrc(poster)} alt={`${title} poster`} loading="lazy" />
+        <img
+          className={styles.thumb}
+          src={getVideoSrc(poster)}
+          alt={`${title} poster`}
+          loading="lazy"
+        />
       </a>
       <div className={styles.body}>
         <div className={styles.titleRow}>
@@ -25,11 +32,12 @@ const VideoCard = ({
           </h3>
           {meta ? <span className={styles.meta}>{meta}</span> : null}
         </div>
-        {description ? <p className={styles.description}>{description}</p> : null}
+        {description ? (
+          <p className={styles.description}>{description}</p>
+        ) : null}
       </div>
     </article>
   )
 }
 
 export default VideoCard
-

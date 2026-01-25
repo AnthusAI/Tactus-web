@@ -5,8 +5,9 @@ import { diagramTokens, getDiagramThemeVars } from "./diagramTheme"
 const CYCLE_DURATION = 4000 // 4 seconds per item cycle
 
 // --- Easing Functions ---
-const clamp01 = (v) => Math.min(1, Math.max(0, v))
-const easeInOutCubic = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2)
+const clamp01 = v => Math.min(1, Math.max(0, v))
+const easeInOutCubic = t =>
+  t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
 
 // --- Helper: Quadratic Bezier ---
 const getQuadBezierPoint = (t, p0, p1, p2) => {
@@ -20,7 +21,7 @@ const VisualSpecificationsDiagram = ({
   time = 0,
   style,
   className,
-  disableCssTransitions = false
+  disableCssTransitions = false,
 }) => {
   const t = diagramTokens
   const timeMs = time
@@ -68,13 +69,18 @@ const VisualSpecificationsDiagram = ({
     // 2600-3600: Spec Check
     // 3600-4000: Exit
 
-    let x = 0, y = 0, opacity = 1, scale = 1, status = "neutral"
+    let x = 0,
+      y = 0,
+      opacity = 1,
+      scale = 1,
+      status = "neutral"
 
     if (localTime < 800) {
       // Travel to Agent
       const p = easeInOutCubic(localTime / 800)
       const pt = getQuadBezierPoint(p, pStart, cToAgent, pAgent)
-      x = pt.x; y = pt.y
+      x = pt.x
+      y = pt.y
       opacity = p // Fade in
     } else if (localTime < 1800) {
       // Agent Processing (Orbit)
@@ -86,7 +92,8 @@ const VisualSpecificationsDiagram = ({
       // Travel to Spec
       const p = easeInOutCubic((localTime - 1800) / 800)
       const pt = getQuadBezierPoint(p, pAgent, cToSpec, pSpec)
-      x = pt.x; y = pt.y
+      x = pt.x
+      y = pt.y
     } else if (localTime < 3600) {
       // Spec Check (Scanning)
       x = pSpec.x
@@ -103,7 +110,8 @@ const VisualSpecificationsDiagram = ({
       const p = easeInOutCubic((localTime - 3600) / 400)
       if (item.type === "pass") {
         const pt = getQuadBezierPoint(p, pSpec, cToEnd, pEnd)
-        x = pt.x; y = pt.y
+        x = pt.x
+        y = pt.y
         status = "pass"
       } else {
         // Fall away
@@ -138,34 +146,82 @@ const VisualSpecificationsDiagram = ({
       viewBox="0 50 480 180"
     >
       <defs>
-        <marker id="specArrow" viewBox="0 -5 10 10" refX={8} refY={0} markerWidth={4} markerHeight={4} orient="auto">
+        <marker
+          id="specArrow"
+          viewBox="0 -5 10 10"
+          refX={8}
+          refY={0}
+          markerWidth={4}
+          markerHeight={4}
+          orient="auto"
+        >
           <path d="M0,-4L10,0L0,4" fill="currentColor" />
         </marker>
       </defs>
 
       {/* Connection Lines */}
-      <path d={`M ${pStart.x},${pStart.y} Q ${cToAgent.x},${cToAgent.y} ${pAgent.x},${pAgent.y}`} fill="none" stroke={t.surface2} strokeWidth={2} strokeDasharray="4 4" />
-      <path d={`M ${pAgent.x},${pAgent.y} Q ${cToSpec.x},${cToSpec.y} ${pSpec.x},${pSpec.y}`} fill="none" stroke={t.surface2} strokeWidth={2} strokeDasharray="4 4" />
-      <path d={`M ${pSpec.x},${pSpec.y} Q ${cToEnd.x},${cToEnd.y} ${pEnd.x},${pEnd.y}`} fill="none" stroke={t.surface2} strokeWidth={2} strokeDasharray="4 4" />
+      <path
+        d={`M ${pStart.x},${pStart.y} Q ${cToAgent.x},${cToAgent.y} ${pAgent.x},${pAgent.y}`}
+        fill="none"
+        stroke={t.surface2}
+        strokeWidth={2}
+        strokeDasharray="4 4"
+      />
+      <path
+        d={`M ${pAgent.x},${pAgent.y} Q ${cToSpec.x},${cToSpec.y} ${pSpec.x},${pSpec.y}`}
+        fill="none"
+        stroke={t.surface2}
+        strokeWidth={2}
+        strokeDasharray="4 4"
+      />
+      <path
+        d={`M ${pSpec.x},${pSpec.y} Q ${cToEnd.x},${cToEnd.y} ${pEnd.x},${pEnd.y}`}
+        fill="none"
+        stroke={t.surface2}
+        strokeWidth={2}
+        strokeDasharray="4 4"
+      />
 
       {/* Nodes */}
-      
+
       {/* Input Node */}
       <g transform={`translate(${pStart.x}, ${pStart.y})`}>
         <circle r={24} fill={t.surface} stroke={t.surface2} strokeWidth={2} />
         <g transform="translate(-12, -12)">
           <FileText size={24} color={t.muted} />
         </g>
-        <text y={40} textAnchor="middle" fontSize="11" fill={t.muted} fontFamily="sans-serif">Input</text>
+        <text
+          y={40}
+          textAnchor="middle"
+          fontSize="11"
+          fill={t.muted}
+          fontFamily="sans-serif"
+        >
+          Input
+        </text>
       </g>
 
       {/* Agent Node */}
       <g transform={`translate(${pAgent.x}, ${pAgent.y})`}>
-        <circle r={32} fill={t.surface} stroke={t.primary} strokeWidth={2} strokeOpacity={0.5 + agentPulse * 0.5} />
+        <circle
+          r={32}
+          fill={t.surface}
+          stroke={t.primary}
+          strokeWidth={2}
+          strokeOpacity={0.5 + agentPulse * 0.5}
+        />
         <g transform="translate(-16, -16)">
           <Brain size={32} color={t.primary} />
         </g>
-        <text y={48} textAnchor="middle" fontSize="11" fill={t.primary} fontFamily="sans-serif">Procedure</text>
+        <text
+          y={48}
+          textAnchor="middle"
+          fontSize="11"
+          fill={t.primary}
+          fontFamily="sans-serif"
+        >
+          Procedure
+        </text>
       </g>
 
       {/* Spec Node */}
@@ -174,7 +230,15 @@ const VisualSpecificationsDiagram = ({
         <g transform="translate(-16, -16)">
           <ShieldCheck size={32} color={t.ink} />
         </g>
-        <text y={48} textAnchor="middle" fontSize="11" fill={t.ink} fontFamily="sans-serif">Behavior Spec</text>
+        <text
+          y={48}
+          textAnchor="middle"
+          fontSize="11"
+          fill={t.ink}
+          fontFamily="sans-serif"
+        >
+          Behavior Spec
+        </text>
       </g>
 
       {/* End Node (Success) */}
@@ -183,9 +247,16 @@ const VisualSpecificationsDiagram = ({
         <g transform="translate(-12, -12)">
           <Check size={24} color="green" />
         </g>
-        <text y={40} textAnchor="middle" fontSize="11" fill={t.muted} fontFamily="sans-serif">Verified</text>
+        <text
+          y={40}
+          textAnchor="middle"
+          fontSize="11"
+          fill={t.muted}
+          fontFamily="sans-serif"
+        >
+          Verified
+        </text>
       </g>
-
 
       {/* Moving Items */}
       {renderItems.map(item => {
@@ -200,10 +271,17 @@ const VisualSpecificationsDiagram = ({
         }
 
         return (
-          <g key={item.id} transform={`translate(${item.x}, ${item.y}) scale(${item.scale})`} opacity={item.opacity} style={{ transition: disableCssTransitions ? "none" : "opacity 0.2s" }}>
+          <g
+            key={item.id}
+            transform={`translate(${item.x}, ${item.y}) scale(${item.scale})`}
+            opacity={item.opacity}
+            style={{
+              transition: disableCssTransitions ? "none" : "opacity 0.2s",
+            }}
+          >
             {/* Flat Circle (Filled) */}
             <circle r={14} fill={color} stroke="none" />
-            
+
             {/* Icon as a Hole (using mask or just matching background color) 
                 Since we can't easily mask in this simple setup without defs, 
                 we'll use the surface color (white/dark-grey) for the icon to look like a cutout 
@@ -215,7 +293,6 @@ const VisualSpecificationsDiagram = ({
           </g>
         )
       })}
-
     </svg>
   )
 }

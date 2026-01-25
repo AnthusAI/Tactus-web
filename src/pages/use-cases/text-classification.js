@@ -4,6 +4,7 @@ import Layout from "../../components/layout"
 import Seo from "../../components/seo"
 import BottomCta from "../../components/bottom-cta"
 import * as styles from "./use-case.module.css"
+import EmbeddedRuntimeDiagram from "../../components/diagrams/EmbeddedRuntimeDiagram"
 import examplesData from "../../data/examples.json"
 
 function findExampleById(exampleId) {
@@ -67,6 +68,10 @@ const TextClassificationUseCasePage = () => {
               focus. A lightweight classifier gives you fast routing, but it
               only works if you keep the output constrained and measurable.
             </p>
+
+            <div className={styles.diagramBlock}>
+              <EmbeddedRuntimeDiagram />
+            </div>
 
             <pre className={styles.codeBlock}>
               <code>{triageSnippet}</code>

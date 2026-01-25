@@ -9,6 +9,7 @@ import {
   ThemeProvider,
 } from "@anthus/tactus-hitl-components"
 import AnimatedHumanInTheLoopDiagram from "../../components/diagrams/AnimatedHumanInTheLoopDiagram"
+import SidecarChatDiagram from "../../components/diagrams/SidecarChatDiagram"
 import { HITL_PRESETS } from "../../components/diagrams/hitlPresets"
 import {
   Conversation,
@@ -300,6 +301,13 @@ const CopilotAnythingUseCasePage = () => {
                   what it can call, and when a human must confirm.
                 </li>
               </ul>
+
+              <h3 className={chatStyles.subsectionTitle}>
+                Architecture: Sidecar Chat
+              </h3>
+              <div className={chatStyles.diagramBlock}>
+                <SidecarChatDiagram />
+              </div>
 
               <h3 className={chatStyles.subsectionTitle}>
                 Chat UI + async queued HITL

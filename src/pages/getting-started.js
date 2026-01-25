@@ -5,6 +5,8 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 import BookSeriesSection from "../components/book-series-section"
 import VideosSpotlightSection from "../components/videos-spotlight-section"
+import AnimatedHumanInTheLoopDiagram from "../components/diagrams/AnimatedHumanInTheLoopDiagram"
+import { HITL_PRESETS } from "../components/diagrams/hitlPresets"
 import * as styles from "./getting-started.module.css"
 import examplesData from "../data/examples.json"
 import { ApprovalPanel, ThemeProvider } from "@anthus/tactus-hitl-components"
@@ -321,6 +323,138 @@ $ tactus run 01-getting-started/01-hello-world.tac`
                   installing the matching Tactus version inside the container.
                   When a source checkout is available, the image bakes in the
                   local source instead.
+                </p>
+              </div>
+
+              <div className={styles.conceptSection}>
+                <h2 className={styles.conceptTitle}>
+                  Prototype supervised, then step back safely
+                </h2>
+                <p className={styles.conceptIntro}>
+                  A practical way to automate real work is to start in a
+                  supervised interface (Claude Code, Cursor, etc.), then
+                  gradually harden what you built into governed procedures.
+                  Supervision is a feature while you're exploring—but
+                  it becomes a bottleneck if a human must watch every step.
+                </p>
+                <div className={styles.prototypeStack}>
+                  <div className={styles.prototypeBlock}>
+                    <h3 className={styles.prototypeTitle}>
+                      Prototype (closely supervised)
+                    </h3>
+                    <p className={styles.prototypeBody}>
+                      Start with a Skill and iterate fast while you're watching:
+                      the agent has freedom, and you can correct course in real
+                      time.
+                    </p>
+                    <ol className={styles.prototypeList}>
+                      <li>Prototype a workflow as an agent Skill.</li>
+                      <li>
+                        Use MCP servers to connect tools like Stripe, Freshdesk,
+                        and internal APIs.
+                      </li>
+                      <li>
+                        Tighten the steps until the workflow is boring and
+                        repeatable.
+                      </li>
+                    </ol>
+                    <div className={styles.prototypeDiagram}>
+                      <AnimatedHumanInTheLoopDiagram
+                        scenario={HITL_PRESETS.CLOSELY_SUPERVISED.scenario}
+                        config={{
+                          ...HITL_PRESETS.CLOSELY_SUPERVISED.config,
+                          stepBackAfterItems: 1,
+                          outageDuration: 8000,
+                        }}
+                        startAtMs={
+                          HITL_PRESETS.CLOSELY_SUPERVISED.recommendedStartAtMs
+                        }
+                      />
+                    </div>
+                  </div>
+
+                  <div className={styles.prototypeBlock}>
+                    <h3 className={styles.prototypeTitle}>
+                      Step back (asynchronous human checkpoint)
+                    </h3>
+                    <p className={styles.prototypeBody}>
+                      Then harden the workflow into a governed procedure: make
+                      data flow predictable, add guardrails, and pause for human
+                      input only when needed so the system can run while you're
+                      away.
+                    </p>
+                    <ol className={styles.prototypeList}>
+                      <li>
+                        Pre-call tools in imperative code when possible (fetch
+                        first, then pass results to the model).
+                      </li>
+                      <li>
+                        Add validation, specs, and evaluations so reliability is
+                        measurable.
+                      </li>
+                      <li>
+                        Add human checkpoints for high-risk steps so a person
+                        stays accountable.
+                      </li>
+                    </ol>
+                    <div className={styles.prototypeDiagram}>
+                      <AnimatedHumanInTheLoopDiagram
+                        scenario={HITL_PRESETS.HUMAN_STEPS_BACK.scenario}
+                        config={HITL_PRESETS.HUMAN_STEPS_BACK.config}
+                        startAtMs={
+                          HITL_PRESETS.HUMAN_STEPS_BACK.recommendedStartAtMs
+                        }
+                      />
+                    </div>
+                  </div>
+                </div>
+                <p className={styles.conceptIntro}>
+                  This workflow pairs well with open standards:{" "}
+                  <a
+                    href="https://agentskills.io/home"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Agent Skills
+                  </a>{" "}
+                  for packaging repeatable agent behavior, and{" "}
+                  <a
+                    href="https://modelcontextprotocol.io/"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    MCP
+                  </a>{" "}
+                  for connecting tools like Stripe, ticketing systems, and
+                  internal APIs.
+                </p>
+
+                <div className={styles.caseStudyCallout}>
+                  <h3 className={styles.caseStudyTitle}>
+                    Case study: Refund ops automation
+                  </h3>
+                  <p className={styles.caseStudyText}>
+                    This started as a supervised Skill that processes an Excel
+                    file and issues Stripe refunds in sequence. Once it proved
+                    useful, it was hardened into a governed procedure: inputs
+                    validated up front, tool data fetched deterministically,
+                    human checkpoints added for high-risk rows, and an audit
+                    trail produced for confidence and compliance.
+                  </p>
+                  <div className={styles.caseStudyButtons}>
+                    <Link to="/use-cases/refund-ops/" className={styles.primaryButton}>
+                      Read the case study
+                    </Link>
+                    <Link to="/use-cases/business-process-automation/" className={styles.secondaryButton}>
+                      Business process automation overview
+                    </Link>
+                  </div>
+                </div>
+                <p className={styles.conceptIntro}>
+                  The goal is not to give a monkey a razor blade and hope for
+                  the best. The goal is controlled delegation: let the agent do
+                  the repetitive work, and keep humans in charge of the outcomes
+                  with full transparency through logging and tracing.
                 </p>
               </div>
             </div>

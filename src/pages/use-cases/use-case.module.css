@@ -61,6 +61,15 @@
   scroll-margin-top: 100px;
 }
 
+.subsectionTitle {
+  margin: var(--space-5) 0 var(--space-3);
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--color-text-secondary);
+}
+
 .bodyText {
   font-size: 1.125rem;
   line-height: 1.7;
@@ -99,6 +108,21 @@
 
 .checkList li {
   margin: var(--space-1) 0;
+}
+
+.flatList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flatList li {
+  margin: var(--space-2) 0;
+  color: var(--color-text);
+}
+
+.diagramBlock {
+  margin: 0 0 var(--space-6);
 }
 
 .codeBlock {

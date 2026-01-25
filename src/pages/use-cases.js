@@ -8,13 +8,23 @@ import * as styles from "./use-cases.module.css"
 const USE_CASES = [
   {
     title: "A copilot for anything",
-    lede: "Embed agents in your app: chat UX, tools, and human checkpoints via standard HITL components.",
+    lede: "Bolt a chat copilot onto an existing app: tools, approvals, and human checkpoints.",
     to: "/use-cases/copilot-anything/",
   },
   {
+    title: "Refund ops automation",
+    lede: "A real finance workflow: batch Stripe refunds via tools, with human checkpoints and an audit trail—starting from a Claude Skill.",
+    to: "/use-cases/refund-ops/",
+  },
+  {
     title: "Text classification",
-    lede: "Classify text reliably with guardrails: validation, specs, and evals.",
+    lede: "Embed a runtime and classify text reliably with guardrails: validation, specs, and evals.",
     to: "/use-cases/text-classification/",
+  },
+  {
+    title: "Contact import (embedded feature)",
+    lede: "Add a button-driven agent feature: trigger a procedure, call tools, and queue human review only when needed.",
+    to: "/use-cases/contact-import/",
   },
   {
     title: "Business process automation",

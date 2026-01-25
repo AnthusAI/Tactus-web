@@ -17,6 +17,9 @@ import AnimatedHumanInTheLoopDiagram from "../components/diagrams/AnimatedHumanI
 import { HITL_PRESETS } from "../components/diagrams/hitlPresets"
 import AnimatedOldWayFlowchartDiagram from "../components/diagrams/AnimatedOldWayFlowchartDiagram"
 import AnimatedNewWayFlowchartDiagram from "../components/diagrams/AnimatedNewWayFlowchartDiagram"
+import SidecarChatDiagram from "../components/diagrams/SidecarChatDiagram"
+import EmbeddedRuntimeDiagram from "../components/diagrams/EmbeddedRuntimeDiagram"
+import DeepIntegrationDiagram from "../components/diagrams/DeepIntegrationDiagram"
 import FeatureHighlightsSection from "../components/feature-highlights-section"
 import BookSeriesSection from "../components/book-series-section"
 import TechStackSection from "../components/tech-stack-section"
@@ -378,7 +381,8 @@ const FEATURE_HIGHLIGHTS = [
     title: "Durable + testable",
     body: (
       <>
-        Checkpoint long workflows, add HITL where needed, and measure
+        Checkpoint long workflows, add human checkpoints where needed, and
+        measure
         reliability with specs + evaluations.
       </>
     ),
@@ -657,7 +661,7 @@ const IndexPage = () => {
           </div>
         </section>
 
-        {/* HITL Variants */}
+        {/* Human-in-the-loop Variants */}
         <section className={styles.section}>
           <div className={styles.container}>
             <div className={styles.hitlVariants}>
@@ -800,7 +804,7 @@ const IndexPage = () => {
                 </div>
               </div>
 
-              {/* Code Example: HITL Durability */}
+              {/* Code Example: Human Checkpoint Durability */}
               <div style={{ margin: "var(--space-6) 0" }}>
                 <div className={styles.sectionHeader}>
                   <h2
@@ -818,7 +822,7 @@ const IndexPage = () => {
                   <AnimatedCodeBlock
                     label="Human in the loop"
                     filename="examples-deploy.tac"
-                    hint="HITL + timeout"
+                    hint="human checkpoint + timeout"
                     code={DURABILITY_EXAMPLE}
                     language="tactus"
                     showTypewriter={false}
@@ -856,6 +860,115 @@ const IndexPage = () => {
                 <Button to="/human-in-the-loop/" variant="primary" shadow>
                   Read: Human in the Loop
                 </Button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Use Case Architectures */}
+        <section className={styles.section}>
+          <div className={styles.container}>
+            <header className={styles.sectionHeader}>
+              <p className={styles.eyebrow}>Architectures</p>
+              <h2 className={styles.sectionTitle}>Three ways to use agents</h2>
+              <p className={styles.sectionSubtitle}>
+                These are three common patterns in real products: a copilot UI,
+                embedded runtime workflows, and deeply integrated features with
+                tool use and asynchronous human checkpoints.
+              </p>
+            </header>
+
+            <div className={styles.architectureStack}>
+              <div className={styles.architectureItem}>
+                <h3 className={styles.architectureTitle}>Sidecar chat copilot</h3>
+                <p className={styles.architectureBody}>
+                  Bolt a chat interface onto an existing product. Great for
+                  “help me do X” workflows, with tool use and human checkpoints
+                  when actions are high risk.
+                </p>
+                <div className={styles.architectureDiagram}>
+                  <SidecarChatDiagram />
+                </div>
+                <div className={styles.architectureLinkRow}>
+                  <Button
+                    to="/use-cases/copilot-anything/"
+                    variant="secondary"
+                    shadow
+                  >
+                    See: Copilot for Anything
+                  </Button>
+                </div>
+              </div>
+
+              <div className={styles.architectureItem}>
+                <h3 className={styles.architectureTitle}>
+                  Embedded runtime for workflows
+                </h3>
+                <p className={styles.architectureBody}>
+                  Run procedures inside your application to keep behavior
+                  testable and outputs structured. Ideal for classification,
+                  routing, extraction, and other repeatable workflows.
+                </p>
+                <div className={styles.architectureDiagram}>
+                  <EmbeddedRuntimeDiagram />
+                </div>
+                <div className={styles.architectureLinkRow}>
+                  <Button
+                    to="/use-cases/text-classification/"
+                    variant="secondary"
+                    shadow
+                  >
+                    See: Text Classification
+                  </Button>
+                </div>
+              </div>
+
+              <div className={styles.architectureItem}>
+                <h3 className={styles.architectureTitle}>
+                  Deeply integrated features
+                </h3>
+                <p className={styles.architectureBody}>
+                  Add agent-powered product features behind UI buttons and forms.
+                  The procedure can call tools to change real state, and pause
+                  asynchronously for human review when required.
+                </p>
+                <div className={styles.architectureDiagram}>
+                  <DeepIntegrationDiagram />
+                </div>
+                <div className={styles.architectureLinkRow}>
+                  <Button
+                    to="/use-cases/contact-import/"
+                    variant="secondary"
+                    shadow
+                  >
+                    See: Contact Import
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.architectureFooter}>
+              <div className={styles.architectureCallout}>
+                <p className={styles.architectureCalloutEyebrow}>Case study</p>
+                <h3 className={styles.architectureCalloutTitle}>
+                  Refund ops automation
+                </h3>
+                <p className={styles.architectureCalloutBody}>
+                  A real finance workflow started as a supervised Skill that
+                  processes an Excel file and issues Stripe refunds in sequence.
+                  It was then hardened into a governed procedure: inputs
+                  validated up front, tool data fetched deterministically, human
+                  checkpoints added for high-risk rows, and an audit trail
+                  produced for confidence and compliance.
+                </p>
+                <div className={styles.architectureCalloutButtons}>
+                  <Button to="/use-cases/refund-ops/" variant="secondary" shadow>
+                    Read the case study
+                  </Button>
+                  <Button to="/use-cases/" variant="primary" shadow>
+                    Browse Use Cases
+                  </Button>
+                </div>
               </div>
             </div>
           </div>

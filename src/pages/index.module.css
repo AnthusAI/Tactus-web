@@ -399,6 +399,95 @@
   align-items: center;
 }
 
+.architectureStack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  margin-top: var(--space-5);
+}
+
+.architectureItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.architectureTitle {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.architectureBody {
+  margin: 0;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--color-text);
+}
+
+.architectureDiagram {
+  margin-top: 0;
+}
+
+.architectureLinkRow {
+  margin-top: var(--space-2);
+  display: flex;
+  justify-content: center;
+}
+
+.architectureFooter {
+  margin-top: var(--space-6);
+  margin-bottom: var(--space-6);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.architectureCallout {
+  width: 100%;
+  padding: var(--space-6);
+  background: var(--color-surface-2);
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.architectureCalloutEyebrow {
+  margin: 0;
+  font-size: var(--font-sx);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.architectureCalloutTitle {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.architectureCalloutBody {
+  margin: 0;
+  color: var(--color-text-muted);
+  line-height: var(--line-height-loose);
+  font-size: 1.125rem;
+  max-width: 56rem;
+}
+
+.architectureCalloutButtons {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
 .hitlVariant {
   display: flex;
   flex-direction: column;

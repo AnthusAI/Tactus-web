@@ -258,6 +258,78 @@
   line-height: 1.6;
 }
 
+.prototypeStack {
+  margin-top: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.prototypeBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.prototypeTitle {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.prototypeBody {
+  margin: 0;
+  color: var(--color-text-muted);
+  line-height: var(--line-height-loose);
+  max-width: 56rem;
+}
+
+.prototypeList {
+  margin: 0;
+  padding-left: var(--space-4);
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  max-width: 56rem;
+}
+
+.prototypeList li {
+  margin: 0.5rem 0;
+}
+
+.prototypeDiagram {
+  width: 100%;
+  margin-top: var(--space-2);
+}
+
+.caseStudyCallout {
+  margin: var(--space-5) 0;
+  padding: var(--space-6);
+  background: var(--color-surface-2);
+  border-radius: var(--border-radius);
+}
+
+.caseStudyTitle {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.caseStudyText {
+  margin: 0 0 var(--space-4);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-loose);
+  font-size: 1.125rem;
+  max-width: 56rem;
+}
+
+.caseStudyButtons {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
 .projectsDemo {
   background: var(--color-surface-1);
   border-radius: var(--border-radius);

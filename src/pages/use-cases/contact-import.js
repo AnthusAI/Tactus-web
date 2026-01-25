@@ -4,6 +4,7 @@ import Layout from "../../components/layout"
 import Seo from "../../components/seo"
 import BottomCta from "../../components/bottom-cta"
 import * as styles from "./use-case.module.css"
+import DeepIntegrationDiagram from "../../components/diagrams/DeepIntegrationDiagram"
 
 const ContactImportUseCasePage = () => {
   return (
@@ -23,7 +24,7 @@ const ContactImportUseCasePage = () => {
           </div>
         </section>
 
-        <section className={`${styles.section} ${styles.bgMuted}`}>
+        <section className={styles.section}>
           <div className={styles.container}>
             <h2 className={styles.sectionTitle}>The Pattern</h2>
             <p className={styles.bodyText}>
@@ -32,6 +33,32 @@ const ContactImportUseCasePage = () => {
               a strict schema, then give the agent the messy row and a clear
               instruction.
             </p>
+
+            <h3 className={styles.subsectionTitle}>
+              Architecture: Deep Integration
+            </h3>
+            <div className={styles.diagramBlock}>
+              <DeepIntegrationDiagram />
+            </div>
+
+            <div className={styles.subtleCard}>
+              <p className={styles.kicker}>What makes this “deep integration”</p>
+              <ul className={styles.checkList}>
+                <li>
+                  It feels like a normal product feature: a button, a form, a
+                  menu item—not “go talk to a bot.”
+                </li>
+                <li>
+                  The procedure can call tools to change real state (create a
+                  record, attach a note, push to your CRM).
+                </li>
+                <li>
+                  When it hits a risky step, it can pause and request human
+                  approval asynchronously—without blocking the rest of the
+                  system.
+                </li>
+              </ul>
+            </div>
 
             <div className={styles.subtleCard}>
               <p className={styles.kicker}>Guardrails to use</p>
@@ -52,9 +79,9 @@ const ContactImportUseCasePage = () => {
             </div>
 
             <p className={styles.bodyTextMuted}>
-              This page is a starter stub. Next we’ll add a runnable procedure
-              and a small dataset of varied contact formats to evaluate
-              reliably.
+              This page is a starter stub. Next we’ll add a runnable procedure,
+              a small dataset of varied contact formats, and a simple review
+              flow so you can evaluate reliability end-to-end.
             </p>
           </div>
         </section>

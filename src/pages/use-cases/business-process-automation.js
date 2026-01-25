@@ -178,6 +178,16 @@ const BusinessProcessAutomationUseCasePage = () => {
               you can build reliable automation around it.
             </p>
 
+            <div className={styles.subtleCard}>
+              <p className={styles.kicker}>Real-world example</p>
+              <p className={styles.bodyTextMuted} style={{ marginBottom: 0 }}>
+                A finance ops workflow processing ~100 Stripe refunds/day started
+                as a supervised Claude Skill, then got hardened into governed
+                automation with tool use, human checkpoints, and audit trails.{" "}
+                <Link to="/use-cases/refund-ops/">Read the case study</Link>.
+              </p>
+            </div>
+
             <pre className={styles.codeBlock}>
               <code>{BUSINESS_PROCESS_AUTOMATION_SNIPPET}</code>
             </pre>

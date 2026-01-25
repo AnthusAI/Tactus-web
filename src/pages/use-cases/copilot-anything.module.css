@@ -221,6 +221,10 @@
   margin: var(--space-4) 0 var(--space-5);
 }
 
+.diagramBlock {
+  margin: 0 0 var(--space-6);
+}
+
 .diagramCard {
   background: transparent;
   padding: 0;

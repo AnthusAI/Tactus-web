@@ -62,7 +62,7 @@ const EmbeddedRuntimeDiagram = (props) => {
       caption: "The Classify module runs, checking validation rules and retrying if needed.",
     },
     {
-      nodeIds: ["guardrails", "output"],
+      nodeIds: ["procedure", "output"],
       edgeIds: ["e4"],
       caption: "Once valid, the procedure produces a strictly structured result.",
     },

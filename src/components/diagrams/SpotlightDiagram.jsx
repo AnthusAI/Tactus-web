@@ -98,14 +98,14 @@ const SpotlightDiagram = ({
     const isCurrent = currentActiveNodes.has(nodeId)
     const isNext = nextActiveNodes.has(nodeId)
     
-    let opacity = 0.5 // Base opacity for inactive
+    let opacity = 1 // Base opacity for inactive
     let scale = 1.0
     let strokeWidth = 1
     let strokeColor = t.surface2 // Default border
     
     if (isCurrent) {
       // Active, but optionally fading out near the end of the step.
-      opacity = 0.5 + 0.5 * (1 - easedTransition)
+      opacity = 1
       strokeColor = t.primary
       strokeWidth = 1 + 2 * (1 - easedTransition)
     }
@@ -119,12 +119,12 @@ const SpotlightDiagram = ({
     
     // Edges need to be visible even when inactive, otherwise the diagram reads
     // like a collection of floating boxes. Use a darker ink tone + mid opacity.
-    let opacity = 0.45
+    let opacity = 1
     let width = 3
     let color = t.inkSecondary
     
     if (isCurrent) {
-      opacity = 0.45 + 0.55 * (1 - easedTransition)
+      opacity = 1
       color = t.primary
       width = 3 + 3 * (1 - easedTransition)
     }

@@ -62,7 +62,7 @@ const DeepIntegrationDiagram = (props) => {
   const steps = [
     {
       nodeIds: ["user", "ui-button"],
-      edgeIds: [],
+      edgeIds: ["e1"],
       caption: "A user clicks a button in your product (e.g., “Import”).",
     },
     {

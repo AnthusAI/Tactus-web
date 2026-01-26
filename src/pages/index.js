@@ -871,7 +871,7 @@ const IndexPage = () => {
             <header className={styles.sectionHeader}>
               <p className={styles.eyebrow}>Architectures</p>
               <h2 className={styles.sectionTitle}>
-                Three example ways to use agents
+                Examples of ways to use agents
               </h2>
               <p className={styles.sectionSubtitle}>
                 These are three common patterns in real products: a copilot UI,
@@ -909,31 +909,6 @@ const IndexPage = () => {
               <div className={styles.architectureItem}>
                 <div className={styles.architectureHeaderRow}>
                   <h3 className={styles.architectureTitle}>
-                    Embedded runtime for workflows
-                  </h3>
-                  <div className={styles.architectureLinkRow}>
-                    <Button
-                      to="/use-cases/text-classification/"
-                      variant="secondary"
-                      shadow
-                    >
-                      See: Text Classification
-                    </Button>
-                  </div>
-                </div>
-                <p className={styles.architectureBody}>
-                  Run procedures inside your application to keep behavior
-                  testable and outputs structured. Ideal for classification,
-                  routing, extraction, and other repeatable workflows.
-                </p>
-                <div className={styles.architectureDiagram}>
-                  <EmbeddedRuntimeDiagram />
-                </div>
-              </div>
-
-              <div className={styles.architectureItem}>
-                <div className={styles.architectureHeaderRow}>
-                  <h3 className={styles.architectureTitle}>
                     Deeply integrated features
                   </h3>
                   <div className={styles.architectureLinkRow}>
@@ -953,6 +928,31 @@ const IndexPage = () => {
                 </p>
                 <div className={styles.architectureDiagram}>
                   <DeepIntegrationDiagram />
+                </div>
+              </div>
+
+              <div className={styles.architectureItem}>
+                <div className={styles.architectureHeaderRow}>
+                  <h3 className={styles.architectureTitle}>
+                    Embedded runtime for workflows
+                  </h3>
+                  <div className={styles.architectureLinkRow}>
+                    <Button
+                      to="/use-cases/text-classification/"
+                      variant="secondary"
+                      shadow
+                    >
+                      See: Text Classification
+                    </Button>
+                  </div>
+                </div>
+                <p className={styles.architectureBody}>
+                  Run procedures inside your application to keep behavior
+                  testable and outputs structured. Ideal for classification,
+                  routing, extraction, and other repeatable workflows.
+                </p>
+                <div className={styles.architectureDiagram}>
+                  <EmbeddedRuntimeDiagram />
                 </div>
               </div>
             </div>

@@ -71,11 +71,12 @@ const DownloadPage = () => {
                 </div>
               ) : null}
 
-              <div style={{ marginTop: "var(--space-5)", textAlign: "left" }}>
+              <div className={styles.copyColumn}>
                 <Breakout
                   title="Warning: Alpha Version"
                   theme="primary"
                   bleed={true}
+                  withContainer={false}
                 >
                   <p>
                     The version number starts with 0., which means this is an
@@ -95,14 +96,7 @@ const DownloadPage = () => {
                     supported yet—use it at your own risk.
                   </p>
                 </Breakout>
-                <div
-                  style={{
-                    marginTop: "var(--space-4)",
-                    maxWidth: "var(--size-content)",
-                    margin: "var(--space-4) auto 0",
-                    textAlign: "left",
-                  }}
-                >
+                <div className={styles.copyNote}>
                   <p>
                     <strong>Note on Desktop Apps:</strong> Please note that the
                     Electron apps are less tested than running the web

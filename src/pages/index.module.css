@@ -412,6 +412,12 @@
   gap: var(--space-2);
 }
 
+.architectureHeaderRow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
 .architectureTitle {
   margin: 0;
   font-family: var(--font-serif);
@@ -425,16 +431,40 @@
   font-size: 1.125rem;
   line-height: 1.7;
   color: var(--color-text);
+  max-width: none;
 }
 
 .architectureDiagram {
   margin-top: 0;
+  width: 100%;
+  max-width: 52rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .architectureLinkRow {
-  margin-top: var(--space-2);
+  margin-top: 0;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+@media (min-width: 900px) {
+  .architectureHeaderRow {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-4);
+  }
+
+  .architectureTitle {
+    flex: 1;
+  }
+
+  .architectureLinkRow {
+    width: auto;
+    justify-content: flex-end;
+  }
 }
 
 .architectureFooter {
@@ -479,7 +509,7 @@
   color: var(--color-text-muted);
   line-height: var(--line-height-loose);
   font-size: 1.125rem;
-  max-width: 56rem;
+  max-width: none;
 }
 
 .architectureCalloutButtons {

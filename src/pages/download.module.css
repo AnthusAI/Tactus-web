@@ -35,6 +35,17 @@
   color: var(--color-text-muted);
   line-height: var(--line-height-loose);
   margin: 0;
+  text-align: left;
+}
+
+.copyColumn {
+  margin-top: var(--space-5);
+  text-align: left;
+  width: 100%;
+}
+
+.copyNote {
+  margin-top: var(--space-4);
 }
 
 .grid {

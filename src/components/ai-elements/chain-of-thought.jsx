@@ -1,6 +1,6 @@
 "use client"
-import { Badge } from "@/components/ui/badge"
-import { cn } from "@/lib/utils"
+import { Badge } from "../ui/badge"
+import { cn } from "../../lib/utils"
 import * as Collapsible from "@radix-ui/react-collapsible"
 import { useControllableState } from "@radix-ui/react-use-controllable-state"
 import { BrainIcon, ChevronDownIcon, createLucideIcon } from "lucide-react"

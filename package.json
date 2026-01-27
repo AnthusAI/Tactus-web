@@ -48,11 +48,11 @@
     "@storybook/addon-onboarding": "^10.1.11",
     "@storybook/addon-webpack5-compiler-swc": "^4.0.2",
     "@storybook/react-webpack5": "^10.1.11",
+    "@tailwindcss/postcss": "^4.1.18",
     "@vitest/mocker": "^4.0.17",
     "prettier": "^2.8.8",
     "prop-types": "^15.8.1",
     "storybook": "^10.1.11",
-    "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3"
   },
   "engines": {

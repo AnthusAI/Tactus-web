@@ -30,7 +30,7 @@ const PromptExampleChip = ({ x, y, text, opacity, t }) => {
         y={y}
         width={width}
         height={height}
-        rx="var(--border-radius)"
+        rx={8}
         fill={t.surface2}
       />
       <text
@@ -172,7 +172,7 @@ const PromptEngineeringCeilingDiagram = ({
           width={chartWidth}
           height={chartHeight}
           fill={t.surface}
-          rx="var(--border-radius)"
+          rx={8}
         />
 
         <line

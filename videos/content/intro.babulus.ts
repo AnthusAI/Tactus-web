@@ -1,12 +1,46 @@
-import { defineVideo } from "babulus/dsl"
-import { sharedDefaults, t, voiceSegments } from "./_babulus.shared.js"
+import { defineVideo } from "babulus/dsl";
+
+// Helper to flatten voice segments with pauses and text
+const voiceSegments = (voice: { say: (text: string) => void; pause: (seconds: number) => void }, segments: Array<string | number>) => {
+  for (const seg of segments) {
+    if (typeof seg === "string") {
+      voice.say(seg);
+    } else {
+      voice.pause(seg);
+    }
+  }
+};
+
+// Template string helper to normalize whitespace
+const t = (strings: TemplateStringsArray, ...values: Array<string | number>): string => {
+  let out = "";
+  for (let i = 0; i < strings.length; i += 1) {
+    out += strings[i] ?? "";
+    if (i < values.length) {
+      out += String(values[i] ?? "");
+    }
+  }
+  return out.replace(/\s*\n\s*/g, " ").trim();
+};
 
 export default defineVideo(video => {
   video.composition("intro", comp => {
-    comp.use(sharedDefaults)
-    comp.posterTime(48)
+    comp.meta({ fps: 24, width: 1920, height: 1080 });
+    comp.posterTime(48);
+    comp.voiceover({
+      provider: "openai",
+      model: "gpt-4o-mini-tts",
+      voice: "echo",
+      sampleRateHz: 24000,
+      leadInSeconds: 0,
+      trimEndSeconds: 0,
+    });
 
     comp.scene("A New Kind of Computer Program", { id: "paradigm" }, scene => {
+      scene.layer("background", { zIndex: -1 }, layer => {
+        layer.component("bg", "Background", { color: "#fdfdfd" })
+      })
+
       scene.music("bed", {
         prompt:
           "Warm ambient background music, energetic percussion, deep bass, no vocals, clean, unobtrusive",
@@ -14,6 +48,12 @@ export default defineVideo(video => {
         volume: 0.7,
         fadeTo: { volume: 0.12, afterSeconds: 6, fadeDurationSeconds: 3 },
         fadeOut: { volume: 0.7, beforeEndSeconds: 5, fadeDurationSeconds: 3 },
+      })
+
+      scene.layer("diagram", { zIndex: 0 }, layer => {
+        layer.component("paradigm-comparison", "ParadigmComparison", {
+          title: "A New Kind of Computer Program",
+        })
       })
 
       scene.cue("Paradigm", { id: "paradigm" }, cue => {
@@ -56,6 +96,14 @@ export default defineVideo(video => {
     })
 
     comp.scene("Hello, World", { id: "hello_world" }, scene => {
+      scene.layer("background", { zIndex: -1 }, layer => {
+        layer.component("bg", "Background", { color: "#fdfdfd" })
+      })
+
+      scene.layer("content", { zIndex: 0 }, layer => {
+        layer.component("hello-world-scene", "HelloWorldScene", {})
+      })
+
       scene.cue("Hello World", { id: "hello_world" }, cue => {
         cue.voice(voice => {
           voiceSegments(voice, [
@@ -76,6 +124,26 @@ export default defineVideo(video => {
     })
 
     comp.scene("The Human Interface", { id: "interface" }, scene => {
+      scene.layer("background", { zIndex: -1 }, layer => {
+        layer.component("bg", "Background", { color: "#fdfdfd" })
+      })
+
+      scene.layer("title", { zIndex: 1 }, layer => {
+        layer.component("scene-title", "Title", {
+          text: "The Human Interface",
+          x: 960,
+          y: 150,
+        })
+      })
+
+      scene.layer("diagram", { zIndex: 0 }, layer => {
+        layer.component("hitl-diagram", "HumanInTheLoopDiagram", {
+          scale: 4,
+          x: 960,
+          y: 650,
+        })
+      })
+
       scene.cue("Closely Supervised", { id: "interface_supervised" }, cue => {
         cue.voice(voice => {
           voiceSegments(voice, [
@@ -124,6 +192,18 @@ export default defineVideo(video => {
     })
 
     comp.scene("No Graphs Required", { id: "graphs" }, scene => {
+      scene.layer("background", { zIndex: -1 }, layer => {
+        layer.component("bg", "Background", { color: "#fdfdfd" })
+      })
+
+      scene.layer("title", { zIndex: 1 }, layer => {
+        layer.component("scene-title", "Title", {
+          text: "No Graphs Required",
+          x: 960,
+          y: 540,
+        })
+      })
+
       scene.cue("No Graphs Required", { id: "graphs" }, cue => {
         cue.voice(voice => {
           voiceSegments(voice, [
@@ -140,6 +220,26 @@ export default defineVideo(video => {
       "The Prompt-Engineering Ceiling",
       { id: "prompt_ceiling_intro" },
       scene => {
+        scene.layer("background", { zIndex: -1 }, layer => {
+          layer.component("bg", "Background", { color: "#fdfdfd" })
+        })
+
+        scene.layer("title", { zIndex: 1 }, layer => {
+          layer.component("scene-title", "Title", {
+            text: "The Prompt-Engineering Ceiling",
+            x: 960,
+            y: 150,
+          })
+        })
+
+        scene.layer("diagram", { zIndex: 0 }, layer => {
+          layer.component("ceiling-diagram", "PromptEngineeringCeilingDiagram", {
+            scale: 4,
+            x: 960,
+            y: 650,
+          })
+        })
+
         scene.cue("Prompt Ceiling", { id: "prompt_ceiling_intro" }, cue => {
           cue.voice(voice => {
             voiceSegments(voice, [
@@ -159,6 +259,26 @@ export default defineVideo(video => {
     )
 
     comp.scene("Defense in Depth", { id: "defense_layers" }, scene => {
+      scene.layer("background", { zIndex: -1 }, layer => {
+        layer.component("bg", "Background", { color: "#fdfdfd" })
+      })
+
+      scene.layer("title", { zIndex: 1 }, layer => {
+        layer.component("scene-title", "Title", {
+          text: "Defense in Depth",
+          x: 960,
+          y: 150,
+        })
+      })
+
+      scene.layer("diagram", { zIndex: 0 }, layer => {
+        layer.component("guardrails-diagram", "GuardrailsStackDiagram", {
+          scale: 4,
+          x: 960,
+          y: 650,
+        })
+      })
+
       scene.cue("Defense Layers", { id: "defense_layers" }, cue => {
         cue.voice(voice => {
           voiceSegments(voice, [
@@ -183,6 +303,26 @@ export default defineVideo(video => {
     })
 
     comp.scene("Sandboxing", { id: "sandboxing" }, scene => {
+      scene.layer("background", { zIndex: -1 }, layer => {
+        layer.component("bg", "Background", { color: "#fdfdfd" })
+      })
+
+      scene.layer("title", { zIndex: 1 }, layer => {
+        layer.component("scene-title", "Title", {
+          text: "Sandboxing",
+          x: 960,
+          y: 150,
+        })
+      })
+
+      scene.layer("diagram", { zIndex: 0 }, layer => {
+        layer.component("sandbox-diagram", "ContainerSandboxDiagram", {
+          scale: 4,
+          x: 960,
+          y: 650,
+        })
+      })
+
       scene.cue("Sandboxing", { id: "sandboxing" }, cue => {
         cue.voice(voice => {
           voiceSegments(voice, [
@@ -202,6 +342,14 @@ export default defineVideo(video => {
     })
 
     comp.scene("Tactus in a Nutshell", { id: "nutshell" }, scene => {
+      scene.layer("background", { zIndex: -1 }, layer => {
+        layer.component("bg", "Background", { color: "#fdfdfd" })
+      })
+
+      scene.layer("content", { zIndex: 0 }, layer => {
+        layer.component("nutshell-content", "NutshellContent", {})
+      })
+
       scene.cue("Nutshell", { id: "nutshell" }, cue => {
         cue.voice(voice => {
           voiceSegments(voice, [
@@ -216,6 +364,14 @@ export default defineVideo(video => {
     })
 
     comp.scene("Get Started", { id: "cta" }, scene => {
+      scene.layer("background", { zIndex: -1 }, layer => {
+        layer.component("bg", "Background", { color: "#fdfdfd" })
+      })
+
+      scene.layer("cta", { zIndex: 0 }, layer => {
+        layer.component("cta-scene", "CTAScene", {})
+      })
+
       scene.cue("CTA", { id: "cta" }, cue => {
         cue.voice(voice => {
           voiceSegments(voice, [

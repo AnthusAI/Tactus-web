@@ -1,21 +1,17 @@
 {
   "name": "tactus-videos",
   "version": "1.0.0",
-  "description": "A collection of Remotion videos about the Tactus programming language",
+  "description": "Babulus videos about the Tactus programming language",
   "scripts": {
-    "start": "remotion studio",
-    "build": "remotion render",
+    "generate": "bash bin/babulus generate content/",
+    "generate:watch": "bash bin/babulus generate content/ --watch",
+    "generate:dev": "bash bin/babulus generate content/ --watch --env development",
+    "generate:dry": "bash bin/babulus generate content/ --provider dry-run --sfx-provider dry-run --music-provider dry-run",
+    "generate:fresh": "bash bin/babulus generate content/ --fresh",
+    "generate:clean": "bash bin/babulus clean content/ --yes",
     "render": "node scripts/render-all.js",
-    "render:intro": "remotion render src/index.ts Intro out/intro.mp4",
-    "babulus": "bash bin/babulus generate content/",
-    "babulus:watch": "bash bin/babulus generate content/ --watch",
-    "babulus:dev": "bash bin/babulus generate content/ --watch --env development",
-    "babulus:dry": "bash bin/babulus generate content/ --provider dry-run --sfx-provider dry-run --music-provider dry-run",
-    "babulus:fresh": "bash bin/babulus generate content/ --fresh",
-    "babulus:clean": "bash bin/babulus clean content/ --yes",
-    "babulus:sfx": "bash bin/babulus sfx",
-    "upgrade": "remotion upgrade",
-    "test": "eslint src --ext ts,tsx,js,jsx && tsc --noEmit"
+    "render:intro": "node scripts/render-all.js intro",
+    "sfx": "bash bin/babulus sfx"
   },
   "repository": {
     "type": "git",
@@ -23,27 +19,13 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@remotion/bundler": "4.0.406",
-    "@remotion/cli": "4.0.406",
-    "@remotion/google-fonts": "4.0.406",
-    "@remotion/player": "4.0.406",
-    "js-yaml": "^4.1.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "remotion": "4.0.406"
+    "babulus": "file:../../Babulus"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
-    "@typescript-eslint/eslint-plugin": "^8.18.1",
-    "@typescript-eslint/parser": "^8.18.1",
-    "babulus": "file:../../Babulus",
-    "eslint": "^9.17.0",
-    "eslint-plugin-react": "^7.37.2",
     "typescript": "^5.7.2"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   }
 }

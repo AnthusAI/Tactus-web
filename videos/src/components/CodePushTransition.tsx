@@ -1,5 +1,5 @@
 import React from "react"
-import { interpolate, spring, useCurrentFrame, useVideoConfig } from "../remotion-compat"
+import { interpolate, spring, useCurrentFrame, useVideoConfig } from "../babulus-api"
 import { CodeBlock } from "./CodeBlock"
 
 // Utility function: convert seconds to frame number

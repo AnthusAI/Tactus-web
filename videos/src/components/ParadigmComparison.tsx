@@ -1,9 +1,11 @@
 import React from "react"
-import { interpolate, spring, useCurrentFrame, useVideoConfig } from "remotion"
+import { useCurrentFrame, useVideoConfig, interpolate, spring, getComponent } from "../babulus-api"
 import { Layout } from "./Layout"
 import { Body, H2, TitleBlock } from "./Typography"
-import { secondsToFrames } from "@/babulus/utils"
 import { colors, fonts } from "../lib/theme"
+
+// Utility function: convert seconds to frame number
+const secondsToFrames = (seconds: number, fps: number): number => Math.round(seconds * fps);
 
 const animIn = (t: number) =>
   interpolate(t, [0, 0.35], [0, 1], {
@@ -11,12 +13,45 @@ const animIn = (t: number) =>
     extrapolateRight: "clamp",
   })
 
+// Helper to resolve component strings to React elements
+const resolveComponent = (componentOrName: React.ReactNode | string, props?: Record<string, any>): React.ReactNode => {
+  if (typeof componentOrName === "string") {
+    const Component = getComponent(componentOrName);
+    if (Component) {
+      return <Component {...props} />;
+    }
+    console.warn(`Component not found: ${componentOrName}`);
+    return null;
+  }
+  return componentOrName;
+};
+
+type ScriptSegment = {
+  type: "tts" | "pause"
+  startSec: number
+  endSec: number
+  text?: string
+  durationSec?: number
+}
+
+type ScriptCue = {
+  id?: string | null
+  label?: string | null
+  text?: string | null
+  startSec?: number
+  endSec?: number
+  segments?: ScriptSegment[]
+  markup?: Record<string, any>
+}
+
 export type ParadigmComparisonProps = {
   title: string
-  oldWay: React.ReactNode
-  newWay: React.ReactNode
+  oldWay: React.ReactNode | string // Can be React component OR string name
+  newWay: React.ReactNode | string // Can be React component OR string name
   sceneStartSec: number
-  ttsStartsSec: number[]
+  ttsStartsSec?: number[] // Optional for Babulus (computed from timeline)
+  segments?: ScriptSegment[] // Segment-level timing for the "new way" cue (explicit prop)
+  cue?: ScriptCue // Cue object from ComposableRenderer (contains segments)
 }
 
 /**
@@ -28,11 +63,19 @@ export const ParadigmComparison: React.FC<ParadigmComparisonProps> = ({
   oldWay,
   newWay,
   sceneStartSec,
-  ttsStartsSec,
+  ttsStartsSec = [],
+  segments,
+  cue,
 }) => {
+
   const frame = useCurrentFrame()
   const { fps } = useVideoConfig()
   const localSec = frame / fps
+
+  // Extract segments from cue if not provided explicitly
+  const cueSegments = segments ?? cue?.segments
+
+  // Don't resolve components yet - do it in withProgress so timing props are current
   const sceneLocalFrame = frame
   const sceneLocalSec = localSec
   const cueStartsLocal = ttsStartsSec.map(s => s - sceneStartSec)
@@ -102,12 +145,34 @@ export const ParadigmComparison: React.FC<ParadigmComparisonProps> = ({
     }
   )
 
-  const withProgress = (node: React.ReactNode, progress: number) => {
-    if (!React.isValidElement(node)) return node
-    if (typeof node.type === "string") return node
+  const withProgress = (componentOrName: React.ReactNode | string, progress: number, componentSegments?: ScriptSegment[]) => {
+    // If it's a string, resolve it to a component with timing props
+    if (typeof componentOrName === "string") {
+      const Component = getComponent(componentOrName);
+      if (Component) {
+        return <Component
+          progress={progress}
+          timeSec={localSec}
+          sceneStartSec={sceneStartSec}
+          ttsStartsSec={ttsStartsSec}
+          segments={componentSegments}
+        />;
+      }
+      return null;
+    }
+
+    // If it's already a React element, clone it with timing props
+    if (!React.isValidElement(componentOrName)) return componentOrName
+    if (typeof componentOrName.type === "string") return componentOrName
     return React.cloneElement(
-      node as React.ReactElement<{ progress?: number }>,
-      { progress }
+      componentOrName as React.ReactElement<{ progress?: number; timeSec?: number; sceneStartSec?: number; ttsStartsSec?: number[]; segments?: ScriptSegment[] }>,
+      {
+        progress,
+        timeSec: localSec,
+        sceneStartSec,
+        ttsStartsSec,
+        segments: componentSegments,
+      }
     )
   }
 
@@ -133,7 +198,7 @@ export const ParadigmComparison: React.FC<ParadigmComparisonProps> = ({
   })
 
   const oldWayRendered = withProgress(oldWay, oldWayBuildProgress)
-  const newWayRendered = withProgress(newWay, newWayBuildProgress)
+  const newWayRendered = withProgress(newWay, newWayBuildProgress, cueSegments)
 
   const colWidth = 520
   const colGap = 120

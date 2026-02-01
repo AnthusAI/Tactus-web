@@ -110,6 +110,28 @@ export const IntroVideo: React.FC<IntroVideoProps> = ({
 }) => {
   const { fps } = useVideoConfig()
 
+  // Validate scene IDs match what this component expects
+  const expectedSceneIds = new Set([
+    "paradigm",
+    "hello_world",
+    "graphs",
+    "interface",
+    "prompt_ceiling_intro",
+    "defense_layers",
+    "sandboxing",
+    "nutshell",
+    "cta",
+  ])
+  const invalidScenes = script.scenes.filter(
+    scene => !expectedSceneIds.has(scene.id)
+  )
+  if (invalidScenes.length > 0) {
+    const invalidIds = invalidScenes.map(s => s.id).join(", ")
+    throw new Error(
+      `[IntroVideo] Script contains unrecognized scene IDs: ${invalidIds}. Expected: ${Array.from(expectedSceneIds).join(", ")}. This indicates a mismatch between the generated script and the Remotion component.`
+    )
+  }
+
   type CueTimelineSegment = { type: string; startSec: number }
   type CueTimelineItem = {
     type: string
@@ -216,6 +238,9 @@ export const IntroVideo: React.FC<IntroVideoProps> = ({
       case "cta":
         return <CTAScene />
       default:
+        console.error(
+          `[IntroVideo] Unrecognized scene ID: "${scene.id}". Expected one of: paradigm, hello_world, graphs, interface, prompt_ceiling_intro, defense_layers, sandboxing, nutshell, cta. This will result in a blank video.`
+        )
         return null
     }
   }

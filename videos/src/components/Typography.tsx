@@ -174,7 +174,7 @@ export const Code: React.FC<CodeProps> = ({
         padding: spacing[4],
         borderRadius,
         margin: 0,
-        overflow: "auto",
+        overflow: "visible",
         ...style,
       }}
     >
@@ -184,15 +184,19 @@ export const Code: React.FC<CodeProps> = ({
 }
 
 interface SubtitleProps {
-  children: React.ReactNode
+  children?: React.ReactNode
+  text?: string
+  x?: number
+  y?: number
+  textAlign?: "left" | "center" | "right"
   style?: CSSProperties
 }
 
 /**
  * Subtitle component - Uses Source Sans 3 with primary color
  */
-export const Subtitle: React.FC<SubtitleProps> = ({ children, style }) => {
-  return (
+export const Subtitle: React.FC<SubtitleProps> = ({ children, text, x, y, textAlign = "center", style }) => {
+  const content = (
     <p
       style={{
         fontFamily: fontFamilies.sans,
@@ -201,10 +205,40 @@ export const Subtitle: React.FC<SubtitleProps> = ({ children, style }) => {
         lineHeight: lineHeights.normal,
         color: colors.primary,
         margin: 0,
+        textAlign,
         ...style,
       }}
     >
-      {children}
+      {text || children}
     </p>
   )
+
+  // If x/y positioning is specified, wrap in absolute positioning
+  if (x !== undefined || y !== undefined) {
+    const positionStyle: CSSProperties = {
+      position: 'absolute',
+      maxWidth: 1200,
+      textAlign: 'center',
+    }
+
+    const transforms: string[] = []
+
+    if (x !== undefined) {
+      positionStyle.left = x
+      transforms.push('translateX(-50%)')
+    }
+
+    if (y !== undefined) {
+      positionStyle.top = y
+      transforms.push('translateY(-50%)')
+    }
+
+    if (transforms.length > 0) {
+      positionStyle.transform = transforms.join(' ')
+    }
+
+    return <div style={positionStyle}>{content}</div>
+  }
+
+  return content
 }

@@ -5,7 +5,7 @@ interface LayoutProps {
   children: React.ReactNode
   padding?: keyof typeof spacing
   align?: "flex-start" | "center" | "flex-end"
-  justify?: "flex-start" | "center" | "flex-end" | "space-between"
+  justify?: "flex-start" | "center" | "flex-end" | "space-between" | "space-evenly"
   style?: CSSProperties
 }
 
@@ -22,6 +22,8 @@ export const Layout: React.FC<LayoutProps> = ({
   return (
     <div
       style={{
+        position: "absolute",
+        inset: 0,
         display: "flex",
         flexDirection: "column",
         alignItems: align,

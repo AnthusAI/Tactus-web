@@ -53,6 +53,8 @@ export default defineVideo(video => {
       scene.layer("diagram", { zIndex: 0 }, layer => {
         layer.component("paradigm-comparison", "ParadigmComparison", {
           title: "A New Kind of Computer Program",
+          oldWay: "OldWayFlowchartDiagram",
+          newWay: "NewWayFlowchartDiagram",
         })
       })
 
@@ -138,7 +140,8 @@ export default defineVideo(video => {
 
       scene.layer("diagram", { zIndex: 0 }, layer => {
         layer.component("hitl-diagram", "HumanInTheLoopDiagram", {
-          scale: 4,
+          containerWidth: 1400,
+          containerHeight: 650,
           x: 960,
           y: 650,
         })
@@ -200,7 +203,34 @@ export default defineVideo(video => {
         layer.component("scene-title", "Title", {
           text: "No Graphs Required",
           x: 960,
-          y: 540,
+          y: 150,
+        })
+      })
+
+      scene.layer("code", { zIndex: 0 }, layer => {
+        layer.component("code-transition", "CodePushTransition", {
+          fromLabel: "Graph-Based Workflow",
+          fromCode: `graph = StateGraph()
+graph.add_node("fetch", fetch_data)
+graph.add_node("analyze", analyze_data)
+graph.add_conditional_edges(
+  "fetch",
+  lambda x: "analyze" if x else "end"
+)
+graph.add_edge("analyze", END)`,
+          toLabel: "Tactus",
+          toCode: `async function myWorkflow() {
+  const data = await fetchData()
+  if (data) {
+    await analyzeData(data)
+  }
+}`,
+          transitionStartSec: 8,
+          containerWidth: 1600,
+          containerHeight: 500,
+          x: 960,
+          y: 600,
+          sceneStartSec: 195.82,
         })
       })
 
@@ -217,7 +247,7 @@ export default defineVideo(video => {
     })
 
     comp.scene(
-      "The Prompt-Engineering Ceiling",
+      "The Ceiling",
       { id: "prompt_ceiling_intro" },
       scene => {
         scene.layer("background", { zIndex: -1 }, layer => {
@@ -226,7 +256,7 @@ export default defineVideo(video => {
 
         scene.layer("title", { zIndex: 1 }, layer => {
           layer.component("scene-title", "Title", {
-            text: "The Prompt-Engineering Ceiling",
+            text: "The Ceiling",
             x: 960,
             y: 150,
           })
@@ -234,9 +264,10 @@ export default defineVideo(video => {
 
         scene.layer("diagram", { zIndex: 0 }, layer => {
           layer.component("ceiling-diagram", "PromptEngineeringCeilingDiagram", {
-            scale: 4,
+            containerWidth: 1400,
+          containerHeight: 650,
             x: 960,
-            y: 650,
+            y: 580,
           })
         })
 
@@ -273,7 +304,8 @@ export default defineVideo(video => {
 
       scene.layer("diagram", { zIndex: 0 }, layer => {
         layer.component("guardrails-diagram", "GuardrailsStackDiagram", {
-          scale: 4,
+          containerWidth: 1400,
+          containerHeight: 650,
           x: 960,
           y: 650,
         })
@@ -317,7 +349,8 @@ export default defineVideo(video => {
 
       scene.layer("diagram", { zIndex: 0 }, layer => {
         layer.component("sandbox-diagram", "ContainerSandboxDiagram", {
-          scale: 4,
+          containerWidth: 1400,
+          containerHeight: 650,
           x: 960,
           y: 650,
         })
@@ -346,6 +379,14 @@ export default defineVideo(video => {
         layer.component("bg", "Background", { color: "#fdfdfd" })
       })
 
+      scene.layer("title", { zIndex: 1 }, layer => {
+        layer.component("scene-title", "Title", {
+          text: "Tactus in a Nutshell",
+          x: 960,
+          y: 150,
+        })
+      })
+
       scene.layer("content", { zIndex: 0 }, layer => {
         layer.component("nutshell-content", "NutshellContent", {})
       })
@@ -368,8 +409,8 @@ export default defineVideo(video => {
         layer.component("bg", "Background", { color: "#fdfdfd" })
       })
 
-      scene.layer("cta", { zIndex: 0 }, layer => {
-        layer.component("cta-scene", "CTAScene", {})
+      scene.layer("end", { zIndex: 0 }, layer => {
+        layer.component("end-scene", "EndScene", {})
       })
 
       scene.cue("CTA", { id: "cta" }, cue => {

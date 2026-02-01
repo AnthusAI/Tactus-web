@@ -1,23 +1,44 @@
-import { defineVideo } from "babulus/dsl"
-import { sharedDefaults, t, voiceSegments } from "./_babulus.shared.js"
+import { defineVideo } from "babulus/dsl";
 
-export default defineVideo(video => {
-  video.composition("why-new-language", comp => {
-    comp.use(sharedDefaults)
-    comp.posterTime(383)
+// Helper to flatten voice segments with pauses and text
+const voiceSegments = (voice: { say: (text: string) => void; pause: (seconds: number) => void }, segments: Array<string | number>) => {
+  for (const seg of segments) {
+    if (typeof seg === "string") {
+      voice.say(seg);
+    } else {
+      voice.pause(seg);
+    }
+  }
+};
 
-    comp.scene("Why a New Language?", { id: "title_card" }, scene => {
-      scene.music("bed", {
-        prompt:
-          "Contemplative ambient music, subtle piano, warm strings, thoughtful and educational tone, no vocals",
-        playThrough: true,
-        volume: 0.6,
-        fadeTo: { volume: 0.1, afterSeconds: 4, fadeDurationSeconds: 2 },
-        fadeOut: { volume: 0.6, beforeEndSeconds: 5, fadeDurationSeconds: 3 },
-      })
+// Template string helper to normalize whitespace
+const t = (strings: TemplateStringsArray, ...values: Array<string | number>): string => {
+  let out = "";
+  for (let i = 0; i < strings.length; i += 1) {
+    out += strings[i] ?? "";
+    if (i < values.length) {
+      out += String(values[i] ?? "");
+    }
+  }
+  return out.replace(/\s*\n\s*/g, " ").trim();
+};
 
-      scene.cue("Title", { id: "title" }, cue => {
-        cue.voice(voice => {
+export default defineVideo((video) => {
+  video.composition("Why a New Language?", (composition) => {
+    composition.meta({ fps: 24, width: 1920, height: 1080 });
+    composition.posterTime(383);
+    composition.voiceover({
+      provider: "openai",
+      model: "gpt-4o-mini-tts",
+      voice: "echo",
+      sampleRateHz: 24000,
+      leadInSeconds: 0.25,
+      trimEndSeconds: 0,
+    });
+
+    composition.scene("Title Card", (scene) => {
+      scene.cue("title", (cue) => {
+        cue.voice((voice) => {
           voiceSegments(voice, [
             0.8,
             "Why do we need a new language?",
@@ -28,14 +49,14 @@ export default defineVideo(video => {
             0.5,
             "So to see why we need a new one, let's look at how those models have evolved.",
             0.4,
-          ])
-        })
-      })
-    })
+          ]);
+        });
+      });
+    });
 
-    comp.scene("In the Beginning", { id: "machine_code_era" }, scene => {
-      scene.cue("History", { id: "history" }, cue => {
-        cue.voice(voice => {
+    composition.scene("In the Beginning", (scene) => {
+      scene.cue("history", (cue) => {
+        cue.voice((voice) => {
           voiceSegments(voice, [
             t`
               In the beginning, programmers wrote raw machine code. Zeros and ones.
@@ -43,13 +64,13 @@ export default defineVideo(video => {
               And it was *low-level* in a very literal sense: those zeros and ones corresponded to physical states—
               voltage on a wire, a relay position, or a vacuum tube being on or off.
               Sometimes that meant wiring plugboards or toggling switches. Later it meant punching numeric opcodes.
-              You were squinting down in the guts of the machine, and your “program” was basically a description of that machine.
+              You were squinting down in the guts of the machine, and your "program" was basically a description of that machine.
             `,
             0.35,
             t`
               Assemblers emerged almost immediately. Instead of binary opcodes, you could write
               symbolic instructions. Researchers formalized those patterns into names and labels,
-              making “machine instructions” legible to humans.
+              making "machine instructions" legible to humans.
               The computer translated them into machine code.
               And once you can name things, you can reuse them: labels, macros, and early subroutines made programs repeatable instead of handcrafted.
             `,
@@ -60,13 +81,13 @@ export default defineVideo(video => {
             `,
             0.35,
             t`
-              You write code in a form that’s easier for humans to understand.
+              You write code in a form that's easier for humans to understand.
               Then you run the assembler — a program — to turn that into machine code.
               And *then* the computer runs the machine code.
             `,
             0.35,
             t`
-              That’s the key step: one of the first useful things people ever did with computers
+              That's the key step: one of the first useful things people ever did with computers
               was use them to make using computers easier.
               Even when computer time was precious, people spent some of it on tools that made programming faster, safer, and more repeatable.
             `,
@@ -86,7 +107,7 @@ export default defineVideo(video => {
             0.3,
             t`
               C plus plus — and object-oriented programming more broadly — tried to match another problem space:
-              large systems made of interacting “things” with state and responsibilities.
+              large systems made of interacting "things" with state and responsibilities.
             `,
             0.3,
             t`
@@ -113,47 +134,47 @@ export default defineVideo(video => {
               But this time, something deeper is changing. It's not just a higher level of abstraction.
               It's a fundamentally different way of making decisions.
             `,
-          ])
-        })
-      })
-    })
+          ]);
+        });
+      });
+    });
 
-    comp.scene("Control Flow Evolution", { id: "control_flow" }, scene => {
-      scene.cue("The Shift", { id: "shift" }, cue => {
-        cue.voice(voice => {
+    composition.scene("Control Flow Evolution", (scene) => {
+      scene.cue("shift", (cue) => {
+        cue.voice((voice) => {
           voiceSegments(voice, [
             "Today, decisions are no longer made entirely by imperative logic written by programmers.",
             0.35,
             t`
               In agentic patterns like the ReAct loop, you *explicitly* hand control flow to the model:
-              it decides what tool to call next, and when it’s done.
+              it decides what tool to call next, and when it's done.
             `,
             0.4,
             t`
-              That’s one of the clearest definitions of “agentic programming”:
+              That's one of the clearest definitions of "agentic programming":
               the agent is making the control-flow decisions.
             `,
             0.35,
             t`
-              And that’s what we mean by a new kind of computer program.
+              And that's what we mean by a new kind of computer program.
               Instead of specifying every branch, you yield control to the AI model —
               and you surround that loop with guardrails.
             `,
             0.35,
             t`
-              Even a basic guardrail matters immediately: you can’t let the loop run forever.
+              Even a basic guardrail matters immediately: you can't let the loop run forever.
               So you might cap it at, say, twelve tool calls — and require the agent to stop or ask for help after that.
             `,
             0.35,
             "Tactus is designed to make that style of program—and those guardrails—explicit and easy to reason about.",
-          ])
-        })
-      })
-    })
+          ]);
+        });
+      });
+    });
 
-    comp.scene("Existing Tools Strain", { id: "tools_strain" }, scene => {
-      scene.cue("Python Problem", { id: "python_problem" }, cue => {
-        cue.voice(voice => {
+    composition.scene("Existing Tools Strain", (scene) => {
+      scene.cue("python_problem", (cue) => {
+        cue.voice((voice) => {
           voiceSegments(voice, [
             "So why not just use Python? Or TypeScript? They're powerful, flexible languages.",
             0.35,
@@ -170,45 +191,41 @@ export default defineVideo(video => {
             `,
             0.35,
             "The language wasn't designed for this.",
-          ])
-        })
-      })
-    })
+          ]);
+        });
+      });
+    });
 
-    comp.scene(
-      "Deterministic Practices Collapse",
-      { id: "practices_collapse" },
-      scene => {
-        scene.cue("Testing Breaks", { id: "testing_breaks" }, cue => {
-          cue.voice(voice => {
-            voiceSegments(voice, [
-              t`
+    composition.scene("Deterministic Practices Collapse", (scene) => {
+      scene.cue("testing_breaks", (cue) => {
+        cue.voice((voice) => {
+          voiceSegments(voice, [
+            t`
               For decades, software engineering best practices have been built around one assumption:
               determinism.
             `,
-              0.35,
-              t`
+            0.35,
+            t`
               Unit tests assert exact values. Code coverage measures every line.
               Regression tests catch unexpected changes.
             `,
-              0.4,
-              "But when your system makes decisions probabilistically, all of these practices break.",
-              0.35,
-              t`
+            0.4,
+            "But when your system makes decisions probabilistically, all of these practices break.",
+            0.35,
+            t`
               Output varies between runs. Behavior comes from models, not code.
               Natural variation looks like regression.
             `,
-              0.4,
-              "Instead of proving correctness, you measure alignment.",
-            ])
-          })
-        })
-      }
-    )
+            0.4,
+            "Instead of proving correctness, you measure alignment.",
+          ]);
+        });
+      });
+    });
 
-    comp.scene("Beyond MLOps", { id: "beyond_mlops" }, scene => {
-      scene.cue("MLOps Comparison", { id: "mlops_comparison" }, cue => {
-        cue.voice(voice => {
+    composition.scene("Beyond MLOps", (scene) => {
+      scene.cue("mlops_comparison", (cue) => {
+        cue.voice((voice) => {
           voiceSegments(voice, [
             t`
               Machine learning practitioners have dealt with stochastic systems for years.
@@ -226,14 +243,14 @@ export default defineVideo(video => {
               Success isn't a single number. It's whether the system behaves acceptably
               given the situation.
             `,
-          ])
-        })
-      })
-    })
+          ]);
+        });
+      });
+    });
 
-    comp.scene("Behavioral Specifications", { id: "specifications" }, scene => {
-      scene.cue("Specs and Evals", { id: "specs_and_evals" }, cue => {
-        cue.voice(voice => {
+    composition.scene("Behavioral Specifications", (scene) => {
+      scene.cue("specs_and_evals", (cue) => {
+        cue.voice((voice) => {
           voiceSegments(voice, [
             t`When correctness becomes alignment, you need new ways to say what "good" looks like.`,
             0.35,
@@ -253,14 +270,14 @@ export default defineVideo(video => {
             `,
             0.4,
             "Specifications plus evaluations give you a foundation for alignment.",
-          ])
-        })
-      })
-    })
+          ]);
+        });
+      });
+    });
 
-    comp.scene("PrOps", { id: "props" }, scene => {
-      scene.cue("Procedures", { id: "procedures" }, cue => {
-        cue.voice(voice => {
+    composition.scene("PrOps", (scene) => {
+      scene.cue("procedures", (cue) => {
+        cue.voice((voice) => {
           voiceSegments(voice, [
             "This brings us to a new operational discipline: PrOps. Procedure Operations.",
             0.4,
@@ -276,55 +293,51 @@ export default defineVideo(video => {
             "A procedure's quality can't be proven in advance or reduced to a single metric.",
             0.35,
             "It must be observed, measured, and aligned over time.",
-          ])
-        })
-      })
-    })
+          ]);
+        });
+      });
+    });
 
-    comp.scene("Why a New Language", { id: "new_language" }, scene => {
-      scene.cue(
-        "First Class Primitives",
-        { id: "first_class_primitives" },
-        cue => {
-          cue.voice(voice => {
-            voiceSegments(voice, [
-              t`
+    composition.scene("Why a New Language", (scene) => {
+      scene.cue("first_class_primitives", (cue) => {
+        cue.voice((voice) => {
+          voiceSegments(voice, [
+            t`
               Once procedures become the primary unit of computation, the limitations
               of existing languages become impossible to ignore.
             `,
-              0.4,
-              t`
+            0.4,
+            t`
               Programming languages shape how humans think about problems.
               They determine what's easy to express and what's invisible.
             `,
-              0.35,
-              "Procedural, behavior-driven systems need different primitives.",
-              0.5,
-              "Durability by default. Automatic checkpointing and resumption.",
-              0.25,
-              "Sandboxing by default. Isolated execution with controlled access.",
-              0.25,
-              "Tool capability control.",
-              0.25,
-              t`
+            0.35,
+            "Procedural, behavior-driven systems need different primitives.",
+            0.5,
+            "Durability by default. Automatic checkpointing and resumption.",
+            0.25,
+            "Sandboxing by default. Isolated execution with controlled access.",
+            0.25,
+            "Tool capability control.",
+            0.25,
+            t`
               Durable human‑in‑the‑loop: approvals and review loops that can pause and resume
               without keeping a process alive.
             `,
-              0.25,
-              "Behavioral testing. Observable execution.",
-              0.4,
-              "These concerns can't be bolted onto languages that weren't designed for them.",
-              0.35,
-              "They need to be first-class.",
-            ])
-          })
-        }
-      )
-    })
+            0.25,
+            "Behavioral testing. Observable execution.",
+            0.4,
+            "These concerns can't be bolted onto languages that weren't designed for them.",
+            0.35,
+            "They need to be first-class.",
+          ]);
+        });
+      });
+    });
 
-    comp.scene("Evolution, Not Alien DNA", { id: "evolution" }, scene => {
-      scene.cue("Conclusion", { id: "conclusion" }, cue => {
-        cue.voice(voice => {
+    composition.scene("Evolution, Not Alien DNA", (scene) => {
+      scene.cue("conclusion", (cue) => {
+        cue.voice((voice) => {
           voiceSegments(voice, [
             "From a theoretical standpoint, nothing fundamental has broken.",
             0.35,
@@ -349,17 +362,17 @@ export default defineVideo(video => {
             `,
             0.5,
             "This isn't a revolution in computation. It's evolution.",
-          ])
-        })
-      })
-    })
+          ]);
+        });
+      });
+    });
 
-    comp.scene("Call to Action", { id: "cta" }, scene => {
-      scene.cue("CTA", { id: "cta" }, cue => {
-        cue.voice(voice => {
-          voiceSegments(voice, ["Learn more at tactus dot anth dot u s."])
-        })
-      })
-    })
-  })
-})
+    composition.scene("Call to Action", (scene) => {
+      scene.cue("cta", (cue) => {
+        cue.voice((voice) => {
+          voiceSegments(voice, ["Learn more at tactus dot anth dot u s."]);
+        });
+      });
+    });
+  });
+});

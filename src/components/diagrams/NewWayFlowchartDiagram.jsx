@@ -11,19 +11,80 @@ const appear = (progress, start, duration = 0.18) =>
 const NewWayFlowchartDiagram = ({
   theme = "light",
   progress = 1,
+  timeSec,
+  sceneStartSec,
+  ttsStartsSec,
+  segments, // NEW: segment-level timing from cue
   style,
   className,
 }) => {
   const t = diagramTokens
-  const p = clamp01(progress)
+
+  // If timing information is provided, use it for progressive reveal
+  // Otherwise fall back to the old single-progress behavior
+  let brainA, toolA, procedureA, railsA
+
+  // Helper to get the nth TTS segment (ignoring pauses)
+  const getTtsSegmentStart = (nthTts) => {
+    if (!segments) return null
+    const ttsSegs = segments.filter(s => s.type === "tts")
+    return ttsSegs[nthTts]?.startSec ?? null
+  }
+
+  // Debug log once per second
+  if (timeSec && Math.floor(timeSec) === 25 && Math.floor((timeSec % 1) * 10) === 0) {
+    console.log('[NewWayFlowchart] T:', timeSec.toFixed(2), 'Segs:', segments?.length || 0, 'Brain:', getTtsSegmentStart(2))
+  }
+
+  if (timeSec !== undefined && segments?.length) {
+    // Use segment-based progressive reveal
+    // Actual voiceover structure:
+    // Segment 2: "first you start with an agent... Then you give it a tool"
+    // Segment 3: "And then you assign it a procedure"
+    // Segment 4: "And then you put guardrails"
+    const brainAndToolStart = getTtsSegmentStart(2)
+    const procedureStart = getTtsSegmentStart(3)
+    const railsStart = getTtsSegmentStart(4)
+
+    const elementProgress = (startSec, duration = 0.5) => {
+      if (startSec == null) return 1 // Show if no timing available
+      if (timeSec < startSec) return 0
+      if (timeSec > startSec + duration) return 1
+      return (timeSec - startSec) / duration
+    }
+
+    // Brain and tool appear together since they're in the same segment
+    brainA = smoothstep(clamp01(elementProgress(brainAndToolStart, 0.6)))
+    toolA = smoothstep(clamp01(elementProgress(brainAndToolStart ? brainAndToolStart + 3.0 : null, 0.5)))
+    procedureA = smoothstep(clamp01(elementProgress(procedureStart, 0.5)))
+    railsA = smoothstep(clamp01(elementProgress(railsStart, 0.7)))
+  } else if (timeSec !== undefined && sceneStartSec !== undefined) {
+    // Fallback: Use timing-based progressive reveal with hardcoded offsets
+    const sceneLocalSec = timeSec - sceneStartSec
+
+    // Hard-coded timing based on voiceover (legacy fallback)
+    // Brain ~21s, Tool ~28s, Procedure ~28.5s, Rails ~32s
+    const elementProgress = (startTime, duration = 0.5) => {
+      if (sceneLocalSec < startTime) return 0
+      if (sceneLocalSec > startTime + duration) return 1
+      return (sceneLocalSec - startTime) / duration
+    }
+
+    brainA = smoothstep(clamp01(elementProgress(21, 0.6)))
+    toolA = smoothstep(clamp01(elementProgress(27.8, 0.5)))
+    procedureA = smoothstep(clamp01(elementProgress(28.2, 0.5)))
+    railsA = smoothstep(clamp01(elementProgress(31.5, 0.7)))
+  } else {
+    // Fallback to old behavior: single progress prop controls all elements
+    const p = clamp01(progress)
+    brainA = appear(p, 0.0, 0.22)
+    toolA = appear(p, 0.22, 0.22)
+    procedureA = appear(p, 0.44, 0.22)
+    railsA = appear(p, 0.74, 0.26)
+  }
 
   const centerX = 200
   const centerY = 200
-
-  const brainA = appear(p, 0.0, 0.22)
-  const toolA = appear(p, 0.22, 0.22)
-  const procedureA = appear(p, 0.44, 0.22)
-  const railsA = appear(p, 0.74, 0.26)
 
   const pop = a => 0.88 + 0.12 * a
 

@@ -17,7 +17,9 @@ const fs = require("fs")
 // Parse command line arguments
 const args = process.argv.slice(2)
 const freshFlag = args.includes("--fresh")
-const targetComposition = args.find(arg => !arg.startsWith("--"))
+const previewFlag = args.includes("--preview")
+const ffmpegPath = args.find((arg, i) => args[i - 1] === "--ffmpeg")
+const targetComposition = args.find(arg => !arg.startsWith("--") && arg !== ffmpegPath)
 
 // Define all compositions to render
 const allCompositions = [
@@ -57,6 +59,9 @@ if (!fs.existsSync(outDir)) {
 console.log("🎬 Starting video rendering with Babulus...")
 if (freshFlag) {
   console.log("🔄 Fresh render mode: re-rendering all videos")
+}
+if (previewFlag) {
+  console.log("⚡ Preview mode: rendering at 2 fps for rapid iteration")
 }
 if (targetComposition) {
   console.log(`🎯 Target: ${compositions[0].id}`)
@@ -107,11 +112,16 @@ for (const composition of compositions) {
 
     // Read script to get metadata
     const script = JSON.parse(fs.readFileSync(scriptPath, "utf8"))
-    const fps = script.meta?.fps || 30
+    const baseFps = script.meta?.fps || 30
     const width = script.meta?.width || 1280
     const height = script.meta?.height || 720
 
-    const cmd = `node "${tsxBin}" "${renderScript}" --script "${scriptPath}" --frames "${framesDir}" --out "${outputPath}" --audio "${audioPath}" --fps ${fps} --width ${width} --height ${height} --workers 2 --title "${composition.id}"`
+    // In preview mode, use 2 fps for faster iteration
+    const fps = previewFlag ? 2 : baseFps
+
+    const ffmpegFlag = ffmpegPath ? `--ffmpeg "${ffmpegPath}"` : ""
+    const nodeBin = process.execPath
+    const cmd = `"${nodeBin}" "${tsxBin}" "${renderScript}" --script "${scriptPath}" --frames "${framesDir}" --out "${outputPath}" --audio "${audioPath}" --fps ${fps} --width ${width} --height ${height} --workers 2 --title "${composition.id}" ${ffmpegFlag}`.trim()
 
     execSync(cmd, {
       stdio: "inherit",

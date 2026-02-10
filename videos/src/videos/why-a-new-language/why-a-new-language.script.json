@@ -1,0 +1,947 @@
+{
+  "scenes": [
+    {
+      "id": "title-card",
+      "title": "Title Card",
+      "startSec": 0.25,
+      "endSec": 22.799999999999997,
+      "cues": [
+        {
+          "id": "title",
+          "label": "title",
+          "startSec": 0.25,
+          "endSec": 22.799999999999997,
+          "text": "Why do we need a new language? To answer that question, we need to think about what the purpose of a computer programming language is. It is to provide a high-level model for recording reproducible solutions to problems. So to see why we need a new one, let's look at how those models have evolved.",
+          "segments": [
+            {
+              "type": "pause",
+              "startSec": 0.25,
+              "endSec": 1.05,
+              "durationSec": 0.8
+            },
+            {
+              "type": "tts",
+              "startSec": 1.05,
+              "endSec": 3.6500000000000004,
+              "text": "Why do we need a new language?"
+            },
+            {
+              "type": "pause",
+              "startSec": 3.6500000000000004,
+              "endSec": 4.15,
+              "durationSec": 0.5
+            },
+            {
+              "type": "tts",
+              "startSec": 4.15,
+              "endSec": 10.2,
+              "text": "To answer that question, we need to think about what the purpose of a computer programming language is."
+            },
+            {
+              "type": "pause",
+              "startSec": 10.2,
+              "endSec": 10.6,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 10.6,
+              "endSec": 16.55,
+              "text": "It is to provide a high-level model for recording reproducible solutions to problems."
+            },
+            {
+              "type": "pause",
+              "startSec": 16.55,
+              "endSec": 17.05,
+              "durationSec": 0.5
+            },
+            {
+              "type": "tts",
+              "startSec": 17.05,
+              "endSec": 22.4,
+              "text": "So to see why we need a new one, let's look at how those models have evolved."
+            },
+            {
+              "type": "pause",
+              "startSec": 22.4,
+              "endSec": 22.799999999999997,
+              "durationSec": 0.4
+            }
+          ],
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "in-the-beginning",
+      "title": "In the Beginning",
+      "startSec": 22.799999999999997,
+      "endSec": 236.70000000000002,
+      "cues": [
+        {
+          "id": "history",
+          "label": "history",
+          "startSec": 22.799999999999997,
+          "endSec": 236.70000000000002,
+          "text": "In the beginning, programmers wrote raw machine code. Zeros and ones. It was slow, tedious, and error-prone. And it was *low-level* in a very literal sense: those zeros and ones corresponded to physical states— voltage on a wire, a relay position, or a vacuum tube being on or off. Sometimes that meant wiring plugboards or toggling switches. Later it meant punching numeric opcodes. You were squinting down in the guts of the machine, and your \"program\" was basically a description of that machine. Assemblers emerged almost immediately. Instead of binary opcodes, you could write symbolic instructions. Researchers formalized those patterns into names and labels, making \"machine instructions\" legible to humans. The computer translated them into machine code. And once you can name things, you can reuse them: labels, macros, and early subroutines made programs repeatable instead of handcrafted. But the deeper shift is that assemblers introduced a two‑step workflow. Now there are two programs in the story: the assembler, and *your* program. You write code in a form that's easier for humans to understand. Then you run the assembler — a program — to turn that into machine code. And *then* the computer runs the machine code. That's the key step: one of the first useful things people ever did with computers was use them to make using computers easier. Even when computer time was precious, people spent some of it on tools that made programming faster, safer, and more repeatable. From there, the ladder of abstraction rose quickly. In the late 1950s and 1960s, early high-level languages like Fortran, Lisp, COBOL, ALGOL, and APL enabled humans describe problems more directly, while compilers handled the low-level details. Lisp, for example, was built for symbolic problems: lists, recursion, and treating code as data so you can transform programs like any other structure. One especially influential descendant of that era was C. It kept you close to the machine, but its constructs made repetition and reuse explicit: functions you could call again, and control flow you could reason about. C plus plus — and object-oriented programming more broadly — tried to match another problem space: large systems made of interacting \"things\" with state and responsibilities. And languages like Ruby pushed toward expressing intent directly: code that reads closer to what a human means, so the computer does more of the bookkeeping. But through all of this, the paradigm never changed. The programmer still specified control flow. The computer still followed instructions. Today, we're seeing the same pattern repeat with AI. One of the first valuable uses of AI is to turn it on itself: using AI to make programming easier, and to write better code. Tactus continues that tradition. It raises the level of abstraction to match what engineers care about in agentic systems: procedures, tools, guardrails, checkpoints, and evaluation. So you can express those concerns directly. But this time, something deeper is changing. It's not just a higher level of abstraction. It's a fundamentally different way of making decisions.",
+          "segments": [
+            {
+              "type": "tts",
+              "startSec": 22.799999999999997,
+              "endSec": 56,
+              "text": "In the beginning, programmers wrote raw machine code. Zeros and ones. It was slow, tedious, and error-prone. And it was *low-level* in a very literal sense: those zeros and ones corresponded to physical states— voltage on a wire, a relay position, or a vacuum tube being on or off. Sometimes that meant wiring plugboards or toggling switches. Later it meant punching numeric opcodes. You were squinting down in the guts of the machine, and your \"program\" was basically a description of that machine."
+            },
+            {
+              "type": "pause",
+              "startSec": 56,
+              "endSec": 56.35,
+              "durationSec": 0.35
+            },
+            {
+              "type": "tts",
+              "startSec": 56.35,
+              "endSec": 82.45,
+              "text": "Assemblers emerged almost immediately. Instead of binary opcodes, you could write symbolic instructions. Researchers formalized those patterns into names and labels, making \"machine instructions\" legible to humans. The computer translated them into machine code. And once you can name things, you can reuse them: labels, macros, and early subroutines made programs repeatable instead of handcrafted."
+            },
+            {
+              "type": "pause",
+              "startSec": 82.45,
+              "endSec": 82.85000000000001,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 82.85000000000001,
+              "endSec": 92.2,
+              "text": "But the deeper shift is that assemblers introduced a two‑step workflow. Now there are two programs in the story: the assembler, and *your* program."
+            },
+            {
+              "type": "pause",
+              "startSec": 92.2,
+              "endSec": 92.55,
+              "durationSec": 0.35
+            },
+            {
+              "type": "tts",
+              "startSec": 92.55,
+              "endSec": 105,
+              "text": "You write code in a form that's easier for humans to understand. Then you run the assembler — a program — to turn that into machine code. And *then* the computer runs the machine code."
+            },
+            {
+              "type": "pause",
+              "startSec": 105,
+              "endSec": 105.35,
+              "durationSec": 0.35
+            },
+            {
+              "type": "tts",
+              "startSec": 105.35,
+              "endSec": 122.6,
+              "text": "That's the key step: one of the first useful things people ever did with computers was use them to make using computers easier. Even when computer time was precious, people spent some of it on tools that made programming faster, safer, and more repeatable."
+            },
+            {
+              "type": "pause",
+              "startSec": 122.6,
+              "endSec": 122.89999999999999,
+              "durationSec": 0.3
+            },
+            {
+              "type": "tts",
+              "startSec": 122.89999999999999,
+              "endSec": 149.5,
+              "text": "From there, the ladder of abstraction rose quickly. In the late 1950s and 1960s, early high-level languages like Fortran, Lisp, COBOL, ALGOL, and APL enabled humans describe problems more directly, while compilers handled the low-level details. Lisp, for example, was built for symbolic problems: lists, recursion, and treating code as data so you can transform programs like any other structure."
+            },
+            {
+              "type": "pause",
+              "startSec": 149.5,
+              "endSec": 149.8,
+              "durationSec": 0.3
+            },
+            {
+              "type": "tts",
+              "startSec": 149.8,
+              "endSec": 163.3,
+              "text": "One especially influential descendant of that era was C. It kept you close to the machine, but its constructs made repetition and reuse explicit: functions you could call again, and control flow you could reason about."
+            },
+            {
+              "type": "pause",
+              "startSec": 163.3,
+              "endSec": 163.60000000000002,
+              "durationSec": 0.3
+            },
+            {
+              "type": "tts",
+              "startSec": 163.60000000000002,
+              "endSec": 176.45000000000002,
+              "text": "C plus plus — and object-oriented programming more broadly — tried to match another problem space: large systems made of interacting \"things\" with state and responsibilities."
+            },
+            {
+              "type": "pause",
+              "startSec": 176.45000000000002,
+              "endSec": 176.75000000000003,
+              "durationSec": 0.3
+            },
+            {
+              "type": "tts",
+              "startSec": 176.75000000000003,
+              "endSec": 187.35000000000002,
+              "text": "And languages like Ruby pushed toward expressing intent directly: code that reads closer to what a human means, so the computer does more of the bookkeeping."
+            },
+            {
+              "type": "pause",
+              "startSec": 187.35000000000002,
+              "endSec": 187.75000000000003,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 187.75000000000003,
+              "endSec": 197.35000000000002,
+              "text": "But through all of this, the paradigm never changed. The programmer still specified control flow. The computer still followed instructions."
+            },
+            {
+              "type": "pause",
+              "startSec": 197.35000000000002,
+              "endSec": 197.75000000000003,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 197.75000000000003,
+              "endSec": 210.20000000000002,
+              "text": "Today, we're seeing the same pattern repeat with AI. One of the first valuable uses of AI is to turn it on itself: using AI to make programming easier, and to write better code."
+            },
+            {
+              "type": "pause",
+              "startSec": 210.20000000000002,
+              "endSec": 210.55,
+              "durationSec": 0.35
+            },
+            {
+              "type": "tts",
+              "startSec": 210.55,
+              "endSec": 226.20000000000002,
+              "text": "Tactus continues that tradition. It raises the level of abstraction to match what engineers care about in agentic systems: procedures, tools, guardrails, checkpoints, and evaluation. So you can express those concerns directly."
+            },
+            {
+              "type": "pause",
+              "startSec": 226.20000000000002,
+              "endSec": 226.50000000000003,
+              "durationSec": 0.3
+            },
+            {
+              "type": "tts",
+              "startSec": 226.50000000000003,
+              "endSec": 236.70000000000002,
+              "text": "But this time, something deeper is changing. It's not just a higher level of abstraction. It's a fundamentally different way of making decisions."
+            }
+          ],
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "control-flow-evolution",
+      "title": "Control Flow Evolution",
+      "startSec": 236.70000000000002,
+      "endSec": 292.9000000000001,
+      "cues": [
+        {
+          "id": "shift",
+          "label": "shift",
+          "startSec": 236.70000000000002,
+          "endSec": 292.9000000000001,
+          "text": "Today, decisions are no longer made entirely by imperative logic written by programmers. In agentic patterns like the ReAct loop, you *explicitly* hand control flow to the model: it decides what tool to call next, and when it's done. That's one of the clearest definitions of \"agentic programming\": the agent is making the control-flow decisions. And that's what we mean by a new kind of computer program. Instead of specifying every branch, you yield control to the AI model — and you surround that loop with guardrails. Even a basic guardrail matters immediately: you can't let the loop run forever. So you might cap it at, say, twelve tool calls — and require the agent to stop or ask for help after that. Tactus is designed to make that style of program—and those guardrails—explicit and easy to reason about.",
+          "segments": [
+            {
+              "type": "tts",
+              "startSec": 236.70000000000002,
+              "endSec": 243.60000000000002,
+              "text": "Today, decisions are no longer made entirely by imperative logic written by programmers."
+            },
+            {
+              "type": "pause",
+              "startSec": 243.60000000000002,
+              "endSec": 243.95000000000002,
+              "durationSec": 0.35
+            },
+            {
+              "type": "tts",
+              "startSec": 243.95000000000002,
+              "endSec": 253.75000000000003,
+              "text": "In agentic patterns like the ReAct loop, you *explicitly* hand control flow to the model: it decides what tool to call next, and when it's done."
+            },
+            {
+              "type": "pause",
+              "startSec": 253.75000000000003,
+              "endSec": 254.15000000000003,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 254.15000000000003,
+              "endSec": 260.55,
+              "text": "That's one of the clearest definitions of \"agentic programming\": the agent is making the control-flow decisions."
+            },
+            {
+              "type": "pause",
+              "startSec": 260.55,
+              "endSec": 260.90000000000003,
+              "durationSec": 0.35
+            },
+            {
+              "type": "tts",
+              "startSec": 260.90000000000003,
+              "endSec": 271.65000000000003,
+              "text": "And that's what we mean by a new kind of computer program. Instead of specifying every branch, you yield control to the AI model — and you surround that loop with guardrails."
+            },
+            {
+              "type": "pause",
+              "startSec": 271.65000000000003,
+              "endSec": 272.00000000000006,
+              "durationSec": 0.35
+            },
+            {
+              "type": "tts",
+              "startSec": 272.00000000000006,
+              "endSec": 283.80000000000007,
+              "text": "Even a basic guardrail matters immediately: you can't let the loop run forever. So you might cap it at, say, twelve tool calls — and require the agent to stop or ask for help after that."
+            },
+            {
+              "type": "pause",
+              "startSec": 283.80000000000007,
+              "endSec": 284.1500000000001,
+              "durationSec": 0.35
+            },
+            {
+              "type": "tts",
+              "startSec": 284.1500000000001,
+              "endSec": 292.9000000000001,
+              "text": "Tactus is designed to make that style of program—and those guardrails—explicit and easy to reason about."
+            }
+          ],
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "existing-tools-strain",
+      "title": "Existing Tools Strain",
+      "startSec": 292.9000000000001,
+      "endSec": 324.6000000000001,
+      "cues": [
+        {
+          "id": "python-problem",
+          "label": "python_problem",
+          "startSec": 292.9000000000001,
+          "endSec": 324.6000000000001,
+          "text": "So why not just use Python? Or TypeScript? They're powerful, flexible languages. The problem isn't capability. It's fit. Look at this code. How do you checkpoint an agent call? How do you test it? How do you prevent it from reading slash-etsy-slash-password? These concerns exist, but they're bolted on. Fragmented across code, prompts, configuration, and external frameworks. The language wasn't designed for this.",
+          "segments": [
+            {
+              "type": "tts",
+              "startSec": 292.9000000000001,
+              "endSec": 298.9000000000001,
+              "text": "So why not just use Python? Or TypeScript? They're powerful, flexible languages."
+            },
+            {
+              "type": "pause",
+              "startSec": 298.9000000000001,
+              "endSec": 299.2500000000001,
+              "durationSec": 0.35
+            },
+            {
+              "type": "tts",
+              "startSec": 299.2500000000001,
+              "endSec": 302.6500000000001,
+              "text": "The problem isn't capability. It's fit."
+            },
+            {
+              "type": "pause",
+              "startSec": 302.6500000000001,
+              "endSec": 303.05000000000007,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 303.05000000000007,
+              "endSec": 310.9000000000001,
+              "text": "Look at this code. How do you checkpoint an agent call? How do you test it? How do you prevent it from reading slash-etsy-slash-password?"
+            },
+            {
+              "type": "pause",
+              "startSec": 310.9000000000001,
+              "endSec": 311.4000000000001,
+              "durationSec": 0.5
+            },
+            {
+              "type": "tts",
+              "startSec": 311.4000000000001,
+              "endSec": 320.80000000000007,
+              "text": "These concerns exist, but they're bolted on. Fragmented across code, prompts, configuration, and external frameworks."
+            },
+            {
+              "type": "pause",
+              "startSec": 320.80000000000007,
+              "endSec": 321.1500000000001,
+              "durationSec": 0.35
+            },
+            {
+              "type": "tts",
+              "startSec": 321.1500000000001,
+              "endSec": 324.6000000000001,
+              "text": "The language wasn't designed for this."
+            }
+          ],
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "deterministic-practices-collapse",
+      "title": "Deterministic Practices Collapse",
+      "startSec": 324.6000000000001,
+      "endSec": 357.45000000000005,
+      "cues": [
+        {
+          "id": "testing-breaks",
+          "label": "testing_breaks",
+          "startSec": 324.6000000000001,
+          "endSec": 357.45000000000005,
+          "text": "For decades, software engineering best practices have been built around one assumption: determinism. Unit tests assert exact values. Code coverage measures every line. Regression tests catch unexpected changes. But when your system makes decisions probabilistically, all of these practices break. Output varies between runs. Behavior comes from models, not code. Natural variation looks like regression. Instead of proving correctness, you measure alignment.",
+          "segments": [
+            {
+              "type": "tts",
+              "startSec": 324.6000000000001,
+              "endSec": 331.4000000000001,
+              "text": "For decades, software engineering best practices have been built around one assumption: determinism."
+            },
+            {
+              "type": "pause",
+              "startSec": 331.4000000000001,
+              "endSec": 331.7500000000001,
+              "durationSec": 0.35
+            },
+            {
+              "type": "tts",
+              "startSec": 331.7500000000001,
+              "endSec": 339.9500000000001,
+              "text": "Unit tests assert exact values. Code coverage measures every line. Regression tests catch unexpected changes."
+            },
+            {
+              "type": "pause",
+              "startSec": 339.9500000000001,
+              "endSec": 340.3500000000001,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 340.3500000000001,
+              "endSec": 345.75000000000006,
+              "text": "But when your system makes decisions probabilistically, all of these practices break."
+            },
+            {
+              "type": "pause",
+              "startSec": 345.75000000000006,
+              "endSec": 346.1000000000001,
+              "durationSec": 0.35
+            },
+            {
+              "type": "tts",
+              "startSec": 346.1000000000001,
+              "endSec": 353.3500000000001,
+              "text": "Output varies between runs. Behavior comes from models, not code. Natural variation looks like regression."
+            },
+            {
+              "type": "pause",
+              "startSec": 353.3500000000001,
+              "endSec": 353.75000000000006,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 353.75000000000006,
+              "endSec": 357.45000000000005,
+              "text": "Instead of proving correctness, you measure alignment."
+            }
+          ],
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "beyond-mlops",
+      "title": "Beyond MLOps",
+      "startSec": 357.45000000000005,
+      "endSec": 386.95000000000005,
+      "cues": [
+        {
+          "id": "mlops-comparison",
+          "label": "mlops_comparison",
+          "startSec": 357.45000000000005,
+          "endSec": 386.95000000000005,
+          "text": "Machine learning practitioners have dealt with stochastic systems for years. They track experiments. Compare models. Optimize metrics. But MLOps is optimized for models, not behavior. Agentic systems don't just produce predictions. They take actions. Use tools. Generate multi-step behaviors. Success isn't a single number. It's whether the system behaves acceptably given the situation.",
+          "segments": [
+            {
+              "type": "tts",
+              "startSec": 357.45000000000005,
+              "endSec": 366.25000000000006,
+              "text": "Machine learning practitioners have dealt with stochastic systems for years. They track experiments. Compare models. Optimize metrics."
+            },
+            {
+              "type": "pause",
+              "startSec": 366.25000000000006,
+              "endSec": 366.6000000000001,
+              "durationSec": 0.35
+            },
+            {
+              "type": "tts",
+              "startSec": 366.6000000000001,
+              "endSec": 371.3500000000001,
+              "text": "But MLOps is optimized for models, not behavior."
+            },
+            {
+              "type": "pause",
+              "startSec": 371.3500000000001,
+              "endSec": 371.75000000000006,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 371.75000000000006,
+              "endSec": 379.70000000000005,
+              "text": "Agentic systems don't just produce predictions. They take actions. Use tools. Generate multi-step behaviors."
+            },
+            {
+              "type": "pause",
+              "startSec": 379.70000000000005,
+              "endSec": 380.05000000000007,
+              "durationSec": 0.35
+            },
+            {
+              "type": "tts",
+              "startSec": 380.05000000000007,
+              "endSec": 386.95000000000005,
+              "text": "Success isn't a single number. It's whether the system behaves acceptably given the situation."
+            }
+          ],
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "behavioral-specifications",
+      "title": "Behavioral Specifications",
+      "startSec": 386.95000000000005,
+      "endSec": 419.9,
+      "cues": [
+        {
+          "id": "specs-and-evals",
+          "label": "specs_and_evals",
+          "startSec": 386.95000000000005,
+          "endSec": 419.9,
+          "text": "When correctness becomes alignment, you need new ways to say what \"good\" looks like. Behavioral specifications express what a system should do without prescribing exactly how. A specification might say: the agent should call the search tool before answering a factual question. Then evaluation measures reliability. Does it do that ninety-five percent of the time? Eighty percent? Sixty? Specifications plus evaluations give you a foundation for alignment.",
+          "segments": [
+            {
+              "type": "tts",
+              "startSec": 386.95000000000005,
+              "endSec": 392.85,
+              "text": "When correctness becomes alignment, you need new ways to say what \"good\" looks like."
+            },
+            {
+              "type": "pause",
+              "startSec": 392.85,
+              "endSec": 393.20000000000005,
+              "durationSec": 0.35
+            },
+            {
+              "type": "tts",
+              "startSec": 393.20000000000005,
+              "endSec": 399.85,
+              "text": "Behavioral specifications express what a system should do without prescribing exactly how."
+            },
+            {
+              "type": "pause",
+              "startSec": 399.85,
+              "endSec": 400.25,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 400.25,
+              "endSec": 406.4,
+              "text": "A specification might say: the agent should call the search tool before answering a factual question."
+            },
+            {
+              "type": "pause",
+              "startSec": 406.4,
+              "endSec": 406.75,
+              "durationSec": 0.35
+            },
+            {
+              "type": "tts",
+              "startSec": 406.75,
+              "endSec": 414.6,
+              "text": "Then evaluation measures reliability. Does it do that ninety-five percent of the time? Eighty percent? Sixty?"
+            },
+            {
+              "type": "pause",
+              "startSec": 414.6,
+              "endSec": 415,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 415,
+              "endSec": 419.9,
+              "text": "Specifications plus evaluations give you a foundation for alignment."
+            }
+          ],
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "props",
+      "title": "PrOps",
+      "startSec": 419.9,
+      "endSec": 456.65,
+      "cues": [
+        {
+          "id": "procedures",
+          "label": "procedures",
+          "startSec": 419.9,
+          "endSec": 456.65,
+          "text": "This brings us to a new operational discipline: PrOps. Procedure Operations. DevOps operates deterministic programs. MLOps trains and serves models. But agentic systems are neither. They're procedures. Systems that combine imperative logic, learned components, tools, constraints, and evaluation into a single decision-making process. A procedure's quality can't be proven in advance or reduced to a single metric. It must be observed, measured, and aligned over time.",
+          "segments": [
+            {
+              "type": "tts",
+              "startSec": 419.9,
+              "endSec": 425.9,
+              "text": "This brings us to a new operational discipline: PrOps. Procedure Operations."
+            },
+            {
+              "type": "pause",
+              "startSec": 425.9,
+              "endSec": 426.29999999999995,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 426.29999999999995,
+              "endSec": 432.15,
+              "text": "DevOps operates deterministic programs. MLOps trains and serves models."
+            },
+            {
+              "type": "pause",
+              "startSec": 432.15,
+              "endSec": 432.5,
+              "durationSec": 0.35
+            },
+            {
+              "type": "tts",
+              "startSec": 432.5,
+              "endSec": 436.3,
+              "text": "But agentic systems are neither. They're procedures."
+            },
+            {
+              "type": "pause",
+              "startSec": 436.3,
+              "endSec": 436.7,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 436.7,
+              "endSec": 445.65,
+              "text": "Systems that combine imperative logic, learned components, tools, constraints, and evaluation into a single decision-making process."
+            },
+            {
+              "type": "pause",
+              "startSec": 445.65,
+              "endSec": 446,
+              "durationSec": 0.35
+            },
+            {
+              "type": "tts",
+              "startSec": 446,
+              "endSec": 451.65,
+              "text": "A procedure's quality can't be proven in advance or reduced to a single metric."
+            },
+            {
+              "type": "pause",
+              "startSec": 451.65,
+              "endSec": 452,
+              "durationSec": 0.35
+            },
+            {
+              "type": "tts",
+              "startSec": 452,
+              "endSec": 456.65,
+              "text": "It must be observed, measured, and aligned over time."
+            }
+          ],
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "why-a-new-language",
+      "title": "Why a New Language",
+      "startSec": 456.65,
+      "endSec": 514.9,
+      "cues": [
+        {
+          "id": "first-class-primitives",
+          "label": "first_class_primitives",
+          "startSec": 456.65,
+          "endSec": 514.9,
+          "text": "Once procedures become the primary unit of computation, the limitations of existing languages become impossible to ignore. Programming languages shape how humans think about problems. They determine what's easy to express and what's invisible. Procedural, behavior-driven systems need different primitives. Durability by default. Automatic checkpointing and resumption. Sandboxing by default. Isolated execution with controlled access. Tool capability control. Durable human‑in‑the‑loop: approvals and review loops that can pause and resume without keeping a process alive. Behavioral testing. Observable execution. These concerns can't be bolted onto languages that weren't designed for them. They need to be first-class.",
+          "segments": [
+            {
+              "type": "tts",
+              "startSec": 456.65,
+              "endSec": 464.75,
+              "text": "Once procedures become the primary unit of computation, the limitations of existing languages become impossible to ignore."
+            },
+            {
+              "type": "pause",
+              "startSec": 464.75,
+              "endSec": 465.15,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 465.15,
+              "endSec": 473.25,
+              "text": "Programming languages shape how humans think about problems. They determine what's easy to express and what's invisible."
+            },
+            {
+              "type": "pause",
+              "startSec": 473.25,
+              "endSec": 473.6,
+              "durationSec": 0.35
+            },
+            {
+              "type": "tts",
+              "startSec": 473.6,
+              "endSec": 479.35,
+              "text": "Procedural, behavior-driven systems need different primitives."
+            },
+            {
+              "type": "pause",
+              "startSec": 479.35,
+              "endSec": 479.85,
+              "durationSec": 0.5
+            },
+            {
+              "type": "tts",
+              "startSec": 479.85,
+              "endSec": 485.05,
+              "text": "Durability by default. Automatic checkpointing and resumption."
+            },
+            {
+              "type": "pause",
+              "startSec": 485.05,
+              "endSec": 485.3,
+              "durationSec": 0.25
+            },
+            {
+              "type": "tts",
+              "startSec": 485.3,
+              "endSec": 490.75,
+              "text": "Sandboxing by default. Isolated execution with controlled access."
+            },
+            {
+              "type": "pause",
+              "startSec": 490.75,
+              "endSec": 491,
+              "durationSec": 0.25
+            },
+            {
+              "type": "tts",
+              "startSec": 491,
+              "endSec": 494.6,
+              "text": "Tool capability control."
+            },
+            {
+              "type": "pause",
+              "startSec": 494.6,
+              "endSec": 494.85,
+              "durationSec": 0.25
+            },
+            {
+              "type": "tts",
+              "startSec": 494.85,
+              "endSec": 502.65000000000003,
+              "text": "Durable human‑in‑the‑loop: approvals and review loops that can pause and resume without keeping a process alive."
+            },
+            {
+              "type": "pause",
+              "startSec": 502.65000000000003,
+              "endSec": 502.90000000000003,
+              "durationSec": 0.25
+            },
+            {
+              "type": "tts",
+              "startSec": 502.90000000000003,
+              "endSec": 506.6,
+              "text": "Behavioral testing. Observable execution."
+            },
+            {
+              "type": "pause",
+              "startSec": 506.6,
+              "endSec": 507,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 507,
+              "endSec": 511.7,
+              "text": "These concerns can't be bolted onto languages that weren't designed for them."
+            },
+            {
+              "type": "pause",
+              "startSec": 511.7,
+              "endSec": 512.05,
+              "durationSec": 0.35
+            },
+            {
+              "type": "tts",
+              "startSec": 512.05,
+              "endSec": 514.9,
+              "text": "They need to be first-class."
+            }
+          ],
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "evolution-not-alien-dna",
+      "title": "Evolution, Not Alien DNA",
+      "startSec": 514.9,
+      "endSec": 562.8499999999999,
+      "cues": [
+        {
+          "id": "conclusion",
+          "label": "conclusion",
+          "startSec": 514.9,
+          "endSec": 562.8499999999999,
+          "text": "From a theoretical standpoint, nothing fundamental has broken. These systems still run on conventional hardware. They're still Turing-complete. There's no alien machinery hiding beneath the surface. What has changed is how decisions are made and how humans must reason about those decisions. For most of computing history, programming meant specifying control flow in advance. Today, many of the most important systems we build no longer operate that way. Languages follow mental models. When the mental model changes, new languages emerge—not to replace what came before, but to make the new reality tractable for humans. This isn't a revolution in computation. It's evolution.",
+          "segments": [
+            {
+              "type": "tts",
+              "startSec": 514.9,
+              "endSec": 519,
+              "text": "From a theoretical standpoint, nothing fundamental has broken."
+            },
+            {
+              "type": "pause",
+              "startSec": 519,
+              "endSec": 519.35,
+              "durationSec": 0.35
+            },
+            {
+              "type": "tts",
+              "startSec": 519.35,
+              "endSec": 528,
+              "text": "These systems still run on conventional hardware. They're still Turing-complete. There's no alien machinery hiding beneath the surface."
+            },
+            {
+              "type": "pause",
+              "startSec": 528,
+              "endSec": 528.4,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 528.4,
+              "endSec": 535.1,
+              "text": "What has changed is how decisions are made and how humans must reason about those decisions."
+            },
+            {
+              "type": "pause",
+              "startSec": 535.1,
+              "endSec": 535.5,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 535.5,
+              "endSec": 541.65,
+              "text": "For most of computing history, programming meant specifying control flow in advance."
+            },
+            {
+              "type": "pause",
+              "startSec": 541.65,
+              "endSec": 542,
+              "durationSec": 0.35
+            },
+            {
+              "type": "tts",
+              "startSec": 542,
+              "endSec": 547.05,
+              "text": "Today, many of the most important systems we build no longer operate that way."
+            },
+            {
+              "type": "pause",
+              "startSec": 547.05,
+              "endSec": 547.4499999999999,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 547.4499999999999,
+              "endSec": 558.05,
+              "text": "Languages follow mental models. When the mental model changes, new languages emerge—not to replace what came before, but to make the new reality tractable for humans."
+            },
+            {
+              "type": "pause",
+              "startSec": 558.05,
+              "endSec": 558.55,
+              "durationSec": 0.5
+            },
+            {
+              "type": "tts",
+              "startSec": 558.55,
+              "endSec": 562.8499999999999,
+              "text": "This isn't a revolution in computation. It's evolution."
+            }
+          ],
+          "bullets": []
+        }
+      ]
+    },
+    {
+      "id": "call-to-action",
+      "title": "Call to Action",
+      "startSec": 562.8499999999999,
+      "endSec": 567.0999999999999,
+      "cues": [
+        {
+          "id": "cta",
+          "label": "cta",
+          "startSec": 562.8499999999999,
+          "endSec": 567.0999999999999,
+          "text": "Learn more at tactus dot anth dot u s.",
+          "segments": [
+            {
+              "type": "tts",
+              "startSec": 562.8499999999999,
+              "endSec": 567.0999999999999,
+              "text": "Learn more at tactus dot anth dot u s."
+            }
+          ],
+          "bullets": []
+        }
+      ]
+    }
+  ],
+  "posterTimeSec": 383,
+  "fps": 24,
+  "meta": {
+    "fps": 24,
+    "width": 1920,
+    "height": 1080
+  }
+}

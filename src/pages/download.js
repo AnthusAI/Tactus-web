@@ -167,8 +167,8 @@ const DownloadPage = () => {
                 Install Tactus for Nerds
               </h2>
               <p className={styles.subtitle}>
-                You don’t need the Electron app. You can run agents via the CLI
-                or run the web IDE locally.
+                You don’t need the Electron app. You can run agents via the CLI,
+                run the web IDE locally, or edit .tac files in VS Code.
               </p>
             </div>
 
@@ -214,6 +214,27 @@ const DownloadPage = () => {
                     style={{ fontWeight: 700 }}
                   >
                     View Repository →
+                  </a>
+                </div>
+              </div>
+
+              {/* Option 3: VS Code Extension */}
+              <div className={styles.nerdCard}>
+                <h3 className={styles.nerdTitle}>Option 3: VS Code Extension</h3>
+                <p className={styles.nerdText}>
+                  Get syntax highlighting, real-time validation, and code
+                  intelligence for .tac files. Install the extension from
+                  the marketplace; optional LSP server for advanced
+                  features.
+                </p>
+                <div style={{ marginTop: "var(--space-3)" }}>
+                  <a
+                    href="https://marketplace.visualstudio.com/items?itemName=AnthusAISolutions.tactus"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ fontWeight: 700 }}
+                  >
+                    Install from VS Code Marketplace →
                   </a>
                 </div>
               </div>

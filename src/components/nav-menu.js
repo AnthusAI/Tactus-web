@@ -17,6 +17,8 @@ export const NAV_CONFIG = {
         { label: "Behavior Specifications", to: "/specifications/" },
         { label: "Evaluations", to: "/evaluations/" },
         { label: "Validation", to: "/validation/" },
+        { label: "Model Primitive", to: "/model-primitive/" },
+        { label: "Agent Primitive", to: "/agent-primitive/" },
       ],
     },
     {

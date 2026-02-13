@@ -75,6 +75,27 @@ const LearnMorePage = () => {
           flip={true}
         />
 
+        <SpotlightSection
+          id="learn-model-primitive"
+          eyebrow={null}
+          title="Model Primitive"
+          lede="A stateless prediction interface for training, inference, and evaluation. Clean contracts, versioned models, and reliable outputs."
+          to="/model-primitive/"
+          ctaText="Read: Model Primitive"
+          Diagram={null}
+        />
+
+        <SpotlightSection
+          id="learn-agent-primitive"
+          eyebrow={null}
+          title="Agent Primitive"
+          lede="A stateful, tool-using runtime for multi-turn reasoning. Guardrails turn autonomy into shippable behavior."
+          to="/agent-primitive/"
+          ctaText="Read: Agent Primitive"
+          Diagram={null}
+          flip={true}
+        />
+
         <VideosSpotlightSection
           id="learn-videos"
           title="Videos"

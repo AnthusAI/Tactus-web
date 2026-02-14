@@ -96,3 +96,25 @@ Agents are stateful multi-turn runtimes. They can use tools and iterate.
 Procedures should keep deterministic control flow in code and use agents for the
 non-deterministic steps that benefit from intelligence.
 
+Canonical call pattern:
+
+  agent_name({message = "Do the task."})
+
+Per-turn capability control:
+
+  agent_name({tools = {search, done}})
+  agent_name({message = "Summarize tool results only.", tools = {}})
+
+Mock agents in CI (deterministic):
+
+  Mocks {
+    agent_name = {
+      tool_calls = {
+        {tool = "search", args = {query = "tactus agent primitive"}},
+        {tool = "done", args = {reason = "Done"}}
+      },
+      message = "Completed research"
+    }
+  }
+
+  tactus test file.tac --mock

@@ -16,8 +16,7 @@ lookup_customer = Tool {
 }
 
 triage_agent = Agent {
-  provider = "openai",
-  model = "gpt-4o-mini",
+  model = "openai/gpt-4o-mini",
   system_prompt = [[
 You triage support messages into labels: billing, account, bug, other.
 Use lookup_customer when you need account context. Call done when finished.
@@ -34,9 +33,33 @@ const AGENT_USAGE = `Procedure {
   },
   function(input)
     local result = triage_agent({message = input.message})
-    return {label = result.output.label}
+    return {label = result.output}
   end
 }`
+
+const AGENT_PER_TURN_TOOLS = `-- Full tools turn: gather facts.
+triage_agent({message = "Look up the customer before deciding.", tools = {lookup_customer, done}})
+
+-- No-tools turn: summarize/decide without new capabilities.
+triage_agent({message = "Summarize findings. No new tool calls.", tools = {}})
+`
+
+const AGENT_MOCKS = `Mocks {
+  triage_agent = {
+    tool_calls = {
+      {tool = "lookup_customer", args = {id = "123"}},
+      {tool = "done", args = {reason = "Classified"}}
+    },
+    message = "billing"
+  }
+}`
+
+const AGENT_TESTING = `# In CI, run deterministically (no LLM calls).
+tactus test file.tac --mock
+
+# When you're ready, run against a real model.
+tactus test file.tac
+`
 
 const AgentPrimitivePage = () => {
   return (
@@ -52,8 +75,8 @@ const AgentPrimitivePage = () => {
               <p className={styles.lede}>
                 The Agent primitive is a conversational, tool-using runtime.
                 Agents can plan, call tools, and carry state across turns.
-                Tactus wraps that flexibility in guardrails so you can ship
-                real automation without losing control.
+                Tactus wraps that flexibility in guardrails so you can ship real
+                automation without losing control.
               </p>
             </div>
           </div>
@@ -114,7 +137,9 @@ const AgentPrimitivePage = () => {
 
             <div className={styles.example}>
               <header className={styles.sectionHeader}>
-                <h2 className={styles.sectionTitle}>Run the agent inside a procedure</h2>
+                <h2 className={styles.sectionTitle}>
+                  Run the agent inside a procedure
+                </h2>
                 <p className={styles.sectionSubtitle}>
                   Agents live inside procedures so you can validate inputs,
                   outputs, and behavior.
@@ -127,6 +152,74 @@ const AgentPrimitivePage = () => {
                   hint="Agent in a procedure"
                   code={AGENT_USAGE}
                   language="tactus"
+                  showTypewriter={false}
+                  typewriterLoop={false}
+                  autoHeight={true}
+                  width="100%"
+                  autoPlay={false}
+                  controls={false}
+                  loop={false}
+                />
+              </div>
+            </div>
+
+            <div className={styles.example}>
+              <header className={styles.sectionHeader}>
+                <h2 className={styles.sectionTitle}>Control tools per turn</h2>
+                <p className={styles.sectionSubtitle}>
+                  Tools are an agent's capability boundary. You can override
+                  them per call to keep autonomy safe and predictable.
+                </p>
+              </header>
+              <div className={styles.codeBlockPlayer}>
+                <AnimatedCodeBlock
+                  label="Tools"
+                  filename="turns.tac"
+                  hint="Per-turn tool control"
+                  code={AGENT_PER_TURN_TOOLS}
+                  language="tactus"
+                  showTypewriter={false}
+                  typewriterLoop={false}
+                  autoHeight={true}
+                  width="100%"
+                  autoPlay={false}
+                  controls={false}
+                  loop={false}
+                />
+              </div>
+            </div>
+
+            <div className={styles.example}>
+              <header className={styles.sectionHeader}>
+                <h2 className={styles.sectionTitle}>Test with mocks</h2>
+                <p className={styles.sectionSubtitle}>
+                  Specs should validate your control flow. Mock agent tool calls
+                  and messages so tests are deterministic and cheap.
+                </p>
+              </header>
+              <div className={styles.codeBlockPlayer}>
+                <AnimatedCodeBlock
+                  label="Mocks"
+                  filename="mocks.tac"
+                  hint="Mock agent behavior"
+                  code={AGENT_MOCKS}
+                  language="tactus"
+                  showTypewriter={false}
+                  typewriterLoop={false}
+                  autoHeight={true}
+                  width="100%"
+                  autoPlay={false}
+                  controls={false}
+                  loop={false}
+                />
+              </div>
+              <div className={styles.codeBlockPlayer}>
+                <AnimatedCodeBlock
+                  label="CLI"
+                  filename="terminal"
+                  hint="Mocked vs real runs"
+                  code={AGENT_TESTING}
+                  language="bash"
                   showTypewriter={false}
                   typewriterLoop={false}
                   autoHeight={true}

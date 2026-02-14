@@ -4,14 +4,25 @@ import Seo from "../components/seo"
 import AnimatedCodeBlock from "../components/animated/AnimatedCodeBlock"
 import * as styles from "./index.module.css"
 
-const AGENT_DECLARATION = `triage_agent = Agent {
+const AGENT_DECLARATION = `local done = require("tactus.tools.done")
+
+lookup_customer = Tool {
+  description = "Look up a customer record",
+  input = { id = field.string{required = true} },
+  function(args)
+    -- In a real system, this would call your database or API.
+    return {id = args.id, plan = "pro"}
+  end
+}
+
+triage_agent = Agent {
   provider = "openai",
   model = "gpt-4o-mini",
   system_prompt = [[
 You triage support messages into labels: billing, account, bug, other.
-Use the tools when you need context.
+Use lookup_customer when you need account context. Call done when finished.
   ]],
-  tools = {"lookup_customer", "done"}
+  tools = {lookup_customer, done}
 }`
 
 const AGENT_USAGE = `Procedure {

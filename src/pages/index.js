@@ -178,12 +178,11 @@ const Icons = {
 }
 
 const HELLO_WORLD_EXAMPLE = `World = Agent {
-    provider = "openai",
-    model = "gpt-4o-mini",
+    model = "openai/gpt-4o-mini",
     system_prompt = "Your name is World."
 }
 
-return World("Hello, World!").response`
+return World("Hello, World!").output`
 
 const DURABILITY_EXAMPLE = `local approved = Human.approve({
     message = "Deploy to production?",
@@ -197,8 +196,7 @@ if approved then
     end`
 
 const VALIDATION_EXAMPLE = `researcher = Agent {
-    provider = "openai",
-    model = "gpt-5",
+    model = "openai/gpt-5",
     system_prompt = "Research the topic. Return a concise answer.",
     initial_message = "Research: {input.topic}"
 }
@@ -212,7 +210,7 @@ Procedure {
         findings = field.string{required = true},
     },
     function(input)
-        local findings = researcher().response
+        local findings = researcher().output
 
         local approved = Human.approve({
             message = "Publish these findings?",

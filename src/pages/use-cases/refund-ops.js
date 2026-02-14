@@ -53,8 +53,7 @@ refund_row = Tool.define {
 }
 
 RefundAgent = Agent {
-  provider = "openai",
-  model = "gpt-4o-mini",
+  model = "openai/gpt-4o-mini",
   system_prompt = [[
 You are a finance ops assistant.
 Follow the procedure and never execute a refund without either:

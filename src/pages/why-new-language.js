@@ -72,12 +72,11 @@ end
 Greeter.new("World").greet`
 
 const TACTUS_HELLO_WORLD_CODE = `World = Agent {
-    provider = "openai",
-    model = "gpt-4o-mini",
+    model = "openai/gpt-4o-mini",
     system_prompt = "Your name is World."
 }
 
-return World("Hello, World!").response`
+return World("Hello, World!").output`
 
 const PYTHON_AGENT_CODE = `# Trying to make Python do agent workflows
 async def process_with_agent(input_data):

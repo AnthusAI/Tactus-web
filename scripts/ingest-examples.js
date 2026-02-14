@@ -192,7 +192,11 @@ function parseExampleMetadata(
   // Determine if it requires API keys (basic heuristic)
   const requiresApiKeys =
     code.includes('provider = "openai"') ||
+    code.includes('model = "openai/') ||
+    code.includes('model="openai/') ||
     code.includes('provider = "anthropic"') ||
+    code.includes('model = "anthropic/') ||
+    code.includes('model="anthropic/') ||
     code.includes("bedrock") ||
     code.includes("gemini")
 

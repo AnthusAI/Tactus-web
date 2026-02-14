@@ -62,12 +62,12 @@ const NEW_WAY_BULLETS = [
 const NEW_WAY_CODE = NEW_WAY_BULLETS.map(b => `• ${b}`).join("\n")
 
 const HELLO_WORLD_CODE = `World = Agent {
-    provider = "openai",
-    model = "gpt-4o-mini",
+    model = "openai/gpt-4o-mini",
     system_prompt = "Your name is World."
 }
 
-return World("Hello, World!").response`
+local result = World({message = "Hello, World!"})
+return result.output`
 
 const HELLO_WORLD_COMMAND = `tactus run examples/hello-world.tac`
 const HELLO_WORLD_OUTPUT = `Hello, I'm World. Nice to meet you!`
@@ -893,7 +893,7 @@ app = graph.compile()`
 
   const tactusCode = `local done = require("tactus.tools.done")
 
-worker = Agent {provider="openai", tools={done}}
+worker = Agent {model="openai/gpt-4o-mini", tools={done}}
 
 Procedure {
   function(input)

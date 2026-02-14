@@ -434,12 +434,12 @@ end
 Greeter.new("World").greet`
 
   const TACTUS_HELLO_WORLD_CODE = `World = Agent {
-    provider = "openai",
-    model = "gpt-4o-mini",
+    model = "openai/gpt-4o-mini",
     system_prompt = "Your name is World."
 }
 
-return World("Hello, World!").response`
+local result = World({message = "Hello, World!"})
+return result.output`
 
   const codeExamples = [
     { label: "1940s: Machine Code", code: MACHINE_CODE, startTime: beat0 },

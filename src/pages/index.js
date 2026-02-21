@@ -9,8 +9,6 @@ import AnimatedCodeBlock from "../components/animated/AnimatedCodeBlock"
 import BottomCta from "../components/bottom-cta"
 import SpotlightSection from "../components/spotlight-section"
 import GuardrailsSpotlight from "../components/guardrails-spotlight"
-import SpecificationsDiagram from "../components/diagrams/SpecificationsDiagram"
-import EvaluationsDiagram from "../components/diagrams/EvaluationsDiagram"
 import { HITL_PRESETS } from "../components/diagrams/hitlPresets"
 import SidecarChatDiagram from "../components/diagrams/SidecarChatDiagram"
 import EmbeddedRuntimeDiagram from "../components/diagrams/EmbeddedRuntimeDiagram"
@@ -44,6 +42,26 @@ const AnimatedHumanInTheLoopDiagram = React.lazy(() =>
 const LazyAnimatedHumanInTheLoopDiagram = props => (
   <React.Suspense fallback={<div style={{ minHeight: 320 }} />}>
     <AnimatedHumanInTheLoopDiagram {...props} />
+  </React.Suspense>
+)
+
+const SpecificationsDiagram = React.lazy(() =>
+  import("../components/diagrams/SpecificationsDiagram")
+)
+
+const EvaluationsDiagram = React.lazy(() =>
+  import("../components/diagrams/EvaluationsDiagram")
+)
+
+const LazySpecificationsDiagram = props => (
+  <React.Suspense fallback={<div style={{ minHeight: 320 }} />}>
+    <SpecificationsDiagram {...props} />
+  </React.Suspense>
+)
+
+const LazyEvaluationsDiagram = props => (
+  <React.Suspense fallback={<div style={{ minHeight: 320 }} />}>
+    <EvaluationsDiagram {...props} />
   </React.Suspense>
 )
 
@@ -1179,7 +1197,7 @@ const IndexPage = () => {
           lede="Tactus treats behavior specs as part of the language itself: inline with procedures, executable by the runtime, and visible in every run. They define invariants, prevent regressions, and keep reliability measurable as models and tools evolve."
           to="/specifications/"
           ctaText="Read: Specifications"
-          Diagram={SpecificationsDiagram}
+          Diagram={LazySpecificationsDiagram}
           flip={true}
         />
 
@@ -1190,7 +1208,7 @@ const IndexPage = () => {
           lede="One successful run is luck. Reliability is a statistic. Evaluations let you measure accuracy, cost, and reliability performance across datasets so you can ship with confidence."
           to="/evaluations/"
           ctaText="Read: Evaluations"
-          Diagram={EvaluationsDiagram}
+          Diagram={LazyEvaluationsDiagram}
         />
 
         {/* Code Examples Group */}

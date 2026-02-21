@@ -14,7 +14,7 @@ export const VIDEOS = [
     meta: "7 min",
     description:
       "The evolution of programming paradigms and why Tactus was created for the age of AI agents.",
-    filename: "why-new-language.mp4",
+    filename: "why-a-new-language.mp4",
     poster: "why-new-language-poster.jpg",
   },
   {
@@ -22,7 +22,7 @@ export const VIDEOS = [
     title: "Guardrails for Agent Autonomy",
     description:
       "Why constraints enable autonomy: staged tools, human gates, and a secretless broker boundary (so there’s nothing in the runtime to steal).",
-    filename: "guardrails.mp4",
+    filename: "guardrails-for-agent-autonomy.mp4",
     poster: "guardrails-poster.jpg",
   },
 ]

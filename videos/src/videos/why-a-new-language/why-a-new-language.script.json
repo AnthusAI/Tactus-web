@@ -4,7 +4,7 @@
       "id": "title-card",
       "title": "Title Card",
       "startSec": 0.25,
-      "endSec": 23.6,
+      "endSec": 22.849999999999994,
       "layers": [
         {
           "id": "background",
@@ -64,7 +64,7 @@
           "id": "title",
           "label": "title",
           "startSec": 0.25,
-          "endSec": 23.6,
+          "endSec": 22.849999999999994,
           "text": "Why do we need a new language? To answer that question, we need to think about what the purpose of a computer programming language is. It is to provide a high-level model for recording reproducible solutions to problems. So to see why we need a new one, let's look at how those models have evolved.",
           "segments": [
             {
@@ -76,49 +76,49 @@
             {
               "type": "tts",
               "startSec": 1.05,
-              "endSec": 3.95,
+              "endSec": 3.5954545454545457,
               "text": "Why do we need a new language?"
             },
             {
               "type": "pause",
-              "startSec": 3.95,
-              "endSec": 4.45,
+              "startSec": 3.5954545454545457,
+              "endSec": 4.095454545454546,
               "durationSec": 0.5
             },
             {
               "type": "tts",
-              "startSec": 4.45,
-              "endSec": 10.100000000000001,
+              "startSec": 4.095454545454546,
+              "endSec": 10.64090909090909,
               "text": "To answer that question, we need to think about what the purpose of a computer programming language is."
             },
             {
               "type": "pause",
-              "startSec": 10.100000000000001,
-              "endSec": 10.500000000000002,
+              "startSec": 10.64090909090909,
+              "endSec": 11.040909090909091,
               "durationSec": 0.4
             },
             {
               "type": "tts",
-              "startSec": 10.500000000000002,
-              "endSec": 16.900000000000002,
+              "startSec": 11.040909090909091,
+              "endSec": 15.768181818181818,
               "text": "It is to provide a high-level model for recording reproducible solutions to problems."
             },
             {
               "type": "pause",
-              "startSec": 16.900000000000002,
-              "endSec": 17.400000000000002,
+              "startSec": 15.768181818181818,
+              "endSec": 16.268181818181816,
               "durationSec": 0.5
             },
             {
               "type": "tts",
-              "startSec": 17.400000000000002,
-              "endSec": 23.200000000000003,
+              "startSec": 16.268181818181816,
+              "endSec": 22.449999999999996,
               "text": "So to see why we need a new one, let's look at how those models have evolved."
             },
             {
               "type": "pause",
-              "startSec": 23.200000000000003,
-              "endSec": 23.6,
+              "startSec": 22.449999999999996,
+              "endSec": 22.849999999999994,
               "durationSec": 0.4
             }
           ],
@@ -129,8 +129,8 @@
     {
       "id": "in-the-beginning",
       "title": "In the Beginning",
-      "startSec": 24.1,
-      "endSec": 234.80000000000004,
+      "startSec": 23.349999999999994,
+      "endSec": 208.17727272727274,
       "layers": [
         {
           "id": "background",
@@ -141,7 +141,7 @@
               "type": "Background",
               "props": {
                 "color": "#fdfdfd",
-                "sceneStartSec": 23.6
+                "sceneStartSec": 22.849999999999994
               }
             }
           ]
@@ -158,7 +158,7 @@
                 "x": 960,
                 "y": 180,
                 "textAlign": "center",
-                "sceneStartSec": 23.6
+                "sceneStartSec": 22.849999999999994
               }
             }
           ]
@@ -179,7 +179,7 @@
                 "align": "center",
                 "maxWidth": 1400,
                 "font": "sans",
-                "sceneStartSec": 23.6
+                "sceneStartSec": 22.849999999999994
               }
             },
             {
@@ -198,7 +198,7 @@
                 "padding": 24,
                 "borderRadius": 16,
                 "border": "1px solid rgba(39, 39, 42, 0.10)",
-                "sceneStartSec": 23.6
+                "sceneStartSec": 22.849999999999994
               }
             },
             {
@@ -213,7 +213,7 @@
                 "align": "center",
                 "maxWidth": 1500,
                 "font": "serif",
-                "sceneStartSec": 23.6
+                "sceneStartSec": 22.849999999999994
               }
             }
           ]
@@ -223,158 +223,158 @@
         {
           "id": "history",
           "label": "history",
-          "startSec": 24.1,
-          "endSec": 234.80000000000004,
+          "startSec": 23.349999999999994,
+          "endSec": 208.17727272727274,
           "text": "In the beginning, programmers wrote raw machine code. Zeros and ones. It was slow, tedious, and error-prone. And it was low-level in a very literal sense: those zeros and ones corresponded to physical states—voltage on a wire, a relay position, or a vacuum tube being on or off. Sometimes that meant wiring plugboards or toggling switches. Later it meant punching numeric opcodes. You were squinting down in the guts of the machine, and your \"program\" was basically a description of that machine. Assemblers emerged almost immediately. Instead of binary opcodes, you could write symbolic instructions. Researchers formalized those patterns into names and labels, making \"machine instructions\" legible to humans. The computer translated them into machine code. And once you can name things, you can reuse them: labels, macros, and early subroutines made programs repeatable instead of handcrafted. But the deeper shift is that assemblers introduced a two‑step workflow. Now there are two programs in the story: the assembler, and your program. You write code in a form that's easier for humans to understand. Then you run the assembler — a program — to turn that into machine code. And then the computer runs the machine code. That's the key step: one of the first useful things people ever did with computers was use them to make using computers easier. Even when computer time was precious, people spent some of it on tools that made programming faster, safer, and more repeatable. From there, the ladder of abstraction rose quickly. In the late 1950s and 1960s, early high-level languages like Fortran, Lisp, COBOL, ALGOL, and APL enabled humans describe problems more directly, while compilers handled the low-level details. Lisp, for example, was built for symbolic problems: lists, recursion, and treating code as data so you can transform programs like any other structure. One especially influential descendant of that era was C. It kept you close to the machine, but its constructs made repetition and reuse explicit: functions you could call again, and control flow you could reason about. C plus plus — and object-oriented programming more broadly — tried to match another problem space: large systems made of interacting \"things\" with state and responsibilities. And languages like Ruby pushed toward expressing intent directly: code that reads closer to what a human means, so the computer does more of the bookkeeping. But through all of this, the paradigm never changed. The programmer still specified control flow. The computer still followed instructions. Today, we're seeing the same pattern repeat with AI. One of the first valuable uses of AI is to turn it on itself: using AI to make programming easier, and to write better code. Tactus continues that tradition. It raises the level of abstraction to match what engineers care about in agentic systems: procedures, tools, guardrails, checkpoints, and evaluation. So you can express those concerns directly. But this time, something deeper is changing. It's not just a higher level of abstraction. It's a fundamentally different way of making decisions.",
           "segments": [
             {
               "type": "tts",
-              "startSec": 24.1,
-              "endSec": 53.05,
+              "startSec": 23.349999999999994,
+              "endSec": 53.16818181818181,
               "text": "In the beginning, programmers wrote raw machine code. Zeros and ones. It was slow, tedious, and error-prone. And it was low-level in a very literal sense: those zeros and ones corresponded to physical states—voltage on a wire, a relay position, or a vacuum tube being on or off. Sometimes that meant wiring plugboards or toggling switches. Later it meant punching numeric opcodes. You were squinting down in the guts of the machine, and your \"program\" was basically a description of that machine."
             },
             {
               "type": "pause",
-              "startSec": 53.05,
-              "endSec": 53.4,
+              "startSec": 53.16818181818181,
+              "endSec": 53.51818181818181,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 53.4,
-              "endSec": 79.15,
+              "startSec": 53.51818181818181,
+              "endSec": 73.5181818181818,
               "text": "Assemblers emerged almost immediately. Instead of binary opcodes, you could write symbolic instructions. Researchers formalized those patterns into names and labels, making \"machine instructions\" legible to humans. The computer translated them into machine code. And once you can name things, you can reuse them: labels, macros, and early subroutines made programs repeatable instead of handcrafted."
             },
             {
               "type": "pause",
-              "startSec": 79.15,
-              "endSec": 79.55000000000001,
+              "startSec": 73.5181818181818,
+              "endSec": 73.91818181818181,
               "durationSec": 0.4
             },
             {
               "type": "tts",
-              "startSec": 79.55000000000001,
-              "endSec": 88.9,
+              "startSec": 73.91818181818181,
+              "endSec": 82.64545454545453,
               "text": "But the deeper shift is that assemblers introduced a two‑step workflow. Now there are two programs in the story: the assembler, and your program."
             },
             {
               "type": "pause",
-              "startSec": 88.9,
-              "endSec": 89.25,
+              "startSec": 82.64545454545453,
+              "endSec": 82.99545454545452,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 89.25,
-              "endSec": 101.05,
+              "startSec": 82.99545454545452,
+              "endSec": 95.72272727272725,
               "text": "You write code in a form that's easier for humans to understand. Then you run the assembler — a program — to turn that into machine code. And then the computer runs the machine code."
             },
             {
               "type": "pause",
-              "startSec": 101.05,
-              "endSec": 101.39999999999999,
+              "startSec": 95.72272727272725,
+              "endSec": 96.07272727272725,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 101.39999999999999,
-              "endSec": 117.75,
+              "startSec": 96.07272727272725,
+              "endSec": 112.07272727272725,
               "text": "That's the key step: one of the first useful things people ever did with computers was use them to make using computers easier. Even when computer time was precious, people spent some of it on tools that made programming faster, safer, and more repeatable."
             },
             {
               "type": "pause",
-              "startSec": 117.75,
-              "endSec": 118.05,
+              "startSec": 112.07272727272725,
+              "endSec": 112.37272727272725,
               "durationSec": 0.3
             },
             {
               "type": "tts",
-              "startSec": 118.05,
-              "endSec": 144.95,
+              "startSec": 112.37272727272725,
+              "endSec": 134.19090909090906,
               "text": "From there, the ladder of abstraction rose quickly. In the late 1950s and 1960s, early high-level languages like Fortran, Lisp, COBOL, ALGOL, and APL enabled humans describe problems more directly, while compilers handled the low-level details. Lisp, for example, was built for symbolic problems: lists, recursion, and treating code as data so you can transform programs like any other structure."
             },
             {
               "type": "pause",
-              "startSec": 144.95,
-              "endSec": 145.25,
+              "startSec": 134.19090909090906,
+              "endSec": 134.49090909090907,
               "durationSec": 0.3
             },
             {
               "type": "tts",
-              "startSec": 145.25,
-              "endSec": 159.95,
+              "startSec": 134.49090909090907,
+              "endSec": 147.58181818181816,
               "text": "One especially influential descendant of that era was C. It kept you close to the machine, but its constructs made repetition and reuse explicit: functions you could call again, and control flow you could reason about."
             },
             {
               "type": "pause",
-              "startSec": 159.95,
-              "endSec": 160.25,
+              "startSec": 147.58181818181816,
+              "endSec": 147.88181818181818,
               "durationSec": 0.3
             },
             {
               "type": "tts",
-              "startSec": 160.25,
-              "endSec": 173.05,
+              "startSec": 147.88181818181818,
+              "endSec": 157.33636363636361,
               "text": "C plus plus — and object-oriented programming more broadly — tried to match another problem space: large systems made of interacting \"things\" with state and responsibilities."
             },
             {
               "type": "pause",
-              "startSec": 173.05,
-              "endSec": 173.35000000000002,
+              "startSec": 157.33636363636361,
+              "endSec": 157.63636363636363,
               "durationSec": 0.3
             },
             {
               "type": "tts",
-              "startSec": 173.35000000000002,
-              "endSec": 183.45000000000002,
+              "startSec": 157.63636363636363,
+              "endSec": 167.09090909090907,
               "text": "And languages like Ruby pushed toward expressing intent directly: code that reads closer to what a human means, so the computer does more of the bookkeeping."
             },
             {
               "type": "pause",
-              "startSec": 183.45000000000002,
-              "endSec": 183.85000000000002,
+              "startSec": 167.09090909090907,
+              "endSec": 167.49090909090907,
               "durationSec": 0.4
             },
             {
               "type": "tts",
-              "startSec": 183.85000000000002,
-              "endSec": 193.15000000000003,
+              "startSec": 167.49090909090907,
+              "endSec": 174.76363636363635,
               "text": "But through all of this, the paradigm never changed. The programmer still specified control flow. The computer still followed instructions."
             },
             {
               "type": "pause",
-              "startSec": 193.15000000000003,
-              "endSec": 193.55000000000004,
+              "startSec": 174.76363636363635,
+              "endSec": 175.16363636363636,
               "durationSec": 0.4
             },
             {
               "type": "tts",
-              "startSec": 193.55000000000004,
-              "endSec": 208.05000000000004,
+              "startSec": 175.16363636363636,
+              "endSec": 187.52727272727273,
               "text": "Today, we're seeing the same pattern repeat with AI. One of the first valuable uses of AI is to turn it on itself: using AI to make programming easier, and to write better code."
             },
             {
               "type": "pause",
-              "startSec": 208.05000000000004,
-              "endSec": 208.40000000000003,
+              "startSec": 187.52727272727273,
+              "endSec": 187.87727272727273,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 208.40000000000003,
-              "endSec": 224.80000000000004,
+              "startSec": 187.87727272727273,
+              "endSec": 199.51363636363635,
               "text": "Tactus continues that tradition. It raises the level of abstraction to match what engineers care about in agentic systems: procedures, tools, guardrails, checkpoints, and evaluation. So you can express those concerns directly."
             },
             {
               "type": "pause",
-              "startSec": 224.80000000000004,
-              "endSec": 225.10000000000005,
+              "startSec": 199.51363636363635,
+              "endSec": 199.81363636363636,
               "durationSec": 0.3
             },
             {
               "type": "tts",
-              "startSec": 225.10000000000005,
-              "endSec": 234.80000000000004,
+              "startSec": 199.81363636363636,
+              "endSec": 208.17727272727274,
               "text": "But this time, something deeper is changing. It's not just a higher level of abstraction. It's a fundamentally different way of making decisions."
             }
           ],
@@ -385,8 +385,8 @@
     {
       "id": "control-flow-evolution",
       "title": "Control Flow Evolution",
-      "startSec": 235.30000000000004,
-      "endSec": 294.0000000000001,
+      "startSec": 208.67727272727274,
+      "endSec": 261.02272727272725,
       "layers": [
         {
           "id": "background",
@@ -397,7 +397,7 @@
               "type": "Background",
               "props": {
                 "color": "#fdfdfd",
-                "sceneStartSec": 234.30000000000004
+                "sceneStartSec": 207.67727272727274
               }
             }
           ]
@@ -414,7 +414,7 @@
                 "x": 960,
                 "y": 180,
                 "textAlign": "center",
-                "sceneStartSec": 234.30000000000004
+                "sceneStartSec": 207.67727272727274
               }
             }
           ]
@@ -436,7 +436,7 @@
                 "maxWidth": 640,
                 "font": "sans",
                 "color": "#666666",
-                "sceneStartSec": 234.30000000000004
+                "sceneStartSec": 207.67727272727274
               }
             },
             {
@@ -455,7 +455,7 @@
                 "padding": 32,
                 "borderRadius": 20,
                 "border": "1px solid rgba(39, 39, 42, 0.12)",
-                "sceneStartSec": 234.30000000000004
+                "sceneStartSec": 207.67727272727274
               }
             },
             {
@@ -471,7 +471,7 @@
                 "maxWidth": 640,
                 "font": "sans",
                 "color": "#c7007e",
-                "sceneStartSec": 234.30000000000004
+                "sceneStartSec": 207.67727272727274
               }
             },
             {
@@ -490,7 +490,7 @@
                 "padding": 32,
                 "borderRadius": 20,
                 "border": "1px solid rgba(39, 39, 42, 0.12)",
-                "sceneStartSec": 234.30000000000004
+                "sceneStartSec": 207.67727272727274
               }
             }
           ]
@@ -500,74 +500,74 @@
         {
           "id": "shift",
           "label": "shift",
-          "startSec": 235.30000000000004,
-          "endSec": 294.0000000000001,
+          "startSec": 208.67727272727274,
+          "endSec": 261.02272727272725,
           "text": "Today, decisions are no longer made entirely by imperative logic written by programmers. In agentic patterns like the ReAct loop, you explicitly hand control flow to the model: it decides what tool to call next, and when it's done. That's one of the clearest definitions of \"agentic programming\": the agent is making the control-flow decisions. And that's what we mean by a new kind of computer program. Instead of specifying every branch, you yield control to the AI model — and you surround that loop with guardrails. Even a basic guardrail matters immediately: you can't let the loop run forever. So you might cap it at, say, twelve tool calls — and require the agent to stop or ask for help after that. Tactus is designed to make that style of program—and those guardrails—explicit and easy to reason about.",
           "segments": [
             {
               "type": "tts",
-              "startSec": 235.30000000000004,
-              "endSec": 242.05000000000004,
+              "startSec": 208.67727272727274,
+              "endSec": 213.40454545454546,
               "text": "Today, decisions are no longer made entirely by imperative logic written by programmers."
             },
             {
               "type": "pause",
-              "startSec": 242.05000000000004,
-              "endSec": 242.40000000000003,
+              "startSec": 213.40454545454546,
+              "endSec": 213.75454545454545,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 242.40000000000003,
-              "endSec": 252.90000000000003,
+              "startSec": 213.75454545454545,
+              "endSec": 223.2090909090909,
               "text": "In agentic patterns like the ReAct loop, you explicitly hand control flow to the model: it decides what tool to call next, and when it's done."
             },
             {
               "type": "pause",
-              "startSec": 252.90000000000003,
-              "endSec": 253.30000000000004,
+              "startSec": 223.2090909090909,
+              "endSec": 223.6090909090909,
               "durationSec": 0.4
             },
             {
               "type": "tts",
-              "startSec": 253.30000000000004,
-              "endSec": 260.6,
+              "startSec": 223.6090909090909,
+              "endSec": 229.4272727272727,
               "text": "That's one of the clearest definitions of \"agentic programming\": the agent is making the control-flow decisions."
             },
             {
               "type": "pause",
-              "startSec": 260.6,
-              "endSec": 260.95000000000005,
+              "startSec": 229.4272727272727,
+              "endSec": 229.7772727272727,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 260.95000000000005,
-              "endSec": 271.40000000000003,
+              "startSec": 229.7772727272727,
+              "endSec": 241.41363636363633,
               "text": "And that's what we mean by a new kind of computer program. Instead of specifying every branch, you yield control to the AI model — and you surround that loop with guardrails."
             },
             {
               "type": "pause",
-              "startSec": 271.40000000000003,
-              "endSec": 271.75000000000006,
+              "startSec": 241.41363636363633,
+              "endSec": 241.76363636363632,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 271.75000000000006,
-              "endSec": 285.80000000000007,
+              "startSec": 241.76363636363632,
+              "endSec": 254.85454545454542,
               "text": "Even a basic guardrail matters immediately: you can't let the loop run forever. So you might cap it at, say, twelve tool calls — and require the agent to stop or ask for help after that."
             },
             {
               "type": "pause",
-              "startSec": 285.80000000000007,
-              "endSec": 286.1500000000001,
+              "startSec": 254.85454545454542,
+              "endSec": 255.2045454545454,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 286.1500000000001,
-              "endSec": 294.0000000000001,
+              "startSec": 255.2045454545454,
+              "endSec": 261.02272727272725,
               "text": "Tactus is designed to make that style of program—and those guardrails—explicit and easy to reason about."
             }
           ],
@@ -578,8 +578,8 @@
     {
       "id": "existing-tools-strain",
       "title": "Existing Tools Strain",
-      "startSec": 294.5000000000001,
-      "endSec": 327.4000000000002,
+      "startSec": 261.52272727272725,
+      "endSec": 286.0318181818182,
       "layers": [
         {
           "id": "background",
@@ -590,7 +590,7 @@
               "type": "Background",
               "props": {
                 "color": "#fdfdfd",
-                "sceneStartSec": 293.0000000000001
+                "sceneStartSec": 260.02272727272725
               }
             }
           ]
@@ -607,7 +607,7 @@
                 "x": 960,
                 "y": 180,
                 "textAlign": "center",
-                "sceneStartSec": 293.0000000000001
+                "sceneStartSec": 260.02272727272725
               }
             }
           ]
@@ -628,7 +628,7 @@
                 "align": "center",
                 "maxWidth": 640,
                 "font": "sans",
-                "sceneStartSec": 293.0000000000001
+                "sceneStartSec": 260.02272727272725
               }
             },
             {
@@ -647,7 +647,7 @@
                 "padding": 28,
                 "borderRadius": 16,
                 "border": "1px solid rgba(39, 39, 42, 0.12)",
-                "sceneStartSec": 293.0000000000001
+                "sceneStartSec": 260.02272727272725
               }
             },
             {
@@ -663,7 +663,7 @@
                 "maxWidth": 640,
                 "font": "sans",
                 "color": "#c7007e",
-                "sceneStartSec": 293.0000000000001
+                "sceneStartSec": 260.02272727272725
               }
             },
             {
@@ -682,7 +682,7 @@
                 "padding": 28,
                 "borderRadius": 16,
                 "border": "1px solid rgba(39, 39, 42, 0.12)",
-                "sceneStartSec": 293.0000000000001
+                "sceneStartSec": 260.02272727272725
               }
             }
           ]
@@ -692,62 +692,62 @@
         {
           "id": "python_problem",
           "label": "python_problem",
-          "startSec": 294.5000000000001,
-          "endSec": 327.4000000000002,
+          "startSec": 261.52272727272725,
+          "endSec": 286.0318181818182,
           "text": "So why not just use Python? Or TypeScript? They're powerful, flexible languages. The problem isn't capability. It's fit. Look at this code. How do you checkpoint an agent call? How do you test it? How do you prevent it from reading slash-etsy-slash-password? These concerns exist, but they're bolted on. Fragmented across code, prompts, configuration, and external frameworks. The language wasn't designed for this.",
           "segments": [
             {
               "type": "tts",
-              "startSec": 294.5000000000001,
-              "endSec": 300.60000000000014,
+              "startSec": 261.52272727272725,
+              "endSec": 265.8863636363636,
               "text": "So why not just use Python? Or TypeScript? They're powerful, flexible languages."
             },
             {
               "type": "pause",
-              "startSec": 300.60000000000014,
-              "endSec": 300.95000000000016,
+              "startSec": 265.8863636363636,
+              "endSec": 266.23636363636365,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 300.95000000000016,
-              "endSec": 304.90000000000015,
+              "startSec": 266.23636363636365,
+              "endSec": 268.41818181818184,
               "text": "The problem isn't capability. It's fit."
             },
             {
               "type": "pause",
-              "startSec": 304.90000000000015,
-              "endSec": 305.3000000000001,
+              "startSec": 268.41818181818184,
+              "endSec": 268.8181818181818,
               "durationSec": 0.4
             },
             {
               "type": "tts",
-              "startSec": 305.3000000000001,
-              "endSec": 313.40000000000015,
+              "startSec": 268.8181818181818,
+              "endSec": 277.54545454545456,
               "text": "Look at this code. How do you checkpoint an agent call? How do you test it? How do you prevent it from reading slash-etsy-slash-password?"
             },
             {
               "type": "pause",
-              "startSec": 313.40000000000015,
-              "endSec": 313.90000000000015,
+              "startSec": 277.54545454545456,
+              "endSec": 278.04545454545456,
               "durationSec": 0.5
             },
             {
               "type": "tts",
-              "startSec": 313.90000000000015,
-              "endSec": 322.45000000000016,
+              "startSec": 278.04545454545456,
+              "endSec": 283.5,
               "text": "These concerns exist, but they're bolted on. Fragmented across code, prompts, configuration, and external frameworks."
             },
             {
               "type": "pause",
-              "startSec": 322.45000000000016,
-              "endSec": 322.8000000000002,
+              "startSec": 283.5,
+              "endSec": 283.85,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 322.8000000000002,
-              "endSec": 327.4000000000002,
+              "startSec": 283.85,
+              "endSec": 286.0318181818182,
               "text": "The language wasn't designed for this."
             }
           ],
@@ -758,8 +758,8 @@
     {
       "id": "deterministic-practices-collapse",
       "title": "Deterministic Practices Collapse",
-      "startSec": 327.9000000000002,
-      "endSec": 364.45000000000016,
+      "startSec": 286.5318181818182,
+      "endSec": 310.57727272727277,
       "layers": [
         {
           "id": "background",
@@ -770,7 +770,7 @@
               "type": "Background",
               "props": {
                 "color": "#fdfdfd",
-                "sceneStartSec": 325.9000000000002
+                "sceneStartSec": 284.5318181818182
               }
             }
           ]
@@ -787,7 +787,7 @@
                 "x": 960,
                 "y": 180,
                 "textAlign": "center",
-                "sceneStartSec": 325.9000000000002
+                "sceneStartSec": 284.5318181818182
               }
             }
           ]
@@ -812,7 +812,7 @@
                 "padding": 22,
                 "borderRadius": 16,
                 "border": "1px solid rgba(39, 39, 42, 0.12)",
-                "sceneStartSec": 325.9000000000002
+                "sceneStartSec": 284.5318181818182
               }
             },
             {
@@ -831,7 +831,7 @@
                 "padding": 22,
                 "borderRadius": 16,
                 "border": "1px solid rgba(39, 39, 42, 0.12)",
-                "sceneStartSec": 325.9000000000002
+                "sceneStartSec": 284.5318181818182
               }
             },
             {
@@ -850,7 +850,7 @@
                 "padding": 22,
                 "borderRadius": 16,
                 "border": "1px solid rgba(39, 39, 42, 0.12)",
-                "sceneStartSec": 325.9000000000002
+                "sceneStartSec": 284.5318181818182
               }
             },
             {
@@ -869,7 +869,7 @@
                 "padding": 22,
                 "borderRadius": 16,
                 "border": "1px solid rgba(39, 39, 42, 0.12)",
-                "sceneStartSec": 325.9000000000002
+                "sceneStartSec": 284.5318181818182
               }
             },
             {
@@ -888,7 +888,7 @@
                 "padding": 22,
                 "borderRadius": 16,
                 "border": "1px solid rgba(39, 39, 42, 0.12)",
-                "sceneStartSec": 325.9000000000002
+                "sceneStartSec": 284.5318181818182
               }
             }
           ]
@@ -898,62 +898,62 @@
         {
           "id": "testing_breaks",
           "label": "testing_breaks",
-          "startSec": 327.9000000000002,
-          "endSec": 364.45000000000016,
+          "startSec": 286.5318181818182,
+          "endSec": 310.57727272727277,
           "text": "For decades, software engineering best practices have been built around one assumption: determinism. Unit tests assert exact values. Code coverage measures every line. Regression tests catch unexpected changes. But when your system makes decisions probabilistically, all of these practices break. Output varies between runs. Behavior comes from models, not code. Natural variation looks like regression. Instead of proving correctness, you measure alignment.",
           "segments": [
             {
               "type": "tts",
-              "startSec": 327.9000000000002,
-              "endSec": 334.3500000000002,
+              "startSec": 286.5318181818182,
+              "endSec": 291.25909090909096,
               "text": "For decades, software engineering best practices have been built around one assumption: determinism."
             },
             {
               "type": "pause",
-              "startSec": 334.3500000000002,
-              "endSec": 334.7000000000002,
+              "startSec": 291.25909090909096,
+              "endSec": 291.609090909091,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 334.7000000000002,
-              "endSec": 344.1000000000002,
+              "startSec": 291.609090909091,
+              "endSec": 297.0636363636364,
               "text": "Unit tests assert exact values. Code coverage measures every line. Regression tests catch unexpected changes."
             },
             {
               "type": "pause",
-              "startSec": 344.1000000000002,
-              "endSec": 344.50000000000017,
+              "startSec": 297.0636363636364,
+              "endSec": 297.4636363636364,
               "durationSec": 0.4
             },
             {
               "type": "tts",
-              "startSec": 344.50000000000017,
-              "endSec": 350.6000000000002,
+              "startSec": 297.4636363636364,
+              "endSec": 301.82727272727277,
               "text": "But when your system makes decisions probabilistically, all of these practices break."
             },
             {
               "type": "pause",
-              "startSec": 350.6000000000002,
-              "endSec": 350.9500000000002,
+              "startSec": 301.82727272727277,
+              "endSec": 302.1772727272728,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 350.9500000000002,
-              "endSec": 359.9000000000002,
+              "startSec": 302.1772727272728,
+              "endSec": 307.63181818181823,
               "text": "Output varies between runs. Behavior comes from models, not code. Natural variation looks like regression."
             },
             {
               "type": "pause",
-              "startSec": 359.9000000000002,
-              "endSec": 360.3000000000002,
+              "startSec": 307.63181818181823,
+              "endSec": 308.0318181818182,
               "durationSec": 0.4
             },
             {
               "type": "tts",
-              "startSec": 360.3000000000002,
-              "endSec": 364.45000000000016,
+              "startSec": 308.0318181818182,
+              "endSec": 310.57727272727277,
               "text": "Instead of proving correctness, you measure alignment."
             }
           ],
@@ -964,8 +964,8 @@
     {
       "id": "beyond-mlops",
       "title": "Beyond MLOps",
-      "startSec": 364.95000000000016,
-      "endSec": 393.9500000000002,
+      "startSec": 311.07727272727277,
+      "endSec": 331.45000000000005,
       "layers": [
         {
           "id": "background",
@@ -976,7 +976,7 @@
               "type": "Background",
               "props": {
                 "color": "#fdfdfd",
-                "sceneStartSec": 362.45000000000016
+                "sceneStartSec": 308.57727272727277
               }
             }
           ]
@@ -993,7 +993,7 @@
                 "x": 960,
                 "y": 180,
                 "textAlign": "center",
-                "sceneStartSec": 362.45000000000016
+                "sceneStartSec": 308.57727272727277
               }
             }
           ]
@@ -1018,7 +1018,7 @@
                 "padding": 28,
                 "borderRadius": 18,
                 "border": "1px solid rgba(39, 39, 42, 0.12)",
-                "sceneStartSec": 362.45000000000016
+                "sceneStartSec": 308.57727272727277
               }
             },
             {
@@ -1038,7 +1038,7 @@
                 "borderRadius": 18,
                 "border": "1px solid rgba(39, 39, 42, 0.12)",
                 "color": "#c7007e",
-                "sceneStartSec": 362.45000000000016
+                "sceneStartSec": 308.57727272727277
               }
             }
           ]
@@ -1048,50 +1048,50 @@
         {
           "id": "mlops_comparison",
           "label": "mlops_comparison",
-          "startSec": 364.95000000000016,
-          "endSec": 393.9500000000002,
+          "startSec": 311.07727272727277,
+          "endSec": 331.45000000000005,
           "text": "Machine learning practitioners have dealt with stochastic systems for years. They track experiments. Compare models. Optimize metrics. But MLOps is optimized for models, not behavior. Agentic systems don't just produce predictions. They take actions. Use tools. Generate multi-step behaviors. Success isn't a single number. It's whether the system behaves acceptably given the situation.",
           "segments": [
             {
               "type": "tts",
-              "startSec": 364.95000000000016,
-              "endSec": 373.8000000000002,
+              "startSec": 311.07727272727277,
+              "endSec": 317.25909090909096,
               "text": "Machine learning practitioners have dealt with stochastic systems for years. They track experiments. Compare models. Optimize metrics."
             },
             {
               "type": "pause",
-              "startSec": 373.8000000000002,
-              "endSec": 374.1500000000002,
+              "startSec": 317.25909090909096,
+              "endSec": 317.609090909091,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 374.1500000000002,
-              "endSec": 378.7500000000002,
+              "startSec": 317.609090909091,
+              "endSec": 320.5181818181819,
               "text": "But MLOps is optimized for models, not behavior."
             },
             {
               "type": "pause",
-              "startSec": 378.7500000000002,
-              "endSec": 379.1500000000002,
+              "startSec": 320.5181818181819,
+              "endSec": 320.9181818181819,
               "durationSec": 0.4
             },
             {
               "type": "tts",
-              "startSec": 379.1500000000002,
-              "endSec": 386.8500000000002,
+              "startSec": 320.9181818181819,
+              "endSec": 326.00909090909096,
               "text": "Agentic systems don't just produce predictions. They take actions. Use tools. Generate multi-step behaviors."
             },
             {
               "type": "pause",
-              "startSec": 386.8500000000002,
-              "endSec": 387.2000000000002,
+              "startSec": 326.00909090909096,
+              "endSec": 326.359090909091,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 387.2000000000002,
-              "endSec": 393.9500000000002,
+              "startSec": 326.359090909091,
+              "endSec": 331.45000000000005,
               "text": "Success isn't a single number. It's whether the system behaves acceptably given the situation."
             }
           ],
@@ -1102,8 +1102,8 @@
     {
       "id": "behavioral-specifications",
       "title": "Behavioral Specifications",
-      "startSec": 394.4500000000002,
-      "endSec": 426.70000000000016,
+      "startSec": 331.95000000000005,
+      "endSec": 357.81363636363636,
       "layers": [
         {
           "id": "background",
@@ -1114,7 +1114,7 @@
               "type": "Background",
               "props": {
                 "color": "#fdfdfd",
-                "sceneStartSec": 391.4500000000002
+                "sceneStartSec": 328.95000000000005
               }
             }
           ]
@@ -1131,7 +1131,7 @@
                 "x": 960,
                 "y": 180,
                 "textAlign": "center",
-                "sceneStartSec": 391.4500000000002
+                "sceneStartSec": 328.95000000000005
               }
             }
           ]
@@ -1156,7 +1156,7 @@
                 "padding": 28,
                 "borderRadius": 16,
                 "border": "1px solid rgba(39, 39, 42, 0.12)",
-                "sceneStartSec": 391.4500000000002
+                "sceneStartSec": 328.95000000000005
               }
             },
             {
@@ -1171,7 +1171,7 @@
                 "align": "center",
                 "maxWidth": 1200,
                 "font": "serif",
-                "sceneStartSec": 391.4500000000002
+                "sceneStartSec": 328.95000000000005
               }
             }
           ]
@@ -1181,62 +1181,62 @@
         {
           "id": "specs_and_evals",
           "label": "specs_and_evals",
-          "startSec": 394.4500000000002,
-          "endSec": 426.70000000000016,
+          "startSec": 331.95000000000005,
+          "endSec": 357.81363636363636,
           "text": "When correctness becomes alignment, you need new ways to say what \"good\" looks like. Behavioral specifications express what a system should do without prescribing exactly how. A specification might say: the agent should call the search tool before answering a factual question. Then evaluation measures reliability. Does it do that ninety-five percent of the time? Eighty percent? Sixty? Specifications plus evaluations give you a foundation for alignment.",
           "segments": [
             {
               "type": "tts",
-              "startSec": 394.4500000000002,
-              "endSec": 400.4500000000002,
+              "startSec": 331.95000000000005,
+              "endSec": 337.0409090909091,
               "text": "When correctness becomes alignment, you need new ways to say what \"good\" looks like."
             },
             {
               "type": "pause",
-              "startSec": 400.4500000000002,
-              "endSec": 400.80000000000024,
+              "startSec": 337.0409090909091,
+              "endSec": 337.39090909090913,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 400.80000000000024,
-              "endSec": 406.7500000000002,
+              "startSec": 337.39090909090913,
+              "endSec": 341.7545454545455,
               "text": "Behavioral specifications express what a system should do without prescribing exactly how."
             },
             {
               "type": "pause",
-              "startSec": 406.7500000000002,
-              "endSec": 407.1500000000002,
+              "startSec": 341.7545454545455,
+              "endSec": 342.1545454545455,
               "durationSec": 0.4
             },
             {
               "type": "tts",
-              "startSec": 407.1500000000002,
-              "endSec": 413.8500000000002,
+              "startSec": 342.1545454545455,
+              "endSec": 347.9727272727273,
               "text": "A specification might say: the agent should call the search tool before answering a factual question."
             },
             {
               "type": "pause",
-              "startSec": 413.8500000000002,
-              "endSec": 414.2000000000002,
+              "startSec": 347.9727272727273,
+              "endSec": 348.3227272727273,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 414.2000000000002,
-              "endSec": 421.4000000000002,
+              "startSec": 348.3227272727273,
+              "endSec": 354.14090909090913,
               "text": "Then evaluation measures reliability. Does it do that ninety-five percent of the time? Eighty percent? Sixty?"
             },
             {
               "type": "pause",
-              "startSec": 421.4000000000002,
-              "endSec": 421.8000000000002,
+              "startSec": 354.14090909090913,
+              "endSec": 354.5409090909091,
               "durationSec": 0.4
             },
             {
               "type": "tts",
-              "startSec": 421.8000000000002,
-              "endSec": 426.70000000000016,
+              "startSec": 354.5409090909091,
+              "endSec": 357.81363636363636,
               "text": "Specifications plus evaluations give you a foundation for alignment."
             }
           ],
@@ -1247,8 +1247,8 @@
     {
       "id": "props",
       "title": "PrOps",
-      "startSec": 427.20000000000016,
-      "endSec": 466.90000000000015,
+      "startSec": 358.31363636363636,
+      "endSec": 384.16363636363633,
       "layers": [
         {
           "id": "background",
@@ -1259,7 +1259,7 @@
               "type": "Background",
               "props": {
                 "color": "#fdfdfd",
-                "sceneStartSec": 423.70000000000016
+                "sceneStartSec": 354.81363636363636
               }
             }
           ]
@@ -1276,7 +1276,7 @@
                 "x": 960,
                 "y": 180,
                 "textAlign": "center",
-                "sceneStartSec": 423.70000000000016
+                "sceneStartSec": 354.81363636363636
               }
             }
           ]
@@ -1299,7 +1299,7 @@
                 "font": "serif",
                 "lineHeight": 1.5,
                 "color": "#c7007e",
-                "sceneStartSec": 423.70000000000016
+                "sceneStartSec": 354.81363636363636
               }
             }
           ]
@@ -1309,74 +1309,74 @@
         {
           "id": "procedures",
           "label": "procedures",
-          "startSec": 427.20000000000016,
-          "endSec": 466.90000000000015,
+          "startSec": 358.31363636363636,
+          "endSec": 384.16363636363633,
           "text": "This brings us to a new operational discipline: PrOps. Procedure Operations. DevOps operates deterministic programs. MLOps trains and serves models. But agentic systems are neither. They're procedures. Systems that combine imperative logic, learned components, tools, constraints, and evaluation into a single decision-making process. A procedure's quality can't be proven in advance or reduced to a single metric. It must be observed, measured, and aligned over time.",
           "segments": [
             {
               "type": "tts",
-              "startSec": 427.20000000000016,
-              "endSec": 434.15000000000015,
+              "startSec": 358.31363636363636,
+              "endSec": 362.31363636363636,
               "text": "This brings us to a new operational discipline: PrOps. Procedure Operations."
             },
             {
               "type": "pause",
-              "startSec": 434.15000000000015,
-              "endSec": 434.5500000000001,
+              "startSec": 362.31363636363636,
+              "endSec": 362.71363636363634,
               "durationSec": 0.4
             },
             {
               "type": "tts",
-              "startSec": 434.5500000000001,
-              "endSec": 440.5000000000001,
+              "startSec": 362.71363636363634,
+              "endSec": 365.9863636363636,
               "text": "DevOps operates deterministic programs. MLOps trains and serves models."
             },
             {
               "type": "pause",
-              "startSec": 440.5000000000001,
-              "endSec": 440.85000000000014,
+              "startSec": 365.9863636363636,
+              "endSec": 366.3363636363636,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 440.85000000000014,
-              "endSec": 446.0500000000001,
+              "startSec": 366.3363636363636,
+              "endSec": 368.8818181818182,
               "text": "But agentic systems are neither. They're procedures."
             },
             {
               "type": "pause",
-              "startSec": 446.0500000000001,
-              "endSec": 446.4500000000001,
+              "startSec": 368.8818181818182,
+              "endSec": 369.28181818181815,
               "durationSec": 0.4
             },
             {
               "type": "tts",
-              "startSec": 446.4500000000001,
-              "endSec": 457.5000000000001,
+              "startSec": 369.28181818181815,
+              "endSec": 375.09999999999997,
               "text": "Systems that combine imperative logic, learned components, tools, constraints, and evaluation into a single decision-making process."
             },
             {
               "type": "pause",
-              "startSec": 457.5000000000001,
-              "endSec": 457.85000000000014,
+              "startSec": 375.09999999999997,
+              "endSec": 375.45,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 457.85000000000014,
-              "endSec": 462.65000000000015,
+              "startSec": 375.45,
+              "endSec": 380.54090909090905,
               "text": "A procedure's quality can't be proven in advance or reduced to a single metric."
             },
             {
               "type": "pause",
-              "startSec": 462.65000000000015,
-              "endSec": 463.00000000000017,
+              "startSec": 380.54090909090905,
+              "endSec": 380.8909090909091,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 463.00000000000017,
-              "endSec": 466.90000000000015,
+              "startSec": 380.8909090909091,
+              "endSec": 384.16363636363633,
               "text": "It must be observed, measured, and aligned over time."
             }
           ],
@@ -1387,8 +1387,8 @@
     {
       "id": "why-a-new-language",
       "title": "Why a New Language",
-      "startSec": 467.40000000000015,
-      "endSec": 522.3000000000002,
+      "startSec": 384.66363636363633,
+      "endSec": 422.2090909090909,
       "layers": [
         {
           "id": "background",
@@ -1399,7 +1399,7 @@
               "type": "Background",
               "props": {
                 "color": "#fdfdfd",
-                "sceneStartSec": 463.40000000000015
+                "sceneStartSec": 380.66363636363633
               }
             }
           ]
@@ -1416,7 +1416,7 @@
                 "x": 960,
                 "y": 180,
                 "textAlign": "center",
-                "sceneStartSec": 463.40000000000015
+                "sceneStartSec": 380.66363636363633
               }
             }
           ]
@@ -1439,7 +1439,7 @@
                 "font": "serif",
                 "lineHeight": 1.4,
                 "color": "#c7007e",
-                "sceneStartSec": 463.40000000000015
+                "sceneStartSec": 380.66363636363633
               }
             }
           ]
@@ -1456,7 +1456,7 @@
                 "containerHeight": 650,
                 "x": 1450,
                 "y": 620,
-                "sceneStartSec": 463.40000000000015
+                "sceneStartSec": 380.66363636363633
               }
             }
           ]
@@ -1466,122 +1466,122 @@
         {
           "id": "first_class_primitives",
           "label": "first_class_primitives",
-          "startSec": 467.40000000000015,
-          "endSec": 522.3000000000002,
+          "startSec": 384.66363636363633,
+          "endSec": 422.2090909090909,
           "text": "Once procedures become the primary unit of computation, the limitations of existing languages become impossible to ignore. Programming languages shape how humans think about problems. They determine what's easy to express and what's invisible. Procedural, behavior-driven systems need different primitives. Durability by default. Automatic checkpointing and resumption. Sandboxing by default. Isolated execution with controlled access. Tool capability control. Durable human‑in‑the‑loop: approvals and review loops that can pause and resume without keeping a process alive. Behavioral testing. Observable execution. These concerns can't be bolted onto languages that weren't designed for them. They need to be first-class.",
           "segments": [
             {
               "type": "tts",
-              "startSec": 467.40000000000015,
-              "endSec": 476.0500000000001,
+              "startSec": 384.66363636363633,
+              "endSec": 390.8454545454545,
               "text": "Once procedures become the primary unit of computation, the limitations of existing languages become impossible to ignore."
             },
             {
               "type": "pause",
-              "startSec": 476.0500000000001,
-              "endSec": 476.4500000000001,
+              "startSec": 390.8454545454545,
+              "endSec": 391.2454545454545,
               "durationSec": 0.4
             },
             {
               "type": "tts",
-              "startSec": 476.4500000000001,
-              "endSec": 484.5000000000001,
+              "startSec": 391.2454545454545,
+              "endSec": 397.4272727272727,
               "text": "Programming languages shape how humans think about problems. They determine what's easy to express and what's invisible."
             },
             {
               "type": "pause",
-              "startSec": 484.5000000000001,
-              "endSec": 484.85000000000014,
+              "startSec": 397.4272727272727,
+              "endSec": 397.7772727272727,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 484.85000000000014,
-              "endSec": 489.40000000000015,
+              "startSec": 397.7772727272727,
+              "endSec": 399.9590909090909,
               "text": "Procedural, behavior-driven systems need different primitives."
             },
             {
               "type": "pause",
-              "startSec": 489.40000000000015,
-              "endSec": 489.90000000000015,
+              "startSec": 399.9590909090909,
+              "endSec": 400.4590909090909,
               "durationSec": 0.5
             },
             {
               "type": "tts",
-              "startSec": 489.90000000000015,
-              "endSec": 494.65000000000015,
+              "startSec": 400.4590909090909,
+              "endSec": 403.00454545454545,
               "text": "Durability by default. Automatic checkpointing and resumption."
             },
             {
               "type": "pause",
-              "startSec": 494.65000000000015,
-              "endSec": 494.90000000000015,
+              "startSec": 403.00454545454545,
+              "endSec": 403.25454545454545,
               "durationSec": 0.25
             },
             {
               "type": "tts",
-              "startSec": 494.90000000000015,
-              "endSec": 500.10000000000014,
+              "startSec": 403.25454545454545,
+              "endSec": 406.1636363636364,
               "text": "Sandboxing by default. Isolated execution with controlled access."
             },
             {
               "type": "pause",
-              "startSec": 500.10000000000014,
-              "endSec": 500.35000000000014,
+              "startSec": 406.1636363636364,
+              "endSec": 406.4136363636364,
               "durationSec": 0.25
             },
             {
               "type": "tts",
-              "startSec": 500.35000000000014,
-              "endSec": 502.45000000000016,
+              "startSec": 406.4136363636364,
+              "endSec": 407.50454545454545,
               "text": "Tool capability control."
             },
             {
               "type": "pause",
-              "startSec": 502.45000000000016,
-              "endSec": 502.70000000000016,
+              "startSec": 407.50454545454545,
+              "endSec": 407.75454545454545,
               "durationSec": 0.25
             },
             {
               "type": "tts",
-              "startSec": 502.70000000000016,
-              "endSec": 509.75000000000017,
+              "startSec": 407.75454545454545,
+              "endSec": 413.57272727272726,
               "text": "Durable human‑in‑the‑loop: approvals and review loops that can pause and resume without keeping a process alive."
             },
             {
               "type": "pause",
-              "startSec": 509.75000000000017,
-              "endSec": 510.00000000000017,
+              "startSec": 413.57272727272726,
+              "endSec": 413.82272727272726,
               "durationSec": 0.25
             },
             {
               "type": "tts",
-              "startSec": 510.00000000000017,
-              "endSec": 513.9500000000002,
+              "startSec": 413.82272727272726,
+              "endSec": 415.2772727272727,
               "text": "Behavioral testing. Observable execution."
             },
             {
               "type": "pause",
-              "startSec": 513.9500000000002,
-              "endSec": 514.3500000000001,
+              "startSec": 415.2772727272727,
+              "endSec": 415.6772727272727,
               "durationSec": 0.4
             },
             {
               "type": "tts",
-              "startSec": 514.3500000000001,
-              "endSec": 519.0000000000001,
+              "startSec": 415.6772727272727,
+              "endSec": 420.04090909090905,
               "text": "These concerns can't be bolted onto languages that weren't designed for them."
             },
             {
               "type": "pause",
-              "startSec": 519.0000000000001,
-              "endSec": 519.3500000000001,
+              "startSec": 420.04090909090905,
+              "endSec": 420.3909090909091,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 519.3500000000001,
-              "endSec": 522.3000000000002,
+              "startSec": 420.3909090909091,
+              "endSec": 422.2090909090909,
               "text": "They need to be first-class."
             }
           ],
@@ -1592,8 +1592,8 @@
     {
       "id": "evolution-not-alien-dna",
       "title": "Evolution, Not Alien DNA",
-      "startSec": 522.8000000000002,
-      "endSec": 570.0500000000003,
+      "startSec": 422.7090909090909,
+      "endSec": 462.2,
       "layers": [
         {
           "id": "background",
@@ -1604,7 +1604,7 @@
               "type": "Background",
               "props": {
                 "color": "#fdfdfd",
-                "sceneStartSec": 518.3000000000002
+                "sceneStartSec": 418.2090909090909
               }
             }
           ]
@@ -1621,7 +1621,7 @@
                 "x": 960,
                 "y": 240,
                 "textAlign": "center",
-                "sceneStartSec": 518.3000000000002
+                "sceneStartSec": 418.2090909090909
               }
             }
           ]
@@ -1643,7 +1643,7 @@
                 "maxWidth": 1200,
                 "font": "serif",
                 "lineHeight": 1.5,
-                "sceneStartSec": 518.3000000000002
+                "sceneStartSec": 418.2090909090909
               }
             }
           ]
@@ -1653,86 +1653,86 @@
         {
           "id": "conclusion",
           "label": "conclusion",
-          "startSec": 522.8000000000002,
-          "endSec": 570.0500000000003,
+          "startSec": 422.7090909090909,
+          "endSec": 462.2,
           "text": "From a theoretical standpoint, nothing fundamental has broken. These systems still run on conventional hardware. They're still Turing-complete. There's no alien machinery hiding beneath the surface. What has changed is how decisions are made and how humans must reason about those decisions. For most of computing history, programming meant specifying control flow in advance. Today, many of the most important systems we build no longer operate that way. Languages follow mental models. When the mental model changes, new languages emerge—not to replace what came before, but to make the new reality tractable for humans. This isn't a revolution in computation. It's evolution.",
           "segments": [
             {
               "type": "tts",
-              "startSec": 522.8000000000002,
-              "endSec": 526.7500000000002,
+              "startSec": 422.7090909090909,
+              "endSec": 425.6181818181818,
               "text": "From a theoretical standpoint, nothing fundamental has broken."
             },
             {
               "type": "pause",
-              "startSec": 526.7500000000002,
-              "endSec": 527.1000000000003,
+              "startSec": 425.6181818181818,
+              "endSec": 425.96818181818185,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 527.1000000000003,
-              "endSec": 535.9000000000002,
+              "startSec": 425.96818181818185,
+              "endSec": 432.5136363636364,
               "text": "These systems still run on conventional hardware. They're still Turing-complete. There's no alien machinery hiding beneath the surface."
             },
             {
               "type": "pause",
-              "startSec": 535.9000000000002,
-              "endSec": 536.3000000000002,
+              "startSec": 432.5136363636364,
+              "endSec": 432.9136363636364,
               "durationSec": 0.4
             },
             {
               "type": "tts",
-              "startSec": 536.3000000000002,
-              "endSec": 542.0500000000002,
+              "startSec": 432.9136363636364,
+              "endSec": 438.7318181818182,
               "text": "What has changed is how decisions are made and how humans must reason about those decisions."
             },
             {
               "type": "pause",
-              "startSec": 542.0500000000002,
-              "endSec": 542.4500000000002,
+              "startSec": 438.7318181818182,
+              "endSec": 439.1318181818182,
               "durationSec": 0.4
             },
             {
               "type": "tts",
-              "startSec": 542.4500000000002,
-              "endSec": 549.1500000000002,
+              "startSec": 439.1318181818182,
+              "endSec": 443.49545454545455,
               "text": "For most of computing history, programming meant specifying control flow in advance."
             },
             {
               "type": "pause",
-              "startSec": 549.1500000000002,
-              "endSec": 549.5000000000002,
+              "startSec": 443.49545454545455,
+              "endSec": 443.8454545454546,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 549.5000000000002,
-              "endSec": 554.3500000000003,
+              "startSec": 443.8454545454546,
+              "endSec": 448.93636363636364,
               "text": "Today, many of the most important systems we build no longer operate that way."
             },
             {
               "type": "pause",
-              "startSec": 554.3500000000003,
-              "endSec": 554.7500000000002,
+              "startSec": 448.93636363636364,
+              "endSec": 449.3363636363636,
               "durationSec": 0.4
             },
             {
               "type": "tts",
-              "startSec": 554.7500000000002,
-              "endSec": 565.6000000000003,
+              "startSec": 449.3363636363636,
+              "endSec": 458.79090909090905,
               "text": "Languages follow mental models. When the mental model changes, new languages emerge—not to replace what came before, but to make the new reality tractable for humans."
             },
             {
               "type": "pause",
-              "startSec": 565.6000000000003,
-              "endSec": 566.1000000000003,
+              "startSec": 458.79090909090905,
+              "endSec": 459.29090909090905,
               "durationSec": 0.5
             },
             {
               "type": "tts",
-              "startSec": 566.1000000000003,
-              "endSec": 570.0500000000003,
+              "startSec": 459.29090909090905,
+              "endSec": 462.2,
               "text": "This isn't a revolution in computation. It's evolution."
             }
           ],
@@ -1743,8 +1743,8 @@
     {
       "id": "call-to-action",
       "title": "Call to Action",
-      "startSec": 570.5500000000003,
-      "endSec": 575.2500000000003,
+      "startSec": 462.7,
+      "endSec": 465.97272727272724,
       "layers": [
         {
           "id": "background",
@@ -1755,7 +1755,7 @@
               "type": "Background",
               "props": {
                 "color": "#fdfdfd",
-                "sceneStartSec": 565.5500000000003
+                "sceneStartSec": 457.7
               }
             }
           ]
@@ -1768,7 +1768,7 @@
               "id": "end-scene-0",
               "type": "EndScene",
               "props": {
-                "sceneStartSec": 565.5500000000003
+                "sceneStartSec": 457.7
               }
             }
           ]
@@ -1778,14 +1778,14 @@
         {
           "id": "cta",
           "label": "cta",
-          "startSec": 570.5500000000003,
-          "endSec": 575.2500000000003,
+          "startSec": 462.7,
+          "endSec": 465.97272727272724,
           "text": "Learn more at tactus dot anth dot u s.",
           "segments": [
             {
               "type": "tts",
-              "startSec": 570.5500000000003,
-              "endSec": 575.2500000000003,
+              "startSec": 462.7,
+              "endSec": 465.97272727272724,
               "text": "Learn more at tactus dot anth dot u s."
             }
           ],
@@ -1799,13 +1799,13 @@
       "kind": "scene",
       "sceneId": "title-card",
       "startSec": 0.25,
-      "endSec": 23.6
+      "endSec": 22.849999999999994
     },
     {
       "kind": "transition",
       "id": "why-push-1",
-      "startSec": 23.6,
-      "endSec": 24.1,
+      "startSec": 22.849999999999994,
+      "endSec": 23.349999999999994,
       "effect": "slide",
       "ease": "power2.inOut",
       "props": {
@@ -1818,14 +1818,14 @@
     {
       "kind": "scene",
       "sceneId": "in-the-beginning",
-      "startSec": 24.1,
-      "endSec": 234.80000000000004
+      "startSec": 23.349999999999994,
+      "endSec": 208.17727272727274
     },
     {
       "kind": "transition",
       "id": "why-push-2",
-      "startSec": 234.80000000000004,
-      "endSec": 235.30000000000004,
+      "startSec": 208.17727272727274,
+      "endSec": 208.67727272727274,
       "effect": "slide",
       "ease": "power2.inOut",
       "props": {
@@ -1838,14 +1838,14 @@
     {
       "kind": "scene",
       "sceneId": "control-flow-evolution",
-      "startSec": 235.30000000000004,
-      "endSec": 294.0000000000001
+      "startSec": 208.67727272727274,
+      "endSec": 261.02272727272725
     },
     {
       "kind": "transition",
       "id": "why-push-3",
-      "startSec": 294.0000000000001,
-      "endSec": 294.5000000000001,
+      "startSec": 261.02272727272725,
+      "endSec": 261.52272727272725,
       "effect": "slide",
       "ease": "power2.inOut",
       "props": {
@@ -1858,14 +1858,14 @@
     {
       "kind": "scene",
       "sceneId": "existing-tools-strain",
-      "startSec": 294.5000000000001,
-      "endSec": 327.4000000000002
+      "startSec": 261.52272727272725,
+      "endSec": 286.0318181818182
     },
     {
       "kind": "transition",
       "id": "why-push-4",
-      "startSec": 327.4000000000002,
-      "endSec": 327.9000000000002,
+      "startSec": 286.0318181818182,
+      "endSec": 286.5318181818182,
       "effect": "slide",
       "ease": "power2.inOut",
       "props": {
@@ -1878,14 +1878,14 @@
     {
       "kind": "scene",
       "sceneId": "deterministic-practices-collapse",
-      "startSec": 327.9000000000002,
-      "endSec": 364.45000000000016
+      "startSec": 286.5318181818182,
+      "endSec": 310.57727272727277
     },
     {
       "kind": "transition",
       "id": "why-push-5",
-      "startSec": 364.45000000000016,
-      "endSec": 364.95000000000016,
+      "startSec": 310.57727272727277,
+      "endSec": 311.07727272727277,
       "effect": "slide",
       "ease": "power2.inOut",
       "props": {
@@ -1898,14 +1898,14 @@
     {
       "kind": "scene",
       "sceneId": "beyond-mlops",
-      "startSec": 364.95000000000016,
-      "endSec": 393.9500000000002
+      "startSec": 311.07727272727277,
+      "endSec": 331.45000000000005
     },
     {
       "kind": "transition",
       "id": "why-push-6",
-      "startSec": 393.9500000000002,
-      "endSec": 394.4500000000002,
+      "startSec": 331.45000000000005,
+      "endSec": 331.95000000000005,
       "effect": "slide",
       "ease": "power2.inOut",
       "props": {
@@ -1918,14 +1918,14 @@
     {
       "kind": "scene",
       "sceneId": "behavioral-specifications",
-      "startSec": 394.4500000000002,
-      "endSec": 426.70000000000016
+      "startSec": 331.95000000000005,
+      "endSec": 357.81363636363636
     },
     {
       "kind": "transition",
       "id": "why-push-7",
-      "startSec": 426.70000000000016,
-      "endSec": 427.20000000000016,
+      "startSec": 357.81363636363636,
+      "endSec": 358.31363636363636,
       "effect": "slide",
       "ease": "power2.inOut",
       "props": {
@@ -1938,14 +1938,14 @@
     {
       "kind": "scene",
       "sceneId": "props",
-      "startSec": 427.20000000000016,
-      "endSec": 466.90000000000015
+      "startSec": 358.31363636363636,
+      "endSec": 384.16363636363633
     },
     {
       "kind": "transition",
       "id": "why-push-8",
-      "startSec": 466.90000000000015,
-      "endSec": 467.40000000000015,
+      "startSec": 384.16363636363633,
+      "endSec": 384.66363636363633,
       "effect": "slide",
       "ease": "power2.inOut",
       "props": {
@@ -1958,14 +1958,14 @@
     {
       "kind": "scene",
       "sceneId": "why-a-new-language",
-      "startSec": 467.40000000000015,
-      "endSec": 522.3000000000002
+      "startSec": 384.66363636363633,
+      "endSec": 422.2090909090909
     },
     {
       "kind": "transition",
       "id": "why-push-9",
-      "startSec": 522.3000000000002,
-      "endSec": 522.8000000000002,
+      "startSec": 422.2090909090909,
+      "endSec": 422.7090909090909,
       "effect": "slide",
       "ease": "power2.inOut",
       "props": {
@@ -1978,14 +1978,14 @@
     {
       "kind": "scene",
       "sceneId": "evolution-not-alien-dna",
-      "startSec": 522.8000000000002,
-      "endSec": 570.0500000000003
+      "startSec": 422.7090909090909,
+      "endSec": 462.2
     },
     {
       "kind": "transition",
       "id": "why-push-10",
-      "startSec": 570.0500000000003,
-      "endSec": 570.5500000000003,
+      "startSec": 462.2,
+      "endSec": 462.7,
       "effect": "slide",
       "ease": "power2.inOut",
       "props": {
@@ -1998,8 +1998,8 @@
     {
       "kind": "scene",
       "sceneId": "call-to-action",
-      "startSec": 570.5500000000003,
-      "endSec": 575.2500000000003
+      "startSec": 462.7,
+      "endSec": 465.97272727272724
     }
   ],
   "posterTimeSec": 383,

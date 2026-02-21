@@ -1,0 +1,49 @@
+{
+  "id": "tctw-a2254ae6-aec0-4f40-9fb7-01166f124525",
+  "title": "Add transitions between intro scenes",
+  "description": "",
+  "type": "task",
+  "status": "closed",
+  "priority": 2,
+  "assignee": null,
+  "creator": null,
+  "parent": "tctw-ae1829df-6f3a-42ec-b022-19b6fac715e0",
+  "labels": [],
+  "dependencies": [],
+  "comments": [
+    {
+      "id": "1945c09a-39b0-4ecc-9803-c61d6bf17632",
+      "author": "unknown",
+      "text": "Starting: add slide-left transitions between scenes in intro.vml, then re-render via VideoML pipeline.",
+      "created_at": "2026-02-21T06:07:38.185046Z"
+    },
+    {
+      "id": "9b63eee4-89e6-47f0-a258-c9cd3a59a5a1",
+      "author": "unknown",
+      "text": "Added slide-left push transitions between all intro scenes in intro.vml and re-rendered via VideoML pipeline. Output regenerated at  and opened for review.",
+      "created_at": "2026-02-21T06:08:33.485220Z"
+    },
+    {
+      "id": "b6174f5d-ce05-4ea2-9a3e-eb276f7d991b",
+      "author": "unknown",
+      "text": "Added slide-left push transitions between all intro scenes in intro.vml and re-rendered via VideoML pipeline. Output regenerated at `Tactus-web/videos/out/intro.mp4` and opened for review.",
+      "created_at": "2026-02-21T06:08:38.613794Z"
+    },
+    {
+      "id": "c0d8538c-d7a0-49cd-a6d2-5aaccd3b6961",
+      "author": "unknown",
+      "text": "Reopened to change Intro transitions to slide-left (effect=slide, direction=left) for all scene transitions.",
+      "created_at": "2026-02-21T13:08:37.439576Z"
+    },
+    {
+      "id": "dffbe0d7-37bb-4728-afc3-c1648d942c8f",
+      "author": "unknown",
+      "text": "Switched Intro transitions to slide-left by changing transition effect to 'slide' with direction left in intro.vml.",
+      "created_at": "2026-02-21T13:09:19.277971Z"
+    }
+  ],
+  "created_at": "2026-02-21T05:58:18.066720Z",
+  "updated_at": "2026-02-21T13:09:23.606045Z",
+  "closed_at": "2026-02-21T13:09:23.606045Z",
+  "custom": {}
+}

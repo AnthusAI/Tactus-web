@@ -1,0 +1,43 @@
+{
+  "id": "tctw-303c05ce-523e-4ef2-b37c-6414a59c04af",
+  "title": "Render Tactus intro via VideoML pipeline",
+  "description": "",
+  "type": "task",
+  "status": "closed",
+  "priority": 2,
+  "assignee": null,
+  "creator": null,
+  "parent": "tctw-ae1829df-6f3a-42ec-b022-19b6fac715e0",
+  "labels": [],
+  "dependencies": [],
+  "comments": [
+    {
+      "id": "dac3f076-6d79-4bbe-8f19-fb9d9a0984a7",
+      "author": "unknown",
+      "text": "See VideoML CLI issue vmlc-4a29d8 (Run vml pipeline for intro.vml).",
+      "created_at": "2026-02-21T05:40:58.339862Z"
+    },
+    {
+      "id": "341c5435-547e-4cc0-91fa-a55e43d151d0",
+      "author": "unknown",
+      "text": "Started VideoML CLI pipeline render using multiple browser bundles: Babulus standard bundle + Tactus-web custom bundle. Output path: Tactus-web/videos/out/intro.mp4 (file exists; render still running as of last check).",
+      "created_at": "2026-02-21T05:57:16.113700Z"
+    },
+    {
+      "id": "3ff3ee0d-f416-4aae-889a-e973292991f3",
+      "author": "unknown",
+      "text": "Re-rendered intro via VideoML CLI pipeline; output regenerated at  and opened successfully.",
+      "created_at": "2026-02-21T06:04:41.753004Z"
+    },
+    {
+      "id": "afb85aad-114a-4d2a-b8aa-b87e2cfe14f1",
+      "author": "unknown",
+      "text": "Re-rendered intro via VideoML CLI pipeline; output regenerated at `Tactus-web/videos/out/intro.mp4` and opened successfully.",
+      "created_at": "2026-02-21T06:04:47.286445Z"
+    }
+  ],
+  "created_at": "2026-02-21T05:39:22.577677Z",
+  "updated_at": "2026-02-21T06:04:51.093651Z",
+  "closed_at": "2026-02-21T06:04:51.093651Z",
+  "custom": {}
+}

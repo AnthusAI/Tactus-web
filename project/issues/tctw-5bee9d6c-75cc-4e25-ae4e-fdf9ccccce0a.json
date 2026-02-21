@@ -1,0 +1,49 @@
+{
+  "id": "tctw-5bee9d6c-75cc-4e25-ae4e-fdf9ccccce0a",
+  "title": "Render why-new-language VML to MP4",
+  "description": "",
+  "type": "task",
+  "status": "closed",
+  "priority": 2,
+  "assignee": null,
+  "creator": null,
+  "parent": "tctw-bb801b66-f0d1-4e67-9b34-603f2ae4161a",
+  "labels": [],
+  "dependencies": [],
+  "comments": [
+    {
+      "id": "b21256bd-cdee-4cbd-944c-95c633fde819",
+      "author": "ryan.porter",
+      "text": "Started VideoML pipeline render for why-new-language.vml using Babulus standard + Tactus browser bundles. Output target: videos/out/why-new-language.mp4. Frames dir: videos/.babulus/frames/why-a-new-language. Waiting for render to complete.",
+      "created_at": "2026-02-21T06:21:04.316966Z"
+    },
+    {
+      "id": "d1e09b06-8192-4c2e-8d52-e4b80cb89163",
+      "author": "ryan.porter",
+      "text": "Generated why-new-language script/timeline/audio and encoded MP4 via manual ffmpeg from frames + audio. Output: videos/out/why-new-language.mp4. Opened MP4 for review. CLI render still not producing MP4 automatically.",
+      "created_at": "2026-02-21T06:44:10.739197Z"
+    },
+    {
+      "id": "eb96cc20-6167-4d43-99e6-0d4700e6ce6d",
+      "author": "ryan.porter",
+      "text": "Checked generated script.json: scenes exist but have 0 layers/components. why-new-language.vml (and why-new-language.babulus.ts) contain only voiceover + transitions, no visual components. Resulting frames are blank (white) with audio.",
+      "created_at": "2026-02-21T06:47:23.880079Z"
+    },
+    {
+      "id": "590dd93a-2e4c-465e-a98d-309cb8884360",
+      "author": "ryan.porter",
+      "text": "Blocked: renders produce audio-only MP4 (blank frames). Needs visuals restored from prior YAML or visual layer definitions.",
+      "created_at": "2026-02-21T06:51:19.941613Z"
+    },
+    {
+      "id": "3e1b3295-cf3f-46aa-83b7-0095a67db3fb",
+      "author": "ryan.porter",
+      "text": "Re-rendered why-a-new-language with slide-left transitions. MP4: videos/out/why-a-new-language.mp4",
+      "created_at": "2026-02-21T13:29:27.557540Z"
+    }
+  ],
+  "created_at": "2026-02-21T06:21:00.173337Z",
+  "updated_at": "2026-02-21T13:29:29.984528Z",
+  "closed_at": "2026-02-21T13:29:29.984528Z",
+  "custom": {}
+}

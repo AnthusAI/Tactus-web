@@ -11,7 +11,7 @@
       "sceneId": "guardrails-for-agent-autonomy",
       "cueId": "title",
       "startSec": 0.25,
-      "endSec": 7.65,
+      "endSec": 7.75,
       "segments": [
         {
           "type": "pause",
@@ -22,27 +22,27 @@
         {
           "type": "tts",
           "startSec": 0.95,
-          "endSec": 3.6500000000000004,
+          "endSec": 4,
           "text": "Guardrails for agent autonomy.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/guardrails-for-agent-autonomy--title--tts--78f0a1143163--1.wav",
-          "durationSec": 2.7,
-          "rawDurationSec": 2.7,
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/guardrails-for-agent-autonomy--title--tts--78f0a1143163--1.wav",
+          "durationSec": 3.05,
+          "rawDurationSec": 3.05,
           "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 3.6500000000000004,
-          "endSec": 4.1000000000000005,
+          "startSec": 4,
+          "endSec": 4.45,
           "seconds": 0.45
         },
         {
           "type": "tts",
-          "startSec": 4.1000000000000005,
-          "endSec": 7.65,
+          "startSec": 4.45,
+          "endSec": 7.75,
           "text": "Why you can't drive fast without brakes.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/guardrails-for-agent-autonomy--title--tts--1e0164f35325--1.wav",
-          "durationSec": 3.55,
-          "rawDurationSec": 3.55,
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/guardrails-for-agent-autonomy--title--tts--1e0164f35325--1.wav",
+          "durationSec": 3.3,
+          "rawDurationSec": 3.3,
           "trimEndSec": 0
         }
       ]
@@ -51,65 +51,65 @@
       "type": "tts",
       "sceneId": "the-paradox-of-power",
       "cueId": "brakes",
-      "startSec": 7.65,
-      "endSec": 36.6,
+      "startSec": 8.25,
+      "endSec": 37.15,
       "segments": [
         {
           "type": "tts",
-          "startSec": 7.65,
-          "endSec": 15.25,
+          "startSec": 8.25,
+          "endSec": 17.3,
           "text": "Picture a Formula One car with its brake system removed. Lighter. Simpler. Fewer things to go wrong.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/the-paradox-of-power--brakes--tts--0853b7619093--1.wav",
-          "durationSec": 7.6,
-          "rawDurationSec": 7.6,
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/the-paradox-of-power--brakes--tts--0853b7619093--1.wav",
+          "durationSec": 9.05,
+          "rawDurationSec": 9.05,
           "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 15.25,
-          "endSec": 15.75,
+          "startSec": 17.3,
+          "endSec": 17.8,
           "seconds": 0.5
         },
         {
           "type": "tts",
-          "startSec": 15.75,
-          "endSec": 18.35,
+          "startSec": 17.8,
+          "endSec": 20.400000000000002,
           "text": "You'd crash on the first turn.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/the-paradox-of-power--brakes--tts--8ec4bcd4d970--1.wav",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/the-paradox-of-power--brakes--tts--8ec4bcd4d970--1.wav",
           "durationSec": 2.6,
           "rawDurationSec": 2.6,
           "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 18.35,
-          "endSec": 18.8,
+          "startSec": 20.400000000000002,
+          "endSec": 20.85,
           "seconds": 0.45
         },
         {
           "type": "tts",
-          "startSec": 18.8,
-          "endSec": 27.4,
+          "startSec": 20.85,
+          "endSec": 28.75,
           "text": "The best racing teams don't debate whether brakes slow them down. They know something deeper: brakes are what let you go fast in the first place.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/the-paradox-of-power--brakes--tts--c1974e8b1880--1.wav",
-          "durationSec": 8.6,
-          "rawDurationSec": 8.6,
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/the-paradox-of-power--brakes--tts--c1974e8b1880--1.wav",
+          "durationSec": 7.9,
+          "rawDurationSec": 7.9,
           "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 27.4,
-          "endSec": 27.95,
+          "startSec": 28.75,
+          "endSec": 29.3,
           "seconds": 0.55
         },
         {
           "type": "tts",
-          "startSec": 27.95,
-          "endSec": 36.6,
+          "startSec": 29.3,
+          "endSec": 37.15,
           "text": "That's the paradox of agent autonomy. Guardrails are not a limitation on autonomy — they're the prerequisite for it.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/the-paradox-of-power--brakes--tts--9c110feb245e--1.wav",
-          "durationSec": 8.65,
-          "rawDurationSec": 8.65,
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/the-paradox-of-power--brakes--tts--9c110feb245e--1.wav",
+          "durationSec": 7.85,
+          "rawDurationSec": 7.85,
           "trimEndSec": 0
         }
       ]
@@ -118,49 +118,49 @@
       "type": "tts",
       "sceneId": "the-pattern-repeats-across-domains",
       "cueId": "patterns",
-      "startSec": 36.6,
-      "endSec": 67.2,
+      "startSec": 37.65,
+      "endSec": 69.1,
       "segments": [
         {
           "type": "tts",
-          "startSec": 36.6,
-          "endSec": 42.1,
+          "startSec": 37.65,
+          "endSec": 44.25,
           "text": "This pattern repeats everywhere humans have built powerful, autonomous systems.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/the-pattern-repeats-across-domains--patterns--tts--0e4f9bf9b5f9--1.wav",
-          "durationSec": 5.5,
-          "rawDurationSec": 5.5,
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/the-pattern-repeats-across-domains--patterns--tts--0e4f9bf9b5f9--1.wav",
+          "durationSec": 6.6,
+          "rawDurationSec": 6.6,
           "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 42.1,
-          "endSec": 42.5,
+          "startSec": 44.25,
+          "endSec": 44.65,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 42.5,
-          "endSec": 59.45,
+          "startSec": 44.65,
+          "endSec": 61.849999999999994,
           "text": "Aviation scaled autonomy by adding checklists, hard limits, and layered safety. Medicine made protocols standard because expertise alone isn't enough under pressure. Organizations delegate power safely by creating budgets, approvals, audits, and reviews.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/the-pattern-repeats-across-domains--patterns--tts--bfa07ec3af11--1.wav",
-          "durationSec": 16.95,
-          "rawDurationSec": 16.95,
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/the-pattern-repeats-across-domains--patterns--tts--bfa07ec3af11--1.wav",
+          "durationSec": 17.2,
+          "rawDurationSec": 17.2,
           "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 59.45,
-          "endSec": 59.95,
+          "startSec": 61.849999999999994,
+          "endSec": 62.349999999999994,
           "seconds": 0.5
         },
         {
           "type": "tts",
-          "startSec": 59.95,
-          "endSec": 67.2,
+          "startSec": 62.349999999999994,
+          "endSec": 69.1,
           "text": "The more powerful the actor, the more critical the guardrails. AI isn't special — it's just newer.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/the-pattern-repeats-across-domains--patterns--tts--f68e21377f32--1.wav",
-          "durationSec": 7.25,
-          "rawDurationSec": 7.25,
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/the-pattern-repeats-across-domains--patterns--tts--f68e21377f32--1.wav",
+          "durationSec": 6.75,
+          "rawDurationSec": 6.75,
           "trimEndSec": 0
         }
       ]
@@ -168,50 +168,50 @@
     {
       "type": "tts",
       "sceneId": "the-prompt-engineering-ceiling",
-      "cueId": "prompt-ceiling",
-      "startSec": 67.2,
-      "endSec": 90.50000000000001,
+      "cueId": "prompt_ceiling",
+      "startSec": 69.6,
+      "endSec": 92.35000000000001,
       "segments": [
         {
           "type": "tts",
-          "startSec": 67.2,
-          "endSec": 71.35000000000001,
+          "startSec": 69.6,
+          "endSec": 73.75,
           "text": "Prompts matter. They shape behavior and reduce error rates.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/the-prompt-engineering-ceiling--prompt-ceiling--tts--e8a55721bf05--1.wav",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/the-prompt-engineering-ceiling--prompt_ceiling--tts--a9bb471f1feb--1.wav",
           "durationSec": 4.15,
           "rawDurationSec": 4.15,
           "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 71.35000000000001,
-          "endSec": 71.75000000000001,
+          "startSec": 73.75,
+          "endSec": 74.15,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 71.75000000000001,
-          "endSec": 83.65000000000002,
+          "startSec": 74.15,
+          "endSec": 86.10000000000001,
           "text": "But prompts are suggestions, not controls. When an agent has access to powerful tools, you eventually hit a ceiling. You can make failure less likely, but you can't make it vanish.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/the-prompt-engineering-ceiling--prompt-ceiling--tts--bb26601497c8--1.wav",
-          "durationSec": 11.9,
-          "rawDurationSec": 11.9,
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/the-prompt-engineering-ceiling--prompt_ceiling--tts--9a03b2d6ccc4--1.wav",
+          "durationSec": 11.95,
+          "rawDurationSec": 11.95,
           "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 83.65000000000002,
-          "endSec": 84.15000000000002,
+          "startSec": 86.10000000000001,
+          "endSec": 86.60000000000001,
           "seconds": 0.5
         },
         {
           "type": "tts",
-          "startSec": 84.15000000000002,
-          "endSec": 90.50000000000001,
+          "startSec": 86.60000000000001,
+          "endSec": 92.35000000000001,
           "text": "Production safety can't be built out of suggestions alone. You need enforceable boundaries.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/the-prompt-engineering-ceiling--prompt-ceiling--tts--53186220a064--1.wav",
-          "durationSec": 6.35,
-          "rawDurationSec": 6.35,
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/the-prompt-engineering-ceiling--prompt_ceiling--tts--e1a729d66f89--1.wav",
+          "durationSec": 5.75,
+          "rawDurationSec": 5.75,
           "trimEndSec": 0
         }
       ]
@@ -219,50 +219,50 @@
     {
       "type": "tts",
       "sceneId": "the-manual-assembly-problem",
-      "cueId": "manual-assembly",
-      "startSec": 90.50000000000001,
-      "endSec": 115.95000000000002,
+      "cueId": "manual_assembly",
+      "startSec": 92.85000000000001,
+      "endSec": 119.25000000000001,
       "segments": [
         {
           "type": "tts",
-          "startSec": 90.50000000000001,
-          "endSec": 99.85000000000001,
+          "startSec": 92.85000000000001,
+          "endSec": 102.75000000000001,
           "text": "The best teams already add guardrails in Python: schemas, validation, retries, approval gates, sandboxing, and secrets hygiene.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/the-manual-assembly-problem--manual-assembly--tts--fd1040e6b583--1.wav",
-          "durationSec": 9.35,
-          "rawDurationSec": 9.35,
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/the-manual-assembly-problem--manual_assembly--tts--9ecf8f409c56--1.wav",
+          "durationSec": 9.9,
+          "rawDurationSec": 9.9,
           "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 99.85000000000001,
-          "endSec": 100.25000000000001,
+          "startSec": 102.75000000000001,
+          "endSec": 103.15000000000002,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 100.25000000000001,
-          "endSec": 110.80000000000001,
+          "startSec": 103.15000000000002,
+          "endSec": 113.70000000000002,
           "text": "The problem isn't that people don't know guardrails matter. The problem is that when you assemble everything by convention across mismatched systems, it's easy to miss a layer.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/the-manual-assembly-problem--manual-assembly--tts--10d6a9bb2f97--1.wav",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/the-manual-assembly-problem--manual_assembly--tts--10c782460713--1.wav",
           "durationSec": 10.55,
           "rawDurationSec": 10.55,
           "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 110.80000000000001,
-          "endSec": 111.25000000000001,
+          "startSec": 113.70000000000002,
+          "endSec": 114.15000000000002,
           "seconds": 0.45
         },
         {
           "type": "tts",
-          "startSec": 111.25000000000001,
-          "endSec": 115.95000000000002,
+          "startSec": 114.15000000000002,
+          "endSec": 119.25000000000001,
           "text": "Missing a layer won't feel like a mistake until it becomes an incident.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/the-manual-assembly-problem--manual-assembly--tts--b6d4b7ce16ed--1.wav",
-          "durationSec": 4.7,
-          "rawDurationSec": 4.7,
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/the-manual-assembly-problem--manual_assembly--tts--02bb5e73d9d4--1.wav",
+          "durationSec": 5.1,
+          "rawDurationSec": 5.1,
           "trimEndSec": 0
         }
       ]
@@ -270,152 +270,152 @@
     {
       "type": "tts",
       "sceneId": "guardrails-as-first-class-architecture",
-      "cueId": "defense-in-depth",
-      "startSec": 115.95000000000002,
-      "endSec": 189.99999999999997,
+      "cueId": "defense_in_depth",
+      "startSec": 119.75000000000001,
+      "endSec": 191.8,
       "segments": [
         {
           "type": "tts",
-          "startSec": 115.95000000000002,
-          "endSec": 126.80000000000001,
+          "startSec": 119.75000000000001,
+          "endSec": 128.45000000000002,
           "text": "This is the philosophy behind Tactus. Guardrails are not add-ons you bolt on later. They're architectural decisions baked into the execution model.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense-in-depth--tts--34e9b9edd012--1.wav",
-          "durationSec": 10.85,
-          "rawDurationSec": 10.85,
-          "trimEndSec": 0
-        },
-        {
-          "type": "pause",
-          "startSec": 126.80000000000001,
-          "endSec": 127.30000000000001,
-          "seconds": 0.5
-        },
-        {
-          "type": "tts",
-          "startSec": 127.30000000000001,
-          "endSec": 135.70000000000002,
-          "text": "No single technique solves everything. Guardrails work as defense in depth: layers that each reduce a different class of risk.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense-in-depth--tts--2f1a256d09a4--1.wav",
-          "durationSec": 8.4,
-          "rawDurationSec": 8.4,
-          "trimEndSec": 0
-        },
-        {
-          "type": "pause",
-          "startSec": 135.70000000000002,
-          "endSec": 136.10000000000002,
-          "seconds": 0.4
-        },
-        {
-          "type": "tts",
-          "startSec": 136.10000000000002,
-          "endSec": 143.40000000000003,
-          "text": "At the top: cost and limits. Hard quotas prevent runaway loops before they become billing nightmares.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense-in-depth--tts--086cb1eded16--1.wav",
-          "durationSec": 7.3,
-          "rawDurationSec": 7.3,
-          "trimEndSec": 0
-        },
-        {
-          "type": "pause",
-          "startSec": 143.40000000000003,
-          "endSec": 143.75000000000003,
-          "seconds": 0.35
-        },
-        {
-          "type": "tts",
-          "startSec": 143.75000000000003,
-          "endSec": 151.30000000000004,
-          "text": "Prompt engineering. Structured instructions guide behavior and reduce error rates.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense-in-depth--tts--628e932ca663--1.wav",
-          "durationSec": 7.55,
-          "rawDurationSec": 7.55,
-          "trimEndSec": 0
-        },
-        {
-          "type": "pause",
-          "startSec": 151.30000000000004,
-          "endSec": 151.65000000000003,
-          "seconds": 0.35
-        },
-        {
-          "type": "tts",
-          "startSec": 151.65000000000003,
-          "endSec": 158.85000000000002,
-          "text": "Context engineering. Curated context ensures the model has the right information, not just all information.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense-in-depth--tts--6ae9d3444f57--1.wav",
-          "durationSec": 7.2,
-          "rawDurationSec": 7.2,
-          "trimEndSec": 0
-        },
-        {
-          "type": "pause",
-          "startSec": 158.85000000000002,
-          "endSec": 159.20000000000002,
-          "seconds": 0.35
-        },
-        {
-          "type": "tts",
-          "startSec": 159.20000000000002,
-          "endSec": 165.8,
-          "text": "Model selection. Choose and fine-tune models for specific capabilities and safety profiles.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense-in-depth--tts--051521b7787e--1.wav",
-          "durationSec": 6.6,
-          "rawDurationSec": 6.6,
-          "trimEndSec": 0
-        },
-        {
-          "type": "pause",
-          "startSec": 165.8,
-          "endSec": 166.15,
-          "seconds": 0.35
-        },
-        {
-          "type": "tts",
-          "startSec": 166.15,
-          "endSec": 172.65,
-          "text": "Tool selection. Give the agent only the capabilities it needs, and stage access over time.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense-in-depth--tts--688f8c180900--1.wav",
-          "durationSec": 6.5,
-          "rawDurationSec": 6.5,
-          "trimEndSec": 0
-        },
-        {
-          "type": "pause",
-          "startSec": 172.65,
-          "endSec": 173,
-          "seconds": 0.35
-        },
-        {
-          "type": "tts",
-          "startSec": 173,
-          "endSec": 180.6,
-          "text": "Code sandboxing. Isolated execution environments prevent unauthorized system access.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense-in-depth--tts--c0579b5ad55d--1.wav",
-          "durationSec": 7.6,
-          "rawDurationSec": 7.6,
-          "trimEndSec": 0
-        },
-        {
-          "type": "pause",
-          "startSec": 180.6,
-          "endSec": 180.95,
-          "seconds": 0.35
-        },
-        {
-          "type": "tts",
-          "startSec": 180.95,
-          "endSec": 189.64999999999998,
-          "text": "Container isolation. Ephemeral containers constrain what the runtime can touch and firewall side effects inside the container.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense-in-depth--tts--75780202fece--1.wav",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense_in_depth--tts--09e041dffcdc--1.wav",
           "durationSec": 8.7,
           "rawDurationSec": 8.7,
           "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 189.64999999999998,
-          "endSec": 189.99999999999997,
+          "startSec": 128.45000000000002,
+          "endSec": 128.95000000000002,
+          "seconds": 0.5
+        },
+        {
+          "type": "tts",
+          "startSec": 128.95000000000002,
+          "endSec": 137.60000000000002,
+          "text": "No single technique solves everything. Guardrails work as defense in depth: layers that each reduce a different class of risk.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense_in_depth--tts--98b3de517ad1--1.wav",
+          "durationSec": 8.65,
+          "rawDurationSec": 8.65,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 137.60000000000002,
+          "endSec": 138.00000000000003,
+          "seconds": 0.4
+        },
+        {
+          "type": "tts",
+          "startSec": 138.00000000000003,
+          "endSec": 145.30000000000004,
+          "text": "At the top: cost and limits. Hard quotas prevent runaway loops before they become billing nightmares.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense_in_depth--tts--45a45af2b6fb--1.wav",
+          "durationSec": 7.3,
+          "rawDurationSec": 7.3,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 145.30000000000004,
+          "endSec": 145.65000000000003,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 145.65000000000003,
+          "endSec": 151.95000000000005,
+          "text": "Prompt engineering. Structured instructions guide behavior and reduce error rates.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense_in_depth--tts--cafeabdf4afd--1.wav",
+          "durationSec": 6.3,
+          "rawDurationSec": 6.3,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 151.95000000000005,
+          "endSec": 152.30000000000004,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 152.30000000000004,
+          "endSec": 160.20000000000005,
+          "text": "Context engineering. Curated context ensures the model has the right information, not just all information.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense_in_depth--tts--b283bc443874--1.wav",
+          "durationSec": 7.9,
+          "rawDurationSec": 7.9,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 160.20000000000005,
+          "endSec": 160.55000000000004,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 160.55000000000004,
+          "endSec": 167.15000000000003,
+          "text": "Model selection. Choose and fine-tune models for specific capabilities and safety profiles.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense_in_depth--tts--fa1336c21322--1.wav",
+          "durationSec": 6.6,
+          "rawDurationSec": 6.6,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 167.15000000000003,
+          "endSec": 167.50000000000003,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 167.50000000000003,
+          "endSec": 175.60000000000002,
+          "text": "Tool selection. Give the agent only the capabilities it needs, and stage access over time.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense_in_depth--tts--61d8d5666fe0--1.wav",
+          "durationSec": 8.1,
+          "rawDurationSec": 8.1,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 175.60000000000002,
+          "endSec": 175.95000000000002,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 175.95000000000002,
+          "endSec": 182.20000000000002,
+          "text": "Code sandboxing. Isolated execution environments prevent unauthorized system access.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense_in_depth--tts--1a3c05e1583d--1.wav",
+          "durationSec": 6.25,
+          "rawDurationSec": 6.25,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 182.20000000000002,
+          "endSec": 182.55,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 182.55,
+          "endSec": 191.45000000000002,
+          "text": "Container isolation. Ephemeral containers constrain what the runtime can touch and firewall side effects inside the container.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense_in_depth--tts--b1d0e3dedcad--1.wav",
+          "durationSec": 8.9,
+          "rawDurationSec": 8.9,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 191.45000000000002,
+          "endSec": 191.8,
           "seconds": 0.35
         }
       ]
@@ -423,98 +423,98 @@
     {
       "type": "tts",
       "sceneId": "least-privilege-by-design",
-      "cueId": "least-privilege",
-      "startSec": 189.99999999999997,
-      "endSec": 224.54999999999995,
+      "cueId": "least_privilege",
+      "startSec": 192.3,
+      "endSec": 225.99999999999997,
       "segments": [
         {
           "type": "tts",
-          "startSec": 189.99999999999997,
-          "endSec": 194.74999999999997,
+          "startSec": 192.3,
+          "endSec": 197.55,
           "text": "Tactus enforces least privilege by design, across multiple dimensions.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/least-privilege-by-design--least-privilege--tts--9ea92ba353a3--1.wav",
-          "durationSec": 4.75,
-          "rawDurationSec": 4.75,
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/least-privilege-by-design--least_privilege--tts--9c641a1619eb--1.wav",
+          "durationSec": 5.25,
+          "rawDurationSec": 5.25,
           "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 194.74999999999997,
-          "endSec": 195.14999999999998,
+          "startSec": 197.55,
+          "endSec": 197.95000000000002,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 195.14999999999998,
-          "endSec": 201.29999999999998,
+          "startSec": 197.95000000000002,
+          "endSec": 203.4,
           "text": "Minimal toolsets: agents get only the tools they need, not a kitchen sink.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/least-privilege-by-design--least-privilege--tts--ca83106ebde4--1.wav",
-          "durationSec": 6.15,
-          "rawDurationSec": 6.15,
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/least-privilege-by-design--least_privilege--tts--1b0a5aee7516--1.wav",
+          "durationSec": 5.45,
+          "rawDurationSec": 5.45,
           "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 201.29999999999998,
-          "endSec": 201.64999999999998,
+          "startSec": 203.4,
+          "endSec": 203.75,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 201.64999999999998,
-          "endSec": 206.45,
+          "startSec": 203.75,
+          "endSec": 208.6,
           "text": "Curated context: relevant information only, not everything.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/least-privilege-by-design--least-privilege--tts--2d6bf941af66--1.wav",
-          "durationSec": 4.8,
-          "rawDurationSec": 4.8,
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/least-privilege-by-design--least_privilege--tts--594d4f88c1fd--1.wav",
+          "durationSec": 4.85,
+          "rawDurationSec": 4.85,
           "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 206.45,
-          "endSec": 206.79999999999998,
+          "startSec": 208.6,
+          "endSec": 208.95,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 206.79999999999998,
-          "endSec": 211.74999999999997,
+          "startSec": 208.95,
+          "endSec": 213.39999999999998,
           "text": "Network isolation: the runtime is networkless by default.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/least-privilege-by-design--least-privilege--tts--09634ad4512f--1.wav",
-          "durationSec": 4.95,
-          "rawDurationSec": 4.95,
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/least-privilege-by-design--least_privilege--tts--a89fcf646b3b--1.wav",
+          "durationSec": 4.45,
+          "rawDurationSec": 4.45,
           "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 211.74999999999997,
-          "endSec": 212.09999999999997,
+          "startSec": 213.39999999999998,
+          "endSec": 213.74999999999997,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 212.09999999999997,
-          "endSec": 218.69999999999996,
+          "startSec": 213.74999999999997,
+          "endSec": 220.29999999999998,
           "text": "Secretless broker: credentials stay outside, the agent requests work but never holds keys.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/least-privilege-by-design--least-privilege--tts--ed315d21f0e6--1.wav",
-          "durationSec": 6.6,
-          "rawDurationSec": 6.6,
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/least-privilege-by-design--least_privilege--tts--8f477f9af25c--1.wav",
+          "durationSec": 6.55,
+          "rawDurationSec": 6.55,
           "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 218.69999999999996,
-          "endSec": 219.04999999999995,
+          "startSec": 220.29999999999998,
+          "endSec": 220.64999999999998,
           "seconds": 0.35
         },
         {
           "type": "tts",
-          "startSec": 219.04999999999995,
-          "endSec": 224.54999999999995,
+          "startSec": 220.64999999999998,
+          "endSec": 225.99999999999997,
           "text": "Temporal gating: tools become available only when the workflow stage requires them.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/least-privilege-by-design--least-privilege--tts--5b9e4f312f16--1.wav",
-          "durationSec": 5.5,
-          "rawDurationSec": 5.5,
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/least-privilege-by-design--least_privilege--tts--693856deaf54--1.wav",
+          "durationSec": 5.35,
+          "rawDurationSec": 5.35,
           "trimEndSec": 0
         }
       ]
@@ -522,66 +522,66 @@
     {
       "type": "tts",
       "sceneId": "sandboxing-a-secretless-broker-boundary",
-      "cueId": "sandbox-broker",
-      "startSec": 224.54999999999995,
-      "endSec": 276.0999999999999,
+      "cueId": "sandbox_broker",
+      "startSec": 226.49999999999997,
+      "endSec": 280.7,
       "segments": [
         {
           "type": "tts",
-          "startSec": 224.54999999999995,
-          "endSec": 237.89999999999995,
+          "startSec": 226.49999999999997,
+          "endSec": 239.99999999999997,
           "text": "Once you let an agent write files or run code, you want a cage. Tactus runs orchestration inside a sandboxed Lua environment, and when sandboxing is enabled, inside an ephemeral container.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/sandboxing-a-secretless-broker-boundary--sandbox-broker--tts--9b8017c1bfea--1.wav",
-          "durationSec": 13.35,
-          "rawDurationSec": 13.35,
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/sandboxing-a-secretless-broker-boundary--sandbox_broker--tts--eaec95fc5098--1.wav",
+          "durationSec": 13.5,
+          "rawDurationSec": 13.5,
           "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 237.89999999999995,
-          "endSec": 238.39999999999995,
+          "startSec": 239.99999999999997,
+          "endSec": 240.49999999999997,
           "seconds": 0.5
         },
         {
           "type": "tts",
-          "startSec": 238.39999999999995,
-          "endSec": 246.94999999999996,
+          "startSec": 240.49999999999997,
+          "endSec": 249.14999999999998,
           "text": "But containers answer only one security question: what can it touch? The other question is: what can it steal?",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/sandboxing-a-secretless-broker-boundary--sandbox-broker--tts--95c57366fdaa--1.wav",
-          "durationSec": 8.55,
-          "rawDurationSec": 8.55,
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/sandboxing-a-secretless-broker-boundary--sandbox_broker--tts--5fa31c66453d--1.wav",
+          "durationSec": 8.65,
+          "rawDurationSec": 8.65,
           "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 246.94999999999996,
-          "endSec": 247.44999999999996,
+          "startSec": 249.14999999999998,
+          "endSec": 249.64999999999998,
           "seconds": 0.5
         },
         {
           "type": "tts",
-          "startSec": 247.44999999999996,
-          "endSec": 261.44999999999993,
+          "startSec": 249.64999999999998,
+          "endSec": 265.75,
           "text": "The broker boundary is the game changer. Keep the runtime secretless and networkless by default. The sandbox can request tool calls, but it never holds provider keys. The keys live outside the sandbox, in a trusted broker.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/sandboxing-a-secretless-broker-boundary--sandbox-broker--tts--ff70fecc9fc0--1.wav",
-          "durationSec": 14,
-          "rawDurationSec": 14,
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/sandboxing-a-secretless-broker-boundary--sandbox_broker--tts--8b29e2c300a9--1.wav",
+          "durationSec": 16.1,
+          "rawDurationSec": 16.1,
           "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 261.44999999999993,
-          "endSec": 261.8999999999999,
+          "startSec": 265.75,
+          "endSec": 266.2,
           "seconds": 0.45
         },
         {
           "type": "tts",
-          "startSec": 261.8999999999999,
-          "endSec": 276.0999999999999,
+          "startSec": 266.2,
+          "endSec": 280.7,
           "text": "This is the security model: don't make secrets hard to steal—make sure there are no secrets inside the runtime to steal. It's like letting a burglar into an empty building. Even if they get in, there's nothing valuable to take.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/sandboxing-a-secretless-broker-boundary--sandbox-broker--tts--48df0a8f7639--1.wav",
-          "durationSec": 14.2,
-          "rawDurationSec": 14.2,
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/sandboxing-a-secretless-broker-boundary--sandbox_broker--tts--59d6e16c2aab--1.wav",
+          "durationSec": 14.5,
+          "rawDurationSec": 14.5,
           "trimEndSec": 0
         }
       ]
@@ -589,50 +589,50 @@
     {
       "type": "tts",
       "sceneId": "a-concrete-example",
-      "cueId": "recap-emails",
-      "startSec": 276.0999999999999,
-      "endSec": 301.0999999999999,
+      "cueId": "recap_emails",
+      "startSec": 281.2,
+      "endSec": 308.19999999999993,
       "segments": [
         {
           "type": "tts",
-          "startSec": 276.0999999999999,
-          "endSec": 280.94999999999993,
+          "startSec": 281.2,
+          "endSec": 287.84999999999997,
           "text": "Consider a workflow that drafts and sends recap emails from meeting notes.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/a-concrete-example--recap-emails--tts--e0a141e0a1ba--1.wav",
-          "durationSec": 4.85,
-          "rawDurationSec": 4.85,
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/a-concrete-example--recap_emails--tts--836bdb8b4e70--1.wav",
+          "durationSec": 6.65,
+          "rawDurationSec": 6.65,
           "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 280.94999999999993,
-          "endSec": 281.3499999999999,
+          "startSec": 287.84999999999997,
+          "endSec": 288.24999999999994,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 281.3499999999999,
-          "endSec": 288.5999999999999,
+          "startSec": 288.24999999999994,
+          "endSec": 295.6499999999999,
           "text": "Without guardrails, you either supervise every run, or you give the agent side-effect tools and accept unacceptable risk.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/a-concrete-example--recap-emails--tts--c8010d1a0559--1.wav",
-          "durationSec": 7.25,
-          "rawDurationSec": 7.25,
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/a-concrete-example--recap_emails--tts--10f87d93c3e0--1.wav",
+          "durationSec": 7.4,
+          "rawDurationSec": 7.4,
           "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 288.5999999999999,
-          "endSec": 289.0499999999999,
+          "startSec": 295.6499999999999,
+          "endSec": 296.0999999999999,
           "seconds": 0.45
         },
         {
           "type": "tts",
-          "startSec": 289.0499999999999,
-          "endSec": 301.0999999999999,
+          "startSec": 296.0999999999999,
+          "endSec": 308.19999999999993,
           "text": "With staged tools and durable approvals, the agent drafts with read-only tools, a human reviews at a checkpoint, and only after approval does the send tool become available.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/a-concrete-example--recap-emails--tts--dcb6b5d500e8--1.wav",
-          "durationSec": 12.05,
-          "rawDurationSec": 12.05,
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/a-concrete-example--recap_emails--tts--53cf28ad0790--1.wav",
+          "durationSec": 12.1,
+          "rawDurationSec": 12.1,
           "trimEndSec": 0
         }
       ]
@@ -641,49 +641,49 @@
       "type": "tts",
       "sceneId": "closing",
       "cueId": "closing",
-      "startSec": 301.0999999999999,
-      "endSec": 323.14999999999986,
+      "startSec": 308.69999999999993,
+      "endSec": 328.79999999999995,
       "segments": [
         {
           "type": "tts",
-          "startSec": 301.0999999999999,
-          "endSec": 305.44999999999993,
+          "startSec": 308.69999999999993,
+          "endSec": 312.99999999999994,
           "text": "Guardrails aren't a tax. They're the engine of delegation.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/closing--closing--tts--889b1ab603ee--1.wav",
-          "durationSec": 4.35,
-          "rawDurationSec": 4.35,
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/closing--closing--tts--889b1ab603ee--1.wav",
+          "durationSec": 4.3,
+          "rawDurationSec": 4.3,
           "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 305.44999999999993,
-          "endSec": 305.8499999999999,
+          "startSec": 312.99999999999994,
+          "endSec": 313.3999999999999,
           "seconds": 0.4
         },
         {
           "type": "tts",
-          "startSec": 305.8499999999999,
-          "endSec": 316.2499999999999,
+          "startSec": 313.3999999999999,
+          "endSec": 322.99999999999994,
           "text": "The race car needs brakes. The surgeon needs protocols. The organization needs governance. The agent needs guardrails.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/closing--closing--tts--0041e823ed1f--1.wav",
-          "durationSec": 10.4,
-          "rawDurationSec": 10.4,
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/closing--closing--tts--0041e823ed1f--1.wav",
+          "durationSec": 9.6,
+          "rawDurationSec": 9.6,
           "trimEndSec": 0
         },
         {
           "type": "pause",
-          "startSec": 316.2499999999999,
-          "endSec": 316.7499999999999,
+          "startSec": 322.99999999999994,
+          "endSec": 323.49999999999994,
           "seconds": 0.5
         },
         {
           "type": "tts",
-          "startSec": 316.7499999999999,
-          "endSec": 323.14999999999986,
+          "startSec": 323.49999999999994,
+          "endSec": 328.79999999999995,
           "text": "Read the full story at tactus dot run slash guardrails.",
-          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.babulus/out/guardrails-for-agent-autonomy/env/development/segments/closing--closing--tts--6e163f125717--1.wav",
-          "durationSec": 6.4,
-          "rawDurationSec": 6.4,
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/guardrails-for-agent-autonomy/env/development/segments/closing--closing--tts--6e163f125717--1.wav",
+          "durationSec": 5.3,
+          "rawDurationSec": 5.3,
           "trimEndSec": 0
         }
       ]
@@ -699,320 +699,320 @@
             "id": "guardrails-for-agent-autonomy--title--tts--78f0a1143163--1",
             "kind": "file",
             "startSec": 0.95,
-            "durationSec": 2.7,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/guardrails-for-agent-autonomy--title--tts--78f0a1143163--1.wav",
+            "durationSec": 3.05,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/guardrails-for-agent-autonomy--title--tts--78f0a1143163--1.wav",
             "volume": 1
           },
           {
             "id": "guardrails-for-agent-autonomy--title--tts--1e0164f35325--1",
             "kind": "file",
-            "startSec": 4.1000000000000005,
-            "durationSec": 3.55,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/guardrails-for-agent-autonomy--title--tts--1e0164f35325--1.wav",
+            "startSec": 4.45,
+            "durationSec": 3.3,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/guardrails-for-agent-autonomy--title--tts--1e0164f35325--1.wav",
             "volume": 1
           },
           {
             "id": "the-paradox-of-power--brakes--tts--0853b7619093--1",
             "kind": "file",
-            "startSec": 7.65,
-            "durationSec": 7.6,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/the-paradox-of-power--brakes--tts--0853b7619093--1.wav",
+            "startSec": 8.25,
+            "durationSec": 9.05,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/the-paradox-of-power--brakes--tts--0853b7619093--1.wav",
             "volume": 1
           },
           {
             "id": "the-paradox-of-power--brakes--tts--8ec4bcd4d970--1",
             "kind": "file",
-            "startSec": 15.75,
+            "startSec": 17.8,
             "durationSec": 2.6,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/the-paradox-of-power--brakes--tts--8ec4bcd4d970--1.wav",
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/the-paradox-of-power--brakes--tts--8ec4bcd4d970--1.wav",
             "volume": 1
           },
           {
             "id": "the-paradox-of-power--brakes--tts--c1974e8b1880--1",
             "kind": "file",
-            "startSec": 18.8,
-            "durationSec": 8.6,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/the-paradox-of-power--brakes--tts--c1974e8b1880--1.wav",
+            "startSec": 20.85,
+            "durationSec": 7.9,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/the-paradox-of-power--brakes--tts--c1974e8b1880--1.wav",
             "volume": 1
           },
           {
             "id": "the-paradox-of-power--brakes--tts--9c110feb245e--1",
             "kind": "file",
-            "startSec": 27.95,
-            "durationSec": 8.65,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/the-paradox-of-power--brakes--tts--9c110feb245e--1.wav",
+            "startSec": 29.3,
+            "durationSec": 7.85,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/the-paradox-of-power--brakes--tts--9c110feb245e--1.wav",
             "volume": 1
           },
           {
             "id": "the-pattern-repeats-across-domains--patterns--tts--0e4f9bf9b5f9--1",
             "kind": "file",
-            "startSec": 36.6,
-            "durationSec": 5.5,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/the-pattern-repeats-across-domains--patterns--tts--0e4f9bf9b5f9--1.wav",
+            "startSec": 37.65,
+            "durationSec": 6.6,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/the-pattern-repeats-across-domains--patterns--tts--0e4f9bf9b5f9--1.wav",
             "volume": 1
           },
           {
             "id": "the-pattern-repeats-across-domains--patterns--tts--bfa07ec3af11--1",
             "kind": "file",
-            "startSec": 42.5,
-            "durationSec": 16.95,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/the-pattern-repeats-across-domains--patterns--tts--bfa07ec3af11--1.wav",
+            "startSec": 44.65,
+            "durationSec": 17.2,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/the-pattern-repeats-across-domains--patterns--tts--bfa07ec3af11--1.wav",
             "volume": 1
           },
           {
             "id": "the-pattern-repeats-across-domains--patterns--tts--f68e21377f32--1",
             "kind": "file",
-            "startSec": 59.95,
-            "durationSec": 7.25,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/the-pattern-repeats-across-domains--patterns--tts--f68e21377f32--1.wav",
+            "startSec": 62.349999999999994,
+            "durationSec": 6.75,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/the-pattern-repeats-across-domains--patterns--tts--f68e21377f32--1.wav",
             "volume": 1
           },
           {
-            "id": "the-prompt-engineering-ceiling--prompt-ceiling--tts--e8a55721bf05--1",
+            "id": "the-prompt-engineering-ceiling--prompt_ceiling--tts--a9bb471f1feb--1",
             "kind": "file",
-            "startSec": 67.2,
+            "startSec": 69.6,
             "durationSec": 4.15,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/the-prompt-engineering-ceiling--prompt-ceiling--tts--e8a55721bf05--1.wav",
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/the-prompt-engineering-ceiling--prompt_ceiling--tts--a9bb471f1feb--1.wav",
             "volume": 1
           },
           {
-            "id": "the-prompt-engineering-ceiling--prompt-ceiling--tts--bb26601497c8--1",
+            "id": "the-prompt-engineering-ceiling--prompt_ceiling--tts--9a03b2d6ccc4--1",
             "kind": "file",
-            "startSec": 71.75000000000001,
-            "durationSec": 11.9,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/the-prompt-engineering-ceiling--prompt-ceiling--tts--bb26601497c8--1.wav",
+            "startSec": 74.15,
+            "durationSec": 11.95,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/the-prompt-engineering-ceiling--prompt_ceiling--tts--9a03b2d6ccc4--1.wav",
             "volume": 1
           },
           {
-            "id": "the-prompt-engineering-ceiling--prompt-ceiling--tts--53186220a064--1",
+            "id": "the-prompt-engineering-ceiling--prompt_ceiling--tts--e1a729d66f89--1",
             "kind": "file",
-            "startSec": 84.15000000000002,
-            "durationSec": 6.35,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/the-prompt-engineering-ceiling--prompt-ceiling--tts--53186220a064--1.wav",
+            "startSec": 86.60000000000001,
+            "durationSec": 5.75,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/the-prompt-engineering-ceiling--prompt_ceiling--tts--e1a729d66f89--1.wav",
             "volume": 1
           },
           {
-            "id": "the-manual-assembly-problem--manual-assembly--tts--fd1040e6b583--1",
+            "id": "the-manual-assembly-problem--manual_assembly--tts--9ecf8f409c56--1",
             "kind": "file",
-            "startSec": 90.50000000000001,
-            "durationSec": 9.35,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/the-manual-assembly-problem--manual-assembly--tts--fd1040e6b583--1.wav",
+            "startSec": 92.85000000000001,
+            "durationSec": 9.9,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/the-manual-assembly-problem--manual_assembly--tts--9ecf8f409c56--1.wav",
             "volume": 1
           },
           {
-            "id": "the-manual-assembly-problem--manual-assembly--tts--10d6a9bb2f97--1",
+            "id": "the-manual-assembly-problem--manual_assembly--tts--10c782460713--1",
             "kind": "file",
-            "startSec": 100.25000000000001,
+            "startSec": 103.15000000000002,
             "durationSec": 10.55,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/the-manual-assembly-problem--manual-assembly--tts--10d6a9bb2f97--1.wav",
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/the-manual-assembly-problem--manual_assembly--tts--10c782460713--1.wav",
             "volume": 1
           },
           {
-            "id": "the-manual-assembly-problem--manual-assembly--tts--b6d4b7ce16ed--1",
+            "id": "the-manual-assembly-problem--manual_assembly--tts--02bb5e73d9d4--1",
             "kind": "file",
-            "startSec": 111.25000000000001,
-            "durationSec": 4.7,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/the-manual-assembly-problem--manual-assembly--tts--b6d4b7ce16ed--1.wav",
+            "startSec": 114.15000000000002,
+            "durationSec": 5.1,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/the-manual-assembly-problem--manual_assembly--tts--02bb5e73d9d4--1.wav",
             "volume": 1
           },
           {
-            "id": "guardrails-as-first-class-architecture--defense-in-depth--tts--34e9b9edd012--1",
+            "id": "guardrails-as-first-class-architecture--defense_in_depth--tts--09e041dffcdc--1",
             "kind": "file",
-            "startSec": 115.95000000000002,
-            "durationSec": 10.85,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense-in-depth--tts--34e9b9edd012--1.wav",
-            "volume": 1
-          },
-          {
-            "id": "guardrails-as-first-class-architecture--defense-in-depth--tts--2f1a256d09a4--1",
-            "kind": "file",
-            "startSec": 127.30000000000001,
-            "durationSec": 8.4,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense-in-depth--tts--2f1a256d09a4--1.wav",
-            "volume": 1
-          },
-          {
-            "id": "guardrails-as-first-class-architecture--defense-in-depth--tts--086cb1eded16--1",
-            "kind": "file",
-            "startSec": 136.10000000000002,
-            "durationSec": 7.3,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense-in-depth--tts--086cb1eded16--1.wav",
-            "volume": 1
-          },
-          {
-            "id": "guardrails-as-first-class-architecture--defense-in-depth--tts--628e932ca663--1",
-            "kind": "file",
-            "startSec": 143.75000000000003,
-            "durationSec": 7.55,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense-in-depth--tts--628e932ca663--1.wav",
-            "volume": 1
-          },
-          {
-            "id": "guardrails-as-first-class-architecture--defense-in-depth--tts--6ae9d3444f57--1",
-            "kind": "file",
-            "startSec": 151.65000000000003,
-            "durationSec": 7.2,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense-in-depth--tts--6ae9d3444f57--1.wav",
-            "volume": 1
-          },
-          {
-            "id": "guardrails-as-first-class-architecture--defense-in-depth--tts--051521b7787e--1",
-            "kind": "file",
-            "startSec": 159.20000000000002,
-            "durationSec": 6.6,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense-in-depth--tts--051521b7787e--1.wav",
-            "volume": 1
-          },
-          {
-            "id": "guardrails-as-first-class-architecture--defense-in-depth--tts--688f8c180900--1",
-            "kind": "file",
-            "startSec": 166.15,
-            "durationSec": 6.5,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense-in-depth--tts--688f8c180900--1.wav",
-            "volume": 1
-          },
-          {
-            "id": "guardrails-as-first-class-architecture--defense-in-depth--tts--c0579b5ad55d--1",
-            "kind": "file",
-            "startSec": 173,
-            "durationSec": 7.6,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense-in-depth--tts--c0579b5ad55d--1.wav",
-            "volume": 1
-          },
-          {
-            "id": "guardrails-as-first-class-architecture--defense-in-depth--tts--75780202fece--1",
-            "kind": "file",
-            "startSec": 180.95,
+            "startSec": 119.75000000000001,
             "durationSec": 8.7,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense-in-depth--tts--75780202fece--1.wav",
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense_in_depth--tts--09e041dffcdc--1.wav",
             "volume": 1
           },
           {
-            "id": "least-privilege-by-design--least-privilege--tts--9ea92ba353a3--1",
+            "id": "guardrails-as-first-class-architecture--defense_in_depth--tts--98b3de517ad1--1",
             "kind": "file",
-            "startSec": 189.99999999999997,
-            "durationSec": 4.75,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/least-privilege-by-design--least-privilege--tts--9ea92ba353a3--1.wav",
+            "startSec": 128.95000000000002,
+            "durationSec": 8.65,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense_in_depth--tts--98b3de517ad1--1.wav",
             "volume": 1
           },
           {
-            "id": "least-privilege-by-design--least-privilege--tts--ca83106ebde4--1",
+            "id": "guardrails-as-first-class-architecture--defense_in_depth--tts--45a45af2b6fb--1",
             "kind": "file",
-            "startSec": 195.14999999999998,
-            "durationSec": 6.15,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/least-privilege-by-design--least-privilege--tts--ca83106ebde4--1.wav",
+            "startSec": 138.00000000000003,
+            "durationSec": 7.3,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense_in_depth--tts--45a45af2b6fb--1.wav",
             "volume": 1
           },
           {
-            "id": "least-privilege-by-design--least-privilege--tts--2d6bf941af66--1",
+            "id": "guardrails-as-first-class-architecture--defense_in_depth--tts--cafeabdf4afd--1",
             "kind": "file",
-            "startSec": 201.64999999999998,
-            "durationSec": 4.8,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/least-privilege-by-design--least-privilege--tts--2d6bf941af66--1.wav",
+            "startSec": 145.65000000000003,
+            "durationSec": 6.3,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense_in_depth--tts--cafeabdf4afd--1.wav",
             "volume": 1
           },
           {
-            "id": "least-privilege-by-design--least-privilege--tts--09634ad4512f--1",
+            "id": "guardrails-as-first-class-architecture--defense_in_depth--tts--b283bc443874--1",
             "kind": "file",
-            "startSec": 206.79999999999998,
-            "durationSec": 4.95,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/least-privilege-by-design--least-privilege--tts--09634ad4512f--1.wav",
+            "startSec": 152.30000000000004,
+            "durationSec": 7.9,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense_in_depth--tts--b283bc443874--1.wav",
             "volume": 1
           },
           {
-            "id": "least-privilege-by-design--least-privilege--tts--ed315d21f0e6--1",
+            "id": "guardrails-as-first-class-architecture--defense_in_depth--tts--fa1336c21322--1",
             "kind": "file",
-            "startSec": 212.09999999999997,
+            "startSec": 160.55000000000004,
             "durationSec": 6.6,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/least-privilege-by-design--least-privilege--tts--ed315d21f0e6--1.wav",
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense_in_depth--tts--fa1336c21322--1.wav",
             "volume": 1
           },
           {
-            "id": "least-privilege-by-design--least-privilege--tts--5b9e4f312f16--1",
+            "id": "guardrails-as-first-class-architecture--defense_in_depth--tts--61d8d5666fe0--1",
             "kind": "file",
-            "startSec": 219.04999999999995,
-            "durationSec": 5.5,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/least-privilege-by-design--least-privilege--tts--5b9e4f312f16--1.wav",
+            "startSec": 167.50000000000003,
+            "durationSec": 8.1,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense_in_depth--tts--61d8d5666fe0--1.wav",
             "volume": 1
           },
           {
-            "id": "sandboxing-a-secretless-broker-boundary--sandbox-broker--tts--9b8017c1bfea--1",
+            "id": "guardrails-as-first-class-architecture--defense_in_depth--tts--1a3c05e1583d--1",
             "kind": "file",
-            "startSec": 224.54999999999995,
-            "durationSec": 13.35,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/sandboxing-a-secretless-broker-boundary--sandbox-broker--tts--9b8017c1bfea--1.wav",
+            "startSec": 175.95000000000002,
+            "durationSec": 6.25,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense_in_depth--tts--1a3c05e1583d--1.wav",
             "volume": 1
           },
           {
-            "id": "sandboxing-a-secretless-broker-boundary--sandbox-broker--tts--95c57366fdaa--1",
+            "id": "guardrails-as-first-class-architecture--defense_in_depth--tts--b1d0e3dedcad--1",
             "kind": "file",
-            "startSec": 238.39999999999995,
-            "durationSec": 8.55,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/sandboxing-a-secretless-broker-boundary--sandbox-broker--tts--95c57366fdaa--1.wav",
+            "startSec": 182.55,
+            "durationSec": 8.9,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/guardrails-as-first-class-architecture--defense_in_depth--tts--b1d0e3dedcad--1.wav",
             "volume": 1
           },
           {
-            "id": "sandboxing-a-secretless-broker-boundary--sandbox-broker--tts--ff70fecc9fc0--1",
+            "id": "least-privilege-by-design--least_privilege--tts--9c641a1619eb--1",
             "kind": "file",
-            "startSec": 247.44999999999996,
-            "durationSec": 14,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/sandboxing-a-secretless-broker-boundary--sandbox-broker--tts--ff70fecc9fc0--1.wav",
+            "startSec": 192.3,
+            "durationSec": 5.25,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/least-privilege-by-design--least_privilege--tts--9c641a1619eb--1.wav",
             "volume": 1
           },
           {
-            "id": "sandboxing-a-secretless-broker-boundary--sandbox-broker--tts--48df0a8f7639--1",
+            "id": "least-privilege-by-design--least_privilege--tts--1b0a5aee7516--1",
             "kind": "file",
-            "startSec": 261.8999999999999,
-            "durationSec": 14.2,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/sandboxing-a-secretless-broker-boundary--sandbox-broker--tts--48df0a8f7639--1.wav",
+            "startSec": 197.95000000000002,
+            "durationSec": 5.45,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/least-privilege-by-design--least_privilege--tts--1b0a5aee7516--1.wav",
             "volume": 1
           },
           {
-            "id": "a-concrete-example--recap-emails--tts--e0a141e0a1ba--1",
+            "id": "least-privilege-by-design--least_privilege--tts--594d4f88c1fd--1",
             "kind": "file",
-            "startSec": 276.0999999999999,
+            "startSec": 203.75,
             "durationSec": 4.85,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/a-concrete-example--recap-emails--tts--e0a141e0a1ba--1.wav",
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/least-privilege-by-design--least_privilege--tts--594d4f88c1fd--1.wav",
             "volume": 1
           },
           {
-            "id": "a-concrete-example--recap-emails--tts--c8010d1a0559--1",
+            "id": "least-privilege-by-design--least_privilege--tts--a89fcf646b3b--1",
             "kind": "file",
-            "startSec": 281.3499999999999,
-            "durationSec": 7.25,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/a-concrete-example--recap-emails--tts--c8010d1a0559--1.wav",
+            "startSec": 208.95,
+            "durationSec": 4.45,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/least-privilege-by-design--least_privilege--tts--a89fcf646b3b--1.wav",
             "volume": 1
           },
           {
-            "id": "a-concrete-example--recap-emails--tts--dcb6b5d500e8--1",
+            "id": "least-privilege-by-design--least_privilege--tts--8f477f9af25c--1",
             "kind": "file",
-            "startSec": 289.0499999999999,
-            "durationSec": 12.05,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/a-concrete-example--recap-emails--tts--dcb6b5d500e8--1.wav",
+            "startSec": 213.74999999999997,
+            "durationSec": 6.55,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/least-privilege-by-design--least_privilege--tts--8f477f9af25c--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "least-privilege-by-design--least_privilege--tts--693856deaf54--1",
+            "kind": "file",
+            "startSec": 220.64999999999998,
+            "durationSec": 5.35,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/least-privilege-by-design--least_privilege--tts--693856deaf54--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "sandboxing-a-secretless-broker-boundary--sandbox_broker--tts--eaec95fc5098--1",
+            "kind": "file",
+            "startSec": 226.49999999999997,
+            "durationSec": 13.5,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/sandboxing-a-secretless-broker-boundary--sandbox_broker--tts--eaec95fc5098--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "sandboxing-a-secretless-broker-boundary--sandbox_broker--tts--5fa31c66453d--1",
+            "kind": "file",
+            "startSec": 240.49999999999997,
+            "durationSec": 8.65,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/sandboxing-a-secretless-broker-boundary--sandbox_broker--tts--5fa31c66453d--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "sandboxing-a-secretless-broker-boundary--sandbox_broker--tts--8b29e2c300a9--1",
+            "kind": "file",
+            "startSec": 249.64999999999998,
+            "durationSec": 16.1,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/sandboxing-a-secretless-broker-boundary--sandbox_broker--tts--8b29e2c300a9--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "sandboxing-a-secretless-broker-boundary--sandbox_broker--tts--59d6e16c2aab--1",
+            "kind": "file",
+            "startSec": 266.2,
+            "durationSec": 14.5,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/sandboxing-a-secretless-broker-boundary--sandbox_broker--tts--59d6e16c2aab--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "a-concrete-example--recap_emails--tts--836bdb8b4e70--1",
+            "kind": "file",
+            "startSec": 281.2,
+            "durationSec": 6.65,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/a-concrete-example--recap_emails--tts--836bdb8b4e70--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "a-concrete-example--recap_emails--tts--10f87d93c3e0--1",
+            "kind": "file",
+            "startSec": 288.24999999999994,
+            "durationSec": 7.4,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/a-concrete-example--recap_emails--tts--10f87d93c3e0--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "a-concrete-example--recap_emails--tts--53cf28ad0790--1",
+            "kind": "file",
+            "startSec": 296.0999999999999,
+            "durationSec": 12.1,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/a-concrete-example--recap_emails--tts--53cf28ad0790--1.wav",
             "volume": 1
           },
           {
             "id": "closing--closing--tts--889b1ab603ee--1",
             "kind": "file",
-            "startSec": 301.0999999999999,
-            "durationSec": 4.35,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/closing--closing--tts--889b1ab603ee--1.wav",
+            "startSec": 308.69999999999993,
+            "durationSec": 4.3,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/closing--closing--tts--889b1ab603ee--1.wav",
             "volume": 1
           },
           {
             "id": "closing--closing--tts--0041e823ed1f--1",
             "kind": "file",
-            "startSec": 305.8499999999999,
-            "durationSec": 10.4,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/closing--closing--tts--0041e823ed1f--1.wav",
+            "startSec": 313.3999999999999,
+            "durationSec": 9.6,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/closing--closing--tts--0041e823ed1f--1.wav",
             "volume": 1
           },
           {
             "id": "closing--closing--tts--6e163f125717--1",
             "kind": "file",
-            "startSec": 316.7499999999999,
-            "durationSec": 6.4,
-            "src": "babulus/guardrails-for-agent-autonomy/env/development/segments/closing--closing--tts--6e163f125717--1.wav",
+            "startSec": 323.49999999999994,
+            "durationSec": 5.3,
+            "src": "/videoml/guardrails-for-agent-autonomy/env/development/segments/closing--closing--tts--6e163f125717--1.wav",
             "volume": 1
           }
         ]

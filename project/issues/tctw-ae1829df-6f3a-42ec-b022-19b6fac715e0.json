@@ -1,0 +1,61 @@
+{
+  "id": "tctw-ae1829df-6f3a-42ec-b022-19b6fac715e0",
+  "title": "VideoML tooling + Tactus intro VML render",
+  "description": "",
+  "type": "epic",
+  "status": "closed",
+  "priority": 2,
+  "assignee": null,
+  "creator": null,
+  "parent": null,
+  "labels": [],
+  "dependencies": [],
+  "comments": [
+    {
+      "id": "4f37542c-76b3-4ed0-9d8f-61d6c5b0c67a",
+      "author": "unknown",
+      "text": "As a pipeline owner, I want VideoML tooling to reliably generate + render MP4s from .vml content so the Tactus intro can be authored in VML and rendered via the standard VideoML CLI.",
+      "created_at": "2026-02-21T05:39:11.208366Z"
+    },
+    {
+      "id": "a858575c-9af3-4c58-9002-edf82ad48922",
+      "author": "unknown",
+      "text": "Related VideoML work: toolchain epic vmlt-2d1d67 (runtime deps + .vml load), CLI epic vmlc-5f2858 (pipeline supports .vml + browser bundle). Rendering blocked until those are resolved.",
+      "created_at": "2026-02-21T05:40:48.332332Z"
+    },
+    {
+      "id": "cbaf2e40-8afa-42d7-a02c-4acc2975b4b8",
+      "author": "unknown",
+      "text": "Breadcrumbs: Intro VML source lives at . Generated artifacts live at , , and audio at . MP4 output target is . Rendering via VideoML CLI pipeline is blocked on missing renderer deps in VideoML toolchain (see vmlt-7e949a / vmlc-4a29d8).",
+      "created_at": "2026-02-21T05:43:20.267191Z"
+    },
+    {
+      "id": "c221b4c5-5f41-47fe-9528-5ac6a37030f1",
+      "author": "unknown",
+      "text": "Breadcrumbs: Intro VML source lives at `Tactus-web/videos/content/intro.vml`. Generated artifacts live at `Tactus-web/videos/src/videos/intro/intro.script.json`, `intro.timeline.json`, and audio at `Tactus-web/videos/public/babulus/intro.wav`. MP4 output target is `Tactus-web/videos/out/intro.mp4`. Rendering via VideoML CLI pipeline is blocked on missing renderer deps in VideoML toolchain (see vmlt-7e949a / vmlc-4a29d8).",
+      "created_at": "2026-02-21T05:43:23.660265Z"
+    },
+    {
+      "id": "51a60ce5-3fd9-4bb7-93e3-c731c6f0a2f3",
+      "author": "unknown",
+      "text": "Update: VideoML CLI pipeline now renders intro.vml with standard + custom browser bundles. MP4 regenerated at  and opened for verification. Remaining tasks: transitions (tctw-a2254a) and follow-on video conversions.",
+      "created_at": "2026-02-21T06:05:27.693989Z"
+    },
+    {
+      "id": "0aa282b8-0691-4cba-b605-3f537d6db2f8",
+      "author": "unknown",
+      "text": "Update: VideoML CLI pipeline now renders intro.vml with standard + custom browser bundles. MP4 regenerated at `Tactus-web/videos/out/intro.mp4` and opened for verification. Remaining tasks: transitions (tctw-a2254a) and follow-on video conversions.",
+      "created_at": "2026-02-21T06:05:31.383973Z"
+    },
+    {
+      "id": "afcdefc2-3d9d-485a-8c99-762b185dc252",
+      "author": "ryan.porter",
+      "text": "Closed: VideoML tooling updates complete and intro VML render working.",
+      "created_at": "2026-02-21T06:51:47.322294Z"
+    }
+  ],
+  "created_at": "2026-02-21T05:39:03.995069Z",
+  "updated_at": "2026-02-21T06:51:47.322294Z",
+  "closed_at": "2026-02-21T06:51:43.844388Z",
+  "custom": {}
+}

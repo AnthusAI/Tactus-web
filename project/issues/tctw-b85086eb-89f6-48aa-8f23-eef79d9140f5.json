@@ -1,0 +1,31 @@
+{
+  "id": "tctw-b85086eb-89f6-48aa-8f23-eef79d9140f5",
+  "title": "Create intro.vml from intro.babulus.ts",
+  "description": "",
+  "type": "task",
+  "status": "closed",
+  "priority": 2,
+  "assignee": null,
+  "creator": null,
+  "parent": "tctw-ff6f29be-456f-42bb-9140-c2eb448d47dc",
+  "labels": [],
+  "dependencies": [],
+  "comments": [
+    {
+      "id": "bfffbff9-a66d-404b-a906-b94546480d1d",
+      "author": "unknown",
+      "text": "Completed: created  from .",
+      "created_at": "2026-02-21T05:35:30.689202Z"
+    },
+    {
+      "id": "26283bc7-46ee-485b-9748-44c7a5a70776",
+      "author": "unknown",
+      "text": "Completed: created `Tactus-web/videos/content/intro.vml` from `intro.babulus.ts`.",
+      "created_at": "2026-02-21T05:35:35.329053Z"
+    }
+  ],
+  "created_at": "2026-02-21T05:35:25.044851Z",
+  "updated_at": "2026-02-21T05:35:41.627892Z",
+  "closed_at": "2026-02-21T05:35:41.627892Z",
+  "custom": {}
+}

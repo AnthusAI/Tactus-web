@@ -1,0 +1,37 @@
+{
+  "id": "tctw-a96f6195-7a43-4bfe-a44e-c34c7660076b",
+  "title": "Guardrails VML renders blank (visual layers missing)",
+  "description": "",
+  "type": "task",
+  "status": "in_progress",
+  "priority": 2,
+  "assignee": null,
+  "creator": null,
+  "parent": "tctw-cbc93e20-fcdd-4e66-a673-c83eb85ecea2",
+  "labels": [],
+  "dependencies": [],
+  "comments": [
+    {
+      "id": "afd7cde6-f318-4538-ae9c-e707e67c7a6b",
+      "author": "ryan.porter",
+      "text": "Observed guardrails VML renders audio-only with blank frames. Generated script.json has scenes but 0 layers/components. VML and .babulus.ts currently only voiceover + transitions. Need to locate prior YAML/visual definitions or port visuals into VML.",
+      "created_at": "2026-02-21T06:50:07.606308Z"
+    },
+    {
+      "id": "c9139469-34c5-4a1f-aaba-dd2a731eb426",
+      "author": "ryan.porter",
+      "text": "Found prior YAML in git history: videos/content/guardrails.babulus.yml (deleted in commit a28331a). YAML is narration-only (no visuals/layers/components). Visuals live in TSX: videos/src/videos/guardrails/GuardrailsVideo.tsx.",
+      "created_at": "2026-02-21T06:54:47.434893Z"
+    },
+    {
+      "id": "ffa23131-8f07-4ae3-82cb-65fd4f363b3c",
+      "author": "ryan.porter",
+      "text": "Starting conversion: will port visuals from GuardrailsVideo.tsx into guardrails.vml components/layers.",
+      "created_at": "2026-02-21T06:58:22.306522Z"
+    }
+  ],
+  "created_at": "2026-02-21T06:50:04.648035Z",
+  "updated_at": "2026-02-21T06:58:22.306522Z",
+  "closed_at": null,
+  "custom": {}
+}

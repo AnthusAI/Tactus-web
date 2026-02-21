@@ -1,0 +1,256 @@
+<vml id="intro" title="Intro" fps="24" width="1920" height="1080" poster="48s">
+  <voiceover provider="openai" model="gpt-4o-mini-tts" voice="echo" sampleRateHz="24000" leadInSeconds="0s" trimEndSeconds="0s" />
+
+  <scene id="paradigm" title="A New Kind of Computer Program">
+    <layer id="background" z="-1">
+      <background props='{"color":"#fdfdfd"}' />
+    </layer>
+
+    <music
+      id="bed"
+      prompt="Warm ambient background music, energetic percussion, deep bass, no vocals, clean, unobtrusive"
+      play-through="true"
+      volume="0.7"
+      fade-to="0.12"
+      fade-to-after="6s"
+      fade-to-duration="3s"
+      fade-out="0.7"
+      fade-out-before="5s"
+      fade-out-duration="3s"
+    />
+
+    <layer id="diagram" z="0">
+      <paradigm-comparison props='{"title":"A New Kind of Computer Program","oldWay":"OldWayFlowchartDiagram","newWay":"NewWayFlowchartDiagram"}' />
+    </layer>
+
+    <cue id="paradigm" label="Paradigm">
+      <pause seconds="0.6s" />
+      <voice>Since the dawn of computing, programming has always meant the same thing: anticipate every scenario and write code for it. If you miss a case, the program breaks.</voice>
+      <pause seconds="0.35s" />
+      <voice>But tool‑using agents flip the script. Instead of explicitly handling every possible scenario, you depend on AI models to make decisions and take action for you.</voice>
+      <pause seconds="0.18s" />
+      <voice>In this new kind of programming, first you start with an agent—a language model. Then you give it a tool.</voice>
+      <pause seconds="0.18s" />
+      <voice>And then you assign it a procedure to follow.</voice>
+      <pause seconds="0.18s" />
+      <voice>And then you put guardrails around that to guide it toward the goal.</voice>
+      <pause seconds="0.18s" />
+      <voice>This is a completely new way to automate work with computers. A new kind of computer program.</voice>
+    </cue>
+
+    <cue id="paradigm_wrap" label="Paradigm Wrap">
+      <pause seconds="0.4s" />
+      <voice>Okay... But how do you do that, exactly? Is there some new way to write code that's about giving agents tools and procedures? Instead of a bunch of if/then statements?</voice>
+      <pause seconds="0.6s" />
+      <voice>Yes. Tactus is a programming language for this new paradigm.</voice>
+    </cue>
+  </scene>
+
+  <transition id="intro-push-1" effect="slide" duration="12f" mode="insert" ease="power2.inOut" props='{"direction":"left"}' />
+
+  <scene id="hello_world" title="Hello, World">
+    <layer id="background" z="-1">
+      <background props='{"color":"#fdfdfd"}' />
+    </layer>
+
+    <layer id="content" z="0">
+      <hello-world-scene />
+    </layer>
+
+    <cue id="hello_world" label="Hello World">
+      <voice>Tactus procedures are computer programs that include imperative instructions, like any other language, but they have first-class, high-level constructs for the building blocks that we work with in AI engineering: agents, tools, context, and prompts.</voice>
+      <pause seconds="0.35s" />
+      <voice>You run Tactus procedures just like you would run a program in any other language like Python or Node—as command-line programs or by embedding them in applications.</voice>
+      <voice>Here's an example of running a hello-world program. The procedure runs and returns the response from the agent. It doesn't use a framework because the capabilities are built right into the language.</voice>
+      <pause seconds="0.2s" />
+    </cue>
+  </scene>
+
+  <transition id="intro-push-2" effect="slide" duration="12f" mode="insert" ease="power2.inOut" props='{"direction":"left"}' />
+
+  <scene id="interface" title="The Human Interface">
+    <layer id="background" z="-1">
+      <background props='{"color":"#fdfdfd"}' />
+    </layer>
+
+    <layer id="title" z="1">
+      <title props='{"text":"The Human Interface","x":960,"y":150}' />
+    </layer>
+
+    <layer id="diagram" z="0">
+      <human-in-the-loop-diagram props='{"containerWidth":1400,"containerHeight":650,"x":960,"y":650}' />
+    </layer>
+
+    <cue id="interface_supervised" label="Closely Supervised">
+      <voice>Connecting to agents and tools is just the beginning. The real challenge is the interface layer between the agent and the operator.</voice>
+      <pause seconds="0.4s" />
+      <voice>The common interface for agents today is chat. You watch every step, you steer, and you stop the agent if it goes sideways. That works great for some things but depends on the human operator.</voice>
+      <pause seconds="0.4s" />
+      <voice>The user becomes a bottleneck. When you step away to eat or sleep, the whole system stops doing anything. If you're trying to process a lot of items at scale then your capacity is limited by the human operator.You can't scale this up.</voice>
+      <pause seconds="0.4s" />
+    </cue>
+
+    <cue id="interface_unsupervised" label="Unsupervised">
+      <voice>You could remove the human entirely and let the agent run free. This scales beautifully—you can process thousands of items at machine speed.</voice>
+      <pause seconds="0.4s" />
+      <voice>But running an agent this way is like giving a monkey a razor blade. And scaling that up to industrial levels is a recipe for disaster.</voice>
+      <pause seconds="0.4s" />
+    </cue>
+
+    <cue id="interface_hitl" label="Durable HITL">
+      <voice>Tactus provides a new interface layer between the human and the computer. It enables agents to send requests to the human operator and wait for a response. Requests can queue up, so that the system can continue running while the human operator isn't available.</voice>
+      <pause seconds="0.4s" />
+      <voice>When a procedure needs a human—to approve a risky action, or to provide a missing detail—it pauses. It doesn't use any compute while it's suspended, and it doesn't depend on the runtime to continue running in memory.</voice>
+      <pause seconds="0.4s" />
+      <voice>It can resume hours or days later, exactly where it left off. This lets you move from synchronous chat to asynchronous, industrial-scale workflows.</voice>
+    </cue>
+  </scene>
+
+  <transition id="intro-push-3" effect="slide" duration="12f" mode="insert" ease="power2.inOut" props='{"direction":"left"}' />
+
+  <scene id="graphs" title="No Graphs Required">
+    <layer id="background" z="-1">
+      <background props='{"color":"#fdfdfd"}' />
+    </layer>
+
+    <layer id="title" z="1">
+      <title props='{"text":"No Graphs Required","x":960,"y":150}' />
+    </layer>
+
+    <layer id="code" z="0">
+      <code-push-transition props='{"fromLabel":"Graph-Based Workflow","fromCode":"graph = StateGraph()\ngraph.add_node(\"fetch\", fetch_data)\ngraph.add_node(\"analyze\", analyze_data)\ngraph.add_conditional_edges(\n  \"fetch\",\n  lambda x: \"analyze\" if x else \"end\"\n)\ngraph.add_edge(\"analyze\", END)","toLabel":"Tactus","toCode":"async function myWorkflow() {\n  const data = await fetchData()\n  if (data) {\n    await analyzeData(data)\n  }\n}","transitionStartSec":8,"containerWidth":1600,"containerHeight":500,"x":960,"y":600,"sceneStartSec":195.82}' />
+    </layer>
+
+    <cue id="graphs" label="No Graphs Required">
+      <pause seconds="0.2s" />
+      <voice>In most programming languages, if you want execution that can pause and resume like this, you're forced into something like a graph workflow, where you have to write code that's structured around nodes, edges, and conditional edges. With Tactus, it's transparent. You write normal code, and the runtime handles pausing and resuming behind the scenes. The graph nodes are still there, but you don't have to think about them.</voice>
+    </cue>
+  </scene>
+
+  <transition id="intro-push-4" effect="slide" duration="12f" mode="insert" ease="power2.inOut" props='{"direction":"left"}' />
+
+  <scene id="prompt_ceiling_intro" title="The Ceiling">
+    <layer id="background" z="-1">
+      <background props='{"color":"#fdfdfd"}' />
+    </layer>
+
+    <layer id="title" z="1">
+      <title props='{"text":"The Ceiling","x":960,"y":150}' />
+    </layer>
+
+    <layer id="diagram" z="0">
+      <prompt-engineering-ceiling-diagram props='{"containerWidth":1400,"containerHeight":650,"x":960,"y":580}' />
+    </layer>
+
+    <cue id="prompt_ceiling_intro" label="Prompt Ceiling">
+      <voice>To operate confidently in production—safely and securely—you need a minimum threshold of reliability.</voice>
+      <pause seconds="0.5s" />
+      <voice>The obvious first type of control that everyone reaches for is prompt engineering.</voice>
+      <pause seconds="0.5s" />
+      <voice>But prompts are suggestions, not controls. There are things you just can't reliably make a model do or not do with prompts alone.</voice>
+      <pause seconds="0.5s" />
+      <voice>There's a gap between what you can achieve with prompt engineering and the minimum reliability you need to run at scale in production.</voice>
+      <pause seconds="0.5s" />
+      <voice>To close that gap, you need different types of control.</voice>
+    </cue>
+  </scene>
+
+  <transition id="intro-push-5" effect="slide" duration="12f" mode="insert" ease="power2.inOut" props='{"direction":"left"}' />
+
+  <scene id="defense_layers" title="Defense in Depth">
+    <layer id="background" z="-1">
+      <background props='{"color":"#fdfdfd"}' />
+    </layer>
+
+    <layer id="title" z="1">
+      <title props='{"text":"Defense in Depth","x":960,"y":150}' />
+    </layer>
+
+    <layer id="diagram" z="0">
+      <guardrails-stack-diagram props='{"containerWidth":1400,"containerHeight":650,"x":960,"y":650}' />
+    </layer>
+
+    <cue id="defense_layers" label="Defense Layers">
+      <voice>Tactus gives you multiple types of control. Because no single type is sufficient on its own.</voice>
+      <pause seconds="0.5s" />
+      <voice>Prompt engineering guides model behavior, but it's not enough on its own.</voice>
+      <pause seconds="0.4s" />
+      <voice>Cost and limits block requests before they hit the model—preventing runaway loops and billing surprises.</voice>
+      <pause seconds="0.4s" />
+      <voice>Context engineering ensures the model has the right information, not just all information.</voice>
+      <pause seconds="0.4s" />
+      <voice>Model selection for the right capabilities and safety profiles.</voice>
+      <pause seconds="0.4s" />
+      <voice>Tool selection. Give the agent only the capabilities it needs.</voice>
+      <pause seconds="0.4s" />
+      <voice>Code sandboxing. Running agent code in a restricted environment so it can't cause damage.</voice>
+      <pause seconds="0.4s" />
+      <voice>And container isolation. Firewalling agent activity so it can't reach the network or touch your server.</voice>
+    </cue>
+  </scene>
+
+  <transition id="intro-push-6" effect="slide" duration="12f" mode="insert" ease="power2.inOut" props='{"direction":"left"}' />
+
+  <scene id="sandboxing" title="Sandboxing">
+    <layer id="background" z="-1">
+      <background props='{"color":"#fdfdfd"}' />
+    </layer>
+
+    <layer id="title" z="1">
+      <title props='{"text":"Sandboxing","x":960,"y":150}' />
+    </layer>
+
+    <layer id="diagram" z="0">
+      <container-sandbox-diagram props='{"containerWidth":1400,"containerHeight":650,"x":960,"y":650}' />
+    </layer>
+
+    <cue id="sandboxing" label="Sandboxing">
+      <voice>We know AI models make mistakes. Maybe your agent writes buggy tool code. Or maybe an attacker uses a prompt injection to hijack the agent and try something malicious.</voice>
+      <pause seconds="0.4s" />
+      <voice>You want agents that can write files and run programs—they need to be powerful and useful. But you don't want them reaching out to the network or deleting files on your server.</voice>
+      <pause seconds="0.5s" />
+      <voice>Tactus runs agent code in a restricted Lua sandbox inside a networkless container. The agent can do real work, but it can't vandalize your system or phone home to some attacker's website.</voice>
+      <pause seconds="0.5s" />
+      <voice>The other risk is credentials. Your procedure might need keys to call third-party services, but you don't want the agent to see them. Tactus keeps secrets outside the container in a separate process. Even if something goes wrong, there's nothing for the agent to steal.</voice>
+    </cue>
+  </scene>
+
+  <transition id="intro-push-7" effect="slide" duration="12f" mode="insert" ease="power2.inOut" props='{"direction":"left"}' />
+
+  <scene id="nutshell" title="Tactus in a Nutshell">
+    <layer id="background" z="-1">
+      <background props='{"color":"#fdfdfd"}' />
+    </layer>
+
+    <layer id="title" z="1">
+      <title props='{"text":"Tactus in a Nutshell","x":960,"y":150}' />
+    </layer>
+
+    <layer id="content" z="0">
+      <nutshell-content />
+    </layer>
+
+    <cue id="nutshell" label="Nutshell">
+      <pause seconds="1.2s" />
+      <voice>In a nutshell, Tactus is a high-level agent programming model, with default-on sandboxing and container isolation, capability and context control, human-in-the-loop gates, and durable checkpoints so long-running workflows can pause, resume, and be audited safely.</voice>
+      <pause seconds="0.35s" />
+    </cue>
+  </scene>
+
+  <transition id="intro-push-8" effect="slide" duration="12f" mode="insert" ease="power2.inOut" props='{"direction":"left"}' />
+
+  <scene id="cta" title="Get Started">
+    <layer id="background" z="-1">
+      <background props='{"color":"#fdfdfd"}' />
+    </layer>
+
+    <layer id="end" z="0">
+      <end-scene />
+    </layer>
+
+    <cue id="cta" label="CTA">
+      <voice>Ready to try it? Visit the Tactus website to download the IDE and run your first procedure.</voice>
+      <pause seconds="0.35s" />
+    </cue>
+  </scene>
+</vml>

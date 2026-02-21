@@ -1,0 +1,43 @@
+{
+  "id": "tctw-7e601c8c-d21e-4751-ad04-301d756d5d3b",
+  "title": "Add slide-left transitions between scenes (Why a New Language)",
+  "description": "",
+  "type": "task",
+  "status": "closed",
+  "priority": 2,
+  "assignee": null,
+  "creator": null,
+  "parent": "tctw-bb801b66-f0d1-4e67-9b34-603f2ae4161a",
+  "labels": [],
+  "dependencies": [],
+  "comments": [
+    {
+      "id": "8b0844ee-8b7f-4153-9e5a-9b92715de637",
+      "author": "unknown",
+      "text": "Starting: add slide-left transitions between all why-new-language scenes in `content/why-new-language.vml`.",
+      "created_at": "2026-02-21T06:12:10.519866Z"
+    },
+    {
+      "id": "46675cab-f3ac-49e7-9532-05486941f9d0",
+      "author": "unknown",
+      "text": "Added slide-left push transitions between all why-new-language scenes in `content/why-new-language.vml`.",
+      "created_at": "2026-02-21T06:12:26.259803Z"
+    },
+    {
+      "id": "38688692-e9eb-435c-9c07-b10c03244ddc",
+      "author": "unknown",
+      "text": "Reopened to switch Why-a-New-Language transitions to slide-left (effect=slide, direction=left) across scenes.",
+      "created_at": "2026-02-21T13:08:32.386372Z"
+    },
+    {
+      "id": "b47f757f-938b-4baf-b604-bdd09a181999",
+      "author": "unknown",
+      "text": "Switched Why-a-New-Language transitions to slide-left by changing transition effect to 'slide' with direction left in why-new-language.vml.",
+      "created_at": "2026-02-21T13:09:10.563511Z"
+    }
+  ],
+  "created_at": "2026-02-21T06:06:07.458289Z",
+  "updated_at": "2026-02-21T13:09:15.199936Z",
+  "closed_at": "2026-02-21T13:09:15.199936Z",
+  "custom": {}
+}

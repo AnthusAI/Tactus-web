@@ -4,13 +4,67 @@
       "id": "guardrails-for-agent-autonomy",
       "title": "Guardrails for Agent Autonomy",
       "startSec": 0.25,
-      "endSec": 7.65,
+      "endSec": 7.75,
+      "layers": [
+        {
+          "id": "background",
+          "zIndex": -1,
+          "components": [
+            {
+              "id": "background-0",
+              "type": "Background",
+              "props": {
+                "color": "#fdfdfd",
+                "sceneStartSec": 0.25
+              }
+            }
+          ]
+        },
+        {
+          "id": "title",
+          "zIndex": 1,
+          "components": [
+            {
+              "id": "title-0",
+              "type": "Title",
+              "props": {
+                "text": "Guardrails for Agent Autonomy",
+                "x": 960,
+                "y": 220,
+                "textAlign": "center",
+                "sceneStartSec": 0.25
+              }
+            }
+          ]
+        },
+        {
+          "id": "subtitle",
+          "zIndex": 0,
+          "components": [
+            {
+              "id": "text-block-0",
+              "type": "TextBlock",
+              "props": {
+                "text": "Why you cannot drive fast without brakes.",
+                "x": 960,
+                "y": 520,
+                "size": 48,
+                "weight": 600,
+                "align": "center",
+                "maxWidth": 1400,
+                "font": "serif",
+                "sceneStartSec": 0.25
+              }
+            }
+          ]
+        }
+      ],
       "cues": [
         {
           "id": "title",
           "label": "title",
           "startSec": 0.25,
-          "endSec": 7.65,
+          "endSec": 7.75,
           "text": "Guardrails for agent autonomy. Why you can't drive fast without brakes.",
           "segments": [
             {
@@ -22,19 +76,19 @@
             {
               "type": "tts",
               "startSec": 0.95,
-              "endSec": 3.6500000000000004,
+              "endSec": 4,
               "text": "Guardrails for agent autonomy."
             },
             {
               "type": "pause",
-              "startSec": 3.6500000000000004,
-              "endSec": 4.1000000000000005,
+              "startSec": 4,
+              "endSec": 4.45,
               "durationSec": 0.45
             },
             {
               "type": "tts",
-              "startSec": 4.1000000000000005,
-              "endSec": 7.65,
+              "startSec": 4.45,
+              "endSec": 7.75,
               "text": "Why you can't drive fast without brakes."
             }
           ],
@@ -45,56 +99,110 @@
     {
       "id": "the-paradox-of-power",
       "title": "The Paradox of Power",
-      "startSec": 7.65,
-      "endSec": 36.6,
+      "startSec": 8.25,
+      "endSec": 37.15,
+      "layers": [
+        {
+          "id": "background",
+          "zIndex": -1,
+          "components": [
+            {
+              "id": "background-0",
+              "type": "Background",
+              "props": {
+                "color": "#fdfdfd",
+                "sceneStartSec": 7.75
+              }
+            }
+          ]
+        },
+        {
+          "id": "title",
+          "zIndex": 1,
+          "components": [
+            {
+              "id": "title-0",
+              "type": "Title",
+              "props": {
+                "text": "You cannot drive fast without brakes",
+                "x": 960,
+                "y": 200,
+                "textAlign": "center",
+                "sceneStartSec": 7.75
+              }
+            }
+          ]
+        },
+        {
+          "id": "content",
+          "zIndex": 0,
+          "components": [
+            {
+              "id": "text-block-0",
+              "type": "TextBlock",
+              "props": {
+                "text": "If agents can take real actions with side effects, guardrails stop being a nice-to-have. They become the price of admission.\\n\\n• Prompts are suggestions, not controls.\\n• Guardrails are enforceable boundaries.\\n• Start with a threat model: assets, entry points, trust boundaries, and controls.",
+                "x": 960,
+                "y": 610,
+                "size": 40,
+                "align": "center",
+                "maxWidth": 1500,
+                "font": "serif",
+                "lineHeight": 1.35,
+                "sceneStartSec": 7.75
+              }
+            }
+          ]
+        }
+      ],
       "cues": [
         {
           "id": "brakes",
           "label": "brakes",
-          "startSec": 7.65,
-          "endSec": 36.6,
+          "startSec": 8.25,
+          "endSec": 37.15,
           "text": "Picture a Formula One car with its brake system removed. Lighter. Simpler. Fewer things to go wrong. You'd crash on the first turn. The best racing teams don't debate whether brakes slow them down. They know something deeper: brakes are what let you go fast in the first place. That's the paradox of agent autonomy. Guardrails are not a limitation on autonomy — they're the prerequisite for it.",
           "segments": [
             {
               "type": "tts",
-              "startSec": 7.65,
-              "endSec": 15.25,
+              "startSec": 8.25,
+              "endSec": 17.3,
               "text": "Picture a Formula One car with its brake system removed. Lighter. Simpler. Fewer things to go wrong."
             },
             {
               "type": "pause",
-              "startSec": 15.25,
-              "endSec": 15.75,
+              "startSec": 17.3,
+              "endSec": 17.8,
               "durationSec": 0.5
             },
             {
               "type": "tts",
-              "startSec": 15.75,
-              "endSec": 18.35,
+              "startSec": 17.8,
+              "endSec": 20.400000000000002,
               "text": "You'd crash on the first turn."
             },
             {
               "type": "pause",
-              "startSec": 18.35,
-              "endSec": 18.8,
+              "startSec": 20.400000000000002,
+              "endSec": 20.85,
               "durationSec": 0.45
             },
             {
               "type": "tts",
-              "startSec": 18.8,
-              "endSec": 27.4,
+              "startSec": 20.85,
+              "endSec": 28.75,
               "text": "The best racing teams don't debate whether brakes slow them down. They know something deeper: brakes are what let you go fast in the first place."
             },
             {
               "type": "pause",
-              "startSec": 27.4,
-              "endSec": 27.95,
+              "startSec": 28.75,
+              "endSec": 29.3,
               "durationSec": 0.55
             },
             {
               "type": "tts",
-              "startSec": 27.95,
-              "endSec": 36.6,
+              "startSec": 29.3,
+              "endSec": 37.15,
               "text": "That's the paradox of agent autonomy. Guardrails are not a limitation on autonomy — they're the prerequisite for it."
             }
           ],
@@ -105,44 +213,173 @@
     {
       "id": "the-pattern-repeats-across-domains",
       "title": "The Pattern Repeats Across Domains",
-      "startSec": 36.6,
-      "endSec": 67.2,
+      "startSec": 37.65,
+      "endSec": 69.1,
+      "layers": [
+        {
+          "id": "background",
+          "zIndex": -1,
+          "components": [
+            {
+              "id": "background-0",
+              "type": "Background",
+              "props": {
+                "color": "#fdfdfd",
+                "sceneStartSec": 36.65
+              }
+            }
+          ]
+        },
+        {
+          "id": "title",
+          "zIndex": 1,
+          "components": [
+            {
+              "id": "title-0",
+              "type": "Title",
+              "props": {
+                "text": "The pattern repeats across domains",
+                "x": 960,
+                "y": 200,
+                "textAlign": "center",
+                "sceneStartSec": 36.65
+              }
+            }
+          ]
+        },
+        {
+          "id": "content",
+          "zIndex": 0,
+          "components": [
+            {
+              "id": "text-block-0",
+              "type": "TextBlock",
+              "props": {
+                "text": "Aviation",
+                "x": 360,
+                "y": 420,
+                "size": 44,
+                "weight": 800,
+                "align": "center",
+                "maxWidth": 420,
+                "font": "serif",
+                "sceneStartSec": 36.65
+              }
+            },
+            {
+              "id": "text-block-1",
+              "type": "TextBlock",
+              "props": {
+                "text": "Hard limits, checklists, and layered safety did not reduce autonomy. They made delegation safe at scale.",
+                "x": 360,
+                "y": 560,
+                "size": 34,
+                "align": "center",
+                "maxWidth": 420,
+                "font": "serif",
+                "lineHeight": 1.35,
+                "sceneStartSec": 36.65
+              }
+            },
+            {
+              "id": "text-block-2",
+              "type": "TextBlock",
+              "props": {
+                "text": "Medicine",
+                "x": 960,
+                "y": 420,
+                "size": 44,
+                "weight": 800,
+                "align": "center",
+                "maxWidth": 420,
+                "font": "serif",
+                "sceneStartSec": 36.65
+              }
+            },
+            {
+              "id": "text-block-3",
+              "type": "TextBlock",
+              "props": {
+                "text": "Protocols and checklists are how experts avoid catastrophic misses under pressure.",
+                "x": 960,
+                "y": 560,
+                "size": 34,
+                "align": "center",
+                "maxWidth": 420,
+                "font": "serif",
+                "lineHeight": 1.35,
+                "sceneStartSec": 36.65
+              }
+            },
+            {
+              "id": "text-block-4",
+              "type": "TextBlock",
+              "props": {
+                "text": "Organizations",
+                "x": 1560,
+                "y": 420,
+                "size": 44,
+                "weight": 800,
+                "align": "center",
+                "maxWidth": 420,
+                "font": "serif",
+                "sceneStartSec": 36.65
+              }
+            },
+            {
+              "id": "text-block-5",
+              "type": "TextBlock",
+              "props": {
+                "text": "Delegation requires boundaries: budgets, approval gates, audits, and reviews. Constraints enable autonomy.",
+                "x": 1560,
+                "y": 560,
+                "size": 34,
+                "align": "center",
+                "maxWidth": 420,
+                "font": "serif",
+                "lineHeight": 1.35,
+                "sceneStartSec": 36.65
+              }
+            }
+          ]
+        }
+      ],
       "cues": [
         {
           "id": "patterns",
           "label": "patterns",
-          "startSec": 36.6,
-          "endSec": 67.2,
+          "startSec": 37.65,
+          "endSec": 69.1,
           "text": "This pattern repeats everywhere humans have built powerful, autonomous systems. Aviation scaled autonomy by adding checklists, hard limits, and layered safety. Medicine made protocols standard because expertise alone isn't enough under pressure. Organizations delegate power safely by creating budgets, approvals, audits, and reviews. The more powerful the actor, the more critical the guardrails. AI isn't special — it's just newer.",
           "segments": [
             {
               "type": "tts",
-              "startSec": 36.6,
-              "endSec": 42.1,
+              "startSec": 37.65,
+              "endSec": 44.25,
               "text": "This pattern repeats everywhere humans have built powerful, autonomous systems."
             },
             {
               "type": "pause",
-              "startSec": 42.1,
-              "endSec": 42.5,
+              "startSec": 44.25,
+              "endSec": 44.65,
               "durationSec": 0.4
             },
             {
               "type": "tts",
-              "startSec": 42.5,
-              "endSec": 59.45,
+              "startSec": 44.65,
+              "endSec": 61.849999999999994,
               "text": "Aviation scaled autonomy by adding checklists, hard limits, and layered safety. Medicine made protocols standard because expertise alone isn't enough under pressure. Organizations delegate power safely by creating budgets, approvals, audits, and reviews."
             },
             {
               "type": "pause",
-              "startSec": 59.45,
-              "endSec": 59.95,
+              "startSec": 61.849999999999994,
+              "endSec": 62.349999999999994,
               "durationSec": 0.5
             },
             {
               "type": "tts",
-              "startSec": 59.95,
-              "endSec": 67.2,
+              "startSec": 62.349999999999994,
+              "endSec": 69.1,
               "text": "The more powerful the actor, the more critical the guardrails. AI isn't special — it's just newer."
             }
           ],
@@ -153,44 +390,114 @@
     {
       "id": "the-prompt-engineering-ceiling",
       "title": "The Prompt-Engineering Ceiling",
-      "startSec": 67.2,
-      "endSec": 90.50000000000001,
+      "startSec": 69.6,
+      "endSec": 92.35000000000001,
+      "layers": [
+        {
+          "id": "background",
+          "zIndex": -1,
+          "components": [
+            {
+              "id": "background-0",
+              "type": "Background",
+              "props": {
+                "color": "#fdfdfd",
+                "sceneStartSec": 68.1
+              }
+            }
+          ]
+        },
+        {
+          "id": "title",
+          "zIndex": 1,
+          "components": [
+            {
+              "id": "title-0",
+              "type": "Title",
+              "props": {
+                "text": "The prompt-engineering ceiling",
+                "x": 960,
+                "y": 180,
+                "textAlign": "center",
+                "sceneStartSec": 68.1
+              }
+            }
+          ]
+        },
+        {
+          "id": "subtitle",
+          "zIndex": 1,
+          "components": [
+            {
+              "id": "text-block-0",
+              "type": "TextBlock",
+              "props": {
+                "text": "Prompts can reduce misbehavior - but not with enough reliability to safely scale in production.",
+                "x": 960,
+                "y": 300,
+                "size": 32,
+                "align": "center",
+                "maxWidth": 1500,
+                "font": "serif",
+                "sceneStartSec": 68.1
+              }
+            }
+          ]
+        },
+        {
+          "id": "diagram",
+          "zIndex": 0,
+          "components": [
+            {
+              "id": "prompt-engineering-ceiling-diagram-0",
+              "type": "PromptEngineeringCeilingDiagram",
+              "props": {
+                "containerWidth": 1400,
+                "containerHeight": 650,
+                "x": 960,
+                "y": 660,
+                "sceneStartSec": 68.1
+              }
+            }
+          ]
+        }
+      ],
       "cues": [
         {
-          "id": "prompt-ceiling",
+          "id": "prompt_ceiling",
           "label": "prompt_ceiling",
-          "startSec": 67.2,
-          "endSec": 90.50000000000001,
+          "startSec": 69.6,
+          "endSec": 92.35000000000001,
           "text": "Prompts matter. They shape behavior and reduce error rates. But prompts are suggestions, not controls. When an agent has access to powerful tools, you eventually hit a ceiling. You can make failure less likely, but you can't make it vanish. Production safety can't be built out of suggestions alone. You need enforceable boundaries.",
           "segments": [
             {
               "type": "tts",
-              "startSec": 67.2,
-              "endSec": 71.35000000000001,
+              "startSec": 69.6,
+              "endSec": 73.75,
               "text": "Prompts matter. They shape behavior and reduce error rates."
             },
             {
               "type": "pause",
-              "startSec": 71.35000000000001,
-              "endSec": 71.75000000000001,
+              "startSec": 73.75,
+              "endSec": 74.15,
               "durationSec": 0.4
             },
             {
               "type": "tts",
-              "startSec": 71.75000000000001,
-              "endSec": 83.65000000000002,
+              "startSec": 74.15,
+              "endSec": 86.10000000000001,
               "text": "But prompts are suggestions, not controls. When an agent has access to powerful tools, you eventually hit a ceiling. You can make failure less likely, but you can't make it vanish."
             },
             {
               "type": "pause",
-              "startSec": 83.65000000000002,
-              "endSec": 84.15000000000002,
+              "startSec": 86.10000000000001,
+              "endSec": 86.60000000000001,
               "durationSec": 0.5
             },
             {
               "type": "tts",
-              "startSec": 84.15000000000002,
-              "endSec": 90.50000000000001,
+              "startSec": 86.60000000000001,
+              "endSec": 92.35000000000001,
               "text": "Production safety can't be built out of suggestions alone. You need enforceable boundaries."
             }
           ],
@@ -201,44 +508,98 @@
     {
       "id": "the-manual-assembly-problem",
       "title": "The Manual Assembly Problem",
-      "startSec": 90.50000000000001,
-      "endSec": 115.95000000000002,
+      "startSec": 92.85000000000001,
+      "endSec": 119.25000000000001,
+      "layers": [
+        {
+          "id": "background",
+          "zIndex": -1,
+          "components": [
+            {
+              "id": "background-0",
+              "type": "Background",
+              "props": {
+                "color": "#fdfdfd",
+                "sceneStartSec": 90.85000000000001
+              }
+            }
+          ]
+        },
+        {
+          "id": "title",
+          "zIndex": 1,
+          "components": [
+            {
+              "id": "title-0",
+              "type": "Title",
+              "props": {
+                "text": "The manual assembly problem",
+                "x": 960,
+                "y": 200,
+                "textAlign": "center",
+                "sceneStartSec": 90.85000000000001
+              }
+            }
+          ]
+        },
+        {
+          "id": "content",
+          "zIndex": 0,
+          "components": [
+            {
+              "id": "text-block-0",
+              "type": "TextBlock",
+              "props": {
+                "text": "Many teams already add guardrails in Python - schemas, validation, retries, approval gates, sandboxing, secrets hygiene.\\n\\nBut it is easy to miss a layer when you assemble everything by convention across mismatched systems.\\n\\n• Tool schemas and deterministic validation\\n• Policy enforcement (allowlists, limits, invariants)\\n• Approval gates for irreversible actions\\n• Sandboxing and isolation for code and files\\n• Secrets isolation to prevent credential theft",
+                "x": 960,
+                "y": 620,
+                "size": 36,
+                "align": "center",
+                "maxWidth": 1500,
+                "font": "serif",
+                "lineHeight": 1.35,
+                "sceneStartSec": 90.85000000000001
+              }
+            }
+          ]
+        }
+      ],
       "cues": [
         {
-          "id": "manual-assembly",
+          "id": "manual_assembly",
           "label": "manual_assembly",
-          "startSec": 90.50000000000001,
-          "endSec": 115.95000000000002,
+          "startSec": 92.85000000000001,
+          "endSec": 119.25000000000001,
           "text": "The best teams already add guardrails in Python: schemas, validation, retries, approval gates, sandboxing, and secrets hygiene. The problem isn't that people don't know guardrails matter. The problem is that when you assemble everything by convention across mismatched systems, it's easy to miss a layer. Missing a layer won't feel like a mistake until it becomes an incident.",
           "segments": [
             {
               "type": "tts",
-              "startSec": 90.50000000000001,
-              "endSec": 99.85000000000001,
+              "startSec": 92.85000000000001,
+              "endSec": 102.75000000000001,
               "text": "The best teams already add guardrails in Python: schemas, validation, retries, approval gates, sandboxing, and secrets hygiene."
             },
             {
               "type": "pause",
-              "startSec": 99.85000000000001,
-              "endSec": 100.25000000000001,
+              "startSec": 102.75000000000001,
+              "endSec": 103.15000000000002,
               "durationSec": 0.4
             },
             {
               "type": "tts",
-              "startSec": 100.25000000000001,
-              "endSec": 110.80000000000001,
+              "startSec": 103.15000000000002,
+              "endSec": 113.70000000000002,
               "text": "The problem isn't that people don't know guardrails matter. The problem is that when you assemble everything by convention across mismatched systems, it's easy to miss a layer."
             },
             {
               "type": "pause",
-              "startSec": 110.80000000000001,
-              "endSec": 111.25000000000001,
+              "startSec": 113.70000000000002,
+              "endSec": 114.15000000000002,
               "durationSec": 0.45
             },
             {
               "type": "tts",
-              "startSec": 111.25000000000001,
-              "endSec": 115.95000000000002,
+              "startSec": 114.15000000000002,
+              "endSec": 119.25000000000001,
               "text": "Missing a layer won't feel like a mistake until it becomes an incident."
             }
           ],
@@ -249,122 +610,192 @@
     {
       "id": "guardrails-as-first-class-architecture",
       "title": "Guardrails as First-Class Architecture",
-      "startSec": 115.95000000000002,
-      "endSec": 189.99999999999997,
+      "startSec": 119.75000000000001,
+      "endSec": 191.8,
+      "layers": [
+        {
+          "id": "background",
+          "zIndex": -1,
+          "components": [
+            {
+              "id": "background-0",
+              "type": "Background",
+              "props": {
+                "color": "#fdfdfd",
+                "sceneStartSec": 117.25000000000001
+              }
+            }
+          ]
+        },
+        {
+          "id": "title",
+          "zIndex": 1,
+          "components": [
+            {
+              "id": "title-0",
+              "type": "Title",
+              "props": {
+                "text": "Guardrails as first-class architecture",
+                "x": 960,
+                "y": 180,
+                "textAlign": "center",
+                "sceneStartSec": 117.25000000000001
+              }
+            }
+          ]
+        },
+        {
+          "id": "subtitle",
+          "zIndex": 1,
+          "components": [
+            {
+              "id": "text-block-0",
+              "type": "TextBlock",
+              "props": {
+                "text": "No single technique solves everything. Guardrails work as defense in depth - layers that each reduce a different class of risk.",
+                "x": 960,
+                "y": 300,
+                "size": 32,
+                "align": "center",
+                "maxWidth": 1500,
+                "font": "serif",
+                "sceneStartSec": 117.25000000000001
+              }
+            }
+          ]
+        },
+        {
+          "id": "diagram",
+          "zIndex": 0,
+          "components": [
+            {
+              "id": "guardrails-stack-diagram-0",
+              "type": "GuardrailsStackDiagram",
+              "props": {
+                "containerWidth": 1600,
+                "containerHeight": 650,
+                "x": 960,
+                "y": 690,
+                "sceneStartSec": 117.25000000000001
+              }
+            }
+          ]
+        }
+      ],
       "cues": [
         {
-          "id": "defense-in-depth",
+          "id": "defense_in_depth",
           "label": "defense_in_depth",
-          "startSec": 115.95000000000002,
-          "endSec": 189.99999999999997,
+          "startSec": 119.75000000000001,
+          "endSec": 191.8,
           "text": "This is the philosophy behind Tactus. Guardrails are not add-ons you bolt on later. They're architectural decisions baked into the execution model. No single technique solves everything. Guardrails work as defense in depth: layers that each reduce a different class of risk. At the top: cost and limits. Hard quotas prevent runaway loops before they become billing nightmares. Prompt engineering. Structured instructions guide behavior and reduce error rates. Context engineering. Curated context ensures the model has the right information, not just all information. Model selection. Choose and fine-tune models for specific capabilities and safety profiles. Tool selection. Give the agent only the capabilities it needs, and stage access over time. Code sandboxing. Isolated execution environments prevent unauthorized system access. Container isolation. Ephemeral containers constrain what the runtime can touch and firewall side effects inside the container.",
           "segments": [
             {
               "type": "tts",
-              "startSec": 115.95000000000002,
-              "endSec": 126.80000000000001,
+              "startSec": 119.75000000000001,
+              "endSec": 128.45000000000002,
               "text": "This is the philosophy behind Tactus. Guardrails are not add-ons you bolt on later. They're architectural decisions baked into the execution model."
             },
             {
               "type": "pause",
-              "startSec": 126.80000000000001,
-              "endSec": 127.30000000000001,
+              "startSec": 128.45000000000002,
+              "endSec": 128.95000000000002,
               "durationSec": 0.5
             },
             {
               "type": "tts",
-              "startSec": 127.30000000000001,
-              "endSec": 135.70000000000002,
+              "startSec": 128.95000000000002,
+              "endSec": 137.60000000000002,
               "text": "No single technique solves everything. Guardrails work as defense in depth: layers that each reduce a different class of risk."
             },
             {
               "type": "pause",
-              "startSec": 135.70000000000002,
-              "endSec": 136.10000000000002,
+              "startSec": 137.60000000000002,
+              "endSec": 138.00000000000003,
               "durationSec": 0.4
             },
             {
               "type": "tts",
-              "startSec": 136.10000000000002,
-              "endSec": 143.40000000000003,
+              "startSec": 138.00000000000003,
+              "endSec": 145.30000000000004,
               "text": "At the top: cost and limits. Hard quotas prevent runaway loops before they become billing nightmares."
             },
             {
               "type": "pause",
-              "startSec": 143.40000000000003,
-              "endSec": 143.75000000000003,
+              "startSec": 145.30000000000004,
+              "endSec": 145.65000000000003,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 143.75000000000003,
-              "endSec": 151.30000000000004,
+              "startSec": 145.65000000000003,
+              "endSec": 151.95000000000005,
               "text": "Prompt engineering. Structured instructions guide behavior and reduce error rates."
             },
             {
               "type": "pause",
-              "startSec": 151.30000000000004,
-              "endSec": 151.65000000000003,
+              "startSec": 151.95000000000005,
+              "endSec": 152.30000000000004,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 151.65000000000003,
-              "endSec": 158.85000000000002,
+              "startSec": 152.30000000000004,
+              "endSec": 160.20000000000005,
               "text": "Context engineering. Curated context ensures the model has the right information, not just all information."
             },
             {
               "type": "pause",
-              "startSec": 158.85000000000002,
-              "endSec": 159.20000000000002,
+              "startSec": 160.20000000000005,
+              "endSec": 160.55000000000004,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 159.20000000000002,
-              "endSec": 165.8,
+              "startSec": 160.55000000000004,
+              "endSec": 167.15000000000003,
               "text": "Model selection. Choose and fine-tune models for specific capabilities and safety profiles."
             },
             {
               "type": "pause",
-              "startSec": 165.8,
-              "endSec": 166.15,
+              "startSec": 167.15000000000003,
+              "endSec": 167.50000000000003,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 166.15,
-              "endSec": 172.65,
+              "startSec": 167.50000000000003,
+              "endSec": 175.60000000000002,
               "text": "Tool selection. Give the agent only the capabilities it needs, and stage access over time."
             },
             {
               "type": "pause",
-              "startSec": 172.65,
-              "endSec": 173,
+              "startSec": 175.60000000000002,
+              "endSec": 175.95000000000002,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 173,
-              "endSec": 180.6,
+              "startSec": 175.95000000000002,
+              "endSec": 182.20000000000002,
               "text": "Code sandboxing. Isolated execution environments prevent unauthorized system access."
             },
             {
               "type": "pause",
-              "startSec": 180.6,
-              "endSec": 180.95,
+              "startSec": 182.20000000000002,
+              "endSec": 182.55,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 180.95,
-              "endSec": 189.64999999999998,
+              "startSec": 182.55,
+              "endSec": 191.45000000000002,
               "text": "Container isolation. Ephemeral containers constrain what the runtime can touch and firewall side effects inside the container."
             },
             {
               "type": "pause",
-              "startSec": 189.64999999999998,
-              "endSec": 189.99999999999997,
+              "startSec": 191.45000000000002,
+              "endSec": 191.8,
               "durationSec": 0.35
             }
           ],
@@ -375,80 +806,150 @@
     {
       "id": "least-privilege-by-design",
       "title": "Least Privilege by Design",
-      "startSec": 189.99999999999997,
-      "endSec": 224.54999999999995,
+      "startSec": 192.3,
+      "endSec": 225.99999999999997,
+      "layers": [
+        {
+          "id": "background",
+          "zIndex": -1,
+          "components": [
+            {
+              "id": "background-0",
+              "type": "Background",
+              "props": {
+                "color": "#fdfdfd",
+                "sceneStartSec": 189.3
+              }
+            }
+          ]
+        },
+        {
+          "id": "title",
+          "zIndex": 1,
+          "components": [
+            {
+              "id": "title-0",
+              "type": "Title",
+              "props": {
+                "text": "Least privilege by design",
+                "x": 960,
+                "y": 180,
+                "textAlign": "center",
+                "sceneStartSec": 189.3
+              }
+            }
+          ]
+        },
+        {
+          "id": "subtitle",
+          "zIndex": 1,
+          "components": [
+            {
+              "id": "text-block-0",
+              "type": "TextBlock",
+              "props": {
+                "text": "Tactus enforces least privilege across multiple dimensions - not just tool access, but holistic minimal capability.",
+                "x": 960,
+                "y": 300,
+                "size": 32,
+                "align": "center",
+                "maxWidth": 1500,
+                "font": "serif",
+                "sceneStartSec": 189.3
+              }
+            }
+          ]
+        },
+        {
+          "id": "diagram",
+          "zIndex": 0,
+          "components": [
+            {
+              "id": "least-privilege-diagram-0",
+              "type": "LeastPrivilegeDiagram",
+              "props": {
+                "containerWidth": 1600,
+                "containerHeight": 650,
+                "x": 960,
+                "y": 690,
+                "sceneStartSec": 189.3
+              }
+            }
+          ]
+        }
+      ],
       "cues": [
         {
-          "id": "least-privilege",
+          "id": "least_privilege",
           "label": "least_privilege",
-          "startSec": 189.99999999999997,
-          "endSec": 224.54999999999995,
+          "startSec": 192.3,
+          "endSec": 225.99999999999997,
           "text": "Tactus enforces least privilege by design, across multiple dimensions. Minimal toolsets: agents get only the tools they need, not a kitchen sink. Curated context: relevant information only, not everything. Network isolation: the runtime is networkless by default. Secretless broker: credentials stay outside, the agent requests work but never holds keys. Temporal gating: tools become available only when the workflow stage requires them.",
           "segments": [
             {
               "type": "tts",
-              "startSec": 189.99999999999997,
-              "endSec": 194.74999999999997,
+              "startSec": 192.3,
+              "endSec": 197.55,
               "text": "Tactus enforces least privilege by design, across multiple dimensions."
             },
             {
               "type": "pause",
-              "startSec": 194.74999999999997,
-              "endSec": 195.14999999999998,
+              "startSec": 197.55,
+              "endSec": 197.95000000000002,
               "durationSec": 0.4
             },
             {
               "type": "tts",
-              "startSec": 195.14999999999998,
-              "endSec": 201.29999999999998,
+              "startSec": 197.95000000000002,
+              "endSec": 203.4,
               "text": "Minimal toolsets: agents get only the tools they need, not a kitchen sink."
             },
             {
               "type": "pause",
-              "startSec": 201.29999999999998,
-              "endSec": 201.64999999999998,
+              "startSec": 203.4,
+              "endSec": 203.75,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 201.64999999999998,
-              "endSec": 206.45,
+              "startSec": 203.75,
+              "endSec": 208.6,
               "text": "Curated context: relevant information only, not everything."
             },
             {
               "type": "pause",
-              "startSec": 206.45,
-              "endSec": 206.79999999999998,
+              "startSec": 208.6,
+              "endSec": 208.95,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 206.79999999999998,
-              "endSec": 211.74999999999997,
+              "startSec": 208.95,
+              "endSec": 213.39999999999998,
               "text": "Network isolation: the runtime is networkless by default."
             },
             {
               "type": "pause",
-              "startSec": 211.74999999999997,
-              "endSec": 212.09999999999997,
+              "startSec": 213.39999999999998,
+              "endSec": 213.74999999999997,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 212.09999999999997,
-              "endSec": 218.69999999999996,
+              "startSec": 213.74999999999997,
+              "endSec": 220.29999999999998,
               "text": "Secretless broker: credentials stay outside, the agent requests work but never holds keys."
             },
             {
               "type": "pause",
-              "startSec": 218.69999999999996,
-              "endSec": 219.04999999999995,
+              "startSec": 220.29999999999998,
+              "endSec": 220.64999999999998,
               "durationSec": 0.35
             },
             {
               "type": "tts",
-              "startSec": 219.04999999999995,
-              "endSec": 224.54999999999995,
+              "startSec": 220.64999999999998,
+              "endSec": 225.99999999999997,
               "text": "Temporal gating: tools become available only when the workflow stage requires them."
             }
           ],
@@ -459,56 +960,126 @@
     {
       "id": "sandboxing-a-secretless-broker-boundary",
       "title": "Sandboxing + a Secretless Broker Boundary",
-      "startSec": 224.54999999999995,
-      "endSec": 276.0999999999999,
+      "startSec": 226.49999999999997,
+      "endSec": 280.7,
+      "layers": [
+        {
+          "id": "background",
+          "zIndex": -1,
+          "components": [
+            {
+              "id": "background-0",
+              "type": "Background",
+              "props": {
+                "color": "#fdfdfd",
+                "sceneStartSec": 222.99999999999997
+              }
+            }
+          ]
+        },
+        {
+          "id": "title",
+          "zIndex": 1,
+          "components": [
+            {
+              "id": "title-0",
+              "type": "Title",
+              "props": {
+                "text": "Keep the monkey in the box",
+                "x": 960,
+                "y": 180,
+                "textAlign": "center",
+                "sceneStartSec": 222.99999999999997
+              }
+            }
+          ]
+        },
+        {
+          "id": "subtitle",
+          "zIndex": 1,
+          "components": [
+            {
+              "id": "text-block-0",
+              "type": "TextBlock",
+              "props": {
+                "text": "Sandbox untrusted orchestration. Keep secrets out of the runtime. Broker privileged calls behind a narrow, auditable boundary.",
+                "x": 960,
+                "y": 300,
+                "size": 32,
+                "align": "center",
+                "maxWidth": 1500,
+                "font": "serif",
+                "sceneStartSec": 222.99999999999997
+              }
+            }
+          ]
+        },
+        {
+          "id": "diagram",
+          "zIndex": 0,
+          "components": [
+            {
+              "id": "container-sandbox-diagram-0",
+              "type": "ContainerSandboxDiagram",
+              "props": {
+                "containerWidth": 1600,
+                "containerHeight": 650,
+                "x": 960,
+                "y": 690,
+                "sceneStartSec": 222.99999999999997
+              }
+            }
+          ]
+        }
+      ],
       "cues": [
         {
-          "id": "sandbox-broker",
+          "id": "sandbox_broker",
           "label": "sandbox_broker",
-          "startSec": 224.54999999999995,
-          "endSec": 276.0999999999999,
+          "startSec": 226.49999999999997,
+          "endSec": 280.7,
           "text": "Once you let an agent write files or run code, you want a cage. Tactus runs orchestration inside a sandboxed Lua environment, and when sandboxing is enabled, inside an ephemeral container. But containers answer only one security question: what can it touch? The other question is: what can it steal? The broker boundary is the game changer. Keep the runtime secretless and networkless by default. The sandbox can request tool calls, but it never holds provider keys. The keys live outside the sandbox, in a trusted broker. This is the security model: don't make secrets hard to steal—make sure there are no secrets inside the runtime to steal. It's like letting a burglar into an empty building. Even if they get in, there's nothing valuable to take.",
           "segments": [
             {
               "type": "tts",
-              "startSec": 224.54999999999995,
-              "endSec": 237.89999999999995,
+              "startSec": 226.49999999999997,
+              "endSec": 239.99999999999997,
               "text": "Once you let an agent write files or run code, you want a cage. Tactus runs orchestration inside a sandboxed Lua environment, and when sandboxing is enabled, inside an ephemeral container."
             },
             {
               "type": "pause",
-              "startSec": 237.89999999999995,
-              "endSec": 238.39999999999995,
+              "startSec": 239.99999999999997,
+              "endSec": 240.49999999999997,
               "durationSec": 0.5
             },
             {
               "type": "tts",
-              "startSec": 238.39999999999995,
-              "endSec": 246.94999999999996,
+              "startSec": 240.49999999999997,
+              "endSec": 249.14999999999998,
               "text": "But containers answer only one security question: what can it touch? The other question is: what can it steal?"
             },
             {
               "type": "pause",
-              "startSec": 246.94999999999996,
-              "endSec": 247.44999999999996,
+              "startSec": 249.14999999999998,
+              "endSec": 249.64999999999998,
               "durationSec": 0.5
             },
             {
               "type": "tts",
-              "startSec": 247.44999999999996,
-              "endSec": 261.44999999999993,
+              "startSec": 249.64999999999998,
+              "endSec": 265.75,
               "text": "The broker boundary is the game changer. Keep the runtime secretless and networkless by default. The sandbox can request tool calls, but it never holds provider keys. The keys live outside the sandbox, in a trusted broker."
             },
             {
               "type": "pause",
-              "startSec": 261.44999999999993,
-              "endSec": 261.8999999999999,
+              "startSec": 265.75,
+              "endSec": 266.2,
               "durationSec": 0.45
             },
             {
               "type": "tts",
-              "startSec": 261.8999999999999,
-              "endSec": 276.0999999999999,
+              "startSec": 266.2,
+              "endSec": 280.7,
               "text": "This is the security model: don't make secrets hard to steal—make sure there are no secrets inside the runtime to steal. It's like letting a burglar into an empty building. Even if they get in, there's nothing valuable to take."
             }
           ],
@@ -519,44 +1090,98 @@
     {
       "id": "a-concrete-example",
       "title": "A Concrete Example",
-      "startSec": 276.0999999999999,
-      "endSec": 301.0999999999999,
+      "startSec": 281.2,
+      "endSec": 308.19999999999993,
+      "layers": [
+        {
+          "id": "background",
+          "zIndex": -1,
+          "components": [
+            {
+              "id": "background-0",
+              "type": "Background",
+              "props": {
+                "color": "#fdfdfd",
+                "sceneStartSec": 277.2
+              }
+            }
+          ]
+        },
+        {
+          "id": "title",
+          "zIndex": 1,
+          "components": [
+            {
+              "id": "title-0",
+              "type": "Title",
+              "props": {
+                "text": "A concrete example: recap emails",
+                "x": 960,
+                "y": 200,
+                "textAlign": "center",
+                "sceneStartSec": 277.2
+              }
+            }
+          ]
+        },
+        {
+          "id": "content",
+          "zIndex": 0,
+          "components": [
+            {
+              "id": "text-block-0",
+              "type": "TextBlock",
+              "props": {
+                "text": "A safe delegation pattern\\n\\n1) Draft with read-only tools (no side effects).\\n2) Durable human review: approve, edit, reject.\\n3) Only after approval does the send tool become available.",
+                "x": 960,
+                "y": 600,
+                "size": 40,
+                "align": "center",
+                "maxWidth": 1400,
+                "font": "serif",
+                "lineHeight": 1.35,
+                "sceneStartSec": 277.2
+              }
+            }
+          ]
+        }
+      ],
       "cues": [
         {
-          "id": "recap-emails",
+          "id": "recap_emails",
           "label": "recap_emails",
-          "startSec": 276.0999999999999,
-          "endSec": 301.0999999999999,
+          "startSec": 281.2,
+          "endSec": 308.19999999999993,
           "text": "Consider a workflow that drafts and sends recap emails from meeting notes. Without guardrails, you either supervise every run, or you give the agent side-effect tools and accept unacceptable risk. With staged tools and durable approvals, the agent drafts with read-only tools, a human reviews at a checkpoint, and only after approval does the send tool become available.",
           "segments": [
             {
               "type": "tts",
-              "startSec": 276.0999999999999,
-              "endSec": 280.94999999999993,
+              "startSec": 281.2,
+              "endSec": 287.84999999999997,
               "text": "Consider a workflow that drafts and sends recap emails from meeting notes."
             },
             {
               "type": "pause",
-              "startSec": 280.94999999999993,
-              "endSec": 281.3499999999999,
+              "startSec": 287.84999999999997,
+              "endSec": 288.24999999999994,
               "durationSec": 0.4
             },
             {
               "type": "tts",
-              "startSec": 281.3499999999999,
-              "endSec": 288.5999999999999,
+              "startSec": 288.24999999999994,
+              "endSec": 295.6499999999999,
               "text": "Without guardrails, you either supervise every run, or you give the agent side-effect tools and accept unacceptable risk."
             },
             {
               "type": "pause",
-              "startSec": 288.5999999999999,
-              "endSec": 289.0499999999999,
+              "startSec": 295.6499999999999,
+              "endSec": 296.0999999999999,
               "durationSec": 0.45
             },
             {
               "type": "tts",
-              "startSec": 289.0499999999999,
-              "endSec": 301.0999999999999,
+              "startSec": 296.0999999999999,
+              "endSec": 308.19999999999993,
               "text": "With staged tools and durable approvals, the agent drafts with read-only tools, a human reviews at a checkpoint, and only after approval does the send tool become available."
             }
           ],
@@ -567,50 +1192,292 @@
     {
       "id": "closing",
       "title": "Closing",
-      "startSec": 301.0999999999999,
-      "endSec": 323.14999999999986,
+      "startSec": 308.69999999999993,
+      "endSec": 328.79999999999995,
+      "layers": [
+        {
+          "id": "background",
+          "zIndex": -1,
+          "components": [
+            {
+              "id": "background-0",
+              "type": "Background",
+              "props": {
+                "color": "#fdfdfd",
+                "sceneStartSec": 304.19999999999993
+              }
+            }
+          ]
+        },
+        {
+          "id": "title",
+          "zIndex": 1,
+          "components": [
+            {
+              "id": "title-0",
+              "type": "Title",
+              "props": {
+                "text": "Guardrails are the engine of delegation",
+                "x": 960,
+                "y": 240,
+                "textAlign": "center",
+                "sceneStartSec": 304.19999999999993
+              }
+            }
+          ]
+        },
+        {
+          "id": "content",
+          "zIndex": 0,
+          "components": [
+            {
+              "id": "text-block-0",
+              "type": "TextBlock",
+              "props": {
+                "text": "The race car needs brakes. The surgeon needs protocols. The organization needs governance. The agent needs guardrails.\\n\\nRead the full story at tactus dot run slash guardrails.",
+                "x": 960,
+                "y": 600,
+                "size": 36,
+                "align": "center",
+                "maxWidth": 1500,
+                "font": "serif",
+                "lineHeight": 1.35,
+                "sceneStartSec": 304.19999999999993
+              }
+            }
+          ]
+        }
+      ],
       "cues": [
         {
           "id": "closing",
           "label": "closing",
-          "startSec": 301.0999999999999,
-          "endSec": 323.14999999999986,
+          "startSec": 308.69999999999993,
+          "endSec": 328.79999999999995,
           "text": "Guardrails aren't a tax. They're the engine of delegation. The race car needs brakes. The surgeon needs protocols. The organization needs governance. The agent needs guardrails. Read the full story at tactus dot run slash guardrails.",
           "segments": [
             {
               "type": "tts",
-              "startSec": 301.0999999999999,
-              "endSec": 305.44999999999993,
+              "startSec": 308.69999999999993,
+              "endSec": 312.99999999999994,
               "text": "Guardrails aren't a tax. They're the engine of delegation."
             },
             {
               "type": "pause",
-              "startSec": 305.44999999999993,
-              "endSec": 305.8499999999999,
+              "startSec": 312.99999999999994,
+              "endSec": 313.3999999999999,
               "durationSec": 0.4
             },
             {
               "type": "tts",
-              "startSec": 305.8499999999999,
-              "endSec": 316.2499999999999,
+              "startSec": 313.3999999999999,
+              "endSec": 322.99999999999994,
               "text": "The race car needs brakes. The surgeon needs protocols. The organization needs governance. The agent needs guardrails."
             },
             {
               "type": "pause",
-              "startSec": 316.2499999999999,
-              "endSec": 316.7499999999999,
+              "startSec": 322.99999999999994,
+              "endSec": 323.49999999999994,
               "durationSec": 0.5
             },
             {
               "type": "tts",
-              "startSec": 316.7499999999999,
-              "endSec": 323.14999999999986,
+              "startSec": 323.49999999999994,
+              "endSec": 328.79999999999995,
               "text": "Read the full story at tactus dot run slash guardrails."
             }
           ],
           "bullets": []
         }
       ]
+    }
+  ],
+  "timeline": [
+    {
+      "kind": "scene",
+      "sceneId": "guardrails-for-agent-autonomy",
+      "startSec": 0.25,
+      "endSec": 7.75
+    },
+    {
+      "kind": "transition",
+      "id": "guardrails-push-1",
+      "startSec": 7.75,
+      "endSec": 8.25,
+      "effect": "slide",
+      "ease": "power2.inOut",
+      "props": {
+        "direction": "left"
+      },
+      "mode": "insert",
+      "fromSceneId": "guardrails-for-agent-autonomy",
+      "toSceneId": "the-paradox-of-power"
+    },
+    {
+      "kind": "scene",
+      "sceneId": "the-paradox-of-power",
+      "startSec": 8.25,
+      "endSec": 37.15
+    },
+    {
+      "kind": "transition",
+      "id": "guardrails-push-2",
+      "startSec": 37.15,
+      "endSec": 37.65,
+      "effect": "slide",
+      "ease": "power2.inOut",
+      "props": {
+        "direction": "left"
+      },
+      "mode": "insert",
+      "fromSceneId": "the-paradox-of-power",
+      "toSceneId": "the-pattern-repeats-across-domains"
+    },
+    {
+      "kind": "scene",
+      "sceneId": "the-pattern-repeats-across-domains",
+      "startSec": 37.65,
+      "endSec": 69.1
+    },
+    {
+      "kind": "transition",
+      "id": "guardrails-push-3",
+      "startSec": 69.1,
+      "endSec": 69.6,
+      "effect": "slide",
+      "ease": "power2.inOut",
+      "props": {
+        "direction": "left"
+      },
+      "mode": "insert",
+      "fromSceneId": "the-pattern-repeats-across-domains",
+      "toSceneId": "the-prompt-engineering-ceiling"
+    },
+    {
+      "kind": "scene",
+      "sceneId": "the-prompt-engineering-ceiling",
+      "startSec": 69.6,
+      "endSec": 92.35000000000001
+    },
+    {
+      "kind": "transition",
+      "id": "guardrails-push-4",
+      "startSec": 92.35000000000001,
+      "endSec": 92.85000000000001,
+      "effect": "slide",
+      "ease": "power2.inOut",
+      "props": {
+        "direction": "left"
+      },
+      "mode": "insert",
+      "fromSceneId": "the-prompt-engineering-ceiling",
+      "toSceneId": "the-manual-assembly-problem"
+    },
+    {
+      "kind": "scene",
+      "sceneId": "the-manual-assembly-problem",
+      "startSec": 92.85000000000001,
+      "endSec": 119.25000000000001
+    },
+    {
+      "kind": "transition",
+      "id": "guardrails-push-5",
+      "startSec": 119.25000000000001,
+      "endSec": 119.75000000000001,
+      "effect": "slide",
+      "ease": "power2.inOut",
+      "props": {
+        "direction": "left"
+      },
+      "mode": "insert",
+      "fromSceneId": "the-manual-assembly-problem",
+      "toSceneId": "guardrails-as-first-class-architecture"
+    },
+    {
+      "kind": "scene",
+      "sceneId": "guardrails-as-first-class-architecture",
+      "startSec": 119.75000000000001,
+      "endSec": 191.8
+    },
+    {
+      "kind": "transition",
+      "id": "guardrails-push-6",
+      "startSec": 191.8,
+      "endSec": 192.3,
+      "effect": "slide",
+      "ease": "power2.inOut",
+      "props": {
+        "direction": "left"
+      },
+      "mode": "insert",
+      "fromSceneId": "guardrails-as-first-class-architecture",
+      "toSceneId": "least-privilege-by-design"
+    },
+    {
+      "kind": "scene",
+      "sceneId": "least-privilege-by-design",
+      "startSec": 192.3,
+      "endSec": 225.99999999999997
+    },
+    {
+      "kind": "transition",
+      "id": "guardrails-push-7",
+      "startSec": 225.99999999999997,
+      "endSec": 226.49999999999997,
+      "effect": "slide",
+      "ease": "power2.inOut",
+      "props": {
+        "direction": "left"
+      },
+      "mode": "insert",
+      "fromSceneId": "least-privilege-by-design",
+      "toSceneId": "sandboxing-a-secretless-broker-boundary"
+    },
+    {
+      "kind": "scene",
+      "sceneId": "sandboxing-a-secretless-broker-boundary",
+      "startSec": 226.49999999999997,
+      "endSec": 280.7
+    },
+    {
+      "kind": "transition",
+      "id": "guardrails-push-8",
+      "startSec": 280.7,
+      "endSec": 281.2,
+      "effect": "slide",
+      "ease": "power2.inOut",
+      "props": {
+        "direction": "left"
+      },
+      "mode": "insert",
+      "fromSceneId": "sandboxing-a-secretless-broker-boundary",
+      "toSceneId": "a-concrete-example"
+    },
+    {
+      "kind": "scene",
+      "sceneId": "a-concrete-example",
+      "startSec": 281.2,
+      "endSec": 308.19999999999993
+    },
+    {
+      "kind": "transition",
+      "id": "guardrails-push-9",
+      "startSec": 308.19999999999993,
+      "endSec": 308.69999999999993,
+      "effect": "slide",
+      "ease": "power2.inOut",
+      "props": {
+        "direction": "left"
+      },
+      "mode": "insert",
+      "fromSceneId": "a-concrete-example",
+      "toSceneId": "closing"
+    },
+    {
+      "kind": "scene",
+      "sceneId": "closing",
+      "startSec": 308.69999999999993,
+      "endSec": 328.79999999999995
     }
   ],
   "posterTimeSec": 81,

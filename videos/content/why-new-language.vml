@@ -1,0 +1,314 @@
+<vml id="why-a-new-language" title="Why a New Language?" fps="24" width="1920" height="1080" poster="383s">
+  <voiceover provider="openai" model="gpt-4o-mini-tts" voice="echo" sampleRateHz="24000" leadInSeconds="0.25s" trimEndSeconds="0s" />
+
+  <scene id="title-card" title="Title Card">
+    <layer id="background" z="-1">
+      <background props='{"color":"#fdfdfd"}' />
+    </layer>
+    <layer id="title" z="1">
+      <title props='{"text":"Why a New Language?","x":960,"y":260,"textAlign":"center"}' />
+    </layer>
+    <layer id="subtitle" z="0">
+      <text-block props='{"text":"What is wrong with Python?","x":960,"y":520,"size":48,"weight":600,"align":"center","maxWidth":1400,"font":"serif"}' />
+    </layer>
+    <cue id="title" label="title">
+      <pause seconds="0.8s" />
+      <voice>Why do we need a new language?</voice>
+      <pause seconds="0.5s" />
+      <voice>To answer that question, we need to think about what the purpose of a computer programming language is.</voice>
+      <pause seconds="0.4s" />
+      <voice>It is to provide a high-level model for recording reproducible solutions to problems.</voice>
+      <pause seconds="0.5s" />
+      <voice>So to see why we need a new one, let's look at how those models have evolved.</voice>
+      <pause seconds="0.4s" />
+    </cue>
+  </scene>
+
+  <transition id="why-push-1" effect="slide" duration="12f" mode="insert" ease="power2.inOut" props='{"direction":"left"}' />
+
+  <scene id="in-the-beginning" title="In the Beginning">
+    <layer id="background" z="-1">
+      <background props='{"color":"#fdfdfd"}' />
+    </layer>
+    <layer id="title" z="1">
+      <title props='{"text":"In the beginning...","x":960,"y":180,"textAlign":"center"}' />
+    </layer>
+    <layer id="content" z="0">
+      <text-block props='{"text":"1940s: Machine Code","x":960,"y":320,"size":36,"weight":800,"align":"center","maxWidth":1400,"font":"sans"}' />
+      <text-block props='{"text":"01001000 10001001 11100101\\n01001000 10000011 11101100 00001000\\n10001011 00000101 00000000 00000000\\n00000000 00000000","x":960,"y":520,"size":28,"weight":500,"align":"center","maxWidth":1500,"font":"mono","background":"rgba(39, 39, 42, 0.03)","padding":24,"borderRadius":16,"border":"1px solid rgba(39, 39, 42, 0.10)"}' />
+      <text-block props='{"text":"Abstraction ladder: Assembly -> Lisp -> C -> C++ -> Ruby -> Tactus","x":960,"y":820,"size":32,"weight":600,"align":"center","maxWidth":1500,"font":"serif"}' />
+    </layer>
+    <cue id="history" label="history">
+      <voice>In the beginning, programmers wrote raw machine code. Zeros and ones. It was slow, tedious, and error-prone. And it was low-level in a very literal sense: those zeros and ones corresponded to physical states—voltage on a wire, a relay position, or a vacuum tube being on or off. Sometimes that meant wiring plugboards or toggling switches. Later it meant punching numeric opcodes. You were squinting down in the guts of the machine, and your "program" was basically a description of that machine.</voice>
+      <pause seconds="0.35s" />
+      <voice>Assemblers emerged almost immediately. Instead of binary opcodes, you could write symbolic instructions. Researchers formalized those patterns into names and labels, making "machine instructions" legible to humans. The computer translated them into machine code. And once you can name things, you can reuse them: labels, macros, and early subroutines made programs repeatable instead of handcrafted.</voice>
+      <pause seconds="0.4s" />
+      <voice>But the deeper shift is that assemblers introduced a two‑step workflow. Now there are two programs in the story: the assembler, and your program.</voice>
+      <pause seconds="0.35s" />
+      <voice>You write code in a form that's easier for humans to understand. Then you run the assembler — a program — to turn that into machine code. And then the computer runs the machine code.</voice>
+      <pause seconds="0.35s" />
+      <voice>That's the key step: one of the first useful things people ever did with computers was use them to make using computers easier. Even when computer time was precious, people spent some of it on tools that made programming faster, safer, and more repeatable.</voice>
+      <pause seconds="0.3s" />
+      <voice>From there, the ladder of abstraction rose quickly. In the late 1950s and 1960s, early high-level languages like Fortran, Lisp, COBOL, ALGOL, and APL enabled humans describe problems more directly, while compilers handled the low-level details. Lisp, for example, was built for symbolic problems: lists, recursion, and treating code as data so you can transform programs like any other structure.</voice>
+      <pause seconds="0.3s" />
+      <voice>One especially influential descendant of that era was C. It kept you close to the machine, but its constructs made repetition and reuse explicit: functions you could call again, and control flow you could reason about.</voice>
+      <pause seconds="0.3s" />
+      <voice>C plus plus — and object-oriented programming more broadly — tried to match another problem space: large systems made of interacting "things" with state and responsibilities.</voice>
+      <pause seconds="0.3s" />
+      <voice>And languages like Ruby pushed toward expressing intent directly: code that reads closer to what a human means, so the computer does more of the bookkeeping.</voice>
+      <pause seconds="0.4s" />
+      <voice>But through all of this, the paradigm never changed. The programmer still specified control flow. The computer still followed instructions.</voice>
+      <pause seconds="0.4s" />
+      <voice>Today, we're seeing the same pattern repeat with AI. One of the first valuable uses of AI is to turn it on itself: using AI to make programming easier, and to write better code.</voice>
+      <pause seconds="0.35s" />
+      <voice>Tactus continues that tradition. It raises the level of abstraction to match what engineers care about in agentic systems: procedures, tools, guardrails, checkpoints, and evaluation. So you can express those concerns directly.</voice>
+      <pause seconds="0.3s" />
+      <voice>But this time, something deeper is changing. It's not just a higher level of abstraction. It's a fundamentally different way of making decisions.</voice>
+    </cue>
+  </scene>
+
+  <transition id="why-push-2" effect="slide" duration="12f" mode="insert" ease="power2.inOut" props='{"direction":"left"}' />
+
+  <scene id="control-flow-evolution" title="Control Flow Evolution">
+    <layer id="background" z="-1">
+      <background props='{"color":"#fdfdfd"}' />
+    </layer>
+    <layer id="title" z="1">
+      <title props='{"text":"Control Flow Has Changed","x":960,"y":180,"textAlign":"center"}' />
+    </layer>
+    <layer id="content" z="0">
+      <text-block props='{"text":"Traditional","x":520,"y":360,"size":32,"weight":900,"align":"center","maxWidth":640,"font":"sans","color":"#666666"}' />
+      <text-block props='{"text":"Same input -> Same output\\n\\nDeterministic\\n\\nProgrammer specifies every step","x":520,"y":560,"size":30,"weight":500,"align":"center","maxWidth":640,"font":"serif","background":"rgba(39, 39, 42, 0.04)","padding":32,"borderRadius":20,"border":"1px solid rgba(39, 39, 42, 0.12)"}' />
+      <text-block props='{"text":"AI-Driven","x":1400,"y":360,"size":32,"weight":900,"align":"center","maxWidth":640,"font":"sans","color":"#c7007e"}' />
+      <text-block props='{"text":"Same input -> Varying outputs\\n\\nProbabilistic\\n\\nDecisions emerge from models","x":1400,"y":560,"size":30,"weight":500,"align":"center","maxWidth":640,"font":"serif","background":"rgba(39, 39, 42, 0.04)","padding":32,"borderRadius":20,"border":"1px solid rgba(39, 39, 42, 0.12)"}' />
+    </layer>
+    <cue id="shift" label="shift">
+      <voice>Today, decisions are no longer made entirely by imperative logic written by programmers.</voice>
+      <pause seconds="0.35s" />
+      <voice>In agentic patterns like the ReAct loop, you explicitly hand control flow to the model: it decides what tool to call next, and when it's done.</voice>
+      <pause seconds="0.4s" />
+      <voice>That's one of the clearest definitions of "agentic programming": the agent is making the control-flow decisions.</voice>
+      <pause seconds="0.35s" />
+      <voice>And that's what we mean by a new kind of computer program. Instead of specifying every branch, you yield control to the AI model — and you surround that loop with guardrails.</voice>
+      <pause seconds="0.35s" />
+      <voice>Even a basic guardrail matters immediately: you can't let the loop run forever. So you might cap it at, say, twelve tool calls — and require the agent to stop or ask for help after that.</voice>
+      <pause seconds="0.35s" />
+      <voice>Tactus is designed to make that style of program—and those guardrails—explicit and easy to reason about.</voice>
+    </cue>
+  </scene>
+
+  <transition id="why-push-3" effect="slide" duration="12f" mode="insert" ease="power2.inOut" props='{"direction":"left"}' />
+
+  <scene id="existing-tools-strain" title="Existing Tools Strain">
+    <layer id="background" z="-1">
+      <background props='{"color":"#fdfdfd"}' />
+    </layer>
+    <layer id="title" z="1">
+      <title props='{"text":"The Problem with Python","x":960,"y":180,"textAlign":"center"}' />
+    </layer>
+    <layer id="content" z="0">
+      <text-block props='{"text":"Python","x":520,"y":320,"size":30,"weight":900,"align":"center","maxWidth":640,"font":"sans"}' />
+      <text-block props='{"text":"async def process_with_agent(input_data):\\n    try:\\n        result = await openai.chat.completions.create(...)\\n        # Now what? How do we checkpoint?\\n        # How do we test this?\\n        # How do we prevent it from reading /etc/passwd?\\n        return result\\n    except Exception as e:\\n        pass","x":520,"y":620,"size":22,"weight":500,"align":"left","maxWidth":700,"font":"mono","background":"rgba(39, 39, 42, 0.04)","padding":28,"borderRadius":16,"border":"1px solid rgba(39, 39, 42, 0.12)"}' />
+      <text-block props='{"text":"Tactus","x":1400,"y":320,"size":30,"weight":900,"align":"center","maxWidth":640,"font":"sans","color":"#c7007e"}' />
+      <text-block props='{"text":"Procedure {\\n  function(input)\\n    local result = agent {\\n      instruction = \\\"Process this input\\\",\\n      data = input\\n    }\\n    -- Checkpointed automatically\\n    -- Runs in sandbox by default\\n    -- Testable with specs\\n    return result\\n  end\\n}","x":1400,"y":620,"size":22,"weight":500,"align":"left","maxWidth":700,"font":"mono","background":"rgba(39, 39, 42, 0.04)","padding":28,"borderRadius":16,"border":"1px solid rgba(39, 39, 42, 0.12)"}' />
+    </layer>
+    <cue id="python_problem" label="python_problem">
+      <voice>So why not just use Python? Or TypeScript? They're powerful, flexible languages.</voice>
+      <pause seconds="0.35s" />
+      <voice>The problem isn't capability. It's fit.</voice>
+      <pause seconds="0.4s" />
+      <voice>Look at this code. How do you checkpoint an agent call? How do you test it? How do you prevent it from reading slash-etsy-slash-password?</voice>
+      <pause seconds="0.5s" />
+      <voice>These concerns exist, but they're bolted on. Fragmented across code, prompts, configuration, and external frameworks.</voice>
+      <pause seconds="0.35s" />
+      <voice>The language wasn't designed for this.</voice>
+    </cue>
+  </scene>
+
+  <transition id="why-push-4" effect="slide" duration="12f" mode="insert" ease="power2.inOut" props='{"direction":"left"}' />
+
+  <scene id="deterministic-practices-collapse" title="Deterministic Practices Collapse">
+    <layer id="background" z="-1">
+      <background props='{"color":"#fdfdfd"}' />
+    </layer>
+    <layer id="title" z="1">
+      <title props='{"text":"Traditional Best Practices Break","x":960,"y":180,"textAlign":"center"}' />
+    </layer>
+    <layer id="content" z="0">
+      <text-block props='{"text":"Unit tests with exact assertions","x":520,"y":380,"size":28,"weight":600,"align":"center","maxWidth":720,"font":"serif","background":"rgba(39, 39, 42, 0.04)","padding":22,"borderRadius":16,"border":"1px solid rgba(39, 39, 42, 0.12)"}' />
+      <text-block props='{"text":"100% code coverage","x":1400,"y":380,"size":28,"weight":600,"align":"center","maxWidth":720,"font":"serif","background":"rgba(39, 39, 42, 0.04)","padding":22,"borderRadius":16,"border":"1px solid rgba(39, 39, 42, 0.12)"}' />
+      <text-block props='{"text":"Regression tests","x":520,"y":560,"size":28,"weight":600,"align":"center","maxWidth":720,"font":"serif","background":"rgba(39, 39, 42, 0.04)","padding":22,"borderRadius":16,"border":"1px solid rgba(39, 39, 42, 0.12)"}' />
+      <text-block props='{"text":"Debuggers with replay","x":1400,"y":560,"size":28,"weight":600,"align":"center","maxWidth":720,"font":"serif","background":"rgba(39, 39, 42, 0.04)","padding":22,"borderRadius":16,"border":"1px solid rgba(39, 39, 42, 0.12)"}' />
+      <text-block props='{"text":"Binary pass/fail gates","x":960,"y":740,"size":28,"weight":600,"align":"center","maxWidth":720,"font":"serif","background":"rgba(39, 39, 42, 0.04)","padding":22,"borderRadius":16,"border":"1px solid rgba(39, 39, 42, 0.12)"}' />
+    </layer>
+    <cue id="testing_breaks" label="testing_breaks">
+      <voice>For decades, software engineering best practices have been built around one assumption: determinism.</voice>
+      <pause seconds="0.35s" />
+      <voice>Unit tests assert exact values. Code coverage measures every line. Regression tests catch unexpected changes.</voice>
+      <pause seconds="0.4s" />
+      <voice>But when your system makes decisions probabilistically, all of these practices break.</voice>
+      <pause seconds="0.35s" />
+      <voice>Output varies between runs. Behavior comes from models, not code. Natural variation looks like regression.</voice>
+      <pause seconds="0.4s" />
+      <voice>Instead of proving correctness, you measure alignment.</voice>
+    </cue>
+  </scene>
+
+  <transition id="why-push-5" effect="slide" duration="12f" mode="insert" ease="power2.inOut" props='{"direction":"left"}' />
+
+  <scene id="beyond-mlops" title="Beyond MLOps">
+    <layer id="background" z="-1">
+      <background props='{"color":"#fdfdfd"}' />
+    </layer>
+    <layer id="title" z="1">
+      <title props='{"text":"Beyond MLOps","x":960,"y":180,"textAlign":"center"}' />
+    </layer>
+    <layer id="content" z="0">
+      <text-block props='{"text":"MLOps\\n\\nTrain models\\nEvaluate on test sets\\nCompare metrics\\nDeploy best model\\n\\nFocus: Model Quality","x":520,"y":560,"size":28,"weight":600,"align":"center","maxWidth":700,"font":"serif","background":"rgba(39, 39, 42, 0.04)","padding":28,"borderRadius":18,"border":"1px solid rgba(39, 39, 42, 0.12)"}' />
+      <text-block props='{"text":"PrOps\\n\\nDefine procedures\\nWrite specifications\\nRun evaluations\\nDeploy with guardrails\\n\\nFocus: System Behavior","x":1400,"y":560,"size":28,"weight":600,"align":"center","maxWidth":700,"font":"serif","background":"rgba(39, 39, 42, 0.04)","padding":28,"borderRadius":18,"border":"1px solid rgba(39, 39, 42, 0.12)","color":"#c7007e"}' />
+    </layer>
+    <cue id="mlops_comparison" label="mlops_comparison">
+      <voice>Machine learning practitioners have dealt with stochastic systems for years. They track experiments. Compare models. Optimize metrics.</voice>
+      <pause seconds="0.35s" />
+      <voice>But MLOps is optimized for models, not behavior.</voice>
+      <pause seconds="0.4s" />
+      <voice>Agentic systems don't just produce predictions. They take actions. Use tools. Generate multi-step behaviors.</voice>
+      <pause seconds="0.35s" />
+      <voice>Success isn't a single number. It's whether the system behaves acceptably given the situation.</voice>
+    </cue>
+  </scene>
+
+  <transition id="why-push-6" effect="slide" duration="12f" mode="insert" ease="power2.inOut" props='{"direction":"left"}' />
+
+  <scene id="behavioral-specifications" title="Behavioral Specifications">
+    <layer id="background" z="-1">
+      <background props='{"color":"#fdfdfd"}' />
+    </layer>
+    <layer id="title" z="1">
+      <title props='{"text":"Behavioral Specifications","x":960,"y":180,"textAlign":"center"}' />
+    </layer>
+    <layer id="content" z="0">
+      <text-block props='{"text":"Feature: Contact import works reliably\\n\\nScenario: Handles varied formats\\n  Given 100 contact records\\n  When the agent imports them\\n  Then at least 95% should succeed","x":960,"y":540,"size":28,"weight":500,"align":"left","maxWidth":1200,"font":"mono","background":"rgba(39, 39, 42, 0.04)","padding":28,"borderRadius":16,"border":"1px solid rgba(39, 39, 42, 0.12)"}' />
+      <text-block props='{"text":"Specs + Evaluations = Alignment","x":960,"y":820,"size":34,"weight":700,"align":"center","maxWidth":1200,"font":"serif"}' />
+    </layer>
+    <cue id="specs_and_evals" label="specs_and_evals">
+      <voice>When correctness becomes alignment, you need new ways to say what "good" looks like.</voice>
+      <pause seconds="0.35s" />
+      <voice>Behavioral specifications express what a system should do without prescribing exactly how.</voice>
+      <pause seconds="0.4s" />
+      <voice>A specification might say: the agent should call the search tool before answering a factual question.</voice>
+      <pause seconds="0.35s" />
+      <voice>Then evaluation measures reliability. Does it do that ninety-five percent of the time? Eighty percent? Sixty?</voice>
+      <pause seconds="0.4s" />
+      <voice>Specifications plus evaluations give you a foundation for alignment.</voice>
+    </cue>
+  </scene>
+
+  <transition id="why-push-7" effect="slide" duration="12f" mode="insert" ease="power2.inOut" props='{"direction":"left"}' />
+
+  <scene id="props" title="PrOps">
+    <layer id="background" z="-1">
+      <background props='{"color":"#fdfdfd"}' />
+    </layer>
+    <layer id="title" z="1">
+      <title props='{"text":"PrOps: Procedure Operations","x":960,"y":180,"textAlign":"center"}' />
+    </layer>
+    <layer id="content" z="0">
+      <text-block props='{"text":"DevOps operates programs\\nMLOps trains models\\n\\nPrOps operates procedures","x":960,"y":560,"size":36,"weight":600,"align":"center","maxWidth":1200,"font":"serif","lineHeight":1.5,"color":"#c7007e"}' />
+    </layer>
+    <cue id="procedures" label="procedures">
+      <voice>This brings us to a new operational discipline: PrOps. Procedure Operations.</voice>
+      <pause seconds="0.4s" />
+      <voice>DevOps operates deterministic programs. MLOps trains and serves models.</voice>
+      <pause seconds="0.35s" />
+      <voice>But agentic systems are neither. They're procedures.</voice>
+      <pause seconds="0.4s" />
+      <voice>Systems that combine imperative logic, learned components, tools, constraints, and evaluation into a single decision-making process.</voice>
+      <pause seconds="0.35s" />
+      <voice>A procedure's quality can't be proven in advance or reduced to a single metric.</voice>
+      <pause seconds="0.35s" />
+      <voice>It must be observed, measured, and aligned over time.</voice>
+    </cue>
+  </scene>
+
+  <transition id="why-push-8" effect="slide" duration="12f" mode="insert" ease="power2.inOut" props='{"direction":"left"}' />
+
+  <scene id="why-a-new-language" title="Why a New Language">
+    <layer id="background" z="-1">
+      <background props='{"color":"#fdfdfd"}' />
+    </layer>
+    <layer id="title" z="1">
+      <title props='{"text":"First-Class Primitives","x":960,"y":180,"textAlign":"center"}' />
+    </layer>
+    <layer id="features" z="0">
+      <text-block props='{"text":"Durability by default\\nSandboxing by default\\nTool capability control\\nHuman approval gates\\nBehavioral testing\\nObservable execution","x":520,"y":600,"size":32,"weight":700,"align":"left","maxWidth":640,"font":"serif","lineHeight":1.4,"color":"#c7007e"}' />
+    </layer>
+    <layer id="diagram" z="0">
+      <human-in-the-loop-diagram props='{"containerWidth":760,"containerHeight":650,"x":1450,"y":620}' />
+    </layer>
+    <cue id="first_class_primitives" label="first_class_primitives">
+      <voice>Once procedures become the primary unit of computation, the limitations of existing languages become impossible to ignore.</voice>
+      <pause seconds="0.4s" />
+      <voice>Programming languages shape how humans think about problems. They determine what's easy to express and what's invisible.</voice>
+      <pause seconds="0.35s" />
+      <voice>Procedural, behavior-driven systems need different primitives.</voice>
+      <pause seconds="0.5s" />
+      <voice>Durability by default. Automatic checkpointing and resumption.</voice>
+      <pause seconds="0.25s" />
+      <voice>Sandboxing by default. Isolated execution with controlled access.</voice>
+      <pause seconds="0.25s" />
+      <voice>Tool capability control.</voice>
+      <pause seconds="0.25s" />
+      <voice>Durable human‑in‑the‑loop: approvals and review loops that can pause and resume without keeping a process alive.</voice>
+      <pause seconds="0.25s" />
+      <voice>Behavioral testing. Observable execution.</voice>
+      <pause seconds="0.4s" />
+      <voice>These concerns can't be bolted onto languages that weren't designed for them.</voice>
+      <pause seconds="0.35s" />
+      <voice>They need to be first-class.</voice>
+    </cue>
+  </scene>
+
+  <transition id="why-push-9" effect="slide" duration="12f" mode="insert" ease="power2.inOut" props='{"direction":"left"}' />
+
+  <scene id="evolution-not-alien-dna" title="Evolution, Not Alien DNA">
+    <layer id="background" z="-1">
+      <background props='{"color":"#fdfdfd"}' />
+    </layer>
+    <layer id="title" z="1">
+      <title props='{"text":"This is Evolution","x":960,"y":240,"textAlign":"center"}' />
+    </layer>
+    <layer id="content" z="0">
+      <text-block props='{"text":"Languages follow mental models.\\n\\nWhen the mental model changes,\\nnew languages emerge.","x":960,"y":620,"size":40,"weight":600,"align":"center","maxWidth":1200,"font":"serif","lineHeight":1.5}' />
+    </layer>
+    <cue id="conclusion" label="conclusion">
+      <voice>From a theoretical standpoint, nothing fundamental has broken.</voice>
+      <pause seconds="0.35s" />
+      <voice>These systems still run on conventional hardware. They're still Turing-complete. There's no alien machinery hiding beneath the surface.</voice>
+      <pause seconds="0.4s" />
+      <voice>What has changed is how decisions are made and how humans must reason about those decisions.</voice>
+      <pause seconds="0.4s" />
+      <voice>For most of computing history, programming meant specifying control flow in advance.</voice>
+      <pause seconds="0.35s" />
+      <voice>Today, many of the most important systems we build no longer operate that way.</voice>
+      <pause seconds="0.4s" />
+      <voice>Languages follow mental models. When the mental model changes, new languages emerge—not to replace what came before, but to make the new reality tractable for humans.</voice>
+      <pause seconds="0.5s" />
+      <voice>This isn't a revolution in computation. It's evolution.</voice>
+    </cue>
+  </scene>
+
+  <transition id="why-push-10" effect="slide" duration="12f" mode="insert" ease="power2.inOut" props='{"direction":"left"}' />
+
+  <scene id="call-to-action" title="Call to Action">
+    <layer id="background" z="-1">
+      <background props='{"color":"#fdfdfd"}' />
+    </layer>
+    <layer id="content" z="0">
+      <end-scene />
+    </layer>
+    <cue id="cta" label="cta">
+      <voice>Learn more at tactus dot anth dot u s.</voice>
+    </cue>
+  </scene>
+</vml>

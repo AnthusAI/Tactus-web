@@ -5,7 +5,6 @@
 import { registerComponent, listComponents } from "babulus/renderer/components/registry";
 
 // Import and register all custom components directly
-import TestComponent from "../src/components/TestComponent.tsx";
 import { ParadigmComparison } from "../src/components/ParadigmComparison.tsx";
 import AnimatedFuchsiaSquare from "../src/components/AnimatedFuchsiaSquare.tsx";
 import OldWayFlowchartDiagram from "../src/components/diagrams/OldWayFlowchartDiagram.tsx";
@@ -24,7 +23,6 @@ import { NutshellContent } from "../src/components/NutshellContent.tsx";
 import { CodePushTransition } from "../src/components/CodePushTransition.tsx";
 
 console.error("[Render Script] Registering components...");
-registerComponent("TestComponent", TestComponent);
 registerComponent("ParadigmComparison", ParadigmComparison);
 registerComponent("AnimatedFuchsiaSquare", AnimatedFuchsiaSquare);
 registerComponent("OldWayFlowchartDiagram", OldWayFlowchartDiagram);

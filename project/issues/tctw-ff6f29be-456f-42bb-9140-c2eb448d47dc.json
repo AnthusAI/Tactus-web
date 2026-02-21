@@ -1,0 +1,43 @@
+{
+  "id": "tctw-ff6f29be-456f-42bb-9140-c2eb448d47dc",
+  "title": "Intro VML content pipeline",
+  "description": "",
+  "type": "epic",
+  "status": "closed",
+  "priority": 2,
+  "assignee": null,
+  "creator": null,
+  "parent": null,
+  "labels": [],
+  "dependencies": [],
+  "comments": [
+    {
+      "id": "acac5dbb-f186-4e4f-9e38-658c8b22d5fb",
+      "author": "unknown",
+      "text": "As a content pipeline maintainer, I want the Tactus intro to exist as a VideoML (.vml) source in Tactus-web/videos/content and produce updated script/timeline/audio artifacts, so that we can render the latest intro from the standard VideoML workflow.",
+      "created_at": "2026-02-21T05:35:21.966112Z"
+    },
+    {
+      "id": "d65482af-9633-4154-a53e-14aa32cb7b6e",
+      "author": "ryan.porter",
+      "text": "Closed: intro VML content produced and rendered successfully (videos/out/intro.mp4).",
+      "created_at": "2026-02-21T06:51:47.234403Z"
+    },
+    {
+      "id": "79d2cc0e-31e7-44d1-92cd-316257209e43",
+      "author": "unknown",
+      "text": "Reopened epic to update intro scene transitions to slide-left per new request.",
+      "created_at": "2026-02-21T13:08:41.424190Z"
+    },
+    {
+      "id": "2baeab12-0dc5-4273-b921-333442e46f67",
+      "author": "unknown",
+      "text": "Slide-left transition update complete for intro video; epic re-closed.",
+      "created_at": "2026-02-21T13:09:32.479296Z"
+    }
+  ],
+  "created_at": "2026-02-21T05:35:18.748945Z",
+  "updated_at": "2026-02-21T13:09:32.479296Z",
+  "closed_at": "2026-02-21T13:09:28.567713Z",
+  "custom": {}
+}

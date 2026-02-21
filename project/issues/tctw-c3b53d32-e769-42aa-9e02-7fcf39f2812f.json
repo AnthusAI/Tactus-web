@@ -1,0 +1,31 @@
+{
+  "id": "tctw-c3b53d32-e769-42aa-9e02-7fcf39f2812f",
+  "title": "Convert why-new-language.babulus.ts to why-new-language.vml",
+  "description": "",
+  "type": "task",
+  "status": "closed",
+  "priority": 2,
+  "assignee": null,
+  "creator": null,
+  "parent": "tctw-bb801b66-f0d1-4e67-9b34-603f2ae4161a",
+  "labels": [],
+  "dependencies": [],
+  "comments": [
+    {
+      "id": "b36287e1-2495-4c8c-b1aa-34c709b28999",
+      "author": "unknown",
+      "text": "Starting: convert why-new-language.babulus.ts to VideoML (.vml) in content/.",
+      "created_at": "2026-02-21T06:10:58.982795Z"
+    },
+    {
+      "id": "0f7ac301-1eef-497e-8660-8f141937884b",
+      "author": "unknown",
+      "text": "Completed: created `Tactus-web/videos/content/why-new-language.vml` converted from why-new-language.babulus.ts.",
+      "created_at": "2026-02-21T06:11:54.538961Z"
+    }
+  ],
+  "created_at": "2026-02-21T06:10:50.051330Z",
+  "updated_at": "2026-02-21T06:12:00.149938Z",
+  "closed_at": "2026-02-21T06:12:00.149938Z",
+  "custom": {}
+}

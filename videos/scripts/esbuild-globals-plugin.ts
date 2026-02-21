@@ -1,5 +1,6 @@
 // esbuild plugin to replace external modules with global variables
 import type * as esbuild from 'esbuild';
+import { resolve } from 'path';
 
 export const globalsPlugin: esbuild.Plugin = {
   name: 'globals',
@@ -12,6 +13,9 @@ export const globalsPlugin: esbuild.Plugin = {
     });
     build.onResolve({ filter: /^react-dom\/client$/ }, () => {
       return { path: 'react-dom/client', namespace: 'globals' };
+    });
+    build.onResolve({ filter: /^remotion$/ }, () => {
+      return { path: resolve(__dirname, '../src/remotion-shim.tsx') };
     });
 
     build.onLoad({ filter: /.*/, namespace: 'globals' }, (args) => {

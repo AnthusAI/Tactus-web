@@ -1,0 +1,49 @@
+{
+  "id": "tctw-28740ac5-f19a-499f-9d5c-99d7acef5539",
+  "title": "Render guardrails VML to MP4",
+  "description": "",
+  "type": "task",
+  "status": "closed",
+  "priority": 2,
+  "assignee": null,
+  "creator": null,
+  "parent": "tctw-cbc93e20-fcdd-4e66-a673-c83eb85ecea2",
+  "labels": [],
+  "dependencies": [],
+  "comments": [
+    {
+      "id": "18b41612-1e54-4218-8c13-9cfa32d94b7c",
+      "author": "ryan.porter",
+      "text": "Started VideoML pipeline render for guardrails.vml using Babulus standard + Tactus browser bundles. Output target: videos/out/guardrails.mp4. Frames dir: videos/.babulus/frames/guardrails-for-agent-autonomy. Waiting for render to complete.",
+      "created_at": "2026-02-21T06:20:57.987442Z"
+    },
+    {
+      "id": "8c1d7a25-f5a3-4fe5-9b4c-fd31a9de4410",
+      "author": "ryan.porter",
+      "text": "Render pipeline stalled before ffmpeg; used manual ffmpeg encode from frames + audio to produce videos/out/guardrails.mp4. Opened MP4 for review. Noted CLI render step still not producing MP4 automatically.",
+      "created_at": "2026-02-21T06:41:47.118626Z"
+    },
+    {
+      "id": "fceb220d-3f86-4488-9261-47f4413b09be",
+      "author": "ryan.porter",
+      "text": "Checked generated script.json: scenes exist but have 0 layers/components. guardrails.vml (and guardrails.babulus.ts) contain only voiceover + transitions, no visual components. Resulting frames are blank (white) with audio.",
+      "created_at": "2026-02-21T06:47:20.537138Z"
+    },
+    {
+      "id": "0e9fb270-2e10-4898-ac3c-b21c5f3a42c2",
+      "author": "ryan.porter",
+      "text": "Blocked: renders produce audio-only MP4 (blank frames). Needs visuals restored from prior YAML or visual layer definitions.",
+      "created_at": "2026-02-21T06:51:16.811559Z"
+    },
+    {
+      "id": "732abdaf-623c-468a-a738-5843a618fa72",
+      "author": "ryan.porter",
+      "text": "Re-rendered guardrails with slide-left transitions. MP4: videos/out/guardrails-for-agent-autonomy.mp4",
+      "created_at": "2026-02-21T13:29:20.243159Z"
+    }
+  ],
+  "created_at": "2026-02-21T06:20:53.602519Z",
+  "updated_at": "2026-02-21T13:29:23.684997Z",
+  "closed_at": "2026-02-21T13:29:23.684997Z",
+  "custom": {}
+}

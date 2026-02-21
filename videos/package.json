@@ -1,17 +1,15 @@
 {
   "name": "tactus-videos",
   "version": "1.0.0",
-  "description": "Babulus videos about the Tactus programming language",
+  "description": "VideoML videos about the Tactus programming language",
   "scripts": {
-    "generate": "bash bin/babulus generate content/",
-    "generate:watch": "bash bin/babulus generate content/ --watch",
-    "generate:dev": "bash bin/babulus generate content/ --watch --env development",
-    "generate:dry": "bash bin/babulus generate content/ --provider dry-run --sfx-provider dry-run --music-provider dry-run",
-    "generate:fresh": "bash bin/babulus generate content/ --fresh",
-    "generate:clean": "bash bin/babulus clean content/ --yes",
-    "render": "node scripts/render-all.js",
-    "render:intro": "node scripts/render-all.js intro",
-    "sfx": "bash bin/babulus sfx"
+    "generate": "npm run vml:generate",
+    "render": "npm run vml:render:all",
+    "vml:generate": "node $VIDEOML_CLI generate content/",
+    "vml:render:intro": "node $VIDEOML_CLI render --script src/videos/intro/intro.script.json --timeline src/videos/intro/intro.timeline.json --audio public/videoml/intro.wav --frames out/frames/intro --out out/intro.mp4 --browser-bundle $BABULUS_BUNDLE --browser-bundle public/browser-components.js",
+    "vml:render:guardrails": "node $VIDEOML_CLI render --script src/videos/guardrails-for-agent-autonomy/guardrails-for-agent-autonomy.script.json --timeline src/videos/guardrails-for-agent-autonomy/guardrails-for-agent-autonomy.timeline.json --audio public/videoml/guardrails-for-agent-autonomy.wav --frames out/frames/guardrails-for-agent-autonomy --out out/guardrails-for-agent-autonomy.mp4 --browser-bundle $BABULUS_BUNDLE --browser-bundle public/browser-components.js",
+    "vml:render:why": "node $VIDEOML_CLI render --script src/videos/why-a-new-language/why-a-new-language.script.json --timeline src/videos/why-a-new-language/why-a-new-language.timeline.json --audio public/videoml/why-a-new-language.wav --frames out/frames/why-a-new-language --out out/why-a-new-language.mp4 --browser-bundle $BABULUS_BUNDLE --browser-bundle public/browser-components.js",
+    "vml:render:all": "npm run vml:render:intro && npm run vml:render:guardrails && npm run vml:render:why"
   },
   "repository": {
     "type": "git",

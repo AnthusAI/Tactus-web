@@ -1,88 +1,76 @@
-# Tactus Videos (Remotion)
+# Tactus Videos (VideoML)
 
-This folder is a Remotion subproject inside `Tactus-web/`. Video timing + audio generation are driven by the Node/TypeScript `babulus` CLI.
+This folder is a VideoML-first video pipeline inside `Tactus-web/`. The canonical video sources live in `content/*.vml`.
 
 ## Quick Start
 
 ```bash
 # From this folder:
 
-# Install Node deps (includes babulus)
+# Install Node deps
 npm install
 
-# Start Remotion Studio
-npm start
+# Set required environment variables
+export VIDEOML_CLI="/Users/ryan.porter/Projects/VideoML/cli/bin/vml.js"
+export BABULUS_BUNDLE="/Users/ryan.porter/Projects/Babulus/public/babulus-standard.js"
 
-# Generate audio/timelines from `content/*.babulus.ts` (idempotent)
-npm run babulus:generate
+# Generate timelines + scripts from VML
+npm run vml:generate
 
-# Render videos to `out/`
-npm run render
-```
-
-If you’re working from the Gatsby repo root (`Tactus-web/`):
-
-```bash
-# Open Remotion Studio
-npm run videos:studio
-
-# Render videos and copy them into `static/videos/`
-npm run videos:render
+# Render MP4s to out/
+npm run vml:render:all
 ```
 
 ## Project Structure
 
 ```
 videos/
+├── content/                      # One .vml per video (canonical source)
 ├── src/
-│   ├── components/       # Reusable React components for videos
-│   ├── videos/           # Individual video compositions
-│   ├── Root.tsx          # Main composition registry
-│   └── index.ts          # Entry point
-├── scripts/
-│   └── render-all.js     # Automated rendering script
-├── out/                  # Rendered videos (git-ignored)
-├── content/              # One `.babulus.ts` per video
-├── public/babulus/       # Staged audio/timeline assets (git-ignored)
-├── .babulus/             # Local config + generated cache (git-ignored)
+│   ├── components/               # Custom React components used by VML
+│   └── videos/                   # Generated script/timeline JSON outputs
+├── public/
+│   ├── browser-components.js     # Custom component bundle for renderer
+│   └── videoml/                  # Provider segment cache (tracked) + local artifacts (ignored)
+├── out/                          # Rendered MP4s (git-ignored)
 └── package.json
 ```
 
-## Babulus (Voiceover -> Timing)
+## VideoML Pipeline
 
-Each video has one TypeScript DSL file under `content/`:
+### Generate
 
-```bash
-content/intro.babulus.ts
-```
+`vml generate` reads `content/*.vml` and writes:
 
-When you run `babulus:generate`, Babulus:
+- `src/videos/<video>/<video>.script.json`
+- `src/videos/<video>/<video>.timeline.json`
 
-- Generates audio clips per voice segment (cached/idempotent).
-- Computes `startSec/endSec` from the real audio durations.
-- Stages the artifacts into Remotion-friendly locations under `public/babulus/` and `src/videos/*/*.script.json`.
+### Render
 
-### Poster Images (Thumbnails)
+`vml render` uses:
 
-You can specify a poster timestamp per composition via the DSL:
+- **Standard components** via `BABULUS_BUNDLE`
+- **Custom components** via `public/browser-components.js`
 
-```ts
-comp.posterTime(3.5)
-```
+Outputs:
 
-When you run `npm run render`, the render script will:
+- Frames: `out/frames/<video>/`
+- MP4: `out/<video>.mp4`
 
-1. Extract a frame at the specified timestamp using FFmpeg
-2. Save it as `{video-name}-poster.jpg` in the `out/` directory
-3. Embed the poster directly into the MP4 file (no re-encoding, zero quality loss)
+## Audio Asset Policy
 
-### Config / API keys
+We **track provider-generated segment WAVs** (OpenAI / ElevenLabs / AWS) and ignore everything else.
 
-Put credentials in one of:
+Tracked:
 
-- `videos/.babulus/config.yml` (recommended for this repo)
-- `~/.babulus/config.yml`
+- `public/videoml/**/env/**/segments/*--tts--*.wav`
+- `public/videoml/**/env/**/segments/*--sfx--*.wav`
 
-See `.babulus/config.example.yml` for a complete configuration template.
+Ignored:
 
-For full Babulus docs, see `../../Babulus/README.md`.
+- `public/videoml/*.wav` (final mixes)
+- `public/videoml/**/env/**/runs/**`
+- `public/videoml/**/env/**/usage*.json`
+- `public/videoml/**/env/**/manifest.json`
+- `public/videoml/**/env/**/music/**`
+- `public/videoml/**/env/**/segments/silence-*.wav`

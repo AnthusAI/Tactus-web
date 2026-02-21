@@ -73,6 +73,25 @@ typings/
 .cache/
 public
 
+# VideoML generated assets (provider segments tracked)
+!videos/public/
+!videos/public/videoml/
+videos/public/browser-components.js
+videos/public/browser-components.js.map
+videos/public/videoml/**
+!videos/public/videoml/**/
+!videos/public/videoml/**/env/
+!videos/public/videoml/**/env/**/
+!videos/public/videoml/**/env/**/segments/
+!videos/public/videoml/**/env/**/segments/*--tts--*.wav
+!videos/public/videoml/**/env/**/segments/*--sfx--*.wav
+videos/public/videoml/**/env/**/segments/silence-*.wav
+videos/public/videoml/*.wav
+videos/public/videoml/**/env/**/runs/
+videos/public/videoml/**/env/**/usage*.json
+videos/public/videoml/**/env/**/manifest.json
+videos/public/videoml/**/env/**/music/
+
 # Generated examples data
 src/data/examples.json
 

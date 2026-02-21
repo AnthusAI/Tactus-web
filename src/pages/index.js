@@ -9,7 +9,6 @@ import AnimatedCodeBlock from "../components/animated/AnimatedCodeBlock"
 import BottomCta from "../components/bottom-cta"
 import SpotlightSection from "../components/spotlight-section"
 import GuardrailsSpotlight from "../components/guardrails-spotlight"
-import AnimatedAIEngineersToolboxDiagram from "../components/diagrams/AnimatedAIEngineersToolboxDiagram"
 import ContainerSandboxDiagram from "../components/diagrams/ContainerSandboxDiagram"
 import SpecificationsDiagram from "../components/diagrams/SpecificationsDiagram"
 import EvaluationsDiagram from "../components/diagrams/EvaluationsDiagram"
@@ -26,6 +25,16 @@ import Button from "../components/ui/button"
 import Breakout from "../components/publishing/Breakout"
 import getVideoSrc from "../lib/getVideoSrc"
 import * as styles from "./index.module.css"
+
+const AnimatedAIEngineersToolboxDiagram = React.lazy(() =>
+  import("../components/diagrams/AnimatedAIEngineersToolboxDiagram")
+)
+
+const LazyAIEngineersToolboxDiagram = props => (
+  <React.Suspense fallback={<div style={{ minHeight: 320 }} />}>
+    <AnimatedAIEngineersToolboxDiagram {...props} />
+  </React.Suspense>
+)
 
 const AnimatedOldWayFlowchartDiagram = React.lazy(() =>
   import("../components/diagrams/AnimatedOldWayFlowchartDiagram")
@@ -1013,7 +1022,7 @@ const IndexPage = () => {
           lede="Tools are how agents touch reality. Tactus treats them as first-class primitives—safe, inspectable, and effortless to deploy—so your agents can get real work done without the security headaches."
           to="/ai-engineers-toolbox/"
           ctaText="Read: Toolbox"
-          Diagram={AnimatedAIEngineersToolboxDiagram}
+          Diagram={LazyAIEngineersToolboxDiagram}
         />
 
         <GuardrailsSpotlight id="guardrails" eyebrow={null} />

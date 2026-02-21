@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "event_id": "a57963f3-11f3-4c74-adbc-d6b58d792d32",
+  "issue_id": "tctw-350e9de0-8827-436f-a2f6-7f1a05714e1e",
+  "event_type": "issue_created",
+  "occurred_at": "2026-02-21T13:41:08.812Z",
+  "actor_id": "ryan.porter",
+  "payload": {
+    "assignee": null,
+    "description": "We made a lot of changes as videos moved from YML to TypeScript to VideoML. Do a cleanup pass to remove obsolete artifacts, align docs/scripts, and ensure the repo reflects the current VideoML-first workflow.",
+    "issue_type": "task",
+    "labels": [],
+    "parent": null,
+    "priority": 2,
+    "status": "open",
+    "title": "Project cleanup after video format migrations"
+  }
+}

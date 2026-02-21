@@ -3,7 +3,7 @@
   "title": "Guardrails VML renders blank (visual layers missing)",
   "description": "",
   "type": "task",
-  "status": "in_progress",
+  "status": "closed",
   "priority": 2,
   "assignee": null,
   "creator": null,
@@ -28,10 +28,16 @@
       "author": "ryan.porter",
       "text": "Starting conversion: will port visuals from GuardrailsVideo.tsx into guardrails.vml components/layers.",
       "created_at": "2026-02-21T06:58:22.306522Z"
+    },
+    {
+      "id": "dcd627f1-2661-4026-9a5c-4b62a0ea27e4",
+      "author": "ryan.porter",
+      "text": "Resolved: VML renders include visuals after custom bundle uses Babulus registry/hooks. Rendered MP4 with slide-left transitions.",
+      "created_at": "2026-02-21T13:40:45.828073Z"
     }
   ],
   "created_at": "2026-02-21T06:50:04.648035Z",
-  "updated_at": "2026-02-21T06:58:22.306522Z",
-  "closed_at": null,
+  "updated_at": "2026-02-21T13:40:48.562379Z",
+  "closed_at": "2026-02-21T13:40:48.562379Z",
   "custom": {}
 }

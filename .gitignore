@@ -41,6 +41,7 @@ videos/node_modules/
 videos/out/
 videos/public/babulus/
 videos/.babulus/out/
+videos/.videoml/
 .babulus/out/
 .babulus/config.yml
 .fabulus/

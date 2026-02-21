@@ -1,0 +1,18 @@
+{
+  "id": "tctw-350e9de0-8827-436f-a2f6-7f1a05714e1e",
+  "title": "Project cleanup after video format migrations",
+  "description": "We made a lot of changes as videos moved from YML to TypeScript to VideoML. Do a cleanup pass to remove obsolete artifacts, align docs/scripts, and ensure the repo reflects the current VideoML-first workflow.",
+  "type": "task",
+  "status": "open",
+  "priority": 2,
+  "assignee": null,
+  "creator": null,
+  "parent": null,
+  "labels": [],
+  "dependencies": [],
+  "comments": [],
+  "created_at": "2026-02-21T13:41:08.811957Z",
+  "updated_at": "2026-02-21T13:41:08.811957Z",
+  "closed_at": null,
+  "custom": {}
+}

@@ -1090,7 +1090,7 @@ const IndexPage = () => {
               controls
               preload="metadata"
               playsInline
-              src={getVideoSrc("why-new-language.mp4")}
+              src={getVideoSrc("why-a-new-language.mp4")}
               poster={getVideoSrc("why-new-language-poster.jpg")}
             />
           </div>

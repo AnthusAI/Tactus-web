@@ -13,7 +13,6 @@ import SpecificationsDiagram from "../components/diagrams/SpecificationsDiagram"
 import EvaluationsDiagram from "../components/diagrams/EvaluationsDiagram"
 import AnimatedHumanInTheLoopDiagram from "../components/diagrams/AnimatedHumanInTheLoopDiagram"
 import { HITL_PRESETS } from "../components/diagrams/hitlPresets"
-import AnimatedNewWayFlowchartDiagram from "../components/diagrams/AnimatedNewWayFlowchartDiagram"
 import SidecarChatDiagram from "../components/diagrams/SidecarChatDiagram"
 import EmbeddedRuntimeDiagram from "../components/diagrams/EmbeddedRuntimeDiagram"
 import DeepIntegrationDiagram from "../components/diagrams/DeepIntegrationDiagram"
@@ -36,6 +35,16 @@ const ContainerSandboxDiagram = React.lazy(() =>
 const LazyContainerSandboxDiagram = props => (
   <React.Suspense fallback={<div style={{ minHeight: 320 }} />}>
     <ContainerSandboxDiagram {...props} />
+  </React.Suspense>
+)
+
+const AnimatedNewWayFlowchartDiagram = React.lazy(() =>
+  import("../components/diagrams/AnimatedNewWayFlowchartDiagram")
+)
+
+const LazyNewWayFlowchartDiagram = props => (
+  <React.Suspense fallback={<div style={{ minHeight: 320 }} />}>
+    <AnimatedNewWayFlowchartDiagram {...props} />
   </React.Suspense>
 )
 
@@ -601,7 +610,7 @@ const IndexPage = () => {
                 </div>
                 <div className={styles.narrativeDiagramColumn}>
                   <div className={styles.narrativeDiagram}>
-                    <AnimatedNewWayFlowchartDiagram durationMs={3200} />
+                    <LazyNewWayFlowchartDiagram durationMs={3200} />
                   </div>
                   <p className={styles.narrativeCaption}>
                     Agent + Tools + Procedure, bounded by Guardrails

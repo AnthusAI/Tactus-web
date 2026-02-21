@@ -58,6 +58,46 @@ const AnimatedOldWayFlowchartDiagram = React.lazy(() =>
   import("../components/diagrams/AnimatedOldWayFlowchartDiagram")
 )
 
+const IntroVideoCard = () => {
+  const [showVideo, setShowVideo] = React.useState(false)
+
+  if (showVideo) {
+    return (
+      <video
+        className={styles.video}
+        controls
+        preload="metadata"
+        playsInline
+        src={getVideoSrc("intro.mp4")}
+        poster={getVideoSrc("intro-poster.jpg")}
+      />
+    )
+  }
+
+  return (
+    <div
+      className={styles.video}
+      style={{
+        backgroundImage: `url(${getVideoSrc("intro-poster.jpg")})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Button
+        type="button"
+        variant="primary"
+        shadow
+        onClick={() => setShowVideo(true)}
+      >
+        Play video
+      </Button>
+    </div>
+  )
+}
+
 const Icons = {
   Box: () => (
     <svg
@@ -533,14 +573,7 @@ const IndexPage = () => {
                 <span className={styles.videoDuration}>5 minutes</span>
               </div>
             </div>
-            <video
-              className={styles.video}
-              controls
-              preload="none"
-              playsInline
-              src={getVideoSrc("intro.mp4")}
-              poster={getVideoSrc("intro-poster.jpg")}
-            />
+            <IntroVideoCard />
           </div>
         </Breakout>
 

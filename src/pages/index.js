@@ -9,7 +9,6 @@ import AnimatedCodeBlock from "../components/animated/AnimatedCodeBlock"
 import BottomCta from "../components/bottom-cta"
 import SpotlightSection from "../components/spotlight-section"
 import GuardrailsSpotlight from "../components/guardrails-spotlight"
-import ContainerSandboxDiagram from "../components/diagrams/ContainerSandboxDiagram"
 import SpecificationsDiagram from "../components/diagrams/SpecificationsDiagram"
 import EvaluationsDiagram from "../components/diagrams/EvaluationsDiagram"
 import AnimatedHumanInTheLoopDiagram from "../components/diagrams/AnimatedHumanInTheLoopDiagram"
@@ -28,6 +27,16 @@ import * as styles from "./index.module.css"
 
 const AnimatedAIEngineersToolboxDiagram = React.lazy(() =>
   import("../components/diagrams/AnimatedAIEngineersToolboxDiagram")
+)
+
+const ContainerSandboxDiagram = React.lazy(() =>
+  import("../components/diagrams/ContainerSandboxDiagram")
+)
+
+const LazyContainerSandboxDiagram = props => (
+  <React.Suspense fallback={<div style={{ minHeight: 320 }} />}>
+    <ContainerSandboxDiagram {...props} />
+  </React.Suspense>
 )
 
 const LazyAIEngineersToolboxDiagram = props => (
@@ -1034,7 +1043,7 @@ const IndexPage = () => {
           lede="Agents run in a Lua sandbox inside a networkless container, constraining what they can touch and firewalling side effects. Privileged operations are brokered by a separate process that holds the secrets. It’s like letting a burglar into an empty building: even if the agent is compromised, there’s nothing valuable inside to steal—and nowhere to send it."
           to="/guardrails/#sandboxing"
           ctaText="Read: Sandboxing"
-          Diagram={ContainerSandboxDiagram}
+          Diagram={LazyContainerSandboxDiagram}
         />
 
         <Breakout

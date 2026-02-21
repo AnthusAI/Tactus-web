@@ -518,7 +518,7 @@ const IndexPage = () => {
             <video
               className={styles.video}
               controls
-              preload="metadata"
+              preload="none"
               playsInline
               src={getVideoSrc("intro.mp4")}
               poster={getVideoSrc("intro-poster.jpg")}

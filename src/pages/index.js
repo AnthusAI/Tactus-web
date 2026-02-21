@@ -15,7 +15,6 @@ import SpecificationsDiagram from "../components/diagrams/SpecificationsDiagram"
 import EvaluationsDiagram from "../components/diagrams/EvaluationsDiagram"
 import AnimatedHumanInTheLoopDiagram from "../components/diagrams/AnimatedHumanInTheLoopDiagram"
 import { HITL_PRESETS } from "../components/diagrams/hitlPresets"
-import AnimatedOldWayFlowchartDiagram from "../components/diagrams/AnimatedOldWayFlowchartDiagram"
 import AnimatedNewWayFlowchartDiagram from "../components/diagrams/AnimatedNewWayFlowchartDiagram"
 import SidecarChatDiagram from "../components/diagrams/SidecarChatDiagram"
 import EmbeddedRuntimeDiagram from "../components/diagrams/EmbeddedRuntimeDiagram"
@@ -27,6 +26,10 @@ import Button from "../components/ui/button"
 import Breakout from "../components/publishing/Breakout"
 import getVideoSrc from "../lib/getVideoSrc"
 import * as styles from "./index.module.css"
+
+const AnimatedOldWayFlowchartDiagram = React.lazy(() =>
+  import("../components/diagrams/AnimatedOldWayFlowchartDiagram")
+)
 
 const Icons = {
   Box: () => (
@@ -548,7 +551,11 @@ const IndexPage = () => {
                 </div>
                 <div className={styles.narrativeDiagramColumn}>
                   <div className={styles.narrativeDiagram}>
-                    <AnimatedOldWayFlowchartDiagram durationMs={4000} />
+                    <React.Suspense
+                      fallback={<div style={{ minHeight: 320 }} />}
+                    >
+                      <AnimatedOldWayFlowchartDiagram durationMs={4000} />
+                    </React.Suspense>
                   </div>
                   <p className={styles.narrativeCaption}>
                     Every new edge case requires more conditional logic

@@ -11,7 +11,6 @@ import SpotlightSection from "../components/spotlight-section"
 import GuardrailsSpotlight from "../components/guardrails-spotlight"
 import SpecificationsDiagram from "../components/diagrams/SpecificationsDiagram"
 import EvaluationsDiagram from "../components/diagrams/EvaluationsDiagram"
-import AnimatedHumanInTheLoopDiagram from "../components/diagrams/AnimatedHumanInTheLoopDiagram"
 import { HITL_PRESETS } from "../components/diagrams/hitlPresets"
 import SidecarChatDiagram from "../components/diagrams/SidecarChatDiagram"
 import EmbeddedRuntimeDiagram from "../components/diagrams/EmbeddedRuntimeDiagram"
@@ -35,6 +34,16 @@ const ContainerSandboxDiagram = React.lazy(() =>
 const LazyContainerSandboxDiagram = props => (
   <React.Suspense fallback={<div style={{ minHeight: 320 }} />}>
     <ContainerSandboxDiagram {...props} />
+  </React.Suspense>
+)
+
+const AnimatedHumanInTheLoopDiagram = React.lazy(() =>
+  import("../components/diagrams/AnimatedHumanInTheLoopDiagram")
+)
+
+const LazyAnimatedHumanInTheLoopDiagram = props => (
+  <React.Suspense fallback={<div style={{ minHeight: 320 }} />}>
+    <AnimatedHumanInTheLoopDiagram {...props} />
   </React.Suspense>
 )
 
@@ -806,7 +815,7 @@ const IndexPage = () => {
                     items, everything is bottlenecked on your presence.
                   </p>
                   <div className={styles.hitlVariantDiagram}>
-                    <AnimatedHumanInTheLoopDiagram
+                    <LazyAnimatedHumanInTheLoopDiagram
                       scenario={HITL_PRESETS.CLOSELY_SUPERVISED.scenario}
                       config={{
                         ...HITL_PRESETS.CLOSELY_SUPERVISED.config,
@@ -833,7 +842,7 @@ const IndexPage = () => {
                     trouble.
                   </p>
                   <div className={styles.hitlVariantDiagram}>
-                    <AnimatedHumanInTheLoopDiagram
+                    <LazyAnimatedHumanInTheLoopDiagram
                       scenario={HITL_PRESETS.UNSUPERVISED_MONKEY.scenario}
                       config={HITL_PRESETS.UNSUPERVISED_MONKEY.config}
                       startAtMs={
@@ -858,7 +867,7 @@ const IndexPage = () => {
                     every step.
                   </p>
                   <div className={styles.hitlVariantDiagram}>
-                    <AnimatedHumanInTheLoopDiagram
+                    <LazyAnimatedHumanInTheLoopDiagram
                       scenario={HITL_PRESETS.HUMAN_STEPS_BACK.scenario}
                       config={HITL_PRESETS.HUMAN_STEPS_BACK.config}
                       startAtMs={

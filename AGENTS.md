@@ -7,8 +7,6 @@ How: See CONTRIBUTING_AGENT.md for the Kanbus workflow, hierarchy, status rules,
 Performance: Prefer kanbusr (Rust) when available; kanbus (Python) is equivalent but slower.
 Warning: Editing project/ directly is a sin against The Way. Do not read or write anything in project/; work only through Kanbus.
 
-This project uses **Beads** for task management. Read and follow **AGENT_INSTRUCTIONS.md** in this repository for issues and workflow using the Beads CLI (`bd`).
-
 ## Landing the Plane (Session Completion)
 
 **When ending a work session**, you MUST complete ALL steps below. Work is NOT complete until `git push` succeeds.
@@ -21,7 +19,6 @@ This project uses **Beads** for task management. Read and follow **AGENT_INSTRUC
 4. **PUSH TO REMOTE** - This is MANDATORY:
    ```bash
    git pull --rebase
-   bd sync
    git push
    git status  # MUST show "up to date with origin"
    ```

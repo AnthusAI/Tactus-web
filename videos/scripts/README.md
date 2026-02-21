@@ -1,44 +1,21 @@
-# Rendering Scripts
+# Browser Components Bundling
 
-This directory contains automation scripts for rendering Remotion videos.
+This directory contains scripts for bundling custom browser components used by VideoML rendering.
 
-## render-all.js
+## bundle-browser-components.ts
 
-Renders all video compositions defined in the script to the `out/` directory.
+Builds `public/browser-components.js` (and sourcemap) from `scripts/browser-components.tsx`.
 
 ### Usage
 
+Run from the `videos/` directory:
+
 ```bash
-npm run render
+npx tsx scripts/bundle-browser-components.ts
 ```
 
-### Adding New Videos
+### Notes
 
-Edit the `compositions` array in `render-all.js`:
-
-```javascript
-const compositions = [
-  {
-    id: "Intro", // Must match the composition ID in src/Root.tsx
-    outputFile: "intro.mp4", // Output filename in out/ directory
-  },
-  {
-    id: "YourNewVideo",
-    outputFile: "your-new-video.mp4",
-  },
-]
-```
-
-### How It Works
-
-1. Creates the `out/` directory if it doesn't exist
-2. Iterates through all compositions in the array
-3. Runs `remotion render` for each composition
-4. Reports success/failure for each video
-5. Exits with error code if any renders failed
-
-### Output
-
-Videos are saved to: `out/<outputFile>`
-
-Example: `out/intro.mp4`
+- The bundle is loaded by `vml render` via `--browser-bundle public/browser-components.js`.
+- `esbuild-globals-plugin.ts` maps React/Remotion imports to the browser globals expected by the renderer.
+- Output files in `public/` are generated artifacts and should not be committed.

@@ -464,6 +464,35 @@ const IndexPage = () => {
           </div>
         </section>
 
+        <section className={styles.section}>
+          <div className={styles.container}>
+            <div className={styles.platformBand}>
+              <div>
+                <p className={`${styles.eyebrow} ${styles.eyebrowPrimary}`}>Anthus Platform</p>
+                <h2 className={styles.sectionTitle}>Where Tactus fits</h2>
+                <p className={styles.lede}>
+                  Tactus is the procedural core of the Anthus Platform. It defines durable agent behavior, while
+                  <a href="https://plexus.anth.us"> Plexus</a> handles evaluation, <a href="https://anth.us/platform/biblicus">Biblicus</a>
+                  {" "}supplies grounded corpora, and <a href="https://korpor.us">Korporus</a> provides a broader host shell when the
+                  procedure needs to live inside a product surface.
+                </p>
+                <div className={styles.platformBandLinks}>
+                  <a href="https://plexus.anth.us">Evaluated by Plexus</a>
+                  <a href="https://anth.us/platform/biblicus">Grounded by Biblicus</a>
+                  <a href="https://korpor.us">Hosted in Korporus</a>
+                </div>
+              </div>
+              <div className={styles.platformBandCard}>
+                <h3>Common combination</h3>
+                <p>
+                  Use Tactus to encode a repeatable workflow, Biblicus to supply evidence, Plexus to benchmark the
+                  results, and Korporus to package the whole thing as a production-facing service.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Hello World - moved up from below */}
         <section className={`${styles.section}`}>
           <div className={styles.container}>

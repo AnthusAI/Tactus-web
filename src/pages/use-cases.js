@@ -58,6 +58,23 @@ const UseCasesPage = () => {
 
         <section className={styles.section}>
           <div className={styles.container}>
+            <div className={styles.card}>
+              <div className={styles.cardHeader}>
+                <p className={styles.cardTitle}>Anthus Platform</p>
+              </div>
+              <div className={styles.cardBody}>
+                <p className={styles.cardText}>
+                  Tactus is the procedure engine for Anthus workflows. Pair it with
+                  <a href="https://plexus.anth.us"> Plexus</a> for evaluation,
+                  <a href="https://anth.us/platform/biblicus"> Biblicus</a> for grounded evidence, and
+                  <a href="https://korpor.us"> Korporus</a> when the result needs a user-facing shell.
+                </p>
+                <p className={styles.cardText}>
+                  Common recipe: use Tactus to encode the workflow, Biblicus to provide the corpus, and Plexus to keep
+                  the behavior measurable as it evolves.
+                </p>
+              </div>
+            </div>
             <div className={styles.cardGrid}>
               {USE_CASES.map(item => (
                 <Link key={item.to} to={item.to} className={styles.card}>

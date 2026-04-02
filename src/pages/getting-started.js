@@ -110,6 +110,34 @@ $ tactus run 01-getting-started/01-hello-world.tac`
                 </div>
               </div>
 
+              <div className={styles.conceptSection}>
+                <h2 className={styles.conceptTitle}>Where this fits in the Anthus Platform</h2>
+                <p className={styles.conceptIntro}>
+                  Tactus is the durable procedure layer in the Anthus Platform. It works especially well with
+                  <a href="https://plexus.anth.us"> Plexus</a> for evaluation,
+                  <a href="https://anth.us/platform/biblicus"> Biblicus</a> for grounded source material, and
+                  <a href="https://korpor.us"> Korporus</a> when the workflow needs to live inside a broader hosted service.
+                </p>
+                <div className={styles.stepsGrid}>
+                  <div className={styles.stepsCard}>
+                    <h3 className={styles.stepsTitle}>Works with</h3>
+                    <ul className={styles.stepsList}>
+                      <li><a href="https://plexus.anth.us">Plexus</a> for scorecards and feedback loops.</li>
+                      <li><a href="https://anth.us/platform/biblicus">Biblicus</a> for corpus-backed inputs.</li>
+                      <li><a href="https://korpor.us">Korporus</a> for app-shell hosting.</li>
+                    </ul>
+                  </div>
+                  <div className={styles.stepsCard}>
+                    <h3 className={styles.stepsTitle}>Common combination</h3>
+                    <p className={styles.pathText}>
+                      A common Anthus workflow uses Biblicus to curate the source material, Tactus to define the
+                      repeatable procedure, and Plexus to measure quality before that procedure is surfaced through
+                      Korporus.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
               {/* Walkthrough */}
               <div className={styles.conceptSection}>
                 <h2 className={styles.conceptTitle}>

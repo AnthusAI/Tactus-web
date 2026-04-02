@@ -258,6 +258,38 @@
   max-width: none;
 }
 
+.platformBand {
+  display: grid;
+  grid-template-columns: 1.4fr 0.9fr;
+  gap: var(--space-5);
+  padding: var(--space-5);
+  border-radius: var(--border-radius);
+  background: var(--color-surface-2);
+}
+
+.platformBandLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: var(--space-4);
+  font-weight: 700;
+}
+
+.platformBandLinks a {
+  text-decoration: none;
+}
+
+.platformBandCard {
+  padding: var(--space-4);
+  border-radius: var(--border-radius);
+  background: var(--color-surface);
+}
+
+.platformBandCard h3 {
+  margin-top: 0;
+  margin-bottom: var(--space-2);
+}
+
 .animalCaption {
   margin: var(--space-3) 0 0;
   color: var(--color-text-muted);

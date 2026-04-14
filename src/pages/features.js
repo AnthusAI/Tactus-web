@@ -185,6 +185,17 @@ const FeaturesPage = () => {
       ),
       icon: <Icons.Save />,
     },
+    {
+      title: "Agent-level retry (with rollback)",
+      body: (
+        <>
+          Retry a single agent turn on transient failures (and optional output
+          validation failures) without committing partial turns into durable
+          conversation state.
+        </>
+      ),
+      icon: <Icons.CheckCircle />,
+    },
   ]
 
   return (

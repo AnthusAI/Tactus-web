@@ -27,6 +27,24 @@ class Output(BaseModel):
     findings: str
     approved: bool`
 
+const AGENT_RETRY_EXAMPLE = `guide = Agent {
+  name = "guide",
+  provider = "openai",
+  model = "openai/gpt-4o-mini",
+  system_prompt = "...",
+  output = {
+    approved = field.boolean{required = true},
+    findings = field.string{required = true},
+  },
+  retry = {
+    enabled = true,
+    attempts = 3,
+    delay_seconds = 0.5,
+    backoff = "exponential",
+    on = "infra_plus_validation",
+  },
+}`
+
 const ValidationPage = () => {
   const [theme, setTheme] = React.useState("light")
 
@@ -180,6 +198,18 @@ const ValidationPage = () => {
                   <Link to="/evaluations/">evaluations</Link> (a reliability
                   gauge that tells you when a change made things worse).
                 </p>
+                <p>
+                  A practical pattern is pairing output validation with{" "}
+                  <strong>agent-level retry</strong>: if a model returns the
+                  wrong shape (or a transient provider error occurs), Tactus can
+                  retry that single agent turn (bounded, with history rollback)
+                  before your procedure sees a failure.
+                </p>
+                <p>
+                  That is different from a workflow loop. Agent retry says
+                  “repeat this turn.” A procedure loop says “take the next step
+                  with new information or feedback.”
+                </p>
               </div>
             </div>
 
@@ -215,6 +245,28 @@ const ValidationPage = () => {
                 The important part isn’t the library name. It’s the effect: the
                 runtime can enforce contracts consistently, generate helpful
                 errors, and keep your workflow honest as it evolves.
+              </p>
+              <div className={styles.codeBlockPlayer}>
+                <AnimatedCodeBlock
+                  label="Agent retry"
+                  filename="agent.tac"
+                  hint="Retry a turn on infra + validation"
+                  code={AGENT_RETRY_EXAMPLE}
+                  language="tactus"
+                  showTypewriter={false}
+                  typewriterLoop={false}
+                  autoHeight={true}
+                  blockWidth={1400}
+                  width="100%"
+                  autoPlay={false}
+                  controls={false}
+                  loop={false}
+                />
+              </div>
+              <p className={styles.sectionSubtitle}>
+                Tactus has multiple retry layers: some standard-library helpers
+                expose their own <code>max_retries</code>, Agent retry repeats a
+                single turn, and procedure loops handle workflow-level iteration.
               </p>
               <p className={styles.sectionSubtitle}>
                 Next: pair this with{" "}

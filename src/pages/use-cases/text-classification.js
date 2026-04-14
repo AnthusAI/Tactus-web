@@ -101,7 +101,9 @@ const TextClassificationUseCasePage = () => {
                 </li>
                 <li>
                   <code>temperature = 0</code> and <code>max_retries = 3</code>{" "}
-                  keep output stable.
+                  keep output stable. Here <code>max_retries</code> is the
+                  standard-library classifier's own retry loop, not
+                  <code>Agent {` { retry = ... } `}</code>.
                 </li>
                 <li>
                   Behavior specs can lock down edge cases like "double charged"
@@ -130,6 +132,13 @@ const TextClassificationUseCasePage = () => {
               retries. You can use <code>method = "llm"</code> for semantic
               classification or <code>method = "fuzzy"</code> for fast string
               similarity matching.
+            </p>
+            <p className={styles.bodyTextMuted}>
+              Important: this page uses <code>max_retries</code> on the
+              standard-library <code>Classify</code> helper. That is a
+              helper-level micro-loop. It is different from the newer{" "}
+              <code>retry = {` { ... } `}</code> option on <code>Agent</code>,
+              which retries a full agent turn.
             </p>
 
             <div className={styles.subtleCard}>

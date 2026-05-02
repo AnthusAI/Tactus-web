@@ -160,7 +160,8 @@ const FeaturesPage = () => {
         <>
           Tools that need secrets or privileged access can run outside the
           sandbox via a broker, streaming back results so the agent gets
-          answers, not credentials.
+          answers, not credentials. Host modules can expose broad application
+          APIs through the same controlled boundary.
         </>
       ),
       icon: <Icons.Cable />,
@@ -170,7 +171,8 @@ const FeaturesPage = () => {
       body: (
         <>
           Give the right tools and context at the right time: default-deny
-          capabilities, per-step tool access, and approval gates.
+          capabilities, per-step tool access, host-module API boundaries, and
+          approval gates.
         </>
       ),
       icon: <Icons.Lock />,

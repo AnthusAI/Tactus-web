@@ -12,6 +12,11 @@ const USE_CASES = [
     to: "/use-cases/copilot-anything/",
   },
   {
+    title: "One Tool For Everything",
+    lede: "Replace a long MCP tool list with one context-efficient MCP gateway that runs programmable Tactus APIs.",
+    to: "/use-cases/one-tool-programmable-api/",
+  },
+  {
     title: "Refund ops automation",
     lede: "A real finance workflow: batch Stripe refunds via tools, with human checkpoints and an audit trail—starting from a Claude Skill.",
     to: "/use-cases/refund-ops/",
@@ -88,7 +93,7 @@ const UseCasesPage = () => {
 export const Head = () => (
   <Seo
     title="Use Cases"
-    description="Use case examples for learning Tactus patterns: validation, specifications, evaluations, and guardrails."
+    description="Use case examples for learning Tactus patterns: validation, specifications, evaluations, context-efficient MCP gateways, and guardrails."
   />
 )
 

@@ -47,7 +47,7 @@ const LearnMorePage = () => {
           id="learn-toolbox"
           eyebrow={null}
           title="The AI Engineer’s Toolbox"
-          lede="A marketing-forward perspective on tool design: schema-first capabilities, inspectable tool calls, deterministic orchestration, and staged access."
+          lede="A marketing-forward perspective on tool design: schema-first capabilities, inspectable tool calls, programmable gateways, context-efficient discovery, and staged access."
           to="/ai-engineers-toolbox/"
           ctaText="Read: Toolbox"
           Diagram={AnimatedAIEngineersToolboxDiagram}

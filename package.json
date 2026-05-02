@@ -4,6 +4,7 @@
   "description": "Tactus-web Gatsby site",
   "version": "0.1.0",
   "dependencies": {
+    "anthus-footer": "git+https://github.com/AnthusAI/anthus-footer.git#feature/shared-anthus-footer",
     "@anthus/tactus-hitl-components": "github:AnthusAI/Tactus-HITL-components#main",
     "@mdx-js/react": "^2.3.0",
     "@radix-ui/react-collapsible": "^1.1.12",
@@ -53,7 +54,6 @@
     "prettier": "^2.8.8",
     "prop-types": "^15.8.1",
     "storybook": "^10.1.11",
-    "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3"
   },
   "engines": {

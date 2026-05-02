@@ -1,4 +1,5 @@
 import * as React from "react"
+import { Link } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import BottomCta from "../components/bottom-cta"
@@ -217,6 +218,27 @@ const AIToolboxPage = () => {
                 In plain terms, it’s like letting a burglar into an empty
                 building: even if an attacker gets into the runtime, there’s
                 nothing valuable inside to steal.
+              </p>
+            </section>
+
+            <section style={{ marginTop: "var(--space-6)" }}>
+              <h2 className={styles.sectionTitle}>
+                One Tool For Everything
+              </h2>
+              <p className={styles.bodyText}>
+                For broad application surfaces, a long list of tiny MCP tools
+                can become its own reliability and context-budget problem.
+                Tactus supports a different pattern: expose one programmable
+                tool, inject a host-provided module, let the model ask for
+                focused docs when needed, and then write a small governed
+                snippet that composes your app’s APIs.
+              </p>
+              <p className={styles.bodyTextMuted}>
+                Read the pattern:{" "}
+                <Link to="/use-cases/one-tool-programmable-api/">
+                  One Tool For Everything
+                </Link>
+                .
               </p>
             </section>
 

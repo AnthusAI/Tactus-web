@@ -1,0 +1,210 @@
+.diagram {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr);
+  gap: var(--space-4);
+  width: 100%;
+  color: var(--color-text);
+}
+
+.panel {
+  background: var(--color-surface);
+  border-radius: var(--border-radius);
+  padding: var(--space-4);
+}
+
+.afterPanel {
+  background: var(--color-surface);
+}
+
+.panelHeader {
+  margin-bottom: var(--space-3);
+}
+
+.panelEyebrow {
+  color: var(--color-primary);
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  margin: 0 0 var(--space-1);
+  text-transform: uppercase;
+}
+
+.panelTitle {
+  color: var(--color-text);
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.stack {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.layer {
+  background: var(--color-card-title);
+  border-radius: var(--border-radius);
+  padding: var(--space-3);
+}
+
+.surface {
+  background: var(--color-card-title);
+}
+
+.muted {
+  background: var(--color-card-title);
+}
+
+.primary {
+  background: var(--color-primary);
+  color: var(--color-primary-ink);
+}
+
+.layerHeader {
+  align-items: center;
+  display: flex;
+  gap: var(--space-2);
+}
+
+.icon {
+  color: var(--color-primary);
+  flex: 0 0 auto;
+  height: 1.35rem;
+  width: 1.35rem;
+}
+
+.smallIcon {
+  color: var(--color-primary);
+  flex: 0 0 auto;
+  height: 1rem;
+  width: 1rem;
+}
+
+.eyebrow {
+  color: var(--color-text-muted);
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.primary .eyebrow,
+.primary .icon,
+.primary .layerTitle {
+  color: var(--color-primary-ink);
+}
+
+.layerTitle {
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.layerBody {
+  margin-top: var(--space-2);
+}
+
+.connector {
+  align-items: center;
+  color: var(--color-text-muted);
+  display: flex;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
+  gap: 0;
+  justify-content: center;
+  min-height: 1.4rem;
+  padding-left: 0;
+}
+
+.connectorIcon {
+  align-items: center;
+  background: var(--color-surface-2);
+  border-radius: var(--border-radius);
+  color: var(--color-primary);
+  display: inline-flex;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 800;
+  height: 1.35rem;
+  justify-content: center;
+  line-height: 1;
+  width: 1.35rem;
+}
+
+.toolGrid {
+  display: grid;
+  gap: var(--space-1);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.singleTool {
+  display: grid;
+  gap: var(--space-1);
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.toolChip {
+  background: var(--color-surface);
+  border-radius: var(--border-radius);
+  color: var(--color-code);
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
+  padding: var(--space-1) var(--space-2);
+  text-align: center;
+}
+
+.runtimeGrid {
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.codeTile {
+  align-items: center;
+  background: var(--color-surface);
+  border-radius: var(--border-radius);
+  color: var(--color-text);
+  display: flex;
+  font-family: var(--font-sans);
+  font-size: 0.86rem;
+  font-weight: 700;
+  gap: var(--space-2);
+  line-height: 1.25;
+  min-height: 3.2rem;
+  padding: var(--space-2);
+}
+
+
+@media (max-width: 900px) {
+  .diagram {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .panel {
+    padding: var(--space-3);
+  }
+
+  .panelTitle {
+    font-size: 1.25rem;
+  }
+
+  .toolGrid,
+  .runtimeGrid {
+    grid-template-columns: 1fr;
+  }
+}

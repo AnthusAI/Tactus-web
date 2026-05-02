@@ -350,8 +350,9 @@ $ tactus run 01-getting-started/01-hello-world.tac`
                     <ol className={styles.prototypeList}>
                       <li>Prototype a workflow as an agent Skill.</li>
                       <li>
-                        Use MCP servers to connect tools like Stripe, Freshdesk,
-                        and internal APIs.
+                        Use MCP servers to connect narrow toolsets like Stripe
+                        or Freshdesk; for broad internal APIs, expose one
+                        programmable Tactus gateway with focused docs on demand.
                       </li>
                       <li>
                         Tighten the steps until the workflow is boring and
@@ -426,7 +427,10 @@ $ tactus run 01-getting-started/01-hello-world.tac`
                     MCP
                   </a>{" "}
                   for connecting tools like Stripe, ticketing systems, and
-                  internal APIs.
+                  internal APIs. For a small set of unrelated actions, a normal
+                  MCP tool catalog is a good fit; for a large application
+                  surface, the one-tool Tactus gateway keeps context smaller
+                  and lets the agent discover details only when needed.
                 </p>
 
                 <div className={styles.caseStudyCallout}>

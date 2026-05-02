@@ -719,6 +719,15 @@ const WhyNewLanguagePage = () => (
           </p>
 
           <p className={styles.bodyText}>
+            Python, TypeScript, and JavaScript are still valuable behind host
+            APIs: they can run SDKs, services, queues, databases, and internal
+            systems. The strain appears when a general-purpose language becomes
+            the untrusted payload that a model writes for the current task.
+            That payload needs a smaller, more controlled boundary than a full
+            application runtime.
+          </p>
+
+          <p className={styles.bodyText}>
             General-purpose programming languages were designed around an
             imperative mental model. Even when they support functional or
             declarative styles, they still assume that control flow is something

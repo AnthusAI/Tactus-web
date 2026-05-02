@@ -192,6 +192,13 @@ const BusinessProcessAutomationUseCasePage = () => {
               <code>{BUSINESS_PROCESS_AUTOMATION_SNIPPET}</code>
             </pre>
 
+            <p className={styles.bodyTextMuted}>
+              Here, <code>max_retries</code> is part of the standard-library{" "}
+              <code>Classify</code> primitive. It is not the same as
+              <code>Agent {` { retry = ... } `}</code>, which retries a full
+              agent turn.
+            </p>
+
             <div className={styles.subtleCard}>
               <p className={styles.kicker}>Guardrails to add next</p>
               <ul className={styles.checkList}>

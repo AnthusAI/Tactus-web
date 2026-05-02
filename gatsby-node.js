@@ -40,6 +40,19 @@ exports.createPages = async ({ actions }) => {
     redirectInBrowser: true,
   })
 
+  createRedirect({
+    fromPath: "/use-cases/plexus-execute-tactus/",
+    toPath: "/use-cases/one-tool-programmable-api/",
+    isPermanent: true,
+    redirectInBrowser: true,
+  })
+  createRedirect({
+    fromPath: "/use-cases/plexus-execute-tactus",
+    toPath: "/use-cases/one-tool-programmable-api/",
+    isPermanent: true,
+    redirectInBrowser: true,
+  })
+
   createPage({
     path: "/using-dsg",
     component: require.resolve("./src/templates/using-dsg.js"),

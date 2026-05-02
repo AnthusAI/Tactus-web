@@ -1,67 +1,35 @@
 import * as React from "react"
+import AnthusFooter from "anthus-footer"
 import { StaticImage } from "gatsby-plugin-image"
-import { Github } from "lucide-react"
-import * as styles from "./footer.module.css"
 
 const Footer = () => {
   return (
-    <footer className={styles.footer}>
-      <div className={styles.container}>
-        {/* Left: Free and Open Source */}
-        <div className={styles.left}>
-          <p className={styles.text}>
-            Tactus is{" "}
-            <a
-              href="https://en.wikipedia.org/wiki/Free_and_open-source_software"
-              target="_blank"
-              rel="noreferrer"
-              className={styles.link}
-            >
-              free and open source
-            </a>
-            .
-          </p>
-          <a
-            href="https://github.com/AnthusAI/Tactus"
-            target="_blank"
-            rel="noreferrer"
-            className={`${styles.link} ${styles.socialLink}`}
-          >
-            <Github size={16} />
-            <span>View Source</span>
-          </a>
-        </div>
-
-        {/* Center: Brand Icon + Tagline */}
-        <div className={styles.center}>
-          <StaticImage
-            src="../images/favicon.png"
-            alt="Tactus icon"
-            className={styles.icon}
-            layout="fixed"
-            width={48}
-            height={48}
-            placeholder="none"
-          />
-          <div className={styles.tagline}>Code Responsibly</div>
-        </div>
-
-        {/* Right: Byline */}
-        <div className={styles.right}>
-          <div className={styles.madeWith}>Designed cybernetically</div>
-          <div className={styles.byline}>
-            <a
-              href="https://anth.us/ryan/"
-              target="_blank"
-              rel="noreferrer"
-              className={styles.link}
-            >
-              by Ryan Porter
-            </a>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <AnthusFooter
+      siteId="tactus"
+      subtitle="Part of the Anthus Platform"
+      description="Tactus is a programming language and runtime for durable AI agent procedures with checkpointing, sandboxing, and built-in human-in-the-loop controls."
+      byline="Designed cybernetically by Ryan Porter"
+      logo={
+        <StaticImage
+          src="../images/favicon.png"
+          alt="Tactus icon"
+          layout="fixed"
+          width={48}
+          height={48}
+          placeholder="none"
+        />
+      }
+      additionalColumns={[
+        {
+          title: "Product",
+          links: [
+            { label: "Getting Started", href: "/getting-started", external: false },
+            { label: "Features", href: "/features", external: false },
+            { label: "GitHub", href: "https://github.com/AnthusAI/Tactus" },
+          ],
+        },
+      ]}
+    />
   )
 }
 

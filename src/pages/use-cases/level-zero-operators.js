@@ -231,6 +231,13 @@ const LevelZeroOperatorsUseCasePage = () => {
               <code>{LEVEL_ZERO_SNIPPET}</code>
             </pre>
 
+            <p className={styles.bodyTextMuted}>
+              In this example, <code>max_retries</code> belongs to the
+              standard-library <code>Classify</code> helper. It is a
+              helper-level retry loop, not <code>retry = {` { ... } `}</code>{" "}
+              on an <code>Agent</code>.
+            </p>
+
             <div className={styles.subtleCard}>
               <p className={styles.kicker}>Guardrails that matter most here</p>
               <ul className={styles.checkList}>

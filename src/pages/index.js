@@ -20,6 +20,7 @@ import AnimatedNewWayFlowchartDiagram from "../components/diagrams/AnimatedNewWa
 import SidecarChatDiagram from "../components/diagrams/SidecarChatDiagram"
 import EmbeddedRuntimeDiagram from "../components/diagrams/EmbeddedRuntimeDiagram"
 import DeepIntegrationDiagram from "../components/diagrams/DeepIntegrationDiagram"
+import ProgrammableToolGatewayDiagram from "../components/diagrams/ProgrammableToolGatewayDiagram"
 import FeatureHighlightsSection from "../components/feature-highlights-section"
 import BookSeriesSection from "../components/book-series-section"
 import TechStackSection from "../components/tech-stack-section"
@@ -362,7 +363,8 @@ const FEATURE_HIGHLIGHTS = [
       <>
         Tools that need secrets or privileged access can run outside the sandbox
         via a broker, streaming back results so the agent gets answers, not
-        credentials.
+        credentials. Broad host modules use the same boundary: expose a narrow
+        API surface while secrets stay on the host side.
       </>
     ),
     icon: <Icons.Cable />,
@@ -955,6 +957,32 @@ const IndexPage = () => {
                   <EmbeddedRuntimeDiagram />
                 </div>
               </div>
+
+              <div className={styles.architectureItem}>
+                <div className={styles.architectureHeaderRow}>
+                  <h3 className={styles.architectureTitle}>
+                    One Tool For Everything
+                  </h3>
+                  <div className={styles.architectureLinkRow}>
+                    <Button
+                      to="/use-cases/one-tool-programmable-api/"
+                      variant="secondary"
+                      shadow
+                    >
+                      See: One Tool For Everything
+                    </Button>
+                  </div>
+                </div>
+                <p className={styles.architectureBody}>
+                  The MCP interface still works the same way: the client sees
+                  one tool in context. Behind that tool, Tactus runs a short
+                  program against a host module that exposes focused docs and
+                  SDK-backed capabilities on demand.
+                </p>
+                <div className={styles.architectureDiagram}>
+                  <ProgrammableToolGatewayDiagram />
+                </div>
+              </div>
             </div>
 
             <div className={styles.architectureFooter}>
@@ -1005,7 +1033,7 @@ const IndexPage = () => {
           id="toolbox"
           eyebrow={null}
           title="The AI Engineer’s Toolbox"
-          lede="Tools are how agents touch reality. Tactus treats them as first-class primitives—safe, inspectable, and effortless to deploy—so your agents can get real work done without the security headaches."
+          lede="Tools are how agents touch reality. Tactus treats them as first-class primitives: schema-first tools for narrow actions, programmable gateways for broad app surfaces, and governed runtime controls around both."
           to="/ai-engineers-toolbox/"
           ctaText="Read: Toolbox"
           Diagram={AnimatedAIEngineersToolboxDiagram}

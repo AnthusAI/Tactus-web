@@ -21,7 +21,7 @@ const Footer = () => {
       }
       additionalColumns={[
         {
-          title: "Product",
+          title: "Tactus",
           links: [
             { label: "Getting Started", href: "/getting-started", external: false },
             { label: "Features", href: "/features", external: false },

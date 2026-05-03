@@ -286,8 +286,7 @@ local approved = Human.approve({
               </p>
               <div className={styles.codeBlock}>
                 <code>{`agent = Agent {
-    provider = "openai",
-    model = "gpt-4o",
+    model = "openai/gpt-4o",
     -- Runs in an isolated container by default
 }`}</code>
               </div>
@@ -343,8 +342,7 @@ local approved = Human.approve({
               <div className={styles.codeBlock}>
                 <code>{`-- Tools are explicit; nothing is implicit.
 agent = Agent {
-    provider = "openai",
-    model = "gpt-4o",
+    model = "openai/gpt-4o",
     tools = {
         create_contact,
         -- no other tools granted

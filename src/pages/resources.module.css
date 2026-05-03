@@ -45,3 +45,27 @@
   color: var(--color-text-muted);
   max-width: 52rem;
 }
+
+.editorSupportTitle {
+  margin: 0 0 var(--space-3);
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.editorSupportBody {
+  margin: 0 0 var(--space-3);
+  color: var(--color-text-muted);
+  line-height: var(--line-height-loose);
+  max-width: 52rem;
+}
+
+.editorSupportLink {
+  font-weight: 700;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.editorSupportLink:hover {
+  text-decoration: underline;
+}

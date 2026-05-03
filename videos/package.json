@@ -1,21 +1,15 @@
 {
   "name": "tactus-videos",
   "version": "1.0.0",
-  "description": "A collection of Remotion videos about the Tactus programming language",
+  "description": "VideoML videos about the Tactus programming language",
   "scripts": {
-    "start": "remotion studio",
-    "build": "remotion render",
-    "render": "node scripts/render-all.js",
-    "render:intro": "remotion render src/index.ts Intro out/intro.mp4",
-    "babulus": "bash bin/babulus generate content/",
-    "babulus:watch": "bash bin/babulus generate content/ --watch",
-    "babulus:dev": "bash bin/babulus generate content/ --watch --env development",
-    "babulus:dry": "bash bin/babulus generate content/ --provider dry-run --sfx-provider dry-run --music-provider dry-run",
-    "babulus:fresh": "bash bin/babulus generate content/ --fresh",
-    "babulus:clean": "bash bin/babulus clean content/ --yes",
-    "babulus:sfx": "bash bin/babulus sfx",
-    "upgrade": "remotion upgrade",
-    "test": "eslint src --ext ts,tsx,js,jsx && tsc --noEmit"
+    "generate": "npm run vml:generate",
+    "render": "npm run vml:render:all",
+    "vml:generate": "node $VIDEOML_CLI generate content/",
+    "vml:render:intro": "node $VIDEOML_CLI render --script src/videos/intro/intro.script.json --timeline src/videos/intro/intro.timeline.json --audio public/videoml/intro.wav --frames out/frames/intro --out out/intro.mp4 --browser-bundle $BABULUS_BUNDLE --browser-bundle public/browser-components.js",
+    "vml:render:guardrails": "node $VIDEOML_CLI render --script src/videos/guardrails-for-agent-autonomy/guardrails-for-agent-autonomy.script.json --timeline src/videos/guardrails-for-agent-autonomy/guardrails-for-agent-autonomy.timeline.json --audio public/videoml/guardrails-for-agent-autonomy.wav --frames out/frames/guardrails-for-agent-autonomy --out out/guardrails-for-agent-autonomy.mp4 --browser-bundle $BABULUS_BUNDLE --browser-bundle public/browser-components.js",
+    "vml:render:why": "node $VIDEOML_CLI render --script src/videos/why-a-new-language/why-a-new-language.script.json --timeline src/videos/why-a-new-language/why-a-new-language.timeline.json --audio public/videoml/why-a-new-language.wav --frames out/frames/why-a-new-language --out out/why-a-new-language.mp4 --browser-bundle $BABULUS_BUNDLE --browser-bundle public/browser-components.js",
+    "vml:render:all": "npm run vml:render:intro && npm run vml:render:guardrails && npm run vml:render:why"
   },
   "repository": {
     "type": "git",
@@ -23,27 +17,13 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@remotion/bundler": "4.0.406",
-    "@remotion/cli": "4.0.406",
-    "@remotion/google-fonts": "4.0.406",
-    "@remotion/player": "4.0.406",
-    "js-yaml": "^4.1.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "remotion": "4.0.406"
+    "babulus": "file:../../Babulus"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
-    "@typescript-eslint/eslint-plugin": "^8.18.1",
-    "@typescript-eslint/parser": "^8.18.1",
-    "babulus": "file:../../Babulus",
-    "eslint": "^9.17.0",
-    "eslint-plugin-react": "^7.37.2",
     "typescript": "^5.7.2"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.0.0"
   }
 }

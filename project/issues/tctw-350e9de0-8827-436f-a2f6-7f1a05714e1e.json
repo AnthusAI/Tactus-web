@@ -1,0 +1,25 @@
+{
+  "id": "tctw-350e9de0-8827-436f-a2f6-7f1a05714e1e",
+  "title": "Project cleanup after video format migrations",
+  "description": "We made a lot of changes as videos moved from YML to TypeScript to VideoML. Do a cleanup pass to remove obsolete artifacts, align docs/scripts, and ensure the repo reflects the current VideoML-first workflow.",
+  "type": "task",
+  "status": "closed",
+  "priority": 2,
+  "assignee": null,
+  "creator": null,
+  "parent": null,
+  "labels": [],
+  "dependencies": [],
+  "comments": [
+    {
+      "id": "247918f7-f467-4fe6-a028-88a7e1cc1ef7",
+      "author": "ryan.porter",
+      "text": "Cleanup completed: removed legacy Babulus/Remotion scaffolding, rewrote docs/scripts for VideoML, updated .gitignore for provider segment tracking.",
+      "created_at": "2026-02-21T15:03:41.532945Z"
+    }
+  ],
+  "created_at": "2026-02-21T13:41:08.811957Z",
+  "updated_at": "2026-02-21T15:03:44.874508Z",
+  "closed_at": "2026-02-21T15:03:44.874508Z",
+  "custom": {}
+}

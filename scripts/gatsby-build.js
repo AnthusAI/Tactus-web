@@ -1,14 +1,12 @@
 const { spawn } = require("node:child_process")
 const path = require("node:path")
 
-const gatsbyBin = path.join(
-  process.cwd(),
-  "node_modules",
-  ".bin",
-  process.platform === "win32" ? "gatsby.cmd" : "gatsby"
-)
+// Do not rely on the `.bin/gatsby` shebang (it uses `/usr/bin/env node` and may
+// pick up the wrong Node version). Spawn the Gatsby CLI JS entrypoint using the
+// *current* Node runtime (process.execPath) so `npx -p node@20 ...` works.
+const gatsbyCli = path.join(process.cwd(), "node_modules", "gatsby", "dist", "bin", "gatsby.js")
 
-const child = spawn(gatsbyBin, ["build"], {
+const child = spawn(process.execPath, [gatsbyCli, "build"], {
   stdio: ["ignore", "pipe", "pipe"],
   env: process.env,
 })

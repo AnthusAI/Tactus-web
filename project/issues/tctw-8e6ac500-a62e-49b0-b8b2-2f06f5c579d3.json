@@ -1,0 +1,43 @@
+{
+  "id": "tctw-8e6ac500-a62e-49b0-b8b2-2f06f5c579d3",
+  "title": "Why-new-language VML renders blank (visual layers missing)",
+  "description": "",
+  "type": "task",
+  "status": "closed",
+  "priority": 2,
+  "assignee": null,
+  "creator": null,
+  "parent": "tctw-bb801b66-f0d1-4e67-9b34-603f2ae4161a",
+  "labels": [],
+  "dependencies": [],
+  "comments": [
+    {
+      "id": "90e18d99-f8a2-4ad2-9b3b-4aa1d7f7ab80",
+      "author": "ryan.porter",
+      "text": "Observed why-new-language VML renders audio-only with blank frames. Generated script.json has scenes but 0 layers/components. VML and .babulus.ts currently only voiceover + transitions. Need to locate prior YAML/visual definitions or port visuals into VML.",
+      "created_at": "2026-02-21T06:50:14.969210Z"
+    },
+    {
+      "id": "5d7150c3-8810-4ba8-84a4-e229a9563a2f",
+      "author": "ryan.porter",
+      "text": "Found prior YAML in git history: videos/content/why-new-language.babulus.yml (deleted in commit a28331a). YAML is narration-only (no visuals/layers/components). Visuals live in TSX: videos/src/videos/why-new-language/WhyNewLanguageVideo.tsx.",
+      "created_at": "2026-02-21T06:54:51.169146Z"
+    },
+    {
+      "id": "2228faf1-2e42-4d20-9951-310f3eb2a728",
+      "author": "ryan.porter",
+      "text": "Starting conversion: will port visuals from WhyNewLanguageVideo.tsx into why-new-language.vml components/layers.",
+      "created_at": "2026-02-21T06:58:22.645769Z"
+    },
+    {
+      "id": "4f48e594-02b5-41bb-99cb-70871f7a174c",
+      "author": "ryan.porter",
+      "text": "Resolved: VML renders include visuals after custom bundle uses Babulus registry/hooks. Rendered MP4 with slide-left transitions.",
+      "created_at": "2026-02-21T13:40:39.733952Z"
+    }
+  ],
+  "created_at": "2026-02-21T06:50:10.929344Z",
+  "updated_at": "2026-02-21T13:40:42.883064Z",
+  "closed_at": "2026-02-21T13:40:42.883064Z",
+  "custom": {}
+}

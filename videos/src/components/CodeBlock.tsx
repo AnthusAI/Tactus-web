@@ -1,5 +1,5 @@
 import React from "react"
-import { useCurrentFrame, useVideoConfig, spring, interpolate } from "remotion"
+import { useCurrentFrame, useVideoConfig, spring, interpolate } from "../babulus-api"
 import { Card } from "./Card"
 import { Body, Code } from "./Typography"
 import { secondsToFrames } from "@/babulus/utils"
@@ -58,7 +58,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
   ])
 
   return (
-    <Card variant="muted" padding={5} style={{ height, width: "100%" }}>
+    <Card variant="muted" padding={5} style={{ height, width: "100%", overflow: "visible" }}>
       <Body style={{ fontSize: 28, fontWeight: 900, marginBottom: 16 }}>
         {label}
       </Body>

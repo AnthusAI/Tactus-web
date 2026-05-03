@@ -1,23 +1,10 @@
 import React from "react"
-import { AbsoluteFill, getRemotionEnvironment } from "remotion"
-import { loadFont } from "@remotion/google-fonts/SourceSans3"
-import { loadFont as loadSerif } from "@remotion/google-fonts/SourceSerif4"
-import { loadFont as loadMono } from "@remotion/google-fonts/SourceCodePro"
 import { colors } from "../lib/theme"
 
-// Load Google Fonts
-const { fontFamily: sourceSans } = loadFont("normal", {
-  weights: ["600", "700", "800"],
-  subsets: ["latin"],
-})
-const { fontFamily: sourceSerif } = loadSerif("normal", {
-  weights: ["400", "600", "700", "800", "900"],
-  subsets: ["latin"],
-})
-const { fontFamily: sourceMono } = loadMono("normal", {
-  weights: ["400", "600"],
-  subsets: ["latin"],
-})
+// Font families loaded via Google Fonts CDN
+const sourceSans = "'Source Sans 3', sans-serif"
+const sourceSerif = "'Source Serif 4', serif"
+const sourceMono = "'Source Code Pro', monospace"
 
 interface GlobalStylesProps {
   children: React.ReactNode
@@ -32,20 +19,25 @@ export const GlobalStyles: React.FC<GlobalStylesProps> = ({
   children,
   backgroundColor = colors.bg,
 }) => {
-  const { isRendering } = getRemotionEnvironment()
   return (
-    <AbsoluteFill
+    <div
       style={{
+        position: 'absolute',
+        left: 0,
+        top: 0,
+        width: '100%',
+        height: '100%',
         backgroundColor,
         fontFamily: sourceSerif,
         color: colors.text,
       }}
     >
-      {isRendering ? (
-        <style>{`*,*::before,*::after{transition:none !important;animation:none !important;}`}</style>
-      ) : null}
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@600;700;800&family=Source+Serif+4:wght@400;600;700;800;900&family=Source+Code+Pro:wght@400;600&display=swap');
+        *,*::before,*::after{transition:none !important;animation:none !important;}
+      `}</style>
       {children}
-    </AbsoluteFill>
+    </div>
   )
 }
 

@@ -1,0 +1,25 @@
+{
+  "id": "tctw-e28b55d3-ab5b-4508-86a4-d04d5da82886",
+  "title": "Generate intro artifacts from intro.vml",
+  "description": "",
+  "type": "task",
+  "status": "closed",
+  "priority": 2,
+  "assignee": null,
+  "creator": null,
+  "parent": "tctw-ff6f29be-456f-42bb-9140-c2eb448d47dc",
+  "labels": [],
+  "dependencies": [],
+  "comments": [
+    {
+      "id": "3c9ab0db-2a01-4212-a7e5-69c1b1ccffc0",
+      "author": "unknown",
+      "text": "Completed: ran `bin/babulus generate content/`, producing updated intro script/timeline/audio artifacts.",
+      "created_at": "2026-02-21T05:35:47.194477Z"
+    }
+  ],
+  "created_at": "2026-02-21T05:35:44.404841Z",
+  "updated_at": "2026-02-21T05:35:50.203968Z",
+  "closed_at": "2026-02-21T05:35:50.203968Z",
+  "custom": {}
+}

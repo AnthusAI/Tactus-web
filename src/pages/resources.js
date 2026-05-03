@@ -22,6 +22,24 @@ const ResourcesPage = () => {
           </div>
         </section>
 
+        <section className={styles.section}>
+          <div className={styles.container}>
+            <h2 className={styles.editorSupportTitle}>Editor Support</h2>
+            <p className={styles.editorSupportBody}>
+              Use VS Code? Install the Tactus extension for syntax highlighting,
+              validation, and code intelligence for .tac files.
+            </p>
+            <a
+              href="https://marketplace.visualstudio.com/items?itemName=AnthusAISolutions.tactus"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.editorSupportLink}
+            >
+              Install from VS Code Marketplace →
+            </a>
+          </div>
+        </section>
+
         <VideosCatalogSection id="videos" />
         <BookSeriesSection id="books" mutedBackground={false} />
       </div>

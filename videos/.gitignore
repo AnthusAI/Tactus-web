@@ -43,7 +43,8 @@ yarn-error.log*
 # OS
 Thumbs.db
 
-# Babulus (project-local config + generated audio artifacts)
-.babulus/config.yml
-.babulus/out/
+# Babulus (project-local config + generated artifacts)
+.babulus/
+.frames-cache/
 public/babulus/
+src/videos/**/frames/

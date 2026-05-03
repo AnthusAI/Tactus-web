@@ -28,8 +28,7 @@ const LEVEL_ZERO_SNIPPET = `-- Level Zero Operator (ITSM incident response)
 -- it gathers context early, enforces SOPs, and produces an incident brief before a human joins.
 
 IncidentBrief = Agent {
-  provider = "openai",
-  model = "gpt-4o-mini",
+  model = "openai/gpt-4o-mini",
   system_prompt = [[
 You are a Level Zero Operator for IT incident response.
 You write concise incident briefs and propose next steps.
@@ -99,7 +98,7 @@ Inputs:
 - summary: ]] .. input.incident_summary .. [[
 ]]
 
-    local brief = IncidentBrief(prompt)
+    local brief = IncidentBrief(prompt).output
 
     return {category = category, severity = severity, escalation = escalation, brief = brief}
   end

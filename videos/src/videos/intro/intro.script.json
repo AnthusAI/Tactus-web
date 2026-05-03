@@ -3,23 +3,155 @@
     {
       "id": "paradigm",
       "title": "A New Kind of Computer Program",
-      "startSec": 0.25,
-      "endSec": 58.761230851217505,
+      "startSec": 0,
+      "endSec": 61.06999999999999,
+      "layers": [
+        {
+          "id": "background",
+          "zIndex": -1,
+          "components": [
+            {
+              "id": "background-0",
+              "type": "Background",
+              "props": {
+                "color": "#fdfdfd",
+                "sceneStartSec": 0
+              }
+            }
+          ]
+        },
+        {
+          "id": "diagram",
+          "zIndex": 0,
+          "components": [
+            {
+              "id": "paradigm-comparison-0",
+              "type": "ParadigmComparison",
+              "props": {
+                "title": "A New Kind of Computer Program",
+                "oldWay": "OldWayFlowchartDiagram",
+                "newWay": "NewWayFlowchartDiagram",
+                "sceneStartSec": 0
+              }
+            }
+          ]
+        }
+      ],
       "cues": [
         {
           "id": "paradigm",
           "label": "Paradigm",
-          "startSec": 0.25,
-          "endSec": 43.01090909090909,
+          "startSec": 0,
+          "endSec": 44.519999999999996,
           "text": "Since the dawn of computing, programming has always meant the same thing: anticipate every scenario and write code for it. If you miss a case, the program breaks. But tool‑using agents flip the script. Instead of explicitly handling every possible scenario, you depend on AI models to make decisions and take action for you. In this new kind of programming, first you start with an agent—a language model. Then you give it a tool. And then you assign it a procedure to follow. And then you put guardrails around that to guide it toward the goal. This is a completely new way to automate work with computers. A new kind of computer program.",
+          "segments": [
+            {
+              "type": "pause",
+              "startSec": 0,
+              "endSec": 0.6,
+              "durationSec": 0.6
+            },
+            {
+              "type": "tts",
+              "startSec": 0.6,
+              "endSec": 11.049999999999999,
+              "text": "Since the dawn of computing, programming has always meant the same thing: anticipate every scenario and write code for it. If you miss a case, the program breaks."
+            },
+            {
+              "type": "pause",
+              "startSec": 11.049999999999999,
+              "endSec": 11.399999999999999,
+              "durationSec": 0.35
+            },
+            {
+              "type": "tts",
+              "startSec": 11.399999999999999,
+              "endSec": 22.45,
+              "text": "But tool‑using agents flip the script. Instead of explicitly handling every possible scenario, you depend on AI models to make decisions and take action for you."
+            },
+            {
+              "type": "pause",
+              "startSec": 22.45,
+              "endSec": 22.63,
+              "durationSec": 0.18
+            },
+            {
+              "type": "tts",
+              "startSec": 22.63,
+              "endSec": 29.18,
+              "text": "In this new kind of programming, first you start with an agent—a language model. Then you give it a tool."
+            },
+            {
+              "type": "pause",
+              "startSec": 29.18,
+              "endSec": 29.36,
+              "durationSec": 0.18
+            },
+            {
+              "type": "tts",
+              "startSec": 29.36,
+              "endSec": 32.51,
+              "text": "And then you assign it a procedure to follow."
+            },
+            {
+              "type": "pause",
+              "startSec": 32.51,
+              "endSec": 32.69,
+              "durationSec": 0.18
+            },
+            {
+              "type": "tts",
+              "startSec": 32.69,
+              "endSec": 37.69,
+              "text": "And then you put guardrails around that to guide it toward the goal."
+            },
+            {
+              "type": "pause",
+              "startSec": 37.69,
+              "endSec": 37.87,
+              "durationSec": 0.18
+            },
+            {
+              "type": "tts",
+              "startSec": 37.87,
+              "endSec": 44.519999999999996,
+              "text": "This is a completely new way to automate work with computers. A new kind of computer program."
+            }
+          ],
           "bullets": []
         },
         {
           "id": "paradigm_wrap",
           "label": "Paradigm Wrap",
-          "startSec": 43.215776305762965,
-          "endSec": 58.761230851217505,
+          "startSec": 44.519999999999996,
+          "endSec": 61.06999999999999,
           "text": "Okay... But how do you do that, exactly? Is there some new way to write code that's about giving agents tools and procedures? Instead of a bunch of if/then statements? Yes. Tactus is a programming language for this new paradigm.",
+          "segments": [
+            {
+              "type": "pause",
+              "startSec": 44.519999999999996,
+              "endSec": 44.919999999999995,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 44.919999999999995,
+              "endSec": 55.669999999999995,
+              "text": "Okay... But how do you do that, exactly? Is there some new way to write code that's about giving agents tools and procedures? Instead of a bunch of if/then statements?"
+            },
+            {
+              "type": "pause",
+              "startSec": 55.669999999999995,
+              "endSec": 56.269999999999996,
+              "durationSec": 0.6
+            },
+            {
+              "type": "tts",
+              "startSec": 56.269999999999996,
+              "endSec": 61.06999999999999,
+              "text": "Yes. Tactus is a programming language for this new paradigm."
+            }
+          ],
           "bullets": []
         }
       ]
@@ -27,15 +159,76 @@
     {
       "id": "hello_world",
       "title": "Hello, World",
-      "startSec": 58.761230851217505,
-      "endSec": 93.49304903303569,
+      "startSec": 61.56999999999999,
+      "endSec": 99.57,
+      "layers": [
+        {
+          "id": "background",
+          "zIndex": -1,
+          "components": [
+            {
+              "id": "background-0",
+              "type": "Background",
+              "props": {
+                "color": "#fdfdfd",
+                "sceneStartSec": 61.06999999999999
+              }
+            }
+          ]
+        },
+        {
+          "id": "content",
+          "zIndex": 0,
+          "components": [
+            {
+              "id": "hello-world-scene-0",
+              "type": "HelloWorldScene",
+              "props": {
+                "sceneStartSec": 61.06999999999999
+              }
+            }
+          ]
+        }
+      ],
       "cues": [
         {
           "id": "hello_world",
           "label": "Hello World",
-          "startSec": 58.761230851217505,
-          "endSec": 93.49304903303569,
+          "startSec": 61.56999999999999,
+          "endSec": 99.57,
           "text": "Tactus procedures are computer programs that include imperative instructions, like any other language, but they have first-class, high-level constructs for the building blocks that we work with in AI engineering: agents, tools, context, and prompts. You run Tactus procedures just like you would run a program in any other language like Python or Node—as command-line programs or by embedding them in applications. Here's an example of running a hello-world program. The procedure runs and returns the response from the agent. It doesn't use a framework because the capabilities are built right into the language.",
+          "segments": [
+            {
+              "type": "tts",
+              "startSec": 61.56999999999999,
+              "endSec": 76.77,
+              "text": "Tactus procedures are computer programs that include imperative instructions, like any other language, but they have first-class, high-level constructs for the building blocks that we work with in AI engineering: agents, tools, context, and prompts."
+            },
+            {
+              "type": "pause",
+              "startSec": 76.77,
+              "endSec": 77.11999999999999,
+              "durationSec": 0.35
+            },
+            {
+              "type": "tts",
+              "startSec": 77.11999999999999,
+              "endSec": 88.41999999999999,
+              "text": "You run Tactus procedures just like you would run a program in any other language like Python or Node—as command-line programs or by embedding them in applications."
+            },
+            {
+              "type": "tts",
+              "startSec": 88.41999999999999,
+              "endSec": 99.36999999999999,
+              "text": "Here's an example of running a hello-world program. The procedure runs and returns the response from the agent. It doesn't use a framework because the capabilities are built right into the language."
+            },
+            {
+              "type": "pause",
+              "startSec": 99.36999999999999,
+              "endSec": 99.57,
+              "durationSec": 0.2
+            }
+          ],
           "bullets": []
         }
       ]
@@ -43,31 +236,176 @@
     {
       "id": "interface",
       "title": "The Human Interface",
-      "startSec": 93.49304903303569,
-      "endSec": 188.61897621267968,
+      "startSec": 100.07,
+      "endSec": 195.87000000000003,
+      "layers": [
+        {
+          "id": "background",
+          "zIndex": -1,
+          "components": [
+            {
+              "id": "background-0",
+              "type": "Background",
+              "props": {
+                "color": "#fdfdfd",
+                "sceneStartSec": 99.07
+              }
+            }
+          ]
+        },
+        {
+          "id": "title",
+          "zIndex": 1,
+          "components": [
+            {
+              "id": "title-0",
+              "type": "Title",
+              "props": {
+                "text": "The Human Interface",
+                "x": 960,
+                "y": 150,
+                "sceneStartSec": 99.07
+              }
+            }
+          ]
+        },
+        {
+          "id": "diagram",
+          "zIndex": 0,
+          "components": [
+            {
+              "id": "human-in-the-loop-diagram-0",
+              "type": "HumanInTheLoopDiagram",
+              "props": {
+                "containerWidth": 1400,
+                "containerHeight": 650,
+                "x": 960,
+                "y": 650,
+                "sceneStartSec": 99.07
+              }
+            }
+          ]
+        }
+      ],
       "cues": [
         {
           "id": "interface_supervised",
           "label": "Closely Supervised",
-          "startSec": 93.49304903303569,
-          "endSec": 131.05668539667207,
+          "startSec": 100.07,
+          "endSec": 135.37,
           "text": "Connecting to agents and tools is just the beginning. The real challenge is the interface layer between the agent and the operator. The common interface for agents today is chat. You watch every step, you steer, and you stop the agent if it goes sideways. That works great for some things but depends on the human operator. The user becomes a bottleneck. When you step away to eat or sleep, the whole system stops doing anything. If you're trying to process a lot of items at scale then your capacity is limited by the human operator.You can't scale this up.",
+          "segments": [
+            {
+              "type": "tts",
+              "startSec": 100.07,
+              "endSec": 108.22,
+              "text": "Connecting to agents and tools is just the beginning. The real challenge is the interface layer between the agent and the operator."
+            },
+            {
+              "type": "pause",
+              "startSec": 108.22,
+              "endSec": 108.62,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 108.62,
+              "endSec": 120.92,
+              "text": "The common interface for agents today is chat. You watch every step, you steer, and you stop the agent if it goes sideways. That works great for some things but depends on the human operator."
+            },
+            {
+              "type": "pause",
+              "startSec": 120.92,
+              "endSec": 121.32000000000001,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 121.32000000000001,
+              "endSec": 134.97,
+              "text": "The user becomes a bottleneck. When you step away to eat or sleep, the whole system stops doing anything. If you're trying to process a lot of items at scale then your capacity is limited by the human operator.You can't scale this up."
+            },
+            {
+              "type": "pause",
+              "startSec": 134.97,
+              "endSec": 135.37,
+              "durationSec": 0.4
+            }
+          ],
           "bullets": []
         },
         {
           "id": "interface_unsupervised",
           "label": "Unsupervised",
-          "startSec": 131.1660583333894,
-          "endSec": 149.78424015157125,
+          "startSec": 135.37,
+          "endSec": 155.27,
           "text": "You could remove the human entirely and let the agent run free. This scales beautifully—you can process thousands of items at machine speed. But running an agent this way is like giving a monkey a razor blade. And scaling that up to industrial levels is a recipe for disaster.",
+          "segments": [
+            {
+              "type": "tts",
+              "startSec": 135.37,
+              "endSec": 145.22,
+              "text": "You could remove the human entirely and let the agent run free. This scales beautifully—you can process thousands of items at machine speed."
+            },
+            {
+              "type": "pause",
+              "startSec": 145.22,
+              "endSec": 145.62,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 145.62,
+              "endSec": 154.87,
+              "text": "But running an agent this way is like giving a monkey a razor blade. And scaling that up to industrial levels is a recipe for disaster."
+            },
+            {
+              "type": "pause",
+              "startSec": 154.87,
+              "endSec": 155.27,
+              "durationSec": 0.4
+            }
+          ],
           "bullets": []
         },
         {
           "id": "interface_hitl",
           "label": "Durable HITL",
-          "startSec": 150.00079439449783,
-          "endSec": 188.61897621267968,
+          "startSec": 155.27,
+          "endSec": 195.87000000000003,
           "text": "Tactus provides a new interface layer between the human and the computer. It enables agents to send requests to the human operator and wait for a response. Requests can queue up, so that the system can continue running while the human operator isn't available. When a procedure needs a human—to approve a risky action, or to provide a missing detail—it pauses. It doesn't use any compute while it's suspended, and it doesn't depend on the runtime to continue running in memory. It can resume hours or days later, exactly where it left off. This lets you move from synchronous chat to asynchronous, industrial-scale workflows.",
+          "segments": [
+            {
+              "type": "tts",
+              "startSec": 155.27,
+              "endSec": 171.32000000000002,
+              "text": "Tactus provides a new interface layer between the human and the computer. It enables agents to send requests to the human operator and wait for a response. Requests can queue up, so that the system can continue running while the human operator isn't available."
+            },
+            {
+              "type": "pause",
+              "startSec": 171.32000000000002,
+              "endSec": 171.72000000000003,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 171.72000000000003,
+              "endSec": 185.07000000000002,
+              "text": "When a procedure needs a human—to approve a risky action, or to provide a missing detail—it pauses. It doesn't use any compute while it's suspended, and it doesn't depend on the runtime to continue running in memory."
+            },
+            {
+              "type": "pause",
+              "startSec": 185.07000000000002,
+              "endSec": 185.47000000000003,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 185.47000000000003,
+              "endSec": 195.87000000000003,
+              "text": "It can resume hours or days later, exactly where it left off. This lets you move from synchronous chat to asynchronous, industrial-scale workflows."
+            }
+          ],
           "bullets": []
         }
       ]
@@ -75,31 +413,204 @@
     {
       "id": "graphs",
       "title": "No Graphs Required",
-      "startSec": 188.61897621267968,
-      "endSec": 213.90988530358877,
+      "startSec": 196.37000000000003,
+      "endSec": 221.22000000000003,
+      "layers": [
+        {
+          "id": "background",
+          "zIndex": -1,
+          "components": [
+            {
+              "id": "background-0",
+              "type": "Background",
+              "props": {
+                "color": "#fdfdfd",
+                "sceneStartSec": 194.87000000000003
+              }
+            }
+          ]
+        },
+        {
+          "id": "title",
+          "zIndex": 1,
+          "components": [
+            {
+              "id": "title-0",
+              "type": "Title",
+              "props": {
+                "text": "No Graphs Required",
+                "x": 960,
+                "y": 150,
+                "sceneStartSec": 194.87000000000003
+              }
+            }
+          ]
+        },
+        {
+          "id": "code",
+          "zIndex": 0,
+          "components": [
+            {
+              "id": "code-push-transition-0",
+              "type": "CodePushTransition",
+              "props": {
+                "fromLabel": "Graph-Based Workflow",
+                "fromCode": "graph = StateGraph()\ngraph.add_node(\"fetch\", fetch_data)\ngraph.add_node(\"analyze\", analyze_data)\ngraph.add_conditional_edges(\n  \"fetch\",\n  lambda x: \"analyze\" if x else \"end\"\n)\ngraph.add_edge(\"analyze\", END)",
+                "toLabel": "Tactus",
+                "toCode": "async function myWorkflow() {\n  const data = await fetchData()\n  if (data) {\n    await analyzeData(data)\n  }\n}",
+                "transitionStartSec": 8,
+                "containerWidth": 1600,
+                "containerHeight": 500,
+                "x": 960,
+                "y": 600,
+                "sceneStartSec": 194.87000000000003
+              }
+            }
+          ]
+        }
+      ],
       "cues": [
         {
           "id": "graphs",
           "label": "No Graphs Required",
-          "startSec": 188.61897621267968,
-          "endSec": 213.90988530358877,
+          "startSec": 196.37000000000003,
+          "endSec": 221.22000000000003,
           "text": "In most programming languages, if you want execution that can pause and resume like this, you're forced into something like a graph workflow, where you have to write code that's structured around nodes, edges, and conditional edges. With Tactus, it's transparent. You write normal code, and the runtime handles pausing and resuming behind the scenes. The graph nodes are still there, but you don't have to think about them.",
+          "segments": [
+            {
+              "type": "pause",
+              "startSec": 196.37000000000003,
+              "endSec": 196.57000000000002,
+              "durationSec": 0.2
+            },
+            {
+              "type": "tts",
+              "startSec": 196.57000000000002,
+              "endSec": 221.22000000000003,
+              "text": "In most programming languages, if you want execution that can pause and resume like this, you're forced into something like a graph workflow, where you have to write code that's structured around nodes, edges, and conditional edges. With Tactus, it's transparent. You write normal code, and the runtime handles pausing and resuming behind the scenes. The graph nodes are still there, but you don't have to think about them."
+            }
+          ],
           "bullets": []
         }
       ]
     },
     {
       "id": "prompt_ceiling_intro",
-      "title": "The Prompt-Engineering Ceiling",
-      "startSec": 213.90988530358877,
-      "endSec": 245.72806712177058,
+      "title": "The Ceiling",
+      "startSec": 221.72000000000003,
+      "endSec": 258.12,
+      "layers": [
+        {
+          "id": "background",
+          "zIndex": -1,
+          "components": [
+            {
+              "id": "background-0",
+              "type": "Background",
+              "props": {
+                "color": "#fdfdfd",
+                "sceneStartSec": 219.72000000000003
+              }
+            }
+          ]
+        },
+        {
+          "id": "title",
+          "zIndex": 1,
+          "components": [
+            {
+              "id": "title-0",
+              "type": "Title",
+              "props": {
+                "text": "The Ceiling",
+                "x": 960,
+                "y": 150,
+                "sceneStartSec": 219.72000000000003
+              }
+            }
+          ]
+        },
+        {
+          "id": "diagram",
+          "zIndex": 0,
+          "components": [
+            {
+              "id": "prompt-engineering-ceiling-diagram-0",
+              "type": "PromptEngineeringCeilingDiagram",
+              "props": {
+                "containerWidth": 1400,
+                "containerHeight": 650,
+                "x": 960,
+                "y": 580,
+                "sceneStartSec": 219.72000000000003
+              }
+            }
+          ]
+        }
+      ],
       "cues": [
         {
           "id": "prompt_ceiling_intro",
           "label": "Prompt Ceiling",
-          "startSec": 213.90988530358877,
-          "endSec": 245.72806712177058,
+          "startSec": 221.72000000000003,
+          "endSec": 258.12,
           "text": "To operate confidently in production—safely and securely—you need a minimum threshold of reliability. The obvious first type of control that everyone reaches for is prompt engineering. But prompts are suggestions, not controls. There are things you just can't reliably make a model do or not do with prompts alone. There's a gap between what you can achieve with prompt engineering and the minimum reliability you need to run at scale in production. To close that gap, you need different types of control.",
+          "segments": [
+            {
+              "type": "tts",
+              "startSec": 221.72000000000003,
+              "endSec": 228.67000000000002,
+              "text": "To operate confidently in production—safely and securely—you need a minimum threshold of reliability."
+            },
+            {
+              "type": "pause",
+              "startSec": 228.67000000000002,
+              "endSec": 229.17000000000002,
+              "durationSec": 0.5
+            },
+            {
+              "type": "tts",
+              "startSec": 229.17000000000002,
+              "endSec": 235.12,
+              "text": "The obvious first type of control that everyone reaches for is prompt engineering."
+            },
+            {
+              "type": "pause",
+              "startSec": 235.12,
+              "endSec": 235.62,
+              "durationSec": 0.5
+            },
+            {
+              "type": "tts",
+              "startSec": 235.62,
+              "endSec": 244.92000000000002,
+              "text": "But prompts are suggestions, not controls. There are things you just can't reliably make a model do or not do with prompts alone."
+            },
+            {
+              "type": "pause",
+              "startSec": 244.92000000000002,
+              "endSec": 245.42000000000002,
+              "durationSec": 0.5
+            },
+            {
+              "type": "tts",
+              "startSec": 245.42000000000002,
+              "endSec": 253.42000000000002,
+              "text": "There's a gap between what you can achieve with prompt engineering and the minimum reliability you need to run at scale in production."
+            },
+            {
+              "type": "pause",
+              "startSec": 253.42000000000002,
+              "endSec": 253.92000000000002,
+              "durationSec": 0.5
+            },
+            {
+              "type": "tts",
+              "startSec": 253.92000000000002,
+              "endSec": 258.12,
+              "text": "To close that gap, you need different types of control."
+            }
+          ],
           "bullets": []
         }
       ]
@@ -107,15 +618,156 @@
     {
       "id": "defense_layers",
       "title": "Defense in Depth",
-      "startSec": 245.72806712177058,
-      "endSec": 286.80988530358854,
+      "startSec": 258.62,
+      "endSec": 311.06999999999994,
+      "layers": [
+        {
+          "id": "background",
+          "zIndex": -1,
+          "components": [
+            {
+              "id": "background-0",
+              "type": "Background",
+              "props": {
+                "color": "#fdfdfd",
+                "sceneStartSec": 256.12
+              }
+            }
+          ]
+        },
+        {
+          "id": "title",
+          "zIndex": 1,
+          "components": [
+            {
+              "id": "title-0",
+              "type": "Title",
+              "props": {
+                "text": "Defense in Depth",
+                "x": 960,
+                "y": 150,
+                "sceneStartSec": 256.12
+              }
+            }
+          ]
+        },
+        {
+          "id": "diagram",
+          "zIndex": 0,
+          "components": [
+            {
+              "id": "guardrails-stack-diagram-0",
+              "type": "GuardrailsStackDiagram",
+              "props": {
+                "containerWidth": 1400,
+                "containerHeight": 650,
+                "x": 960,
+                "y": 650,
+                "sceneStartSec": 256.12
+              }
+            }
+          ]
+        }
+      ],
       "cues": [
         {
           "id": "defense_layers",
           "label": "Defense Layers",
-          "startSec": 245.72806712177058,
-          "endSec": 286.80988530358854,
+          "startSec": 258.62,
+          "endSec": 311.06999999999994,
           "text": "Tactus gives you multiple types of control. Because no single type is sufficient on its own. Prompt engineering guides model behavior, but it's not enough on its own. Cost and limits block requests before they hit the model—preventing runaway loops and billing surprises. Context engineering ensures the model has the right information, not just all information. Model selection for the right capabilities and safety profiles. Tool selection. Give the agent only the capabilities it needs. Code sandboxing. Running agent code in a restricted environment so it can't cause damage. And container isolation. Firewalling agent activity so it can't reach the network or touch your server.",
+          "segments": [
+            {
+              "type": "tts",
+              "startSec": 258.62,
+              "endSec": 264.92,
+              "text": "Tactus gives you multiple types of control. Because no single type is sufficient on its own."
+            },
+            {
+              "type": "pause",
+              "startSec": 264.92,
+              "endSec": 265.42,
+              "durationSec": 0.5
+            },
+            {
+              "type": "tts",
+              "startSec": 265.42,
+              "endSec": 270.77000000000004,
+              "text": "Prompt engineering guides model behavior, but it's not enough on its own."
+            },
+            {
+              "type": "pause",
+              "startSec": 270.77000000000004,
+              "endSec": 271.17,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 271.17,
+              "endSec": 278.27000000000004,
+              "text": "Cost and limits block requests before they hit the model—preventing runaway loops and billing surprises."
+            },
+            {
+              "type": "pause",
+              "startSec": 278.27000000000004,
+              "endSec": 278.67,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 278.67,
+              "endSec": 285.27000000000004,
+              "text": "Context engineering ensures the model has the right information, not just all information."
+            },
+            {
+              "type": "pause",
+              "startSec": 285.27000000000004,
+              "endSec": 285.67,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 285.67,
+              "endSec": 290.57,
+              "text": "Model selection for the right capabilities and safety profiles."
+            },
+            {
+              "type": "pause",
+              "startSec": 290.57,
+              "endSec": 290.96999999999997,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 290.96999999999997,
+              "endSec": 296.91999999999996,
+              "text": "Tool selection. Give the agent only the capabilities it needs."
+            },
+            {
+              "type": "pause",
+              "startSec": 296.91999999999996,
+              "endSec": 297.31999999999994,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 297.31999999999994,
+              "endSec": 304.06999999999994,
+              "text": "Code sandboxing. Running agent code in a restricted environment so it can't cause damage."
+            },
+            {
+              "type": "pause",
+              "startSec": 304.06999999999994,
+              "endSec": 304.4699999999999,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 304.4699999999999,
+              "endSec": 311.06999999999994,
+              "text": "And container isolation. Firewalling agent activity so it can't reach the network or touch your server."
+            }
+          ],
           "bullets": []
         }
       ]
@@ -123,15 +775,108 @@
     {
       "id": "sandboxing",
       "title": "Sandboxing",
-      "startSec": 286.80988530358854,
-      "endSec": 338.3917034854067,
+      "startSec": 311.56999999999994,
+      "endSec": 363.2699999999999,
+      "layers": [
+        {
+          "id": "background",
+          "zIndex": -1,
+          "components": [
+            {
+              "id": "background-0",
+              "type": "Background",
+              "props": {
+                "color": "#fdfdfd",
+                "sceneStartSec": 308.56999999999994
+              }
+            }
+          ]
+        },
+        {
+          "id": "title",
+          "zIndex": 1,
+          "components": [
+            {
+              "id": "title-0",
+              "type": "Title",
+              "props": {
+                "text": "Sandboxing",
+                "x": 960,
+                "y": 150,
+                "sceneStartSec": 308.56999999999994
+              }
+            }
+          ]
+        },
+        {
+          "id": "diagram",
+          "zIndex": 0,
+          "components": [
+            {
+              "id": "container-sandbox-diagram-0",
+              "type": "ContainerSandboxDiagram",
+              "props": {
+                "containerWidth": 1400,
+                "containerHeight": 650,
+                "x": 960,
+                "y": 650,
+                "sceneStartSec": 308.56999999999994
+              }
+            }
+          ]
+        }
+      ],
       "cues": [
         {
           "id": "sandboxing",
           "label": "Sandboxing",
-          "startSec": 286.80988530358854,
-          "endSec": 338.3917034854067,
+          "startSec": 311.56999999999994,
+          "endSec": 363.2699999999999,
           "text": "We know AI models make mistakes. Maybe your agent writes buggy tool code. Or maybe an attacker uses a prompt injection to hijack the agent and try something malicious. You want agents that can write files and run programs—they need to be powerful and useful. But you don't want them reaching out to the network or deleting files on your server. Tactus runs agent code in a restricted Lua sandbox inside a networkless container. The agent can do real work, but it can't vandalize your system or phone home to some attacker's website. The other risk is credentials. Your procedure might need keys to call third-party services, but you don't want the agent to see them. Tactus keeps secrets outside the container in a separate process. Even if something goes wrong, there's nothing for the agent to steal.",
+          "segments": [
+            {
+              "type": "tts",
+              "startSec": 311.56999999999994,
+              "endSec": 323.36999999999995,
+              "text": "We know AI models make mistakes. Maybe your agent writes buggy tool code. Or maybe an attacker uses a prompt injection to hijack the agent and try something malicious."
+            },
+            {
+              "type": "pause",
+              "startSec": 323.36999999999995,
+              "endSec": 323.7699999999999,
+              "durationSec": 0.4
+            },
+            {
+              "type": "tts",
+              "startSec": 323.7699999999999,
+              "endSec": 333.1699999999999,
+              "text": "You want agents that can write files and run programs—they need to be powerful and useful. But you don't want them reaching out to the network or deleting files on your server."
+            },
+            {
+              "type": "pause",
+              "startSec": 333.1699999999999,
+              "endSec": 333.6699999999999,
+              "durationSec": 0.5
+            },
+            {
+              "type": "tts",
+              "startSec": 333.6699999999999,
+              "endSec": 346.9699999999999,
+              "text": "Tactus runs agent code in a restricted Lua sandbox inside a networkless container. The agent can do real work, but it can't vandalize your system or phone home to some attacker's website."
+            },
+            {
+              "type": "pause",
+              "startSec": 346.9699999999999,
+              "endSec": 347.4699999999999,
+              "durationSec": 0.5
+            },
+            {
+              "type": "tts",
+              "startSec": 347.4699999999999,
+              "endSec": 363.2699999999999,
+              "text": "The other risk is credentials. Your procedure might need keys to call third-party services, but you don't want the agent to see them. Tactus keeps secrets outside the container in a separate process. Even if something goes wrong, there's nothing for the agent to steal."
+            }
+          ],
           "bullets": []
         }
       ]
@@ -139,15 +884,80 @@
     {
       "id": "nutshell",
       "title": "Tactus in a Nutshell",
-      "startSec": 338.3917034854067,
-      "endSec": 352.66897621267947,
+      "startSec": 363.7699999999999,
+      "endSec": 381.56999999999994,
+      "layers": [
+        {
+          "id": "background",
+          "zIndex": -1,
+          "components": [
+            {
+              "id": "background-0",
+              "type": "Background",
+              "props": {
+                "color": "#fdfdfd",
+                "sceneStartSec": 360.2699999999999
+              }
+            }
+          ]
+        },
+        {
+          "id": "title",
+          "zIndex": 1,
+          "components": [
+            {
+              "id": "title-0",
+              "type": "Title",
+              "props": {
+                "text": "Tactus in a Nutshell",
+                "x": 960,
+                "y": 150,
+                "sceneStartSec": 360.2699999999999
+              }
+            }
+          ]
+        },
+        {
+          "id": "content",
+          "zIndex": 0,
+          "components": [
+            {
+              "id": "nutshell-content-0",
+              "type": "NutshellContent",
+              "props": {
+                "sceneStartSec": 360.2699999999999
+              }
+            }
+          ]
+        }
+      ],
       "cues": [
         {
           "id": "nutshell",
           "label": "Nutshell",
-          "startSec": 338.3917034854067,
-          "endSec": 352.66897621267947,
+          "startSec": 363.7699999999999,
+          "endSec": 381.56999999999994,
           "text": "In a nutshell, Tactus is a high-level agent programming model, with default-on sandboxing and container isolation, capability and context control, human-in-the-loop gates, and durable checkpoints so long-running workflows can pause, resume, and be audited safely.",
+          "segments": [
+            {
+              "type": "pause",
+              "startSec": 363.7699999999999,
+              "endSec": 364.9699999999999,
+              "durationSec": 1.2
+            },
+            {
+              "type": "tts",
+              "startSec": 364.9699999999999,
+              "endSec": 381.2199999999999,
+              "text": "In a nutshell, Tactus is a high-level agent programming model, with default-on sandboxing and container isolation, capability and context control, human-in-the-loop gates, and durable checkpoints so long-running workflows can pause, resume, and be audited safely."
+            },
+            {
+              "type": "pause",
+              "startSec": 381.2199999999999,
+              "endSec": 381.56999999999994,
+              "durationSec": 0.35
+            }
+          ],
           "bullets": []
         }
       ]
@@ -155,23 +965,236 @@
     {
       "id": "cta",
       "title": "Get Started",
-      "startSec": 352.66897621267947,
-      "endSec": 359.2007943944977,
+      "startSec": 382.06999999999994,
+      "endSec": 389.46999999999997,
+      "layers": [
+        {
+          "id": "background",
+          "zIndex": -1,
+          "components": [
+            {
+              "id": "background-0",
+              "type": "Background",
+              "props": {
+                "color": "#fdfdfd",
+                "sceneStartSec": 378.06999999999994
+              }
+            }
+          ]
+        },
+        {
+          "id": "end",
+          "zIndex": 0,
+          "components": [
+            {
+              "id": "end-scene-0",
+              "type": "EndScene",
+              "props": {
+                "sceneStartSec": 378.06999999999994
+              }
+            }
+          ]
+        }
+      ],
       "cues": [
         {
           "id": "cta",
           "label": "CTA",
-          "startSec": 352.66897621267947,
-          "endSec": 359.2007943944977,
+          "startSec": 382.06999999999994,
+          "endSec": 389.46999999999997,
           "text": "Ready to try it? Visit the Tactus website to download the IDE and run your first procedure.",
+          "segments": [
+            {
+              "type": "tts",
+              "startSec": 382.06999999999994,
+              "endSec": 389.11999999999995,
+              "text": "Ready to try it? Visit the Tactus website to download the IDE and run your first procedure."
+            },
+            {
+              "type": "pause",
+              "startSec": 389.11999999999995,
+              "endSec": 389.46999999999997,
+              "durationSec": 0.35
+            }
+          ],
           "bullets": []
         }
       ]
     }
   ],
+  "timeline": [
+    {
+      "kind": "scene",
+      "sceneId": "paradigm",
+      "startSec": 0,
+      "endSec": 61.06999999999999
+    },
+    {
+      "kind": "transition",
+      "id": "intro-push-1",
+      "startSec": 61.06999999999999,
+      "endSec": 61.56999999999999,
+      "effect": "slide",
+      "ease": "power2.inOut",
+      "props": {
+        "direction": "left"
+      },
+      "mode": "insert",
+      "fromSceneId": "paradigm",
+      "toSceneId": "hello_world"
+    },
+    {
+      "kind": "scene",
+      "sceneId": "hello_world",
+      "startSec": 61.56999999999999,
+      "endSec": 99.57
+    },
+    {
+      "kind": "transition",
+      "id": "intro-push-2",
+      "startSec": 99.57,
+      "endSec": 100.07,
+      "effect": "slide",
+      "ease": "power2.inOut",
+      "props": {
+        "direction": "left"
+      },
+      "mode": "insert",
+      "fromSceneId": "hello_world",
+      "toSceneId": "interface"
+    },
+    {
+      "kind": "scene",
+      "sceneId": "interface",
+      "startSec": 100.07,
+      "endSec": 195.87000000000003
+    },
+    {
+      "kind": "transition",
+      "id": "intro-push-3",
+      "startSec": 195.87000000000003,
+      "endSec": 196.37000000000003,
+      "effect": "slide",
+      "ease": "power2.inOut",
+      "props": {
+        "direction": "left"
+      },
+      "mode": "insert",
+      "fromSceneId": "interface",
+      "toSceneId": "graphs"
+    },
+    {
+      "kind": "scene",
+      "sceneId": "graphs",
+      "startSec": 196.37000000000003,
+      "endSec": 221.22000000000003
+    },
+    {
+      "kind": "transition",
+      "id": "intro-push-4",
+      "startSec": 221.22000000000003,
+      "endSec": 221.72000000000003,
+      "effect": "slide",
+      "ease": "power2.inOut",
+      "props": {
+        "direction": "left"
+      },
+      "mode": "insert",
+      "fromSceneId": "graphs",
+      "toSceneId": "prompt_ceiling_intro"
+    },
+    {
+      "kind": "scene",
+      "sceneId": "prompt_ceiling_intro",
+      "startSec": 221.72000000000003,
+      "endSec": 258.12
+    },
+    {
+      "kind": "transition",
+      "id": "intro-push-5",
+      "startSec": 258.12,
+      "endSec": 258.62,
+      "effect": "slide",
+      "ease": "power2.inOut",
+      "props": {
+        "direction": "left"
+      },
+      "mode": "insert",
+      "fromSceneId": "prompt_ceiling_intro",
+      "toSceneId": "defense_layers"
+    },
+    {
+      "kind": "scene",
+      "sceneId": "defense_layers",
+      "startSec": 258.62,
+      "endSec": 311.06999999999994
+    },
+    {
+      "kind": "transition",
+      "id": "intro-push-6",
+      "startSec": 311.06999999999994,
+      "endSec": 311.56999999999994,
+      "effect": "slide",
+      "ease": "power2.inOut",
+      "props": {
+        "direction": "left"
+      },
+      "mode": "insert",
+      "fromSceneId": "defense_layers",
+      "toSceneId": "sandboxing"
+    },
+    {
+      "kind": "scene",
+      "sceneId": "sandboxing",
+      "startSec": 311.56999999999994,
+      "endSec": 363.2699999999999
+    },
+    {
+      "kind": "transition",
+      "id": "intro-push-7",
+      "startSec": 363.2699999999999,
+      "endSec": 363.7699999999999,
+      "effect": "slide",
+      "ease": "power2.inOut",
+      "props": {
+        "direction": "left"
+      },
+      "mode": "insert",
+      "fromSceneId": "sandboxing",
+      "toSceneId": "nutshell"
+    },
+    {
+      "kind": "scene",
+      "sceneId": "nutshell",
+      "startSec": 363.7699999999999,
+      "endSec": 381.56999999999994
+    },
+    {
+      "kind": "transition",
+      "id": "intro-push-8",
+      "startSec": 381.56999999999994,
+      "endSec": 382.06999999999994,
+      "effect": "slide",
+      "ease": "power2.inOut",
+      "props": {
+        "direction": "left"
+      },
+      "mode": "insert",
+      "fromSceneId": "nutshell",
+      "toSceneId": "cta"
+    },
+    {
+      "kind": "scene",
+      "sceneId": "cta",
+      "startSec": 382.06999999999994,
+      "endSec": 389.46999999999997
+    }
+  ],
   "posterTimeSec": 48,
   "fps": 24,
   "meta": {
-    "fps": 24
+    "fps": 24,
+    "width": 1920,
+    "height": 1080
   }
 }

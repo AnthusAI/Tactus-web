@@ -9,14 +9,7 @@ import AnimatedCodeBlock from "../components/animated/AnimatedCodeBlock"
 import BottomCta from "../components/bottom-cta"
 import SpotlightSection from "../components/spotlight-section"
 import GuardrailsSpotlight from "../components/guardrails-spotlight"
-import AnimatedAIEngineersToolboxDiagram from "../components/diagrams/AnimatedAIEngineersToolboxDiagram"
-import ContainerSandboxDiagram from "../components/diagrams/ContainerSandboxDiagram"
-import SpecificationsDiagram from "../components/diagrams/SpecificationsDiagram"
-import EvaluationsDiagram from "../components/diagrams/EvaluationsDiagram"
-import AnimatedHumanInTheLoopDiagram from "../components/diagrams/AnimatedHumanInTheLoopDiagram"
 import { HITL_PRESETS } from "../components/diagrams/hitlPresets"
-import AnimatedOldWayFlowchartDiagram from "../components/diagrams/AnimatedOldWayFlowchartDiagram"
-import AnimatedNewWayFlowchartDiagram from "../components/diagrams/AnimatedNewWayFlowchartDiagram"
 import SidecarChatDiagram from "../components/diagrams/SidecarChatDiagram"
 import EmbeddedRuntimeDiagram from "../components/diagrams/EmbeddedRuntimeDiagram"
 import DeepIntegrationDiagram from "../components/diagrams/DeepIntegrationDiagram"
@@ -28,6 +21,110 @@ import Button from "../components/ui/button"
 import Breakout from "../components/publishing/Breakout"
 import getVideoSrc from "../lib/getVideoSrc"
 import * as styles from "./index.module.css"
+
+const AnimatedAIEngineersToolboxDiagram = React.lazy(() =>
+  import("../components/diagrams/AnimatedAIEngineersToolboxDiagram")
+)
+
+const ContainerSandboxDiagram = React.lazy(() =>
+  import("../components/diagrams/ContainerSandboxDiagram")
+)
+
+const LazyContainerSandboxDiagram = props => (
+  <React.Suspense fallback={<div style={{ minHeight: 320 }} />}>
+    <ContainerSandboxDiagram {...props} />
+  </React.Suspense>
+)
+
+const AnimatedHumanInTheLoopDiagram = React.lazy(() =>
+  import("../components/diagrams/AnimatedHumanInTheLoopDiagram")
+)
+
+const LazyAnimatedHumanInTheLoopDiagram = props => (
+  <React.Suspense fallback={<div style={{ minHeight: 320 }} />}>
+    <AnimatedHumanInTheLoopDiagram {...props} />
+  </React.Suspense>
+)
+
+const SpecificationsDiagram = React.lazy(() =>
+  import("../components/diagrams/SpecificationsDiagram")
+)
+
+const EvaluationsDiagram = React.lazy(() =>
+  import("../components/diagrams/EvaluationsDiagram")
+)
+
+const LazySpecificationsDiagram = props => (
+  <React.Suspense fallback={<div style={{ minHeight: 320 }} />}>
+    <SpecificationsDiagram {...props} />
+  </React.Suspense>
+)
+
+const LazyEvaluationsDiagram = props => (
+  <React.Suspense fallback={<div style={{ minHeight: 320 }} />}>
+    <EvaluationsDiagram {...props} />
+  </React.Suspense>
+)
+
+const AnimatedNewWayFlowchartDiagram = React.lazy(() =>
+  import("../components/diagrams/AnimatedNewWayFlowchartDiagram")
+)
+
+const LazyNewWayFlowchartDiagram = props => (
+  <React.Suspense fallback={<div style={{ minHeight: 320 }} />}>
+    <AnimatedNewWayFlowchartDiagram {...props} />
+  </React.Suspense>
+)
+
+const LazyAIEngineersToolboxDiagram = props => (
+  <React.Suspense fallback={<div style={{ minHeight: 320 }} />}>
+    <AnimatedAIEngineersToolboxDiagram {...props} />
+  </React.Suspense>
+)
+
+const AnimatedOldWayFlowchartDiagram = React.lazy(() =>
+  import("../components/diagrams/AnimatedOldWayFlowchartDiagram")
+)
+
+const IntroVideoCard = () => {
+  const [showVideo, setShowVideo] = React.useState(false)
+
+  if (showVideo) {
+    return (
+      <video
+        className={styles.video}
+        controls
+        preload="metadata"
+        playsInline
+        src={getVideoSrc("intro.mp4")}
+        poster={getVideoSrc("intro-poster.jpg")}
+      />
+    )
+  }
+
+  return (
+    <div
+      className={styles.video}
+      style={{
+        backgroundImage: `url(${getVideoSrc("intro-poster.jpg")})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Button
+        type="button"
+        variant="primary"
+        shadow
+        onClick={() => setShowVideo(true)}
+      >
+        Play video
+      </Button>
+    </div>
+  )
+}
 
 const Icons = {
   Box: () => (
@@ -179,12 +276,11 @@ const Icons = {
 }
 
 const HELLO_WORLD_EXAMPLE = `World = Agent {
-    provider = "openai",
-    model = "gpt-4o-mini",
+    model = "openai/gpt-4o-mini",
     system_prompt = "Your name is World."
 }
 
-return World("Hello, World!").response`
+return World("Hello, World!").output`
 
 const DURABILITY_EXAMPLE = `local approved = Human.approve({
     message = "Deploy to production?",
@@ -198,8 +294,7 @@ if approved then
     end`
 
 const VALIDATION_EXAMPLE = `researcher = Agent {
-    provider = "openai",
-    model = "gpt-5",
+    model = "openai/gpt-5",
     system_prompt = "Research the topic. Return a concise answer.",
     initial_message = "Research: {input.topic}"
 }
@@ -213,7 +308,7 @@ Procedure {
         findings = field.string{required = true},
     },
     function(input)
-        local findings = researcher().response
+        local findings = researcher().output
 
         local approved = Human.approve({
             message = "Publish these findings?",
@@ -507,14 +602,7 @@ const IndexPage = () => {
                 <span className={styles.videoDuration}>5 minutes</span>
               </div>
             </div>
-            <video
-              className={styles.video}
-              controls
-              preload="metadata"
-              playsInline
-              src={getVideoSrc("intro.mp4")}
-              poster={getVideoSrc("intro-poster.jpg")}
-            />
+            <IntroVideoCard />
           </div>
         </Breakout>
 
@@ -552,7 +640,11 @@ const IndexPage = () => {
                 </div>
                 <div className={styles.narrativeDiagramColumn}>
                   <div className={styles.narrativeDiagram}>
-                    <AnimatedOldWayFlowchartDiagram durationMs={4000} />
+                    <React.Suspense
+                      fallback={<div style={{ minHeight: 320 }} />}
+                    >
+                      <AnimatedOldWayFlowchartDiagram durationMs={4000} />
+                    </React.Suspense>
                   </div>
                   <p className={styles.narrativeCaption}>
                     Every new edge case requires more conditional logic
@@ -580,7 +672,7 @@ const IndexPage = () => {
                 </div>
                 <div className={styles.narrativeDiagramColumn}>
                   <div className={styles.narrativeDiagram}>
-                    <AnimatedNewWayFlowchartDiagram durationMs={3200} />
+                    <LazyNewWayFlowchartDiagram durationMs={3200} />
                   </div>
                   <p className={styles.narrativeCaption}>
                     Agent + Tools + Procedure, bounded by Guardrails
@@ -743,7 +835,7 @@ const IndexPage = () => {
                     items, everything is bottlenecked on your presence.
                   </p>
                   <div className={styles.hitlVariantDiagram}>
-                    <AnimatedHumanInTheLoopDiagram
+                    <LazyAnimatedHumanInTheLoopDiagram
                       scenario={HITL_PRESETS.CLOSELY_SUPERVISED.scenario}
                       config={{
                         ...HITL_PRESETS.CLOSELY_SUPERVISED.config,
@@ -770,7 +862,7 @@ const IndexPage = () => {
                     trouble.
                   </p>
                   <div className={styles.hitlVariantDiagram}>
-                    <AnimatedHumanInTheLoopDiagram
+                    <LazyAnimatedHumanInTheLoopDiagram
                       scenario={HITL_PRESETS.UNSUPERVISED_MONKEY.scenario}
                       config={HITL_PRESETS.UNSUPERVISED_MONKEY.config}
                       startAtMs={
@@ -795,7 +887,7 @@ const IndexPage = () => {
                     every step.
                   </p>
                   <div className={styles.hitlVariantDiagram}>
-                    <AnimatedHumanInTheLoopDiagram
+                    <LazyAnimatedHumanInTheLoopDiagram
                       scenario={HITL_PRESETS.HUMAN_STEPS_BACK.scenario}
                       config={HITL_PRESETS.HUMAN_STEPS_BACK.config}
                       startAtMs={
@@ -1036,7 +1128,7 @@ const IndexPage = () => {
           lede="Tools are how agents touch reality. Tactus treats them as first-class primitives: schema-first tools for narrow actions, programmable gateways for broad app surfaces, and governed runtime controls around both."
           to="/ai-engineers-toolbox/"
           ctaText="Read: Toolbox"
-          Diagram={AnimatedAIEngineersToolboxDiagram}
+          Diagram={LazyAIEngineersToolboxDiagram}
         />
 
         <GuardrailsSpotlight id="guardrails" eyebrow={null} />
@@ -1048,7 +1140,7 @@ const IndexPage = () => {
           lede="Agents run in a Lua sandbox inside a networkless container, constraining what they can touch and firewalling side effects. Privileged operations are brokered by a separate process that holds the secrets. It’s like letting a burglar into an empty building: even if the agent is compromised, there’s nothing valuable inside to steal—and nowhere to send it."
           to="/guardrails/#sandboxing"
           ctaText="Read: Sandboxing"
-          Diagram={ContainerSandboxDiagram}
+          Diagram={LazyContainerSandboxDiagram}
         />
 
         <Breakout
@@ -1120,7 +1212,7 @@ const IndexPage = () => {
               controls
               preload="metadata"
               playsInline
-              src={getVideoSrc("why-new-language.mp4")}
+              src={getVideoSrc("why-a-new-language.mp4")}
               poster={getVideoSrc("why-new-language-poster.jpg")}
             />
           </div>
@@ -1133,7 +1225,7 @@ const IndexPage = () => {
           lede="Tactus treats behavior specs as part of the language itself: inline with procedures, executable by the runtime, and visible in every run. They define invariants, prevent regressions, and keep reliability measurable as models and tools evolve."
           to="/specifications/"
           ctaText="Read: Specifications"
-          Diagram={SpecificationsDiagram}
+          Diagram={LazySpecificationsDiagram}
           flip={true}
         />
 
@@ -1144,7 +1236,7 @@ const IndexPage = () => {
           lede="One successful run is luck. Reliability is a statistic. Evaluations let you measure accuracy, cost, and reliability performance across datasets so you can ship with confidence."
           to="/evaluations/"
           ctaText="Read: Evaluations"
-          Diagram={EvaluationsDiagram}
+          Diagram={LazyEvaluationsDiagram}
         />
 
         {/* Code Examples Group */}

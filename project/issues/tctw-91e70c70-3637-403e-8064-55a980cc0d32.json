@@ -1,0 +1,37 @@
+{
+  "id": "tctw-91e70c70-3637-403e-8064-55a980cc0d32",
+  "title": "Ensure VideoML CLI pipeline supports .vml + browser bundle",
+  "description": "",
+  "type": "task",
+  "status": "closed",
+  "priority": 2,
+  "assignee": null,
+  "creator": null,
+  "parent": "tctw-ae1829df-6f3a-42ec-b022-19b6fac715e0",
+  "labels": [],
+  "dependencies": [],
+  "comments": [
+    {
+      "id": "72251d3a-213b-41b4-b56f-3b0b23dcd066",
+      "author": "unknown",
+      "text": "See VideoML CLI issue vmlc-57cc2a (Support .vml discovery + browser-bundle in pipeline).",
+      "created_at": "2026-02-21T05:40:55.132949Z"
+    },
+    {
+      "id": "7a688be9-d0a4-4859-b9d7-ab54e7f87764",
+      "author": "unknown",
+      "text": "VideoML CLI updated to allow multiple --browser-bundle entries (passes browserBundlePaths). This enables loading Babulus standard bundle + custom bundle.",
+      "created_at": "2026-02-21T05:57:28.733045Z"
+    },
+    {
+      "id": "c0a47aaf-cadd-471d-8f1b-198b72deb26b",
+      "author": "unknown",
+      "text": "Completed: VideoML CLI now supports repeated --browser-bundle and passes browserBundlePaths so standard + custom bundles load.",
+      "created_at": "2026-02-21T06:05:04.556174Z"
+    }
+  ],
+  "created_at": "2026-02-21T05:39:18.591347Z",
+  "updated_at": "2026-02-21T06:05:08.484442Z",
+  "closed_at": "2026-02-21T06:05:08.484442Z",
+  "custom": {}
+}

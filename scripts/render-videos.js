@@ -45,13 +45,13 @@ const main = () => {
     : ["intro", "why-new-language"] // published videos only (avoid generating drafts)
 
   for (const slug of slugsToGenerate) {
-    const babulusFile = `content/${slug}.babulus.yml`
+    const babulusFile = `content/${slug}.babulus.ts`
     const babulusPath = path.join(videosDir, babulusFile)
     if (existsSync(babulusPath)) {
-      run(`npm run babulus:generate -- ${babulusFile}`, { cwd: videosDir, env })
+      run(`npm run generate`, { cwd: videosDir, env })
     } else if (slug === targetComposition) {
       // Fall back to generating all content if the user passed an unknown target.
-      run("npm run babulus:generate -- content/", { cwd: videosDir, env })
+      run("npm run generate", { cwd: videosDir, env })
       break
     }
   }

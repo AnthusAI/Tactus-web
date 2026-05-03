@@ -220,7 +220,7 @@ const ContainerSandboxDiagram = ({ theme = "light", style, className }) => {
               worker = Agent &#123;
             </tspan>
             <tspan x="10" dy="18">
-              provider = "openai",
+              model = "openai/gpt-4o-mini",
             </tspan>
             <tspan x="10" dy="18">
               tools = &#123;search&#125;
@@ -797,7 +797,7 @@ const ContainerSandboxDiagram = ({ theme = "light", style, className }) => {
             worker = Agent &#123;
           </tspan>
           <tspan x="10" dy="18">
-            provider = "openai",
+            model = "openai/gpt-4o-mini",
           </tspan>
           <tspan x="10" dy="18">
             tools = &#123;search&#125;

@@ -1,0 +1,1649 @@
+{
+  "items": [
+    {
+      "type": "lead_in",
+      "startSec": 0,
+      "endSec": 0.25,
+      "seconds": 0.25
+    },
+    {
+      "type": "tts",
+      "sceneId": "title-card",
+      "cueId": "title",
+      "startSec": 0.25,
+      "endSec": 24.549999999999997,
+      "segments": [
+        {
+          "type": "pause",
+          "startSec": 0.25,
+          "endSec": 1.05,
+          "seconds": 0.8
+        },
+        {
+          "type": "tts",
+          "startSec": 1.05,
+          "endSec": 4.9,
+          "text": "Why do we need a new language?",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/title-card--title--tts--e1960f5e9585--1.wav",
+          "durationSec": 3.85,
+          "rawDurationSec": 3.85,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 4.9,
+          "endSec": 5.4,
+          "seconds": 0.5
+        },
+        {
+          "type": "tts",
+          "startSec": 5.4,
+          "endSec": 11.5,
+          "text": "To answer that question, we need to think about what the purpose of a computer programming language is.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/title-card--title--tts--576f52bf3be5--1.wav",
+          "durationSec": 6.1,
+          "rawDurationSec": 6.1,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 11.5,
+          "endSec": 11.9,
+          "seconds": 0.4
+        },
+        {
+          "type": "tts",
+          "startSec": 11.9,
+          "endSec": 18.05,
+          "text": "It is to provide a high-level model for recording reproducible solutions to problems.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/title-card--title--tts--47f9d9419c70--1.wav",
+          "durationSec": 6.15,
+          "rawDurationSec": 6.15,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 18.05,
+          "endSec": 18.55,
+          "seconds": 0.5
+        },
+        {
+          "type": "tts",
+          "startSec": 18.55,
+          "endSec": 24.15,
+          "text": "So to see why we need a new one, let's look at how those models have evolved.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/title-card--title--tts--b2b907ff49a5--1.wav",
+          "durationSec": 5.6,
+          "rawDurationSec": 5.6,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 24.15,
+          "endSec": 24.549999999999997,
+          "seconds": 0.4
+        }
+      ]
+    },
+    {
+      "type": "tts",
+      "sceneId": "in-the-beginning",
+      "cueId": "history",
+      "startSec": 25.049999999999997,
+      "endSec": 229.95000000000005,
+      "segments": [
+        {
+          "type": "tts",
+          "startSec": 25.049999999999997,
+          "endSec": 55.699999999999996,
+          "text": "In the beginning, programmers wrote raw machine code. Zeros and ones. It was slow, tedious, and error-prone. And it was low-level in a very literal sense: those zeros and ones corresponded to physical states—voltage on a wire, a relay position, or a vacuum tube being on or off. Sometimes that meant wiring plugboards or toggling switches. Later it meant punching numeric opcodes. You were squinting down in the guts of the machine, and your \"program\" was basically a description of that machine.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/in-the-beginning--history--tts--8a7f47f24ba5--1.wav",
+          "durationSec": 30.65,
+          "rawDurationSec": 30.65,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 55.699999999999996,
+          "endSec": 56.05,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 56.05,
+          "endSec": 81.85,
+          "text": "Assemblers emerged almost immediately. Instead of binary opcodes, you could write symbolic instructions. Researchers formalized those patterns into names and labels, making \"machine instructions\" legible to humans. The computer translated them into machine code. And once you can name things, you can reuse them: labels, macros, and early subroutines made programs repeatable instead of handcrafted.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/in-the-beginning--history--tts--283eff0d7c29--1.wav",
+          "durationSec": 25.8,
+          "rawDurationSec": 25.8,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 81.85,
+          "endSec": 82.25,
+          "seconds": 0.4
+        },
+        {
+          "type": "tts",
+          "startSec": 82.25,
+          "endSec": 91.6,
+          "text": "But the deeper shift is that assemblers introduced a two‑step workflow. Now there are two programs in the story: the assembler, and your program.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/in-the-beginning--history--tts--8090c9ea2c84--1.wav",
+          "durationSec": 9.35,
+          "rawDurationSec": 9.35,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 91.6,
+          "endSec": 91.94999999999999,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 91.94999999999999,
+          "endSec": 103.85,
+          "text": "You write code in a form that's easier for humans to understand. Then you run the assembler — a program — to turn that into machine code. And then the computer runs the machine code.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/in-the-beginning--history--tts--1a25de38b90a--1.wav",
+          "durationSec": 11.9,
+          "rawDurationSec": 11.9,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 103.85,
+          "endSec": 104.19999999999999,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 104.19999999999999,
+          "endSec": 119.44999999999999,
+          "text": "That's the key step: one of the first useful things people ever did with computers was use them to make using computers easier. Even when computer time was precious, people spent some of it on tools that made programming faster, safer, and more repeatable.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/in-the-beginning--history--tts--7c59bf58eedb--1.wav",
+          "durationSec": 15.25,
+          "rawDurationSec": 15.25,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 119.44999999999999,
+          "endSec": 119.74999999999999,
+          "seconds": 0.3
+        },
+        {
+          "type": "tts",
+          "startSec": 119.74999999999999,
+          "endSec": 147.54999999999998,
+          "text": "From there, the ladder of abstraction rose quickly. In the late 1950s and 1960s, early high-level languages like Fortran, Lisp, COBOL, ALGOL, and APL enabled humans describe problems more directly, while compilers handled the low-level details. Lisp, for example, was built for symbolic problems: lists, recursion, and treating code as data so you can transform programs like any other structure.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/in-the-beginning--history--tts--55c0d46ffbca--1.wav",
+          "durationSec": 27.8,
+          "rawDurationSec": 27.8,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 147.54999999999998,
+          "endSec": 147.85,
+          "seconds": 0.3
+        },
+        {
+          "type": "tts",
+          "startSec": 147.85,
+          "endSec": 161.7,
+          "text": "One especially influential descendant of that era was C. It kept you close to the machine, but its constructs made repetition and reuse explicit: functions you could call again, and control flow you could reason about.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/in-the-beginning--history--tts--64bb447de4a3--1.wav",
+          "durationSec": 13.85,
+          "rawDurationSec": 13.85,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 161.7,
+          "endSec": 162,
+          "seconds": 0.3
+        },
+        {
+          "type": "tts",
+          "startSec": 162,
+          "endSec": 173.15,
+          "text": "C plus plus — and object-oriented programming more broadly — tried to match another problem space: large systems made of interacting \"things\" with state and responsibilities.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/in-the-beginning--history--tts--3736329c750e--1.wav",
+          "durationSec": 11.15,
+          "rawDurationSec": 11.15,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 173.15,
+          "endSec": 173.45000000000002,
+          "seconds": 0.3
+        },
+        {
+          "type": "tts",
+          "startSec": 173.45000000000002,
+          "endSec": 183.45000000000002,
+          "text": "And languages like Ruby pushed toward expressing intent directly: code that reads closer to what a human means, so the computer does more of the bookkeeping.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/in-the-beginning--history--tts--4dd68b7c3a2f--1.wav",
+          "durationSec": 10,
+          "rawDurationSec": 10,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 183.45000000000002,
+          "endSec": 183.85000000000002,
+          "seconds": 0.4
+        },
+        {
+          "type": "tts",
+          "startSec": 183.85000000000002,
+          "endSec": 191.90000000000003,
+          "text": "But through all of this, the paradigm never changed. The programmer still specified control flow. The computer still followed instructions.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/in-the-beginning--history--tts--39d923e57e24--1.wav",
+          "durationSec": 8.05,
+          "rawDurationSec": 8.05,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 191.90000000000003,
+          "endSec": 192.30000000000004,
+          "seconds": 0.4
+        },
+        {
+          "type": "tts",
+          "startSec": 192.30000000000004,
+          "endSec": 205.35000000000005,
+          "text": "Today, we're seeing the same pattern repeat with AI. One of the first valuable uses of AI is to turn it on itself: using AI to make programming easier, and to write better code.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/in-the-beginning--history--tts--9942d8c169d3--1.wav",
+          "durationSec": 13.05,
+          "rawDurationSec": 13.05,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 205.35000000000005,
+          "endSec": 205.70000000000005,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 205.70000000000005,
+          "endSec": 221.15000000000003,
+          "text": "Tactus continues that tradition. It raises the level of abstraction to match what engineers care about in agentic systems: procedures, tools, guardrails, checkpoints, and evaluation. So you can express those concerns directly.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/in-the-beginning--history--tts--31778e64106c--1.wav",
+          "durationSec": 15.45,
+          "rawDurationSec": 15.45,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 221.15000000000003,
+          "endSec": 221.45000000000005,
+          "seconds": 0.3
+        },
+        {
+          "type": "tts",
+          "startSec": 221.45000000000005,
+          "endSec": 229.95000000000005,
+          "text": "But this time, something deeper is changing. It's not just a higher level of abstraction. It's a fundamentally different way of making decisions.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/in-the-beginning--history--tts--4e65e30e78f9--1.wav",
+          "durationSec": 8.5,
+          "rawDurationSec": 8.5,
+          "trimEndSec": 0
+        }
+      ]
+    },
+    {
+      "type": "tts",
+      "sceneId": "control-flow-evolution",
+      "cueId": "shift",
+      "startSec": 230.45000000000005,
+      "endSec": 286.75000000000006,
+      "segments": [
+        {
+          "type": "tts",
+          "startSec": 230.45000000000005,
+          "endSec": 236.10000000000005,
+          "text": "Today, decisions are no longer made entirely by imperative logic written by programmers.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/control-flow-evolution--shift--tts--a2bfd1f60e95--1.wav",
+          "durationSec": 5.65,
+          "rawDurationSec": 5.65,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 236.10000000000005,
+          "endSec": 236.45000000000005,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 236.45000000000005,
+          "endSec": 246.20000000000005,
+          "text": "In agentic patterns like the ReAct loop, you explicitly hand control flow to the model: it decides what tool to call next, and when it's done.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/control-flow-evolution--shift--tts--5e58e26bf3a2--1.wav",
+          "durationSec": 9.75,
+          "rawDurationSec": 9.75,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 246.20000000000005,
+          "endSec": 246.60000000000005,
+          "seconds": 0.4
+        },
+        {
+          "type": "tts",
+          "startSec": 246.60000000000005,
+          "endSec": 254.45000000000005,
+          "text": "That's one of the clearest definitions of \"agentic programming\": the agent is making the control-flow decisions.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/control-flow-evolution--shift--tts--41552cb61152--1.wav",
+          "durationSec": 7.85,
+          "rawDurationSec": 7.85,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 254.45000000000005,
+          "endSec": 254.80000000000004,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 254.80000000000004,
+          "endSec": 266.00000000000006,
+          "text": "And that's what we mean by a new kind of computer program. Instead of specifying every branch, you yield control to the AI model — and you surround that loop with guardrails.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/control-flow-evolution--shift--tts--c73899462095--1.wav",
+          "durationSec": 11.2,
+          "rawDurationSec": 11.2,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 266.00000000000006,
+          "endSec": 266.3500000000001,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 266.3500000000001,
+          "endSec": 279.00000000000006,
+          "text": "Even a basic guardrail matters immediately: you can't let the loop run forever. So you might cap it at, say, twelve tool calls — and require the agent to stop or ask for help after that.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/control-flow-evolution--shift--tts--1af44a41090a--1.wav",
+          "durationSec": 12.65,
+          "rawDurationSec": 12.65,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 279.00000000000006,
+          "endSec": 279.3500000000001,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 279.3500000000001,
+          "endSec": 286.75000000000006,
+          "text": "Tactus is designed to make that style of program—and those guardrails—explicit and easy to reason about.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/control-flow-evolution--shift--tts--d2fd10df3c82--1.wav",
+          "durationSec": 7.4,
+          "rawDurationSec": 7.4,
+          "trimEndSec": 0
+        }
+      ]
+    },
+    {
+      "type": "tts",
+      "sceneId": "existing-tools-strain",
+      "cueId": "python_problem",
+      "startSec": 287.25000000000006,
+      "endSec": 320.75000000000006,
+      "segments": [
+        {
+          "type": "tts",
+          "startSec": 287.25000000000006,
+          "endSec": 293.50000000000006,
+          "text": "So why not just use Python? Or TypeScript? They're powerful, flexible languages.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/existing-tools-strain--python_problem--tts--80cb662b5534--1.wav",
+          "durationSec": 6.25,
+          "rawDurationSec": 6.25,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 293.50000000000006,
+          "endSec": 293.8500000000001,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 293.8500000000001,
+          "endSec": 298.3500000000001,
+          "text": "The problem isn't capability. It's fit.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/existing-tools-strain--python_problem--tts--fea613df5e10--1.wav",
+          "durationSec": 4.5,
+          "rawDurationSec": 4.5,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 298.3500000000001,
+          "endSec": 298.75000000000006,
+          "seconds": 0.4
+        },
+        {
+          "type": "tts",
+          "startSec": 298.75000000000006,
+          "endSec": 307.95000000000005,
+          "text": "Look at this code. How do you checkpoint an agent call? How do you test it? How do you prevent it from reading slash-etsy-slash-password?",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/existing-tools-strain--python_problem--tts--8babd988f40c--1.wav",
+          "durationSec": 9.2,
+          "rawDurationSec": 9.2,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 307.95000000000005,
+          "endSec": 308.45000000000005,
+          "seconds": 0.5
+        },
+        {
+          "type": "tts",
+          "startSec": 308.45000000000005,
+          "endSec": 317.6,
+          "text": "These concerns exist, but they're bolted on. Fragmented across code, prompts, configuration, and external frameworks.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/existing-tools-strain--python_problem--tts--3fed256e9290--1.wav",
+          "durationSec": 9.15,
+          "rawDurationSec": 9.15,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 317.6,
+          "endSec": 317.95000000000005,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 317.95000000000005,
+          "endSec": 320.75000000000006,
+          "text": "The language wasn't designed for this.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/existing-tools-strain--python_problem--tts--5f5230cedc04--1.wav",
+          "durationSec": 2.8,
+          "rawDurationSec": 2.8,
+          "trimEndSec": 0
+        }
+      ]
+    },
+    {
+      "type": "tts",
+      "sceneId": "deterministic-practices-collapse",
+      "cueId": "testing_breaks",
+      "startSec": 321.25000000000006,
+      "endSec": 354.8,
+      "segments": [
+        {
+          "type": "tts",
+          "startSec": 321.25000000000006,
+          "endSec": 327.8500000000001,
+          "text": "For decades, software engineering best practices have been built around one assumption: determinism.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/deterministic-practices-collapse--testing_breaks--tts--f8b038dc80dd--1.wav",
+          "durationSec": 6.6,
+          "rawDurationSec": 6.6,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 327.8500000000001,
+          "endSec": 328.2000000000001,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 328.2000000000001,
+          "endSec": 336.6500000000001,
+          "text": "Unit tests assert exact values. Code coverage measures every line. Regression tests catch unexpected changes.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/deterministic-practices-collapse--testing_breaks--tts--ab81e830b9a1--1.wav",
+          "durationSec": 8.45,
+          "rawDurationSec": 8.45,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 336.6500000000001,
+          "endSec": 337.05000000000007,
+          "seconds": 0.4
+        },
+        {
+          "type": "tts",
+          "startSec": 337.05000000000007,
+          "endSec": 342.70000000000005,
+          "text": "But when your system makes decisions probabilistically, all of these practices break.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/deterministic-practices-collapse--testing_breaks--tts--d4f551b48c4a--1.wav",
+          "durationSec": 5.65,
+          "rawDurationSec": 5.65,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 342.70000000000005,
+          "endSec": 343.05000000000007,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 343.05000000000007,
+          "endSec": 351.00000000000006,
+          "text": "Output varies between runs. Behavior comes from models, not code. Natural variation looks like regression.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/deterministic-practices-collapse--testing_breaks--tts--ffbd3b362051--1.wav",
+          "durationSec": 7.95,
+          "rawDurationSec": 7.95,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 351.00000000000006,
+          "endSec": 351.40000000000003,
+          "seconds": 0.4
+        },
+        {
+          "type": "tts",
+          "startSec": 351.40000000000003,
+          "endSec": 354.8,
+          "text": "Instead of proving correctness, you measure alignment.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/deterministic-practices-collapse--testing_breaks--tts--05689e5b4829--1.wav",
+          "durationSec": 3.4,
+          "rawDurationSec": 3.4,
+          "trimEndSec": 0
+        }
+      ]
+    },
+    {
+      "type": "tts",
+      "sceneId": "beyond-mlops",
+      "cueId": "mlops_comparison",
+      "startSec": 355.3,
+      "endSec": 384.50000000000006,
+      "segments": [
+        {
+          "type": "tts",
+          "startSec": 355.3,
+          "endSec": 363.90000000000003,
+          "text": "Machine learning practitioners have dealt with stochastic systems for years. They track experiments. Compare models. Optimize metrics.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/beyond-mlops--mlops_comparison--tts--5633351a0933--1.wav",
+          "durationSec": 8.6,
+          "rawDurationSec": 8.6,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 363.90000000000003,
+          "endSec": 364.25000000000006,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 364.25000000000006,
+          "endSec": 368.70000000000005,
+          "text": "But MLOps is optimized for models, not behavior.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/beyond-mlops--mlops_comparison--tts--d4d3f0f2d84e--1.wav",
+          "durationSec": 4.45,
+          "rawDurationSec": 4.45,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 368.70000000000005,
+          "endSec": 369.1,
+          "seconds": 0.4
+        },
+        {
+          "type": "tts",
+          "startSec": 369.1,
+          "endSec": 376.85,
+          "text": "Agentic systems don't just produce predictions. They take actions. Use tools. Generate multi-step behaviors.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/beyond-mlops--mlops_comparison--tts--29c11f8bf733--1.wav",
+          "durationSec": 7.75,
+          "rawDurationSec": 7.75,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 376.85,
+          "endSec": 377.20000000000005,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 377.20000000000005,
+          "endSec": 384.50000000000006,
+          "text": "Success isn't a single number. It's whether the system behaves acceptably given the situation.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/beyond-mlops--mlops_comparison--tts--d35b5fdbed6e--1.wav",
+          "durationSec": 7.3,
+          "rawDurationSec": 7.3,
+          "trimEndSec": 0
+        }
+      ]
+    },
+    {
+      "type": "tts",
+      "sceneId": "behavioral-specifications",
+      "cueId": "specs_and_evals",
+      "startSec": 385.00000000000006,
+      "endSec": 416.8000000000001,
+      "segments": [
+        {
+          "type": "tts",
+          "startSec": 385.00000000000006,
+          "endSec": 390.05000000000007,
+          "text": "When correctness becomes alignment, you need new ways to say what \"good\" looks like.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/behavioral-specifications--specs_and_evals--tts--8d590cfa8d11--1.wav",
+          "durationSec": 5.05,
+          "rawDurationSec": 5.05,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 390.05000000000007,
+          "endSec": 390.4000000000001,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 390.4000000000001,
+          "endSec": 396.9500000000001,
+          "text": "Behavioral specifications express what a system should do without prescribing exactly how.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/behavioral-specifications--specs_and_evals--tts--935f3cbc68b1--1.wav",
+          "durationSec": 6.55,
+          "rawDurationSec": 6.55,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 396.9500000000001,
+          "endSec": 397.3500000000001,
+          "seconds": 0.4
+        },
+        {
+          "type": "tts",
+          "startSec": 397.3500000000001,
+          "endSec": 403.9500000000001,
+          "text": "A specification might say: the agent should call the search tool before answering a factual question.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/behavioral-specifications--specs_and_evals--tts--22c0eb95f56c--1.wav",
+          "durationSec": 6.6,
+          "rawDurationSec": 6.6,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 403.9500000000001,
+          "endSec": 404.3000000000001,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 404.3000000000001,
+          "endSec": 411.40000000000015,
+          "text": "Then evaluation measures reliability. Does it do that ninety-five percent of the time? Eighty percent? Sixty?",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/behavioral-specifications--specs_and_evals--tts--74f2be170230--1.wav",
+          "durationSec": 7.1,
+          "rawDurationSec": 7.1,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 411.40000000000015,
+          "endSec": 411.8000000000001,
+          "seconds": 0.4
+        },
+        {
+          "type": "tts",
+          "startSec": 411.8000000000001,
+          "endSec": 416.8000000000001,
+          "text": "Specifications plus evaluations give you a foundation for alignment.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/behavioral-specifications--specs_and_evals--tts--b05eb9639893--1.wav",
+          "durationSec": 5,
+          "rawDurationSec": 5,
+          "trimEndSec": 0
+        }
+      ]
+    },
+    {
+      "type": "tts",
+      "sceneId": "props",
+      "cueId": "procedures",
+      "startSec": 417.3000000000001,
+      "endSec": 456.5000000000001,
+      "segments": [
+        {
+          "type": "tts",
+          "startSec": 417.3000000000001,
+          "endSec": 424.5500000000001,
+          "text": "This brings us to a new operational discipline: PrOps. Procedure Operations.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/props--procedures--tts--c3c521ffeade--1.wav",
+          "durationSec": 7.25,
+          "rawDurationSec": 7.25,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 424.5500000000001,
+          "endSec": 424.9500000000001,
+          "seconds": 0.4
+        },
+        {
+          "type": "tts",
+          "startSec": 424.9500000000001,
+          "endSec": 431.1000000000001,
+          "text": "DevOps operates deterministic programs. MLOps trains and serves models.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/props--procedures--tts--ae671003a2b3--1.wav",
+          "durationSec": 6.15,
+          "rawDurationSec": 6.15,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 431.1000000000001,
+          "endSec": 431.4500000000001,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 431.4500000000001,
+          "endSec": 436.0000000000001,
+          "text": "But agentic systems are neither. They're procedures.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/props--procedures--tts--bbbf9194273f--1.wav",
+          "durationSec": 4.55,
+          "rawDurationSec": 4.55,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 436.0000000000001,
+          "endSec": 436.4000000000001,
+          "seconds": 0.4
+        },
+        {
+          "type": "tts",
+          "startSec": 436.4000000000001,
+          "endSec": 445.8500000000001,
+          "text": "Systems that combine imperative logic, learned components, tools, constraints, and evaluation into a single decision-making process.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/props--procedures--tts--815dcf3bd112--1.wav",
+          "durationSec": 9.45,
+          "rawDurationSec": 9.45,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 445.8500000000001,
+          "endSec": 446.2000000000001,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 446.2000000000001,
+          "endSec": 452.0000000000001,
+          "text": "A procedure's quality can't be proven in advance or reduced to a single metric.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/props--procedures--tts--953dd7c7fd4a--1.wav",
+          "durationSec": 5.8,
+          "rawDurationSec": 5.8,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 452.0000000000001,
+          "endSec": 452.35000000000014,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 452.35000000000014,
+          "endSec": 456.5000000000001,
+          "text": "It must be observed, measured, and aligned over time.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/props--procedures--tts--b1b07c7ce575--1.wav",
+          "durationSec": 4.15,
+          "rawDurationSec": 4.15,
+          "trimEndSec": 0
+        }
+      ]
+    },
+    {
+      "type": "tts",
+      "sceneId": "why-a-new-language",
+      "cueId": "first_class_primitives",
+      "startSec": 457.0000000000001,
+      "endSec": 512.1500000000001,
+      "segments": [
+        {
+          "type": "tts",
+          "startSec": 457.0000000000001,
+          "endSec": 464.60000000000014,
+          "text": "Once procedures become the primary unit of computation, the limitations of existing languages become impossible to ignore.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/why-a-new-language--first_class_primitives--tts--841b794ffdc3--1.wav",
+          "durationSec": 7.6,
+          "rawDurationSec": 7.6,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 464.60000000000014,
+          "endSec": 465.0000000000001,
+          "seconds": 0.4
+        },
+        {
+          "type": "tts",
+          "startSec": 465.0000000000001,
+          "endSec": 473.4500000000001,
+          "text": "Programming languages shape how humans think about problems. They determine what's easy to express and what's invisible.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/why-a-new-language--first_class_primitives--tts--c15fbbe8ddc0--1.wav",
+          "durationSec": 8.45,
+          "rawDurationSec": 8.45,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 473.4500000000001,
+          "endSec": 473.8000000000001,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 473.8000000000001,
+          "endSec": 478.0000000000001,
+          "text": "Procedural, behavior-driven systems need different primitives.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/why-a-new-language--first_class_primitives--tts--4e463b9808eb--1.wav",
+          "durationSec": 4.2,
+          "rawDurationSec": 4.2,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 478.0000000000001,
+          "endSec": 478.5000000000001,
+          "seconds": 0.5
+        },
+        {
+          "type": "tts",
+          "startSec": 478.5000000000001,
+          "endSec": 483.4500000000001,
+          "text": "Durability by default. Automatic checkpointing and resumption.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/why-a-new-language--first_class_primitives--tts--b96d3065c216--1.wav",
+          "durationSec": 4.95,
+          "rawDurationSec": 4.95,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 483.4500000000001,
+          "endSec": 483.7000000000001,
+          "seconds": 0.25
+        },
+        {
+          "type": "tts",
+          "startSec": 483.7000000000001,
+          "endSec": 489.2500000000001,
+          "text": "Sandboxing by default. Isolated execution with controlled access.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/why-a-new-language--first_class_primitives--tts--0c09df38180a--1.wav",
+          "durationSec": 5.55,
+          "rawDurationSec": 5.55,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 489.2500000000001,
+          "endSec": 489.5000000000001,
+          "seconds": 0.25
+        },
+        {
+          "type": "tts",
+          "startSec": 489.5000000000001,
+          "endSec": 491.6500000000001,
+          "text": "Tool capability control.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/why-a-new-language--first_class_primitives--tts--b1e9019525a0--1.wav",
+          "durationSec": 2.15,
+          "rawDurationSec": 2.15,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 491.6500000000001,
+          "endSec": 491.9000000000001,
+          "seconds": 0.25
+        },
+        {
+          "type": "tts",
+          "startSec": 491.9000000000001,
+          "endSec": 499.4000000000001,
+          "text": "Durable human‑in‑the‑loop: approvals and review loops that can pause and resume without keeping a process alive.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/why-a-new-language--first_class_primitives--tts--d298f4822696--1.wav",
+          "durationSec": 7.5,
+          "rawDurationSec": 7.5,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 499.4000000000001,
+          "endSec": 499.6500000000001,
+          "seconds": 0.25
+        },
+        {
+          "type": "tts",
+          "startSec": 499.6500000000001,
+          "endSec": 503.6500000000001,
+          "text": "Behavioral testing. Observable execution.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/why-a-new-language--first_class_primitives--tts--1b6af65bc7d2--1.wav",
+          "durationSec": 4,
+          "rawDurationSec": 4,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 503.6500000000001,
+          "endSec": 504.05000000000007,
+          "seconds": 0.4
+        },
+        {
+          "type": "tts",
+          "startSec": 504.05000000000007,
+          "endSec": 509.20000000000005,
+          "text": "These concerns can't be bolted onto languages that weren't designed for them.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/why-a-new-language--first_class_primitives--tts--70cbdc41eb34--1.wav",
+          "durationSec": 5.15,
+          "rawDurationSec": 5.15,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 509.20000000000005,
+          "endSec": 509.55000000000007,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 509.55000000000007,
+          "endSec": 512.1500000000001,
+          "text": "They need to be first-class.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/why-a-new-language--first_class_primitives--tts--93133782e4ea--1.wav",
+          "durationSec": 2.6,
+          "rawDurationSec": 2.6,
+          "trimEndSec": 0
+        }
+      ]
+    },
+    {
+      "type": "tts",
+      "sceneId": "evolution-not-alien-dna",
+      "cueId": "conclusion",
+      "startSec": 512.6500000000001,
+      "endSec": 561.8500000000001,
+      "segments": [
+        {
+          "type": "tts",
+          "startSec": 512.6500000000001,
+          "endSec": 516.9000000000001,
+          "text": "From a theoretical standpoint, nothing fundamental has broken.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/evolution-not-alien-dna--conclusion--tts--72cec916cbc8--1.wav",
+          "durationSec": 4.25,
+          "rawDurationSec": 4.25,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 516.9000000000001,
+          "endSec": 517.2500000000001,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 517.2500000000001,
+          "endSec": 525.3500000000001,
+          "text": "These systems still run on conventional hardware. They're still Turing-complete. There's no alien machinery hiding beneath the surface.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/evolution-not-alien-dna--conclusion--tts--a4d06b32ec46--1.wav",
+          "durationSec": 8.1,
+          "rawDurationSec": 8.1,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 525.3500000000001,
+          "endSec": 525.7500000000001,
+          "seconds": 0.4
+        },
+        {
+          "type": "tts",
+          "startSec": 525.7500000000001,
+          "endSec": 532.7500000000001,
+          "text": "What has changed is how decisions are made and how humans must reason about those decisions.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/evolution-not-alien-dna--conclusion--tts--7754ad295eb0--1.wav",
+          "durationSec": 7,
+          "rawDurationSec": 7,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 532.7500000000001,
+          "endSec": 533.1500000000001,
+          "seconds": 0.4
+        },
+        {
+          "type": "tts",
+          "startSec": 533.1500000000001,
+          "endSec": 538.7500000000001,
+          "text": "For most of computing history, programming meant specifying control flow in advance.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/evolution-not-alien-dna--conclusion--tts--027401dd8acb--1.wav",
+          "durationSec": 5.6,
+          "rawDurationSec": 5.6,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 538.7500000000001,
+          "endSec": 539.1000000000001,
+          "seconds": 0.35
+        },
+        {
+          "type": "tts",
+          "startSec": 539.1000000000001,
+          "endSec": 545.2000000000002,
+          "text": "Today, many of the most important systems we build no longer operate that way.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/evolution-not-alien-dna--conclusion--tts--e5dfd7146170--1.wav",
+          "durationSec": 6.1,
+          "rawDurationSec": 6.1,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 545.2000000000002,
+          "endSec": 545.6000000000001,
+          "seconds": 0.4
+        },
+        {
+          "type": "tts",
+          "startSec": 545.6000000000001,
+          "endSec": 557.1500000000001,
+          "text": "Languages follow mental models. When the mental model changes, new languages emerge—not to replace what came before, but to make the new reality tractable for humans.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/evolution-not-alien-dna--conclusion--tts--2d5e8ac3f697--1.wav",
+          "durationSec": 11.55,
+          "rawDurationSec": 11.55,
+          "trimEndSec": 0
+        },
+        {
+          "type": "pause",
+          "startSec": 557.1500000000001,
+          "endSec": 557.6500000000001,
+          "seconds": 0.5
+        },
+        {
+          "type": "tts",
+          "startSec": 557.6500000000001,
+          "endSec": 561.8500000000001,
+          "text": "This isn't a revolution in computation. It's evolution.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/evolution-not-alien-dna--conclusion--tts--23b28692a45d--1.wav",
+          "durationSec": 4.2,
+          "rawDurationSec": 4.2,
+          "trimEndSec": 0
+        }
+      ]
+    },
+    {
+      "type": "tts",
+      "sceneId": "call-to-action",
+      "cueId": "cta",
+      "startSec": 562.3500000000001,
+      "endSec": 566.9500000000002,
+      "segments": [
+        {
+          "type": "tts",
+          "startSec": 562.3500000000001,
+          "endSec": 566.9500000000002,
+          "text": "Learn more at tactus dot anth dot u s.",
+          "segmentPath": "/Users/ryan.porter/Projects/Tactus-web/videos/.videoml/out/why-a-new-language/env/development/segments/call-to-action--cta--tts--3494ac4ae12d--1.wav",
+          "durationSec": 4.6,
+          "rawDurationSec": 4.6,
+          "trimEndSec": 0
+        }
+      ]
+    }
+  ],
+  "audio": {
+    "tracks": [
+      {
+        "id": "narration",
+        "kind": "narration",
+        "clips": [
+          {
+            "id": "title-card--title--tts--e1960f5e9585--1",
+            "kind": "file",
+            "startSec": 1.05,
+            "durationSec": 3.85,
+            "src": "/videoml/why-a-new-language/env/development/segments/title-card--title--tts--e1960f5e9585--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "title-card--title--tts--576f52bf3be5--1",
+            "kind": "file",
+            "startSec": 5.4,
+            "durationSec": 6.1,
+            "src": "/videoml/why-a-new-language/env/development/segments/title-card--title--tts--576f52bf3be5--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "title-card--title--tts--47f9d9419c70--1",
+            "kind": "file",
+            "startSec": 11.9,
+            "durationSec": 6.15,
+            "src": "/videoml/why-a-new-language/env/development/segments/title-card--title--tts--47f9d9419c70--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "title-card--title--tts--b2b907ff49a5--1",
+            "kind": "file",
+            "startSec": 18.55,
+            "durationSec": 5.6,
+            "src": "/videoml/why-a-new-language/env/development/segments/title-card--title--tts--b2b907ff49a5--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "in-the-beginning--history--tts--8a7f47f24ba5--1",
+            "kind": "file",
+            "startSec": 25.049999999999997,
+            "durationSec": 30.65,
+            "src": "/videoml/why-a-new-language/env/development/segments/in-the-beginning--history--tts--8a7f47f24ba5--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "in-the-beginning--history--tts--283eff0d7c29--1",
+            "kind": "file",
+            "startSec": 56.05,
+            "durationSec": 25.8,
+            "src": "/videoml/why-a-new-language/env/development/segments/in-the-beginning--history--tts--283eff0d7c29--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "in-the-beginning--history--tts--8090c9ea2c84--1",
+            "kind": "file",
+            "startSec": 82.25,
+            "durationSec": 9.35,
+            "src": "/videoml/why-a-new-language/env/development/segments/in-the-beginning--history--tts--8090c9ea2c84--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "in-the-beginning--history--tts--1a25de38b90a--1",
+            "kind": "file",
+            "startSec": 91.94999999999999,
+            "durationSec": 11.9,
+            "src": "/videoml/why-a-new-language/env/development/segments/in-the-beginning--history--tts--1a25de38b90a--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "in-the-beginning--history--tts--7c59bf58eedb--1",
+            "kind": "file",
+            "startSec": 104.19999999999999,
+            "durationSec": 15.25,
+            "src": "/videoml/why-a-new-language/env/development/segments/in-the-beginning--history--tts--7c59bf58eedb--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "in-the-beginning--history--tts--55c0d46ffbca--1",
+            "kind": "file",
+            "startSec": 119.74999999999999,
+            "durationSec": 27.8,
+            "src": "/videoml/why-a-new-language/env/development/segments/in-the-beginning--history--tts--55c0d46ffbca--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "in-the-beginning--history--tts--64bb447de4a3--1",
+            "kind": "file",
+            "startSec": 147.85,
+            "durationSec": 13.85,
+            "src": "/videoml/why-a-new-language/env/development/segments/in-the-beginning--history--tts--64bb447de4a3--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "in-the-beginning--history--tts--3736329c750e--1",
+            "kind": "file",
+            "startSec": 162,
+            "durationSec": 11.15,
+            "src": "/videoml/why-a-new-language/env/development/segments/in-the-beginning--history--tts--3736329c750e--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "in-the-beginning--history--tts--4dd68b7c3a2f--1",
+            "kind": "file",
+            "startSec": 173.45000000000002,
+            "durationSec": 10,
+            "src": "/videoml/why-a-new-language/env/development/segments/in-the-beginning--history--tts--4dd68b7c3a2f--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "in-the-beginning--history--tts--39d923e57e24--1",
+            "kind": "file",
+            "startSec": 183.85000000000002,
+            "durationSec": 8.05,
+            "src": "/videoml/why-a-new-language/env/development/segments/in-the-beginning--history--tts--39d923e57e24--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "in-the-beginning--history--tts--9942d8c169d3--1",
+            "kind": "file",
+            "startSec": 192.30000000000004,
+            "durationSec": 13.05,
+            "src": "/videoml/why-a-new-language/env/development/segments/in-the-beginning--history--tts--9942d8c169d3--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "in-the-beginning--history--tts--31778e64106c--1",
+            "kind": "file",
+            "startSec": 205.70000000000005,
+            "durationSec": 15.45,
+            "src": "/videoml/why-a-new-language/env/development/segments/in-the-beginning--history--tts--31778e64106c--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "in-the-beginning--history--tts--4e65e30e78f9--1",
+            "kind": "file",
+            "startSec": 221.45000000000005,
+            "durationSec": 8.5,
+            "src": "/videoml/why-a-new-language/env/development/segments/in-the-beginning--history--tts--4e65e30e78f9--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "control-flow-evolution--shift--tts--a2bfd1f60e95--1",
+            "kind": "file",
+            "startSec": 230.45000000000005,
+            "durationSec": 5.65,
+            "src": "/videoml/why-a-new-language/env/development/segments/control-flow-evolution--shift--tts--a2bfd1f60e95--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "control-flow-evolution--shift--tts--5e58e26bf3a2--1",
+            "kind": "file",
+            "startSec": 236.45000000000005,
+            "durationSec": 9.75,
+            "src": "/videoml/why-a-new-language/env/development/segments/control-flow-evolution--shift--tts--5e58e26bf3a2--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "control-flow-evolution--shift--tts--41552cb61152--1",
+            "kind": "file",
+            "startSec": 246.60000000000005,
+            "durationSec": 7.85,
+            "src": "/videoml/why-a-new-language/env/development/segments/control-flow-evolution--shift--tts--41552cb61152--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "control-flow-evolution--shift--tts--c73899462095--1",
+            "kind": "file",
+            "startSec": 254.80000000000004,
+            "durationSec": 11.2,
+            "src": "/videoml/why-a-new-language/env/development/segments/control-flow-evolution--shift--tts--c73899462095--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "control-flow-evolution--shift--tts--1af44a41090a--1",
+            "kind": "file",
+            "startSec": 266.3500000000001,
+            "durationSec": 12.65,
+            "src": "/videoml/why-a-new-language/env/development/segments/control-flow-evolution--shift--tts--1af44a41090a--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "control-flow-evolution--shift--tts--d2fd10df3c82--1",
+            "kind": "file",
+            "startSec": 279.3500000000001,
+            "durationSec": 7.4,
+            "src": "/videoml/why-a-new-language/env/development/segments/control-flow-evolution--shift--tts--d2fd10df3c82--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "existing-tools-strain--python_problem--tts--80cb662b5534--1",
+            "kind": "file",
+            "startSec": 287.25000000000006,
+            "durationSec": 6.25,
+            "src": "/videoml/why-a-new-language/env/development/segments/existing-tools-strain--python_problem--tts--80cb662b5534--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "existing-tools-strain--python_problem--tts--fea613df5e10--1",
+            "kind": "file",
+            "startSec": 293.8500000000001,
+            "durationSec": 4.5,
+            "src": "/videoml/why-a-new-language/env/development/segments/existing-tools-strain--python_problem--tts--fea613df5e10--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "existing-tools-strain--python_problem--tts--8babd988f40c--1",
+            "kind": "file",
+            "startSec": 298.75000000000006,
+            "durationSec": 9.2,
+            "src": "/videoml/why-a-new-language/env/development/segments/existing-tools-strain--python_problem--tts--8babd988f40c--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "existing-tools-strain--python_problem--tts--3fed256e9290--1",
+            "kind": "file",
+            "startSec": 308.45000000000005,
+            "durationSec": 9.15,
+            "src": "/videoml/why-a-new-language/env/development/segments/existing-tools-strain--python_problem--tts--3fed256e9290--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "existing-tools-strain--python_problem--tts--5f5230cedc04--1",
+            "kind": "file",
+            "startSec": 317.95000000000005,
+            "durationSec": 2.8,
+            "src": "/videoml/why-a-new-language/env/development/segments/existing-tools-strain--python_problem--tts--5f5230cedc04--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "deterministic-practices-collapse--testing_breaks--tts--f8b038dc80dd--1",
+            "kind": "file",
+            "startSec": 321.25000000000006,
+            "durationSec": 6.6,
+            "src": "/videoml/why-a-new-language/env/development/segments/deterministic-practices-collapse--testing_breaks--tts--f8b038dc80dd--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "deterministic-practices-collapse--testing_breaks--tts--ab81e830b9a1--1",
+            "kind": "file",
+            "startSec": 328.2000000000001,
+            "durationSec": 8.45,
+            "src": "/videoml/why-a-new-language/env/development/segments/deterministic-practices-collapse--testing_breaks--tts--ab81e830b9a1--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "deterministic-practices-collapse--testing_breaks--tts--d4f551b48c4a--1",
+            "kind": "file",
+            "startSec": 337.05000000000007,
+            "durationSec": 5.65,
+            "src": "/videoml/why-a-new-language/env/development/segments/deterministic-practices-collapse--testing_breaks--tts--d4f551b48c4a--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "deterministic-practices-collapse--testing_breaks--tts--ffbd3b362051--1",
+            "kind": "file",
+            "startSec": 343.05000000000007,
+            "durationSec": 7.95,
+            "src": "/videoml/why-a-new-language/env/development/segments/deterministic-practices-collapse--testing_breaks--tts--ffbd3b362051--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "deterministic-practices-collapse--testing_breaks--tts--05689e5b4829--1",
+            "kind": "file",
+            "startSec": 351.40000000000003,
+            "durationSec": 3.4,
+            "src": "/videoml/why-a-new-language/env/development/segments/deterministic-practices-collapse--testing_breaks--tts--05689e5b4829--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "beyond-mlops--mlops_comparison--tts--5633351a0933--1",
+            "kind": "file",
+            "startSec": 355.3,
+            "durationSec": 8.6,
+            "src": "/videoml/why-a-new-language/env/development/segments/beyond-mlops--mlops_comparison--tts--5633351a0933--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "beyond-mlops--mlops_comparison--tts--d4d3f0f2d84e--1",
+            "kind": "file",
+            "startSec": 364.25000000000006,
+            "durationSec": 4.45,
+            "src": "/videoml/why-a-new-language/env/development/segments/beyond-mlops--mlops_comparison--tts--d4d3f0f2d84e--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "beyond-mlops--mlops_comparison--tts--29c11f8bf733--1",
+            "kind": "file",
+            "startSec": 369.1,
+            "durationSec": 7.75,
+            "src": "/videoml/why-a-new-language/env/development/segments/beyond-mlops--mlops_comparison--tts--29c11f8bf733--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "beyond-mlops--mlops_comparison--tts--d35b5fdbed6e--1",
+            "kind": "file",
+            "startSec": 377.20000000000005,
+            "durationSec": 7.3,
+            "src": "/videoml/why-a-new-language/env/development/segments/beyond-mlops--mlops_comparison--tts--d35b5fdbed6e--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "behavioral-specifications--specs_and_evals--tts--8d590cfa8d11--1",
+            "kind": "file",
+            "startSec": 385.00000000000006,
+            "durationSec": 5.05,
+            "src": "/videoml/why-a-new-language/env/development/segments/behavioral-specifications--specs_and_evals--tts--8d590cfa8d11--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "behavioral-specifications--specs_and_evals--tts--935f3cbc68b1--1",
+            "kind": "file",
+            "startSec": 390.4000000000001,
+            "durationSec": 6.55,
+            "src": "/videoml/why-a-new-language/env/development/segments/behavioral-specifications--specs_and_evals--tts--935f3cbc68b1--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "behavioral-specifications--specs_and_evals--tts--22c0eb95f56c--1",
+            "kind": "file",
+            "startSec": 397.3500000000001,
+            "durationSec": 6.6,
+            "src": "/videoml/why-a-new-language/env/development/segments/behavioral-specifications--specs_and_evals--tts--22c0eb95f56c--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "behavioral-specifications--specs_and_evals--tts--74f2be170230--1",
+            "kind": "file",
+            "startSec": 404.3000000000001,
+            "durationSec": 7.1,
+            "src": "/videoml/why-a-new-language/env/development/segments/behavioral-specifications--specs_and_evals--tts--74f2be170230--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "behavioral-specifications--specs_and_evals--tts--b05eb9639893--1",
+            "kind": "file",
+            "startSec": 411.8000000000001,
+            "durationSec": 5,
+            "src": "/videoml/why-a-new-language/env/development/segments/behavioral-specifications--specs_and_evals--tts--b05eb9639893--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "props--procedures--tts--c3c521ffeade--1",
+            "kind": "file",
+            "startSec": 417.3000000000001,
+            "durationSec": 7.25,
+            "src": "/videoml/why-a-new-language/env/development/segments/props--procedures--tts--c3c521ffeade--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "props--procedures--tts--ae671003a2b3--1",
+            "kind": "file",
+            "startSec": 424.9500000000001,
+            "durationSec": 6.15,
+            "src": "/videoml/why-a-new-language/env/development/segments/props--procedures--tts--ae671003a2b3--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "props--procedures--tts--bbbf9194273f--1",
+            "kind": "file",
+            "startSec": 431.4500000000001,
+            "durationSec": 4.55,
+            "src": "/videoml/why-a-new-language/env/development/segments/props--procedures--tts--bbbf9194273f--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "props--procedures--tts--815dcf3bd112--1",
+            "kind": "file",
+            "startSec": 436.4000000000001,
+            "durationSec": 9.45,
+            "src": "/videoml/why-a-new-language/env/development/segments/props--procedures--tts--815dcf3bd112--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "props--procedures--tts--953dd7c7fd4a--1",
+            "kind": "file",
+            "startSec": 446.2000000000001,
+            "durationSec": 5.8,
+            "src": "/videoml/why-a-new-language/env/development/segments/props--procedures--tts--953dd7c7fd4a--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "props--procedures--tts--b1b07c7ce575--1",
+            "kind": "file",
+            "startSec": 452.35000000000014,
+            "durationSec": 4.15,
+            "src": "/videoml/why-a-new-language/env/development/segments/props--procedures--tts--b1b07c7ce575--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "why-a-new-language--first_class_primitives--tts--841b794ffdc3--1",
+            "kind": "file",
+            "startSec": 457.0000000000001,
+            "durationSec": 7.6,
+            "src": "/videoml/why-a-new-language/env/development/segments/why-a-new-language--first_class_primitives--tts--841b794ffdc3--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "why-a-new-language--first_class_primitives--tts--c15fbbe8ddc0--1",
+            "kind": "file",
+            "startSec": 465.0000000000001,
+            "durationSec": 8.45,
+            "src": "/videoml/why-a-new-language/env/development/segments/why-a-new-language--first_class_primitives--tts--c15fbbe8ddc0--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "why-a-new-language--first_class_primitives--tts--4e463b9808eb--1",
+            "kind": "file",
+            "startSec": 473.8000000000001,
+            "durationSec": 4.2,
+            "src": "/videoml/why-a-new-language/env/development/segments/why-a-new-language--first_class_primitives--tts--4e463b9808eb--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "why-a-new-language--first_class_primitives--tts--b96d3065c216--1",
+            "kind": "file",
+            "startSec": 478.5000000000001,
+            "durationSec": 4.95,
+            "src": "/videoml/why-a-new-language/env/development/segments/why-a-new-language--first_class_primitives--tts--b96d3065c216--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "why-a-new-language--first_class_primitives--tts--0c09df38180a--1",
+            "kind": "file",
+            "startSec": 483.7000000000001,
+            "durationSec": 5.55,
+            "src": "/videoml/why-a-new-language/env/development/segments/why-a-new-language--first_class_primitives--tts--0c09df38180a--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "why-a-new-language--first_class_primitives--tts--b1e9019525a0--1",
+            "kind": "file",
+            "startSec": 489.5000000000001,
+            "durationSec": 2.15,
+            "src": "/videoml/why-a-new-language/env/development/segments/why-a-new-language--first_class_primitives--tts--b1e9019525a0--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "why-a-new-language--first_class_primitives--tts--d298f4822696--1",
+            "kind": "file",
+            "startSec": 491.9000000000001,
+            "durationSec": 7.5,
+            "src": "/videoml/why-a-new-language/env/development/segments/why-a-new-language--first_class_primitives--tts--d298f4822696--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "why-a-new-language--first_class_primitives--tts--1b6af65bc7d2--1",
+            "kind": "file",
+            "startSec": 499.6500000000001,
+            "durationSec": 4,
+            "src": "/videoml/why-a-new-language/env/development/segments/why-a-new-language--first_class_primitives--tts--1b6af65bc7d2--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "why-a-new-language--first_class_primitives--tts--70cbdc41eb34--1",
+            "kind": "file",
+            "startSec": 504.05000000000007,
+            "durationSec": 5.15,
+            "src": "/videoml/why-a-new-language/env/development/segments/why-a-new-language--first_class_primitives--tts--70cbdc41eb34--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "why-a-new-language--first_class_primitives--tts--93133782e4ea--1",
+            "kind": "file",
+            "startSec": 509.55000000000007,
+            "durationSec": 2.6,
+            "src": "/videoml/why-a-new-language/env/development/segments/why-a-new-language--first_class_primitives--tts--93133782e4ea--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "evolution-not-alien-dna--conclusion--tts--72cec916cbc8--1",
+            "kind": "file",
+            "startSec": 512.6500000000001,
+            "durationSec": 4.25,
+            "src": "/videoml/why-a-new-language/env/development/segments/evolution-not-alien-dna--conclusion--tts--72cec916cbc8--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "evolution-not-alien-dna--conclusion--tts--a4d06b32ec46--1",
+            "kind": "file",
+            "startSec": 517.2500000000001,
+            "durationSec": 8.1,
+            "src": "/videoml/why-a-new-language/env/development/segments/evolution-not-alien-dna--conclusion--tts--a4d06b32ec46--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "evolution-not-alien-dna--conclusion--tts--7754ad295eb0--1",
+            "kind": "file",
+            "startSec": 525.7500000000001,
+            "durationSec": 7,
+            "src": "/videoml/why-a-new-language/env/development/segments/evolution-not-alien-dna--conclusion--tts--7754ad295eb0--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "evolution-not-alien-dna--conclusion--tts--027401dd8acb--1",
+            "kind": "file",
+            "startSec": 533.1500000000001,
+            "durationSec": 5.6,
+            "src": "/videoml/why-a-new-language/env/development/segments/evolution-not-alien-dna--conclusion--tts--027401dd8acb--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "evolution-not-alien-dna--conclusion--tts--e5dfd7146170--1",
+            "kind": "file",
+            "startSec": 539.1000000000001,
+            "durationSec": 6.1,
+            "src": "/videoml/why-a-new-language/env/development/segments/evolution-not-alien-dna--conclusion--tts--e5dfd7146170--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "evolution-not-alien-dna--conclusion--tts--2d5e8ac3f697--1",
+            "kind": "file",
+            "startSec": 545.6000000000001,
+            "durationSec": 11.55,
+            "src": "/videoml/why-a-new-language/env/development/segments/evolution-not-alien-dna--conclusion--tts--2d5e8ac3f697--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "evolution-not-alien-dna--conclusion--tts--23b28692a45d--1",
+            "kind": "file",
+            "startSec": 557.6500000000001,
+            "durationSec": 4.2,
+            "src": "/videoml/why-a-new-language/env/development/segments/evolution-not-alien-dna--conclusion--tts--23b28692a45d--1.wav",
+            "volume": 1
+          },
+          {
+            "id": "call-to-action--cta--tts--3494ac4ae12d--1",
+            "kind": "file",
+            "startSec": 562.3500000000001,
+            "durationSec": 4.6,
+            "src": "/videoml/why-a-new-language/env/development/segments/call-to-action--cta--tts--3494ac4ae12d--1.wav",
+            "volume": 1
+          }
+        ]
+      }
+    ]
+  }
+}

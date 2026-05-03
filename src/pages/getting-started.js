@@ -106,6 +106,17 @@ $ tactus run 01-getting-started/01-hello-world.tac`
                     run specs in mock mode (no API keys) before running against
                     real models.
                   </p>
+                  <p className={styles.pathText}>
+                    Editing in VS Code? Install the{" "}
+                    <a
+                      href="https://marketplace.visualstudio.com/items?itemName=AnthusAISolutions.tactus"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Tactus extension
+                    </a>{" "}
+                    for syntax highlighting and code intelligence.
+                  </p>
                   <div className={styles.codeBlock}>{QUICKSTART_COMMANDS}</div>
                 </div>
               </div>

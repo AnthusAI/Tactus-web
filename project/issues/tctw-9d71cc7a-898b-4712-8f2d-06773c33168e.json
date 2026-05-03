@@ -1,0 +1,37 @@
+{
+  "id": "tctw-9d71cc7a-898b-4712-8f2d-06773c33168e",
+  "title": "Add slide-left transitions between scenes",
+  "description": "",
+  "type": "task",
+  "status": "closed",
+  "priority": 2,
+  "assignee": null,
+  "creator": null,
+  "parent": "tctw-cbc93e20-fcdd-4e66-a673-c83eb85ecea2",
+  "labels": [],
+  "dependencies": [],
+  "comments": [
+    {
+      "id": "33a9dd1f-89b0-41d7-9b68-6de85de64b00",
+      "author": "unknown",
+      "text": "Added slide-left push transitions between all guardrails scenes in `content/guardrails.vml`.",
+      "created_at": "2026-02-21T06:10:39.585983Z"
+    },
+    {
+      "id": "2984ddc8-fa1b-4055-bc28-b6e20d2963b1",
+      "author": "unknown",
+      "text": "Reopened to switch Guardrails transitions to slide-left (effect=slide, direction=left) across scenes.",
+      "created_at": "2026-02-21T13:08:28.192642Z"
+    },
+    {
+      "id": "700403fb-087b-49db-97ab-4f986295ed06",
+      "author": "unknown",
+      "text": "Switched Guardrails transitions to slide-left by changing transition effect to 'slide' with direction left in guardrails.vml.",
+      "created_at": "2026-02-21T13:09:02.882528Z"
+    }
+  ],
+  "created_at": "2026-02-21T06:05:58.290552Z",
+  "updated_at": "2026-02-21T13:09:07.100176Z",
+  "closed_at": "2026-02-21T13:09:07.100176Z",
+  "custom": {}
+}

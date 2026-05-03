@@ -1,0 +1,25 @@
+{
+  "id": "tctw-cbc93e20-fcdd-4e66-a673-c83eb85ecea2",
+  "title": "Convert guardrails video to VideoML",
+  "description": "",
+  "type": "epic",
+  "status": "closed",
+  "priority": 2,
+  "assignee": null,
+  "creator": null,
+  "parent": null,
+  "labels": [],
+  "dependencies": [],
+  "comments": [
+    {
+      "id": "a7d17591-8087-47b5-adb3-8d261edeaa20",
+      "author": "ryan.porter",
+      "text": "Guardrails conversion: visuals+audio render correctly; slide-left transitions added; MP4 regenerated.",
+      "created_at": "2026-02-21T13:40:58.329159Z"
+    }
+  ],
+  "created_at": "2026-02-21T05:59:48.578162Z",
+  "updated_at": "2026-02-21T13:41:00.957820Z",
+  "closed_at": "2026-02-21T13:41:00.957820Z",
+  "custom": {}
+}

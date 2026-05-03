@@ -1,0 +1,37 @@
+{
+  "id": "tctw-22311ab9-04a8-44fd-8394-37b2e5131567",
+  "title": "Convert guardrails.babulus.ts to guardrails.vml",
+  "description": "",
+  "type": "task",
+  "status": "closed",
+  "priority": 2,
+  "assignee": null,
+  "creator": null,
+  "parent": "tctw-cbc93e20-fcdd-4e66-a673-c83eb85ecea2",
+  "labels": [],
+  "dependencies": [],
+  "comments": [
+    {
+      "id": "8599e03e-6171-4743-a069-88b7cd5c60b8",
+      "author": "unknown",
+      "text": "Starting: convert guardrails.babulus.ts to VideoML (.vml) in content/.",
+      "created_at": "2026-02-21T06:09:18.087999Z"
+    },
+    {
+      "id": "74b95ca1-d32e-4d1e-9706-d43a78cc4dbf",
+      "author": "unknown",
+      "text": "Completed: created  converted from guardrails.babulus.ts.",
+      "created_at": "2026-02-21T06:10:06.654402Z"
+    },
+    {
+      "id": "dc8cbe21-cfa9-4c65-9c08-0a73ac5330d0",
+      "author": "unknown",
+      "text": "Completed: created `Tactus-web/videos/content/guardrails.vml` converted from guardrails.babulus.ts.",
+      "created_at": "2026-02-21T06:10:12.137727Z"
+    }
+  ],
+  "created_at": "2026-02-21T06:09:08.081771Z",
+  "updated_at": "2026-02-21T06:10:16.305322Z",
+  "closed_at": "2026-02-21T06:10:16.305322Z",
+  "custom": {}
+}

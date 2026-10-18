@@ -28,3 +28,4 @@ frontend:
     paths:
       - node_modules/**/*
       - .cache/**/*
+      - .build/python/**/*

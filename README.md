@@ -127,3 +127,18 @@ Looking for more guidance? Full documentation for Gatsby lives [on the website](
 The fastest way to combine your favorite tools and APIs to build the fastest sites, stores, and apps for the web. And also the best place to build, deploy, and host your Gatsby sites.
 
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+### Standard library and examples pages
+
+The standard library module pages, the example chapter pages and the example pages are not
+Gatsby pages. `npm run build` runs `gatsby build`, then `postbuild` (`bin/publication.sh`), which
+writes each page as Anthus-flavored Markdown from the ingested `src/data/stdlib.json` and
+`src/data/examples.json`, builds them with Papyrus `build_markus_site`, and lays them into
+`public/` at the same URLs. The header, footer, navigation menu and stylesheet come from the
+`/stdlib/` page Gatsby exports, so they stay in step with the rest of the site.
+
+- Code: `publication/` (`catalog.py` shapes the pages, `chrome.py` reuses the Gatsby furniture,
+  `build.py` runs Papyrus, `static/css/tactus-publication.css` styles the article).
+- Tests: `npm test` runs `publication/tests` in a virtual environment under `.build/python`.
+- Python 3.12 or newer is required. When the build machine's `python3` is older, `bin/publication.sh`
+  installs `uv` and lets it provide Python 3.13.

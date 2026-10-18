@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 400" role="img" aria-labelledby="title description">
+<title id="title">Deep integration architecture</title>
+<desc id="description">A user presses a button in your product. The Tactus runtime starts a procedure, which calls tools and APIs that change state in your system, or queues work for human review. Results flow back to the runtime and the button.</desc>
+<style>
+.node rect{fill:#f4f1ea;stroke:#7a4b2a;stroke-width:1.5}
+.node text{fill:#1f1a14;font:600 12.5px system-ui,sans-serif}
+.edge{fill:none;stroke:#7a4b2a;stroke-width:1.75}
+.head{fill:#7a4b2a}
+@media (prefers-color-scheme:dark){.node rect{fill:#2a241d;stroke:#d9a679}.node text{fill:#f4efe6}.edge{stroke:#d9a679}.head{fill:#d9a679}}
+</style>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path class="head" d="M0 0L10 5L0 10z"/></marker>
+<marker id="arrow-start" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="head" d="M0 0L10 5L0 10z"/></marker>
+</defs>
+<path class="edge" d="M120 145V203" marker-end="url(#arrow)"/><path class="edge" d="M190 222H248" marker-end="url(#arrow)"/><path class="edge" d="M250 240H192" marker-end="url(#arrow)"/><path class="edge" d="M390 222L452 168" marker-end="url(#arrow)"/><path class="edge" d="M590 155H628" marker-end="url(#arrow)" marker-start="url(#arrow-start)"/><path class="edge" d="M520 180V283" marker-end="url(#arrow)" marker-start="url(#arrow-start)"/><path class="edge" d="M700 180V283" marker-end="url(#arrow)" marker-start="url(#arrow-start)"/><path class="edge" d="M700 335V374H320V257" marker-end="url(#arrow)"/><g class="node"><rect x="50" y="95" width="140" height="50" rx="10"/><text x="120" y="125" text-anchor="middle">User</text></g><g class="node"><rect x="50" y="205" width="140" height="50" rx="10"/><text x="120" y="235" text-anchor="middle">UI Button</text></g><g class="node"><rect x="250" y="205" width="140" height="50" rx="10"/><text x="320" y="235" text-anchor="middle">Tactus Runtime</text></g><g class="node"><rect x="450" y="130" width="140" height="50" rx="10"/><text x="520" y="160" text-anchor="middle">Procedure</text></g><g class="node"><rect x="630" y="130" width="140" height="50" rx="10"/><text x="700" y="160" text-anchor="middle">Tools &amp; APIs</text></g><g class="node"><rect x="450" y="285" width="140" height="50" rx="10"/><text x="520" y="315" text-anchor="middle">Human Review Queue</text></g><g class="node"><rect x="630" y="285" width="140" height="50" rx="10"/><text x="700" y="315" text-anchor="middle">Your System</text></g>
+</svg>

@@ -1,10 +1,13 @@
 import html
 import json
 import re
+import shutil
 from dataclasses import dataclass
 from pathlib import Path
 
-DONOR_PAGE = "stdlib/index.html"
+DONOR_PAGE = "publication-donor/index.html"
+DONOR_CHUNK_PATTERN = "component---src-pages-publication-donor-js-*"
+DONOR_OUTPUT_PATHS = ("publication-donor", "page-data/publication-donor")
 NAVIGATION_SOURCE_PATH = "src/components/nav-menu.js"
 SITE_NAME = "Tactus"
 
@@ -37,6 +40,8 @@ NAVIGATION_ITEM_PATTERN = re.compile(r'\{ label: "([^"]+)", to: "([^"]+)" \}')
 COMMENT_PATTERN = re.compile(r"/\*.*?\*/|//[^\n]*", re.DOTALL)
 FURNITURE_STYLESHEET_PATH = "/assets/tactus-publication.css"
 FURNITURE_SCRIPT_PATH = "/assets/site-navigation.js"
+ARTICLE_WRAPPER_PATTERN = re.compile(r"^(<article[^>]*>)(.*)(</article>)\s*$", re.DOTALL)
+SECTION_SEPARATOR_PATTERN = re.compile(r"<hr\s*/?>")
 
 
 @dataclass(frozen=True)
@@ -89,6 +94,13 @@ def navigation_html(root, stylesheet_text):
         f'<div class="{class_names["navMenuInner"]}"><div class="{class_names["navCategories"]}">'
         f'{"".join(sections)}</div></div></div>'
     )
+
+
+def remove_donor_output(exported_site_directory):
+    for relative_path in DONOR_OUTPUT_PATHS:
+        shutil.rmtree(Path(exported_site_directory) / relative_path, ignore_errors=True)
+    for chunk in Path(exported_site_directory).glob(DONOR_CHUNK_PATTERN):
+        chunk.unlink()
 
 
 def extract_site_furniture(root, exported_site_directory):
@@ -175,7 +187,44 @@ def call_to_action_html(page):
     )
 
 
+def authored_hero_html(page):
+    eyebrow = f'<p class="tactus-eyebrow">{html.escape(page.eyebrow)}</p>' if page.eyebrow else ""
+    lede = f'<p class="tactus-lede">{html.escape(page.lede)}</p>' if page.lede else ""
+    return (
+        '<section class="tactus-section"><div class="tactus-container"><div class="tactus-hero">'
+        f"{eyebrow}<h1>{html.escape(page.heading)}</h1>{lede}</div></div></section>"
+    )
+
+
+def authored_sections_html(page, article_html):
+    wrapper = ARTICLE_WRAPPER_PATTERN.match(article_html.strip())
+    if wrapper is None:
+        raise ValueError(f"{page.href}: expected one article element")
+    open_tag, inner, close_tag = wrapper.groups()
+    parts = SECTION_SEPARATOR_PATTERN.split(inner) if page.kind == "landing" else [inner]
+    out_of_range = [number for number in page.muted_sections if not 1 <= number <= len(parts)]
+    if out_of_range:
+        raise ValueError(f"{page.href}: muted sections {out_of_range} do not exist; the page has {len(parts)} sections")
+    sections = []
+    for number, part in enumerate(parts, start=1):
+        muted = " tactus-section-muted" if number in page.muted_sections else ""
+        sections.append(
+            f'<section class="tactus-section{muted}"><div class="tactus-container">{open_tag}{part}{close_tag}</div></section>'
+        )
+    return "".join(sections)
+
+
+def authored_frame_html(page, article_html):
+    action = call_to_action_html(page) if page.call_to_action else ""
+    return (
+        f'<div class="tactus-publication tactus-kind-{page.kind}">'
+        f"{authored_hero_html(page)}{authored_sections_html(page, article_html)}{action}</div>"
+    )
+
+
 def page_frame_html(page, article_html):
+    if page.kind in ("landing", "prose"):
+        return authored_frame_html(page, article_html)
     return (
         f'<div class="tactus-publication tactus-kind-{page.kind}">'
         '<section class="tactus-section"><div class="tactus-container"><div class="tactus-hero">'

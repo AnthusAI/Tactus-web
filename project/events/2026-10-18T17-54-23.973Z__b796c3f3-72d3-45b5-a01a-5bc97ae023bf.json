@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "event_id": "b796c3f3-72d3-45b5-a01a-5bc97ae023bf",
+  "issue_id": "tctw-115b0377-21c1-4fd1-b562-558593071505",
+  "event_type": "issue_created",
+  "occurred_at": "2026-10-18T17:54:23.973Z",
+  "actor_id": "home",
+  "payload": {
+    "title": "Build the small Tactus pages through Papyrus and Markus (group 1)",
+    "description": "",
+    "issue_type": "task",
+    "status": "open",
+    "priority": 2,
+    "assignee": null,
+    "parent": null,
+    "labels": [],
+    "agent": {
+      "platform": "claude-code",
+      "model": "claude-sonnet-5-5"
+    }
+  }
+}

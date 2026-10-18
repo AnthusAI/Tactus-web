@@ -1,0 +1,38 @@
+{
+  "id": "tctw-115b0377-21c1-4fd1-b562-558593071505",
+  "title": "Build the small Tactus pages through Papyrus and Markus (group 1)",
+  "description": "",
+  "type": "task",
+  "status": "in_progress",
+  "priority": 2,
+  "assignee": null,
+  "creator": null,
+  "parent": null,
+  "labels": [],
+  "dependencies": [],
+  "comments": [
+    {
+      "id": "ca745047-9bf8-4a45-b682-dd073967a82e",
+      "author": "home",
+      "text": "Group 1 pages (404, page-2, using-typescript, videos, resources, use-cases, contact-import, meeting-recap-approval) moved to Markus files under publication/content/pages; using-ssr removed because gatsby build never emitted it.",
+      "created_at": "2026-10-18T17:54:32.004029Z",
+      "comment_type": "default",
+      "agent": {
+        "platform": "claude-code",
+        "model": "claude-sonnet-5-5",
+        "name": "Cloud Agent"
+      }
+    }
+  ],
+  "created_at": "2026-10-18T17:54:23.973408Z",
+  "updated_at": "2026-10-18T17:54:32.004063Z",
+  "closed_at": null,
+  "agent": {
+    "platform": "claude-code",
+    "model": "claude-sonnet-5-5",
+    "name": "Cloud Agent"
+  },
+  "right_now_summary": "Group 1 Tactus pages moved to Markus files, and the unused using-ssr page was removed.",
+  "right_now_updated_at": "2026-10-18T17:54:33.409393Z",
+  "custom": {}
+}

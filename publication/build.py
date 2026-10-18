@@ -16,9 +16,18 @@ from papyrus_content.markus_renderer.build import build_markus_site
 from papyrus_content.markus_renderer.shell import SiteChrome
 from papyrus_content.markus_renderer.transforms import FragmentTransform
 
-from publication.catalog import CHAPTER_SECTION, EXAMPLE_SECTION, STDLIB_SECTION, load_pages
-from publication.chrome import extract_site_furniture, page_frame_html, page_head_extras
+from publication.authored import load_authored_pages
+from publication.catalog import (
+    AUTHORED_SECTION,
+    CHAPTER_SECTION,
+    EXAMPLE_SECTION,
+    STDLIB_SECTION,
+    load_pages,
+    reject_colliding_pages,
+)
+from publication.chrome import extract_site_furniture, remove_donor_output, page_frame_html, page_head_extras
 from publication.headings import add_heading_ids
+from publication.media import book_cover_files
 
 ROOT = Path(__file__).resolve().parent.parent
 STAGING_DIRECTORY = ROOT / ".build" / "publication-content"
@@ -28,7 +37,7 @@ LEADING_HEADING_PATTERN = re.compile(r"^<h1[^>]*>.*?</h1>\s*", re.DOTALL)
 ARTICLE_WRAPPER_PATTERN = re.compile(r"^(<article[^>]*>)(.*)(</article>)\s*$", re.DOTALL)
 SITE_URL_PATTERN = re.compile(r"siteUrl: `([^`]+)`")
 PLACEHOLDER_ARTICLE_SLUG = "placeholder"
-SECTIONS = (STDLIB_SECTION, CHAPTER_SECTION, EXAMPLE_SECTION)
+SECTIONS = (STDLIB_SECTION, CHAPTER_SECTION, EXAMPLE_SECTION, AUTHORED_SECTION)
 
 
 def site_origin(root):
@@ -44,7 +53,13 @@ def staged_markdown(title, body):
     return f'---\ntitle: "{title}"\n---\n\n# {title}\n\n{body}\n'
 
 
-def stage_content(pages):
+def all_pages(root):
+    pages = load_pages(root) + load_authored_pages(root)
+    reject_colliding_pages(pages)
+    return pages
+
+
+def stage_content(pages, root):
     shutil.rmtree(STAGING_DIRECTORY, ignore_errors=True)
     (STAGING_DIRECTORY / "articles").mkdir(parents=True)
     (STAGING_DIRECTORY / "articles" / f"{PLACEHOLDER_ARTICLE_SLUG}.md").write_text(
@@ -58,6 +73,10 @@ def stage_content(pages):
         )
     shutil.copytree(STATIC_DIRECTORY / "js", STAGING_DIRECTORY / "assets")
     shutil.copy(STATIC_DIRECTORY / "css" / "tactus-publication.css", STAGING_DIRECTORY / "assets")
+    shutil.copytree(STATIC_DIRECTORY / "images", STAGING_DIRECTORY / "assets", dirs_exist_ok=True)
+    (STAGING_DIRECTORY / "assets" / "books").mkdir()
+    for cover in book_cover_files(root):
+        shutil.copy(cover, STAGING_DIRECTORY / "assets" / "books")
 
 
 def build_chrome(furniture, pages_by_href):
@@ -101,14 +120,17 @@ def lay_pages_into_site(pages, origin, site_directory):
         destination.parent.mkdir(parents=True, exist_ok=True)
         finished = built.read_text(encoding="utf-8").replace("</head>", page_head_extras(page, origin) + "</head>", 1)
         destination.write_text(finished, encoding="utf-8")
+        for extra in page.also_written_to:
+            (Path(site_directory) / extra).write_text(finished, encoding="utf-8")
     shutil.copytree(MARKUS_OUTPUT_DIRECTORY / "assets", Path(site_directory) / "assets", dirs_exist_ok=True)
 
 
 def render_publication(root, site_directory):
-    pages = load_pages(root)
+    pages = all_pages(root)
     pages_by_href = {page.href: page for page in pages}
     furniture = extract_site_furniture(root, site_directory)
-    stage_content(pages)
+    remove_donor_output(site_directory)
+    stage_content(pages, root)
     build_markus_site(
         content_dir=STAGING_DIRECTORY,
         out_dir=MARKUS_OUTPUT_DIRECTORY,

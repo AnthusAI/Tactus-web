@@ -4,6 +4,7 @@ import re
 HEADING_PATTERN = re.compile(r"<h([1-6])([^>]*)>(.*?)</h\1>", re.DOTALL | re.IGNORECASE)
 TAG_PATTERN = re.compile(r"<[^>]+>")
 DISALLOWED_ID_CHARACTERS = re.compile(r"[^\w\s-]", re.UNICODE)
+EXPLICIT_ID_PATTERN = re.compile(r"\s*\{#([A-Za-z][\w-]*)\}\s*$")
 
 
 def github_style_heading_id(inner_html):
@@ -19,6 +20,9 @@ def add_heading_ids(fragment_html):
         level, attributes, inner = match.groups()
         if re.search(r"\sid=", attributes, re.IGNORECASE):
             return match.group(0)
+        explicit = EXPLICIT_ID_PATTERN.search(inner)
+        if explicit:
+            return f'<h{level}{attributes} id="{explicit.group(1)}">{inner[: explicit.start()]}</h{level}>'
         slug = github_style_heading_id(inner)
         if slug in seen_counts:
             seen_counts[slug] += 1

@@ -27,10 +27,12 @@ from publication.catalog import (
 )
 from publication.chrome import extract_site_furniture, remove_donor_output, page_frame_html, page_head_extras
 from publication.headings import add_heading_ids
+from publication.islands import island_assets_html, place_islands
 from publication.media import book_cover_files
 
 ROOT = Path(__file__).resolve().parent.parent
 STAGING_DIRECTORY = ROOT / ".build" / "publication-content"
+ISLAND_BUNDLE_DIRECTORY = ROOT / ".build" / "islands"
 MARKUS_OUTPUT_DIRECTORY = ROOT / ".build" / "publication-site"
 STATIC_DIRECTORY = Path(__file__).resolve().parent / "static"
 LEADING_HEADING_PATTERN = re.compile(r"^<h1[^>]*>.*?</h1>\s*", re.DOTALL)
@@ -74,6 +76,10 @@ def stage_content(pages, root):
     shutil.copytree(STATIC_DIRECTORY / "js", STAGING_DIRECTORY / "assets")
     shutil.copy(STATIC_DIRECTORY / "css" / "tactus-publication.css", STAGING_DIRECTORY / "assets")
     shutil.copytree(STATIC_DIRECTORY / "images", STAGING_DIRECTORY / "assets", dirs_exist_ok=True)
+    if ISLAND_BUNDLE_DIRECTORY.exists():
+        shutil.copytree(ISLAND_BUNDLE_DIRECTORY, STAGING_DIRECTORY / "assets", dirs_exist_ok=True)
+    elif any(page.islands for page in pages):
+        raise FileNotFoundError("Pages use islands but .build/islands is missing; run `node scripts/build-islands.js`")
     (STAGING_DIRECTORY / "assets" / "books").mkdir()
     for cover in book_cover_files(root):
         shutil.copy(cover, STAGING_DIRECTORY / "assets" / "books")
@@ -88,12 +94,14 @@ def build_chrome(furniture, pages_by_href):
         if wrapper is None:
             raise ValueError(f"{context.active_href}: Markus did not return one article element")
         open_tag, inner, close_tag = wrapper.groups()
-        article_html = open_tag + add_heading_ids(LEADING_HEADING_PATTERN.sub("", inner, count=1)) + close_tag
+        article_html = (
+            open_tag + place_islands(page, add_heading_ids(LEADING_HEADING_PATTERN.sub("", inner, count=1))) + close_tag
+        )
         return (
             '<div id="___gatsby"><div id="gatsby-focus-wrapper">'
             f'<div class="{furniture.page_class}">{furniture.header_html}{furniture.navigation_html}'
             f'<div class="{furniture.content_class}"><main>{page_frame_html(page, article_html)}</main></div>'
-            f"{furniture.footer_html}</div></div></div>{parts.scripts}"
+            f"{furniture.footer_html}</div></div></div>{parts.scripts}{island_assets_html(page)}"
         )
 
     return SiteChrome(

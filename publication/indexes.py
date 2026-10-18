@@ -1,5 +1,5 @@
 """Card grids for the standard library and examples index pages, from the ingested data files."""
-from publication.catalog import EXAMPLES_SOURCE_PATH, STDLIB_SOURCE_PATH, count_label, read_source
+from publication.catalog import EXAMPLES_SOURCE_PATH, STDLIB_SOURCE_PATH, count_label, fenced_code, read_source
 from publication.media import attribute_text
 
 
@@ -28,3 +28,28 @@ def example_chapters_markdown(root, environment=None):
             f'[Browse chapter →](/examples/{chapter["slug"]}/)\n:::\n'
         )
     return ':::card-grid{columns=3 label="Example chapters"}\n' + "\n".join(cards) + ":::"
+
+
+SNIPPET_START = "-- SNIPPET START"
+SNIPPET_END = "-- SNIPPET END"
+
+
+def find_example(root, example_id):
+    for chapter in read_source(root, EXAMPLES_SOURCE_PATH, "examples:ingest")["chapters"]:
+        for example in chapter["examples"]:
+            if example["id"] == example_id:
+                return example
+    raise ValueError(f"{EXAMPLES_SOURCE_PATH}: no example with id {example_id}")
+
+
+def example_snippet_markdown(root, example_id):
+    code = find_example(root, example_id)["code"]
+    start, end = code.find(SNIPPET_START), code.find(SNIPPET_END)
+    if start == -1 or end <= start:
+        raise ValueError(f"Example {example_id} has no {SNIPPET_START} / {SNIPPET_END} markers")
+    return fenced_code(code[start + len(SNIPPET_START) : end].strip(), "lua")
+
+
+def example_link_markdown(root, example_id):
+    example = find_example(root, example_id)
+    return f"[{example['tacPath']}]({example['githubUrl']})"

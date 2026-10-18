@@ -105,3 +105,11 @@ def book_series_markdown(root, environment):
 
 def book_cover_files(root):
     return [Path(root) / BOOK_COVER_DIRECTORY / book["coverFile"] for book in load_books(root)]
+
+
+def video_player_markdown(root, environment, video_id):
+    video = next(video for video in load_videos(root) if video["id"] == video_id)
+    base = videos_base_url(root, environment)
+    caption = f"**{video['title']} ({video['meta']})**" if video.get("meta") else f"**{video['title']}**"
+    poster = f' poster="{base}/{video["poster"]}"' if video.get("poster") else ""
+    return f'{caption}\n\n::video{{src="{base}/{video["filename"]}" title="{attribute_text(video["title"])}"{poster}}}'

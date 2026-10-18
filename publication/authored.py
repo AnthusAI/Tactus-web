@@ -13,17 +13,24 @@ from pathlib import Path
 import yaml
 
 from publication.catalog import AUTHORED_SECTION, Page
-from publication.indexes import example_chapters_markdown, stdlib_modules_markdown
+from publication.islands import extract_islands
+from publication.indexes import (
+    example_chapters_markdown,
+    example_link_markdown,
+    example_snippet_markdown,
+    stdlib_modules_markdown,
+)
 from publication.media import (
     all_videos_markdown,
     book_series_markdown,
     featured_videos_markdown,
     video_catalog_markdown,
+    video_player_markdown,
 )
 
 CONTENT_DIRECTORY = Path(__file__).resolve().parent / "content" / "pages"
 FRONT_MATTER_PATTERN = re.compile(r"\A---\n(.*?)\n---\n(.*)\Z", re.DOTALL)
-PLACEHOLDER_PATTERN = re.compile(r"\{\{([a-z0-9-]+)\}\}")
+PLACEHOLDER_PATTERN = re.compile(r"\{\{([a-z0-9-]+)((?: [a-z0-9-]+)*)\}\}")
 REQUIRED_FIELDS = ("path", "title", "heading", "description", "kind")
 OPTIONAL_FIELDS = ("eyebrow", "lede", "muted", "call_to_action", "also_written_to")
 KINDS = ("landing", "prose")
@@ -38,9 +45,12 @@ def build_time_text(now):
 def placeholder_values(root, environment, now):
     return {
         "build-time": lambda: build_time_text(now),
-        "videos-featured": lambda: featured_videos_markdown(root, environment, FEATURED_VIDEO_IDS),
+        "videos-featured": lambda *ids: featured_videos_markdown(root, environment, ids or FEATURED_VIDEO_IDS),
+        "video-player": lambda video_id: video_player_markdown(root, environment, video_id),
         "videos-all": lambda: all_videos_markdown(root, environment),
         "videos-catalog": lambda: video_catalog_markdown(root, environment),
+        "example-snippet": lambda example_id: example_snippet_markdown(root, example_id),
+        "example-link": lambda example_id: example_link_markdown(root, example_id),
         "stdlib-modules": lambda: stdlib_modules_markdown(root),
         "example-chapters": lambda: example_chapters_markdown(root),
         "books": lambda: book_series_markdown(root, environment),
@@ -50,9 +60,11 @@ def placeholder_values(root, environment, now):
 def fill_placeholders(body, values, source):
     def replace(match):
         name = match.group(1)
+        if name == "island":
+            return match.group(0)
         if name not in values:
             raise ValueError(f"{source}: unknown placeholder {{{{{name}}}}}; known: {', '.join(sorted(values))}")
-        return values[name]()
+        return values[name](*match.group(2).split())
 
     return PLACEHOLDER_PATTERN.sub(replace, body)
 
@@ -77,6 +89,9 @@ def parse_page_file(path):
 def page_from_file(path, root, environment, now):
     front_matter, body = parse_page_file(path)
     segments = tuple(segment for segment in front_matter["path"].strip("/").split("/") if segment)
+    markdown, islands = extract_islands(
+        fill_placeholders(body, placeholder_values(root, environment, now), path.name), path.name
+    )
     return Page(
         kind=front_matter["kind"],
         section=AUTHORED_SECTION,
@@ -88,7 +103,8 @@ def page_from_file(path, root, environment, now):
         lede=front_matter.get("lede", ""),
         breadcrumb=[],
         badges=[],
-        markdown_body=fill_placeholders(body, placeholder_values(root, environment, now), path.name),
+        markdown_body=markdown,
+        islands=islands,
         eyebrow=front_matter.get("eyebrow", ""),
         muted_sections=tuple(front_matter.get("muted", ())),
         also_written_to=tuple(front_matter.get("also_written_to", ())),

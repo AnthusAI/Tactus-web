@@ -326,6 +326,7 @@
   font-size: 0.875rem;
   text-align: center;
 }
+.tactus-article .markus-aside,
 .tactus-article .markus-callout {
   margin: var(--space-4) 0;
   padding: var(--space-4);

@@ -13,6 +13,8 @@ import EvaluationsDiagram from "../../src/components/diagrams/EvaluationsDiagram
 import HitlReturnsAllDiagram from "../../src/components/diagrams/HitlReturnsAllDiagram"
 import LevelZeroEscalationDiagram from "../../src/components/diagrams/LevelZeroEscalationDiagram"
 import ProgrammableToolGatewayDiagram from "../../src/components/diagrams/ProgrammableToolGatewayDiagram"
+import LeastPrivilegeDiagram from "../../src/components/diagrams/LeastPrivilegeDiagram"
+import PromptEngineeringCeilingDiagram from "../../src/components/diagrams/PromptEngineeringCeilingDiagram"
 import SpecificationsDiagram from "../../src/components/diagrams/SpecificationsDiagram"
 
 const ISLANDS = {
@@ -26,7 +28,9 @@ const ISLANDS = {
   EmbeddedRuntimeDiagram,
   EvaluationsDiagram,
   HitlReturnsAllDiagram,
+  LeastPrivilegeDiagram,
   LevelZeroEscalationDiagram,
+  PromptEngineeringCeilingDiagram,
   ProgrammableToolGatewayDiagram,
   SpecificationsDiagram,
 }

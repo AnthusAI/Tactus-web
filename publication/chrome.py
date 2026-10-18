@@ -41,6 +41,7 @@ COMMENT_PATTERN = re.compile(r"/\*.*?\*/|//[^\n]*", re.DOTALL)
 FURNITURE_STYLESHEET_PATH = "/assets/tactus-publication.css"
 FURNITURE_SCRIPT_PATH = "/assets/site-navigation.js"
 ARTICLE_WRAPPER_PATTERN = re.compile(r"^(<article[^>]*>)(.*)(</article>)\s*$", re.DOTALL)
+EMPHASIS_PATTERN = re.compile(r"\*([^*]+)\*")
 SECTION_SEPARATOR_PATTERN = re.compile(r"<hr\s*/?>")
 
 
@@ -181,7 +182,7 @@ def call_to_action_html(page):
     action = page.call_to_action
     return (
         '<section class="tactus-section"><div class="tactus-container"><div class="tactus-call-to-action">'
-        f'<h2>{html.escape(action["title"])}</h2><p>{html.escape(action["text"])}</p>'
+        f'<h2>{html.escape(action["title"])}</h2>{"<p>" + html.escape(action["text"]) + "</p>" if action["text"] else ""}'
         f'<a class="tactus-button" href="{html.escape(action["to"], quote=True)}">{html.escape(action["label"])}</a>'
         "</div></div></section>"
     )
@@ -189,7 +190,7 @@ def call_to_action_html(page):
 
 def authored_hero_html(page):
     eyebrow = f'<p class="tactus-eyebrow">{html.escape(page.eyebrow)}</p>' if page.eyebrow else ""
-    lede = f'<p class="tactus-lede">{html.escape(page.lede)}</p>' if page.lede else ""
+    lede = f'<p class="tactus-lede">{EMPHASIS_PATTERN.sub(r"<em>\1</em>", html.escape(page.lede))}</p>' if page.lede else ""
     return (
         '<section class="tactus-section"><div class="tactus-container"><div class="tactus-hero">'
         f"{eyebrow}<h1>{html.escape(page.heading)}</h1>{lede}</div></div></section>"

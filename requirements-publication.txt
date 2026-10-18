@@ -1,0 +1,2 @@
+papyrus-newsroom==1.0.0.dev60
+anthus-markus==0.5.1

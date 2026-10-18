@@ -135,12 +135,12 @@ Gatsby pages. `npm run build` runs `gatsby build`, then `postbuild` (`bin/public
 writes each page as Anthus-flavored Markdown from the ingested `src/data/stdlib.json` and
 `src/data/examples.json`, builds them with Papyrus `build_markus_site`, and lays them into
 `public/` at the same URLs. The header, footer, navigation menu and stylesheet come from the
-`/stdlib/` page Gatsby exports, so they stay in step with the rest of the site.
+hidden `/publication-donor/` Gatsby page (`src/pages/publication-donor.js`), which the build deletes from `public/` after reading it,, so they stay in step with the rest of the site.
 
 ### Authored pages
 
-The 404 page, Page two, Using TypeScript, Videos, Resources, Use Cases and the Contact Import and
-Meeting Recap use cases are Markus files in `publication/content/pages/`, built by the same
+The 404 page, Page two, Using TypeScript, Videos, Resources, Use Cases, the Contact Import and
+Meeting Recap use cases, the Standard Library and Examples index pages and Guiding Principles are Markus files in `publication/content/pages/`, built by the same
 `postbuild` step. Each file has front matter (`path`, `title`, `heading`, `description`, `kind`, and
 optionally `eyebrow`, `lede`, `muted`, `call_to_action`, `also_written_to`). A `landing` page is a
 hero followed by sections separated by a line of three dashes; `muted` lists the sections (counted

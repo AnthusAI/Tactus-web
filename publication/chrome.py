@@ -1,10 +1,13 @@
 import html
 import json
 import re
+import shutil
 from dataclasses import dataclass
 from pathlib import Path
 
-DONOR_PAGE = "stdlib/index.html"
+DONOR_PAGE = "publication-donor/index.html"
+DONOR_CHUNK_PATTERN = "component---src-pages-publication-donor-js-*"
+DONOR_OUTPUT_PATHS = ("publication-donor", "page-data/publication-donor")
 NAVIGATION_SOURCE_PATH = "src/components/nav-menu.js"
 SITE_NAME = "Tactus"
 
@@ -91,6 +94,13 @@ def navigation_html(root, stylesheet_text):
         f'<div class="{class_names["navMenuInner"]}"><div class="{class_names["navCategories"]}">'
         f'{"".join(sections)}</div></div></div>'
     )
+
+
+def remove_donor_output(exported_site_directory):
+    for relative_path in DONOR_OUTPUT_PATHS:
+        shutil.rmtree(Path(exported_site_directory) / relative_path, ignore_errors=True)
+    for chunk in Path(exported_site_directory).glob(DONOR_CHUNK_PATTERN):
+        chunk.unlink()
 
 
 def extract_site_furniture(root, exported_site_directory):

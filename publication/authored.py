@@ -13,6 +13,7 @@ from pathlib import Path
 import yaml
 
 from publication.catalog import AUTHORED_SECTION, Page
+from publication.indexes import example_chapters_markdown, stdlib_modules_markdown
 from publication.media import (
     all_videos_markdown,
     book_series_markdown,
@@ -40,6 +41,8 @@ def placeholder_values(root, environment, now):
         "videos-featured": lambda: featured_videos_markdown(root, environment, FEATURED_VIDEO_IDS),
         "videos-all": lambda: all_videos_markdown(root, environment),
         "videos-catalog": lambda: video_catalog_markdown(root, environment),
+        "stdlib-modules": lambda: stdlib_modules_markdown(root),
+        "example-chapters": lambda: example_chapters_markdown(root),
         "books": lambda: book_series_markdown(root, environment),
     }
 

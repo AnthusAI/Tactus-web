@@ -25,7 +25,7 @@ from publication.catalog import (
     load_pages,
     reject_colliding_pages,
 )
-from publication.chrome import extract_site_furniture, page_frame_html, page_head_extras
+from publication.chrome import extract_site_furniture, remove_donor_output, page_frame_html, page_head_extras
 from publication.headings import add_heading_ids
 from publication.media import book_cover_files
 
@@ -129,6 +129,7 @@ def render_publication(root, site_directory):
     pages = all_pages(root)
     pages_by_href = {page.href: page for page in pages}
     furniture = extract_site_furniture(root, site_directory)
+    remove_donor_output(site_directory)
     stage_content(pages, root)
     build_markus_site(
         content_dir=STAGING_DIRECTORY,

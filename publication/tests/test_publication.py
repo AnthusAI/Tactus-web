@@ -6,7 +6,7 @@ from pathlib import Path
 
 from publication.catalog import fenced_code, load_example_pages, load_pages, load_stdlib_pages, stdlib_module_markdown
 from publication.authored import CONTENT_DIRECTORY, build_time_text, fill_placeholders, load_authored_pages, parse_page_file
-from publication.chrome import authored_sections_html, extract_site_furniture, load_navigation_categories, page_head_extras
+from publication.chrome import authored_sections_html, remove_donor_output, extract_site_furniture, load_navigation_categories, page_head_extras
 from publication.media import all_videos_markdown, load_books, load_videos, videos_base_url
 from publication.build import staged_markdown
 from publication.headings import add_heading_ids
@@ -204,7 +204,7 @@ class SiteFurnitureTest(unittest.TestCase):
             source_directory = Path(directory) / "src" / "components"
             source_directory.mkdir(parents=True)
             (source_directory / "nav-menu.js").write_text(NAVIGATION_SOURCE, encoding="utf-8")
-            donor = Path(directory) / "public" / "stdlib" / "index.html"
+            donor = Path(directory) / "public" / "publication-donor" / "index.html"
             donor.parent.mkdir(parents=True)
             donor.write_text(DONOR_HTML, encoding="utf-8")
             furniture = extract_site_furniture(directory, Path(directory) / "public")
@@ -218,11 +218,22 @@ class SiteFurnitureTest(unittest.TestCase):
 
     def test_names_the_donor_page_when_it_stops_carrying_what_the_pages_reuse(self):
         with tempfile.TemporaryDirectory() as directory:
-            donor = Path(directory) / "public" / "stdlib" / "index.html"
+            donor = Path(directory) / "public" / "publication-donor" / "index.html"
             donor.parent.mkdir(parents=True)
             donor.write_text("<html><head></head><body></body></html>", encoding="utf-8")
-            with self.assertRaisesRegex(ValueError, "stdlib/index.html"):
+            with self.assertRaisesRegex(ValueError, "publication-donor/index.html"):
                 extract_site_furniture(directory, Path(directory) / "public")
+
+    def test_removes_the_donor_page_and_its_data_from_the_site(self):
+        with tempfile.TemporaryDirectory() as directory:
+            site = Path(directory)
+            for relative in ("publication-donor/index.html", "page-data/publication-donor/page-data.json", "page-data/other/page-data.json"):
+                (site / relative).parent.mkdir(parents=True, exist_ok=True)
+                (site / relative).write_text("x", encoding="utf-8")
+            remove_donor_output(site)
+            self.assertFalse((site / "publication-donor").exists())
+            self.assertFalse((site / "page-data" / "publication-donor").exists())
+            self.assertTrue((site / "page-data" / "other" / "page-data.json").exists())
 
 
 class PageHeadTest(unittest.TestCase):

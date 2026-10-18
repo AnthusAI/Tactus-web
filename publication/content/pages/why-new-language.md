@@ -7,6 +7,7 @@ description: Understanding why Tactus was created and how it addresses the uniqu
 kind: landing
 lede: "Since the dawn of electronic computing, there has effectively been only one way to write a computer program. Today, for the first time in more than eighty years, that assumption no longer holds."
 muted: [2, 4, 6, 8, 10]
+drop_caps: [2, 3, 4, 5, 6, 7, 8, 9, 10]
 call_to_action:
   title: Ready to start building?
   text: Learn how to write your first Tactus procedure and explore the language features that make behavior-driven programming natural.

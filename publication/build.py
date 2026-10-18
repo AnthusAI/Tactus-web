@@ -27,6 +27,7 @@ from publication.catalog import (
 )
 from publication.chrome import extract_site_furniture, remove_donor_output, page_frame_html, page_head_extras
 from publication.headings import add_heading_ids
+from publication.icons import place_actions, place_icons
 from publication.islands import island_assets_html, place_islands
 from publication.media import book_cover_files
 
@@ -100,7 +101,9 @@ def build_chrome(furniture, pages_by_href):
             raise ValueError(f"{context.active_href}: Markus did not return one article element")
         open_tag, inner, close_tag = wrapper.groups()
         article_html = (
-            open_tag + place_islands(page, add_heading_ids(LEADING_HEADING_PATTERN.sub("", inner, count=1))) + close_tag
+            open_tag
+            + place_actions(place_icons(place_islands(page, add_heading_ids(LEADING_HEADING_PATTERN.sub("", inner, count=1)))))
+            + close_tag
         )
         return (
             '<div id="___gatsby"><div id="gatsby-focus-wrapper">'

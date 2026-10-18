@@ -12,6 +12,8 @@ muted: [3, 4]
 :::card{title="Tactus IDE"}
 The best way to write, run, and debug agents. Includes a visual interface for human-in-the-loop interactions and a live view of agent execution.
 
+{{actions}}
+
 [Download IDE](/download/)
 :::
 
@@ -66,6 +68,8 @@ Source: {{example-link hello-world}} · [How to download and run examples](/exam
 
 Start with the curated examples repo. Each example is designed to be runnable and includes embedded behavior specifications, so you can verify your environment before you spend tokens.
 
+{{actions}}
+
 [Browse Examples](/examples/) · [Examples on GitHub](https://github.com/AnthusAI/Tactus-examples)
 
 ## Try a project
@@ -73,6 +77,8 @@ Start with the curated examples repo. Each example is designed to be runnable an
 Use cases are concrete project ideas. If you want a strong first build, start with an embedded copilot and add one or two Human-in-the-Loop checkpoints.
 
 The [Tactus IDE](/download/) includes the standard Human-in-the-Loop components. Use the IDE as a safe playground to experience approvals and structured inputs, then embed the same components in any application.
+
+{{actions}}
 
 [Read the copilot use case](/use-cases/copilot-anything/) · [Projects to try](/getting-started/projects/)
 
@@ -119,6 +125,8 @@ This workflow pairs well with open standards: [Agent Skills](https://agentskills
 :::callout{kind="note" title="Case study: Refund ops automation"}
 This started as a supervised Skill that processes an Excel file and issues Stripe refunds in sequence. Once it proved useful, it was hardened into a governed procedure: inputs validated up front, tool data fetched deterministically, human checkpoints added for high-risk rows, and an audit trail produced for confidence and compliance.
 
+{{actions}}
+
 [Read the case study](/use-cases/refund-ops/) · [Business process automation overview](/use-cases/business-process-automation/)
 :::
 
@@ -145,5 +153,7 @@ Three complementary books: learn the patterns, dive into the reference, or keep 
 Short walkthroughs and longer deep dives. Start with these two — then browse the rest.
 
 {{videos-featured}}
+
+{{actions}}
 
 [Watch videos](/videos/)

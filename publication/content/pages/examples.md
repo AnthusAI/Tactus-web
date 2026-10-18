@@ -49,7 +49,7 @@ Runnable, tested examples organized progressively from basics to advanced topics
 ### Also Explore
 
 :::card-grid{columns=3 label="Also explore"}
-:::card{title="Examples on GitHub"}
+:::card{title="Examples on GitHub" icon="svg-github"}
 Clone the repository, run examples locally, and see the continuous integration tests in action.
 
 [Open the repository](https://github.com/AnthusAI/Tactus-examples)

@@ -19,6 +19,8 @@ Start here — then browse the full catalog below.
 
 {{videos-featured}}
 
+{{actions}}
+
 [Browse all videos](/videos/#all)
 
 ---

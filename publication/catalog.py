@@ -48,6 +48,8 @@ class Page:
     muted_sections: tuple = ()
     also_written_to: tuple = ()
     islands: tuple = ()
+    hero_split: bool = False
+    drop_caps: tuple = ()
 
     @property
     def href(self):

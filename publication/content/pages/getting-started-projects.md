@@ -35,6 +35,8 @@ Imagine a chat-based copilot inside your product. It can call your tools to prop
 :::
 :::
 
+{{actions}}
+
 [Read the copilot use case](/use-cases/copilot-anything/) · [Browse use cases](/use-cases/)
 
 ---

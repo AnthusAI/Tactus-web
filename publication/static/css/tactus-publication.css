@@ -361,3 +361,164 @@
   max-height: 3rem;
   width: auto;
 }
+
+.tactus-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+  margin: var(--space-4) 0;
+}
+.tactus-article a.tactus-button {
+  color: var(--color-primary-ink);
+  font-size: 1.35rem;
+  padding: 0.5rem 1.25rem;
+  text-decoration: none;
+  width: auto;
+}
+.tactus-article a.tactus-button-secondary {
+  background: var(--color-surface-2);
+  color: var(--color-text);
+}
+.tactus-article a.tactus-button-secondary:hover {
+  background: color-mix(in srgb, var(--color-surface-2) 90%, black);
+}
+.tactus-icon {
+  margin: 0 0 var(--space-3);
+  color: var(--color-primary);
+}
+.tactus-icon-svg {
+  width: 32px;
+  height: 32px;
+}
+.tactus-article .markus-card-icon {
+  display: block;
+  margin-bottom: var(--space-2);
+  color: var(--color-primary);
+}
+.tactus-article .markus-card-icon .tactus-icon-svg {
+  width: 28px;
+  height: 28px;
+}
+.tactus-hero-split .tactus-container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
+  column-gap: var(--space-5);
+}
+.tactus-hero-split .tactus-container > * {
+  grid-column: 1;
+}
+.tactus-hero-split .tactus-article {
+  display: contents;
+}
+.tactus-hero-split .tactus-article > * {
+  grid-column: 1;
+}
+.tactus-hero-split .tactus-article > .markus-figure {
+  grid-column: 2;
+  grid-row: 1 / span 20;
+  align-self: start;
+  margin: var(--space-4) 0 0;
+}
+.tactus-hero-split .markus-figure img {
+  max-width: 100%;
+}
+@media (max-width: 800px) {
+  .tactus-hero-split .tactus-container {
+    display: block;
+  }
+  .tactus-hero-split .tactus-article {
+    display: block;
+  }
+}
+.tactus-article .markus-card {
+  min-width: 0;
+}
+.tactus-article .markus-card pre {
+  max-width: 100%;
+}
+.tactus-article table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+.tactus-hitl-actions {
+  flex-wrap: wrap !important;
+}
+.tactus-hitl-actions .tactus-hitl-button {
+  white-space: normal;
+}
+.tactus-island {
+  max-width: 100%;
+  overflow-x: auto;
+}
+.tactus-article p.tactus-icon {
+  color: var(--color-primary);
+}
+.tactus-hero-split h1 {
+  display: inline-block;
+  padding: 0.05em 0.25em;
+  background: var(--color-primary);
+  color: var(--color-primary-ink);
+}
+.tactus-hero-split .tactus-actions {
+  flex-wrap: nowrap;
+}
+.tactus-hero-split .tactus-actions .tactus-button {
+  flex: 1 1 0;
+  font-size: 1.75rem;
+  text-align: center;
+}
+.tactus-article .markus-two-up {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+  align-items: center;
+  margin: var(--space-4) 0;
+}
+.tactus-article .markus-two-up[data-ratio="2:1"] {
+  grid-template-columns: 2fr 1fr;
+}
+.tactus-article .markus-two-up[data-ratio="1:2"] {
+  grid-template-columns: 1fr 2fr;
+}
+@media (max-width: 800px) {
+  .tactus-article .markus-two-up {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .tactus-hero-split .tactus-actions {
+    flex-wrap: wrap;
+  }
+}
+.tactus-article .markus-callout--tip,
+.tactus-article .markus-callout--warning {
+  background: var(--color-primary);
+  color: var(--color-primary-ink);
+}
+.tactus-article .markus-callout--tip .markus-callout-title,
+.tactus-article .markus-callout--warning .markus-callout-title,
+.tactus-article .markus-callout--tip p,
+.tactus-article .markus-callout--warning p,
+.tactus-article .markus-callout--tip li,
+.tactus-article .markus-callout--warning li,
+.tactus-article .markus-callout--tip a,
+.tactus-article .markus-callout--warning a,
+.tactus-article .markus-callout--tip strong {
+  color: var(--color-primary-ink);
+}
+.tactus-article .markus-card {
+  background: var(--color-surface-2);
+}
+.tactus-section-muted .tactus-article .markus-card {
+  background: var(--color-bg, #fff);
+}
+.tactus-hero-split .tactus-container > .tactus-article > .tactus-actions {
+  grid-column: 1 / -1;
+}
+.tactus-hero-split .tactus-container > .tactus-article > .tactus-island {
+  grid-column: 1 / -1;
+  justify-self: center;
+}
+[data-gatsby-image-wrapper] img[data-main-image] {
+  opacity: 1 !important;
+}

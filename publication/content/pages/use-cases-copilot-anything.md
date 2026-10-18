@@ -50,5 +50,7 @@ The unlock. The agent runs independently and queues approvals/inputs when needed
 :::callout{kind="note" title="Where to start"}
 Use the IDE to play with these interactions quickly, then embed the same components in your app when you are ready.
 
+{{actions}}
+
 [Projects: build a copilot UI](/getting-started/projects/) · [HITL component docs](/resources/components/)
 :::

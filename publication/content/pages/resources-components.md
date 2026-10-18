@@ -10,7 +10,7 @@ muted: [2, 4]
 ---
 
 :::card-grid{columns=1 label="Component library"}
-:::card{title="Component library on GitHub"}
+:::card{title="Component library on GitHub" icon="svg-github"}
 Browse the source, run Storybook, and integrate the standard HITL UI components into your own applications.
 
 [Open the repository](https://github.com/AnthusAI/Tactus-HITL-components)

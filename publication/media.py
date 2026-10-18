@@ -113,3 +113,10 @@ def video_player_markdown(root, environment, video_id):
     caption = f"**{video['title']} ({video['meta']})**" if video.get("meta") else f"**{video['title']}**"
     poster = f' poster="{base}/{video["poster"]}"' if video.get("poster") else ""
     return f'{caption}\n\n::video{{src="{base}/{video["filename"]}" title="{attribute_text(video["title"])}"{poster}}}'
+
+
+def video_embed_markdown(root, environment, video_id):
+    video = next(video for video in load_videos(root) if video["id"] == video_id)
+    base = videos_base_url(root, environment)
+    poster = f' poster="{base}/{video["poster"]}"' if video.get("poster") else ""
+    return f'::video{{src="{base}/{video["filename"]}" title="{attribute_text(video["title"])}"{poster}}}'

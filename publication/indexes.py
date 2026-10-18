@@ -53,3 +53,7 @@ def example_snippet_markdown(root, example_id):
 def example_link_markdown(root, example_id):
     example = find_example(root, example_id)
     return f"[{example['tacPath']}]({example['githubUrl']})"
+
+
+def example_code_markdown(root, example_id):
+    return fenced_code(find_example(root, example_id)["code"], "lua")

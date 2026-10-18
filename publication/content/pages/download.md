@@ -21,7 +21,7 @@ Tactus is already a mission-critical technology in production for my own project
 **Note on Desktop Apps:** Please note that the Electron apps are less tested than running the web application through Node. They share a common codebase, but have platform differences. My development focus is primarily on the Node web application.
 
 :::card-grid{columns=3 label="Desktop downloads"}
-:::card{title="macOS"}
+:::card{title="macOS" icon="svg-apple"}
 Universal (Intel & Apple Silicon)
 
 **Distribution Warning** The distributed macOS app does not yet distribute smoothly. (I have to pay Apple to sign it and I will...) You are better off building the Electron app yourself or using the Node web application.
@@ -29,13 +29,13 @@ Universal (Intel & Apple Silicon)
 [View on GitHub](https://github.com/AnthusAI/Tactus/releases/latest#mac)
 :::
 
-:::card{title="Windows"}
+:::card{title="Windows" icon="svg-windows"}
 Windows 10/11 (x64)
 
 [View on GitHub](https://github.com/AnthusAI/Tactus/releases/latest#windows)
 :::
 
-:::card{title="Linux"}
+:::card{title="Linux" icon="svg-linux"}
 Debian/Ubuntu (AppImage)
 
 [View on GitHub](https://github.com/AnthusAI/Tactus/releases/latest#linux)

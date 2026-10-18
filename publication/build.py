@@ -27,6 +27,7 @@ from publication.catalog import (
 )
 from publication.chrome import extract_site_furniture, remove_donor_output, page_frame_html, page_head_extras
 from publication.headings import add_heading_ids
+from publication.icons import place_actions, place_icons
 from publication.islands import island_assets_html, place_islands
 from publication.media import book_cover_files
 
@@ -34,6 +35,7 @@ ROOT = Path(__file__).resolve().parent.parent
 STAGING_DIRECTORY = ROOT / ".build" / "publication-content"
 ISLAND_BUNDLE_DIRECTORY = ROOT / ".build" / "islands"
 MARKUS_OUTPUT_DIRECTORY = ROOT / ".build" / "publication-site"
+SITE_IMAGES = ("animals/learning-cover-animal.png", "logos/dspy.png", "logos/lua.svg", "logos/pydantic.svg")
 STATIC_DIRECTORY = Path(__file__).resolve().parent / "static"
 LEADING_HEADING_PATTERN = re.compile(r"^<h1[^>]*>.*?</h1>\s*", re.DOTALL)
 ARTICLE_WRAPPER_PATTERN = re.compile(r"^(<article[^>]*>)(.*)(</article>)\s*$", re.DOTALL)
@@ -80,6 +82,10 @@ def stage_content(pages, root):
         shutil.copytree(ISLAND_BUNDLE_DIRECTORY, STAGING_DIRECTORY / "assets", dirs_exist_ok=True)
     elif any(page.islands for page in pages):
         raise FileNotFoundError("Pages use islands but .build/islands is missing; run `node scripts/build-islands.js`")
+    for image in SITE_IMAGES:
+        destination = STAGING_DIRECTORY / "assets" / image
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy(root / "src" / "images" / image, destination)
     (STAGING_DIRECTORY / "assets" / "books").mkdir()
     for cover in book_cover_files(root):
         shutil.copy(cover, STAGING_DIRECTORY / "assets" / "books")
@@ -95,7 +101,9 @@ def build_chrome(furniture, pages_by_href):
             raise ValueError(f"{context.active_href}: Markus did not return one article element")
         open_tag, inner, close_tag = wrapper.groups()
         article_html = (
-            open_tag + place_islands(page, add_heading_ids(LEADING_HEADING_PATTERN.sub("", inner, count=1))) + close_tag
+            open_tag
+            + place_actions(place_icons(place_islands(page, add_heading_ids(LEADING_HEADING_PATTERN.sub("", inner, count=1)))))
+            + close_tag
         )
         return (
             '<div id="___gatsby"><div id="gatsby-focus-wrapper">'

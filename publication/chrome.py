@@ -41,6 +41,8 @@ COMMENT_PATTERN = re.compile(r"/\*.*?\*/|//[^\n]*", re.DOTALL)
 FURNITURE_STYLESHEET_PATH = "/assets/tactus-publication.css"
 FURNITURE_SCRIPT_PATH = "/assets/site-navigation.js"
 ARTICLE_WRAPPER_PATTERN = re.compile(r"^(<article[^>]*>)(.*)(</article>)\s*$", re.DOTALL)
+EMPHASIS_PATTERN = re.compile(r"\*([^*]+)\*")
+PLAIN_PARAGRAPH_PATTERN = re.compile(r"<p>")
 SECTION_SEPARATOR_PATTERN = re.compile(r"<hr\s*/?>")
 
 
@@ -181,45 +183,72 @@ def call_to_action_html(page):
     action = page.call_to_action
     return (
         '<section class="tactus-section"><div class="tactus-container"><div class="tactus-call-to-action">'
-        f'<h2>{html.escape(action["title"])}</h2><p>{html.escape(action["text"])}</p>'
+        f'<h2>{html.escape(action["title"])}</h2>{"<p>" + html.escape(action["text"]) + "</p>" if action["text"] else ""}'
         f'<a class="tactus-button" href="{html.escape(action["to"], quote=True)}">{html.escape(action["label"])}</a>'
         "</div></div></section>"
     )
 
 
-def authored_hero_html(page):
+def authored_hero_html(page, inner_only=False):
     eyebrow = f'<p class="tactus-eyebrow">{html.escape(page.eyebrow)}</p>' if page.eyebrow else ""
-    lede = f'<p class="tactus-lede">{html.escape(page.lede)}</p>' if page.lede else ""
-    return (
-        '<section class="tactus-section"><div class="tactus-container"><div class="tactus-hero">'
-        f"{eyebrow}<h1>{html.escape(page.heading)}</h1>{lede}</div></div></section>"
-    )
+    lede = f'<p class="tactus-lede">{EMPHASIS_PATTERN.sub(r"<em>\1</em>", html.escape(page.lede))}</p>' if page.lede else ""
+    hero = f'<div class="tactus-hero">{eyebrow}<h1>{html.escape(page.heading)}</h1>{lede}</div>'
+    if inner_only:
+        return hero
+    return f'<section class="tactus-section"><div class="tactus-container">{hero}</div></section>'
 
 
-def authored_sections_html(page, article_html):
+def add_drop_cap(section_html, paragraph_number):
+    seen = {"count": 0}
+
+    def mark(match):
+        seen["count"] += 1
+        return '<p class="drop-cap">' if seen["count"] == paragraph_number else match.group(0)
+
+    return PLAIN_PARAGRAPH_PATTERN.sub(mark, section_html)
+
+
+def drop_cap_targets(page):
+    targets = {}
+    for item in page.drop_caps:
+        section, _, paragraph = item.partition(":")
+        targets[int(section)] = int(paragraph or 1)
+    return targets
+
+
+def authored_section_list(page, article_html):
     wrapper = ARTICLE_WRAPPER_PATTERN.match(article_html.strip())
     if wrapper is None:
         raise ValueError(f"{page.href}: expected one article element")
     open_tag, inner, close_tag = wrapper.groups()
     parts = SECTION_SEPARATOR_PATTERN.split(inner) if page.kind == "landing" else [inner]
-    out_of_range = [number for number in page.muted_sections if not 1 <= number <= len(parts)]
+    out_of_range = [number for number in (*page.muted_sections, *drop_cap_targets(page)) if not 1 <= number <= len(parts)]
     if out_of_range:
-        raise ValueError(f"{page.href}: muted sections {out_of_range} do not exist; the page has {len(parts)} sections")
+        raise ValueError(f"{page.href}: sections {out_of_range} do not exist; the page has {len(parts)} sections")
+    targets = drop_cap_targets(page)
     sections = []
     for number, part in enumerate(parts, start=1):
-        muted = " tactus-section-muted" if number in page.muted_sections else ""
-        sections.append(
-            f'<section class="tactus-section{muted}"><div class="tactus-container">{open_tag}{part}{close_tag}</div></section>'
-        )
-    return "".join(sections)
+        if number in targets:
+            part = add_drop_cap(part, targets[number])
+        sections.append((number in page.muted_sections, f"{open_tag}{part}{close_tag}"))
+    return sections
+
+
+def section_html(muted, article, extra_class=""):
+    classes = "tactus-section" + (" tactus-section-muted" if muted else "") + extra_class
+    return f'<section class="{classes}"><div class="tactus-container">{article}</div></section>'
 
 
 def authored_frame_html(page, article_html):
+    sections = authored_section_list(page, article_html)
     action = call_to_action_html(page) if page.call_to_action else ""
-    return (
-        f'<div class="tactus-publication tactus-kind-{page.kind}">'
-        f"{authored_hero_html(page)}{authored_sections_html(page, article_html)}{action}</div>"
-    )
+    if page.hero_split:
+        muted, article = sections[0]
+        hero = authored_hero_html(page, inner_only=True)
+        body = section_html(muted, hero + article, " tactus-hero-split") + "".join(section_html(*item) for item in sections[1:])
+    else:
+        body = authored_hero_html(page) + "".join(section_html(*item) for item in sections)
+    return f'<div class="tactus-publication tactus-kind-{page.kind}">{body}{action}</div>'
 
 
 def page_frame_html(page, article_html):

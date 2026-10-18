@@ -48,6 +48,8 @@ class Page:
     muted_sections: tuple = ()
     also_written_to: tuple = ()
     islands: tuple = ()
+    hero_split: bool = False
+    drop_caps: tuple = ()
 
     @property
     def href(self):
@@ -55,7 +57,7 @@ class Page:
 
     @property
     def path(self):
-        return "/" + "/".join(self.destination_segments) + "/"
+        return "/" + "".join(f"{segment}/" for segment in self.destination_segments)
 
 
 def fenced_code(code, language):

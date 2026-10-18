@@ -167,3 +167,7 @@ fills in the latest release links.
 - Tests: `npm test` runs `publication/tests` in a virtual environment under `.build/python`.
 - Python 3.12 or newer is required. When the build machine's `python3` is older, `bin/publication.sh`
   installs `uv` and lets it provide Python 3.13.
+
+### Page furniture beyond Markus
+
+`{{icon name}}` and card `icon="svg-name"` place the inline icons in `publication/icons.py`. `{{actions}}` before a paragraph made only of links turns those links into buttons. Front matter `hero_split: true` puts the first section beside a figure, and `drop_caps: ["section:paragraph"]` marks drop caps.

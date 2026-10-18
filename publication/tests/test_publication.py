@@ -6,7 +6,7 @@ from pathlib import Path
 
 from publication.catalog import fenced_code, load_example_pages, load_pages, load_stdlib_pages, stdlib_module_markdown
 from publication.authored import CONTENT_DIRECTORY, build_time_text, fill_placeholders, load_authored_pages, parse_page_file
-from publication.chrome import authored_sections_html, remove_donor_output, extract_site_furniture, load_navigation_categories, page_head_extras
+from publication.chrome import authored_section_list, remove_donor_output, section_html, extract_site_furniture, load_navigation_categories, page_head_extras
 from publication.indexes import example_link_markdown, example_snippet_markdown
 from publication.islands import extract_islands, place_islands
 from publication.media import all_videos_markdown, load_books, load_videos, videos_base_url
@@ -298,6 +298,8 @@ class AuthoredPagesTest(unittest.TestCase):
         self.assertEqual(pages["/404/"].also_written_to, ("404.html",))
         self.assertEqual(pages["/use-cases/contact-import/"].file_slug, "use-cases-contact-import")
         self.assertEqual(pages["/videos/"].muted_sections, (1,))
+        self.assertEqual(pages["/"].file_slug, "index")
+        self.assertEqual(pages["/"].destination_segments, ())
 
     def test_the_build_time_is_filled_in_as_gatsby_printed_it(self):
         self.assertEqual(build_time_text(FIXED_TIME), "2026-10-18 05:46 pm UTC")
@@ -333,15 +335,16 @@ class LandingSectionsTest(unittest.TestCase):
 
     def test_splits_on_rules_and_mutes_the_listed_sections(self):
         article = '<article class="markus-document"><h2>One</h2><hr><h2>Two</h2></article>'
-        rendered = authored_sections_html(self.landing_page((2,)), article)
+        sections = authored_section_list(self.landing_page((2,)), article)
+        rendered = "".join(section_html(*item) for item in sections)
         self.assertEqual(rendered.count("<section"), 2)
         self.assertEqual(rendered.count("tactus-section-muted"), 1)
         self.assertNotIn("<hr", rendered)
 
     def test_names_the_page_when_a_muted_section_does_not_exist(self):
         article = '<article class="markus-document"><h2>One</h2></article>'
-        with self.assertRaisesRegex(ValueError, "muted sections \\[3\\] do not exist"):
-            authored_sections_html(self.landing_page((3,)), article)
+        with self.assertRaisesRegex(ValueError, "sections \\[3\\] do not exist"):
+            authored_section_list(self.landing_page((3,)), article)
 
 
 class IslandsTest(unittest.TestCase):
@@ -379,3 +382,25 @@ class ExampleSnippetsTest(unittest.TestCase):
             self.assertEqual(example_link_markdown(directory, "hello"), f"[{EXAMPLE['tacPath']}]({EXAMPLE['githubUrl']})")
             with self.assertRaisesRegex(ValueError, "no example with id"):
                 example_snippet_markdown(directory, "missing")
+
+
+class IconsAndActionsTest(unittest.TestCase):
+    def test_places_standalone_and_card_icons(self):
+        from publication.icons import place_icons
+
+        html = place_icons('<p>ICON:box</p><span class="markus-card-icon" aria-hidden="true">svg-lock</span>')
+        self.assertIn('class="tactus-icon"', html)
+        self.assertEqual(html.count("<svg"), 2)
+        with self.assertRaisesRegex(ValueError, "No icon named"):
+            place_icons("<p>ICON:nope</p>")
+
+    def test_turns_a_link_paragraph_into_buttons(self):
+        from publication.icons import place_actions
+
+        html = place_actions('<p>ACTIONSMARKER</p>\n<p><a href="/a/">A</a> · <a href="/b/">B</a></p>')
+        self.assertIn('<div class="tactus-actions"><a class="tactus-button" href="/a/">A</a><a class="tactus-button tactus-button-secondary" href="/b/">B</a></div>', html)
+
+    def test_marks_the_requested_paragraph_with_a_drop_cap(self):
+        from publication.chrome import add_drop_cap
+
+        self.assertEqual(add_drop_cap("<p>a</p><p>b</p>", 2), '<p>a</p><p class="drop-cap">b</p>')

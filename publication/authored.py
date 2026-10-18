@@ -13,9 +13,11 @@ from pathlib import Path
 import yaml
 
 from publication.catalog import AUTHORED_SECTION, Page
+from publication.icons import ACTIONS_MARKER, ICON_MARKER_PREFIX
 from publication.islands import extract_islands
 from publication.indexes import (
     example_chapters_markdown,
+    example_code_markdown,
     example_link_markdown,
     example_snippet_markdown,
     stdlib_modules_markdown,
@@ -25,6 +27,7 @@ from publication.media import (
     book_series_markdown,
     featured_videos_markdown,
     video_catalog_markdown,
+    video_embed_markdown,
     video_player_markdown,
 )
 
@@ -32,7 +35,7 @@ CONTENT_DIRECTORY = Path(__file__).resolve().parent / "content" / "pages"
 FRONT_MATTER_PATTERN = re.compile(r"\A---\n(.*?)\n---\n(.*)\Z", re.DOTALL)
 PLACEHOLDER_PATTERN = re.compile(r"\{\{([a-z0-9-]+)((?: [a-z0-9-]+)*)\}\}")
 REQUIRED_FIELDS = ("path", "title", "heading", "description", "kind")
-OPTIONAL_FIELDS = ("eyebrow", "lede", "muted", "call_to_action", "also_written_to")
+OPTIONAL_FIELDS = ("eyebrow", "lede", "muted", "call_to_action", "also_written_to", "hero_split", "drop_caps")
 KINDS = ("landing", "prose")
 CALL_TO_ACTION_FIELDS = ("title", "text", "label", "to")
 FEATURED_VIDEO_IDS = ("why-new-language", "guardrails")
@@ -46,11 +49,15 @@ def placeholder_values(root, environment, now):
     return {
         "build-time": lambda: build_time_text(now),
         "videos-featured": lambda *ids: featured_videos_markdown(root, environment, ids or FEATURED_VIDEO_IDS),
+        "video-embed": lambda video_id: video_embed_markdown(root, environment, video_id),
         "video-player": lambda video_id: video_player_markdown(root, environment, video_id),
         "videos-all": lambda: all_videos_markdown(root, environment),
         "videos-catalog": lambda: video_catalog_markdown(root, environment),
+        "example-code": lambda example_id: example_code_markdown(root, example_id),
         "example-snippet": lambda example_id: example_snippet_markdown(root, example_id),
         "example-link": lambda example_id: example_link_markdown(root, example_id),
+        "icon": lambda name: f"{ICON_MARKER_PREFIX}{name}",
+        "actions": lambda: ACTIONS_MARKER,
         "stdlib-modules": lambda: stdlib_modules_markdown(root),
         "example-chapters": lambda: example_chapters_markdown(root),
         "books": lambda: book_series_markdown(root, environment),
@@ -95,7 +102,7 @@ def page_from_file(path, root, environment, now):
     return Page(
         kind=front_matter["kind"],
         section=AUTHORED_SECTION,
-        file_slug="-".join(segments),
+        file_slug="-".join(segments) or "index",
         destination_segments=segments,
         document_title=front_matter["title"],
         heading=front_matter["heading"],
@@ -105,6 +112,8 @@ def page_from_file(path, root, environment, now):
         badges=[],
         markdown_body=markdown,
         islands=islands,
+        hero_split=bool(front_matter.get("hero_split", False)),
+        drop_caps=tuple(str(item) for item in front_matter.get("drop_caps", ())),
         eyebrow=front_matter.get("eyebrow", ""),
         muted_sections=tuple(front_matter.get("muted", ())),
         also_written_to=tuple(front_matter.get("also_written_to", ())),

@@ -16,6 +16,7 @@ from publication.catalog import AUTHORED_SECTION, Page
 from publication.islands import extract_islands
 from publication.indexes import (
     example_chapters_markdown,
+    example_code_markdown,
     example_link_markdown,
     example_snippet_markdown,
     stdlib_modules_markdown,
@@ -49,6 +50,7 @@ def placeholder_values(root, environment, now):
         "video-player": lambda video_id: video_player_markdown(root, environment, video_id),
         "videos-all": lambda: all_videos_markdown(root, environment),
         "videos-catalog": lambda: video_catalog_markdown(root, environment),
+        "example-code": lambda example_id: example_code_markdown(root, example_id),
         "example-snippet": lambda example_id: example_snippet_markdown(root, example_id),
         "example-link": lambda example_id: example_link_markdown(root, example_id),
         "stdlib-modules": lambda: stdlib_modules_markdown(root),

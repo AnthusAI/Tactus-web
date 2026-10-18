@@ -25,6 +25,9 @@ CODE_BLOCK_PATTERN = re.compile(r'(<pre><code class="language-([\w-]+)">.*?</cod
 MARKER_PREFIX = "ISLANDMARKER"
 ISLAND_SCRIPT_PATH = "/assets/islands.js"
 ISLAND_STYLESHEET_PATH = "/assets/islands.css"
+HITL_ISLANDS = {"HitlDemo"}
+HITL_SCRIPT_PATH = "/assets/hitl/hitl-islands.js"
+HITL_STYLESHEET_PATH = "/assets/hitl/hitl-islands.css"
 
 
 def coerce(value):
@@ -68,6 +71,12 @@ def place_islands(page, article_html):
 
 
 def island_assets_html(page):
-    if not page.islands:
-        return ""
-    return f'<link rel="stylesheet" href="{ISLAND_STYLESHEET_PATH}"><script defer src="{ISLAND_SCRIPT_PATH}"></script>'
+    names = {name for name, _ in page.islands}
+    assets = ""
+    if names - HITL_ISLANDS:
+        assets += f'<link rel="stylesheet" href="{ISLAND_STYLESHEET_PATH}"><script defer src="{ISLAND_SCRIPT_PATH}"></script>'
+    if names & HITL_ISLANDS:
+        assets += (
+            f'<link rel="stylesheet" href="{HITL_STYLESHEET_PATH}"><script type="module" src="{HITL_SCRIPT_PATH}"></script>'
+        )
+    return assets

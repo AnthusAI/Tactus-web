@@ -4,14 +4,10 @@ const { build } = require("esbuild")
 const root = path.join(__dirname, "..")
 const outputDirectory = path.join(root, ".build", "islands")
 
-build({
-  entryPoints: [path.join(root, "publication", "islands", "entry.jsx")],
-  outfile: path.join(outputDirectory, "islands.js"),
+const shared = {
   bundle: true,
   minify: true,
-  sourcemap: false,
-  format: "iife",
-  target: "es2019",
+  target: "es2020",
   jsx: "automatic",
   define: { "process.env.NODE_ENV": '"production"' },
   loader: {
@@ -22,4 +18,21 @@ build({
     ".css": "css",
   },
   logLevel: "warning",
-}).catch(() => process.exit(1))
+}
+
+Promise.all([
+  build({
+    ...shared,
+    entryPoints: { islands: path.join(root, "publication", "islands", "entry.jsx") },
+    outdir: outputDirectory,
+    format: "iife",
+  }),
+  build({
+    ...shared,
+    entryPoints: { "hitl-islands": path.join(root, "publication", "islands", "hitl-entry.jsx") },
+    outdir: path.join(outputDirectory, "hitl"),
+    format: "esm",
+    splitting: true,
+    chunkNames: "chunks/[name]-[hash]",
+  }),
+]).catch(() => process.exit(1))

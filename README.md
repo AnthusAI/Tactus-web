@@ -135,7 +135,7 @@ Gatsby pages. `npm run build` runs `gatsby build`, then `postbuild` (`bin/public
 writes each page as Anthus-flavored Markdown from the ingested `src/data/stdlib.json` and
 `src/data/examples.json`, builds them with Papyrus `build_markus_site`, and lays them into
 `public/` at the same URLs. The header, footer, navigation menu and stylesheet come from the
-hidden `/publication-donor/` Gatsby page (`src/pages/publication-donor.js`), which the build deletes from `public/` after reading it,, so they stay in step with the rest of the site.
+hidden `/publication-donor/` Gatsby page (`src/pages/publication-donor.js`), which the build deletes from `public/` after reading it, so they stay in step with the rest of the site.
 
 ### Authored pages
 

@@ -137,7 +137,22 @@ writes each page as Anthus-flavored Markdown from the ingested `src/data/stdlib.
 `public/` at the same URLs. The header, footer, navigation menu and stylesheet come from the
 `/stdlib/` page Gatsby exports, so they stay in step with the rest of the site.
 
-- Code: `publication/` (`catalog.py` shapes the pages, `chrome.py` reuses the Gatsby furniture,
+### Authored pages
+
+The 404 page, Page two, Using TypeScript, Videos, Resources, Use Cases and the Contact Import and
+Meeting Recap use cases are Markus files in `publication/content/pages/`, built by the same
+`postbuild` step. Each file has front matter (`path`, `title`, `heading`, `description`, `kind`, and
+optionally `eyebrow`, `lede`, `muted`, `call_to_action`, `also_written_to`). A `landing` page is a
+hero followed by sections separated by a line of three dashes; `muted` lists the sections (counted
+from 1) that sit on the muted background. A `prose` page is a heading and one article. A heading
+may end in `{#id}` to keep an anchor such as `/videos/#all`. Placeholders such as `{{videos-all}}`
+and `{{build-time}}` are filled from `src/content/videos.js`, `src/content/books.js` and the build
+clock. The 404 page is also written to `public/404.html`. The `using-ssr` page is gone: it
+rendered a random photo on every request, which a static site cannot do, and `gatsby build` never
+emitted it. The contact import diagram is the static image `publication/static/images/deep-integration.svg`.
+
+- Code: `publication/` (`catalog.py` shapes the pages, `authored.py` loads the authored pages,
+  `media.py` reads the videos and books, `chrome.py` reuses the Gatsby furniture,
   `build.py` runs Papyrus, `static/css/tactus-publication.css` styles the article).
 - Tests: `npm test` runs `publication/tests` in a virtual environment under `.build/python`.
 - Python 3.12 or newer is required. When the build machine's `python3` is older, `bin/publication.sh`

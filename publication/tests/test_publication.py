@@ -1,10 +1,13 @@
 import json
 import tempfile
 import unittest
+from datetime import datetime, timezone
 from pathlib import Path
 
 from publication.catalog import fenced_code, load_example_pages, load_pages, load_stdlib_pages, stdlib_module_markdown
-from publication.chrome import extract_site_furniture, load_navigation_categories, page_head_extras
+from publication.authored import CONTENT_DIRECTORY, build_time_text, fill_placeholders, load_authored_pages, parse_page_file
+from publication.chrome import authored_sections_html, extract_site_furniture, load_navigation_categories, page_head_extras
+from publication.media import all_videos_markdown, load_books, load_videos, videos_base_url
 from publication.build import staged_markdown
 from publication.headings import add_heading_ids
 
@@ -235,3 +238,94 @@ class PageHeadTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
+FIXED_TIME = datetime(2026, 10, 18, 17, 46, tzinfo=timezone.utc)
+
+
+class ExplicitHeadingIdsTest(unittest.TestCase):
+    def test_a_trailing_id_becomes_the_heading_id_and_leaves_the_text(self):
+        self.assertEqual(add_heading_ids("<h2>All videos {#all}</h2>"), '<h2 id="all">All videos</h2>')
+
+    def test_headings_without_one_keep_the_github_style_id(self):
+        self.assertEqual(add_heading_ids("<h2>All videos</h2>"), '<h2 id="all-videos">All videos</h2>')
+
+
+class MediaTest(unittest.TestCase):
+    def test_reads_every_video_and_book_the_gatsby_modules_listed(self):
+        self.assertEqual([video["id"] for video in load_videos(REPOSITORY_ROOT)], ["intro", "why-new-language", "guardrails"])
+        books = load_books(REPOSITORY_ROOT)
+        self.assertEqual(len(books), 3)
+        self.assertEqual(books[0]["coverFile"], "learning-tactus.png")
+
+    def test_video_base_url_prefers_the_environment_then_the_content_delivery_network_then_local_files(self):
+        self.assertEqual(videos_base_url(REPOSITORY_ROOT, {"GATSBY_VIDEOS_BASE_URL": "https://example.test/v/"}), "https://example.test/v")
+        self.assertTrue(videos_base_url(REPOSITORY_ROOT, {}).endswith("/videos"))
+        with tempfile.TemporaryDirectory() as directory:
+            self.assertEqual(videos_base_url(directory, {}), "/videos")
+
+    def test_every_video_keeps_the_anchor_old_links_use(self):
+        markdown = all_videos_markdown(REPOSITORY_ROOT, {})
+        for video in load_videos(REPOSITORY_ROOT):
+            self.assertIn(f"{{#{video['id']}}}", markdown)
+
+    def test_names_the_module_when_it_changes_shape(self):
+        with tempfile.TemporaryDirectory() as directory:
+            (Path(directory) / "src" / "content").mkdir(parents=True)
+            (Path(directory) / "src" / "content" / "videos.js").write_text("export const VIDEOS = []\n", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "videos.js: no entries"):
+                load_videos(directory)
+
+
+class AuthoredPagesTest(unittest.TestCase):
+    def test_every_authored_page_loads_with_its_destination(self):
+        pages = {page.path: page for page in load_authored_pages(REPOSITORY_ROOT, {}, FIXED_TIME)}
+        self.assertIn("/404/", pages)
+        self.assertEqual(pages["/404/"].also_written_to, ("404.html",))
+        self.assertEqual(pages["/use-cases/contact-import/"].file_slug, "use-cases-contact-import")
+        self.assertEqual(pages["/videos/"].muted_sections, (1,))
+
+    def test_the_build_time_is_filled_in_as_gatsby_printed_it(self):
+        self.assertEqual(build_time_text(FIXED_TIME), "2026-10-18 05:46 pm UTC")
+        pages = {page.path: page for page in load_authored_pages(REPOSITORY_ROOT, {}, FIXED_TIME)}
+        self.assertIn("built on 2026-10-18 05:46 pm UTC", pages["/using-typescript/"].markdown_body)
+
+    def test_refuses_unknown_placeholders(self):
+        with self.assertRaisesRegex(ValueError, "unknown placeholder"):
+            fill_placeholders("{{nope}}", {"build-time": lambda: "x"}, "page.md")
+
+    def test_refuses_front_matter_it_does_not_understand(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "bad.md"
+            path.write_text("---\npath: /x/\ntitle: X\nheading: X\ndescription: X\nkind: poster\n---\nBody\n", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "kind must be one of"):
+                parse_page_file(path)
+            path.write_text("---\npath: /x/\ntitle: X\nsurprise: 1\n---\nBody\n", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "unknown front matter"):
+                parse_page_file(path)
+
+    def test_no_two_authored_pages_share_a_destination(self):
+        destinations = [page.destination_segments for page in load_authored_pages(REPOSITORY_ROOT, {}, FIXED_TIME)]
+        self.assertEqual(len(destinations), len(set(destinations)))
+        self.assertTrue(list(CONTENT_DIRECTORY.glob("*.md")))
+
+
+class LandingSectionsTest(unittest.TestCase):
+    def landing_page(self, muted):
+        page = load_authored_pages(REPOSITORY_ROOT, {}, FIXED_TIME)[0]
+        page.kind = "landing"
+        page.muted_sections = muted
+        return page
+
+    def test_splits_on_rules_and_mutes_the_listed_sections(self):
+        article = '<article class="markus-document"><h2>One</h2><hr><h2>Two</h2></article>'
+        rendered = authored_sections_html(self.landing_page((2,)), article)
+        self.assertEqual(rendered.count("<section"), 2)
+        self.assertEqual(rendered.count("tactus-section-muted"), 1)
+        self.assertNotIn("<hr", rendered)
+
+    def test_names_the_page_when_a_muted_section_does_not_exist(self):
+        article = '<article class="markus-document"><h2>One</h2></article>'
+        with self.assertRaisesRegex(ValueError, "muted sections \\[3\\] do not exist"):
+            authored_sections_html(self.landing_page((3,)), article)

@@ -9,6 +9,7 @@ EXAMPLES_SOURCE_PATH = "src/data/examples.json"
 STDLIB_SECTION = "stdlib"
 CHAPTER_SECTION = "example-chapters"
 EXAMPLE_SECTION = "examples"
+AUTHORED_SECTION = "pages"
 EXAMPLE_FILE_SEPARATOR = "-"
 STDLIB_PATH_INSIDE_TACTUS_REPOSITORY = "tactus/stdlib/tac/tactus"
 LEADING_TITLE_PATTERN = re.compile(r"\A\s*# [^\n]*\n+")
@@ -43,6 +44,9 @@ class Page:
     previous: NeighborLink = None
     following: NeighborLink = None
     call_to_action: dict = field(default_factory=dict)
+    eyebrow: str = ""
+    muted_sections: tuple = ()
+    also_written_to: tuple = ()
 
     @property
     def href(self):
@@ -238,10 +242,14 @@ def load_example_pages(root):
     return pages
 
 
-def load_pages(root):
-    pages = load_stdlib_pages(root) + load_example_pages(root)
+def reject_colliding_pages(pages):
     hrefs = [page.href for page in pages]
     duplicates = sorted({href for href in hrefs if hrefs.count(href) > 1})
     if duplicates:
         raise ValueError(f"Pages would collide in the Markus output: {', '.join(duplicates)}")
+
+
+def load_pages(root):
+    pages = load_stdlib_pages(root) + load_example_pages(root)
+    reject_colliding_pages(pages)
     return pages

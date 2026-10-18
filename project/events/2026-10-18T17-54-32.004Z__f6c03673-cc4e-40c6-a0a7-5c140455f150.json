@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "event_id": "f6c03673-cc4e-40c6-a0a7-5c140455f150",
+  "issue_id": "tctw-115b0377-21c1-4fd1-b562-558593071505",
+  "event_type": "comment_added",
+  "occurred_at": "2026-10-18T17:54:32.004Z",
+  "actor_id": "home",
+  "payload": {
+    "comment_id": "ca745047-9bf8-4a45-b682-dd073967a82e",
+    "comment_author": "home",
+    "agent": {
+      "platform": "claude-code",
+      "model": "claude-sonnet-5-5",
+      "name": "Cloud Agent"
+    }
+  }
+}

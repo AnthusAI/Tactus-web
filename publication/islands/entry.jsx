@@ -1,4 +1,8 @@
 import { HitlDiagram } from "./hitl-diagram"
+import { InstallCommand } from "./install"
+import AnimatedNewWayFlowchartDiagram from "../../src/components/diagrams/AnimatedNewWayFlowchartDiagram"
+import AnimatedOldWayFlowchartDiagram from "../../src/components/diagrams/AnimatedOldWayFlowchartDiagram"
+import DeepIntegrationDiagram from "../../src/components/diagrams/DeepIntegrationDiagram"
 import { ENHANCERS, mountIslands } from "./mount"
 import AnimatedCodeBlock from "../../src/components/animated/AnimatedCodeBlock"
 import AnimatedAIEngineersToolboxDiagram from "../../src/components/diagrams/AnimatedAIEngineersToolboxDiagram"
@@ -19,6 +23,10 @@ import SpecificationsDiagram from "../../src/components/diagrams/SpecificationsD
 
 const ISLANDS = {
   AnimatedAIEngineersToolboxDiagram,
+  AnimatedNewWayFlowchartDiagram,
+  AnimatedOldWayFlowchartDiagram,
+  DeepIntegrationDiagram,
+  InstallCommand,
   HitlDiagram,
   AnimatedCodeBlock,
   AnimatedGuardrailsStackDiagram,

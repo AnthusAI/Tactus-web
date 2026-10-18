@@ -55,7 +55,7 @@ class Page:
 
     @property
     def path(self):
-        return "/" + "/".join(self.destination_segments) + "/"
+        return "/" + "".join(f"{segment}/" for segment in self.destination_segments)
 
 
 def fenced_code(code, language):

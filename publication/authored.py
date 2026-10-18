@@ -26,6 +26,7 @@ from publication.media import (
     book_series_markdown,
     featured_videos_markdown,
     video_catalog_markdown,
+    video_embed_markdown,
     video_player_markdown,
 )
 
@@ -47,6 +48,7 @@ def placeholder_values(root, environment, now):
     return {
         "build-time": lambda: build_time_text(now),
         "videos-featured": lambda *ids: featured_videos_markdown(root, environment, ids or FEATURED_VIDEO_IDS),
+        "video-embed": lambda video_id: video_embed_markdown(root, environment, video_id),
         "video-player": lambda video_id: video_player_markdown(root, environment, video_id),
         "videos-all": lambda: all_videos_markdown(root, environment),
         "videos-catalog": lambda: video_catalog_markdown(root, environment),
@@ -97,7 +99,7 @@ def page_from_file(path, root, environment, now):
     return Page(
         kind=front_matter["kind"],
         section=AUTHORED_SECTION,
-        file_slug="-".join(segments),
+        file_slug="-".join(segments) or "index",
         destination_segments=segments,
         document_title=front_matter["title"],
         heading=front_matter["heading"],

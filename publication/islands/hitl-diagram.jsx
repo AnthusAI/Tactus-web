@@ -9,6 +9,12 @@ const DIAGRAMS = {
     config: { ...HITL_PRESETS.CLOSELY_SUPERVISED.config, stepBackAfterItems: 1, outageDuration: 8000 },
     startAtMs: HITL_PRESETS.CLOSELY_SUPERVISED.recommendedStartAtMs,
   },
+  unsupervised: {
+    scenario: HITL_PRESETS.UNSUPERVISED_MONKEY.scenario,
+    config: HITL_PRESETS.UNSUPERVISED_MONKEY.config,
+    startAtMs: HITL_PRESETS.UNSUPERVISED_MONKEY.recommendedStartAtMs,
+    cycleMonkey: HITL_PRESETS.UNSUPERVISED_MONKEY.cycleMonkey,
+  },
   queued: {
     scenario: HITL_PRESETS.HUMAN_STEPS_BACK.scenario,
     config: HITL_PRESETS.HUMAN_STEPS_BACK.config,

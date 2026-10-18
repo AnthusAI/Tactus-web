@@ -298,6 +298,8 @@ class AuthoredPagesTest(unittest.TestCase):
         self.assertEqual(pages["/404/"].also_written_to, ("404.html",))
         self.assertEqual(pages["/use-cases/contact-import/"].file_slug, "use-cases-contact-import")
         self.assertEqual(pages["/videos/"].muted_sections, (1,))
+        self.assertEqual(pages["/"].file_slug, "index")
+        self.assertEqual(pages["/"].destination_segments, ())
 
     def test_the_build_time_is_filled_in_as_gatsby_printed_it(self):
         self.assertEqual(build_time_text(FIXED_TIME), "2026-10-18 05:46 pm UTC")

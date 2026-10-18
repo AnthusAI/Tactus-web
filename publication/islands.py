@@ -33,6 +33,8 @@ HITL_STYLESHEET_PATH = "/assets/hitl/hitl-islands.css"
 def coerce(value):
     if value.isdigit():
         return int(value)
+    if re.fullmatch(r"\d+\.\d+", value):
+        return float(value)
     return {"true": True, "false": False}.get(value, value)
 
 

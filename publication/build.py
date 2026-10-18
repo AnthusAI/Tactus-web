@@ -34,6 +34,7 @@ ROOT = Path(__file__).resolve().parent.parent
 STAGING_DIRECTORY = ROOT / ".build" / "publication-content"
 ISLAND_BUNDLE_DIRECTORY = ROOT / ".build" / "islands"
 MARKUS_OUTPUT_DIRECTORY = ROOT / ".build" / "publication-site"
+SITE_IMAGES = ("animals/learning-cover-animal.png", "logos/dspy.png", "logos/lua.svg", "logos/pydantic.svg")
 STATIC_DIRECTORY = Path(__file__).resolve().parent / "static"
 LEADING_HEADING_PATTERN = re.compile(r"^<h1[^>]*>.*?</h1>\s*", re.DOTALL)
 ARTICLE_WRAPPER_PATTERN = re.compile(r"^(<article[^>]*>)(.*)(</article>)\s*$", re.DOTALL)
@@ -80,6 +81,10 @@ def stage_content(pages, root):
         shutil.copytree(ISLAND_BUNDLE_DIRECTORY, STAGING_DIRECTORY / "assets", dirs_exist_ok=True)
     elif any(page.islands for page in pages):
         raise FileNotFoundError("Pages use islands but .build/islands is missing; run `node scripts/build-islands.js`")
+    for image in SITE_IMAGES:
+        destination = STAGING_DIRECTORY / "assets" / image
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy(root / "src" / "images" / image, destination)
     (STAGING_DIRECTORY / "assets" / "books").mkdir()
     for cover in book_cover_files(root):
         shutil.copy(cover, STAGING_DIRECTORY / "assets" / "books")

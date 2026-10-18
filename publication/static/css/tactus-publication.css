@@ -352,3 +352,12 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+.tactus-article .markus-figure img[src$=".png"] {
+  max-width: 32rem;
+  margin: 0 auto;
+}
+.tactus-article .markus-card-body img[src$=".svg"],
+.tactus-article .markus-card-body img[src$="dspy.png"] {
+  max-height: 3rem;
+  width: auto;
+}

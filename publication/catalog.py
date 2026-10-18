@@ -47,6 +47,7 @@ class Page:
     eyebrow: str = ""
     muted_sections: tuple = ()
     also_written_to: tuple = ()
+    islands: tuple = ()
 
     @property
     def href(self):

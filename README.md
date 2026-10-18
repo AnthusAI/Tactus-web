@@ -140,7 +140,7 @@ hidden `/publication-donor/` Gatsby page (`src/pages/publication-donor.js`), whi
 ### Authored pages
 
 The 404 page, Page two, Using TypeScript, Videos, Resources, Use Cases, the Contact Import and
-Meeting Recap use cases, the Standard Library and Examples index pages and Guiding Principles are Markus files in `publication/content/pages/`, built by the same
+Meeting Recap use cases, the Standard Library and Examples index pages, Guiding Principles, the Agent and Model primitives, Validation, Specifications, Evaluations, Features, Learn More, Download and the other use cases are Markus files in `publication/content/pages/`, built by the same
 `postbuild` step. Each file has front matter (`path`, `title`, `heading`, `description`, `kind`, and
 optionally `eyebrow`, `lede`, `muted`, `call_to_action`, `also_written_to`). A `landing` page is a
 hero followed by sections separated by a line of three dashes; `muted` lists the sections (counted
@@ -150,6 +150,16 @@ and `{{build-time}}` are filled from `src/content/videos.js`, `src/content/books
 clock. The 404 page is also written to `public/404.html`. The `using-ssr` page is gone: it
 rendered a random photo on every request, which a static site cannot do, and `gatsby build` never
 emitted it. The contact import diagram is the static image `publication/static/images/deep-integration.svg`.
+
+### Islands
+
+Diagrams and animated code blocks are the existing React components, mounted by one bundle. A page
+writes `{{island Name key="value"}}` on its own line; for `AnimatedCodeBlock` the fenced code block
+that follows is the code (and the no-script fallback). `scripts/build-islands.js` bundles
+`publication/islands/entry.jsx` with esbuild into `.build/islands/` during `postbuild`, and pages
+with islands load `/assets/islands.js` and `/assets/islands.css`. To add a component, import it in
+`entry.jsx` and add it to `ISLANDS`. `ReleaseLinks` on the download page is a plain enhancer that
+fills in the latest release links.
 
 - Code: `publication/` (`catalog.py` shapes the pages, `authored.py` loads the authored pages,
   `media.py` reads the videos and books, `chrome.py` reuses the Gatsby furniture,

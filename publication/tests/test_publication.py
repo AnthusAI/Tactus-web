@@ -7,6 +7,8 @@ from pathlib import Path
 from publication.catalog import fenced_code, load_example_pages, load_pages, load_stdlib_pages, stdlib_module_markdown
 from publication.authored import CONTENT_DIRECTORY, build_time_text, fill_placeholders, load_authored_pages, parse_page_file
 from publication.chrome import authored_sections_html, remove_donor_output, extract_site_furniture, load_navigation_categories, page_head_extras
+from publication.indexes import example_link_markdown, example_snippet_markdown
+from publication.islands import extract_islands, place_islands
 from publication.media import all_videos_markdown, load_books, load_videos, videos_base_url
 from publication.build import staged_markdown
 from publication.headings import add_heading_ids
@@ -304,7 +306,7 @@ class AuthoredPagesTest(unittest.TestCase):
 
     def test_refuses_unknown_placeholders(self):
         with self.assertRaisesRegex(ValueError, "unknown placeholder"):
-            fill_placeholders("{{nope}}", {"build-time": lambda: "x"}, "page.md")
+            fill_placeholders("{{nope}}", {"build-time": lambda *arguments: "x"}, "page.md")
 
     def test_refuses_front_matter_it_does_not_understand(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -340,3 +342,40 @@ class LandingSectionsTest(unittest.TestCase):
         article = '<article class="markus-document"><h2>One</h2></article>'
         with self.assertRaisesRegex(ValueError, "muted sections \\[3\\] do not exist"):
             authored_sections_html(self.landing_page((3,)), article)
+
+
+class IslandsTest(unittest.TestCase):
+    def test_lifts_island_lines_into_markers_and_keeps_their_props(self):
+        markdown, islands = extract_islands('A\n\n{{island AnimatedCodeBlock label="Agent" blockWidth="1400"}}\n\nB', "page.md")
+        self.assertIn("ISLANDMARKER0", markdown)
+        self.assertEqual(islands, (("AnimatedCodeBlock", {"label": "Agent", "blockWidth": 1400}),))
+
+    def test_mounts_a_code_island_around_the_code_it_precedes(self):
+        page = load_authored_pages(REPOSITORY_ROOT, {}, FIXED_TIME)[0]
+        page.islands = (("AnimatedCodeBlock", {"label": "X"}), ("EvaluationsDiagram", {}))
+        rendered = place_islands(
+            page, '<p>ISLANDMARKER0</p>\n<pre><code class="language-lua">x = 1\n</code></pre><p>ISLANDMARKER1</p>'
+        )
+        self.assertIn('data-island="AnimatedCodeBlock"', rendered)
+        self.assertIn('&quot;language&quot;: &quot;lua&quot;', rendered)
+        self.assertIn("<pre><code", rendered.split("</div>")[0])
+        self.assertIn('data-island="EvaluationsDiagram" data-props="{}"></div>', rendered)
+
+    def test_names_the_page_when_an_island_has_no_mount_point(self):
+        page = load_authored_pages(REPOSITORY_ROOT, {}, FIXED_TIME)[0]
+        page.islands = (("EvaluationsDiagram", {}),)
+        with self.assertRaisesRegex(ValueError, "no mount point"):
+            place_islands(page, "<p>Nothing</p>")
+
+
+class ExampleSnippetsTest(unittest.TestCase):
+    def test_takes_the_code_between_the_snippet_markers_and_links_the_source(self):
+        with tempfile.TemporaryDirectory() as directory:
+            write_sources(directory)
+            example = dict(EXAMPLE, code="a\n-- SNIPPET START\nkeep = 1\n-- SNIPPET END\nz")
+            data = {"chapters": [dict(CHAPTER, examples=[example])]}
+            (Path(directory) / "src" / "data" / "examples.json").write_text(json.dumps(data), encoding="utf-8")
+            self.assertEqual(example_snippet_markdown(directory, "hello"), "```lua\nkeep = 1\n```")
+            self.assertEqual(example_link_markdown(directory, "hello"), f"[{EXAMPLE['tacPath']}]({EXAMPLE['githubUrl']})")
+            with self.assertRaisesRegex(ValueError, "no example with id"):
+                example_snippet_markdown(directory, "missing")

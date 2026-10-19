@@ -394,6 +394,15 @@ class IconsAndActionsTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "No icon named"):
             place_icons("<p>ICON:nope</p>")
 
+    def test_places_availability_chips(self):
+        from publication.icons import place_availability_chips
+
+        html = place_availability_chips("<p>AVAILABILITYCHIP:beta</p><p>AVAILABILITYCHIP:early-access</p>")
+        self.assertIn('<span class="tactus-availability-chip">Beta</span>', html)
+        self.assertIn('<span class="tactus-availability-chip">Early access</span>', html)
+        with self.assertRaisesRegex(ValueError, "No availability named"):
+            place_availability_chips("<p>AVAILABILITYCHIP:nope</p>")
+
     def test_turns_a_link_paragraph_into_buttons(self):
         from publication.icons import place_actions
 

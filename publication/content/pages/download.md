@@ -22,6 +22,8 @@ Tactus is already a mission-critical technology in production for my own project
 
 :::card-grid{columns=3 label="Desktop downloads"}
 :::card{title="macOS" icon="svg-apple"}
+{{availability-chip beta}}
+
 Universal (Intel & Apple Silicon)
 
 **Distribution Warning** The distributed macOS app does not yet distribute smoothly. (I have to pay Apple to sign it and I will...) You are better off building the Electron app yourself or using the Node web application.
@@ -30,12 +32,16 @@ Universal (Intel & Apple Silicon)
 :::
 
 :::card{title="Windows" icon="svg-windows"}
+{{availability-chip beta}}
+
 Windows 10/11 (x64)
 
 [View on GitHub](https://github.com/AnthusAI/Tactus/releases/latest#windows)
 :::
 
 :::card{title="Linux" icon="svg-linux"}
+{{availability-chip beta}}
+
 Debian/Ubuntu (AppImage)
 
 [View on GitHub](https://github.com/AnthusAI/Tactus/releases/latest#linux)

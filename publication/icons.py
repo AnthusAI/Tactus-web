@@ -48,6 +48,9 @@ FILLED_ICON_BODIES = {
 ICON_NAMES = sorted(set(ICON_BODIES) | set(FILLED_ICON_BODIES))
 ICON_MARKER_PREFIX = "ICON:"
 ACTIONS_MARKER = "ACTIONSMARKER"
+AVAILABILITY_CHIP_MARKER_PREFIX = "AVAILABILITYCHIP:"
+AVAILABILITY_CHIP_LABELS = {"beta": "Beta", "early-access": "Early access", "planned": "Planned"}
+AVAILABILITY_CHIP_PARAGRAPH_PATTERN = re.compile(rf"<p>{AVAILABILITY_CHIP_MARKER_PREFIX}([a-z-]+)</p>")
 ICON_PARAGRAPH_PATTERN = re.compile(rf"<p>{ICON_MARKER_PREFIX}([a-z-]+)</p>")
 CARD_ICON_PATTERN = re.compile(r'<span class="markus-card-icon" aria-hidden="true">svg-([a-z-]+)</span>')
 ACTIONS_PATTERN = re.compile(rf"<p>{ACTIONS_MARKER}</p>\s*<p>(.*?)</p>", re.DOTALL)
@@ -81,3 +84,13 @@ def place_actions(article_html):
         return f'<div class="tactus-actions">{links}</div>'
 
     return ACTIONS_PATTERN.sub(build, article_html)
+
+
+def place_availability_chips(article_html):
+    def build(match):
+        availability = match.group(1)
+        if availability not in AVAILABILITY_CHIP_LABELS:
+            raise ValueError(f"No availability named {availability}; known: {', '.join(sorted(AVAILABILITY_CHIP_LABELS))}")
+        return f'<p><span class="tactus-availability-chip">{AVAILABILITY_CHIP_LABELS[availability]}</span></p>'
+
+    return AVAILABILITY_CHIP_PARAGRAPH_PATTERN.sub(build, article_html)

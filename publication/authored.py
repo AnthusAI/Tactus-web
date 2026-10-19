@@ -13,7 +13,7 @@ from pathlib import Path
 import yaml
 
 from publication.catalog import AUTHORED_SECTION, Page
-from publication.icons import ACTIONS_MARKER, ICON_MARKER_PREFIX
+from publication.icons import ACTIONS_MARKER, AVAILABILITY_CHIP_MARKER_PREFIX, ICON_MARKER_PREFIX
 from publication.islands import extract_islands
 from publication.indexes import (
     example_chapters_markdown,
@@ -58,6 +58,7 @@ def placeholder_values(root, environment, now):
         "example-link": lambda example_id: example_link_markdown(root, example_id),
         "icon": lambda name: f"{ICON_MARKER_PREFIX}{name}",
         "actions": lambda: ACTIONS_MARKER,
+        "availability-chip": lambda availability: f"{AVAILABILITY_CHIP_MARKER_PREFIX}{availability}",
         "stdlib-modules": lambda: stdlib_modules_markdown(root),
         "example-chapters": lambda: example_chapters_markdown(root),
         "books": lambda: book_series_markdown(root, environment),

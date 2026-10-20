@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "event_id": "f0265ffc-b790-4091-9330-39fac40c96e0",
+  "issue_id": "tctw-b9c346cd-6639-46d0-93d6-274450007a13",
+  "event_type": "issue_created",
+  "occurred_at": "2026-10-20T10:01:47.145Z",
+  "actor_id": "home",
+  "payload": {
+    "title": "README is Gatsby starter boilerplate (Netlify, contradictory instructions)",
+    "description": "**Problem**\nThe Tactus-web README is the Gatsby starter boilerplate, mentions Netlify, and contradicts how the site is actually built and deployed (Amplify).\n\n**Evidence**\nREADME.md in AnthusAI/Tactus-web (audit finding; see also amplify.yml).\n\n**Fix**\nRewrite the README: what the site is, local dev, build, Amplify deploy, content layout.\n\n**How to verify**\nREADME contains no starter boilerplate or Netlify references and its commands run on a fresh clone.\n\nSource: Anthus repo audit, 2026-10-20.",
+    "issue_type": "bug",
+    "status": "open",
+    "priority": 2,
+    "assignee": null,
+    "parent": null,
+    "labels": [],
+    "agent": {
+      "platform": "claude-code",
+      "model": "claude-sonnet-5-5",
+      "name": "audit-filer"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "event_id": "1854c047-b6c1-4e1e-b1e7-976af49588f6",
+  "issue_id": "tctw-ad59fac0-8f5f-499c-b8fe-81aad3b16d2c",
+  "event_type": "issue_created",
+  "occurred_at": "2026-10-20T10:01:47.060Z",
+  "actor_id": "home",
+  "payload": {
+    "title": "Getting-started book PDF links return 404 (Learning-Tactus, Programming-Tactus, Tactus-in-a-Nutshell)",
+    "description": "**Problem**\nThe three book \"PDF\" links on https://tactus.anth.us/getting-started/ 404.\n\n**Evidence**\nsrc/content/books.js:12, :21, :30. Re-checked 2026-10-20, all 404: https://anthusai.github.io/Learning-Tactus/pdf/Learning-Tactus.pdf, https://anthusai.github.io/Programming-Tactus/pdf/Programming-Tactus.pdf, https://anthusai.github.io/Tactus-in-a-Nutshell/pdf/Tactus-in-a-Nutshell.pdf.\n\n**Fix**\nBuild and publish the PDFs in the book repos' Pages deploys, or drop the `pdf` entries until they exist.\n\n**How to verify**\n`curl -s -o /dev/null -w '%{http_code}' <each pdf URL>` returns 200.\n\nSource: Anthus repo audit, 2026-10-20.",
+    "issue_type": "bug",
+    "status": "open",
+    "priority": 2,
+    "assignee": null,
+    "parent": null,
+    "labels": [],
+    "agent": {
+      "platform": "claude-code",
+      "model": "claude-sonnet-5-5",
+      "name": "audit-filer"
+    }
+  }
+}

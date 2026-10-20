@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "event_id": "ef2eea9d-aab8-454c-9020-97b420a2e6c6",
+  "issue_id": "tctw-90357731-98ec-41de-b5f7-c740e7607b14",
+  "event_type": "issue_created",
+  "occurred_at": "2026-10-20T10:01:47.102Z",
+  "actor_id": "home",
+  "payload": {
+    "title": "Text-classification use case links to /stdlib/classify/ (404) and to GitHub blob paths that 404",
+    "description": "**Problem**\nhttps://tactus.anth.us/use-cases/text-classification/ links to /stdlib/classify/ and to GitHub blob paths that do not exist.\n\n**Evidence**\nRe-checked 2026-10-20: `curl -s -o /dev/null -w '%{http_code}' -L https://tactus.anth.us/stdlib/classify/` returns 404 (the use-case page itself returns 200). The GitHub blob 404s are from the audit crawl.\n\n**Fix**\nPoint the links at the real stdlib docs page and at current file paths in the Tactus repo.\n\n**How to verify**\nEvery link on the use-case page returns 200 (link checker over the crawl).\n\nSource: Anthus repo audit, 2026-10-20.",
+    "issue_type": "bug",
+    "status": "open",
+    "priority": 2,
+    "assignee": null,
+    "parent": null,
+    "labels": [],
+    "agent": {
+      "platform": "claude-code",
+      "model": "claude-sonnet-5-5",
+      "name": "audit-filer"
+    }
+  }
+}

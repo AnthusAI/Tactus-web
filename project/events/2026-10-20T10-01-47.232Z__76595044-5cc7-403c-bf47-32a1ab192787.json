@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "event_id": "76595044-5cc7-403c-bf47-32a1ab192787",
+  "issue_id": "tctw-c30f7bea-0a09-441a-9d24-9440e8d60f43",
+  "event_type": "issue_created",
+  "occurred_at": "2026-10-20T10:01:47.232Z",
+  "actor_id": "home",
+  "payload": {
+    "title": "Audit cleanup (low priority): Tactus-web",
+    "description": "**Problem**\nLow-priority findings from the Tactus-web audit.\n\n**Evidence / Fix** (checklist)\n- [ ] Home page title renders as \"Tactus | Tactus\"; use a descriptive title.\n- [ ] islands/hitl.jsx uses a demo customer@acme.com address; confirm it is clearly a placeholder (use an example.com address).\n\n**How to verify**\n`curl -s https://tactus.anth.us/ | grep -o '<title>[^<]*'` is not \"Tactus | Tactus\"; `grep -rn acme.com src` prints nothing.\n\nSource: Anthus repo audit, 2026-10-20.",
+    "issue_type": "bug",
+    "status": "open",
+    "priority": 3,
+    "assignee": null,
+    "parent": null,
+    "labels": [],
+    "agent": {
+      "platform": "claude-code",
+      "model": "claude-sonnet-5-5",
+      "name": "audit-filer"
+    }
+  }
+}

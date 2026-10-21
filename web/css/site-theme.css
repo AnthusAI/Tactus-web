@@ -997,9 +997,6 @@ body.tactus-site {
 
 .tactus-site .markus-band[data-layout~="document-hero"] li:has(strong) {
   background: rgba(255, 193, 7, 0.15);
-}
-
-.tactus-site .markus-band[data-layout~="document-hero"] li:has(strong) {
   color: var(--color-text);
 }
 

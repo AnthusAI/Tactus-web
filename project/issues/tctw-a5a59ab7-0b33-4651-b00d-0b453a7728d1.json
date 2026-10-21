@@ -1,0 +1,20 @@
+{
+  "id": "tctw-a5a59ab7-0b33-4651-b00d-0b453a7728d1",
+  "title": "Compare the dark colour scheme against the old site",
+  "description": "Parity screenshots were taken in the light scheme. The theme carries the same dark tokens (web/css/site-theme.css under prefers-color-scheme: dark) but the family footer and the islands in dark mode were not compared pixel for pixel.",
+  "type": "task",
+  "status": "open",
+  "priority": 4,
+  "assignee": null,
+  "creator": null,
+  "parent": null,
+  "labels": [],
+  "dependencies": [],
+  "comments": [],
+  "created_at": "2026-10-21T05:06:27.285261Z",
+  "updated_at": "2026-10-21T05:06:27.285284Z",
+  "closed_at": null,
+  "right_now_summary": null,
+  "right_now_updated_at": null,
+  "custom": {}
+}

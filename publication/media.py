@@ -1,47 +1,28 @@
-"""Videos and books for the authored pages, read from the same modules the Gatsby components used."""
+"""Videos and books for the content pages, read from ``data/videos.json`` and ``data/books.json``."""
 import json
-import re
 from pathlib import Path
 
-VIDEOS_SOURCE_PATH = "src/content/videos.js"
-BOOKS_SOURCE_PATH = "src/content/books.js"
+VIDEOS_SOURCE_PATH = "data/videos.json"
+BOOKS_SOURCE_PATH = "data/books.json"
 AMPLIFY_OUTPUTS_PATH = "amplify_outputs.json"
-VIDEOS_BASE_URL_VARIABLE = "GATSBY_VIDEOS_BASE_URL"
-BOOK_COVER_DIRECTORY = "src/images/books"
-STRING_FIELD_PATTERN = re.compile(r'(\w+):\s*"((?:[^"\\]|\\.)*)"')
-IDENTIFIER_FIELD_PATTERN = re.compile(r"(\w+):\s*([A-Za-z_]\w*)\s*,")
-OBJECT_PATTERN = re.compile(r"^  \{\n(.*?)^  \},?$", re.DOTALL | re.MULTILINE)
-IMPORT_PATTERN = re.compile(r'import (\w+) from "([^"]+)"')
+VIDEOS_BASE_URL_VARIABLE = "VIDEOS_BASE_URL"
 
 
-def read_records(source, required_fields, source_path):
-    records = []
-    for match in OBJECT_PATTERN.finditer(source):
-        record = {name: json.loads(f'"{value}"') for name, value in STRING_FIELD_PATTERN.findall(match.group(1))}
-        record.update({name: value for name, value in IDENTIFIER_FIELD_PATTERN.findall(match.group(1))})
+def read_records(root, relative_path, required_fields):
+    records = json.loads((Path(root) / relative_path).read_text(encoding="utf-8"))
+    for record in records:
         missing = [field for field in required_fields if field not in record]
         if missing:
-            raise ValueError(f"{source_path}: entry {record.get('id', '?')} lacks {', '.join(missing)}")
-        records.append(record)
-    if not records:
-        raise ValueError(f"{source_path}: no entries found; has the module changed shape?")
+            raise ValueError(f"{relative_path}: entry {record.get('id', '?')} lacks {', '.join(missing)}")
     return records
 
 
 def load_videos(root):
-    source = (Path(root) / VIDEOS_SOURCE_PATH).read_text(encoding="utf-8")
-    return read_records(source, ("id", "title", "description", "filename"), VIDEOS_SOURCE_PATH)
+    return read_records(root, VIDEOS_SOURCE_PATH, ("id", "title", "description", "filename"))
 
 
 def load_books(root):
-    source = (Path(root) / BOOKS_SOURCE_PATH).read_text(encoding="utf-8")
-    imports = {name: Path(path).name for name, path in IMPORT_PATTERN.findall(source)}
-    books = read_records(source, ("id", "title", "description", "href", "pdf", "repo", "coverSrc"), BOOKS_SOURCE_PATH)
-    for book in books:
-        if book["coverSrc"] not in imports:
-            raise ValueError(f"{BOOKS_SOURCE_PATH}: {book['id']} has no cover image import named {book['coverSrc']}")
-        book["coverFile"] = imports[book["coverSrc"]]
-    return books
+    return read_records(root, BOOKS_SOURCE_PATH, ("id", "title", "description", "href", "pdf", "repo", "coverFile"))
 
 
 def videos_base_url(root, environment):
@@ -101,10 +82,6 @@ def book_series_markdown(root, environment):
             f"[Read]({book['href']}) · [PDF]({book['pdf']}) · [Repo]({book['repo']})\n:::\n"
         )
     return ':::card-grid{columns=3 label="Books"}\n' + "\n".join(cards) + ":::"
-
-
-def book_cover_files(root):
-    return [Path(root) / BOOK_COVER_DIRECTORY / book["coverFile"] for book in load_books(root)]
 
 
 def video_player_markdown(root, environment, video_id):

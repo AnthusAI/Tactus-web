@@ -16,7 +16,6 @@ frontend:
         - nvm use 20
         - node --version
         - npm ci
-        - npm update anthus-footer
     build:
       commands:
         - npm run build

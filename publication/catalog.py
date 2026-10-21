@@ -3,14 +3,22 @@ import re
 from dataclasses import dataclass, field
 from pathlib import Path
 
-SITE_NAME = "Tactus"
+"""Standard library and example pages: Markus Markdown for Papyrus, from the ingested ``src/data`` files.
+
+``npm run stdlib:ingest`` and ``npm run examples:ingest`` write ``src/data/stdlib.json`` and ``src/data/examples.json``.
+Each module, chapter and example becomes one content file with Papyrus page blocks: a heading band, the article on a
+muted band, links to the neighbouring pages and a closing call to action.
+"""
+import json
+import re
+from dataclasses import dataclass, field
+from pathlib import Path
+
+import yaml
+
 STDLIB_SOURCE_PATH = "src/data/stdlib.json"
 EXAMPLES_SOURCE_PATH = "src/data/examples.json"
-STDLIB_SECTION = "stdlib"
-CHAPTER_SECTION = "example-chapters"
-EXAMPLE_SECTION = "examples"
-AUTHORED_SECTION = "pages"
-EXAMPLE_FILE_SEPARATOR = "-"
+EXAMPLE_PATH_SEPARATOR = "/"
 STDLIB_PATH_INSIDE_TACTUS_REPOSITORY = "tactus/stdlib/tac/tactus"
 LEADING_TITLE_PATTERN = re.compile(r"\A\s*# [^\n]*\n+")
 
@@ -30,9 +38,7 @@ class Badge:
 
 @dataclass
 class Page:
-    section: str
-    file_slug: str
-    destination_segments: tuple
+    content_path: str
     document_title: str
     heading: str
     description: str
@@ -40,24 +46,13 @@ class Page:
     breadcrumb: list
     badges: list
     markdown_body: str
-    kind: str = ""
     previous: NeighborLink = None
     following: NeighborLink = None
     call_to_action: dict = field(default_factory=dict)
-    eyebrow: str = ""
-    muted_sections: tuple = ()
-    also_written_to: tuple = ()
-    islands: tuple = ()
-    hero_split: bool = False
-    drop_caps: tuple = ()
-
-    @property
-    def href(self):
-        return f"{self.section}/{self.file_slug}.html"
 
     @property
     def path(self):
-        return "/" + "".join(f"{segment}/" for segment in self.destination_segments)
+        return "/" + self.content_path[: -len(".md")] + "/"
 
 
 def fenced_code(code, language):
@@ -113,10 +108,7 @@ def load_stdlib_pages(root):
         badges.append(Badge(count_label(len(module["submodules"]), "class", "classes")))
         pages.append(
             Page(
-                kind="module",
-                section=STDLIB_SECTION,
-                file_slug=module["slug"],
-                destination_segments=("stdlib", module["slug"]),
+                content_path=f"stdlib/{module['slug']}.md",
                 document_title=f"{module['name']} - Standard Library",
                 heading=module["name"],
                 description=module["description"],
@@ -185,10 +177,7 @@ def load_example_pages(root):
         next_chapter = chapters[chapter_index + 1] if chapter_index < len(chapters) - 1 else None
         pages.append(
             Page(
-                kind="chapter",
-                section=CHAPTER_SECTION,
-                file_slug=chapter["slug"],
-                destination_segments=("examples", chapter["slug"]),
+                content_path=f"examples/{chapter['slug']}.md",
                 document_title=f"{chapter['title']} Examples",
                 heading=chapter["title"],
                 description=chapter["description"],
@@ -215,10 +204,7 @@ def load_example_pages(root):
             )
             pages.append(
                 Page(
-                    kind="example",
-                    section=EXAMPLE_SECTION,
-                    file_slug=f"{chapter['slug']}{EXAMPLE_FILE_SEPARATOR}{example['slug']}",
-                    destination_segments=("examples", chapter["slug"], example["slug"]),
+                    content_path=f"examples/{chapter['slug']}/{example['slug']}.md",
                     document_title=f"{example['title']} - {chapter['title']} Examples",
                     heading=example["title"],
                     description=example["description"],
@@ -245,14 +231,58 @@ def load_example_pages(root):
     return pages
 
 
-def reject_colliding_pages(pages):
-    hrefs = [page.href for page in pages]
-    duplicates = sorted({href for href in hrefs if hrefs.count(href) > 1})
+def reject_colliding_pages(pages, authored_paths=()):
+    paths = [page.content_path for page in pages] + list(authored_paths)
+    duplicates = sorted({path for path in paths if paths.count(path) > 1})
     if duplicates:
-        raise ValueError(f"Pages would collide in the Markus output: {', '.join(duplicates)}")
+        raise ValueError(f"Pages would collide in the content directory: {', '.join(duplicates)}")
 
 
 def load_pages(root):
-    pages = load_stdlib_pages(root) + load_example_pages(root)
-    reject_colliding_pages(pages)
-    return pages
+    return load_stdlib_pages(root) + load_example_pages(root)
+
+
+MARKDOWN_PUNCTUATION_PATTERN = re.compile(r"([\\`*_\[\]<>#|~{}])")
+
+
+def plain_markdown(text):
+    """``text`` as one line that Markus shows literally: whitespace collapsed, markup characters escaped."""
+    return MARKDOWN_PUNCTUATION_PATTERN.sub(r"\\\1", " ".join(text.split()))
+
+
+def link_list(links):
+    return "\n".join(f"- {link}" for link in links)
+
+
+def neighbor_markdown(link):
+    return f"[*{link.label}* **{link.title}**]({link.path})"
+
+
+def page_markdown(page):
+    """The whole content file for a generated page: front matter and page blocks."""
+    heading = plain_markdown(page.heading)
+    breadcrumb = "".join(f"[{label}]({path}) / " for label, path in page.breadcrumb) + heading
+    badges = link_list(badge.text if not badge.warning else f"**{badge.text}**" for badge in page.badges)
+    blocks = [
+        f'::band{{columns="{"document-hero" if page.content_path.startswith("stdlib/") else "document-hero wide"}"}}',
+        f"{breadcrumb}\n\n# {heading}" + (f"\n\n{badges}" if badges else "") + f"\n\n{plain_markdown(page.lede)}",
+        '::band{tone="muted"' + (' columns="example"' if page.content_path.count("/") == 2 else "") + "}",
+        page.markdown_body,
+    ]
+    if page.previous or page.following:
+        previous = neighbor_markdown(page.previous) if page.previous else ""
+        following = neighbor_markdown(page.following) if page.following else ""
+        blocks += ['::band{columns="neighbors"}', f"- {previous}".rstrip() + (f"\n- {following}" if following else "")]
+    action = page.call_to_action
+    blocks += [
+        '::band{columns="cta"}',
+        f"## {action['title']}" + (f"\n\n{action['text']}" if action["text"] else ""),
+        f'::button{{href="{action["to"]}" label="{action["label"]}" size="lg"}}',
+    ]
+    front_matter = yaml.safe_dump(
+        {"title": page.document_title, "description": page.description, "type": "page"},
+        sort_keys=False,
+        allow_unicode=True,
+        width=100000,
+    )
+    return f"---\n{front_matter}---\n" + "\n\n".join(blocks) + "\n"

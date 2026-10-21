@@ -1,0 +1,20 @@
+{
+  "id": "tctw-48a90fa2-1ee8-4dad-8eb9-78d0f6f3e7a7",
+  "title": "Guardrails links point at /guardrails/#sandboxing, which has no such anchor",
+  "description": "The home page and /learn-more/ link to /guardrails/#sandboxing; the guardrails page has no element with id sandboxing (also true on the Gatsby build before the Papyrus migration). Add the anchor or retarget the links.",
+  "type": "bug",
+  "status": "open",
+  "priority": 3,
+  "assignee": null,
+  "creator": null,
+  "parent": null,
+  "labels": [],
+  "dependencies": [],
+  "comments": [],
+  "created_at": "2026-10-21T04:18:24.586375Z",
+  "updated_at": "2026-10-21T04:18:24.586409Z",
+  "closed_at": null,
+  "right_now_summary": null,
+  "right_now_updated_at": null,
+  "custom": {}
+}

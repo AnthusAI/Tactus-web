@@ -1,0 +1,90 @@
+.tactus-hitl-chat-shell {
+  background: var(--color-surface);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  border: 1px solid rgba(127, 127, 127, 0.18);
+  margin: var(--space-4) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.tactus-hitl-chat-header {
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: var(--line-height-normal);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  display: block;
+  padding: var(--space-4);
+  background: var(--color-card-title);
+  border-bottom: 1px solid rgba(127, 127, 127, 0.18);
+}
+
+.tactus-hitl-chat-title {
+  line-height: 1.2;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 800;
+  margin: 0;
+  color: var(--color-text);
+}
+
+.tactus-hitl-chat-meta {
+  display: block;
+  width: 100%;
+  text-transform: none;
+  letter-spacing: normal;
+  margin-top: 0.25rem;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.tactus-hitl-chat-log {
+  padding: var(--space-4);
+  background: color-mix(in srgb, var(--color-primary) 4%, var(--color-bg));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.tactus-hitl-chat-scroll {
+  padding: var(--space-4);
+  background: var(--color-surface);
+  scrollbar-gutter: auto !important;
+}
+
+.tactus-hitl-chat-footer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 4px;
+  padding: var(--space-4);
+  background: var(--color-surface);
+  border-top: 1px solid rgba(127, 127, 127, 0.18);
+}
+
+.tactus-hitl-footer-hint {
+  display: block;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.tactus-hitl-full-width-message {
+  width: 100%;
+}
+
+.tactus-hitl-component-block {
+  margin: var(--space-4) 0;
+}
+
+
+@media (max-width: 720px) {
+  .tactus-hitl-chat-header {
+    padding: var(--space-3);
+  }
+
+  .tactus-hitl-chat-log {
+    padding: var(--space-3);
+  }
+}

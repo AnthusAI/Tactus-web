@@ -1,0 +1,216 @@
+{
+  "site": {
+    "name": "Tactus",
+    "publisher": "Anthus",
+    "description": "Beyond prompts + hope: Tactus is a language + runtime for safe, reproducible tool-using agents—give them tools and a procedure, with approvals, durability, and the principle of least privilege.",
+    "productionUrl": "https://tactus.anth.us"
+  },
+  "urls": {
+    "style": "directory",
+    "sections": {
+      "getting-started": {
+        "base": "getting-started",
+        "label": "Get Started",
+        "listing": false,
+        "feed": false
+      },
+      "use-cases": {
+        "base": "use-cases",
+        "label": "Use cases",
+        "listing": false,
+        "feed": false
+      },
+      "resources": {
+        "base": "resources",
+        "label": "Resources",
+        "listing": false,
+        "feed": false
+      },
+      "stdlib": {
+        "base": "stdlib",
+        "label": "Standard Library",
+        "listing": false,
+        "feed": false
+      },
+      "examples": {
+        "base": "examples",
+        "label": "Examples",
+        "listing": false,
+        "feed": false
+      }
+    }
+  },
+  "nav": {
+    "disclosure": true,
+    "links": [
+      {
+        "label": "Learn More",
+        "children": [
+          {
+            "label": "Overview",
+            "href": "/learn-more/"
+          },
+          {
+            "label": "Features",
+            "href": "/features/"
+          },
+          {
+            "label": "Human in the Loop",
+            "href": "/human-in-the-loop/"
+          },
+          {
+            "label": "The AI Engineer’s Toolbox",
+            "href": "/ai-engineers-toolbox/"
+          },
+          {
+            "label": "Behavior Specifications",
+            "href": "/specifications/"
+          },
+          {
+            "label": "Evaluations",
+            "href": "/evaluations/"
+          },
+          {
+            "label": "Validation",
+            "href": "/validation/"
+          },
+          {
+            "label": "Model Primitive",
+            "href": "/model-primitive/"
+          },
+          {
+            "label": "Agent Primitive",
+            "href": "/agent-primitive/"
+          }
+        ]
+      },
+      {
+        "label": "Concepts",
+        "children": [
+          {
+            "label": "Guiding Principles",
+            "href": "/guiding-principles/"
+          },
+          {
+            "label": "Why a New Language?",
+            "href": "/why-new-language/"
+          },
+          {
+            "label": "Guardrails for Agent Autonomy",
+            "href": "/guardrails/"
+          }
+        ]
+      },
+      {
+        "label": "Get Started",
+        "href": "/getting-started/"
+      },
+      {
+        "label": "Resources",
+        "children": [
+          {
+            "label": "Overview",
+            "href": "/resources/"
+          },
+          {
+            "label": "Videos",
+            "href": "/resources/#videos"
+          },
+          {
+            "label": "Books",
+            "href": "/resources/#books"
+          },
+          {
+            "label": "Component Library",
+            "href": "/resources/components/"
+          },
+          {
+            "label": "Standard Code Library",
+            "href": "/stdlib/"
+          }
+        ]
+      },
+      {
+        "label": "Examples",
+        "children": [
+          {
+            "label": "Use Cases",
+            "href": "/use-cases/"
+          },
+          {
+            "label": "Examples Overview",
+            "href": "/examples/"
+          }
+        ]
+      },
+      {
+        "label": "Download",
+        "href": "/download/"
+      }
+    ]
+  },
+  "footer": {
+    "text": "Tactus is a programming language and runtime for durable AI agent procedures with checkpointing, sandboxing, and built-in human-in-the-loop controls.",
+    "family": {
+      "siteId": "tactus",
+      "byline": "Designed cybernetically by Ryan Porter",
+      "logo": "/icons/icon-48x48.png",
+      "logoAlt": "Tactus icon"
+    },
+    "columns": [
+      {
+        "title": "Tactus",
+        "links": [
+          {
+            "label": "Getting Started",
+            "href": "/getting-started/"
+          },
+          {
+            "label": "Features",
+            "href": "/features/"
+          },
+          {
+            "label": "GitHub",
+            "href": "https://github.com/AnthusAI/Tactus",
+            "external": true
+          }
+        ]
+      }
+    ]
+  },
+  "seo": {
+    "defaultImage": "/og/icon.png",
+    "twitterCreator": "@AnthusAI"
+  },
+  "icons": {
+    "icon": "/favicon-32x32.png",
+    "iconType": "image/png",
+    "manifest": "/manifest.webmanifest",
+    "themeColor": "#c7007e"
+  },
+  "feeds": {
+    "formats": []
+  },
+  "components": {
+    "breadcrumbs": false
+  },
+  "agents": {
+    "llmsTxt": false
+  },
+  "chrome": {
+    "body_class": "markus-body tactus-site",
+    "stylesheets": [
+      "css/markus-components.css",
+      "css/site-theme.css"
+    ],
+    "title_template": "{title} | {site}"
+  },
+  "islands": {
+    "script": "assets/islands.js",
+    "stylesheet": "assets/islands.css"
+  },
+  "hooks": "hooks.py",
+  "pageActions": {
+    "enabled": false
+  }
+}

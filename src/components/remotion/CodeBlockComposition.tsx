@@ -46,7 +46,7 @@ export type CodeBlockCompositionProps = {
  * This is entirely self-contained - the Player never loops (always loop=false).
  *
  * Color System:
- * These colors mirror the CSS custom properties defined in src/components/layout.css.
+ * These colors mirror the CSS custom properties defined in web/css/site-theme.css.
  * Since Remotion compositions can't access CSS variables directly (they render in Node.js),
  * we duplicate the values here with clear documentation of their source.
  */
@@ -70,7 +70,7 @@ export const CodeBlockComposition: React.FC<CodeBlockCompositionProps> = ({
   const frame = useCurrentFrame()
   const { fps } = useVideoConfig()
 
-  // Theme colors mirroring layout.css CSS custom properties
+  // Theme colors mirroring web/css/site-theme.css custom properties
   const colors =
     theme === "dark"
       ? {

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "event_id": "ca80fed7-2119-4245-9b0a-aa7f1e0ce229",
+  "issue_id": "tctw-0e9cbd4d-f7e0-4162-afcb-1a66e52f122d",
+  "event_type": "issue_created",
+  "occurred_at": "2026-10-21T05:06:26.840Z",
+  "actor_id": "home",
+  "payload": {
+    "title": "Orphan example pages: two stubs and one long essay are not linked from anywhere",
+    "description": "/examples/self-evolving-agents/ and /examples/text-classification/ are one-paragraph stubs; /examples/automated-scientific-discovery/ is a long essay with citations. None is in the navigation (the Example Usage menu is commented out). Migrated as they were (content/examples/*.md); decide whether to publish, link or delete them.",
+    "issue_type": "task",
+    "status": "open",
+    "priority": 4,
+    "assignee": null,
+    "parent": null,
+    "labels": []
+  }
+}

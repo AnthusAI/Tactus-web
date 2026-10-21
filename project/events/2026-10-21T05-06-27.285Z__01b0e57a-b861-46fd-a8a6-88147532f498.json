@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "event_id": "01b0e57a-b861-46fd-a8a6-88147532f498",
+  "issue_id": "tctw-a5a59ab7-0b33-4651-b00d-0b453a7728d1",
+  "event_type": "issue_created",
+  "occurred_at": "2026-10-21T05:06:27.285Z",
+  "actor_id": "home",
+  "payload": {
+    "title": "Compare the dark colour scheme against the old site",
+    "description": "Parity screenshots were taken in the light scheme. The theme carries the same dark tokens (web/css/site-theme.css under prefers-color-scheme: dark) but the family footer and the islands in dark mode were not compared pixel for pixel.",
+    "issue_type": "task",
+    "status": "open",
+    "priority": 4,
+    "assignee": null,
+    "parent": null,
+    "labels": []
+  }
+}

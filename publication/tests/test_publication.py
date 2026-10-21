@@ -1,17 +1,31 @@
 import json
+import os
+import re
+import sys
 import tempfile
 import unittest
 from datetime import datetime, timezone
 from pathlib import Path
 
-from publication.catalog import fenced_code, load_example_pages, load_pages, load_stdlib_pages, stdlib_module_markdown
-from publication.authored import CONTENT_DIRECTORY, build_time_text, fill_placeholders, load_authored_pages, parse_page_file
-from publication.chrome import authored_section_list, remove_donor_output, section_html, extract_site_furniture, load_navigation_categories, page_head_extras
+import shutil
+
+from publication.authored import authored_files, build_time_text, fill_placeholders
+from publication.build import public_url, stage_content
+from publication.catalog import (
+    fenced_code,
+    load_example_pages,
+    load_pages,
+    load_stdlib_pages,
+    page_markdown,
+    plain_markdown,
+    reject_colliding_pages,
+    stdlib_module_markdown,
+)
 from publication.indexes import example_link_markdown, example_snippet_markdown
-from publication.islands import extract_islands, place_islands
 from publication.media import all_videos_markdown, load_books, load_videos, videos_base_url
-from publication.build import staged_markdown
-from publication.headings import add_heading_ids
+
+REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
+FIXED_TIME = datetime(2026, 10, 18, 17, 46, tzinfo=timezone.utc)
 
 STDLIB_MODULE = {
     "id": "generate",
@@ -45,36 +59,6 @@ CHAPTER = {
     "examples": [EXAMPLE, dict(EXAMPLE, id="again", title="Hello Again", slug="hello-again", requiresApiKeys=False)],
 }
 OTHER_CHAPTER = dict(CHAPTER, id="agents", title="Agents", slug="agents", examples=[])
-NAVIGATION_SOURCE = """
-export const NAV_CONFIG = {
-  categories: [
-    {
-      id: "learn-more",
-      label: "Learn More",
-      to: "/learn-more/",
-      items: [
-        { label: "Features", to: "/features/" },
-      ],
-    },
-    {
-      id: "concepts",
-      label: "Concepts",
-      // No top-level link
-      items: [{ label: "Guiding Principles", to: "/guiding-principles/" }],
-    },
-    /*
-    {
-      id: "hidden",
-      label: "Hidden",
-      items: [{ label: "Nope", to: "/nope/" }],
-    },
-    */
-  ],
-}
-const NavMenu = () => null
-"""
-
-
 def write_sources(directory):
     data_directory = Path(directory) / "src" / "data"
     data_directory.mkdir(parents=True)
@@ -134,16 +118,12 @@ class ExamplePagesTest(unittest.TestCase):
         self.assertTrue(fenced.startswith("````lua\n"))
         self.assertTrue(fenced.endswith("\n````"))
 
-    def test_refuses_pages_that_would_collide_in_the_markus_output(self):
-        colliding_chapters = [
-            dict(CHAPTER, slug="a", examples=[dict(EXAMPLE, slug="b-c")]),
-            dict(CHAPTER, slug="a-b", examples=[dict(EXAMPLE, slug="c")]),
-        ]
+    def test_refuses_pages_that_would_collide_in_the_content_directory(self):
         with tempfile.TemporaryDirectory() as directory:
             write_sources(directory)
-            (Path(directory) / "src" / "data" / "examples.json").write_text(json.dumps({"chapters": colliding_chapters}), encoding="utf-8")
+            pages = load_pages(directory)
             with self.assertRaisesRegex(ValueError, "collide"):
-                load_pages(directory)
+                reject_colliding_pages(pages, ["stdlib/web.md"])
 
     def test_names_the_ingest_command_when_a_data_file_is_missing(self):
         with tempfile.TemporaryDirectory() as directory:
@@ -151,129 +131,122 @@ class ExamplePagesTest(unittest.TestCase):
                 load_stdlib_pages(directory)
 
 
-class StagedMarkdownTest(unittest.TestCase):
-    def test_carries_the_title_papyrus_reads_for_the_page_title(self):
-        self.assertEqual(staged_markdown("Hello", "Body."), '---\ntitle: "Hello"\n---\n\n# Hello\n\nBody.\n')
 
-    def test_refuses_titles_papyrus_would_misread(self):
-        with self.assertRaisesRegex(ValueError, "quotes or backslashes"):
-            staged_markdown('Say "hi"', "Body.")
-
-
-class HeadingIdsTest(unittest.TestCase):
-    def test_numbers_repeated_headings_like_github(self):
-        self.assertEqual(
-            add_heading_ids("<h2>Run it</h2><h2>Run it</h2>"),
-            '<h2 id="run-it">Run it</h2><h2 id="run-it-1">Run it</h2>',
-        )
-
-
-class NavigationTest(unittest.TestCase):
-    def test_reads_categories_and_skips_commented_out_ones(self):
-        with tempfile.TemporaryDirectory() as directory:
-            source_directory = Path(directory) / "src" / "components"
-            source_directory.mkdir(parents=True)
-            (source_directory / "nav-menu.js").write_text(NAVIGATION_SOURCE, encoding="utf-8")
-            categories = load_navigation_categories(directory)
-        self.assertEqual(
-            categories,
-            [
-                ("Learn More", "/learn-more/", [("Features", "/features/")]),
-                ("Concepts", "", [("Guiding Principles", "/guiding-principles/")]),
-            ],
-        )
-
-
-DONOR_HTML = (
-    '<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/>'
-    '<meta name="viewport" content="width=device-width"/><meta name="theme-color" content="#c7007e"/>'
-    '<style data-href="/styles.css" data-identity="gatsby-global-css">'
-    ".layout-module--contentFull--f8f12{margin:0}"
-    ".nav-menu-module--navMenu--c15df{x:1}.nav-menu-module--navMenuInner--20f5b{x:1}"
-    ".nav-menu-module--navCategories--7388c{x:1}.nav-menu-module--navCategory--a759d{x:1}"
-    ".nav-menu-module--navCategoryLabel--8fde5{x:1}.nav-menu-module--navCategoryItems--0aa39{x:1}"
-    ".nav-menu-module--navCategoryItem--3007b{x:1}</style>"
-    '<link rel="icon" href="/favicon.png"/></head><body><div id="___gatsby"><div id="gatsby-focus-wrapper">'
-    '<div class="layout-module--page--8d91a"><header class="header-module--header--666b3">'
-    '<button class="header-module--menuToggle--b0496" aria-label="Toggle navigation menu" aria-expanded="false">m</button>'
-    '</header><main>x</main><footer style="width:100%">Footer</footer></div></div></div></body></html>'
-)
-
-
-class SiteFurnitureTest(unittest.TestCase):
-    def test_reuses_the_header_footer_and_stylesheet_gatsby_exported(self):
-        with tempfile.TemporaryDirectory() as directory:
-            source_directory = Path(directory) / "src" / "components"
-            source_directory.mkdir(parents=True)
-            (source_directory / "nav-menu.js").write_text(NAVIGATION_SOURCE, encoding="utf-8")
-            donor = Path(directory) / "public" / "publication-donor" / "index.html"
-            donor.parent.mkdir(parents=True)
-            donor.write_text(DONOR_HTML, encoding="utf-8")
-            furniture = extract_site_furniture(directory, Path(directory) / "public")
-        self.assertEqual(furniture.page_class, "layout-module--page--8d91a")
-        self.assertEqual(furniture.content_class, "layout-module--contentFull--f8f12")
-        self.assertIn('aria-controls="site-navigation-menu"', furniture.header_html)
-        self.assertIn("Footer", furniture.footer_html)
-        self.assertIn("nav-menu-module--navMenu--c15df", furniture.navigation_html)
-        self.assertIn('href="/features/"', furniture.navigation_html)
-        self.assertIn("/assets/tactus-publication.css", furniture.head_html)
-
-    def test_names_the_donor_page_when_it_stops_carrying_what_the_pages_reuse(self):
-        with tempfile.TemporaryDirectory() as directory:
-            donor = Path(directory) / "public" / "publication-donor" / "index.html"
-            donor.parent.mkdir(parents=True)
-            donor.write_text("<html><head></head><body></body></html>", encoding="utf-8")
-            with self.assertRaisesRegex(ValueError, "publication-donor/index.html"):
-                extract_site_furniture(directory, Path(directory) / "public")
-
-    def test_removes_the_donor_page_and_its_data_from_the_site(self):
-        with tempfile.TemporaryDirectory() as directory:
-            site = Path(directory)
-            for relative in ("publication-donor/index.html", "page-data/publication-donor/page-data.json", "page-data/other/page-data.json"):
-                (site / relative).parent.mkdir(parents=True, exist_ok=True)
-                (site / relative).write_text("x", encoding="utf-8")
-            remove_donor_output(site)
-            self.assertFalse((site / "publication-donor").exists())
-            self.assertFalse((site / "page-data" / "publication-donor").exists())
-            self.assertTrue((site / "page-data" / "other" / "page-data.json").exists())
-
-
-class PageHeadTest(unittest.TestCase):
-    def test_social_tags_carry_the_site_suffixed_title_and_description(self):
+class PageMarkdownTest(unittest.TestCase):
+    def pages(self):
         with tempfile.TemporaryDirectory() as directory:
             write_sources(directory)
-            page = load_stdlib_pages(directory)[0]
-        head = page_head_extras(page, "https://example.test")
-        self.assertIn('property="og:title" content="Generate Module - Standard Library | Tactus"', head)
-        self.assertIn('name="description" content="Flexible text generation."', head)
-        self.assertIn("https://example.test/og/icon.png", head)
+            return {page.path: page for page in load_pages(directory)}
+
+    def test_a_module_page_is_blocks_for_papyrus(self):
+        text = page_markdown(self.pages()["/stdlib/generate/"])
+        front_matter, body = text.split("\n---\n", 1)
+        self.assertIn("title: Generate Module - Standard Library", front_matter)
+        self.assertIn("type: page", front_matter)
+        self.assertTrue(body.startswith('::band{columns="document-hero"}\n\n[Standard Library](/stdlib/) / Generate Module\n\n# Generate Module\n\n- 1 spec\n- 1 class'))
+        self.assertIn('::band{tone="muted"}\n', body)
+        self.assertIn('::band{columns="neighbors"}\n\n-\n- [*Next Module →* **Web Research**](/stdlib/web/)', body)
+        self.assertIn('::button{href="/stdlib/" label="View All Modules" size="lg"}', body)
+
+    def test_an_example_page_gets_the_example_layout_and_warns_about_keys(self):
+        text = page_markdown(self.pages()["/examples/getting-started/hello-world/"])
+        self.assertIn('::band{columns="document-hero wide"}', text)
+        self.assertIn('::band{tone="muted" columns="example"}', text)
+        self.assertIn("- **Requires API Keys**", text)
+
+    def test_the_first_page_of_a_series_has_an_empty_previous_slot(self):
+        text = page_markdown(self.pages()["/stdlib/generate/"])
+        self.assertIn("-\n- [*Next Module", text)
+
+    def test_ledes_show_literally_in_one_line(self):
+        self.assertEqual(plain_markdown("Shows:\n- a `x` and *y*"), "Shows: - a \\`x\\` and \\*y\\*")
+
+    def test_titles_with_quotes_are_safe_front_matter(self):
+        page = self.pages()["/stdlib/web/"]
+        page.document_title = 'Say "hi": now'
+        self.assertIn('title: \'Say "hi": now\'', page_markdown(page))
 
 
-if __name__ == "__main__":
-    unittest.main()
+class StagingTest(unittest.TestCase):
+    def prepare(self, directory):
+        root = Path(directory)
+        write_sources(root)
+        (root / "content").mkdir()
+        (root / "content" / "about.md").write_text("---\ntitle: About\ntype: page\n---\n::band\n# About {{build-time}}\n", encoding="utf-8")
+        (root / "content" / "stdlib.md").write_text("---\ntitle: Std\ntype: page\n---\n::band\n{{stdlib-modules}}\n", encoding="utf-8")
+        (root / "data").mkdir()
+        (root / "data" / "videos.json").write_text("[]", encoding="utf-8")
+        return root
+
+    def test_stages_authored_pages_with_placeholders_filled_and_generated_pages_beside_them(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = self.prepare(directory)
+            staging = root / "staging"
+            counts = stage_content(root, staging)
+            self.assertEqual(counts, (2, 6))
+            self.assertIn("# About 20", (staging / "about.md").read_text(encoding="utf-8"))
+            self.assertIn(':::card{title="Generate Module"}', (staging / "stdlib.md").read_text(encoding="utf-8"))
+            self.assertTrue((staging / "examples" / "getting-started" / "hello-world.md").is_file())
+            self.assertTrue((staging / "stdlib" / "web.md").is_file())
+
+    def test_refuses_an_authored_page_where_a_generated_page_goes(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = self.prepare(directory)
+            (root / "content" / "stdlib").mkdir()
+            (root / "content" / "stdlib" / "web.md").write_text("---\ntitle: X\n---\nX\n", encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "collide"):
+                stage_content(root, root / "staging")
+
+    def test_production_is_the_default_origin_and_previews_get_their_own(self):
+        self.assertEqual(public_url({}), "https://tactus.anth.us")
+        self.assertEqual(public_url({"AWS_BRANCH": "main", "AWS_APP_ID": "abc"}), "https://tactus.anth.us")
+        self.assertEqual(public_url({"AWS_BRANCH": "feature/x", "AWS_APP_ID": "abc"}), "https://feature-x.abc.amplifyapp.com")
+        self.assertEqual(public_url({"PAPYRUS_SITE_PUBLIC_URL": "http://localhost:8000"}), "http://localhost:8000")
 
 
-REPOSITORY_ROOT = Path(__file__).resolve().parents[2]
-FIXED_TIME = datetime(2026, 10, 18, 17, 46, tzinfo=timezone.utc)
+class AuthoredContentTest(unittest.TestCase):
+    def test_every_authored_page_has_front_matter_and_starts_with_a_band(self):
+        files = authored_files(REPOSITORY_ROOT)
+        self.assertGreater(len(files), 30)
+        for path in files:
+            text = path.read_text(encoding="utf-8")
+            self.assertTrue(text.startswith("---\n"), path.name)
+            front_matter, body = text[4:].split("\n---\n", 1)
+            self.assertIn("title:", front_matter, path.name)
+            self.assertIn("type: page", front_matter, path.name)
+            self.assertTrue(body.startswith("::band"), f"{path.name} must start with a ::band line")
 
+    def test_no_page_still_uses_the_pre_papyrus_syntax(self):
+        for path in authored_files(REPOSITORY_ROOT):
+            text = path.read_text(encoding="utf-8")
+            self.assertNotIn("{{island", text, path.name)
+            self.assertNotIn("{{actions}}", text, path.name)
 
-class ExplicitHeadingIdsTest(unittest.TestCase):
-    def test_a_trailing_id_becomes_the_heading_id_and_leaves_the_text(self):
-        self.assertEqual(add_heading_ids("<h2>All videos {#all}</h2>"), '<h2 id="all">All videos</h2>')
+    def test_every_placeholder_is_known(self):
+        known = {"build-time", "videos-featured", "video-embed", "video-player", "videos-all", "videos-catalog", "example-code", "example-snippet", "example-link", "icon", "availability-chip", "stdlib-modules", "example-chapters", "books"}
+        for path in authored_files(REPOSITORY_ROOT):
+            for name in re.findall(r"\{\{([a-z0-9-]+)", path.read_text(encoding="utf-8")):
+                self.assertIn(name, known, path.name)
 
-    def test_headings_without_one_keep_the_github_style_id(self):
-        self.assertEqual(add_heading_ids("<h2>All videos</h2>"), '<h2 id="all-videos">All videos</h2>')
+    def test_refuses_unknown_placeholders(self):
+        with self.assertRaisesRegex(ValueError, "unknown placeholder"):
+            fill_placeholders("{{nope}}", {"build-time": lambda *arguments: "x"}, "page.md")
+
+    def test_the_build_time_is_printed_as_before(self):
+        self.assertEqual(build_time_text(FIXED_TIME), "2026-10-18 05:46 pm UTC")
 
 
 class MediaTest(unittest.TestCase):
-    def test_reads_every_video_and_book_the_gatsby_modules_listed(self):
+    def test_reads_every_video_and_book(self):
         self.assertEqual([video["id"] for video in load_videos(REPOSITORY_ROOT)], ["intro", "why-new-language", "guardrails"])
         books = load_books(REPOSITORY_ROOT)
         self.assertEqual(len(books), 3)
         self.assertEqual(books[0]["coverFile"], "learning-tactus.png")
+        for book in books:
+            self.assertTrue((REPOSITORY_ROOT / "web" / "assets" / "books" / book["coverFile"]).is_file())
 
     def test_video_base_url_prefers_the_environment_then_the_content_delivery_network_then_local_files(self):
-        self.assertEqual(videos_base_url(REPOSITORY_ROOT, {"GATSBY_VIDEOS_BASE_URL": "https://example.test/v/"}), "https://example.test/v")
+        self.assertEqual(videos_base_url(REPOSITORY_ROOT, {"VIDEOS_BASE_URL": "https://example.test/v/"}), "https://example.test/v")
         self.assertTrue(videos_base_url(REPOSITORY_ROOT, {}).endswith("/videos"))
         with tempfile.TemporaryDirectory() as directory:
             self.assertEqual(videos_base_url(directory, {}), "/videos")
@@ -283,92 +256,12 @@ class MediaTest(unittest.TestCase):
         for video in load_videos(REPOSITORY_ROOT):
             self.assertIn(f"{{#{video['id']}}}", markdown)
 
-    def test_names_the_module_when_it_changes_shape(self):
+    def test_names_the_file_when_it_changes_shape(self):
         with tempfile.TemporaryDirectory() as directory:
-            (Path(directory) / "src" / "content").mkdir(parents=True)
-            (Path(directory) / "src" / "content" / "videos.js").write_text("export const VIDEOS = []\n", encoding="utf-8")
-            with self.assertRaisesRegex(ValueError, "videos.js: no entries"):
+            (Path(directory) / "data").mkdir()
+            (Path(directory) / "data" / "videos.json").write_text('[{"id": "x"}]', encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "videos.json: entry x lacks"):
                 load_videos(directory)
-
-
-class AuthoredPagesTest(unittest.TestCase):
-    def test_every_authored_page_loads_with_its_destination(self):
-        pages = {page.path: page for page in load_authored_pages(REPOSITORY_ROOT, {}, FIXED_TIME)}
-        self.assertIn("/404/", pages)
-        self.assertEqual(pages["/404/"].also_written_to, ("404.html",))
-        self.assertEqual(pages["/use-cases/contact-import/"].file_slug, "use-cases-contact-import")
-        self.assertEqual(pages["/videos/"].muted_sections, (1,))
-        self.assertEqual(pages["/"].file_slug, "index")
-        self.assertEqual(pages["/"].destination_segments, ())
-
-    def test_the_build_time_is_filled_in_as_gatsby_printed_it(self):
-        self.assertEqual(build_time_text(FIXED_TIME), "2026-10-18 05:46 pm UTC")
-        pages = {page.path: page for page in load_authored_pages(REPOSITORY_ROOT, {}, FIXED_TIME)}
-        self.assertIn("built on 2026-10-18 05:46 pm UTC", pages["/using-typescript/"].markdown_body)
-
-    def test_refuses_unknown_placeholders(self):
-        with self.assertRaisesRegex(ValueError, "unknown placeholder"):
-            fill_placeholders("{{nope}}", {"build-time": lambda *arguments: "x"}, "page.md")
-
-    def test_refuses_front_matter_it_does_not_understand(self):
-        with tempfile.TemporaryDirectory() as directory:
-            path = Path(directory) / "bad.md"
-            path.write_text("---\npath: /x/\ntitle: X\nheading: X\ndescription: X\nkind: poster\n---\nBody\n", encoding="utf-8")
-            with self.assertRaisesRegex(ValueError, "kind must be one of"):
-                parse_page_file(path)
-            path.write_text("---\npath: /x/\ntitle: X\nsurprise: 1\n---\nBody\n", encoding="utf-8")
-            with self.assertRaisesRegex(ValueError, "unknown front matter"):
-                parse_page_file(path)
-
-    def test_no_two_authored_pages_share_a_destination(self):
-        destinations = [page.destination_segments for page in load_authored_pages(REPOSITORY_ROOT, {}, FIXED_TIME)]
-        self.assertEqual(len(destinations), len(set(destinations)))
-        self.assertTrue(list(CONTENT_DIRECTORY.glob("*.md")))
-
-
-class LandingSectionsTest(unittest.TestCase):
-    def landing_page(self, muted):
-        page = load_authored_pages(REPOSITORY_ROOT, {}, FIXED_TIME)[0]
-        page.kind = "landing"
-        page.muted_sections = muted
-        return page
-
-    def test_splits_on_rules_and_mutes_the_listed_sections(self):
-        article = '<article class="markus-document"><h2>One</h2><hr><h2>Two</h2></article>'
-        sections = authored_section_list(self.landing_page((2,)), article)
-        rendered = "".join(section_html(*item) for item in sections)
-        self.assertEqual(rendered.count("<section"), 2)
-        self.assertEqual(rendered.count("tactus-section-muted"), 1)
-        self.assertNotIn("<hr", rendered)
-
-    def test_names_the_page_when_a_muted_section_does_not_exist(self):
-        article = '<article class="markus-document"><h2>One</h2></article>'
-        with self.assertRaisesRegex(ValueError, "sections \\[3\\] do not exist"):
-            authored_section_list(self.landing_page((3,)), article)
-
-
-class IslandsTest(unittest.TestCase):
-    def test_lifts_island_lines_into_markers_and_keeps_their_props(self):
-        markdown, islands = extract_islands('A\n\n{{island AnimatedCodeBlock label="Agent" blockWidth="1400"}}\n\nB', "page.md")
-        self.assertIn("ISLANDMARKER0", markdown)
-        self.assertEqual(islands, (("AnimatedCodeBlock", {"label": "Agent", "blockWidth": 1400}),))
-
-    def test_mounts_a_code_island_around_the_code_it_precedes(self):
-        page = load_authored_pages(REPOSITORY_ROOT, {}, FIXED_TIME)[0]
-        page.islands = (("AnimatedCodeBlock", {"label": "X"}), ("EvaluationsDiagram", {}))
-        rendered = place_islands(
-            page, '<p>ISLANDMARKER0</p>\n<pre><code class="language-lua">x = 1\n</code></pre><p>ISLANDMARKER1</p>'
-        )
-        self.assertIn('data-island="AnimatedCodeBlock"', rendered)
-        self.assertIn('&quot;language&quot;: &quot;lua&quot;', rendered)
-        self.assertIn("<pre><code", rendered.split("</div>")[0])
-        self.assertIn('data-island="EvaluationsDiagram" data-props="{}"></div>', rendered)
-
-    def test_names_the_page_when_an_island_has_no_mount_point(self):
-        page = load_authored_pages(REPOSITORY_ROOT, {}, FIXED_TIME)[0]
-        page.islands = (("EvaluationsDiagram", {}),)
-        with self.assertRaisesRegex(ValueError, "no mount point"):
-            place_islands(page, "<p>Nothing</p>")
 
 
 class ExampleSnippetsTest(unittest.TestCase):
@@ -384,9 +277,13 @@ class ExampleSnippetsTest(unittest.TestCase):
                 example_snippet_markdown(directory, "missing")
 
 
-class IconsAndActionsTest(unittest.TestCase):
+class IconsTest(unittest.TestCase):
+    def setUp(self):
+        sys.path.insert(0, str(REPOSITORY_ROOT / "web"))
+        self.addCleanup(sys.path.remove, str(REPOSITORY_ROOT / "web"))
+
     def test_places_standalone_and_card_icons(self):
-        from publication.icons import place_icons
+        from site_icons import place_icons
 
         html = place_icons('<p>ICON:box</p><span class="markus-card-icon" aria-hidden="true">svg-lock</span>')
         self.assertIn('class="tactus-icon"', html)
@@ -395,7 +292,7 @@ class IconsAndActionsTest(unittest.TestCase):
             place_icons("<p>ICON:nope</p>")
 
     def test_places_availability_chips(self):
-        from publication.icons import place_availability_chips
+        from site_icons import place_availability_chips
 
         html = place_availability_chips("<p>AVAILABILITYCHIP:beta</p><p>AVAILABILITYCHIP:early-access</p>")
         self.assertIn('<span class="tactus-availability-chip">Beta</span>', html)
@@ -403,13 +300,47 @@ class IconsAndActionsTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "No availability named"):
             place_availability_chips("<p>AVAILABILITYCHIP:nope</p>")
 
-    def test_turns_a_link_paragraph_into_buttons(self):
-        from publication.icons import place_actions
 
-        html = place_actions('<p>ACTIONSMARKER</p>\n<p><a href="/a/">A</a> · <a href="/b/">B</a></p>')
-        self.assertIn('<div class="tactus-actions"><a class="tactus-button" href="/a/">A</a><a class="tactus-button tactus-button-secondary" href="/b/">B</a></div>', html)
+class RenderedSiteTest(unittest.TestCase):
+    """The staged content goes through Papyrus with the site's own settings, theme and hooks."""
 
-    def test_marks_the_requested_paragraph_with_a_drop_cap(self):
-        from publication.chrome import add_drop_cap
+    def test_pages_render_with_blocks_islands_the_family_footer_and_the_hook(self):
+        from papyrus_content.project_commands import content_project
 
-        self.assertEqual(add_drop_cap("<p>a</p><p>b</p>", 2), '<p>a</p><p class="drop-cap">b</p>')
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            write_sources(root)
+            (root / "data").mkdir()
+            (root / "data" / "videos.json").write_text("[]", encoding="utf-8")
+            (root / "content").mkdir()
+            (root / "content" / "index.md").write_text(
+                "---\ntitle: Home\ndescription: Home page.\ntype: page\n---\n::band\n# Home\n\n{{icon box}}\n\n"
+                '::island{name="InstallCommand"}\n\n::button{href="/stdlib/" label="Go"}\n',
+                encoding="utf-8",
+            )
+            stage_content(root, root / "staging")
+            web = root / "web"
+            shutil.copytree(REPOSITORY_ROOT / "web", web, ignore=shutil.ignore_patterns("books", "animals", "logos", "chunks"))
+            (web / "assets").mkdir(exist_ok=True)
+            (web / "assets" / "islands.js").write_text("window.papyrusIslands = {}\n", encoding="utf-8")
+            (web / "assets" / "islands.css").write_text("\n", encoding="utf-8")
+            output = root / "out"
+            os.environ["PAPYRUS_SITE_PUBLIC_URL"] = "https://tactus.anth.us"
+            content_project(["--all", "--from-dir", str(root / "staging"), "--static-dir", str(web), "--out", str(output)])
+            home = (output / "index.html").read_text(encoding="utf-8")
+            self.assertIn("<title>Home | Tactus</title>", home)
+            self.assertIn('class="tactus-icon"', home)
+            self.assertIn('data-island="InstallCommand"', home)
+            self.assertIn('class="markus-button"', home)
+            self.assertIn("papyrus-family-footer", home)
+            self.assertIn('rel="canonical" href="https://tactus.anth.us/"', home)
+            page = (output / "examples" / "getting-started" / "hello-world" / "index.html").read_text(encoding="utf-8")
+            self.assertIn("<title>Hello World - Getting Started Examples | Tactus</title>", page)
+            self.assertIn('data-layout="document-hero wide"', page)
+            sitemap = (output / "sitemap.xml").read_text(encoding="utf-8")
+            self.assertIn("https://tactus.anth.us/stdlib/web/", sitemap)
+            self.assertIn("https://tactus.anth.us/examples/getting-started/hello-world/", sitemap)
+
+
+if __name__ == "__main__":
+    unittest.main()

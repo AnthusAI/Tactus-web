@@ -1,0 +1,20 @@
+{
+  "id": "tctw-0e9cbd4d-f7e0-4162-afcb-1a66e52f122d",
+  "title": "Orphan example pages: two stubs and one long essay are not linked from anywhere",
+  "description": "/examples/self-evolving-agents/ and /examples/text-classification/ are one-paragraph stubs; /examples/automated-scientific-discovery/ is a long essay with citations. None is in the navigation (the Example Usage menu is commented out). Migrated as they were (content/examples/*.md); decide whether to publish, link or delete them.",
+  "type": "task",
+  "status": "open",
+  "priority": 4,
+  "assignee": null,
+  "creator": null,
+  "parent": null,
+  "labels": [],
+  "dependencies": [],
+  "comments": [],
+  "created_at": "2026-10-21T05:06:26.840430Z",
+  "updated_at": "2026-10-21T05:06:26.840462Z",
+  "closed_at": null,
+  "right_now_summary": null,
+  "right_now_updated_at": null,
+  "custom": {}
+}

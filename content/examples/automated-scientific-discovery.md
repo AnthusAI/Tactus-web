@@ -1,0 +1,469 @@
+---
+title: Automated Scientific Discovery
+description: "Beyond prompts + hope: Tactus is a language + runtime for safe, reproducible tool-using agents\u2014give them tools and a procedure, with approvals, durability, and the principle of least privilege."
+type: page
+---
+::band
+# Automated Scientific Discovery
+
+Patterns for AI-assisted research and agent-driven experimentation
+
+## You’re Already Doing Science
+
+If you build with AI models, you spend a lot of time experimenting:
+
+- Which prompt reduces misbehavior?
+- Which model is more reliable on this dataset?
+- Which tool set helps, and which one causes chaos?
+- Which workflow converges faster—and at what cost?
+
+Those are scientific questions. They propose a relationship between variables and measurable outcomes.
+
+The difference between “vibe experimentation” and scientific practice is usually not brilliance—it’s structure: controlled variables, repeated trials, explicit evaluation, and traceability.
+
+That’s what automated scientific discovery is trying to scale. Not necessarily by replacing scientists, but by turning the scientific loop—hypothesis → test → measurement → iteration—into a repeatable procedure you can run, inspect, and improve.
+
+## A Catalog, Not “A Full Scientist in a Box”
+
+Many writeups try to tell one complete end‑to‑end story: read papers → generate hypotheses → write code → run experiments → make plots → write a paper. That can be inspiring, but it often hides the practical value: the reusable building blocks that make the loop reliable.
+
+This page is a catalog of those building blocks. We’ll survey patterns that show up repeatedly in the literature and in real systems—and show how each pattern maps cleanly to Tactus concepts using small snippets and pseudocode.
+
+If you’re new to the mental model that motivates these patterns, start here:
+
+- [Why a New Language?](/why-new-language/)
+- [Guardrails](/guardrails/)
+
+## The Landscape: A Spectrum of Autonomy
+
+Automated discovery frameworks tend to cluster into a few families. The important distinction is not “how smart is the model,” but “where does the control flow live?”—who decides what happens next?
+
+| Family | What it optimizes for | Typical patterns |
+|---|---|---|
+| Research assistants | Fast, grounded information work | Retrieval, summarization, citation, question decomposition |
+| Hybrid discovery workflows | Human‑led discovery with automation “muscle” | Human chooses direction; agents expand, test, and summarize |
+| Autonomous discovery pipelines | Push the full loop end‑to‑end | Hypothesis generation, experiment search, critique/repair, write‑up |
+
+Recent work explores all three.
+
+Systems like *The AI Scientist* [[1]](#references) and *AI Scientist v2* [[2]](#references) explore end‑to‑end autonomy (hypothesis → experiments → analysis → write‑up). Meanwhile, research assistants like OpenResearcher [[3]](#references) focus on grounding, retrieval, and synthesis to accelerate human‑led research.
+
+Even when a system looks “fully autonomous,” most successful deployments behave like hybrids: autonomy in the inner loop (generate/try/measure), humans in the outer loop (choose direction, approve cost, decide what counts as a claim).
+
+Tactus sits underneath all of these styles. It’s designed to help you write *procedures* with explicit tool access, guardrails, durable checkpoints, and evaluation—because once you move past demos, those are the problems you actually spend your time on.
+
+## Two Common System Shapes
+
+It helps to separate two “shapes” of systems that often get lumped together:
+
+### 1) Research Assistant Loops (Grounded Reading and Synthesis)
+
+This is the RAG-shaped world: search, retrieve, quote, cite, summarize. The scientific value comes from coverage and grounding, not from running experiments.
+
+The key constraints tend to be:
+
+- citation correctness (no fabricated sources),
+- recall/coverage (did we miss the important papers?),
+- and reproducibility of the research thread (what did we read, and why?).
+
+In Tactus terms, this looks like staged tools (retrieval tools enabled, then disabled for synthesis), checkpointing expensive retrieval, and storing provenance artifacts.
+
+### 2) Experimentation Loops (Trial → Measure → Iterate)
+
+This is the “AI Scientist” shape: generate a candidate, run something expensive, measure it, then decide the next candidate based on results.
+
+The key constraints tend to be:
+
+- bounded loops (time, steps, tool calls),
+- safe execution boundaries (sandboxing),
+- and reliable evaluation (replication + aggregation).
+
+Tactus matters here because it treats the whole loop as a procedure you can constrain, checkpoint, and evaluate—not a pile of scripts.
+
+## What Changes When You Yield Control Flow to the Agent
+
+Most classical software engineering assumes that your `if/then` logic governs the program’s flow. But in agentic systems, the model often decides:
+
+- which tool to call,
+- how many times to call it,
+- when to stop,
+- and which branch to take next.
+
+That’s the point of patterns like ReAct: you explicitly give the agent control over control flow. It’s a new kind of program.
+
+The responsibility question follows immediately: how can you be responsible for a procedure that begins, ends, and completes reliably if the flow is not dictated by deterministic branching logic?
+
+This is where “guardrails” stop being optional. A system that can call tools must also have enforceable boundaries: limits on steps, time, cost, tool access, data access, and side effects. Otherwise you can’t safely run the loop unattended—and you can’t scale it to many trials.
+
+This is also why “automated discovery” is not one feature. It’s a collection of patterns for designing, constraining, and evaluating agentic control flow.
+
+## The Smallest Useful Discovery Loop
+
+If you strip away the hype, most “automated discovery” systems boil down to the same loop:
+
+1. Propose a hypothesis (or a candidate configuration).
+2. Run a bounded trial.
+3. Measure outcomes.
+4. Decide what to try next.
+5. Record everything.
+
+In pseudocode:
+
+```text
+state = { queue, log, budget }
+
+while budget_remaining and queue not empty:
+  candidate = next(queue)
+
+  trial = run_trial(candidate)     # bounded + safe
+  metrics = score(trial)           # deterministic checks + evals
+
+  log.append({ candidate, metrics, artifacts })
+
+  if metrics meet target:
+    break
+
+  queue.extend(propose_next(log))  # search: sweep, tree, bandit, etc.
+```
+
+Tactus doesn’t “do science for you.” Its aim is more modest and more useful: it gives you a place to express that loop as a procedure with the right primitives:
+
+- bounded iteration (so it always ends),
+- staged tool access (so it’s safe to run),
+- durable checkpoints (so you don’t lose progress),
+- explicit evaluation (so “better” is measurable),
+- and traceability (so you can defend your conclusions).
+
+## A Catalog of Patterns (and How They Map to Tactus)
+
+Below is a set of patterns that recur across automated discovery papers and systems. Each one is useful on its own. You don’t need all of them to get value.
+
+### 1) Literature Triage (Search → Filter → Summarize → Organize)
+
+**What it is:** A pipeline that turns “too many papers” into a small curated working set.
+
+**Where it shows up:** Most research assistants (RAG‑style or tool‑based) and most autonomous systems (as a novelty check and background builder).
+
+**How to structure it in Tactus:** Treat retrieval and summarization as tools. Keep tool access staged and auditable. Persist intermediate state so the “research thread” survives interruptions.
+
+```tactus
+LiteratureTriage = Procedure {
+  input  = { query = string, max_papers = number }
+  output = { shortlist = array, notes = array }
+
+  function(input)
+    local hits = Step.checkpoint(function()
+      return SearchPapers({query = input.query, k = 50})
+    end)
+    local papers = Step.checkpoint(function()
+      return FetchPapers({ids = hits[1:input.max_papers]})
+    end)
+    local notes = SummarizeMany(papers)
+    local shortlist = Human.select({items = notes, k = 8})
+    return { shortlist = shortlist, notes = notes }
+  end
+}
+```
+
+The key idea is procedural: you’re not “writing the science,” you’re building a dependable process for information work.
+
+Note the use of `Step.checkpoint(...)`: even if the procedure is replayed (after an approval gate, a restart, or a crash), expensive retrieval steps can return cached results instead of re-running blindly.
+
+### 2) Hypotheses as Data (and Preregistered Success Criteria)
+
+**What it is:** Hypothesis generation is easy. The hard part is making hypotheses testable—and deciding what counts as success *before* you run expensive experiments.
+
+**How to structure it in Tactus:** Make hypotheses structured outputs, not prose. Pair each hypothesis with an evaluation plan (metrics, thresholds, datasets).
+
+```text
+hypothesis = {
+  claim: "Reducing tool access in the first stage lowers misbehavior rate",
+  variables: ["tools_per_stage", "approval_gate"],
+  metric: "misbehavior_rate",
+  target: "<= 2%",
+  dataset: "eval_v2"
+}
+```
+
+This forces clarity: “what would change my mind?” becomes part of the artifact.
+
+### 3) Experiment Search (Sweeps, Tree Search, Bandits)
+
+**What it is:** Once you have a hypothesis, you need a search strategy over configurations. AI Scientist v2 popularized “agentic tree search” as one approach to branching exploration [[2]](#references).
+
+**How to structure it in Tactus:** Make the search explicit. Enforce budgets and stopping conditions. Persist a “tree of attempts” as durable state.
+
+```text
+node = {
+  id: "n42",
+  parent_id: "n19",
+  config: { model: "gpt-4o-mini", temperature: 0.2, tools: ["search"] },
+  status: "completed",
+  metrics: { pass_rate: 0.91, cost_usd: 0.06 }
+}
+```
+
+You don’t need the entire algorithm in one procedure. The important part is the data model: experiments are nodes with provenance.
+
+Practical note: most teams start with a sweep (grid or random) because it’s simple and gives intuition. As the space grows, you graduate to smarter search:
+
+- **Bandits** when you can cheaply sample many options and want to allocate budget adaptively.
+- **Tree search** when “what to try next” depends on intermediate results and branching plans.
+- **Bayesian optimization** when evaluations are expensive and the space is continuous.
+
+If you want to run branches in parallel, the shape is usually: spawn a handful of experiment nodes, wait for completion, then decide what to expand next. In Tactus terms, this is `Procedure.spawn(...)` + `Procedure.wait_any(...)` / `Procedure.wait_all(...)`.
+
+```tactus
+handles = {}
+for _, config in ipairs(frontier) do
+  table.insert(handles, Procedure.spawn("run_experiment_node", {config = config}))
+end
+
+local done = Procedure.wait_any(handles)
+local result = Procedure.wait(done)
+```
+
+That same structure supports “replication nodes” (run the same config with different seeds), “ablation nodes” (remove one component), and “aggregation nodes” (combine metrics into one decision).
+
+### 4) Prompt Optimization and Compilation (DSPy‑Style)
+
+**What it is:** A lot of “progress” in agentic systems is really progress on *configuration*—prompts, examples, model choice, tool access, and loop limits. DSPy is a canonical example of turning that work into something systematic: treat prompt‑programs as compilable artifacts, then optimize them against a metric [[4]](#references).
+
+The key idea is scientific: you’re not arguing about prompts—you’re *measuring* them.
+
+**How it maps to Tactus:** Tactus integrates DSPy modules/signatures, so “prompt optimization” can be a real inner‑loop tool. But the larger opportunity is broader: the *same optimization loop* can tune more than prompts.
+
+Here’s the “shape” of it: define a typed component, then treat its behavior as something you can measure and improve.
+
+```tactus
+LM("openai/gpt-4o")
+
+HypothesisWriter = Module {
+  signature = "notes, prior_work -> hypothesis",
+  strategy = "chain_of_thought"
+}
+```
+
+For example, you can treat any of these as searchable variables:
+
+- model selection and temperatures,
+- retrieval strategy and context size,
+- tool allowlists per stage (least privilege),
+- max tool calls / time / budget caps,
+- approval gates and escalation thresholds.
+
+**A practical pattern:** represent a “candidate procedure” as `{procedure, config}`, then run evals as the objective function.
+
+```text
+for candidate in candidates:
+  score = Evaluate(procedure=candidate.procedure, config=candidate.config, runs=K)
+select best under constraints (budget, latency, risk)
+```
+
+This is exactly the bridge between “prompt optimization” and “automated discovery”: once you can score candidates reliably, you can search—and once you can search, you can improve *the whole harness*, not just the prompt string.
+
+### 5) Safe Execution (Sandboxing and Narrow Tool Interfaces)
+
+**What it is:** If the workflow generates code, runs simulations, or touches files, then safety is not an afterthought. “Run arbitrary code” is a privilege boundary.
+
+**How to structure it in Tactus:** Provide a narrow tool such as `RunExperiment(code, limits)` that executes in an isolated environment (e.g., a container) and returns artifacts without exposing credentials or broad host access.
+
+```tactus
+result = RunExperiment({
+  code = generated_python,
+  cpu = 2,
+  memory_gb = 4,
+  timeout_s = 600,
+})
+```
+
+### 6) Critique Loops (Repair, Not Just Generate)
+
+**What it is:** Most robust systems aren’t one‑shot. They generate, then critique, then repair. Critique can be an LLM, a VLM on plots, or deterministic validators.
+
+**How to structure it in Tactus:** Make critique a step with clear inputs/outputs. Keep the repair loop bounded and reviewable.
+
+```text
+for attempt in 1..MAX_REPAIRS:
+  critique = Critique(artifact, rubric)
+  if critique.ok: break
+  artifact = Repair(artifact, critique)
+```
+
+The goal is not “the model will fix it.” The goal is “we built a bounded loop whose failures are visible.”
+
+Two practical refinements show up repeatedly in robust agentic loops:
+
+- **Hard caps** on attempts (so the loop always ends).
+- **Per-turn tool control** (so the agent only has dangerous tools when the procedure is ready for them).
+
+In Tactus, callable agent syntax supports per-call tool overrides (including an empty tool list), which makes it easy to prevent “tool drift” during critique, summarization, and write-up turns.
+
+```tactus
+reviewer({ message = "Summarize the result", tools = {} })
+reviewer({ tools = {search, done} }) -- enable only what’s needed this turn
+```
+
+### 7) Specs vs Evals (Invariants vs Reliability)
+
+As soon as you scale experimentation, two different kinds of questions matter:
+
+- **Specs**: “Does this ever do something forbidden?” (invariants)
+- **Evals**: “How often does it work across real inputs?” (reliability)
+
+Both are “guardrails,” but they fail differently. Specs fail loudly and quickly. Evals reveal brittleness and drift.
+
+In Tactus terms, specs tend to encode policies (“never call the side‑effect tool without approval”), while evals measure outcomes over datasets (often with multiple runs to estimate reliability).
+
+### 8) Reliability, Not One‑Off Scores
+
+Single‑run success is not science. For LLMs, reliability is distributional: the same input can produce different outputs. Benchmark efforts like MASSW emphasize evaluating AI workflows and reliability across tasks [[5]](#references).
+
+**How to structure it in Tactus:** Use repeated trials, aggregated metrics, and explicit acceptance criteria.
+
+```text
+pass_rate = Evaluate(procedure = candidate, dataset = heldout, runs = 50)
+if pass_rate >= 0.95: accept()
+```
+
+### 9) Tradeoffs and Pareto Frontiers (Quality vs Cost vs Latency)
+
+Discovery workflows always have tradeoffs. The “best” configuration depends on constraints: budget, latency, failure tolerance, and stakes.
+
+**How to structure it in Tactus:** Treat cost/latency as measurements alongside quality. Choose configurations on a Pareto frontier instead of optimizing a single scalar.
+
+```text
+metrics = { score: 0.91, cost_usd: 0.08, p95_ms: 1200 }
+```
+
+### 10) Human Oversight (Outer‑Loop Governance)
+
+The most practical automation pattern is: let the agent explore, but require humans for irreversible decisions.
+
+Examples:
+
+- approve high‑cost branches,
+- approve publication claims,
+- approve tool expansions,
+- approve data access changes.
+
+In Tactus terms, these are durable checkpoints where a human can intervene without keeping the whole workflow “live” for hours.
+
+### 11) Provenance (The Lab Notebook That Writes Itself)
+
+In discovery, the outputs aren’t just “the best result.” They’re the trail:
+
+- what was tried,
+- why it was tried,
+- what failed,
+- what improved,
+- and what evidence supports the claim.
+
+**How to structure it in Tactus:** Make the procedure produce a structured experiment log artifact. This is what turns a pile of runs into something auditable.
+
+```text
+return {
+  best_config,
+  experiment_log,
+  conclusions
+}
+```
+
+### 12) Explicit Success Criteria (Checks That End the Loop)
+
+When you give control flow to the agent, you still need a deterministic way to decide whether the work is “done enough.” Otherwise your procedure degenerates into “keep trying until it feels right.”
+
+A reliable pattern is:
+
+- define a small set of checks (schema validity, constraints, policy compliance),
+- cap retries,
+- and exit deterministically with either success or a clear failure reason.
+
+This shows up everywhere: experiment runners, plot generation, write-up drafting, even literature triage.
+
+### 13) Failure Taxonomies (Turn Errors Into a Research Agenda)
+
+Once you’re doing repeated trials, failures stop being bugs and start being *data*.
+
+Practical systems often maintain a simple taxonomy:
+
+- tool failures (timeouts, auth, rate limits),
+- execution failures (sandbox errors, missing dependencies),
+- quality failures (fails checks, low eval scores),
+- policy failures (unsafe tool requests, forbidden data access).
+
+The taxonomy becomes the backlog: each category suggests different interventions (prompting vs tool design vs staging vs isolation).
+
+### 14) Claim Gating (Separate “Results” from “Claims”)
+
+One reason autonomous science demos feel spooky is that they conflate two different steps:
+
+- generating a result artifact,
+- deciding what the result *means* (and what you’re willing to claim publicly).
+
+In a Tactus-shaped workflow, “making a claim” is almost always a stage boundary with a human gate:
+
+- show the evidence (logs + metrics + artifacts),
+- ask for a decision,
+- then allow the next tool (publish, submit, notify, etc.).
+
+### 15) Write-Up as a Procedure (Outline → Draft → Critique → Cite)
+
+Even in “autonomous paper” systems, the most robust write-up process is staged:
+
+1. build an outline from the experiment log,
+2. draft sections with explicit constraints (length, tone, structure),
+3. run critique checks (factuality, missing caveats, missing baselines),
+4. attach citations only from verified sources.
+
+The useful lens here is not “the model writes the paper,” but “we built a bounded, reviewable procedure for turning a lab notebook into a narrative.”
+
+## Practical Advice: How to Start
+
+If you want to apply these ideas to your own work, start with a small inner loop and scale outward:
+
+1. Pick one measurable outcome (quality score, reliability, latency, cost).
+2. Define an evaluation dataset and acceptance criteria.
+3. Run repeated trials and aggregate results.
+4. Add a search strategy (sweep, tree, bandit).
+5. Add guardrails (budget/time/step limits + staged tools).
+6. Add human gates only where you need them (expensive, irreversible, or publishable).
+
+If you only adopt one idea from the research literature, make it this: treat *the procedure* as the unit of experimentation, and treat guardrails/specs/evals as first‑class parts of that procedure—not bolted-on conventions.
+
+## Common Failure Modes (and How the Patterns Address Them)
+
+Most “automated discovery” disappointments are not about intelligence. They’re about missing structure.
+
+- **Runaway loops:** cap attempts and tool calls; enforce time/budget ceilings.
+- **Progress lost on failure:** checkpoint and persist state; record partial results as first-class artifacts.
+- **“It worked once” optimism:** run evals across distributions; replicate; aggregate.
+- **Hallucinated citations / fabricated claims:** stage retrieval and write-up; gate claims; require evidence bundles.
+- **Dangerous tools too early:** default-deny; stage capabilities; narrow tool interfaces.
+- **No audit trail:** keep a lab notebook log of candidates, metrics, artifacts, and decisions.
+
+## Conclusion
+
+Automated scientific discovery is not one “system” you either have or don’t have. It’s a set of patterns you can compose:
+
+- grounded information workflows,
+- structured hypotheses,
+- systematic search,
+- safe execution boundaries,
+- critique and repair,
+- reliability evaluation,
+- cost/quality tradeoffs,
+- human governance,
+- and provenance.
+
+As agents take on more control flow, these concerns become the program itself. The core promise of Tactus is that it gives you a place to express those concerns directly—so your “code” matches what you actually have to reason about in an agentic discovery loop.
+
+The goal isn’t to remove humans from science. It’s to remove waste: repeated manual setup, lost progress, unmeasured changes, and untraceable decisions. That’s what turns experimentation into discovery.
+
+## References
+
+1. Chris Lu, Cong Lu, Robert Tjarko Lange, Jakob Foerster, Jeff Clune, David Ha. "The AI Scientist: Towards Fully Automated Open-Ended Scientific Discovery." 2024. <https://arxiv.org/abs/2408.06292>
+2. Yutaro Yamada, Robert Tjarko Lange, Cong Lu, Shengran Hu, Chris Lu, Jakob Foerster, Jeff Clune, David Ha. "The AI Scientist-v2: Workshop-Level Automated Scientific Discovery via Agentic Tree Search." 2025. <https://arxiv.org/abs/2504.08066>
+3. "OpenResearcher: Unleashing AI for Accelerated Scientific Research." 2024. <https://arxiv.org/abs/2408.06941>
+4. "DSPy Optimization Overview." <https://dspy.ai/learn/optimization/overview/>
+5. Xingjian Zhang, Yutong Xie, Jin Huang, Jinge Ma, Zhaoying Pan, Qijia Liu, Qiaozhu Mei. "MASSW: A New Dataset and Benchmark Tasks for AI-Assisted Scientific Workflows." 2024. <https://arxiv.org/abs/2406.06357>

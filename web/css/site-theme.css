@@ -1,0 +1,1195 @@
+/* tactus.anth.us theme for the Papyrus standard front end.
+   Loaded after css/markus-components.css, so it wins over the component baseline. */
+
+:root {
+  /* Tailwind color tokens (HSL triplets) used by the islands' utility classes */
+  --background: 0 0% 99.2%;
+  --foreground: 240 5% 15.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 5% 15.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 5% 15.9%;
+  --primary: 322 100% 39%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 92.9%;
+  --secondary-foreground: 240 5% 15.9%;
+  --muted: 0 0% 92.9%;
+  --muted-foreground: 240 3.8% 46.1%;
+  --accent: 0 0% 92.9%;
+  --accent-foreground: 240 5% 15.9%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 89.8%;
+  --input: 0 0% 89.8%;
+  --ring: 322 100% 39%;
+  --radius: 0.5rem;
+  --chart-1: 12 76% 61%;
+  --chart-2: 173 58% 39%;
+  --chart-3: 197 37% 24%;
+  --chart-4: 43 74% 66%;
+  --chart-5: 27 87% 67%;
+
+  /* Brand */
+  --color-primary: #c7007e;
+  --color-primary-ink: #ffffff;
+
+  /* Surfaces: softened paper tones */
+  --color-bg: #fdfdfd;
+  --color-surface: #ffffff;
+  --color-card-title: #f5f5f5;
+  --color-surface-2: #ededed;
+
+  /* Text */
+  --color-text: #27272a;
+  --color-text-secondary: #3f3f46;
+  --color-text-muted: #52525b;
+
+  /* Code */
+  --color-code-bg: #ededed;
+  --color-code: #27272a;
+
+  /* Typography: the technical-book stack */
+  --font-sans: "Source Sans 3", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-serif: "Source Serif 4", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-mono: "Source Code Pro", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+  --font-lg: 20px;
+  --font-md: 18px;
+  --font-sm: 16px;
+  --font-sx: 14px;
+  --line-height-loose: 1.75;
+  --line-height-normal: 1.6;
+  --line-height-dense: 1.1;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 64px;
+  --border-radius: 8px;
+  --size-content: 62rem;
+  --size-gutter: var(--space-5);
+  --size-gap: var(--space-6);
+  color-scheme: light;
+
+  /* Core component tokens */
+  --papyrus-bg: var(--color-bg);
+  --papyrus-ink: var(--color-text);
+  --papyrus-focus: var(--color-primary);
+  --papyrus-rule: rgba(0, 0, 0, 0.1);
+  --papyrus-family-footer-max-width: var(--size-content);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #18181b;
+    --color-surface: #27272a;
+    --color-card-title: #1f1f23;
+    --color-surface-2: #27272a;
+    --color-text: #e4e4e7;
+    --color-text-secondary: #d4d4d8;
+    --color-text-muted: #a1a1aa;
+    --color-code-bg: #27272a;
+    --color-code: #e4e4e7;
+    --papyrus-rule: rgba(255, 255, 255, 0.12);
+    color-scheme: dark;
+  }
+}
+
+/* ---------------------------------------------------------------- page */
+
+html {
+  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
+  font-size: var(--font-md);
+  line-height: var(--line-height-normal);
+  overflow-y: scroll;
+  overflow-x: hidden;
+  overscroll-behavior: none;
+  background: var(--color-bg);
+}
+
+body.tactus-site {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  position: relative;
+  overscroll-behavior: none;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-serif);
+  font-variant-numeric: oldstyle-nums;
+  font-weight: 400;
+  word-wrap: break-word;
+}
+
+.tactus-site main {
+  flex: 1;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+.tactus-site a,
+.tactus-site button,
+.tactus-site input,
+.tactus-site select,
+.tactus-site textarea {
+  font-family: var(--font-sans);
+  font-variant-numeric: lining-nums;
+}
+
+.tactus-site a {
+  background-color: transparent;
+  color: var(--color-primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.tactus-site a:active,
+.tactus-site a:hover {
+  outline-width: 0;
+  background: rgba(199, 0, 126, 0.1);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.tactus-site h1,
+.tactus-site h2,
+.tactus-site h3,
+.tactus-site h4,
+.tactus-site h5,
+.tactus-site h6 {
+  margin: 0 0 var(--space-3);
+  padding: 0;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-variant-numeric: lining-nums;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: var(--line-height-dense);
+}
+
+.tactus-site h1 {
+  margin-bottom: var(--space-5);
+  font-family: var(--font-serif);
+}
+
+.tactus-site img {
+  border-style: none;
+  max-width: 100%;
+}
+
+.tactus-site code,
+.tactus-site kbd,
+.tactus-site pre,
+.tactus-site samp {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  font-variant-numeric: lining-nums;
+}
+
+.tactus-site hr {
+  box-sizing: content-box;
+  height: 1px;
+  margin: var(--space-5) 0;
+  border: none;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.tactus-site p {
+  max-width: 65ch;
+  margin: 0 0 var(--space-3);
+}
+
+.tactus-site ul,
+.tactus-site ol {
+  margin: 0 0 var(--space-3);
+  padding-left: var(--space-4);
+}
+
+.tactus-site li {
+  margin-bottom: var(--space-2);
+}
+
+.tactus-site pre {
+  margin: 0 0 var(--space-4);
+  padding: var(--space-4);
+  overflow: auto;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: var(--border-radius);
+  background: var(--color-code-bg);
+  font-size: 0.875rem;
+  line-height: var(--line-height-normal);
+}
+
+.tactus-site code {
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  background-color: var(--color-code-bg);
+  color: var(--color-code);
+  font-size: 0.85em;
+}
+
+.tactus-site pre code {
+  padding: 0;
+  background: none;
+  color: var(--color-code);
+  font-size: 1em;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ---------------------------------------------------------------- header */
+
+.tactus-site .markus-site-masthead {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  max-width: none;
+  margin: 0;
+  padding: var(--space-3) max(var(--size-gutter), calc((100% - var(--size-content)) / 2 + var(--size-gutter)));
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  background: var(--color-bg);
+}
+
+.tactus-site .markus-site-wordmark {
+  flex: none;
+  margin: 0;
+}
+
+.tactus-site .markus-site-wordmark a {
+  display: inline-block;
+  padding: 0.15rem 0;
+  background: none;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.tactus-site .markus-site-nav {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-4);
+}
+
+.tactus-site .markus-site-nav > a,
+.tactus-site .markus-nav-group > summary {
+  position: relative;
+  padding: var(--space-2) 0;
+  background: none;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  list-style: none;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.tactus-site .markus-nav-group > summary::-webkit-details-marker {
+  display: none;
+}
+
+.tactus-site .markus-nav-group > summary::after {
+  content: "";
+  display: inline-block;
+  width: 0.35em;
+  height: 0.35em;
+  margin: 0 0 0.2em 0.45em;
+  border-right: 1.5px solid currentColor;
+  border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg);
+}
+
+.tactus-site .markus-site-nav > a:hover,
+.tactus-site .markus-site-nav > a[aria-current="page"],
+.tactus-site .markus-nav-group > summary:hover,
+.tactus-site .markus-nav-group[open] > summary {
+  background: none;
+  color: var(--color-primary);
+}
+
+.tactus-site .markus-site-nav > a[aria-current="page"] {
+  text-decoration: none;
+}
+
+.tactus-site .markus-site-nav > a[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: var(--color-primary);
+}
+
+.tactus-site .markus-nav-group-links {
+  gap: 0;
+  padding: var(--space-2);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--border-radius);
+  background: var(--color-bg);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.tactus-site .markus-nav-group-links a {
+  display: block;
+  padding: var(--space-2) var(--space-3);
+  border-radius: 6px;
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.tactus-site .markus-nav-group-links a:hover {
+  background: rgba(199, 0, 126, 0.12);
+  color: var(--color-primary);
+}
+
+.tactus-site .markus-nav-toggle {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: none;
+  border-radius: 4px;
+  background: none;
+  color: var(--color-text);
+  cursor: pointer;
+  font-size: 0;
+  -webkit-mask: var(--tactus-menu-icon) center / 18px 18px no-repeat;
+  mask: var(--tactus-menu-icon) center / 18px 18px no-repeat;
+  background-color: currentColor;
+  --tactus-menu-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6h16M4 12h16M4 18h16'/%3E%3C/svg%3E");
+}
+
+.tactus-site .markus-nav-toggle[aria-expanded="true"] {
+  --tactus-menu-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 6 6 18M6 6l12 12'/%3E%3C/svg%3E");
+}
+
+@media (min-width: 40.01rem) {
+  .tactus-site .markus-nav-toggle,
+  .markus-nav-js .markus-nav-toggle {
+    display: none;
+  }
+}
+
+@media (max-width: 40rem) {
+  .tactus-site .markus-site-masthead {
+    flex-wrap: wrap;
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .tactus-site .markus-site-wordmark {
+    flex: 1;
+  }
+
+  .tactus-site .markus-site-nav {
+    flex: 1 0 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-2);
+    padding-bottom: var(--space-3);
+  }
+
+  .tactus-site .markus-nav-group-links a {
+    white-space: normal;
+  }
+}
+
+/* ---------------------------------------------------------------- bands */
+
+.tactus-site .markus-band {
+  padding: var(--space-6) 0;
+  background: transparent;
+}
+
+.tactus-site .markus-band[data-tone="muted"] {
+  background: var(--color-surface-2);
+}
+
+.tactus-site .markus-band-inner {
+  width: 100%;
+  max-width: var(--size-content);
+  margin: 0 auto;
+  padding: 0 var(--size-gutter);
+}
+
+.tactus-site .markus-columns {
+  display: block;
+}
+
+.tactus-site .markus-column {
+  display: flow-root;
+}
+
+.tactus-site .markus-band[data-size="hero"] > .markus-band-inner,
+.tactus-site .markus-band[data-layout~="document-hero"] > .markus-band-inner {
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-5);
+}
+
+.tactus-site .markus-band-eyebrow {
+  line-height: var(--line-height-normal);
+  margin: 0 0 var(--space-3);
+  color: var(--color-primary);
+  font-size: var(--font-sx);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.tactus-site .markus-band[data-size="hero"] h1,
+.tactus-site .markus-band[data-layout~="document-hero"] h1 {
+  margin: 0 0 var(--space-4);
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.tactus-site .markus-band[data-size="hero"]:not([data-layout="hero-split"]) h1 + p,
+.tactus-site .markus-band[data-layout~="document-hero"] p:last-child {
+  max-width: 50ch;
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: 1.35rem;
+  line-height: var(--line-height-loose);
+}
+
+/* Reading column */
+
+.tactus-site .markus-column h2 {
+  margin: var(--space-5) 0 var(--space-3);
+  color: var(--color-text);
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.tactus-site .markus-column > h2:first-child {
+  margin-top: 0;
+}
+
+.tactus-site .markus-column h3 {
+  margin: var(--space-4) 0 var(--space-2);
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+}
+
+.tactus-site .markus-column h4 {
+  margin: var(--space-4) 0 var(--space-2);
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+}
+
+.tactus-site .markus-column h3 a,
+.tactus-site .markus-column h4 a {
+  color: inherit;
+}
+
+.tactus-site .markus-column p {
+  margin: 0 0 var(--space-3);
+  color: var(--color-text);
+  line-height: var(--line-height-loose);
+}
+
+.tactus-site .markus-column ul,
+.tactus-site .markus-column ol {
+  margin: 0 0 var(--space-3);
+  padding-left: var(--space-4);
+  color: var(--color-text);
+  line-height: var(--line-height-loose);
+}
+
+.tactus-site .markus-column li {
+  margin: 0 0 var(--space-2);
+}
+
+.tactus-site .markus-column a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.tactus-site .markus-column a:hover {
+  background: none;
+  text-decoration: underline;
+}
+
+.tactus-site .markus-column code {
+  padding: 0.125rem 0.375rem;
+  border-radius: 0.25rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: "Fira Code", monospace;
+  font-size: 0.875em;
+}
+
+.tactus-site .markus-column pre {
+  margin: var(--space-4) 0;
+  padding: var(--space-4);
+  overflow-x: auto;
+  border-radius: var(--border-radius);
+  background: var(--color-code-bg);
+  color: var(--color-code);
+  font-family: "Fira Code", monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.tactus-site .markus-column pre code {
+  padding: 0;
+  background: none;
+  color: inherit;
+  font-size: inherit;
+}
+
+.tactus-site .markus-column blockquote {
+  margin: var(--space-4) 0;
+  padding: var(--space-3) var(--space-4);
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--border-radius);
+  background: var(--color-surface);
+}
+
+.tactus-site .markus-column blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.tactus-site .markus-column table {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  margin: var(--space-4) 0;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.tactus-site .markus-column th,
+.tactus-site .markus-column td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-surface);
+  text-align: left;
+}
+
+.tactus-site .markus-column th {
+  background: var(--color-surface);
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------------------- buttons */
+
+.tactus-site .markus-column .markus-actions,
+.tactus-site .markus-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+  max-width: none;
+  margin: var(--space-4) 0;
+}
+
+.tactus-site .markus-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1.25rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--color-primary);
+  color: var(--color-primary-ink);
+  font-family: var(--font-sans);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.tactus-site .markus-button:hover,
+.tactus-site .markus-column a.markus-button:hover {
+  background: color-mix(in srgb, var(--color-primary) 90%, black);
+  color: var(--color-primary-ink);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.tactus-site .markus-column a.markus-button {
+  color: var(--color-primary-ink);
+}
+
+.tactus-site .markus-button[data-size="lg"] {
+  padding: 0.6rem 1.5rem;
+  font-size: 1.75rem;
+}
+
+.tactus-site .markus-button[data-variant="secondary"],
+.tactus-site .markus-column a.markus-button[data-variant="secondary"] {
+  background: var(--color-surface-2);
+  color: var(--color-text);
+}
+
+.tactus-site .markus-button[data-variant="secondary"]:hover,
+.tactus-site .markus-column a.markus-button[data-variant="secondary"]:hover {
+  background: color-mix(in srgb, var(--color-surface-2) 90%, black);
+  color: var(--color-text);
+}
+
+/* ---------------------------------------------------------------- Markus components */
+
+.tactus-site .markus-card-grid {
+  display: grid;
+  grid-template-columns: repeat(var(--markus-columns, 3), minmax(0, 1fr));
+  gap: var(--space-4);
+  margin: var(--space-4) 0;
+}
+
+.tactus-site .markus-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: var(--space-4);
+  border-radius: var(--border-radius);
+  background: var(--color-surface-2);
+}
+
+.tactus-site .markus-band[data-tone="muted"] .markus-card {
+  background: var(--color-bg, #fff);
+}
+
+.tactus-site .markus-card pre {
+  max-width: 100%;
+}
+
+.tactus-site .markus-column .markus-card-title {
+  margin: 0 0 var(--space-2);
+}
+
+.tactus-site .markus-card-body > :last-child {
+  margin-bottom: 0;
+}
+
+.tactus-site .markus-card-body img {
+  display: block;
+  width: 100%;
+  max-width: 12rem;
+  margin: 0 auto var(--space-3);
+  border-radius: 0.25rem;
+}
+
+.tactus-site .markus-card-body img[src$=".svg"],
+.tactus-site .markus-card-body img[src$="dspy.png"] {
+  width: auto;
+  max-height: 3rem;
+}
+
+.tactus-site .markus-card-icon {
+  display: block;
+  margin-bottom: var(--space-2);
+  color: var(--color-primary);
+}
+
+.tactus-site .markus-card-icon .tactus-icon-svg {
+  width: 28px;
+  height: 28px;
+}
+
+.tactus-site .markus-video {
+  display: block;
+  width: 100%;
+  max-width: 48rem;
+  margin: 0 0 var(--space-5);
+  border-radius: var(--border-radius);
+  background: #000;
+}
+
+.tactus-site .markus-figure {
+  margin: var(--space-4) 0;
+}
+
+.tactus-site .markus-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.tactus-site .markus-figure img[src$=".png"] {
+  max-width: 32rem;
+  margin: 0 auto;
+}
+
+.tactus-site .markus-figure figcaption {
+  margin-top: var(--space-2);
+  color: var(--color-text-muted);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.tactus-site .markus-aside,
+.tactus-site .markus-callout {
+  margin: var(--space-4) 0;
+  padding: var(--space-4);
+  border-radius: var(--border-radius);
+  background: var(--color-surface);
+}
+
+.tactus-site .markus-column .markus-callout-title {
+  margin: 0 0 var(--space-2);
+  color: var(--color-primary);
+  font-size: var(--font-sx);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.tactus-site .markus-callout-body > :last-child {
+  margin-bottom: 0;
+}
+
+.tactus-site .markus-callout--tip,
+.tactus-site .markus-callout--warning {
+  background: var(--color-primary);
+  color: var(--color-primary-ink);
+}
+
+.tactus-site .markus-callout--tip .markus-callout-title,
+.tactus-site .markus-callout--warning .markus-callout-title,
+.tactus-site .markus-callout--tip p,
+.tactus-site .markus-callout--warning p,
+.tactus-site .markus-callout--tip li,
+.tactus-site .markus-callout--warning li,
+.tactus-site .markus-column .markus-callout--tip a,
+.tactus-site .markus-column .markus-callout--warning a,
+.tactus-site .markus-callout--tip strong {
+  color: var(--color-primary-ink);
+}
+
+.tactus-site .markus-two-up {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+  align-items: center;
+  margin: var(--space-4) 0;
+}
+
+.tactus-site .markus-two-up[data-ratio="2:1"] {
+  grid-template-columns: 2fr 1fr;
+}
+
+.tactus-site .markus-two-up[data-ratio="1:2"] {
+  grid-template-columns: 1fr 2fr;
+}
+
+.tactus-site .papyrus-island {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.tactus-site .tactus-icon {
+  margin: 0 0 var(--space-3);
+  color: var(--color-primary);
+}
+
+.tactus-site .tactus-icon-svg {
+  width: 32px;
+  height: 32px;
+}
+
+.tactus-site .tactus-availability-chip {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--border-radius);
+  color: var(--color-primary);
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.tactus-site .tactus-hitl-actions {
+  flex-wrap: wrap !important;
+}
+
+.tactus-site .tactus-hitl-actions .tactus-hitl-button {
+  white-space: normal;
+}
+
+[data-gatsby-image-wrapper] img[data-main-image] {
+  opacity: 1 !important;
+}
+
+/* ---------------------------------------------------------------- drop caps */
+
+.tactus-site .markus-band[data-layout~="drop-cap"] .markus-column > p:first-of-type::first-letter,
+.tactus-site .markus-band[data-layout="hero-split"] .markus-column:first-child > p:nth-of-type(3)::first-letter {
+  float: left;
+  margin-top: 0.05em;
+  margin-right: 0.15em;
+  color: var(--color-primary);
+  font-family: var(--font-serif);
+  font-size: 3.8em;
+  font-weight: 700;
+  line-height: 0.8;
+}
+
+/* ---------------------------------------------------------------- home hero */
+
+/* One band: the text column, the buttons and the install command, then the figure. On wide screens the columns' contents
+   become grid items: the figure sits beside the text, the buttons and the install command run below both. */
+
+.tactus-site .markus-band[data-layout="hero-split"] {
+  padding-bottom: var(--space-6);
+}
+
+@media (min-width: 801px) {
+  .tactus-site .markus-band[data-layout="hero-split"] .markus-columns {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 26rem);
+    gap: 0 var(--space-5);
+  }
+
+  .tactus-site .markus-band[data-layout="hero-split"] .markus-column {
+    display: contents;
+  }
+
+  .tactus-site .markus-band[data-layout="hero-split"] .markus-column:first-child > * {
+    grid-column: 1;
+  }
+
+  .tactus-site .markus-band[data-layout="hero-split"] .markus-column:first-child > .markus-actions,
+  .tactus-site .markus-band[data-layout="hero-split"] .markus-column:first-child > .papyrus-island {
+    grid-column: 1 / -1;
+  }
+
+  .tactus-site .markus-band[data-layout="hero-split"] .markus-column + .markus-column > .markus-figure {
+    grid-column: 2;
+    grid-row: 1 / span 20;
+    align-self: start;
+  }
+}
+
+.tactus-site .markus-band[data-layout="hero-split"] .markus-column:first-child > p:first-child {
+  margin: var(--space-6) 0 var(--space-3);
+  color: var(--color-primary);
+  font-size: var(--font-sx);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  line-height: var(--line-height-normal);
+  text-transform: uppercase;
+}
+
+.tactus-site .markus-band[data-layout="hero-split"] h1 {
+  display: inline-block;
+  justify-self: start;
+  margin-bottom: calc(var(--space-4) + var(--space-5));
+  padding: 0.05em 0.25em;
+  background: var(--color-primary);
+  color: var(--color-primary-ink);
+  font-family: var(--font-serif);
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.tactus-site .markus-band[data-layout="hero-split"] .markus-figure {
+  margin: var(--space-4) 0 0;
+}
+
+.tactus-site .markus-band[data-layout="hero-split"] .markus-figure img {
+  max-width: 100%;
+}
+
+.tactus-site .markus-band[data-layout="hero-split"] .markus-actions {
+  flex-wrap: nowrap;
+  margin-top: var(--space-4);
+}
+
+.tactus-site .markus-band[data-layout="hero-split"] .markus-button {
+  flex: 1 1 0;
+  padding: 0.5rem 1.25rem;
+  font-size: 1.75rem;
+  text-align: center;
+}
+
+.tactus-site .markus-band[data-layout="hero-split"] .papyrus-island {
+  justify-self: center;
+}
+
+/* ---------------------------------------------------------------- document pages: breadcrumb, badges, neighbours, closing call to action */
+
+.tactus-site .markus-band[data-layout~="document-hero"] p:first-child {
+  max-width: none;
+  line-height: var(--line-height-normal);
+  margin: 0 0 var(--space-3);
+  color: var(--color-primary);
+  font-size: var(--font-sx);
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.tactus-site .markus-band[data-layout~="document-hero"] p:first-child a {
+  color: inherit;
+}
+
+.tactus-site .markus-band[data-layout~="document-hero"] p:first-child a:hover {
+  text-decoration: underline;
+}
+
+.tactus-site .markus-band[data-layout~="wide"] p:last-child {
+  max-width: none;
+}
+
+.tactus-site .markus-band[data-layout~="document-hero"] ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0 0 var(--space-4);
+  padding: 0;
+  list-style: none;
+}
+
+.tactus-site .markus-band[data-layout~="document-hero"] li {
+  margin: 0;
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  background: var(--color-surface-2);
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: var(--line-height-normal);
+  white-space: nowrap;
+}
+
+.tactus-site .markus-band[data-layout~="document-hero"] li strong {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.tactus-site .markus-band[data-layout~="document-hero"] li:has(strong) {
+  background: rgba(255, 193, 7, 0.15);
+}
+
+.tactus-site .markus-band[data-layout~="document-hero"] li:has(strong) {
+  color: var(--color-text);
+}
+
+.tactus-site .markus-band[data-layout="example"] pre {
+  background: #1e1e1e;
+  font-size: 0.9rem;
+}
+
+.tactus-site .markus-band[data-layout="example"] pre code {
+  color: #d4d4d4;
+}
+
+.tactus-site .markus-band[data-layout="example"] blockquote {
+  border-left-color: rgba(59, 130, 246, 0.5);
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.tactus-site .markus-band[data-layout="example"] blockquote p {
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.tactus-site .markus-band[data-layout="neighbors"] ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  line-height: var(--line-height-normal);
+  list-style: none;
+}
+
+.tactus-site .markus-band[data-layout="neighbors"] li {
+  margin: 0;
+}
+
+.tactus-site .markus-band[data-layout="neighbors"] li:empty {
+  display: block;
+}
+
+.tactus-site .markus-band[data-layout="neighbors"] li:nth-child(2) {
+  text-align: right;
+}
+
+.tactus-site .markus-band[data-layout="neighbors"] a {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: var(--space-4);
+  border-radius: var(--border-radius);
+  background: var(--color-surface);
+  transition: transform 0.2s;
+}
+
+.tactus-site .markus-band[data-layout="neighbors"] a:hover {
+  background: var(--color-surface);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+
+.tactus-site .markus-band[data-layout="neighbors"] em {
+  margin-bottom: var(--space-2);
+  color: var(--color-primary);
+  font-size: 0.875rem;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.tactus-site .markus-band[data-layout="neighbors"] strong {
+  color: var(--color-text);
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.tactus-site .markus-band[data-layout="cta"] .markus-column {
+  max-width: 46rem;
+  margin: 0 auto;
+  padding-top: 2.5em;
+  text-align: center;
+}
+
+.tactus-site .markus-band[data-layout="cta"] h2 {
+  margin: 0 0 var(--space-3);
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.tactus-site .markus-band[data-layout="cta"] p {
+  margin: 0 0 var(--space-5);
+  color: var(--color-text-muted);
+  font-size: var(--font-lg);
+  line-height: var(--line-height-loose);
+}
+
+.tactus-site .markus-band[data-layout="cta"] .markus-actions {
+  justify-content: center;
+  margin: 0;
+}
+
+.tactus-site .markus-band[data-layout="cta"] .markus-button {
+  margin: 0;
+}
+
+/* ---------------------------------------------------------------- footer */
+
+.tactus-site .papyrus-family-footer a {
+  background: none;
+  color: var(--papyrus-family-footer-link, #f7f4ff);
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.tactus-site .papyrus-family-footer a:hover {
+  background: none;
+  text-decoration: underline;
+}
+
+.tactus-site .papyrus-family-footer .papyrus-family-footer-item a {
+  font-weight: 500;
+}
+
+.tactus-site .papyrus-family-footer .papyrus-family-footer-bottom a {
+  color: var(--papyrus-family-footer-muted-text, #cbbfef);
+  font-weight: 300;
+}
+
+.tactus-site .papyrus-family-footer-title,
+.tactus-site .papyrus-family-footer-column-title {
+  font-family: inherit;
+  letter-spacing: normal;
+}
+
+.tactus-site .papyrus-family-footer-title {
+  margin: 0;
+  color: inherit;
+  font-size: 1.12rem;
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.tactus-site .papyrus-family-footer-column-title {
+  margin: 0 0 0.5rem;
+  color: var(--papyrus-family-footer-muted-text, #cbbfef);
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.tactus-site .papyrus-family-footer p {
+  margin: 0;
+}
+
+.tactus-site .papyrus-family-footer ul {
+  padding: 0;
+}
+
+.tactus-site .papyrus-family-footer li {
+  margin: 0 0 var(--space-2);
+}
+
+/* ---------------------------------------------------------------- narrow screens */
+
+@media (max-width: 800px) {
+  .tactus-site .markus-band {
+    padding: var(--space-5) 0;
+  }
+
+  .tactus-site .markus-card-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tactus-site .markus-two-up {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .tactus-site .markus-band[data-layout="hero-split"] .markus-actions {
+    flex-wrap: wrap;
+  }
+
+  .tactus-site .markus-band[data-layout="cta"] .markus-button {
+    width: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tactus-site .markus-site-nav > a,
+  .tactus-site .markus-nav-group > summary,
+  .tactus-site .markus-button {
+    transition: none !important;
+  }
+}

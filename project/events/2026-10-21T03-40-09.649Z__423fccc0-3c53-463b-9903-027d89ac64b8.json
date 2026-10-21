@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "event_id": "423fccc0-3c53-463b-9903-027d89ac64b8",
+  "issue_id": "tctw-dbe75e30-2192-4c40-a87e-9c7c95962e12",
+  "event_type": "issue_created",
+  "occurred_at": "2026-10-21T03:40:09.649Z",
+  "actor_id": "home",
+  "payload": {
+    "title": "Move the site to the standard Papyrus front end (PPY-ef5843)",
+    "description": "Replace Gatsby and the scraped donor page with web/projection.json, web/css/site-theme.css, web/hooks.py and Markus content in content/ rendered by Papyrus core (page blocks, islands, family footer). Islands stay React in one esbuild bundle mounted through ::island. Adds sitemap, robots, feeds, canonical and Markdown twins; fixes d8fb03 and b9c346. Parity evidence on Papyrus story PPY-ef5843.",
+    "issue_type": "task",
+    "status": "open",
+    "priority": 2,
+    "assignee": null,
+    "parent": null,
+    "labels": []
+  }
+}

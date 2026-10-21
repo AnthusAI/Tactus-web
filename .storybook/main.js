@@ -20,8 +20,6 @@ const config = {
     webpackConfig.resolve = webpackConfig.resolve || {}
     webpackConfig.resolve.alias = {
       ...(webpackConfig.resolve.alias || {}),
-      gatsby: join(rootDir, "mocks", "gatsby.js"),
-      "gatsby-link": join(rootDir, "mocks", "gatsby.js"),
     }
 
     return webpackConfig

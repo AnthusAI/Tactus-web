@@ -1,0 +1,29 @@
+[
+  {
+    "id": "learning-tactus",
+    "title": "Learning Tactus",
+    "description": "A coherent introduction: the why, the mental model, and the core patterns.",
+    "href": "https://anthusai.github.io/Learning-Tactus/",
+    "pdf": "https://anthusai.github.io/Learning-Tactus/pdf/Learning-Tactus.pdf",
+    "repo": "https://github.com/AnthusAI/Learning-Tactus",
+    "coverFile": "learning-tactus.png"
+  },
+  {
+    "id": "programming-tactus",
+    "title": "Programming Tactus",
+    "description": "The reference: a deeper and broader tour of the language.",
+    "href": "https://anthusai.github.io/Programming-Tactus/",
+    "pdf": "https://anthusai.github.io/Programming-Tactus/pdf/Programming-Tactus.pdf",
+    "repo": "https://github.com/AnthusAI/Programming-Tactus",
+    "coverFile": "programming-tactus.png"
+  },
+  {
+    "id": "tactus-in-a-nutshell",
+    "title": "Tactus in a Nutshell",
+    "description": "A quick reference for when you’re writing and debugging.",
+    "href": "https://anthusai.github.io/Tactus-in-a-Nutshell/",
+    "pdf": "https://anthusai.github.io/Tactus-in-a-Nutshell/pdf/Tactus-in-a-Nutshell.pdf",
+    "repo": "https://github.com/AnthusAI/Tactus-in-a-Nutshell",
+    "coverFile": "tactus-in-a-nutshell.png"
+  }
+]

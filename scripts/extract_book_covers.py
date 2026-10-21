@@ -9,9 +9,9 @@ Dependencies:
   - Python 3 with Pillow (PIL) installed (already present on many macOS setups)
 
 Outputs:
-  - `src/images/books/learning-tactus.png`
-  - `src/images/books/programming-tactus.png`
-  - `src/images/books/tactus-in-a-nutshell.png`
+  - `web/assets/books/learning-tactus.png`
+  - `web/assets/books/programming-tactus.png`
+  - `web/assets/books/tactus-in-a-nutshell.png`
 """
 
 from __future__ import annotations
@@ -169,8 +169,8 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--out-dir",
-        default="src/images/books",
-        help="Where to write PNG cover images (default: src/images/books).",
+        default="web/assets/books",
+        help="Where to write PNG cover images (default: web/assets/books).",
     )
     parser.add_argument(
         "--cache-dir",

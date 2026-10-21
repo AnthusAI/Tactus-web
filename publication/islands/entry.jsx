@@ -1,9 +1,13 @@
+import "@anthus/tactus-hitl-components/styles.css"
+import "./hitl.css"
+
 import { HitlDiagram } from "./hitl-diagram"
 import { InstallCommand } from "./install"
+import { enhanceReleaseLinks } from "./release-links"
 import AnimatedNewWayFlowchartDiagram from "../../src/components/diagrams/AnimatedNewWayFlowchartDiagram"
 import AnimatedOldWayFlowchartDiagram from "../../src/components/diagrams/AnimatedOldWayFlowchartDiagram"
 import DeepIntegrationDiagram from "../../src/components/diagrams/DeepIntegrationDiagram"
-import { ENHANCERS, mountIslands } from "./mount"
+import { coerceValue, lazyIsland, mountReact, reactIsland, registerIslands, takeFollowingCode } from "./mount"
 import AnimatedCodeBlock from "../../src/components/animated/AnimatedCodeBlock"
 import AnimatedAIEngineersToolboxDiagram from "../../src/components/diagrams/AnimatedAIEngineersToolboxDiagram"
 import AnimatedGuardrailsStackDiagram from "../../src/components/diagrams/AnimatedGuardrailsStackDiagram"
@@ -21,29 +25,45 @@ import PromptEngineeringCeilingDiagram from "../../src/components/diagrams/Promp
 import SidecarChatDiagram from "../../src/components/diagrams/SidecarChatDiagram"
 import SpecificationsDiagram from "../../src/components/diagrams/SpecificationsDiagram"
 
-const ISLANDS = {
-  AnimatedAIEngineersToolboxDiagram,
-  AnimatedNewWayFlowchartDiagram,
-  AnimatedOldWayFlowchartDiagram,
-  DeepIntegrationDiagram,
-  InstallCommand,
-  HitlDiagram,
-  AnimatedCodeBlock,
-  AnimatedGuardrailsStackDiagram,
-  ContainerSandboxDiagram,
-  AnimatedVisualEvaluationsDiagram,
-  AnimatedVisualSpecificationsDiagram,
-  AnimatedVisualValidationDiagram,
-  EmbeddedRuntimeDiagram,
-  EvaluationsDiagram,
-  HitlReturnsAllDiagram,
-  LeastPrivilegeDiagram,
-  LevelZeroEscalationDiagram,
-  PromptEngineeringCeilingDiagram,
-  ProgrammableToolGatewayDiagram,
-  SidecarChatDiagram,
-  SpecificationsDiagram,
+const CODE_BLOCK_DEFAULTS = {
+  showTypewriter: false,
+  typewriterLoop: false,
+  autoHeight: true,
+  width: "100%",
+  autoPlay: false,
+  controls: false,
+  loop: false,
 }
 
+// The fenced block after the island is the code; AnimatedCodeBlock replaces it.
+const codeBlockIsland = (element, props) => {
+  const { code, language } = takeFollowingCode(element)
+  const attributes = Object.fromEntries(Object.entries(props).map(([name, value]) => [name, coerceValue(value)]))
+  mountReact(element, AnimatedCodeBlock, { ...CODE_BLOCK_DEFAULTS, language, ...attributes, code })
+}
 
-mountIslands(ISLANDS, ENHANCERS)
+registerIslands({
+  AnimatedAIEngineersToolboxDiagram: reactIsland(AnimatedAIEngineersToolboxDiagram),
+  AnimatedNewWayFlowchartDiagram: reactIsland(AnimatedNewWayFlowchartDiagram),
+  AnimatedOldWayFlowchartDiagram: reactIsland(AnimatedOldWayFlowchartDiagram),
+  DeepIntegrationDiagram: reactIsland(DeepIntegrationDiagram),
+  InstallCommand: reactIsland(InstallCommand),
+  HitlDiagram: reactIsland(HitlDiagram),
+  AnimatedCodeBlock: codeBlockIsland,
+  AnimatedGuardrailsStackDiagram: reactIsland(AnimatedGuardrailsStackDiagram),
+  ContainerSandboxDiagram: reactIsland(ContainerSandboxDiagram),
+  AnimatedVisualEvaluationsDiagram: reactIsland(AnimatedVisualEvaluationsDiagram),
+  AnimatedVisualSpecificationsDiagram: reactIsland(AnimatedVisualSpecificationsDiagram),
+  AnimatedVisualValidationDiagram: reactIsland(AnimatedVisualValidationDiagram),
+  EmbeddedRuntimeDiagram: reactIsland(EmbeddedRuntimeDiagram),
+  EvaluationsDiagram: reactIsland(EvaluationsDiagram),
+  HitlReturnsAllDiagram: reactIsland(HitlReturnsAllDiagram),
+  HitlDemo: lazyIsland(() => import("./hitl-demo")),
+  LeastPrivilegeDiagram: reactIsland(LeastPrivilegeDiagram),
+  LevelZeroEscalationDiagram: reactIsland(LevelZeroEscalationDiagram),
+  PromptEngineeringCeilingDiagram: reactIsland(PromptEngineeringCeilingDiagram),
+  ProgrammableToolGatewayDiagram: reactIsland(ProgrammableToolGatewayDiagram),
+  ReleaseLinks: enhanceReleaseLinks,
+  SidecarChatDiagram: reactIsland(SidecarChatDiagram),
+  SpecificationsDiagram: reactIsland(SpecificationsDiagram),
+})

@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "event_id": "d09a104c-1934-432f-9744-ec987ef1dfbc",
+  "issue_id": "tctw-df2f4ad9-6956-486a-8005-e56cc6435773",
+  "event_type": "issue_created",
+  "occurred_at": "2026-10-21T04:18:25.037Z",
+  "actor_id": "home",
+  "payload": {
+    "title": "Source Sans/Serif/Code fonts never load; switch fonts.stylesheet on when wanted",
+    "description": "layout.css imported the Google Fonts stylesheet after other rules, so browsers ignored it and the live site rendered the fallback stack (Georgia/system sans). The Papyrus migration kept that look. To use the intended Source Sans 3, Source Serif 4 and Source Code Pro, add fonts.stylesheet with the Google Fonts URL to web/projection.json and compare the layout.",
+    "issue_type": "bug",
+    "status": "open",
+    "priority": 3,
+    "assignee": null,
+    "parent": null,
+    "labels": []
+  }
+}

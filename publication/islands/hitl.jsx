@@ -20,7 +20,6 @@ import {
 import { Conversation, ConversationContent } from "../../src/components/ai-elements/conversation"
 import { Message, MessageContent, MessageResponse } from "../../src/components/ai-elements/message"
 import { Tool, ToolContent, ToolHeader, ToolInput, ToolOutput } from "../../src/components/ai-elements/tool"
-import * as styles from "./hitl.module.css"
 
 const noop = () => {}
 
@@ -281,8 +280,8 @@ const PANELS = {
 }
 
 const ChatFooter = () => (
-  <div className={styles.chatFooter}>
-    <div className={styles.footerHint}>
+  <div className="tactus-hitl-chat-footer">
+    <div className="tactus-hitl-footer-hint">
       These are the same HITL components used by the <a href="/download/">Tactus IDE</a> and documented in{" "}
       <a href="/resources/components/">Resources → Components</a>.
     </div>
@@ -290,13 +289,13 @@ const ChatFooter = () => (
 )
 
 const OpsChat = () => (
-  <div className={styles.chatShell} aria-label="HITL chat demo">
-    <div className={styles.chatHeader}>
-      <div className={styles.chatTitle}>Ops Copilot</div>
-      <div className={styles.chatMeta}>Agent runs until it hits a checkpoint.</div>
+  <div className="tactus-hitl-chat-shell" aria-label="HITL chat demo">
+    <div className="tactus-hitl-chat-header">
+      <div className="tactus-hitl-chat-title">Ops Copilot</div>
+      <div className="tactus-hitl-chat-meta">Agent runs until it hits a checkpoint.</div>
     </div>
     <Conversation>
-      <ConversationContent className={styles.chatLog} scrollClassName={styles.chatScroll}>
+      <ConversationContent className="tactus-hitl-chat-log" scrollClassName="tactus-hitl-chat-scroll">
         <Message from="assistant">
           <MessageContent>
             <MessageResponse from="assistant">
@@ -317,7 +316,7 @@ const OpsChat = () => (
           </MessageContent>
         </Message>
         <Message from="assistant">
-          <MessageContent className={styles.fullWidthMessage}>
+          <MessageContent className="tactus-hitl-full-width-message">
             <ApprovalPanel
               request={{
                 ...opsCopilotBase,
@@ -345,13 +344,13 @@ const OpsChat = () => (
 )
 
 const CopilotChat = () => (
-  <div className={styles.chatShell} aria-label="Copilot chat demo">
-    <div className={styles.chatHeader}>
-      <div className={styles.chatTitle}>Acme Copilot</div>
-      <div className={styles.chatMeta}>Chat UI + Tactus runtime + HITL components</div>
+  <div className="tactus-hitl-chat-shell" aria-label="Copilot chat demo">
+    <div className="tactus-hitl-chat-header">
+      <div className="tactus-hitl-chat-title">Acme Copilot</div>
+      <div className="tactus-hitl-chat-meta">Chat UI + Tactus runtime + HITL components</div>
     </div>
     <Conversation>
-      <ConversationContent className={styles.chatLog} scrollClassName={styles.chatScroll}>
+      <ConversationContent className="tactus-hitl-chat-log" scrollClassName="tactus-hitl-chat-scroll">
         <Message from="assistant">
           <MessageContent>
             <MessageResponse from="assistant">
@@ -391,7 +390,7 @@ const CopilotChat = () => (
           </MessageContent>
         </Message>
         <Message from="assistant">
-          <MessageContent className={styles.fullWidthMessage}>
+          <MessageContent className="tactus-hitl-full-width-message">
             <ChainOfThought defaultOpen={false}>
               <ChainOfThoughtHeader>Agent reasoning</ChainOfThoughtHeader>
               <ChainOfThoughtContent>
@@ -403,7 +402,7 @@ const CopilotChat = () => (
           </MessageContent>
         </Message>
         <Message from="assistant">
-          <MessageContent className={styles.fullWidthMessage}>
+          <MessageContent className="tactus-hitl-full-width-message">
             <Tool defaultOpen={false}>
               <ToolHeader title="send_email" type="tool-send_email" state="output-available" />
               <ToolContent>
@@ -420,7 +419,7 @@ const CopilotChat = () => (
           </MessageContent>
         </Message>
         <Message from="assistant">
-          <MessageContent className={styles.fullWidthMessage}>
+          <MessageContent className="tactus-hitl-full-width-message">
             <MessageResponse from="assistant">
               Done. Next, I can open a replacement ticket — I just need two details.
             </MessageResponse>

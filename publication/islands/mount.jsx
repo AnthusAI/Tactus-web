@@ -1,6 +1,16 @@
 import * as React from "react"
 import { createRoot } from "react-dom/client"
 
+// ::island attributes arrive as strings in the island's props; components expect numbers and booleans.
+export const coerceValue = value => {
+  if (typeof value !== "string") return value
+  if (/^\d+$/.test(value)) return Number(value)
+  if (/^\d+\.\d+$/.test(value)) return Number(value)
+  if (value === "true") return true
+  if (value === "false") return false
+  return value
+}
+
 const useColorScheme = () => {
   const [theme, setTheme] = React.useState("light")
   React.useEffect(() => {
@@ -13,56 +23,35 @@ const useColorScheme = () => {
   return theme
 }
 
-const Island = ({ Component, props, code }) => {
+const Island = ({ Component, props }) => {
   const theme = useColorScheme()
-  const codeProps = code === null ? {} : { code }
-  return <Component theme={theme} {...props} {...codeProps} />
+  return <Component theme={theme} {...props} />
 }
 
-const RELEASES_URL = "https://api.github.com/repos/AnthusAI/Tactus/releases/latest"
-const RELEASE_ASSETS = { mac: ".dmg", windows: ".exe", linux: ".appimage" }
-const RELEASE_LABELS = { mac: "Download for Mac", windows: "Download for Windows", linux: "Download for Linux" }
+const coerceProps = props => Object.fromEntries(Object.entries(props).map(([name, value]) => [name, coerceValue(value)]))
 
-const enhanceReleaseLinks = element => {
-  fetch(RELEASES_URL)
-    .then(response => response.json())
-    .then(release => {
-      const version = release.tag_name || release.name
-      if (version) {
-        const label = document.createElement("p")
-        label.setAttribute("aria-label", "Latest version")
-        label.innerHTML = "<strong>Latest version</strong> "
-        label.append(version)
-        element.append(label)
-      }
-      Object.entries(RELEASE_ASSETS).forEach(([platform, extension]) => {
-        const asset = (release.assets || []).find(item => item.name.toLowerCase().endsWith(extension))
-        const link = document.querySelector(`a[href$="releases/latest#${platform}"]`)
-        if (asset && link) {
-          link.href = asset.browser_download_url
-          link.textContent = RELEASE_LABELS[platform]
-        }
-      })
-    })
-    .catch(error => console.error("Failed to fetch release", error))
+export const mountReact = (element, Component, props) => {
+  createRoot(element).render(<Island Component={Component} props={props} />)
 }
 
-export const ENHANCERS = { ReleaseLinks: enhanceReleaseLinks }
+// A Papyrus island: `(element, props) => ...` that renders a React component into the mount point.
+export const reactIsland = Component => (element, props) => mountReact(element, Component, coerceProps(props))
 
-const mountIsland = (registry, enhancers, element) => {
-  if (enhancers[element.dataset.island]) {
-    enhancers[element.dataset.island](element)
-    return
-  }
-  const Component = registry[element.dataset.island]
-  if (!Component) {
-    return
-  }
-  const props = JSON.parse(element.dataset.props || "{}")
-  const codeElement = element.querySelector("pre code")
-  const code = codeElement ? codeElement.textContent.replace(/\n$/, "") : null
-  createRoot(element).render(<Island Component={Component} props={props} code={code} />)
+// The code of a fenced block that follows the mount point on the page; the block stays as the fallback until
+// the island mounts and then goes away.
+export const takeFollowingCode = element => {
+  const block = element.nextElementSibling
+  const codeElement = block && block.tagName === "PRE" ? block.querySelector("code") : null
+  if (!codeElement) throw new Error("This island must be followed by a fenced code block")
+  const language = (codeElement.className.match(/language-([\w-]+)/) || [])[1]
+  block.remove()
+  return { code: codeElement.textContent.replace(/\n$/, ""), language }
 }
 
-export const mountIslands = (registry, enhancers = {}) =>
-  document.querySelectorAll("[data-island]").forEach(element => mountIsland(registry, enhancers, element))
+// An island that loads its component on demand (a large dependency used by one page).
+export const lazyIsland = load => (element, props) =>
+  load().then(module => reactIsland(module.default)(element, props))
+
+export const registerIslands = islands => {
+  window.papyrusIslands = { ...window.papyrusIslands, ...islands }
+}

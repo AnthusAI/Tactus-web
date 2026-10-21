@@ -214,6 +214,7 @@
   },
   "hooks": "hooks.py",
   "pageActions": {
-    "enabled": true
+    "enabled": true,
+    "types": ["page"]
   }
 }

@@ -1,0 +1,147 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: papyrus-edge-tactus-site CloudFront distribution for tactus.anth.us in front of the Tactus-web Amplify app. It exists for one reason, Accept text/markdown negotiation, which the Amplify managed edge cannot do.
+Parameters:
+  Host:
+    Type: String
+    Default: tactus.anth.us
+  HostedZoneId:
+    Type: String
+    Default: Z04979341DPRV5BDQNZMG
+    Description: Route 53 zone anth.us in the account that deploys this stack (certificate validation records are written there).
+  AmplifyOriginDomain:
+    Type: String
+    Default: main.dfkbdffs2viq8.amplifyapp.com
+    Description: Amplify app Tactus-web, branch main. Its Cache-Control (s-maxage=0) keeps this edge revalidating, so a deploy shows at once.
+  AttachAlias:
+    Type: String
+    Default: 'false'
+    AllowedValues: ['false', 'true']
+    Description: CloudFront refuses an alias while DNS still points at another distribution (here, the Amplify one). Create with false, point the DNS record at this distribution's cloudfront.net name, then update with true.
+Conditions:
+  HasAlias: !Equals [!Ref AttachAlias, 'true']
+Resources:
+  Certificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: !Ref Host
+      ValidationMethod: DNS
+      DomainValidationOptions:
+        - DomainName: !Ref Host
+          HostedZoneId: !Ref HostedZoneId
+  ViewerRequestFunction:
+    Type: AWS::CloudFront::Function
+    Properties:
+      Name: !Sub '${AWS::StackName}-viewer-request'
+      AutoPublish: true
+      FunctionConfig:
+        Comment: Accept text/markdown to the .md twin of a page, before the cache lookup
+        Runtime: cloudfront-js-2.0
+      FunctionCode: |
+        function qualityOf(accept, mediaType) {
+          var quality = 0;
+          var parts = accept.toLowerCase().split(",");
+          for (var index = 0; index < parts.length; index += 1) {
+            var fields = parts[index].split(";");
+            if (fields[0].trim() !== mediaType) {
+              continue;
+            }
+            quality = 1;
+            for (var field = 1; field < fields.length; field += 1) {
+              var pair = fields[field].trim();
+              if (pair.indexOf("q=") === 0) {
+                quality = Number(pair.substring(2));
+                if (isNaN(quality)) {
+                  quality = 0;
+                }
+              }
+            }
+          }
+          return quality;
+        }
+
+        function prefersMarkdown(request) {
+          var header = request.headers && request.headers.accept;
+          if (!header || !header.value) {
+            return false;
+          }
+          var markdown = qualityOf(header.value, "text/markdown");
+          return markdown > 0 && markdown > qualityOf(header.value, "text/html");
+        }
+
+        function markdownTwin(uri) {
+          if (uri.endsWith("/")) {
+            return uri + "index.md";
+          }
+          var lastSegment = uri.substring(uri.lastIndexOf("/") + 1);
+          if (lastSegment.indexOf(".") === -1) {
+            return uri + "/index.md";
+          }
+          if (uri.length > 5 && uri.substring(uri.length - 5) === ".html" && uri !== "/404.html") {
+            return uri.substring(0, uri.length - 5) + ".md";
+          }
+          return null;
+        }
+
+        function handler(event) {
+          var request = event.request;
+          if (prefersMarkdown(request)) {
+            var twin = markdownTwin(request.uri);
+            if (twin !== null) {
+              request.uri = twin;
+            }
+          }
+          return request;
+        }
+  CachePolicy:
+    Type: AWS::CloudFront::CachePolicy
+    Properties:
+      CachePolicyConfig:
+        Name: !Sub '${AWS::StackName}-honour-origin'
+        MinTTL: 0
+        DefaultTTL: 0
+        MaxTTL: 31536000
+        ParametersInCacheKeyAndForwardedToOrigin:
+          EnableAcceptEncodingGzip: true
+          EnableAcceptEncodingBrotli: true
+          HeadersConfig:
+            HeaderBehavior: none
+          CookiesConfig:
+            CookieBehavior: none
+          QueryStringsConfig:
+            QueryStringBehavior: none
+  Distribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Comment: tactus.anth.us (Amplify Tactus-web origin, Accept text/markdown negotiation)
+        Aliases: !If [HasAlias, [!Ref Host], !Ref 'AWS::NoValue']
+        HttpVersion: http2and3
+        IPV6Enabled: true
+        ViewerCertificate: !If
+          - HasAlias
+          - AcmCertificateArn: !Ref Certificate
+            SslSupportMethod: sni-only
+            MinimumProtocolVersion: TLSv1.2_2021
+          - CloudFrontDefaultCertificate: true
+        Origins:
+          - Id: amplify
+            DomainName: !Ref AmplifyOriginDomain
+            CustomOriginConfig:
+              OriginProtocolPolicy: https-only
+              OriginSSLProtocols: [TLSv1.2]
+        DefaultCacheBehavior:
+          TargetOriginId: amplify
+          ViewerProtocolPolicy: redirect-to-https
+          Compress: true
+          AllowedMethods: [GET, HEAD]
+          CachePolicyId: !Ref CachePolicy
+          OriginRequestPolicyId: b689b0a8-53d0-40ab-baf2-68738e2966ac
+          FunctionAssociations:
+            - EventType: viewer-request
+              FunctionARN: !GetAtt ViewerRequestFunction.FunctionARN
+Outputs:
+  DistributionId:
+    Value: !Ref Distribution
+  DistributionDomainName:
+    Value: !GetAtt Distribution.DomainName

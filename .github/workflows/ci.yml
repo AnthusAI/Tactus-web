@@ -1,3 +1,7 @@
+# CI runs on every push and pull request (this repository is public, so Actions minutes are free). A green
+# push to main then starts the Amplify job for that exact commit through GitHub OIDC; Amplify's own
+# auto-build is off on main. The role (infra/github-deploy) trusts refs/heads/main of this repository only
+# and may only start and read jobs on this app's main branch.
 name: CI
 
 on:
@@ -31,3 +35,14 @@ jobs:
 
       - name: Build
         run: npm run build
+
+  deploy:
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    permissions:
+      id-token: write
+      contents: read
+    uses: AnthusAI/Papyrus/.github/workflows/amplify-deploy.yml@main
+    with:
+      app-id: dfkbdffs2viq8
+      role-to-assume: arn:aws:iam::335163751677:role/tactus-web-github-deploy

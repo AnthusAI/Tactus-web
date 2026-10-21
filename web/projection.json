@@ -188,6 +188,9 @@
     "manifest": "/manifest.webmanifest",
     "themeColor": "#c7007e"
   },
+  "sitemap": {
+    "lastmod": true
+  },
   "feeds": {
     "formats": []
   },
@@ -211,6 +214,6 @@
   },
   "hooks": "hooks.py",
   "pageActions": {
-    "enabled": false
+    "enabled": true
   }
 }

@@ -1,0 +1,45 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >-
+  Merge-to-main deploy role for Tactus-web (legacy account). GitHub Actions assumes it through OIDC
+  on refs/heads/main of AnthusAI/Tactus-web only, and it may only start and read Amplify jobs on the
+  production branch of the Tactus-web app. Same shape as the Papyrus app shell's <siteId>-github-deploy
+  role (docs/site-hosting.md in AnthusAI/Papyrus, "Deploy on merge to main").
+Parameters:
+  AmplifyAppId:
+    Type: String
+    Default: dfkbdffs2viq8
+  OidcProviderArn:
+    Type: String
+    Default: arn:aws:iam::335163751677:oidc-provider/token.actions.githubusercontent.com
+Resources:
+  DeployRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: tactus-web-github-deploy
+      MaxSessionDuration: 3600
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action: sts:AssumeRoleWithWebIdentity
+            Principal:
+              Federated: !Ref OidcProviderArn
+            Condition:
+              StringEquals:
+                token.actions.githubusercontent.com:aud: sts.amazonaws.com
+                token.actions.githubusercontent.com:sub:
+                  - repo:AnthusAI/Tactus-web:ref:refs/heads/main
+                  - repo:AnthusAI@152415604/Tactus-web@1132456109:ref:refs/heads/main
+      Policies:
+        - PolicyName: StartAndReadProductionJobs
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action:
+                  - amplify:StartJob
+                  - amplify:GetJob
+                Resource: !Sub arn:${AWS::Partition}:amplify:${AWS::Region}:${AWS::AccountId}:apps/${AmplifyAppId}/branches/main/jobs/*
+Outputs:
+  DeployRoleArn:
+    Value: !GetAtt DeployRole.Arn

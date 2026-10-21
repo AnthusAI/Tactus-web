@@ -812,7 +812,8 @@ body.tactus-site {
   overflow-x: auto;
 }
 
-.tactus-site .tactus-icon {
+.tactus-site .tactus-icon,
+.tactus-site .markus-column p.tactus-icon {
   margin: 0 0 var(--space-3);
   color: var(--color-primary);
 }

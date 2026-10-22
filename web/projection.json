@@ -173,6 +173,14 @@
             "label": "GitHub",
             "href": "https://github.com/AnthusAI/Tactus",
             "external": true
+          },
+          {
+            "label": "Privacy",
+            "href": "https://anth.us/privacy/"
+          },
+          {
+            "label": "Cookie settings",
+            "href": "#cookie-settings"
           }
         ]
       }
@@ -201,6 +209,10 @@
     "llmsTxt": false
   },
   "chrome": {
+    "ga_measurement_id": "G-31SC26SDGX",
+    "consent_mode": {
+      "privacy_policy_url": "https://anth.us/privacy/"
+    },
     "body_class": "markus-body tactus-site",
     "stylesheets": [
       "css/markus-components.css",
